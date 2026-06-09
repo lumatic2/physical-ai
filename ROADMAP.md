@@ -27,10 +27,10 @@
 - [x] `~/vault/` 로 이전 — `10.10-Research/physical-ai/physical-ai-landscape-2026-06-09.md`
 - 완료 기준: 5개 reference 5섹션 완성 + vault 이전 완료 ✅ (2026-06-09)
 
-### M3 — 프로젝트 아이디어 → 작은 구현
-- [ ] 축적한 지식 기반으로 만들 수 있는 프로젝트 아이디어 3~5개 발굴 (소프트웨어/실물)
-- [ ] 1개 선정 후 최소 프로토타입 또는 실험 (`experiments/` EXPERIMENT_TEMPLATE)
-- 완료 기준: 아이디어 목록 문서화 + 선정 1개의 실험 결과 기록
+### M3 — 프로젝트 아이디어 → 작은 구현 🔄
+- [x] 아이디어 5개 발굴·문서화 → [docs/m3-ideas.md](docs/m3-ideas.md) (방향: SW 먼저 → 저가팔 확장)
+- [ ] 1개 선정 후 최소 프로토타입 또는 실험 (`experiments/` EXPERIMENT_TEMPLATE) — 권장 #1 VLA 로컬 추론+시뮬 평가
+- 완료 기준: 아이디어 목록 문서화 ✅ + 선정 1개의 실험 결과 기록 (실험 미착수)
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악 완료. `docs/landscape.md` 작성 (정의·용어 11종·4레이어 스택·플레이어 맵 SW/HW/시뮬·reading list 15개).
