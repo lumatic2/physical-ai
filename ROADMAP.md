@@ -20,12 +20,12 @@
 - [x] 읽을 핵심 논문·문헌 reading list 10~15개 수집 → `docs/landscape.md` §4 (15개)
 - 완료 기준: `docs/landscape.md` 에 용어·플레이어·reading list 한 장으로 정리 완료 ✅ (2026-06-09)
 
-### M2 — 레퍼런스 정독 (deep dive) 🔄
+### M2 — 레퍼런스 정독 (deep dive) ✅
 - [x] reading list 중 핵심 5개를 `references/` 에 분석 (5섹션) — OpenVLA·π0·ACT·OXE·VLA서베이
 - [x] 동작 표현 대비를 ADR로 박제 → [ADR 0001](docs/adr/0001-vla-action-representation.md)
-- [ ] 정리한 지식을 `docs/` 주제별 노트로 승격 (landscape §2 정의 갱신 후보)
-- [ ] `~/vault/` 로 이전해 자료집화 (`/vault-write`)
-- 완료 기준: 5개 reference 5섹션 완성 + vault 이전 완료 (정독 5/5 완료, vault 이전 미완)
+- [x] 정리한 지식을 `docs/` 노트로 승격 — landscape §2 "VLA 2D 좌표계" 추가
+- [x] `~/vault/` 로 이전 — `10.10-Research/physical-ai/physical-ai-landscape-2026-06-09.md`
+- 완료 기준: 5개 reference 5섹션 완성 + vault 이전 완료 ✅ (2026-06-09)
 
 ### M3 — 프로젝트 아이디어 → 작은 구현
 - [ ] 축적한 지식 기반으로 만들 수 있는 프로젝트 아이디어 3~5개 발굴 (소프트웨어/실물)
@@ -34,6 +34,7 @@
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악 완료. `docs/landscape.md` 작성 (정의·용어 11종·4레이어 스택·플레이어 맵 SW/HW/시뮬·reading list 15개).
+- 2026-06-09 — M2 레퍼런스 정독 완료. 5편(OpenVLA·π0·ACT·OXE·VLA서베이) 5섹션 분석, [ADR 0001](docs/adr/0001-vla-action-representation.md) 동작표현 3대 패러다임 박제, landscape §2 2D 좌표계 승격, vault 이전(`10.10-Research/physical-ai/`).
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/` 에 ADR 로.

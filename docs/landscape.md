@@ -41,6 +41,22 @@
 
 대표적 분업 구조: NVIDIA GR00T N1의 **dual-system** — System 1(빠른 반사적 동작 모델) + System 2(느린 VLM 기반 숙고·계획) ([NVIDIA Research: GR00T N1](https://research.nvidia.com/publication/2025-03_nvidia-isaac-gr00t-n1-open-foundation-model-humanoid-robots)).
 
+### VLA 2D 좌표계 (M2 정독으로 승격 — [ADR 0001](adr/0001-vla-action-representation.md))
+
+"VLA = 이미지+지시→동작"의 평면적 정의로는 모델 차이를 못 잡는다. M2에서 4개를 코드 정독한 결과, VLA는 두 축으로 분류된다:
+
+- **구조축** (서베이): **monolithic**(single/dual-system) ↔ **hierarchical**(계획·실행을 중간표현으로 분리)
+- **동작표현축** (직접 정독): **이산 토큰화** ↔ **flow/diffusion** ↔ **직접 회귀(CVAE 등)**
+
+| 모델 | 구조 | 동작 표현 | 손실 | 추론 비용 |
+|------|------|----------|------|----------|
+| OpenVLA | monolithic single | 이산 토큰(256-bin) | cross-entropy | 1 forward |
+| π0 | monolithic | flow matching | MSE(velocity) | N≈10 forward |
+| ACT | monolithic | CVAE 직접 회귀 | L1 + KL | 1 forward |
+| GR00T N1 | monolithic dual-system | (hybrid) | — | System1+2 |
+
+백본은 수렴(VLM: Prismatic/PaliGemma), 분기는 "동작을 어디서·어떻게 만드는가". 실시간 고주파 제어→단일 패스, 멀티모달 동작 분포 표현력→flow matching. 신규 VLA는 정독 전 이 2D 좌표에 먼저 위치시킨다(routing 기준). *미검증 영역*: hierarchical·world-model 통합 VLA.
+
 ---
 
 ## 3. 주요 플레이어 · 랩 맵
