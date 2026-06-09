@@ -45,9 +45,9 @@ RTX 5090(32GB) 단일 GPU에서 OpenVLA 7B를 `deploy.py` REST 서버(`/act`)로
 | Run | 단계 | VRAM (GB) | latency p50/p95 (ms) | success rate | 비고 |
 |-----|------|-----------|----------------------|--------------|------|
 | M1  | mock REST round-trip | — | — | — | ✅ PASS: status 200, action ndarray (7,), json-numpy round-trip 무손실 (`verify/m1-client.log`) |
-| M2  | real 로딩 (VRAM) | | — | — | |
-| M3  | real 추론 latency | | | — | |
-| M4  | LIBERO success | | | | |
+| M2  | real 로딩 (VRAM) | 15.13 | — | — | ✅ openvla-7b sdpa/bf16, OOM 없음, load 176.6s (`verify/m2-load.json`). torchvision ABI·transformers 5.x 마찰 해소 후 |
+| M3  | real 추론 latency | 15.13 | 168.1 / 171.5 | — | ✅ unnorm_key=bridge_orig, action (7,) 실값 산출 (`verify/m3-latency.json`) |
+| M4  | LIBERO success | | | | ⬜ 미실행 (LIBERO 시뮬 스택 필요) |
 
 ### 박제 위치
 - `verify/` 폴더에 raw 출력 보존 (서버 로그·nvidia-smi·latency 측정 stdout·LIBERO rollout 로그)

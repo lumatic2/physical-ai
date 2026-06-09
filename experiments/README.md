@@ -7,7 +7,7 @@
 
 | # | 슬러그 | 가설 (한 줄) | 결과 |
 |---|--------|-------------|------|
-| 01 | [vla-local-eval](01-vla-local-eval/README.md) | RTX 5090서 OpenVLA 7B REST 추론 → LIBERO success rate > 0 | 🔄 M1 mock ✅ / M2~M4 미실행 |
+| 01 | [vla-local-eval](01-vla-local-eval/README.md) | RTX 5090서 OpenVLA 7B REST 추론 → LIBERO success rate > 0 | 🔄 M1·M2·M3 ✅ (H1 15GB/H2 168ms) · M4 LIBERO 미실행 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

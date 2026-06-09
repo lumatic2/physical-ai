@@ -1,0 +1,10 @@
+{
+  "model": "openvla/openvla-7b",
+  "attn_implementation": "sdpa",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "load_seconds": 176.6,
+  "vram_allocated_gb": 15.13,
+  "vram_peak_gb": 15.13,
+  "oom": false
+}

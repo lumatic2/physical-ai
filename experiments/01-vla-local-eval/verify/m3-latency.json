@@ -1,0 +1,23 @@
+{
+  "model": "openvla/openvla-7b",
+  "attn_implementation": "sdpa",
+  "unnorm_key": "bridge_orig",
+  "n": 20,
+  "warmup": 3,
+  "latency_ms_p50": 168.1,
+  "latency_ms_p95": 171.5,
+  "latency_ms_min": 161.1,
+  "latency_ms_max": 171.5,
+  "action_shape": [
+    7
+  ],
+  "action_sample": [
+    0.0043,
+    -0.0095,
+    0.0018,
+    -0.0806,
+    -0.045,
+    -0.0678,
+    0.9961
+  ]
+}
