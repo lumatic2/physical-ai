@@ -1,0 +1,17 @@
+# references/ — 클론 소스는 추적 안 함, 분석 노트(ANALYSIS.md)만 추적
+references/*/**
+!references/*/ANALYSIS.md
+
+# 표준 (repo-layout 규약)
+archive/
+tmp/
+data/
+outputs/
+reports/
+.venv*/
+node_modules/
+__pycache__/
+*.pyc
+
+# 로컬 핸드오프 (gitignored)
+CLAUDE.local.md

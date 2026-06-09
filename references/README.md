@@ -8,7 +8,11 @@
 
 | # | 레포 | 분석일 | 한 줄 요약 | 5섹션 완료 |
 |---|------|--------|-----------|------------|
-| 1 | {handle}/{repo} | YYYY-MM-DD | | ⬜ |
+| 1 | openvla/openvla | 2026-06-09 | 오픈소스 7B VLA — VLM(Prismatic) + 동작 토큰화 | ✅ 5/5 |
+| 2 | Physical-Intelligence/openpi (π0) | - | (M2 예정) | ⬜ |
+| 3 | tonyzhaozh/aloha + act | - | (M2 예정) | ⬜ |
+| 4 | google-deepmind/open_x_embodiment | - | (M2 예정) | ⬜ |
+| 5 | VLA 서베이 (arxiv 2508.13073) | - | (M2 예정) | ⬜ |
 
 ## 분석 원칙
 - 시간 박스: 레포당 90분
