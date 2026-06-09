@@ -14,11 +14,11 @@
 
 ## 마일스톤
 
-### M1 — 지형 파악 (landscape & 정의)
-- [ ] 피지컬 AI 핵심 용어·taxonomy 정리 (embodied AI / VLA / world model / sim-to-real / manipulation / locomotion 등)
-- [ ] 주요 플레이어·랩 맵 (NVIDIA Isaac·GR00T, Physical Intelligence, Figure, 1X, Google DeepMind Gemini Robotics, Tesla Optimus 등)
-- [ ] 읽을 핵심 논문·문헌 reading list 10~15개 수집
-- 완료 기준: `docs/landscape.md` 에 용어·플레이어·reading list 한 장으로 정리 완료
+### M1 — 지형 파악 (landscape & 정의) ✅
+- [x] 피지컬 AI 핵심 용어·taxonomy 정리 (embodied AI / VLA / world model / sim-to-real / manipulation / locomotion 등)
+- [x] 주요 플레이어·랩 맵 (NVIDIA Isaac·GR00T, Physical Intelligence, Figure, 1X, Google DeepMind Gemini Robotics, Tesla Optimus 등)
+- [x] 읽을 핵심 논문·문헌 reading list 10~15개 수집 → `docs/landscape.md` §4 (15개)
+- 완료 기준: `docs/landscape.md` 에 용어·플레이어·reading list 한 장으로 정리 완료 ✅ (2026-06-09)
 
 ### M2 — 레퍼런스 정독 (deep dive)
 - [ ] reading list 중 핵심 5개를 `references/<handle>-<repo>/` 에 분석 (ANALYSIS_TEMPLATE 5섹션)
@@ -32,7 +32,7 @@
 - 완료 기준: 아이디어 목록 문서화 + 선정 1개의 실험 결과 기록
 
 ## 완료 이력
-- (아직 없음)
+- 2026-06-09 — M1 지형 파악 완료. `docs/landscape.md` 작성 (정의·용어 11종·4레이어 스택·플레이어 맵 SW/HW/시뮬·reading list 15개).
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/` 에 ADR 로.
