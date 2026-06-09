@@ -1,0 +1,4 @@
+# 일회성 런 산출물 — frozen 증거(verify/m1~m4-*)만 트래킹.
+verify/eval.json
+verify/server.log
+verify/client.log

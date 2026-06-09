@@ -1,5 +1,5 @@
 """
-server_m4.py — M4 REST 서버: OpenVLA LIBERO-spatial finetuned 모델(GPU)을 /act 로 노출.
+server.py — REST 서버: VLA 정책(GPU)을 /act 로 노출. 기본 어댑터 = OpenVLA LIBERO finetuned.
 
 tensorflow 전처리(rotate180 + lanczos resize 224 + center_crop 0.9)를 *서버에만* 둔다.
 robosuite/EGL 은 import 하지 않음 → tf↔robosuite-EGL in-process 세그폴트를 프로세스 분리로 회피.
@@ -9,15 +9,14 @@ robosuite/EGL 은 import 하지 않음 → tf↔robosuite-EGL in-process 세그�
       (torch import 은 안전 — verify/m4-segfault.txt + 격리 테스트로 확정, 2026-06-09).
 전처리/추론 출처: references/openvla-openvla/experiments/robot/{libero/libero_utils.py, openvla_utils.py}
 deps: uvicorn fastapi json-numpy tensorflow torch transformers
-run: python server_m4.py   (0.0.0.0:8000)
+run: python server.py --policy openvla --suite libero_spatial --port 8000
 """
 
+import argparse
 import json
-from typing import Any, Dict
 
 import json_numpy  # 전역 patch 안 씀 — REST 경계에서만 명시적 loads/dumps (전역 patch 는 lib json 파싱을 깸)
 
-import numpy as np
 import tensorflow as tf
 import torch
 import uvicorn
@@ -25,10 +24,13 @@ from fastapi import FastAPI, Request, Response
 from PIL import Image
 from transformers import AutoModelForVision2Seq, AutoProcessor
 
-CKPT = "openvla/openvla-7b-finetuned-libero-spatial"
-TASK_SUITE = "libero_spatial"
 RESIZE = 224
 DEV = torch.device("cuda:0")
+
+# 모듈 글로벌 — load() 에서 채움 (정책 어댑터가 세팅).
+processor = None
+vla = None
+TASK_SUITE = None
 
 
 def resize_image(img, size):  # libero_utils:33-47
@@ -52,18 +54,27 @@ def crop_and_resize(image, crop_scale, batch_size):  # openvla_utils:81-124
     return image[0] if expanded else image
 
 
-print(f"[server] loading {CKPT} (sdpa)")
-processor = AutoProcessor.from_pretrained(CKPT, trust_remote_code=True)
-vla = AutoModelForVision2Seq.from_pretrained(
-    CKPT, attn_implementation="sdpa", torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, trust_remote_code=True,
-).to(DEV)
-if TASK_SUITE not in getattr(vla, "norm_stats", {}):
-    from huggingface_hub import hf_hub_download
+def load(policy, suite, ckpt):
+    """정책 어댑터 로딩. 2번째 정책(π0/ACT)은 여기 분기를 추가하고 predict() 계약만 맞추면 된다."""
+    global processor, vla, TASK_SUITE
+    if policy != "openvla":
+        raise ValueError(f"unsupported policy '{policy}' — server.py 에 어댑터 추가 필요")
+    TASK_SUITE = suite  # unnorm_key + norm_stats 키 (underscore 형식)
+    if not ckpt:
+        ckpt = f"openvla/openvla-7b-finetuned-{suite.replace('_', '-')}"
+    print(f"[server] loading {ckpt} (sdpa)")
+    processor = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True)
+    vla = AutoModelForVision2Seq.from_pretrained(
+        ckpt, attn_implementation="sdpa", torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, trust_remote_code=True,
+    ).to(DEV)
+    if TASK_SUITE not in getattr(vla, "norm_stats", {}):
+        from huggingface_hub import hf_hub_download
 
-    with open(hf_hub_download(repo_id=CKPT, filename="dataset_statistics.json")) as f:
-        vla.norm_stats = json.load(f)
-assert TASK_SUITE in vla.norm_stats, f"{TASK_SUITE} not in {list(vla.norm_stats.keys())}"
-print(f"[server] norm_stats keys: {list(vla.norm_stats.keys())}")
+        with open(hf_hub_download(repo_id=ckpt, filename="dataset_statistics.json")) as f:
+            vla.norm_stats = json.load(f)
+    assert TASK_SUITE in vla.norm_stats, f"{TASK_SUITE} not in {list(vla.norm_stats.keys())}"
+    print(f"[server] norm_stats keys: {list(vla.norm_stats.keys())}")
+
 
 app = FastAPI()
 
@@ -90,4 +101,11 @@ async def predict_action(request: Request):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--policy", default="openvla", choices=["openvla"])
+    ap.add_argument("--suite", default="libero_spatial")
+    ap.add_argument("--ckpt", default="", help="비우면 openvla/openvla-7b-finetuned-<suite>")
+    ap.add_argument("--port", type=int, default=8000)
+    a = ap.parse_args()
+    load(a.policy, a.suite, a.ckpt)
+    uvicorn.run(app, host="0.0.0.0", port=a.port)
