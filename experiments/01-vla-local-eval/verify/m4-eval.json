@@ -1,0 +1,32 @@
+{
+  "checkpoint": "openvla/openvla-7b-finetuned-libero-spatial",
+  "task_suite": "libero_spatial",
+  "attn_implementation": "sdpa",
+  "architecture": "REST server/client split",
+  "num_tasks": 3,
+  "trials_per_task": 5,
+  "total_episodes": 15,
+  "total_successes": 11,
+  "success_rate": 0.733,
+  "elapsed_s": 639.5,
+  "per_task": [
+    {
+      "task_id": 0,
+      "task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "episodes": 5,
+      "successes": 4
+    },
+    {
+      "task_id": 1,
+      "task": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+      "episodes": 5,
+      "successes": 3
+    },
+    {
+      "task_id": 2,
+      "task": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+      "episodes": 5,
+      "successes": 4
+    }
+  ]
+}

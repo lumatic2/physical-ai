@@ -1,0 +1,33 @@
+[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[client] task0 ep0: SUCCESS (94 steps)
+[client] task0 ep1: fail (230 steps)
+[client] task0 ep2: SUCCESS (89 steps)
+[client] task0 ep3: SUCCESS (135 steps)
+[client] task0 ep4: SUCCESS (89 steps)
+[client] task0 'pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate': 4/5
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[client] task1 ep0: SUCCESS (116 steps)
+[client] task1 ep1: SUCCESS (122 steps)
+[client] task1 ep2: fail (230 steps)
+[client] task1 ep3: fail (230 steps)
+[client] task1 ep4: SUCCESS (132 steps)
+[client] task1 'pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate': 3/5
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[Warning]: datasets path /home/yusun/LIBERO/libero/libero/../datasets does not exist!
+[client] task2 ep0: fail (230 steps)
+[client] task2 ep1: SUCCESS (114 steps)
+[client] task2 ep2: SUCCESS (121 steps)
+[client] task2 ep3: SUCCESS (98 steps)
+[client] task2 ep4: SUCCESS (125 steps)
+[client] task2 'pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate': 4/5
+[client] RESULT {"checkpoint": "openvla/openvla-7b-finetuned-libero-spatial", "task_suite": "libero_spatial", "attn_implementation": "sdpa", "architecture": "REST server/client split", "num_tasks": 3, "trials_per_task": 5, "total_episodes": 15, "total_successes": 11, "success_rate": 0.733, "elapsed_s": 639.5, "per_task": [{"task_id": 0, "task": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate", "episodes": 5, "successes": 4}, {"task_id": 1, "task": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate", "episodes": 5, "successes": 3}, {"task_id": 2, "task": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate", "episodes": 5, "successes": 4}]}
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/yusun/.venvs/vla-eval/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+Users of this version of Gym should be able to simply replace 'import gym' with 'import gymnasium as gym' in the vast majority of cases.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.

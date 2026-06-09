@@ -1,0 +1,9 @@
+bash: line 1:  2191 Segmentation fault      (core dumped) PYTHONPATH=/home/yusun/LIBERO MUJOCO_GL=egl /home/yusun/.venvs/vla-eval/bin/python eval_m4.py --num-tasks 1 --trials 1 2>&1
+[dbg] creating env task0 (before CUDA)
+Fatal Python error: Segmentation fault
+Current thread 0x000070ca064cd080 (most recent call first):
+  File "/home/yusun/.venvs/vla-eval/lib/python3.12/site-packages/robosuite/renderers/context/egl_context.py", line 136 in __init__
+  File "/home/yusun/.venvs/vla-eval/lib/python3.12/site-packages/robosuite/utils/binding_utils.py", line 78 in __init__
+  File "/home/yusun/.venvs/vla-eval/lib/python3.12/site-packages/robosuite/utils/binding_utils.py", line 210 in __init__
+  File "/mnt/c/Users/yusun/projects/physical-ai/experiments/01-vla-local-eval/eval_m4.py", line 156 in main
+  File "/mnt/c/Users/yusun/projects/physical-ai/experiments/01-vla-local-eval/eval_m4.py", line 239 in <module>
