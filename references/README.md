@@ -6,13 +6,13 @@
 
 ## 인덱스
 
-| # | 레포 | 분석일 | 한 줄 요약 | 5섹션 완료 |
-|---|------|--------|-----------|------------|
-| 1 | openvla/openvla | 2026-06-09 | 오픈소스 7B VLA — VLM(Prismatic) + 동작 토큰화 | ✅ 5/5 |
-| 2 | Physical-Intelligence/openpi (π0) | - | (M2 예정) | ⬜ |
-| 3 | tonyzhaozh/aloha + act | - | (M2 예정) | ⬜ |
-| 4 | google-deepmind/open_x_embodiment | - | (M2 예정) | ⬜ |
-| 5 | VLA 서베이 (arxiv 2508.13073) | - | (M2 예정) | ⬜ |
+| # | 레포 | 분석일 | 한 줄 요약 | 5섹션 완료 | 정의 반영 |
+|---|------|--------|-----------|------------|----------|
+| 1 | openvla/openvla | 2026-06-09 | 오픈소스 7B VLA — VLM(Prismatic) + 이산 동작 토큰화 | ✅ 5/5 | [ADR 0001](../docs/adr/0001-vla-action-representation.md) |
+| 2 | Physical-Intelligence/openpi (π0) | 2026-06-09 | flow matching VLA — PaliGemma + action expert | ✅ 5/5 | [ADR 0001](../docs/adr/0001-vla-action-representation.md) |
+| 3 | tonyzhaozh/act (ALOHA+ACT) | 2026-06-09 | 저가 양팔 HW + CVAE action chunking 회귀 | ✅ 5/5 | [ADR 0001](../docs/adr/0001-vla-action-representation.md) |
+| 4 | google-deepmind/open_x_embodiment | 2026-06-09 | RLDS 통합 데이터셋 + cross-embodiment RT-X | ✅ 5/5 | [ADR 0001](../docs/adr/0001-vla-action-representation.md) |
+| 5 | VLA 서베이 (arxiv 2508.13073) | 2026-06-09 | monolithic/hierarchical taxonomy (논문, 클론 X) | ✅ 5/5 | [ADR 0001](../docs/adr/0001-vla-action-representation.md) |
 
 ## 분석 원칙
 - 시간 박스: 레포당 90분
