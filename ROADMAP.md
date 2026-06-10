@@ -2,7 +2,7 @@
 
 > 이 레포의 마일스톤·완료 이력. **포트폴리오 모드** — 완료 기준은 "내가 이해했다"(내부)가 아니라
 > "남이 5분 보고 납득한다"(외부). 마일스톤마다 보여줄 수 있는 산출물(showable artifact)이 나온다.
-> 마지막 업데이트: 2026-06-10
+> 마지막 업데이트: 2026-06-11
 
 ## 왜 이 레포 (포트폴리오 thesis)
 
@@ -23,7 +23,7 @@
 | M1 | 지형 파악 | 분야 전체를 매핑한다 | `docs/landscape.md` | ✅ |
 | M2 | 레퍼런스 정독 + ADR | 1차 문헌을 비판적으로 읽는다 | 5× `ANALYSIS.md`, ADR 0001 | ✅ |
 | M3 | 첫 실험 (이론 직접 실행) | 논문 모델을 내 GPU에서 실행·평가한다 | `experiments/01` (H1·H2·H3 PASS, LIBERO 73%) | ✅ |
-| M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 결과 | 🔄 |
+| M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
 | M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ⬜ |
 | M6 | 실물 도달 (다음 분기) | sim→real 한 바퀴, 실물까지 만든다 | SO-100류 저가팔 + ACT, 수행 영상 | ⬜ |
 
@@ -40,14 +40,14 @@
 - [x] #1 VLA 로컬 추론 + 시뮬 평가 → `experiments/01-vla-local-eval` (H1 15GB·H2 168ms·H3 73%, REST 서버/클라 분리, 마찰 6건 박제)
 - 완료: 2026-06-09
 
-### M4 — 쓸만한 SW로 승격 (flagship) 🔄
+### M4 — 쓸만한 SW로 승격 (flagship) ✅
 - **flagship (채택: A+C)** — experiment 01을 *로컬 VLA eval/서빙 오픈소스 도구*(consumer GPU·Windows/WSL2,
   세그폴트·의존성 해법 내장)로 productize **+** 2번째 정책을 동일 벤치(LIBERO)로 비교(ADR 0001 실측).
 - [x] **Track A 도구화** — server/client/run.py 정제, `--policy/--suite/--ckpt` 파라미터화, requirements.txt+setup.sh, 유저 README/EXPERIMENT.md 분리, legacy/ 정리. 스모크 PASS (`2437688`).
 - [x] **Track C 조사 게이트** — 2번째 정책 = **π0.5(openpi) GO**(LIBERO ckpt `pi05_libero` 공개), ACT는 NO-GO(LIBERO ckpt 없음 → M6 이전). 결정 박제: [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)·[0003](docs/adr/0003-second-policy-separate-harness.md) (`04b3910`).
 - [x] **C 설치 스모크** — openpi PyTorch가 Blackwell(sm_120)에서 **torch cu128 오버라이드**로 동작 확인(핀 cu126는 실패). `~/openpi` venv 구축 완료.
-- [ ] 🔄 **C 본작업** — pi05_libero 다운+변환 → openpi 하네스로 libero_spatial 평가 → 비교표(OpenVLA 73% vs π0.5) + ADR 0001 실측 갱신
-- 완료 기준: 남이 클론 → 1커맨드로 VLA 평가 재현 + 최소 2모델 결과표
+- [x] **C 본작업** — π0.5(openpi) libero_spatial 실측 → [experiment 02](experiments/02-action-repr-bench/README.md). **matched 3 task: π0.5 98.7%(148/150) vs OpenVLA 73.3%(11/15), Fisher p<1e-3**. full-suite(π0.5 500ep 97.6%)는 비통제로 격하. ADR 0001 실측 보강. ⚠ JAX gsutil 9p 실패→HF 포트 fallback, torch cu128 직접호출. Codex adversarial-review로 task-모집단 과장 교정.
+- 완료 기준: 남이 클론 → 1커맨드로 VLA 평가 재현(Track A) + 2모델 결과표(Track C) ✅
 
 ### M5 — 포트폴리오 패키징 (legibility) ⬜
 - [ ] public `README.md` 재설계 — 포트폴리오 랜딩(5분에 "뭐 알고/뭐 만들었나" 전달). ※ 현재 루트 CLAUDE.md/ROADMAP은 내부용(gitignored)
@@ -64,6 +64,7 @@
 - 2026-06-09 — M1 지형 파악. `docs/landscape.md`(정의·용어 11종·4레이어 스택·플레이어 맵·reading list 15개).
 - 2026-06-09 — M2 레퍼런스 정독. 5편 5섹션 분석 + ADR 0001 동작표현 3축 + vault 이전.
 - 2026-06-09 — M3 첫 실험. `experiments/01` VLA 로컬 추론 + LIBERO 평가, H1·H2·H3 PASS(success 73%), tf↔EGL 세그폴트를 REST 서버/클라 분리로 해소, 마찰 6건 박제. **로드맵을 포트폴리오 모드로 재설계(M4~M6 추가).**
+- 2026-06-11 — **M4 완주**. Track A(experiment 01 도구화) + Track C(π0.5 비교, experiment 02). 동작표현 2축 실측: matched 3 task에서 flow-matching(π0.5) 98.7% vs 이산토큰(OpenVLA) 73.3%, Fisher p<1e-3. openpi 비-Docker(서버 cu128 / 클라 py3.8 별도 venv), JAX 다운 9p 실패→HF 포트 fallback. Codex adversarial-review가 task-모집단 과장(10 vs 3) 잡아내 matched-subset으로 교정 후 push.
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
