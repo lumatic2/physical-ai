@@ -1,0 +1,43 @@
+π0.5 (pi05_libero) — LIBERO libero_spatial eval raw result
+============================================================
+실행: 2026-06-10, WSL2 + RTX 5090, openpi 비-Docker (서버 .venv py3.11 / 클라 examples/libero/.venv py3.8)
+체크포인트: HF pepijn223/pi05_libero_fp32 + JAX norm_stats graft (SETUP_NOTES.md 참조)
+프로토콜: task_suite=libero_spatial, num_trials_per_task=50, seed=7, replan_steps=5, resize=224
+torch 2.7.1+cu128 (sm_120), 서버 ws://0.0.0.0:8000
+
+TOTAL SUCCESS RATE: 0.976  (488/500)
+TOTAL EPISODES: 500
+CLIENT_EXIT: 0
+
+per-task (실행순서, success rate | task):
+0.98  pick up the black bowl between the plate and the ramekin and place it on the plate
+0.98  pick up the black bowl next to the ramekin and place it on the plate
+1.00  pick up the black bowl from table center and place it on the plate
+1.00  pick up the black bowl on the cookie box and place it on the plate
+0.94  pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate
+1.00  pick up the black bowl on the ramekin and place it on the plate
+1.00  pick up the black bowl next to the cookie box and place it on the plate
+0.96  pick up the black bowl on the stove and place it on the plate
+1.00  pick up the black bowl next to the plate and place it on the plate
+0.90  pick up the black bowl on the wooden cabinet and place it on the plate
+
+통계:
+(A) 정식 비교 — MATCHED 3 task (OpenVLA가 쓴 동일 task, apples-to-apples):
+    task                          OpenVLA   π0.5
+    between plate and ramekin      4/5       49/50
+    next to ramekin                3/5       49/50
+    from table center              4/5       50/50
+    합                             11/15=73.3%  148/150=98.7%
+    pooled 2x2 Fisher exact two-tailed p = 6.1e-4 (<0.001), π0.5 +25pp.
+    단서: 작은 표본·단일 seed·하네스 다름(REST single-step vs action-chunk) — 동작표현+하네스 혼재.
+
+(B) 참고 — full-suite (통제 안 됨, task 수 다름 10 vs 3):
+    - π0.5  : 488/500 = 97.6%, Wilson 95% CI [95.9%, 98.6%]
+    - OpenVLA: 11/15  = 73.3%, Wilson 95% CI [48.1%, 89.1%] (experiment 01, 3 task만, 재측정 안 함)
+    ⚠ task 모집단이 달라 두 수치의 CI 비교/유의차 주장은 무효. 각 모델 단독 성적으로만.
+
+CAVEAT (미검증):
+    - π0.5 weights = HF 포트 pepijn223/pi05_libero_fp32 (공식 JAX pi05_libero와 동일 run인지 미검증).
+    - norm_stats = JAX 체크포인트 graft. weights↔norm_stats 정합성은 간접 증거(로드성공+논문대 일치)뿐.
+
+타이밍: 첫 ep ~213s(torch max-autotune compile warmup) → 정상상태 ~12-13s/ep, 500ep ≈ ~100분. GPU util ~30% (sim-bound).
