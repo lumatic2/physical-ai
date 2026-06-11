@@ -24,7 +24,7 @@
 | M2 | 레퍼런스 정독 + ADR | 1차 문헌을 비판적으로 읽는다 | 5× `ANALYSIS.md`, ADR 0001 | ✅ |
 | M3 | 첫 실험 (이론 직접 실행) | 논문 모델을 내 GPU에서 실행·평가한다 | `experiments/01` (H1·H2·H3 PASS, LIBERO 73%) | ✅ |
 | M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
-| M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ⬜ |
+| M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
 | M6 | 실물 도달 (다음 분기) | sim→real 한 바퀴, 실물까지 만든다 | SO-100류 저가팔 + ACT, 수행 영상 | ⬜ |
 
 ### M1 — 지형 파악 ✅
@@ -49,11 +49,11 @@
 - [x] **C 본작업** — π0.5(openpi) libero_spatial 실측 → [experiment 02](experiments/02-action-repr-bench/README.md). **full-suite n=500 대칭·공식: π0.5 98.4%(492/500) vs OpenVLA 77.4%(387/500), +21pp, Fisher p=1.4e-27, CI 비겹침**. (초안 matched 3task → 2026-06-11 OpenVLA 10task×50 재측정 + 공식 JAX 변환으로 표본비대칭·provenance 두 caveat 해소.) ADR 0001 실측 보강. ⚠ JAX gsutil 9p 실패→WSL 순수-python GCS(gcsfs)로 우회 변환, torch cu128 직접호출.
 - 완료 기준: 남이 클론 → 1커맨드로 VLA 평가 재현(Track A) + 2모델 결과표(Track C) ✅
 
-### M5 — 포트폴리오 패키징 (legibility) ⬜
-- [ ] public `README.md` 재설계 — 포트폴리오 랜딩(5분에 "뭐 알고/뭐 만들었나" 전달). ※ 현재 루트 CLAUDE.md/ROADMAP은 내부용(gitignored)
-- [ ] askewly 블로그 서사 글 1편 (M3·M4 여정·통찰)
-- [ ] vault 정리 (장기 자료집)
-- 완료 기준: README 랜딩 + 블로그 글 발행
+### M5 — 포트폴리오 패키징 (legibility) ✅
+- [x] public `README.md` 재설계 — 포트폴리오 랜딩(5분에 "뭐 알고/뭐 만들었나") (`f0d58ba`)
+- [x] askewly 블로그 서사 글 1편 — "논문은 안다고 착각하게 만듭니다" 라이브 발행(`dcebaf8`+KV 시드)
+- [x] vault 정리 — synthesis 노트 1개 + Research 00-INDEX physical-ai 섹션 등록
+- 완료 기준: README 랜딩 + 블로그 글 발행 ✅
 
 ### M6 — 실물 도달 (다음 분기) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
@@ -66,6 +66,7 @@
 - 2026-06-09 — M3 첫 실험. `experiments/01` VLA 로컬 추론 + LIBERO 평가, H1·H2·H3 PASS(success 73%), tf↔EGL 세그폴트를 REST 서버/클라 분리로 해소, 마찰 6건 박제. **로드맵을 포트폴리오 모드로 재설계(M4~M6 추가).**
 - 2026-06-11 — **M4 완주**. Track A(experiment 01 도구화) + Track C(π0.5 비교, experiment 02). 동작표현 2축 실측: matched 3 task에서 flow-matching(π0.5) 98.7% vs 이산토큰(OpenVLA) 73.3%, Fisher p<1e-3. openpi 비-Docker(서버 cu128 / 클라 py3.8 별도 venv), JAX 다운 9p 실패→HF 포트 fallback. Codex adversarial-review가 task-모집단 과장(10 vs 3) 잡아내 matched-subset으로 교정 후 push.
 - 2026-06-11 (후속) — **M4 잔여 caveat 2건 해소**. ① setup.sh 클린룸 검증(빈 venv) — requirements 누락 의존 2건(accelerate·LIBERO런타임) 잡아 보정(`a9823dd`). ② full apples-to-apples 재측정: OpenVLA 10task×50=500ep(77.4%) + 공식 JAX `pi05_libero` 변환(WSL 순수-python GCS로 9p 우회)으로 π0.5 공식 500ep(98.4%). **대칭·공식 head-to-head: +21pp, Fisher p=1.4e-27, CI 비겹침**. 초안 matched OpenVLA 73.3%(11/15)는 소표본 과소추정이었음(n=150→89.3%)을 정직 교정.
+- 2026-06-11 (후속) — **M5 완주**. ① public README 포트폴리오 랜딩 재설계(`f0d58ba`). ② askewly 블로그 글 "논문은 안다고 착각하게 만듭니다" anti-AI verify PASS → 라이브 발행(`dcebaf8`+KV). ③ vault: M2~M4 통합 synthesis 노트 작성 + Research 00-INDEX에 physical-ai 섹션 등록(고립 해소). 남은 건 M6(실물 로봇팔).
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
