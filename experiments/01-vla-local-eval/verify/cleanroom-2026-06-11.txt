@@ -1,0 +1,28 @@
+클린룸 검증 — setup.sh 빈 venv 완주 (2026-06-11)
+=================================================
+
+목적: 기존 working venv(~/.venvs/vla-eval, ad-hoc 설치 누적)가 아니라
+      빈 venv 에서 setup.sh + requirements.txt 만으로 end-to-end 스모크가 도는지 검증.
+환경: WSL2 Ubuntu-24.04 + RTX 5090(sm_120). VENV=~/.venvs/vla-eval-clean (python 3.12).
+
+발견된 결함 2건 (working venv 엔 ad-hoc 로 있었으나 requirements.txt 에 누락):
+  1. accelerate 누락 → server.py 의 from_pretrained(low_cpu_mem_usage=True) 가
+     "ImportError: ... requires Accelerate" 로 실패.
+     fix: requirements.txt 에 accelerate==1.13.* 추가.
+  2. LIBERO 런타임 의존 누락 → LIBERO 는 --no-deps 설치(상류 stale 핀 회피)라
+     런타임 의존을 우리 requirements 가 직접 줘야 하는데 빠짐.
+     첫 실패: ModuleNotFoundError: easydict (libero.envs.objects import).
+     fix: easydict·gym·matplotlib·cloudpickle·imageio·imageio-ffmpeg·sentencepiece·wandb 추가
+          (상류 충돌 핀 transformers 4.21·robosuite 1.4.0·numpy 1.22 등은 의도적 제외).
+
+최종 검증 (수동 pip 없이, 빈 venv 삭제 후 setup.sh 처음부터):
+  rm -rf ~/.venvs/vla-eval-clean
+  VENV=~/.venvs/vla-eval-clean LIBERO_DIR=~/LIBERO bash setup.sh   → SETUP_EXIT=0
+  PYTHONPATH=~/LIBERO MUJOCO_GL=egl <clean>/bin/python run.py \
+    --suite libero_spatial --tasks 1 --trials 1                    → SMOKE_EXIT=0
+
+스모크 결과: success_rate=1.0 (1/1), client exit=0, elapsed 33.7s.
+  torch 2.11.0+cu128, cuda True, RTX 5090 / transformers 4.40.1 / robosuite 1.4.1 / mujoco 3.9.0.
+
+결론: requirements.txt 보정 후 setup.sh 는 빈 venv 에서 자기완결적으로 동작.
+검증 후 cleanroom venv 삭제(디스크 회수). working venv(~/.venvs/vla-eval) 는 보존.

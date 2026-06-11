@@ -4,10 +4,22 @@
 transformers==4.40.1     # 5.x 는 AutoModelForVision2Seq 제거 → 4.40.1 핀 필수
 tokenizers==0.19.1
 timm==0.9.10
+accelerate==1.13.*       # from_pretrained(low_cpu_mem_usage=True) 가 요구 (없으면 ImportError)
 tensorflow-cpu==2.21.*    # 서버 전처리용. GPU tf 는 robosuite EGL 컨텍스트와 in-process 충돌(세그폴트)
 robosuite==1.4.1
 mujoco==3.9.*
 bddl                      # LIBERO 의존 (상류 미핀)
+
+# LIBERO 런타임 의존 — LIBERO 는 --no-deps 설치(상류 stale 핀 회피)라 여기서 직접 공급.
+# 상류 requirements 의 충돌 핀(transformers 4.21·robosuite 1.4.0·numpy 1.22 등)은 의도적 제외.
+easydict==1.13            # libero.envs.objects 가 import (없으면 ModuleNotFoundError)
+gym==0.26.2               # LIBERO env 베이스
+matplotlib==3.10.9
+cloudpickle==3.1.2
+imageio==2.37.3
+imageio-ffmpeg==0.6.0
+sentencepiece==0.2.1      # OpenVLA processor 토크나이저
+wandb==0.27.2             # LIBERO benchmark 로깅 의존
 
 # REST 경계
 fastapi
