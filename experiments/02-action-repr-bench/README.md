@@ -11,21 +11,21 @@
 
 반증 가능 형태:
 - **H-main**: π0.5의 `libero_spatial` success rate (n=500) 가 산출된다 (0 < SR < 1, 평가 하네스가 실제로 동작).
-- **H-cmp**: π0.5 SR 의 95% CI 가 OpenVLA 측정치(73%, 11/15, n=15)의 95% Wilson CI(약 48~89%)와 **겹치거나 그 위**다. → 겹치면 "두 동작표현이 이 벤치마크에서 구분 불가/대등", CI 하단(~48%)보다 **아래**면 "이 셋업에서 flow-matching이 열위"로 가설 약화·수정.
+- **H-cmp**: 동일 task·동일 표본(n=500)에서 두 정책의 success rate를 비교한다. 95% CI가 겹치면 "두 동작표현 대등", 비겹침이면 우열 식별. (초안은 OpenVLA n=15 = 73%에 맞춰 세웠으나, 2026-06-11 OpenVLA를 n=500으로 재측정해 *대칭 비교*로 격상.)
 
-> ⚠ 이 실험은 *우열 판정*이 1차 목표가 아니다. ADR 0001의 "동작표현 축(이산 토큰 vs flow-matching chunk)"을 **같은 벤치마크 위 2점 실측**으로 채우는 게 목표. 우열은 측정조건(표본 비대칭)을 병기한 *부차적* 관찰.
+> ⚠ 이 실험의 1차 목표는 ADR 0001의 "동작표현 축(이산 토큰 vs flow-matching chunk)"을 **같은 벤치마크 위 2점 실측**으로 채우는 것. 재측정으로 표본·task 모집단이 대칭이 되어 우열 식별도 *유효*해졌다(잔여 혼재는 하네스 차이뿐, 프로토콜 병기).
 
 ## 2. 방법 (Method)
 
 ### 셋업
-- **정책 A (기존 실측, 재측정 안 함)**: OpenVLA-7B finetuned-libero-spatial. experiment 01 하네스(REST `/act`, 단일 step). **73% (11/15), n=15** (task 3 × trial 5).
-- **정책 B (이번 측정)**: π0.5 (`pi05_libero`), openpi 자체 하네스. flow-matching, action-chunk(horizon) 단위 추론.
+- **정책 A**: OpenVLA-7B finetuned-libero-spatial. experiment 01 하네스(REST `/act`, 단일 step). **77.4% (387/500), n=500** (task 10 × trial 50, 2026-06-11 재측정 — 비대칭 caveat 해소).
+- **정책 B**: π0.5 (`pi05_libero`), openpi 자체 하네스. flow-matching, action-chunk(horizon) 단위 추론. **98.4% (492/500), n=500** (공식 JAX 변환본).
 - **공통 벤치마크**: LIBERO `libero_spatial`. 두 정책 모두 *같은 suite*. 코드는 다름(ADR 0003 — 공정성은 "같은 코드"가 아니라 "같은 벤치마크 + 명시된 프로토콜 차이").
 
 ### 정책 B 실행 경로 (openpi 별도 하네스)
 - **환경**: WSL2 Ubuntu-24.04 + RTX 5090. `~/openpi` 별도 클론·별도 venv (transformers 4.53.2 수동패치). 비-Docker + EGL.
   - ⚠ Blackwell: openpi 핀 `torch 2.7.1+cu126` 는 sm_120 `no kernel image` 실패 → `+cu128` 휠 강제교체 적용됨.
-- **체크포인트**: openpi JAX `gs://openpi-assets/checkpoints/pi05_libero` → `convert_jax_model_to_pytorch.py` 로 PyTorch 변환. (sm_120 변환 이슈 시 `JAX_PLATFORMS=cpu`, 그래도 막히면 HF 포트 `pepijn223/pi05_libero_fp32` fallback)
+- **체크포인트**: openpi JAX `gs://openpi-assets/checkpoints/pi05_libero` → **WSL 내 순수-python GCS(gcsfs anon)로 다운(9p 우회)** → `convert_jax_model_to_pytorch.py`(`JAX_PLATFORMS=cpu`)로 PyTorch 변환(공식, fp32). 상세 [`SETUP_NOTES.md` §1b]. (초기 HF 포트 fallback은 §1 — 공식본으로 대체됨)
 - **2-프로세스**: 터미널1 `MUJOCO_GL=egl uv run examples/libero/main.py` (LIBERO 클라) + 터미널2 `uv run scripts/serve_policy.py policy:checkpoint --policy.config pi05_libero --policy.dir <ckpt>` (정책 서버).
 
 ### 측정 metric
@@ -35,79 +35,76 @@
 ### 측정조건 병기 (ADR 0003 §Consequences — 필수)
 | 항목 | OpenVLA (A) | π0.5 (B) |
 |---|---|---|
-| 표본 n | 15 (task 3×trial 5) | 500 (task 10×trial 50) |
-| 95% CI 폭 | ≈ ±22pp (넓음) | ≈ ±4pp (좁음) |
+| 표본 n | 500 (task 10×trial 50) | 500 (task 10×trial 50) |
+| 95% CI 폭 | ≈ ±4pp | ≈ ±2pp |
 | 하네스 | experiment 01 REST `/act` | openpi serve_policy + main.py |
-| 추론 단위 | 단일 step autoregressive | action-chunk flow-matching |
-| seed/전처리 | experiment 01 기준 | openpi LIBERO 기본 |
+| 추론 단위 | 단일 step autoregressive | action-chunk(horizon=10) flow-matching |
+| seed/전처리 | experiment 01 기준 | openpi LIBERO 기본(seed=7, replan=5, resize=224) |
 
-→ 비대칭이 크므로 결과표는 **head-to-head 우열이 아니라 "각 수치의 신뢰도가 다름"** 으로 읽어야 한다.
+→ 표본·task 모집단이 대칭이라 head-to-head CI 비교가 *유효*. 남는 비대칭은 **하네스·추론단위**뿐 — 우열 *방향*의 증거이되 순수 동작표현 인과는 아님(프로토콜 병기로 명시).
 
 ## 3. 결과 (Results)
 
-측정일 2026-06-10. raw: [`verify/eval_result.txt`](verify/eval_result.txt) · 셋업: [`verify/SETUP_NOTES.md`](verify/SETUP_NOTES.md).
+측정일 2026-06-11(재측정으로 두 caveat 해소). raw: [`verify/eval_result.txt`](verify/eval_result.txt) · 셋업: [`verify/SETUP_NOTES.md`](verify/SETUP_NOTES.md).
 
-### (A) 정식 비교 — **matched 3 task** (동일 task 집합, apples-to-apples)
-experiment 01 OpenVLA는 libero_spatial **첫 3개 task**만 측정(`--tasks 3`). 그 동일 3 task로 π0.5를 매칭한 게 *통제된* 비교다:
+### 정식 비교 — full-suite, **n=500 양쪽 대칭 · 공식 가중치**
+같은 10 task, 같은 표본(task당 50 trial), π0.5는 공식 JAX `pi05_libero` 변환본:
 
-| task (동일) | OpenVLA (n=5) | π0.5 (n=50) |
-|---|---|---|
-| between plate and ramekin | 4/5 | 49/50 |
-| next to ramekin | 3/5 | 49/50 |
-| from table center | 4/5 | 50/50 |
-| **합** | **11/15 = 73.3%** | **148/150 = 98.7%** |
+| 정책 | 동작표현 | n | success rate | 95% CI (Wilson) |
+|------|---------|---|--------------|-----------------|
+| **π0.5** | flow-matching chunk | 500 (10×50) | **98.4% (492/500)** | 96.9 – 99.2% |
+| **OpenVLA** | 이산 토큰 autoregressive | 500 (10×50) | **77.4% (387/500)** | 73.5 – 80.8% |
 
-- 같은 task 집합에서 **flow-matching(π0.5) +25pp 우위**. pooled 2×2 **Fisher exact two-tailed p = 6.1e-4** (< 0.001).
-- ⚠ 단서: 표본 작음(OpenVLA task당 5 trial), 단일 seed, 하네스 다름(REST `/act` 단일 step vs openpi action-chunk) — *동작표현 차이*에 *하네스·전처리 차이*가 섞임. Fisher 는 1차 검정(task 구조 무시 pooled).
+- **flow-matching(π0.5) +21.0pp 우위. Fisher exact two-tailed p = 1.4e-27.**
+- 이번엔 **task 모집단(10 task)·표본(n=500) 모두 동일** → 95% CI 비겹침(96.9 > 80.8)이 *유효한* head-to-head 식별. (이전 초안의 "다른 task 집합 CI 비교 무효" 문제를 재측정으로 해소.)
+- ⚠ 잔여 혼재(불가피): 하네스가 다름(OpenVLA REST `/act` 단일 step vs π0.5 openpi action-chunk). ADR 0003대로 "같은 코드"가 아니라 "같은 벤치마크 + 명시 프로토콜 차이"로 공정성 확보 — *방향·크기*의 강한 증거이나 *순수 동작표현 인과*는 아님.
 
-### (B) 참고 — full-suite (통제 안 됨, task 수 다름)
-| 정책 | 동작표현 | suite | n (task×trial) | success rate | 95% CI (Wilson) |
-|------|---------|-------|----------------|--------------|-----------------|
-| OpenVLA (exp 01) | 이산 토큰 autoregressive | libero_spatial | 15 (3×5) | 73.3% (11/15) | 48.1 – 89.1% |
-| π0.5 | flow-matching chunk | libero_spatial | 500 (10×50) | 97.6% (488/500) | 95.9 – 98.6% |
+### per-task (task0~9, 동일 순서)
+| task | OpenVLA (n=50) | π0.5 (n=50) |
+|------|----------------|-------------|
+| between the plate and the ramekin | 92% (46) | 100% (50) |
+| next to the ramekin | 90% (45) | 98% (49) |
+| from table center | 86% (43) | 100% (50) |
+| on the cookie box | 86% (43) | 98% (49) |
+| in the top drawer of the wooden cabinet | 70% (35) | 96% (48) |
+| **on the ramekin** | **36% (18)** | 94% (47) |
+| next to the cookie box | 94% (47) | 100% (50) |
+| on the stove | 86% (43) | 100% (50) |
+| next to the plate | 72% (36) | 100% (50) |
+| on the wooden cabinet | 62% (31) | 98% (49) |
+| **합** | **77.4% (387/500)** | **98.4% (492/500)** |
 
-> ⚠ **이건 head-to-head 아님** — OpenVLA는 3 task, π0.5는 10 task로 **task 모집단이 다르다**. 다른 task 집합 간 CI 비교/유의차 주장은 무효. full-suite 수치는 *각 모델의 단독 성적*으로만 읽고, 우열 판단은 위 (A) matched 비교에 근거할 것.
-
-### per-task (π0.5, 실행순서)
-| SR | task |
-|----|------|
-| 0.98 | between plate and ramekin |
-| 0.98 | next to ramekin |
-| 1.00 | table center |
-| 1.00 | on cookie box |
-| 0.94 | in top drawer of wooden cabinet |
-| 1.00 | on ramekin |
-| 1.00 | next to cookie box |
-| 0.96 | on stove |
-| 1.00 | next to plate |
-| 0.90 | on wooden cabinet |
+### 참고 — matched first-3-task (정직한 교정)
+첫 3 task만 n=150씩: π0.5 **149/150(99.3%)** vs OpenVLA **134/150(89.3%)**, Fisher p=1.9e-4, +10pp.
+> ⚠ 이전 초안의 matched-3task OpenVLA `11/15=73.3%`는 **소표본 잡음 과소추정**이었다. n=50/task로 키우니 같은 3 task가 89.3%. 당시 "+25pp" 매칭 우위는 OpenVLA의 15-trial 불운 탓 과장. *전체* 격차(+21pp)가 더 큰 건 task5/8/9 등 첫 3개 밖 난task에서 OpenVLA가 무너지기 때문.
 
 ### 박제 위치
-- `verify/eval_result.txt` — 총·per-task SR + 통계. `verify/SETUP_NOTES.md` — 재현 경로.
-- (eval mp4·서버/클라 raw 로그는 gitignored)
+- `verify/eval_result.txt` — 공식·대칭 결과 + per-task + 통계 + HF포트 교차검증. `verify/SETUP_NOTES.md` §1b — 공식 변환 경로.
+- OpenVLA raw: [`../01-vla-local-eval/verify/openvla-500ep-eval.json`](../01-vla-local-eval/verify/openvla-500ep-eval.json). (π0.5 raw 로그·eval mp4는 WSL 홈, gitignored)
 
 ## 4. 통찰 (Insights)
 
 ### 무엇을 알아냈나
-- **동일 3 task(matched)에서 π0.5(98.7%, 148/150)가 OpenVLA(73.3%, 11/15)를 +25pp 앞선다** (Fisher exact p=6.1e-4). 동작표현 축에서 flow-matching chunk가 이 task들에선 이산 토큰 autoregressive보다 강하다. ⚠ 단, 하네스·전처리 차이가 섞여 *순수 동작표현 효과*로 단정 불가 — 방향·크기의 증거이지 통제된 인과 아님.
-- ⚠ **full-suite 비교(97.6% vs 73.3%)는 통제 안 됨** — task 수가 다르다(10 vs 3). 다른 task 모집단 간 우열·CI 비교는 무효. 이전 초안의 "CI 비겹침 → 통계적 식별" 주장은 철회(adversarial-review에서 교정).
-- **π0.5 수치는 openpi 논문 pi05 LIBERO 대(~97-98%)와 일관** — 셋업이 크게 어긋나지 않았다는 *시사*. 단 *증명*은 아니다(동일 학습 run·norm_stats 정합성 미검증 — 아래 caveat).
-- **π0.5의 실패는 height/occlusion에 몰린다** — 최난도가 "on the wooden cabinet"(0.90)·"in the top drawer"(0.94). 평면 픽업은 거의 1.0. 잔여 난이도는 동작표현이 아니라 3D 공간 추론 쪽.
-- **운영 통찰(ADR 0003 실증)**: 스택 격리(transformers 핀 충돌·cu128 revert·9p 대용량 쓰기 한계)가 실제로 별도 하네스를 강제했다 — "통합 /act 어댑터 하나" 가정은 깨졌고, 격리가 옳았다. [`verify/SETUP_NOTES.md`].
-- **eval은 GPU-bound가 아니라 sim-bound**(GPU util ~30%) — 추론이 아니라 MuJoCo 물리·EGL 렌더·요청왕복이 병목. 멀티에이전트 workflow로 가속 불가, OS 프로세스 샤딩만 유효(미채택 — 하네스 개조 회피).
+- **n=500 대칭·공식 가중치에서 π0.5(98.4%, 492/500)가 OpenVLA(77.4%, 387/500)를 +21.0pp 앞선다** (Fisher exact p=1.4e-27, 95% CI 비겹침). 동일 task 모집단·동일 표본이라 이번 우열 식별은 *통계적으로 유효*하다. ⚠ 단 하네스 차이가 섞여 *순수 동작표현 인과*는 아님 — 방향·크기의 강한 증거.
+- **격차는 task 난이도에 크게 의존한다** — 평면 픽업(between/next-to-cookie-box)은 OpenVLA도 90~94%로 거의 대등. 그러나 occlusion·height task에서 OpenVLA가 붕괴: **on the ramekin 36%(vs π0.5 94%)**, on wooden cabinet 62%, next to plate 72%. flow-matching의 이점은 *어려운 공간 추론*에서 가장 크게 드러난다.
+- **소표본의 위험 — 정직한 교정**: 초안의 matched-3task OpenVLA `73.3%(11/15)`는 잡음 과소추정이었다(n=150에선 89.3%). 같은 task인데 표본만 키워도 +16pp 변동 → 단일 seed·소표본 비교의 위험을 실증. *전체* 격차가 더 큰 건 난task가 첫 3개 밖에 몰려서다.
+- **HF 포트 ≈ 공식**: HF 포트 97.6% vs 공식 변환 98.4%(0.8pp, CI 내). safetensors 바이트 크기도 동일 → HF 포트가 충실했고, 이번에 weights·norm_stats를 공식 단일 출처로 교체해 provenance를 박았다.
+- **π0.5 수치는 openpi 논문 pi05 LIBERO(~97-98%)와 일관** — 셋업 정합성의 강한 시사.
+- **운영 통찰(ADR 0003 실증)**: 스택 격리(transformers 핀 충돌·cu128 revert·9p 대용량 쓰기 한계)가 별도 하네스를 강제했다. + 9p 막힘은 **Windows gsutil** 탓이었고 **WSL 내 순수-python GCS(gcsfs anon)** 로 우회해 공식 변환을 끝냈다 [`verify/SETUP_NOTES.md` §1b].
+- **eval은 sim-bound**(GPU util ~30-60%) — MuJoCo·EGL·왕복이 병목. OpenVLA 단일-step autoregressive는 π0.5 action-chunk보다 느려 500ep에 ~5.6h(π0.5 ~2h).
 
-### ⚠ caveat (검증 안 된 것 — 결론 강도 제한)
-- **체크포인트 provenance**: π0.5 weights는 HF 포트 `pepijn223/pi05_libero_fp32`(공식 openpi 배포 아님). 공식 JAX `pi05_libero`와 동일 학습 run인지 미검증. norm_stats 는 JAX 체크포인트에서 graft — weights↔norm_stats 정합성은 "서버 로드 성공 + 논문대 일치"의 간접 증거뿐, 형식 검증 아님.
-- 정식 head-to-head 를 원하면 → OpenVLA 를 10 task×50 으로 재측정(보류, ADR 0003) 또는 공식 JAX 체크포인트로 변환.
+### ✅ caveat 해소 (2026-06-11 재측정)
+- **표본 비대칭 해소**: OpenVLA를 10 task×50=500ep로 재측정 → 양쪽 n=500, CI 폭 대칭(±~4pp). 더는 "신뢰도 다른 두 수치"가 아니라 유효한 head-to-head.
+- **provenance 해소**: π0.5 weights·norm_stats를 공식 JAX `pi05_libero` 변환본으로 교체(HF 포트 탈피). [`verify/SETUP_NOTES.md` §1b].
+- 잔여(설계상 불가피, caveat 아님): 하네스·전처리 차이 — ADR 0003 프로토콜 병기로 처리.
 
 ### 가설은 통과했나?
-- [x] **H-main PASS** — π0.5 libero_spatial SR = 97.6%(488/500) 산출 (0<SR<1, 하네스 정상 동작).
-- [x] **H-cmp PASS (matched 기준)** — 동일 3 task에서 π0.5 98.7% > OpenVLA 73.3% (Fisher p<0.001). ※ full-suite CI 비교가 아니라 *matched-subset* 으로 판정(다른 task 집합 CI 비교는 무효).
+- [x] **H-main PASS** — π0.5 libero_spatial SR = 98.4%(492/500) 산출 (0<SR<1, 하네스 정상 동작).
+- [x] **H-cmp PASS** — n=500 대칭·동일 task에서 π0.5 98.4% > OpenVLA 77.4%, 95% CI 비겹침·Fisher p=1.4e-27. (이전 matched-only 판정에서 *유효 full-suite 식별*로 격상.)
 
 ### 정의에 반영
-- [ADR 0001](../../docs/adr/0001-vla-action-representation.md) "동작표현 3축"의 이산토큰·flow-matching 2점을 **동일 벤치마크 실측**으로 갱신.
+- [ADR 0001](../../docs/adr/0001-vla-action-representation.md) "동작표현 3축"의 이산토큰·flow-matching 2점을 **동일 벤치마크·대칭 표본 실측**으로 갱신.
 
 ### 다음 실험 후보
-- 다른 suite(libero_object/goal/10)로 일반화 — spatial은 π0.5가 거의 천장. 더 어려운 suite에서 격차가 유지되나?
-- OpenVLA를 matched n=500으로 재측정해 비대칭 제거(현재 의도적 미실행, ADR 0003).
+- 다른 suite(libero_object/goal/10)로 일반화 — spatial은 π0.5가 거의 천장. 더 어려운 suite에서 +21pp 격차가 유지되나?
 - 동작표현 3번째 점 ACT(M6) — 직접 회귀 vs 토큰 vs flow-matching 3자 완성.

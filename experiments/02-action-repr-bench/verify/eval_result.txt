@@ -1,43 +1,55 @@
-π0.5 (pi05_libero) — LIBERO libero_spatial eval raw result
+동작표현 비교 — LIBERO libero_spatial eval raw result
 ============================================================
-실행: 2026-06-10, WSL2 + RTX 5090, openpi 비-Docker (서버 .venv py3.11 / 클라 examples/libero/.venv py3.8)
-체크포인트: HF pepijn223/pi05_libero_fp32 + JAX norm_stats graft (SETUP_NOTES.md 참조)
-프로토콜: task_suite=libero_spatial, num_trials_per_task=50, seed=7, replan_steps=5, resize=224
-torch 2.7.1+cu128 (sm_120), 서버 ws://0.0.0.0:8000
+환경: WSL2 Ubuntu-24.04 + RTX 5090(sm_120). 두 정책 모두 같은 suite(libero_spatial 10 task), 같은 표본(task당 50 trial = 500 ep).
+공정성: ADR 0003 — "같은 코드"가 아니라 "같은 벤치마크 + 명시된 프로토콜 차이". 하네스는 다름(아래 병기).
 
-TOTAL SUCCESS RATE: 0.976  (488/500)
-TOTAL EPISODES: 500
-CLIENT_EXIT: 0
+================================================================
+[1] 정식 결과 — FULL SUITE, n=500 양쪽 대칭, 공식 가중치 (2026-06-11)
+================================================================
+                동작표현            success rate        Wilson 95% CI
+  π0.5          flow-matching chunk  492/500 = 98.4%     [96.9%, 99.2%]
+  OpenVLA       이산 토큰 AR         387/500 = 77.4%     [73.5%, 80.8%]
+  → +21.0pp, Fisher exact two-tailed p = 1.4e-27. 95% CI 비겹침(96.9 > 80.8) → 통계적으로 명확.
+  → 이번엔 같은 task 모집단(10 task) + 같은 n(500)이라 CI 비교가 유효(이전 초안 무효 문제 해소).
 
-per-task (실행순서, success rate | task):
-0.98  pick up the black bowl between the plate and the ramekin and place it on the plate
-0.98  pick up the black bowl next to the ramekin and place it on the plate
-1.00  pick up the black bowl from table center and place it on the plate
-1.00  pick up the black bowl on the cookie box and place it on the plate
-0.94  pick up the black bowl in the top drawer of the wooden cabinet and place it on the plate
-1.00  pick up the black bowl on the ramekin and place it on the plate
-1.00  pick up the black bowl next to the cookie box and place it on the plate
-0.96  pick up the black bowl on the stove and place it on the plate
-1.00  pick up the black bowl next to the plate and place it on the plate
-0.90  pick up the black bowl on the wooden cabinet and place it on the plate
+per-task (task0~9, 동일 순서 — openpi main.py 와 experiment 01 모두 LIBERO 표준 순서):
+  task                                          OpenVLA(n=50)   π0.5(n=50)
+  0 between the plate and the ramekin            46  (92%)       50 (100%)
+  1 next to the ramekin                          45  (90%)       49  (98%)
+  2 from table center                            43  (86%)       50 (100%)
+  3 on the cookie box                            43  (86%)       49  (98%)
+  4 in the top drawer of the wooden cabinet      35  (70%)       48  (96%)
+  5 on the ramekin                               18  (36%)       47  (94%)   ← OpenVLA 최난점
+  6 next to the cookie box                       47  (94%)       50 (100%)
+  7 on the stove                                 43  (86%)       50 (100%)
+  8 next to the plate                            36  (72%)       50 (100%)
+  9 on the wooden cabinet                        31  (62%)       49  (98%)
+  합                                            387/500=77.4%   492/500=98.4%
 
-통계:
-(A) 정식 비교 — MATCHED 3 task (OpenVLA가 쓴 동일 task, apples-to-apples):
-    task                          OpenVLA   π0.5
-    between plate and ramekin      4/5       49/50
-    next to ramekin                3/5       49/50
-    from table center              4/5       50/50
-    합                             11/15=73.3%  148/150=98.7%
-    pooled 2x2 Fisher exact two-tailed p = 6.1e-4 (<0.001), π0.5 +25pp.
-    단서: 작은 표본·단일 seed·하네스 다름(REST single-step vs action-chunk) — 동작표현+하네스 혼재.
+측정조건 병기 (혼재 요인 — caveat 아님, 설계상 불가피):
+  | 항목      | OpenVLA (A)                  | π0.5 (B)                         |
+  | 하네스    | experiment 01 REST /act      | openpi serve_policy + main.py    |
+  | 추론 단위 | 단일 step autoregressive     | action-chunk(horizon=10) flow-matching |
+  | seed/전처리| experiment 01 기준          | openpi LIBERO 기본(seed=7, replan=5, resize=224) |
+  | ckpt      | openvla-7b-finetuned-libero-spatial | 공식 JAX pi05_libero → PyTorch 변환(fp32) |
 
-(B) 참고 — full-suite (통제 안 됨, task 수 다름 10 vs 3):
-    - π0.5  : 488/500 = 97.6%, Wilson 95% CI [95.9%, 98.6%]
-    - OpenVLA: 11/15  = 73.3%, Wilson 95% CI [48.1%, 89.1%] (experiment 01, 3 task만, 재측정 안 함)
-    ⚠ task 모집단이 달라 두 수치의 CI 비교/유의차 주장은 무효. 각 모델 단독 성적으로만.
+================================================================
+[2] 참고 — MATCHED first-3-task (정직한 교정 사례), n=150 양쪽
+================================================================
+  task0~2 만 비교:
+    π0.5   : 149/150 = 99.3%
+    OpenVLA: 134/150 = 89.3%
+    Fisher exact p = 1.9e-4, +10pp.
+  ⚠ 이전 초안의 matched-3task OpenVLA = 11/15 = 73.3% 는 *소표본 잡음 과소추정*이었다.
+    n=50/task 로 키우니 같은 3 task 가 89.3% 로 올라옴 → 당시 "+25pp" 우위는 OpenVLA 의 15-trial 불운 탓에 과장.
+    정직한 매칭 격차는 +10pp. *전체* 격차(+21pp)가 더 큰 이유는 task5/8/9 처럼 첫 3개 밖의 난task에서 OpenVLA 가 무너지기 때문.
 
-CAVEAT (미검증):
-    - π0.5 weights = HF 포트 pepijn223/pi05_libero_fp32 (공식 JAX pi05_libero와 동일 run인지 미검증).
-    - norm_stats = JAX 체크포인트 graft. weights↔norm_stats 정합성은 간접 증거(로드성공+논문대 일치)뿐.
+================================================================
+[3] 교차검증 — HF 포트 π0.5 런 (provenance caveat 해소 근거)
+================================================================
+  이전 HF 포트(pepijn223/pi05_libero_fp32) 500ep = 488/500 = 97.6%.
+  공식 변환본 500ep = 492/500 = 98.4%. 차이 0.8pp (CI 내 일치) → HF 포트가 공식과 사실상 동등(safetensors 바이트 크기도 동일).
+  ⇒ 이전 결론은 유효했고, 이번에 weights·norm_stats 모두 공식 JAX pi05_libero 단일 출처로 교체해 provenance 미검증 caveat 제거.
 
-타이밍: 첫 ep ~213s(torch max-autotune compile warmup) → 정상상태 ~12-13s/ep, 500ep ≈ ~100분. GPU util ~30% (sim-bound).
+타이밍: π0.5 500ep ≈ 123분(첫 ep ~213s torch compile warmup) / OpenVLA 500ep ≈ 337분(autoregressive 단일 step, 더 느림). 둘 다 sim-bound(GPU util ~30-60%).
+박제: π0.5 raw 로그 = WSL ~/pi05_official_eval_client.log / OpenVLA raw = experiments/01-vla-local-eval/verify/openvla-500ep-eval.json. 셋업 = SETUP_NOTES.md.

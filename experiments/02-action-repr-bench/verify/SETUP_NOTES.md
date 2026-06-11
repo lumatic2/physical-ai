@@ -8,7 +8,15 @@
 - **클라**(LIBERO 시뮬): 별도 venv `~/openpi/examples/libero/.venv` (python 3.8). CPU 시뮬 + websocket.
 - 두 프로세스가 ws://0.0.0.0:8000 으로 통신 (ADR 0003 "별도 하네스" 그대로).
 
-## 1. 체크포인트 — ⚠ 편차: JAX 변환 대신 HF 포트
+## 1b. 체크포인트 — ✅ 공식 변환 경로 (2026-06-11, provenance caveat 해소)
+> 아래 1번의 9p 막힘은 **Windows gsutil 바이너리** 탓이었다. WSL 안의 **순수-python GCS(`gcsfs` anon)** 로 받으면 9p 우회 → 공식 변환 성공.
+- **다운로드**: `gcsfs.GCSFileSystem(token="anon").get("openpi-assets/checkpoints/pi05_libero", dest, recursive=True)` → `~/.cache/openpi/openpi-assets/checkpoints/pi05_libero/pi05_libero/` (12.4GB, `params/` + `assets/`). openpi `.venv` 에 jax 0.5.3·orbax·flax 존재.
+- **변환**: `JAX_PLATFORMS=cpu .venv/bin/python examples/convert_jax_model_to_pytorch.py --checkpoint_dir <…/pi05_libero/pi05_libero> --config_name pi05_libero --output_path <…/pi05_libero_pytorch_official> --precision float32`. CPU 변환이라 sm_120 무관. 결과: `model.safetensors` 14.5GB(HF 포트와 **바이트 크기 동일**) + `config.json`.
+- **⚠ assets graft**: convert 스크립트의 assets 복사는 `checkpoint_dir.parent/assets` 를 봐서 중첩 경로선 빗나감 → 공식 `assets/`(같은 norm_stats 1914B, 이번엔 공식 출처)를 `<output>/assets/` 로 직접 복사.
+- **서버**: `.venv/bin/python scripts/serve_policy.py policy:checkpoint --policy.config pi05_libero --policy.dir <…/pi05_libero_pytorch_official>` → "Loaded norm stats from …/pi05_libero_pytorch_official/assets/physical-intelligence/libero" 확인.
+- 결과: 공식 500ep = 492/500 = 98.4% (HF 포트 97.6%와 0.8pp 차, CI 내 일치 — HF 포트 충실성 재확인 + provenance 공식화).
+
+## 1. 체크포인트 — ⚠ 편차: JAX 변환 대신 HF 포트 (초기 경로, 1b 로 대체됨)
 - **계획**: `gs://openpi-assets/checkpoints/pi05_libero`(JAX) 다운 → `convert_jax_model_to_pytorch.py` 변환.
 - **막힘**: gsutil 이 Windows SDK 바이너리(`/mnt/c/...`)라, WSL 9p 파일시스템에 **1.5GB+ 대용량 shard 쓰기가 실패**(빈 `CommandException` ×6, 작은 파일만 성공). `-m` sliced 비활성화·rsync 재시도 모두 동일 실패. → **Windows gsutil → WSL 9p 대용량 쓰기 한계**로 결론.
 - **해결(결정된 fallback)**: HF 포트 `pepijn223/pi05_libero_fp32` 를 `huggingface_hub.snapshot_download` 로 직접 WSL fs 에 받음(순수 python, 9p 우회). 14GB fp32 `model.safetensors`.
