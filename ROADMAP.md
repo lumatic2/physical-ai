@@ -60,8 +60,8 @@
 > SO-100 팔을 sim에 세우고 정책 롤아웃을 웹에서 인터랙티브 3D로 보여준다. 하드웨어 없이 sim→real 직전까지.
 > M5에서 분리·전진 배치(2026-06-12) — M6를 하드웨어 게이트(구 M6, 현 M7)에서 떼어내 *지금 착수 가능*하게.
 - 스택 선택: [ADR 0004](docs/adr/0004-digital-twin-stack.md) — SO-100 MJCF(공식 SO-ARM100) + MuJoCo WASM 웹 replay, 정책은 replay-first.
-- [ ] **SO-100 모델 확보** — 공식 `TheRobotStudio/SO-ARM100` MJCF를 MuJoCo에 로드, `lachlanhurst/so100-mujoco-sim`(Menagerie 자동 다운)로 스모크 + FK·관절 구동 검증
-- [ ] **sim 태스크 + 롤아웃** — 태스크 환경 구성 후 궤적 롤아웃(replay-first). ACT sim-학습은 후속(M7 실물 직결, [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)); 기존 VLA는 액션 차원이 SO-100과 불일치
+- [x] **SO-100 모델 확보** — Menagerie `trs_so_arm100`(메인 정식 포함 확인) 로드 + 오프스크린 렌더(Windows GL) → [experiment 03](experiments/03-digital-twin/README.md). 스모크 PASS(nq=6, FK, 액추에이션), 트윈 sweep 영상 산출.
+- [ ] **sim 태스크 + 롤아웃** — 현재 sweep(replay-first)까지. 실제 정책 롤아웃 replay / ACT sim-학습은 후속(M7 실물 직결, [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)); 기존 VLA는 액션 차원이 SO-100과 불일치
 - [ ] **웹 인터랙티브 3D 트윈** — `zalo/mujoco_wasm`(공식 DeepMind WASM 바인딩)로 같은 MJCF 브라우저 렌더 + 롤아웃 replay, 포트폴리오 사이트 임베드
 - 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 + 롤아웃 replay + 회고
 
