@@ -31,6 +31,7 @@ moved = data.xpos[eid].copy()
 delta = np.linalg.norm(moved - home)
 print(f"== after 200 steps (ctrl[0]=0.4): xpos = {np.round(moved, 4)}  |delta|={delta:.4f}")
 
-ok = model.nq == 6 and model.nu == 6 and delta > 1e-4
+# nq is now 6 (arm) + 3*7 (free-joint pick blocks) = 27; actuators stay 6.
+ok = model.nu == 6 and model.nq == 27 and delta > 1e-4
 print("\nSMOKE", "PASS" if ok else "FAIL")
 sys.exit(0 if ok else 1)
