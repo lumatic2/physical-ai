@@ -52,7 +52,8 @@ python render_twin.py                  # media/so100_twin.mp4 생성 (궤적 재
 - ✅ Menagerie `trs_so_arm100`는 **메인에 정식 포함**(검증 2026-06-12) — 깨끗한 큐레이션 모델을 1차로 씀.
 - ✅ **정책 롤아웃 replay 완료** — sweep → 스크립트 pick-and-place 3단 스택. 블록은 free-joint, IK로 푼 팔이 집어 옮긴다.
 - ⚠ **여전히 학습 정책이 아니라 scripted replay** — "정책이 추론하며 집는" live policy는 아님(ADR 0004 trade-off, 정직 표기). IK 웨이포인트 + 운동학 재생.
-- ⚠ 재생 중 블록은 **물리가 아니라 kinematic**(수직 carry·정확 안착)으로 구동 — weld carry는 손목 회전 시 기울고 놓을 때 스냅·관통이 보여서 교체함. 데스크탑 mp4 == 웹 정확히 일치. **interactive 토글(체크 해제)에서만 live 물리** — 블록 드래그 시 실제 충돌·낙하, Actuators 슬라이더로 관절 구동.
+- ⚠ 재생 중 큐브는 **물리가 아니라 kinematic 결합** — 손끝 중점에 핀하되 운반 중 집게를 큐브 폭까지 닫아 손가락이 큐브 면에 *실제 접촉*(관통·틈 없음)하며 함께 이동. 데스크탑 mp4 == 웹.
+- ⚠ **왜 인과적 물리가 아닌가(검증된 기구학 한계)**: 단일 큐브 물리 집기·들기는 됨(검증). 그러나 이 5-DOF SO-100은 *top-down 파지 자세를 들어올림 높이에서 유지 불가*(top-down은 테이블 높이에서만 도달; z≳0.11에선 IK 잔차 50~250mm). → 완전 인과적 pick-lift-stack은 이 팔로는 불가 → 운동학 결합으로 그 *모습*을 재현. **interactive 토글(체크 해제)에서만 live 물리** — 블록 드래그 시 실제 충돌·낙하, Actuators 슬라이더로 관절 구동.
 - ✅ **웹 인터랙티브 3D + 공개 호스팅** → [`web/`](web/README.md): 같은 MJCF를 브라우저에서(mujoco_wasm) 자동재생 루프 + 반응형. **라이브: https://physical-ai-arm.askewly.com**.
 
 ## 출처
