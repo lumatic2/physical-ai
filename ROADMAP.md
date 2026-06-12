@@ -25,7 +25,7 @@
 | M3 | 첫 실험 (이론 직접 실행) | 논문 모델을 내 GPU에서 실행·평가한다 | `experiments/01` (H1·H2·H3 PASS, LIBERO 73%) | ✅ |
 | M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
 | M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
-| M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 + 정책 롤아웃 | ⬜ |
+| M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 | 🔄 |
 | M7 | 실물 도달 (다음 분기) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
 
 ### M1 — 지형 파악 ✅
@@ -77,6 +77,7 @@
 - 2026-06-11 — **M4 완주**. Track A(experiment 01 도구화) + Track C(π0.5 비교, experiment 02). 동작표현 2축 실측: matched 3 task에서 flow-matching(π0.5) 98.7% vs 이산토큰(OpenVLA) 73.3%, Fisher p<1e-3. openpi 비-Docker(서버 cu128 / 클라 py3.8 별도 venv), JAX 다운 9p 실패→HF 포트 fallback. Codex adversarial-review가 task-모집단 과장(10 vs 3) 잡아내 matched-subset으로 교정 후 push.
 - 2026-06-11 (후속) — **M4 잔여 caveat 2건 해소**. ① setup.sh 클린룸 검증(빈 venv) — requirements 누락 의존 2건(accelerate·LIBERO런타임) 잡아 보정(`a9823dd`). ② full apples-to-apples 재측정: OpenVLA 10task×50=500ep(77.4%) + 공식 JAX `pi05_libero` 변환(WSL 순수-python GCS로 9p 우회)으로 π0.5 공식 500ep(98.4%). **대칭·공식 head-to-head: +21pp, Fisher p=1.4e-27, CI 비겹침**. 초안 matched OpenVLA 73.3%(11/15)는 소표본 과소추정이었음(n=150→89.3%)을 정직 교정.
 - 2026-06-11 (후속) — **M5 완주**. ① public README 포트폴리오 랜딩 재설계(`f0d58ba`). ② askewly 블로그 글 "논문은 안다고 착각하게 만듭니다" anti-AI verify PASS → 라이브 발행(`dcebaf8`+KV). ③ vault: M2~M4 통합 synthesis 노트 작성 + Research 00-INDEX에 physical-ai 섹션 등록(고립 해소). 남은 건 M6(실물 로봇팔).
+- 2026-06-12 — **M6 대부분 완주**(정책 replay만 남음). M6를 하드웨어 게이트에서 분리(M6 디지털 트윈 / M7 실물), [ADR 0004](docs/adr/0004-digital-twin-stack.md) 스택 결정. SO-100(Menagerie `trs_so_arm100`, 메인 머지 확인) MuJoCo 로드 스모크 PASS → 오프스크린 렌더 mp4 → `experiments/03-digital-twin`. **웹 인터랙티브 3D**: zalo/mujoco_wasm(공식 DeepMind WASM) 기반 자체완결 정적 앱 `web/`, 홈 키프레임 직립·반응형. Vercel 배포 중 node_modules 미서빙 함정 → deps CDN화로 순수정적 해소. **커스텀 도메인 라이브: physical-ai-arm.askewly.com**(CF_DNS_TOKEN으로 CNAME). askewly.com Products에 트윈 카드+robot-arm 아이콘 추가(자동배포). 커밋 `4628bfc`·`84f3fa2`·`704e8ed`·`f66d0a0`.
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
