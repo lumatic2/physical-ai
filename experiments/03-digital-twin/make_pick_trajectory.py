@@ -1,11 +1,15 @@
 """Generate a scripted SO-100 pick-and-place trajectory -> pick_trajectory.json.
 
 Replay-first (ADR 0004 Decision §2): NOT a learned policy. The arm is driven by
-Cartesian waypoints solved with a tiny damped-least-squares Jacobian IK, blocks are
-carried by a weld constraint whose relpose is written at the grasp instant, and the
-full qpos (arm 6 + 3 free-joint blocks * 7 = 27) is recorded each frame. render_twin.py
-and the web both replay these frames kinematically (set qpos + mj_forward), so desktop
-mp4 == web exactly and no contact/friction tuning leaks into playback.
+Cartesian waypoints solved with a tiny damped-least-squares Jacobian IK (real mj_step
+servo motion). The blocks are driven KINEMATICALLY (not by physics): each block is held
+upright at rest, then — while carried — pinned upright to the gripper's grasp point, then
+frozen at its exact tower pose on release. The full qpos (arm 6 + 3 free-joint blocks * 7
+= 27) is recorded each frame and replayed kinematically (set qpos + mj_forward) on both
+desktop and web, so mp4 == web exactly. Driving blocks kinematically (vs a weld) keeps
+them perfectly upright with no carry-tilt and no snap-on-release, and the exact stack
+heights mean no inter-penetration during playback. (Interactive mode in the web app still
+runs full physics — drag the blocks and they collide/fall for real.)
 
 Scenario: stack red -> green -> blue blocks onto the target pad (0.10, 0.0).
 Run after setup.sh + smoke:  python make_pick_trajectory.py
@@ -38,7 +42,7 @@ BLOCK_QADR = {
     "b": model.jnt_qposadr[mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "block_b_free")],
     "c": model.jnt_qposadr[mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "block_c_free")],
 }
-EQ = {k: mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_EQUALITY, f"grasp_{k}") for k in "abc"}
+BLOCK_DADR = {k: model.jnt_dofadr[mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, f"block_{k}_free")] for k in "abc"}
 
 # pick order: red(a) bottom, green(b) middle, blue(c) top
 PAD = np.array([0.14, -0.26])
@@ -108,19 +112,33 @@ cur_ctrl = data.ctrl.copy()
 home_pt = grasp_point(data).copy()
 ik_residuals = []
 
-# Blocks released onto the stack are frozen at their exact tower pose so the next
-# pick's gripper/contact cannot knock them — playback is kinematic, so a clean
-# scripted stack is the source of truth (weld only drives the carry).
-placed = {}                                                # k -> 7-vec target qpos
-BLOCK_DADR = {k: model.jnt_dofadr[mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, f"block_{k}_free")] for k in "abc"}
+# Kinematic block control: every block is in exactly one state each frame —
+#   rest    -> its upright start pose
+#   carried -> pinned upright to the grasp point (centred between the fingers)
+#   placed  -> frozen at its exact tower pose
+# This is what makes playback clean (no tilt, no snap, no inter-penetration).
+REST = {k: data.qpos[BLOCK_QADR[k]:BLOCK_QADR[k] + 7].copy() for k in "abc"}
+placed = {}                                                # k -> frozen 7-vec tower pose
+carrying = [None]                                          # block id currently held (or None)
+
+
+def apply_block_kinematics():
+    gp = grasp_point(data)
+    for k in "abc":
+        qa, da = BLOCK_QADR[k], BLOCK_DADR[k]
+        if carrying[0] == k:
+            pose = np.array([gp[0], gp[1], gp[2], 1.0, 0.0, 0.0, 0.0])   # upright in gripper
+        elif k in placed:
+            pose = placed[k]
+        else:
+            pose = REST[k]
+        data.qpos[qa:qa + 7] = pose
+        data.qvel[da:da + 6] = 0.0
 
 
 def step_once():
     mujoco.mj_step(model, data)
-    for k, pose in placed.items():
-        qa = BLOCK_QADR[k]
-        data.qpos[qa:qa + 7] = pose
-        data.qvel[BLOCK_DADR[k]:BLOCK_DADR[k] + 6] = 0.0
+    apply_block_kinematics()
 
 
 def record():
@@ -146,30 +164,15 @@ def run_segment(target_pt, jaw, weld, secs, hold):
             step_once()
         record()
     cur_ctrl = data.ctrl.copy()
-    # weld toggle happens AFTER reaching the pose (grasp/release instant)
+    # state transition AFTER reaching the pose (grasp = start carrying; release = freeze on stack)
     if weld is not None:
         kind, k = weld
-        eqid = EQ[k]
         if kind == "grasp":
-            # capture current block pose relative to Fixed_Jaw -> weld relpose
-            qa = BLOCK_QADR[k]
-            bpos = data.qpos[qa:qa + 3].copy()
-            bquat = data.qpos[qa + 3:qa + 7].copy()
-            R = data.xmat[FJ].reshape(3, 3)
-            rel_pos = R.T @ (bpos - data.xpos[FJ])
-            fjq = np.zeros(4); mujoco.mju_mat2Quat(fjq, data.xmat[FJ])
-            negfjq = np.zeros(4); mujoco.mju_negQuat(negfjq, fjq)
-            rel_quat = np.zeros(4); mujoco.mju_mulQuat(rel_quat, negfjq, bquat)
-            model.eq_data[eqid][0:3] = 0.0
-            model.eq_data[eqid][3:6] = rel_pos
-            model.eq_data[eqid][6:10] = rel_quat
-            data.eq_active[eqid] = 1
+            carrying[0] = k
         else:
-            data.eq_active[eqid] = 0
-            # freeze the just-released block at its exact tower pose (clean stack)
+            carrying[0] = None
             placed[k] = np.array([PAD[0], PAD[1], STACK_Z[k], 1.0, 0.0, 0.0, 0.0])
-            data.qpos[BLOCK_QADR[k]:BLOCK_QADR[k] + 7] = placed[k]
-            data.qvel[BLOCK_DADR[k]:BLOCK_DADR[k] + 6] = 0.0
+        apply_block_kinematics()
     # hold
     for _ in range(max(0, int(round(hold * FPS)))):
         for _ in range(steps_per_frame):

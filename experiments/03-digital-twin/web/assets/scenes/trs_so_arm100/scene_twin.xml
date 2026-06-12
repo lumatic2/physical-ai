@@ -44,13 +44,4 @@
         mass="0.02" friction="1 0.01 0.0001"/>
     </body>
   </worldbody>
-
-  <!-- Grasp welds (inactive by default). The recorder writes each weld's relpose at the
-       grasp instant and toggles eq_active to carry the block; web/desktop replay ignores
-       these (kinematic qpos playback). -->
-  <equality>
-    <weld name="grasp_a" body1="Fixed_Jaw" body2="block_a" active="false"/>
-    <weld name="grasp_b" body1="Fixed_Jaw" body2="block_b" active="false"/>
-    <weld name="grasp_c" body1="Fixed_Jaw" body2="block_c" active="false"/>
-  </equality>
 </mujoco>

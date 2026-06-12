@@ -134,7 +134,7 @@ export class MuJoCoDemo {
     setupGUI(this);
     // Rollout replay toggle — default on, so visitors see the pick-and-place immediately.
     // Turning it off hands control back to physics + drag (interactive mode).
-    this.gui.add(this.params, 'replay').name('▶ Replay rollout').onChange((v) => {
+    this.gui.add(this.params, 'replay').name('▶ Replay (uncheck = grab & drag)').onChange((v) => {
       this.replayStartMS = null;
       if (!v) { this.seedFrame(0); }
     });
