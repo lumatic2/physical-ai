@@ -1,0 +1,14 @@
+{
+  "name": "so100-twin-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SO-100 digital twin in the browser (MuJoCo WASM). M6 web PoC.",
+  "type": "module",
+  "scripts": {
+    "serve": "python serve_coi.py 8132"
+  },
+  "dependencies": {
+    "three": "^0.181.0",
+    "mujoco-js": "^0.0.7"
+  }
+}

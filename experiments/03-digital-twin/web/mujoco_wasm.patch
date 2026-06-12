@@ -1,0 +1,107 @@
+diff --git a/index.html b/index.html
+index 8b47afe..fc4ceb7 100644
+--- a/index.html
++++ b/index.html
+@@ -10,6 +10,12 @@
+         <meta name="viewport"           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover, user-scalable=no, shrink-to-fit=0">
+         <meta name="theme-color"        content="#ffffff">
+         <link rel ="icon" type="image/x-icon" href="./assets/favicon.png">
++        <style>
++            /* Shrink the control panel on phones so it doesn't dominate the small screen. */
++            @media (max-width: 600px) {
++                .lil-gui.root { transform: scale(0.8); transform-origin: top right; }
++            }
++        </style>
+     </head>
+ 
+     <body style="margin:0px; background-color:rgb(255, 255, 255); overflow:hidden; position:fixed; min-height: 100%;
+diff --git a/src/main.js b/src/main.js
+index f1b2822..8451458 100644
+--- a/src/main.js
++++ b/src/main.js
+@@ -39,7 +39,13 @@ export class MuJoCoDemo {
+ 
+     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.001, 100 );
+     this.camera.name = 'PerspectiveCamera';
+-    this.camera.position.set(2.0, 1.7, 1.7);
++    // Frame the SO-100 (~0.4 m). Pull back on portrait/narrow viewports (phones) so the
++    // arm still fits — three.js fov is vertical, so narrow aspect crops horizontally.
++    {
++      const aspect = window.innerWidth / window.innerHeight;
++      const dist = 0.8 * Math.max(1, 1.0 / aspect);
++      this.camera.position.set(0.62 * dist, 0.45 * dist + 0.1, 0.62 * dist);
++    }
+     this.scene.add(this.camera);
+ 
+     this.scene.background = new THREE.Color(0.15, 0.25, 0.35);
+@@ -83,7 +89,7 @@ export class MuJoCoDemo {
+     this.container.appendChild( this.renderer.domElement );
+ 
+     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+-    this.controls.target.set(0, 0.7, 0);
++    this.controls.target.set(0, 0.1, 0); // look at the SO-100 base/working volume
+     this.controls.panSpeed = 2;
+     this.controls.zoomSpeed = 1;
+     this.controls.enableDamping = true;
+@@ -101,9 +107,20 @@ export class MuJoCoDemo {
+     // Download the the examples to MuJoCo's virtual file system
+     await downloadExampleScenesFolder(mujoco);
+ 
+-    // Initialize the three.js Scene using the .xml Model in initialScene
++    // Initialize the three.js Scene with the SO-100 twin scene (M6 web PoC)
++    const startScene = "trs_so_arm100/scene_twin.xml";
++    this.params.scene = startScene;
+     [this.model, this.data, this.bodies, this.lights] =
+-      await loadSceneFromURL(mujoco, initialScene, this);
++      await loadSceneFromURL(mujoco, startScene, this);
++
++    // SO-100: start at the 'home' keyframe so the arm stands upright.
++    // Position actuators (kp=50) hold the pose; qpos == ctrl for this model.
++    if (this.model.nkey > 0) {
++      const home = this.model.key_qpos.slice(0, this.model.nq);
++      this.data.qpos.set(home);
++      for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = home[i]; }
++      mujoco.mj_forward(this.model, this.data);
++    }
+ 
+     this.gui = new GUI();
+     setupGUI(this);
+diff --git a/src/mujocoUtils.js b/src/mujocoUtils.js
+index 6016c69..6240772 100644
+--- a/src/mujocoUtils.js
++++ b/src/mujocoUtils.js
+@@ -27,6 +27,7 @@ export function setupGUI(parentContext) {
+   // Add scene selection dropdown.
+   let reload = reloadFunc.bind(parentContext);
+   parentContext.gui.add(parentContext.params, 'scene', {
++    "SO-100 (SO-ARM100)": "trs_so_arm100/scene_twin.xml",
+     "Humanoid": "humanoid.xml", "Cassie": "agility_cassie/scene.xml",
+     "Hammock": "hammock.xml", "Balloons": "balloons.xml", "Hand": "shadow_hand/scene_right.xml",
+     "Mug": "mug.xml", "Tendon": "model_with_tendon.xml",
+@@ -640,6 +641,26 @@ export function drawTendonsAndFlex(mujocoRoot, model, data) {
+  * @param {mujoco} mujoco */
+ export async function downloadExampleScenesFolder(mujoco) {
+   let allFiles = [
++    "trs_so_arm100/scene_twin.xml",
++    "trs_so_arm100/so_arm100.xml",
++    "trs_so_arm100/assets/Base.stl",
++    "trs_so_arm100/assets/Base_Motor.stl",
++    "trs_so_arm100/assets/Fixed_Jaw.stl",
++    "trs_so_arm100/assets/Fixed_Jaw_Collision_1.stl",
++    "trs_so_arm100/assets/Fixed_Jaw_Collision_2.stl",
++    "trs_so_arm100/assets/Fixed_Jaw_Motor.stl",
++    "trs_so_arm100/assets/Lower_Arm.stl",
++    "trs_so_arm100/assets/Lower_Arm_Motor.stl",
++    "trs_so_arm100/assets/Moving_Jaw.stl",
++    "trs_so_arm100/assets/Moving_Jaw_Collision_1.stl",
++    "trs_so_arm100/assets/Moving_Jaw_Collision_2.stl",
++    "trs_so_arm100/assets/Moving_Jaw_Collision_3.stl",
++    "trs_so_arm100/assets/Rotation_Pitch.stl",
++    "trs_so_arm100/assets/Rotation_Pitch_Motor.stl",
++    "trs_so_arm100/assets/Upper_Arm.stl",
++    "trs_so_arm100/assets/Upper_Arm_Motor.stl",
++    "trs_so_arm100/assets/Wrist_Pitch_Roll.stl",
++    "trs_so_arm100/assets/Wrist_Pitch_Roll_Motor.stl",
+     "22_humanoids.xml",
+     "adhesion.xml",
+     "agility_cassie/assets/achilles-rod.obj",
