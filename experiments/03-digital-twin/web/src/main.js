@@ -134,7 +134,8 @@ export class MuJoCoDemo {
     setupGUI(this);
     // Rollout replay toggle — default on, so visitors see the pick-and-place immediately.
     // Turning it off hands control back to physics + drag (interactive mode).
-    this.gui.add(this.params, 'replay').name('▶ Replay (uncheck = grab & drag)').onChange((v) => {
+    // Manual toggle resets to the start layout; drag-to-grab auto-pauses in place (below).
+    this.replayToggle = this.gui.add(this.params, 'replay').name('▶ Replay (grab to take over)').onChange((v) => {
       this.replayStartMS = null;
       if (!v) { this.seedFrame(0); }
     });
@@ -159,15 +160,26 @@ export class MuJoCoDemo {
     this.controls.update();
 
     if (this.params["replay"] && this.replayQpos) {
-      // Kinematic playback: advance the playhead in real time and loop. The trajectory
-      // has built-in holds at home (start/end), so a plain wrap gives the pause-at-both-ends.
-      if (this.replayStartMS === null) { this.replayStartMS = timeMS; }
-      let frame = Math.floor(((timeMS - this.replayStartMS) / 1000.0) * this.replayFps) % this.replayN;
-      if (!(frame >= 0)) { frame = 0; }
-      const q = this.replayQpos[frame];
-      for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
-      this.mujoco.mj_forward(this.model, this.data);
-    } else if (!this.params["paused"]) {
+      // Grab-to-take-over: if the user starts dragging a body mid-replay, auto-pause the
+      // rollout *in place* and hand off to physics. Hold the current pose (ctrl = current
+      // qpos) so the arm doesn't snap to home, and don't reset (unlike the manual toggle).
+      const grabbed = this.dragStateManager.physicsObject;
+      if (grabbed && grabbed.bodyID) {
+        this.params.replay = false;
+        this.replayToggle.updateDisplay();
+        for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = this.data.qpos[i]; }
+      } else {
+        // Kinematic playback: advance the playhead in real time and loop. The trajectory
+        // has built-in holds at home (start/end), so a plain wrap gives the pause-at-ends.
+        if (this.replayStartMS === null) { this.replayStartMS = timeMS; }
+        let frame = Math.floor(((timeMS - this.replayStartMS) / 1000.0) * this.replayFps) % this.replayN;
+        if (!(frame >= 0)) { frame = 0; }
+        const q = this.replayQpos[frame];
+        for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
+        this.mujoco.mj_forward(this.model, this.data);
+      }
+    }
+    if (!this.params["replay"] && !this.params["paused"]) {
       let timestep = this.model.opt.timestep;
       if (timeMS - this.mujoco_time > 35.0) { this.mujoco_time = timeMS; }
       while (this.mujoco_time < timeMS) {
