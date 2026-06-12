@@ -26,7 +26,8 @@
 | M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
 | M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
 | M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 replay(pick-and-place 3단 스택) | ✅ |
-| M7 | 실물 도달 (다음 분기) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
+| M8 | 학습 정책 sandbox (sim) | 직접 학습한 정책이 브라우저에서 몸을 제어한다 | live Go1 보행(onnxruntime-web) + config-driven 하네스 | 🔄 설계✅ |
+| M7 | 실물 도달 (하드웨어 게이트, 보류) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
 
 ### M1 — 지형 파악 ✅
 - [x] 핵심 용어·taxonomy·플레이어 맵·reading list 15개 → `docs/landscape.md`
@@ -65,10 +66,19 @@
 - [x] **웹 인터랙티브 3D 트윈** — mujoco_wasm(공식 DeepMind WASM)로 브라우저 트윈 → [experiments/03-digital-twin/web](experiments/03-digital-twin/web/README.md). 자동재생 replay 루프 + interactive 토글·반응형(QHD/노트북/모바일), 콘솔 에러 0. **라이브: https://physical-ai-arm.askewly.com** (Vercel 순수 정적 CDN, askewly.com 서브도메인).
 - 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 ✅ + 공개 호스팅 ✅ + 정책 롤아웃 replay ✅
 
-### M7 — 실물 도달 (다음 분기, 하드웨어 게이트) ⬜
+### M8 — 학습 정책 sandbox (sim, 하드웨어 불필요) 🔄
+> 저가팔 구매(M7)가 비현실적 → 하드웨어 게이트 우회. 트윈을 "SO-100 외에도 다양한 피지컬 AI를
+> 실험하는 sandbox"로 깎고, 재생기에서 **브라우저에서 도는 학습된 정책**으로 격상. [ADR 0005](docs/adr/0005-learned-policy-sandbox.md).
+- [x] **하네스 일반화 (1단계)** — SO-100 하드코딩 파이프라인을 `experiments.json` config-driven 하네스로(`harness.py` + 범용 물리 레코더). humanoid를 bespoke 0줄로 통과시켜 일반성 실증 (`0ecb94f`).
+- [x] **축 설계 박제** — A+B 결합(임베디먼트 갤러리 + 직접 학습 정책), 파일럿=Go1 보행, [ADR 0005](docs/adr/0005-learned-policy-sandbox.md) (`b98198c`).
+- [ ] **Phase 1 학습 spike** — MuJoCo Playground Go1 joystick RL 학습(RTX5090) → ONNX → native mujoco 검증. (JAX-on-Blackwell 막히면 rsl_rl 폴백)
+- [ ] **Phase 2~3** — 데스크탑 closed-loop 통합(`policy` 블록) → onnxruntime-web 브라우저 추론(obs parity)
+- 완료 기준: 라이브에서 직접 학습한 정책이 실시간으로 Go1을 걷게 한다 + 0 콘솔 에러.
+
+### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
 - [ ] teleoperation 데이터 수집 → ACT 모방학습 → sim→real 이식, 1개 태스크 수행
-- 완료 기준: 실물 팔 태스크 수행 영상 + reality gap 회고. ※ M6 트윈 완주 후 착수
+- 완료 기준: 실물 팔 태스크 수행 영상 + reality gap 회고. ※ 저가팔 구매 시 착수 (현재 보류, M8 우선)
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악. `docs/landscape.md`(정의·용어 11종·4레이어 스택·플레이어 맵·reading list 15개).
@@ -80,6 +90,8 @@
 - 2026-06-12 — **M6 대부분 완주**(정책 replay만 남음). M6를 하드웨어 게이트에서 분리(M6 디지털 트윈 / M7 실물), [ADR 0004](docs/adr/0004-digital-twin-stack.md) 스택 결정. SO-100(Menagerie `trs_so_arm100`, 메인 머지 확인) MuJoCo 로드 스모크 PASS → 오프스크린 렌더 mp4 → `experiments/03-digital-twin`. **웹 인터랙티브 3D**: zalo/mujoco_wasm(공식 DeepMind WASM) 기반 자체완결 정적 앱 `web/`, 홈 키프레임 직립·반응형. Vercel 배포 중 node_modules 미서빙 함정 → deps CDN화로 순수정적 해소. **커스텀 도메인 라이브: physical-ai-arm.askewly.com**(CF_DNS_TOKEN으로 CNAME). askewly.com Products에 트윈 카드+robot-arm 아이콘 추가(자동배포). 커밋 `4628bfc`·`84f3fa2`·`704e8ed`·`f66d0a0`.
 - 2026-06-12 (후속) — **M6 완주**(정책 롤아웃 replay). sweep → scripted **pick-and-place 3단 스택**. 블록을 free-joint로 바꾸고 타깃 패드 추가(reachable 밴드 y<−0.14로 재배치 — Rotation 한계 회피), `make_pick_trajectory.py`가 damped-LS Jacobian IK로 Cartesian 웨이포인트를 풀고 집는 순간 weld relpose 주입으로 carry·놓은 블록은 타워 포즈로 freeze → qpos 385프레임 기록. 데스크탑(`render_twin.py`)·웹(`main.js`) 모두 **운동학 재생**(qpos+mj_forward)이라 mp4==웹. 웹은 자동재생 루프 + "▶ Replay rollout" interactive 토글, 카메라를 워크스페이스 중심으로 재프레이밍. 검증: IK 0.1mm, smoke PASS(nq=27), 라이브 콘솔 0 에러. 커밋 `70b1fde`·`3285e2e`. (정직: 학습 정책 아닌 scripted replay — ADR 0004 trade-off)
 - 2026-06-12 (후속2) — **M6 그리퍼–큐브 상호작용 다듬기 + 기구학 한계 박제**. weld carry가 기울기·스냅·관통을 내서 kinematic 결합으로 교체(`c4df75f`), 웹에 grab-to-take-over(재생 중 잡으면 자동 interactive 전환)(`97788e2`). 사용자 지적("집게가 큐브 관통, 잡기/잡힘 디커플") 대응으로 6-DOF 자세 IK + 실제 물리 집기를 조사 → **단일 큐브 물리 집기는 됨**(마찰 2.5+스퀴즈+top-down IK 검증)이나 **이 5-DOF SO-100은 top-down 파지 자세를 들어올림 높이에서 유지 불가**(top-down 도달은 테이블 z≈0.018뿐, z≳0.11 IK 잔차 50~250mm) → 완전 인과적 pick-lift-stack 불가 박제. 사용자 선택으로 **"시각적 결합"** 채택: grasp point를 손끝 중점으로, 운반 중 jaw를 큐브 폭까지 닫아 손가락이 큐브에 실제 접촉(관통 해소)(`f4df921`). 라이브 재배포, 8커밋 push 완료(`558777f`).
+
+- 2026-06-12 (후속3) — **M8 착수: 트윈을 학습 정책 sandbox로**. 저가팔 구매 비현실 → M7(실물) 보류, sim sandbox로 방향 전환. ① **config-driven 하네스 리팩터**(`0ecb94f`): SO-100 하드코딩(smoke/render/web)을 `experiments.json` 레지스트리 + `harness.py` + 범용 물리 레코더 `record_trajectory.py`로 일반화. `make_pick_trajectory.py`(IK)는 불변. humanoid-settle을 bespoke 0줄로 record→smoke→render→웹(`?exp=`) 통과시켜 일반성 실증. 라이브 재배포(기본값 SO-100 무변화, 0 에러). ② **축 설계 [ADR 0005](docs/adr/0005-learned-policy-sandbox.md)**(`b98198c`): A+B 결합(갤러리+직접학습), 파일럿=Go1 보행, MuJoCo Playground 학습→ONNX→onnxruntime-web closed-loop. ADR 0004 되돌림 조건 (a) 발동. 외부 리서치로 경로 검증(Playground Go1 5분 학습·50Hz ONNX·RSS2025 브라우저 데모). obs parity·JAX-on-Blackwell(rsl_rl 폴백)이 핵심 리스크. **Phase 1(GPU 학습 spike)은 다음 세션.**
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
