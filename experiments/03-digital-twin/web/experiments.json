@@ -1,0 +1,23 @@
+{
+  "default": "so100-stack",
+  "experiments": {
+    "so100-stack": {
+      "title": "SO-100 — scripted pick-and-place 3단 스택",
+      "scene": "trs_so_arm100/scene_twin.xml",
+      "trajectory": "pick_trajectory.json",
+      "ee_body": "Moving_Jaw",
+      "render_out": "media/so100_twin.mp4",
+      "camera": { "lookat": [0.12, -0.18, 0.08], "distance": 0.85, "azimuth": 150, "elevation": -20 },
+      "web": { "target": [0.10, 0.06, 0.13], "offset": [0.52, 0.42, 0.52], "fovDist": 1.0 }
+    },
+    "humanoid-settle": {
+      "title": "Humanoid — 물리 settle (하네스 일반성 증명, 별도 임베디먼트)",
+      "scene": "humanoid.xml",
+      "trajectory": "humanoid_settle.json",
+      "ee_body": "torso",
+      "render_out": "media/humanoid_settle.mp4",
+      "camera": { "lookat": [0.0, 0.0, 0.5], "distance": 4.0, "azimuth": 120, "elevation": -15 },
+      "web": { "target": [0.0, 0.0, 0.7], "offset": [2.2, 1.6, 2.2], "fovDist": 1.0 }
+    }
+  }
+}

@@ -113,17 +113,35 @@ export class MuJoCoDemo {
     // Download the the examples to MuJoCo's virtual file system
     await downloadExampleScenesFolder(mujoco);
 
-    // Initialize the three.js Scene with the SO-100 twin scene (M6 web PoC)
-    const startScene = "trs_so_arm100/scene_twin.xml";
+    // Harness: pick the experiment from experiments.json (default, or ?exp= override).
+    // Each experiment = (scene MJCF, recorded trajectory, camera) — same registry the
+    // desktop smoke/render/record read. Default stays SO-100 so the live site is unchanged.
+    const registry = await (await fetch("./experiments.json")).json();
+    const expName = new URLSearchParams(location.search).get("exp") || registry.default;
+    const exp = registry.experiments[expName] || registry.experiments[registry.default];
+
+    const startScene = exp.scene;
     this.params.scene = startScene;
     [this.model, this.data, this.bodies, this.lights] =
       await loadSceneFromURL(mujoco, startScene, this);
 
-    // M6 rollout: load the scripted pick-and-place trajectory (recorded qpos per frame).
-    // We replay it kinematically (set qpos + mj_forward) so the web matches the desktop mp4
-    // exactly. NOTE: the model's 'home' keyframe pads block free-joints to the origin, so we
-    // seed from trajectory frame 0 (blocks at their start row) instead of key_qpos.
-    const traj = await (await fetch("./pick_trajectory.json")).json();
+    // Frame the camera from the experiment config (workspace centroid + pull-back offset,
+    // scaled on narrow/portrait viewports since three.js fov is vertical).
+    const w = exp.web;
+    this.viewTarget.set(w.target[0], w.target[1], w.target[2]);
+    const aspect = window.innerWidth / window.innerHeight;
+    const dist = w.fovDist * Math.max(1, 1.0 / aspect);
+    this.camera.position.set(
+      this.viewTarget.x + w.offset[0] * dist,
+      this.viewTarget.y + w.offset[1] * dist,
+      this.viewTarget.z + w.offset[2] * dist);
+    this.controls.target.copy(this.viewTarget);
+    this.controls.update();
+
+    // Rollout: load the recorded trajectory (qpos per frame). We replay it kinematically
+    // (set qpos + mj_forward) so the web matches the desktop mp4 exactly. NOTE: the model's
+    // 'home' keyframe may pad free-joints to the origin, so we seed from trajectory frame 0.
+    const traj = await (await fetch("./" + exp.trajectory)).json();
     this.replayFps = traj.fps;
     this.replayQpos = traj.qpos;            // [frame][nq]
     this.replayN = traj.qpos.length;
