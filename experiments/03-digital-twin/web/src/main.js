@@ -24,7 +24,7 @@ export class MuJoCoDemo {
     this.data  = new mujoco.MjData(this.model);
 
     // Define Random State Variables
-    this.params = { scene: initialScene, paused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
+    this.params = { scene: initialScene, paused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0, replay: true };
     this.mujoco_time = 0.0;
     this.bodies  = {}, this.lights = {};
     this.tmpVec  = new THREE.Vector3();
@@ -39,12 +39,18 @@ export class MuJoCoDemo {
 
     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.001, 100 );
     this.camera.name = 'PerspectiveCamera';
-    // Frame the SO-100 (~0.4 m). Pull back on portrait/narrow viewports (phones) so the
-    // arm still fits — three.js fov is vertical, so narrow aspect crops horizontally.
+    // Frame the SO-100 + the pick-and-place workspace (start blocks -> stack pad). Orbit
+    // around the workspace centroid (not the base) so the stacking action isn't cut off at
+    // the bottom edge. Pull back on portrait/narrow viewports (phones) so it still fits —
+    // three.js fov is vertical, so narrow aspect crops horizontally.
+    this.viewTarget = new THREE.Vector3(0.10, 0.06, 0.13);
     {
       const aspect = window.innerWidth / window.innerHeight;
-      const dist = 0.8 * Math.max(1, 1.0 / aspect);
-      this.camera.position.set(0.62 * dist, 0.45 * dist + 0.1, 0.62 * dist);
+      const dist = 1.0 * Math.max(1, 1.0 / aspect);
+      this.camera.position.set(
+        this.viewTarget.x + 0.52 * dist,
+        this.viewTarget.y + 0.42 * dist,
+        this.viewTarget.z + 0.52 * dist);
     }
     this.scene.add(this.camera);
 
@@ -89,7 +95,7 @@ export class MuJoCoDemo {
     this.container.appendChild( this.renderer.domElement );
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.target.set(0, 0.1, 0); // look at the SO-100 base/working volume
+    this.controls.target.copy(this.viewTarget); // orbit the pick-and-place workspace
     this.controls.panSpeed = 2;
     this.controls.zoomSpeed = 1;
     this.controls.enableDamping = true;
@@ -113,17 +119,34 @@ export class MuJoCoDemo {
     [this.model, this.data, this.bodies, this.lights] =
       await loadSceneFromURL(mujoco, startScene, this);
 
-    // SO-100: start at the 'home' keyframe so the arm stands upright.
-    // Position actuators (kp=50) hold the pose; qpos == ctrl for this model.
-    if (this.model.nkey > 0) {
-      const home = this.model.key_qpos.slice(0, this.model.nq);
-      this.data.qpos.set(home);
-      for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = home[i]; }
-      mujoco.mj_forward(this.model, this.data);
-    }
+    // M6 rollout: load the scripted pick-and-place trajectory (recorded qpos per frame).
+    // We replay it kinematically (set qpos + mj_forward) so the web matches the desktop mp4
+    // exactly. NOTE: the model's 'home' keyframe pads block free-joints to the origin, so we
+    // seed from trajectory frame 0 (blocks at their start row) instead of key_qpos.
+    const traj = await (await fetch("./pick_trajectory.json")).json();
+    this.replayFps = traj.fps;
+    this.replayQpos = traj.qpos;            // [frame][nq]
+    this.replayN = traj.qpos.length;
+    this.replayStartMS = null;
+    this.seedFrame(0);
 
     this.gui = new GUI();
     setupGUI(this);
+    // Rollout replay toggle — default on, so visitors see the pick-and-place immediately.
+    // Turning it off hands control back to physics + drag (interactive mode).
+    this.gui.add(this.params, 'replay').name('▶ Replay rollout').onChange((v) => {
+      this.replayStartMS = null;
+      if (!v) { this.seedFrame(0); }
+    });
+  }
+
+  // Seed the scene from a recorded trajectory frame (qpos + arm ctrl + zero velocity).
+  seedFrame(frame) {
+    const q = this.replayQpos[frame];
+    for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = q[i]; }
+    for (let i = 0; i < this.data.qvel.length; i++) { this.data.qvel[i] = 0; }
+    for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = q[i]; }  // arm home = qpos[0..5]
+    this.mujoco.mj_forward(this.model, this.data);
   }
 
   onWindowResize() {
@@ -135,7 +158,16 @@ export class MuJoCoDemo {
   render(timeMS) {
     this.controls.update();
 
-    if (!this.params["paused"]) {
+    if (this.params["replay"] && this.replayQpos) {
+      // Kinematic playback: advance the playhead in real time and loop. The trajectory
+      // has built-in holds at home (start/end), so a plain wrap gives the pause-at-both-ends.
+      if (this.replayStartMS === null) { this.replayStartMS = timeMS; }
+      let frame = Math.floor(((timeMS - this.replayStartMS) / 1000.0) * this.replayFps) % this.replayN;
+      if (!(frame >= 0)) { frame = 0; }
+      const q = this.replayQpos[frame];
+      for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
+      this.mujoco.mj_forward(this.model, this.data);
+    } else if (!this.params["paused"]) {
       let timestep = this.model.opt.timestep;
       if (timeMS - this.mujoco_time > 35.0) { this.mujoco_time = timeMS; }
       while (this.mujoco_time < timeMS) {
