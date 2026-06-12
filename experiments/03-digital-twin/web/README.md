@@ -3,7 +3,7 @@
 같은 SO-100 MJCF를 **브라우저에서 실제 물리째** 돌리는 인터랙티브 트윈. DeepMind 공식 MuJoCo WASM
 바인딩(`mujoco-js`) + three.js. 빌드·node_modules 불필요 — deps는 jsDelivr CDN, ES module 직접 로드(순수 정적).
 
-**라이브: https://physical-ai-so100-twin.vercel.app**
+**라이브: https://physical-ai-arm.askewly.com**
 
 ![QHD](media/twin-qhd.png)
 
