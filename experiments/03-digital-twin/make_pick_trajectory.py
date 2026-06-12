@@ -1,15 +1,18 @@
 """Generate a scripted SO-100 pick-and-place trajectory -> pick_trajectory.json.
 
-Replay-first (ADR 0004 Decision §2): NOT a learned policy. The arm is driven by
-Cartesian waypoints solved with a tiny damped-least-squares Jacobian IK (real mj_step
-servo motion). The blocks are driven KINEMATICALLY (not by physics): each block is held
-upright at rest, then — while carried — pinned upright to the gripper's grasp point, then
-frozen at its exact tower pose on release. The full qpos (arm 6 + 3 free-joint blocks * 7
-= 27) is recorded each frame and replayed kinematically (set qpos + mj_forward) on both
-desktop and web, so mp4 == web exactly. Driving blocks kinematically (vs a weld) keeps
-them perfectly upright with no carry-tilt and no snap-on-release, and the exact stack
-heights mean no inter-penetration during playback. (Interactive mode in the web app still
-runs full physics — drag the blocks and they collide/fall for real.)
+Replay-first (ADR 0004 Decision §2): NOT a learned policy. The arm is driven by Cartesian
+waypoints solved with a tiny damped-least-squares Jacobian IK (real mj_step servo motion).
+The cube being picked is carried KINEMATICALLY — pinned upright to the midpoint of the
+finger TIPS — while the gripper actually CLOSES its fingers onto it (the jaw servo drives
+shut until the finger geoms contact the pinned cube, so the fingers visibly grip the cube
+faces: no gap, no pass-through, and the cube moves coupled with the hand). On release the
+cube is frozen at its exact tower pose. NOTE: this is visual coupling, not causal physics —
+this 5-DOF SO-100 cannot hold a top-down grasp orientation through a lift (verified: top-down
+is unreachable above table height), so a fully physical pick-lift-stack isn't achievable with
+this arm; the kinematic carry reproduces the look robustly. Full qpos (arm 6 + 3 free-joint
+blocks * 7 = 27) is recorded each frame and replayed kinematically (qpos + mj_forward) on
+desktop and web, so mp4 == web. (Interactive mode in the web app runs full physics — drag the
+blocks and they collide/fall for real.)
 
 Scenario: stack red -> green -> blue blocks onto the target pad (0.10, 0.0).
 Run after setup.sh + smoke:  python make_pick_trajectory.py
@@ -31,8 +34,11 @@ data = mujoco.MjData(model)
 FJ = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "Fixed_Jaw")
 JAW = 5                              # actuator/qpos index of the gripper joint
 POS_DOFS = [0, 1, 2, 3, 4]          # arm dofs used for positioning (not the jaw)
-GRASP_LOCAL = np.array([0.005, -0.085, 0.0])   # grasp point in Fixed_Jaw frame (between pads)
-JAW_OPEN, JAW_CLOSE = 1.2, -0.1     # gripper ctrl targets (rad)
+GRASP_LOCAL = np.array([-0.009, -0.102, 0.0])  # grasp point = midpoint of the finger TIPS (distal pads)
+# The cube is carried at the fingertips; JAW_CLOSE shuts them to ~the cube width (36mm) so the tips
+# visually pinch the cube faces (carry is kinematic, but the fingers really close onto it — no gap,
+# no penetration), JAW_OPEN clears the cube on approach/release.
+JAW_OPEN, JAW_CLOSE = 0.6, 0.15
 
 home_arm = model.key_qpos[0][:6].copy()        # 0 -1.57 1.57 1.57 -1.57 0
 
@@ -91,7 +97,7 @@ for k in "abc":
     plan += [
         (above, JAW_OPEN, None, 0.5, 0.0),                 # 1 approach above block
         (bc,    JAW_OPEN, None, 0.4, 0.1),                 # 2 descend onto block
-        (bc,    JAW_CLOSE, ("grasp", k), 0.25, 0.1),       # 3 close + weld on
+        (bc,    JAW_CLOSE, ("grasp", k), 0.5, 0.5),        # 3 close the fingers onto the cube (settle)
         (above, JAW_CLOSE, None, 0.4, 0.0),                # 4 lift
         (sabove, JAW_CLOSE, None, 0.6, 0.0),               # 5 transport over pad
         (sc,    JAW_CLOSE, None, 0.4, 0.1),                # 6 lower onto stack
