@@ -21,9 +21,10 @@
   `vendor/`(비트래킹)에 둔다. 커스텀 씬 [`scene_twin.xml`](scene_twin.xml)이 `<include>`로 모델을 불러오고
   색 블록 3개(집기 태스크 맥락) + 고해상도 offscreen 프레임버퍼(1280×960)를 더한다.
 - **모션**: **replay-first** (ADR 0004 Decision §2). 학습된 정책이 아니라 *스크립트 pick-and-place
-  궤적*을 재생한다 — [`make_pick_trajectory.py`](make_pick_trajectory.py)가 Jacobian IK로 Cartesian
-  웨이포인트(블록 위 hover→하강→집기→들기→이동→스택→복귀)를 풀고, 집는 순간 weld relpose를 주입해
-  블록을 carry, 놓은 블록은 정확한 타워 포즈로 freeze한다. 전체 qpos(팔 6 + 블록 3×7)를 프레임마다
+  궤적*을 재생한다 — [`make_pick_trajectory.py`](make_pick_trajectory.py)가 Jacobian IK로 팔의 Cartesian
+  웨이포인트(블록 위 hover→하강→집기→들기→이동→스택→복귀)를 풀고(mj_step 서보), **블록은 물리가 아니라
+  KINEMATIC으로 구동**한다 — rest/carried/placed 3상태로, carried는 그리퍼 grasp point에 *항상 수직으로*
+  핀, placed는 정확한 타워 높이로 freeze. 전체 qpos(팔 6 + 블록 3×7)를 프레임마다
   [`pick_trajectory.json`](pick_trajectory.json)에 기록. ACT를 SO-100 차원으로 sim-학습하는 무거운 경로는 후속.
 - **재생**: 데스크탑·웹 모두 기록 qpos를 **운동학적으로 재생**(qpos 세팅 + `mj_forward`)한다 → mp4 == 웹 동일,
   접촉·마찰 튜닝이 재생에 새지 않음.
@@ -49,9 +50,9 @@ python render_twin.py                  # media/so100_twin.mp4 생성 (궤적 재
 
 - ✅ **하드웨어·GPU-시간 없이** "집고 쌓는 SO-100 트윈" showable artifact가 나온다 — M6를 구매 게이트에서 떼어낸 게 유효.
 - ✅ Menagerie `trs_so_arm100`는 **메인에 정식 포함**(검증 2026-06-12) — 깨끗한 큐레이션 모델을 1차로 씀.
-- ✅ **정책 롤아웃 replay 완료** — sweep → 스크립트 pick-and-place 3단 스택. 블록은 free-joint, 집기는 weld carry로 실제 pick처럼 보임.
+- ✅ **정책 롤아웃 replay 완료** — sweep → 스크립트 pick-and-place 3단 스택. 블록은 free-joint, IK로 푼 팔이 집어 옮긴다.
 - ⚠ **여전히 학습 정책이 아니라 scripted replay** — "정책이 추론하며 집는" live policy는 아님(ADR 0004 trade-off, 정직 표기). IK 웨이포인트 + 운동학 재생.
-- ⚠ 재생은 **운동학적**(기록 qpos를 깔기)이라 재생 중 물리 상호작용은 없음 — 대신 데스크탑 mp4 == 웹이 정확히 일치. interactive 토글에서만 live 물리·드래그.
+- ⚠ 재생 중 블록은 **물리가 아니라 kinematic**(수직 carry·정확 안착)으로 구동 — weld carry는 손목 회전 시 기울고 놓을 때 스냅·관통이 보여서 교체함. 데스크탑 mp4 == 웹 정확히 일치. **interactive 토글(체크 해제)에서만 live 물리** — 블록 드래그 시 실제 충돌·낙하, Actuators 슬라이더로 관절 구동.
 - ✅ **웹 인터랙티브 3D + 공개 호스팅** → [`web/`](web/README.md): 같은 MJCF를 브라우저에서(mujoco_wasm) 자동재생 루프 + 반응형. **라이브: https://physical-ai-arm.askewly.com**.
 
 ## 출처
