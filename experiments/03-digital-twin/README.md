@@ -43,7 +43,7 @@ python render_twin.py                  # media/so100_twin.mp4 생성
 - ✅ Menagerie `trs_so_arm100`는 **메인에 정식 포함**(검증 2026-06-12) — 깨끗한 큐레이션 모델을 1차로 씀.
 - ⚠ **지금 모션은 정책이 아니라 sweep(replay-first)** — "정책이 추론하며 집는" 게 아님. 데모로는 충분하나 *live policy*는 아님(ADR 0004 trade-off).
 - ⚠ 블록은 **정적 geom**(집기 물리 X) — 태스크 맥락 연출용. 실제 pick-and-place는 free-joint + 그리퍼 접촉이 필요.
-- ✅ **웹 인터랙티브 3D 완성** → [`web/`](web/README.md): 같은 MJCF를 브라우저에서 실제 물리째(mujoco_wasm) + 홈 포즈 직립 + 반응형. 남은 건 Vercel 호스팅(공개 URL) + 정책 롤아웃 replay.
+- ✅ **웹 인터랙티브 3D + 공개 호스팅** → [`web/`](web/README.md): 같은 MJCF를 브라우저에서 실제 물리째(mujoco_wasm) + 홈 포즈 직립 + 반응형. **라이브: https://physical-ai-so100-twin.vercel.app**. 남은 건 정책 롤아웃 replay.
 
 ## 출처
 

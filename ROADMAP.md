@@ -62,8 +62,8 @@
 - 스택 선택: [ADR 0004](docs/adr/0004-digital-twin-stack.md) — SO-100 MJCF(공식 SO-ARM100) + MuJoCo WASM 웹 replay, 정책은 replay-first.
 - [x] **SO-100 모델 확보** — Menagerie `trs_so_arm100`(메인 정식 포함 확인) 로드 + 오프스크린 렌더(Windows GL) → [experiment 03](experiments/03-digital-twin/README.md). 스모크 PASS(nq=6, FK, 액추에이션), 트윈 sweep 영상 산출.
 - [ ] **sim 태스크 + 롤아웃** — 현재 sweep(replay-first)까지. 실제 정책 롤아웃 replay / ACT sim-학습은 후속(M7 실물 직결, [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)); 기존 VLA는 액션 차원이 SO-100과 불일치
-- [x] **웹 인터랙티브 3D 트윈** — mujoco_wasm(공식 DeepMind WASM)로 브라우저 인터랙티브 트윈 PoC 완성 → [experiments/03-digital-twin/web](experiments/03-digital-twin/web/README.md). 홈 포즈 직립·관절 라이브 구동·반응형(QHD/노트북/모바일), 콘솔 에러 0. 남은 건 Vercel 호스팅(공개 URL) + 정책 롤아웃 replay.
-- 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 ✅ (+ 호스팅·롤아웃 replay 후속)
+- [x] **웹 인터랙티브 3D 트윈** — mujoco_wasm(공식 DeepMind WASM)로 브라우저 인터랙티브 트윈 → [experiments/03-digital-twin/web](experiments/03-digital-twin/web/README.md). 홈 포즈 직립·관절 라이브 구동·반응형(QHD/노트북/모바일), 콘솔 에러 0. **라이브 배포: https://physical-ai-so100-twin.vercel.app** (Vercel, 순수 정적 CDN).
+- 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 ✅ + 공개 호스팅 ✅ (정책 롤아웃 replay만 후속)
 
 ### M7 — 실물 도달 (다음 분기, 하드웨어 게이트) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
