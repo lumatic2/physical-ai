@@ -25,7 +25,7 @@
 | M3 | 첫 실험 (이론 직접 실행) | 논문 모델을 내 GPU에서 실행·평가한다 | `experiments/01` (H1·H2·H3 PASS, LIBERO 73%) | ✅ |
 | M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
 | M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
-| M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 | 🔄 |
+| M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 replay(pick-and-place 3단 스택) | ✅ |
 | M7 | 실물 도달 (다음 분기) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
 
 ### M1 — 지형 파악 ✅
@@ -56,14 +56,14 @@
 - [x] vault 정리 — synthesis 노트 1개 + Research 00-INDEX physical-ai 섹션 등록
 - 완료 기준: README 랜딩 + 블로그 글 발행 ✅
 
-### M6 — 디지털 트윈 (sim, 하드웨어 불필요) ⬜
+### M6 — 디지털 트윈 (sim, 하드웨어 불필요) ✅
 > SO-100 팔을 sim에 세우고 정책 롤아웃을 웹에서 인터랙티브 3D로 보여준다. 하드웨어 없이 sim→real 직전까지.
 > M5에서 분리·전진 배치(2026-06-12) — M6를 하드웨어 게이트(구 M6, 현 M7)에서 떼어내 *지금 착수 가능*하게.
 - 스택 선택: [ADR 0004](docs/adr/0004-digital-twin-stack.md) — SO-100 MJCF(공식 SO-ARM100) + MuJoCo WASM 웹 replay, 정책은 replay-first.
-- [x] **SO-100 모델 확보** — Menagerie `trs_so_arm100`(메인 정식 포함 확인) 로드 + 오프스크린 렌더(Windows GL) → [experiment 03](experiments/03-digital-twin/README.md). 스모크 PASS(nq=6, FK, 액추에이션), 트윈 sweep 영상 산출.
-- [ ] **sim 태스크 + 롤아웃** — 현재 sweep(replay-first)까지. 실제 정책 롤아웃 replay / ACT sim-학습은 후속(M7 실물 직결, [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)); 기존 VLA는 액션 차원이 SO-100과 불일치
-- [x] **웹 인터랙티브 3D 트윈** — mujoco_wasm(공식 DeepMind WASM)로 브라우저 인터랙티브 트윈 → [experiments/03-digital-twin/web](experiments/03-digital-twin/web/README.md). 홈 포즈 직립·관절 라이브 구동·반응형(QHD/노트북/모바일), 콘솔 에러 0. **라이브: https://physical-ai-arm.askewly.com** (Vercel 순수 정적 CDN, askewly.com 서브도메인).
-- 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 ✅ + 공개 호스팅 ✅ (정책 롤아웃 replay만 후속)
+- [x] **SO-100 모델 확보** — Menagerie `trs_so_arm100`(메인 정식 포함 확인) 로드 + 오프스크린 렌더(Windows GL) → [experiment 03](experiments/03-digital-twin/README.md). 스모크 PASS, FK·액추에이션 확인.
+- [x] **sim 태스크 + 롤아웃 replay** — sweep → **scripted pick-and-place 3단 스택**(`make_pick_trajectory.py`: Jacobian IK 웨이포인트 + 집기 순간 weld carry, qpos 385프레임 기록). 데스크탑·웹 모두 운동학 재생(mp4==웹). 학습 정책(ACT sim-학습)은 M7 실물 직결로 후속([ADR 0002](docs/adr/0002-act-deferred-to-m6.md)).
+- [x] **웹 인터랙티브 3D 트윈** — mujoco_wasm(공식 DeepMind WASM)로 브라우저 트윈 → [experiments/03-digital-twin/web](experiments/03-digital-twin/web/README.md). 자동재생 replay 루프 + interactive 토글·반응형(QHD/노트북/모바일), 콘솔 에러 0. **라이브: https://physical-ai-arm.askewly.com** (Vercel 순수 정적 CDN, askewly.com 서브도메인).
+- 완료 기준: 브라우저에서 도는 인터랙티브 SO-100 트윈 ✅ + 공개 호스팅 ✅ + 정책 롤아웃 replay ✅
 
 ### M7 — 실물 도달 (다음 분기, 하드웨어 게이트) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
@@ -78,6 +78,7 @@
 - 2026-06-11 (후속) — **M4 잔여 caveat 2건 해소**. ① setup.sh 클린룸 검증(빈 venv) — requirements 누락 의존 2건(accelerate·LIBERO런타임) 잡아 보정(`a9823dd`). ② full apples-to-apples 재측정: OpenVLA 10task×50=500ep(77.4%) + 공식 JAX `pi05_libero` 변환(WSL 순수-python GCS로 9p 우회)으로 π0.5 공식 500ep(98.4%). **대칭·공식 head-to-head: +21pp, Fisher p=1.4e-27, CI 비겹침**. 초안 matched OpenVLA 73.3%(11/15)는 소표본 과소추정이었음(n=150→89.3%)을 정직 교정.
 - 2026-06-11 (후속) — **M5 완주**. ① public README 포트폴리오 랜딩 재설계(`f0d58ba`). ② askewly 블로그 글 "논문은 안다고 착각하게 만듭니다" anti-AI verify PASS → 라이브 발행(`dcebaf8`+KV). ③ vault: M2~M4 통합 synthesis 노트 작성 + Research 00-INDEX에 physical-ai 섹션 등록(고립 해소). 남은 건 M6(실물 로봇팔).
 - 2026-06-12 — **M6 대부분 완주**(정책 replay만 남음). M6를 하드웨어 게이트에서 분리(M6 디지털 트윈 / M7 실물), [ADR 0004](docs/adr/0004-digital-twin-stack.md) 스택 결정. SO-100(Menagerie `trs_so_arm100`, 메인 머지 확인) MuJoCo 로드 스모크 PASS → 오프스크린 렌더 mp4 → `experiments/03-digital-twin`. **웹 인터랙티브 3D**: zalo/mujoco_wasm(공식 DeepMind WASM) 기반 자체완결 정적 앱 `web/`, 홈 키프레임 직립·반응형. Vercel 배포 중 node_modules 미서빙 함정 → deps CDN화로 순수정적 해소. **커스텀 도메인 라이브: physical-ai-arm.askewly.com**(CF_DNS_TOKEN으로 CNAME). askewly.com Products에 트윈 카드+robot-arm 아이콘 추가(자동배포). 커밋 `4628bfc`·`84f3fa2`·`704e8ed`·`f66d0a0`.
+- 2026-06-12 (후속) — **M6 완주**(정책 롤아웃 replay). sweep → scripted **pick-and-place 3단 스택**. 블록을 free-joint로 바꾸고 타깃 패드 추가(reachable 밴드 y<−0.14로 재배치 — Rotation 한계 회피), `make_pick_trajectory.py`가 damped-LS Jacobian IK로 Cartesian 웨이포인트를 풀고 집는 순간 weld relpose 주입으로 carry·놓은 블록은 타워 포즈로 freeze → qpos 385프레임 기록. 데스크탑(`render_twin.py`)·웹(`main.js`) 모두 **운동학 재생**(qpos+mj_forward)이라 mp4==웹. 웹은 자동재생 루프 + "▶ Replay rollout" interactive 토글, 카메라를 워크스페이스 중심으로 재프레이밍. 검증: IK 0.1mm, smoke PASS(nq=27), 라이브 콘솔 0 에러. 커밋 `70b1fde`·`3285e2e`. (정직: 학습 정책 아닌 scripted replay — ADR 0004 trade-off)
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
