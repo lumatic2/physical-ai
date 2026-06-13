@@ -237,6 +237,29 @@ export class MuJoCoDemo {
     }
   }
 
+  // QA hook (window.demo.qaStep): deterministically drive the closed loop n control steps
+  // then render one frame. Bypasses runPolicyLoop's setTimeout pacing, which headless chromium
+  // throttles to ~1Hz — so automated screenshots capture real walking. Sets paused=true so the
+  // background loop stops stepping (no double-step race); qaStep does all the stepping itself.
+  // Returns diagnostics so the harness can assert walk progress / fall / NaN without eyeballing.
+  async qaStep(n = 50) {
+    if (!this.pol) return { error: 'no policy in this experiment' };
+    const p = this.pol, A = p.action_scale, nsub = p.n_substeps;
+    this.params.paused = true;
+    for (let step = 0; step < n; step++) {
+      const obs = this.buildPolicyObs();
+      const out = await this.session.run({ obs: new this.ort.Tensor('float32', obs, [1, p.obs_dim]) });
+      const act = out[Object.keys(out)[0]].data;
+      for (let i = 0; i < p.act_dim; i++) { p.lastAct[i] = act[i]; this.data.ctrl[i] = p.dp[i] + act[i] * A; }
+      for (let s = 0; s < nsub; s++) { this.mujoco.mj_step(this.model, this.data); }
+    }
+    this.render(0);
+    let nan = false;
+    for (let i = 0; i < this.model.nq; i++) { if (!Number.isFinite(this.data.qpos[i])) { nan = true; break; } }
+    const h = this.data.qpos[2];
+    return { steps: n, x: this.data.qpos[0], y: this.data.qpos[1], height: h, fell: h < 0.2, nan };
+  }
+
   // Seed the scene from a recorded trajectory frame (qpos + arm ctrl + zero velocity).
   seedFrame(frame) {
     const q = this.replayQpos[frame];
