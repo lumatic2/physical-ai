@@ -7,8 +7,29 @@
       "trajectory": "pick_trajectory.json",
       "ee_body": "Moving_Jaw",
       "render_out": "media/so100_twin.mp4",
-      "camera": { "lookat": [0.12, -0.18, 0.08], "distance": 0.85, "azimuth": 150, "elevation": -20 },
-      "web": { "target": [0.10, 0.06, 0.13], "offset": [0.52, 0.42, 0.52], "fovDist": 1.0 }
+      "camera": {
+        "lookat": [
+          0.12,
+          -0.18,
+          0.08
+        ],
+        "distance": 0.85,
+        "azimuth": 150,
+        "elevation": -20
+      },
+      "web": {
+        "target": [
+          0.1,
+          0.06,
+          0.13
+        ],
+        "offset": [
+          0.52,
+          0.42,
+          0.52
+        ],
+        "fovDist": 1.0
+      }
     },
     "humanoid-settle": {
       "title": "Humanoid — 물리 settle (하네스 일반성 증명, 별도 임베디먼트)",
@@ -16,8 +37,133 @@
       "trajectory": "humanoid_settle.json",
       "ee_body": "torso",
       "render_out": "media/humanoid_settle.mp4",
-      "camera": { "lookat": [0.0, 0.0, 0.5], "distance": 4.0, "azimuth": 120, "elevation": -15 },
-      "web": { "target": [0.0, 0.0, 0.7], "offset": [2.2, 1.6, 2.2], "fovDist": 1.0 }
+      "camera": {
+        "lookat": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "distance": 4.0,
+        "azimuth": 120,
+        "elevation": -15
+      },
+      "web": {
+        "target": [
+          0.0,
+          0.0,
+          0.7
+        ],
+        "offset": [
+          2.2,
+          1.6,
+          2.2
+        ],
+        "fovDist": 1.0
+      }
+    },
+    "go1-walk": {
+      "title": "Unitree Go1 — 직접 학습한 joystick 보행 정책 (live closed-loop)",
+      "scene": "go1/scene_go1_flat.xml",
+      "trajectory": "go1_walk_trajectory.json",
+      "ee_body": "trunk",
+      "render_out": "media/go1_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.5,
+          0.0,
+          0.3
+        ],
+        "distance": 4.5,
+        "azimuth": 120,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0.0,
+          0.0,
+          0.35
+        ],
+        "offset": [
+          2.4,
+          1.4,
+          2.4
+        ],
+        "fovDist": 1.0
+      },
+      "policy": {
+        "onnx": "go1_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 48,
+        "act_dim": 12,
+        "action_scale": 0.5,
+        "ctrl_dt": 0.02,
+        "n_substeps": 5,
+        "command": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "obs_layout": [
+          [
+            "local_linvel",
+            3
+          ],
+          [
+            "gyro",
+            3
+          ],
+          [
+            "gravity",
+            3
+          ],
+          [
+            "joint_angles_minus_default",
+            12
+          ],
+          [
+            "joint_vel",
+            12
+          ],
+          [
+            "last_act",
+            12
+          ],
+          [
+            "command",
+            3
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro",
+          "local_linvel": "local_linvel"
+        },
+        "imu_site": "imu",
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "_indices_note": "gyro_adr/local_linvel_adr/imu_site_id/default_pose/nq/nu는 rollout_policy.py가 번들 씬에서 유도해 박제 (JS 고정 인덱스용)",
+        "indices": {
+          "gyro_adr": 0,
+          "local_linvel_adr": 3,
+          "imu_site_id": 1,
+          "nq": 19,
+          "nu": 12,
+          "nv": 18,
+          "default_pose": [
+            0.1,
+            0.9,
+            -1.8,
+            -0.1,
+            0.9,
+            -1.8,
+            0.1,
+            0.9,
+            -1.8,
+            -0.1,
+            0.9,
+            -1.8
+          ]
+        }
+      }
     }
   }
 }
