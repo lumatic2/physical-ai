@@ -1,42 +1,62 @@
 """Deploy this web/ app to Vercel via REST API (direct upload, no GitHub needed).
 Token read from VERCEL_TOKEN env (never printed). Prints the deployment URL + state.
 Pure static (deps via CDN) — Vercel just serves files + applies vercel.json headers.
+
+Files are uploaded individually by SHA1 (POST /v2/files) first, then the deployment
+references them by {file, sha, size}. This lifts the ~10MB single-POST body limit of the
+old inline-base64 approach, so the asset gallery (multiple robot mesh sets) can grow.
 Run:  python deploy_vercel.py"""
-import base64, json, os, sys, time, urllib.request, urllib.error
+import hashlib, json, os, sys, time, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 NAME = "physical-ai-so100-twin"
 TOKEN = os.environ["VERCEL_TOKEN"]
+API = "https://api.vercel.com"
 
 # Only the files the hosted site needs (deps come from CDN, so no node_modules).
 INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".png", ".onnx"}
 EXCLUDE_DIRS = {"node_modules", "media", ".vercel", "qa"}
 EXCLUDE_NAMES = {"serve_coi.py", "deploy_vercel.py", "README.md", "mujoco_wasm.patch", ".gitignore"}
 
-files = []
+
+def req(url, data=None, headers=None, method="GET", timeout=120):
+    r = urllib.request.Request(url, data=data, method=method,
+                               headers={"Authorization": f"Bearer {TOKEN}", **(headers or {})})
+    return urllib.request.urlopen(r, timeout=timeout)
+
+
+# Collect files, compute SHA1, upload each (Vercel dedupes by digest — re-upload is harmless).
+files, total = [], 0
 for dirpath, dirnames, filenames in os.walk(ROOT):
     dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS]
     for fn in filenames:
-        if fn in EXCLUDE_NAMES:
-            continue
-        if os.path.splitext(fn)[1].lower() not in INCLUDE_EXT:
+        if fn in EXCLUDE_NAMES or os.path.splitext(fn)[1].lower() not in INCLUDE_EXT:
             continue
         full = os.path.join(dirpath, fn)
         rel = os.path.relpath(full, ROOT).replace("\\", "/")
         with open(full, "rb") as f:
-            files.append({"file": rel, "data": base64.b64encode(f.read()).decode(), "encoding": "base64"})
+            data = f.read()
+        sha = hashlib.sha1(data).hexdigest()
+        files.append({"file": rel, "sha": sha, "size": len(data)})
+        total += len(data)
+        for attempt in range(3):
+            try:
+                req(f"{API}/v2/files", data=data, method="POST",
+                    headers={"Content-Type": "application/octet-stream",
+                             "x-vercel-digest": sha, "Content-Length": str(len(data))})
+                break
+            except urllib.error.HTTPError as e:
+                if attempt == 2:
+                    print("upload HTTP", e.code, rel, e.read().decode()[:500]); sys.exit(1)
+                time.sleep(2)
 
-print(f"packaging {len(files)} files")
+print(f"uploaded {len(files)} files ({total/1e6:.2f} MB raw)")
+
 body = {"name": NAME, "files": files, "target": "production",
         "projectSettings": {"framework": None, "buildCommand": None, "outputDirectory": "."}}
-
-req = urllib.request.Request(
-    "https://api.vercel.com/v13/deployments?forceNew=1",
-    data=json.dumps(body).encode(),
-    headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
-    method="POST")
 try:
-    out = json.load(urllib.request.urlopen(req, timeout=120))
+    out = json.load(req(f"{API}/v13/deployments?forceNew=1", data=json.dumps(body).encode(),
+                        headers={"Content-Type": "application/json"}, method="POST"))
 except urllib.error.HTTPError as e:
     print("HTTP", e.code, e.read().decode()[:2000]); sys.exit(1)
 
@@ -44,9 +64,7 @@ dep_id, url = out.get("id"), out.get("url")
 print(f"created: id={dep_id}  url=https://{url}  state={out.get('readyState')}")
 for _ in range(60):
     time.sleep(5)
-    r = urllib.request.Request(f"https://api.vercel.com/v13/deployments/{dep_id}",
-                               headers={"Authorization": f"Bearer {TOKEN}"})
-    st = json.load(urllib.request.urlopen(r, timeout=60))
+    st = json.load(req(f"{API}/v13/deployments/{dep_id}", timeout=60))
     rs = st.get("readyState") or st.get("status")
     print(f"  state={rs}")
     if rs in ("READY", "ERROR", "CANCELED"):
