@@ -16,7 +16,9 @@
 
 ### 셋업 (S0~S1 완료, 2026-06-13)
 - 환경: WSL `Ubuntu-24.04`, RTX5090 32GB (드라이버 596.49), **CUDA passthrough 작동 확인**(WSL 내부 nvidia-smi가 GPU 인식), `uv` 0.11.8, python 3.12.3. nvcc 없음(pip wheel이 CUDA 런타임 번들 → 무관).
-- venv: `~/playground-go1/.venv` (WSL 네이티브, py3.12). `uv pip install "playground" "jax[cuda12]"` → mujoco_playground 전체 의존성 + jax/jaxlib **0.10.1** cuda12.
+- venv: `~/playground-go1/.venv` (WSL 네이티브, py3.12). `uv pip install "playground" "jax[cuda12]"` + `onnx onnxruntime`.
+  - ⚠ **버전 함정(S2 중 발견)**: `jax[cuda12]`가 0.10.1을 끌어왔으나 **brax 0.14.2가 `jax.device_put_replicated`(jax 0.10에서 제거)를 사용** → 학습 즉시 크래시. brax 최신이 0.14.2라 업핀 불가 → **jax/jaxlib를 0.9.2로 다운핀**(device_put_replicated 존재 + sm_120 재검증 PASS). 재현 시 `jax[cuda12]==0.9.2` 고정 필수.
+  - ⚠ **impl 함정**: env 기본 `impl="warp"`는 `mujoco_warp`(미설치) 요구 → `config_overrides={"impl":"jax"}`(클래식 MJX)로 우회.
 - 학습 lib: `mujoco_playground` (DeepMind MJX). 레포 `github.com/google-deepmind/mujoco_playground`.
   - **주 경로 확정**: `train-jax-ppo`(JAX/MJX). ✅ **sm_120 probe PASS** — jax 0.10.1이 Blackwell에서 실제 커널 실행(matmul block_until_ready, `verify/s0-s1-env-probe.txt`). 폴백 불필요.
   - (폴백 보류: `train-rsl-ppo`(rsl_rl/PyTorch, torch cu128 Blackwell 검증 — [exp 02](../02-action-repr-bench/README.md)). JAX가 돌아 미사용.)
@@ -39,29 +41,34 @@
 
 ## 3. 결과 (Results)
 
-> 실행 후 채움 — 현재 스켈레톤. (Judge: 통찰 선보고 금지, S0~S4 돌린 raw를 `verify/`에 박제 후 기록)
+전 단계 PASS (2026-06-13). 경로: **JAX(train-jax-ppo / MJX impl=jax)** — sm_120 probe PASS로 폴백 불필요.
 
 ### 데이터
-| Run | 경로(JAX/rsl) | 학습시간 | 보행 지속(s) | 전진(m/s) | 비고 |
-|-----|--------------|---------|-------------|----------|------|
-| — | | | | | |
+| 단계 | 결과 |
+|---|---|
+| S0~S1 환경/probe | jax 0.9.2 sm_120 커널 실행 PASS (`verify/s0-s1-env-probe.txt`) |
+| S2 학습 | `Go1JoystickFlatTerrain` 200M steps, **8.8분**(RTX5090, impl=jax). reward **0.001 → 29.68** 수렴 (`verify/rewards.txt`) |
+| S3 ONNX export | 손작성 onnx 그래프 vs jax `make_inference_fn` **max abs err 4.78e-6** (난수 obs 50개) → PARITY PASS. `verify/go1_policy.onnx`(770KB), `verify/obs_spec.json` |
+| **S4 native 검증** ★ | native mujoco-python closed-loop(`env.mj_model`, C 엔진), cmd_vx=1.0: **넘어짐 never · 12.0s 직립 · 전진 11.84m · avg_vx 0.99 m/s** · 최종높이 0.303. `verify/native_rollout.mp4`(300f) |
 
 ### 박제 위치
-- `verify/` — 학습 로그·reward curve·onnx·native 롤아웃 mp4/로그.
+- `verify/` — `s0-s1-env-probe.txt`, `rewards.txt`(학습곡선), `go1_policy.onnx`, `obs_spec.json`, `native_rollout.mp4`.
+- WSL `~/playground-go1/runs/go1flat/` — `params.pkl`(1.7MB, brax params), `native_rollout.npy`(qpos 궤적).
 
 ## 4. 통찰 (Insights)
 
-> 실행 후 채움.
-
 ### 무엇을 알아냈나
-- (S4 PASS 후)
+- **로컬 RTX5090서 사족보행 정책을 직접 학습→ONNX→native sim 전이까지 한 바퀴가 닫힌다.** 8.8분 학습으로 command를 0.99/1.0 정확도로 추종하는 보행 정책 확보.
+- **sim2sim가 즉시 성립** — MJX(학습)에서 학습한 정책이 native mujoco(C 엔진)에서 *재튜닝 없이* 12s 안 넘어지고 걷는다. 같은 Menagerie Go1 자산 + obs 바이트 parity 덕분(ADR 0005 가설대로).
+- **obs parity는 "동일 named 센서 재사용"으로 거의 공짜** — linvel/gravity를 손계산하지 않고 학습과 같은 MJCF 센서를 `data.sensordata`에서 읽으니 어긋날 여지가 없다. gravity만 `site_xmat.T @ [0,0,-1]`로 계산.
+- **최대 리스크였던 JAX-on-Blackwell이 무료** — jax 0.9.2 sm_120 PASS. 단 **brax 0.14.2 ↔ jax 0.10 비호환**(`device_put_replicated`)이 숨은 함정이었고 jax 0.9.2 다운핀으로 해결.
+- ONNX parity(4.78e-6)는 **손작성 그래프 + jax 대조 assert**로 증명 — Phase 2/3(데스크탑·웹)이 의존할 토대.
 
 ### 가설은 통과했나?
-- [ ] PASS — 근거:
-- [ ] FAIL — 어긋난 지점, 가설 수정:
+- [x] **PASS** — onnx 정책 1개가 native mujoco-python closed-loop에서 Go1을 command 방향으로 11.84m, 12.0s 안 넘어지고 보행(avg_vx 0.99 m/s). 성공 기준 충족.
 
 ### 정의에 반영
-- ADR 0005 단계 1 verify 게이트 통과 기록. obs_spec → Phase 2 데스크탑 통합의 진실원천.
+- ADR 0005 단계 1 verify 게이트 **통과**. `obs_spec.md`/`obs_spec.json`이 Phase 2(데스크탑 closed-loop)·Phase 3(웹 onnxruntime-web) parity의 진실원천.
 
 ### 다음 실험 후보
 - Phase 2: `experiments.json`에 `policy` 블록 + `rollout_policy.py`(같은 onnx를 mujoco-python closed-loop) → mp4 + obs parity.
