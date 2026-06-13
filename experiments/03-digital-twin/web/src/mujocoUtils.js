@@ -657,6 +657,16 @@ export async function downloadExampleScenesFolder(mujoco) {
     "trs_so_arm100/assets/Upper_Arm_Motor.stl",
     "trs_so_arm100/assets/Wrist_Pitch_Roll.stl",
     "trs_so_arm100/assets/Wrist_Pitch_Roll_Motor.stl",
+    // Go1 (learned-policy live closed-loop) — self-contained bundle of the playground
+    // flat-terrain scene + menagerie meshes. obs_spec parity source for the onnx loop.
+    "go1/scene_go1_flat.xml",
+    "go1/go1_mjx_feetonly.xml",
+    "go1/sensor_feet.xml",
+    "go1/assets/trunk.stl",
+    "go1/assets/hip.stl",
+    "go1/assets/thigh.stl",
+    "go1/assets/thigh_mirror.stl",
+    "go1/assets/calf.stl",
   ];
 
   let requests = allFiles.map((url) => fetch("./assets/scenes/" + url));

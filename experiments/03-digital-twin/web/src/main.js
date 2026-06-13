@@ -138,25 +138,103 @@ export class MuJoCoDemo {
     this.controls.target.copy(this.viewTarget);
     this.controls.update();
 
-    // Rollout: load the recorded trajectory (qpos per frame). We replay it kinematically
-    // (set qpos + mj_forward) so the web matches the desktop mp4 exactly. NOTE: the model's
-    // 'home' keyframe may pad free-joints to the origin, so we seed from trajectory frame 0.
-    const traj = await (await fetch("./" + exp.trajectory)).json();
-    this.replayFps = traj.fps;
-    this.replayQpos = traj.qpos;            // [frame][nq]
-    this.replayN = traj.qpos.length;
-    this.replayStartMS = null;
-    this.seedFrame(0);
-
-    this.gui = new GUI();
-    setupGUI(this);
-    // Rollout replay toggle — default on, so visitors see the pick-and-place immediately.
-    // Turning it off hands control back to physics + drag (interactive mode).
-    // Manual toggle resets to the start layout; drag-to-grab auto-pauses in place (below).
-    this.replayToggle = this.gui.add(this.params, 'replay').name('▶ Replay (grab to take over)').onChange((v) => {
+    // Two rollout modes:
+    //  (A) policy block -> LIVE closed-loop inference (obs -> onnx -> ctrl -> mj_step). A
+    //      learned neural net drives the sim in real time in the browser.
+    //  (B) trajectory   -> kinematic replay (set qpos + mj_forward), matches desktop mp4.
+    this.policy = exp.policy || null;
+    if (this.policy) {
+      await this.initPolicy();
+      this.gui = new GUI();
+      setupGUI(this);
+    } else {
+      // (B) replay: NOTE the 'home' keyframe may pad free-joints to the origin, so we
+      // seed from trajectory frame 0.
+      const traj = await (await fetch("./" + exp.trajectory)).json();
+      this.replayFps = traj.fps;
+      this.replayQpos = traj.qpos;            // [frame][nq]
+      this.replayN = traj.qpos.length;
       this.replayStartMS = null;
-      if (!v) { this.seedFrame(0); }
-    });
+      this.seedFrame(0);
+
+      this.gui = new GUI();
+      setupGUI(this);
+      // Replay toggle — default on. Off hands control back to physics + drag.
+      this.replayToggle = this.gui.add(this.params, 'replay').name('▶ Replay (grab to take over)').onChange((v) => {
+        this.replayStartMS = null;
+        if (!v) { this.seedFrame(0); }
+      });
+    }
+  }
+
+  // (A) Live learned-policy closed loop. ONNX policy + obs construction are byte-parity with
+  // training (experiment 04 obs_spec) — validated headlessly (tmp_test_go1_loop.mjs: t=0 obs
+  // exact, walks in wasm). onnxruntime-web inference is async, so it runs in a self-paced
+  // ~50Hz control loop decoupled from the render loop (which just displays sim state).
+  async initPolicy() {
+    const ort = await import('https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.mjs');
+    ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/';
+    this.ort = ort;
+    const p = this.policy, ix = p.indices;
+    this.pol = {
+      onnx: './assets/scenes/go1/' + p.onnx,
+      obs_dim: p.obs_dim, act_dim: p.act_dim, action_scale: p.action_scale,
+      n_substeps: p.n_substeps, command: p.command,
+      gy: ix.gyro_adr, lv: ix.local_linvel_adr, imu: ix.imu_site_id,
+      qj: p.qpos_joint_start, vj: p.qvel_joint_start, dp: ix.default_pose,
+      lastAct: new Float32Array(p.act_dim),
+    };
+    // seed home keyframe (key 0)
+    for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = this.model.key_qpos[i]; }
+    for (let i = 0; i < this.data.qvel.length; i++) { this.data.qvel[i] = 0; }
+    for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = this.pol.dp[i]; }
+    this.mujoco.mj_forward(this.model, this.data);
+
+    this.session = await this.ort.InferenceSession.create(this.pol.onnx);
+    this.params.policyRunning = true;
+    this.runPolicyLoop();
+  }
+
+  // obs = [local_linvel(3), gyro(3), gravity(3), qpos[7:]-default(12), qvel[6:](12),
+  //        last_act(12), command(3)] = 48. Read sensordata AS-IS (1-substep stale, same as
+  //        training) — do NOT mj_forward before reading. gravity = -(site_xmat third row).
+  buildPolicyObs() {
+    const d = this.data, p = this.pol, o = new Float32Array(p.obs_dim);
+    let k = 0;
+    for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.lv + i]; }
+    for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.gy + i]; }
+    const x = p.imu * 9;
+    o[k++] = -d.site_xmat[x + 6]; o[k++] = -d.site_xmat[x + 7]; o[k++] = -d.site_xmat[x + 8];
+    for (let i = 0; i < 12; i++) { o[k++] = d.qpos[p.qj + i] - p.dp[i]; }
+    for (let i = 0; i < 12; i++) { o[k++] = d.qvel[p.vj + i]; }
+    for (let i = 0; i < 12; i++) { o[k++] = p.lastAct[i]; }
+    for (let i = 0; i < 3; i++) { o[k++] = p.command[i]; }
+    return o;
+  }
+
+  async runPolicyLoop() {
+    const p = this.pol, A = p.action_scale, nsub = p.n_substeps;
+    while (this.params.policyRunning) {
+      const t0 = performance.now();
+      if (!this.params.paused) {
+        const obs = this.buildPolicyObs();
+        const out = await this.session.run({ obs: new this.ort.Tensor('float32', obs, [1, p.obs_dim]) });
+        const act = out[Object.keys(out)[0]].data;
+        for (let i = 0; i < p.act_dim; i++) { p.lastAct[i] = act[i]; this.data.ctrl[i] = p.dp[i] + act[i] * A; }
+        // optional drag force — poke the walking robot
+        for (let i = 0; i < this.data.qfrc_applied.length; i++) { this.data.qfrc_applied[i] = 0.0; }
+        const dragged = this.dragStateManager.physicsObject;
+        if (dragged && dragged.bodyID) {
+          this.dragStateManager.update();
+          const f = toMujocoPos(this.dragStateManager.currentWorld.clone().sub(this.dragStateManager.worldHit).multiplyScalar(this.model.body_mass[dragged.bodyID] * 250));
+          const pt = toMujocoPos(this.dragStateManager.worldHit.clone());
+          this.mujoco.mj_applyFT(this.model, this.data, [f.x, f.y, f.z], [0, 0, 0], [pt.x, pt.y, pt.z], dragged.bodyID, this.data.qfrc_applied);
+        }
+        for (let s = 0; s < nsub; s++) { this.mujoco.mj_step(this.model, this.data); }
+      }
+      const dt = performance.now() - t0;
+      await new Promise((r) => setTimeout(r, Math.max(0, 20 - dt)));   // ~50Hz real-time
+    }
   }
 
   // Seed the scene from a recorded trajectory frame (qpos + arm ctrl + zero velocity).
@@ -175,6 +253,15 @@ export class MuJoCoDemo {
   }
 
   render(timeMS) {
+    // Follow the walking robot: the free-joint root pose is qpos[0..2] (MuJoCo Z-up ->
+    // three.js Y-up swizzle: x, z, -y). Shift target + camera by the same delta so the
+    // camera rigidly tracks the robot while the user can still orbit around it.
+    if (this.policy && this.data) {
+      this.tmpVec.set(this.data.qpos[0], this.data.qpos[2], -this.data.qpos[1]);
+      const delta = this.tmpVec.sub(this.controls.target);
+      this.controls.target.add(delta);
+      this.camera.position.add(delta);
+    }
     this.controls.update();
 
     if (this.params["replay"] && this.replayQpos) {
@@ -298,3 +385,4 @@ export class MuJoCoDemo {
 
 let demo = new MuJoCoDemo();
 await demo.init();
+window.demo = demo;   // expose for QA/debugging (read demo.data.qpos[0] for walk progress)
