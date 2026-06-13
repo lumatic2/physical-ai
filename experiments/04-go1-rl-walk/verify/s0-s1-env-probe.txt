@@ -1,0 +1,20 @@
+# S0~S1 환경 bring-up + sm_120 probe (2026-06-13)
+# WSL Ubuntu-24.04, RTX5090 32GB (driver 596.49), uv 0.11.8, python 3.12.3
+
+## S0 — venv + 설치
+$ cd ~/playground-go1 && uv venv --python 3.12 .venv
+Using CPython 3.12.3 interpreter
+$ uv pip install "playground" "jax[cuda12]"
+# → mujoco_playground 전체 의존성(mujoco-mjx, brax, warp-lang 1.14, tensorstore,
+#   trimesh, treescope 등) + jax/jaxlib cuda12 설치 완료 (exit 0)
+
+## S1 — sm_120 커널 실제 실행 probe
+jax 0.10.1 | jaxlib 0.10.1
+devices: [CudaDevice(id=0)]
+MATMUL OK -> 8589934592.0 | backend: gpu     # 2048^3, ones@ones sum, 정확
+SM120_PROBE: PASS
+
+## 결론
+JAX/jaxlib 0.10.1 이 Blackwell sm_120 에서 커널 실행 성공(devices()만이 아니라
+실제 matmul block_until_ready 까지). → 주 경로 train-jax-ppo(MJX) 확정,
+rsl_rl(PyTorch) 폴백 불필요. ADR 0005 단계 1 분기점 해소.
