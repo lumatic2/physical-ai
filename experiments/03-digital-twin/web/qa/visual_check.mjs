@@ -29,6 +29,8 @@ const live   = args.includes('--live');
 const exp    = (args.find(a => a.startsWith('--exp='))   || '--exp=go1-walk').split('=')[1];
 const steps  = parseInt((args.find(a => a.startsWith('--steps=')) || '--steps=400').split('=')[1], 10);
 const chunk  = parseInt((args.find(a => a.startsWith('--chunk=')) || '--chunk=50').split('=')[1], 10);
+const cmdArg = args.find(a => a.startsWith('--cmd='));   // e.g. --cmd=1,0,1  (vx,vy,vyaw) to steer
+const cmd    = cmdArg ? cmdArg.split('=')[1].split(',').map(Number) : null;
 const PORT   = 8132;
 const BASE   = live ? 'https://physical-ai-arm.askewly.com' : `http://127.0.0.1:${PORT}`;
 const URL    = `${BASE}/?exp=${exp}`;
@@ -73,6 +75,11 @@ async function main() {
     { timeout: 120000, polling: 500 });
   console.log('[qa] policy session ready');
 
+  if (cmd) {
+    await page.evaluate(c => { for (let i = 0; i < c.length; i++) window.demo.pol.command[i] = c[i]; }, cmd);
+    console.log('[qa] command set to', cmd);
+  }
+
   // Baseline (home pose, before stepping).
   await page.screenshot({ path: join(OUT_DIR, `${exp}_000.png`) });
 
@@ -86,7 +93,11 @@ async function main() {
 
   await browser.close();
 
-  const pass = diag && !diag.nan && !diag.fell && diag.x > 0.3 && consoleErrors.length === 0;
+  // Forward walk: assert x-progress. Steering test (--cmd): assert it moved off the origin
+  // (curved trajectories may have small/negative x), still upright, no NaN/console errors.
+  const moved = diag ? Math.hypot(diag.x, diag.y) : 0;
+  const progressed = cmd ? moved > 0.5 : (diag && diag.x > 0.3);
+  const pass = diag && !diag.nan && !diag.fell && progressed && consoleErrors.length === 0;
   console.log('\n[qa] RESULT', JSON.stringify({ exp, live, steps, diag, consoleErrors: consoleErrors.length }, null, 2));
   if (consoleErrors.length) console.log('[qa] console errors:', consoleErrors.slice(0, 5));
   console.log(`[qa] screenshots in ${OUT_DIR}`);

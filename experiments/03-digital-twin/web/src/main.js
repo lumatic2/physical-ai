@@ -147,6 +147,7 @@ export class MuJoCoDemo {
       await this.initPolicy();
       this.gui = new GUI();
       setupGUI(this);
+      this.addCommandGUI();
     } else {
       // (B) replay: NOTE the 'home' keyframe may pad free-joints to the origin, so we
       // seed from trajectory frame 0.
@@ -193,6 +194,18 @@ export class MuJoCoDemo {
     this.session = await this.ort.InferenceSession.create(this.pol.onnx);
     this.params.policyRunning = true;
     this.runPolicyLoop();
+  }
+
+  // Interactive joystick: bind the velocity command [vx, vy, vyaw] to GUI sliders. This is a
+  // joystick-conditioned policy (command is part of the obs), so dragging a slider steers the
+  // live robot — buildPolicyObs reads this.pol.command in place every control step.
+  addCommandGUI() {
+    const c = this.pol.command;
+    const f = this.gui.addFolder('Command (drag to steer)');
+    f.add(c, '0', -1.0, 1.5, 0.05).name('vx  forward');
+    f.add(c, '1', -0.8, 0.8, 0.05).name('vy  strafe');
+    f.add(c, '2', -1.5, 1.5, 0.05).name('vyaw  turn');
+    f.open();
   }
 
   // obs = [local_linvel(3), gyro(3), gravity(3), qpos[7:]-default(12), qvel[6:](12),
