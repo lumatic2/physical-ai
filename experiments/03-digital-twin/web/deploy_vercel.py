@@ -9,7 +9,7 @@ NAME = "physical-ai-so100-twin"
 TOKEN = os.environ["VERCEL_TOKEN"]
 
 # Only the files the hosted site needs (deps come from CDN, so no node_modules).
-INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".png"}
+INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".png", ".onnx"}
 EXCLUDE_DIRS = {"node_modules", "media", ".vercel"}
 EXCLUDE_NAMES = {"serve_coi.py", "deploy_vercel.py", "README.md", "mujoco_wasm.patch", ".gitignore"}
 
