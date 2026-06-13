@@ -46,6 +46,7 @@ T = int(SECONDS / CTRL_DT)
 
 last_act = np.zeros(12, np.float32)
 qpos_traj = []
+golden = []          # Phase 3 웹 obs-builder 검증용 (입력→obs 48 슬롯 박제)
 fell_at = -1
 g_down = np.array([0, 0, -1.0])
 for t in range(T):
@@ -57,6 +58,16 @@ for t in range(T):
     jvel = d.qvel[6:]
     obs = np.concatenate([linvel, gyro, gravity, jang, jvel, last_act, cmd]).astype(np.float32)
     act = sess.run(None, {"obs": obs[None]})[0][0]
+    if t < 5:        # golden fixture: 처음 5스텝의 (입력, 슬롯, obs, action)
+        golden.append({
+            "step": t,
+            "qpos": d.qpos.tolist(), "qvel": d.qvel.tolist(),
+            "last_act": last_act.tolist(), "command": cmd.tolist(),
+            "slots": {"local_linvel": linvel.tolist(), "gyro": gyro.tolist(),
+                      "gravity": gravity.tolist(), "joint_angles_minus_default": jang.tolist(),
+                      "joint_vel": jvel.tolist()},
+            "obs48": obs.tolist(), "action": act.tolist(),
+        })
     last_act = act
     d.ctrl[:] = default_pose + act * 0.5
     for _ in range(n_sub):
@@ -68,6 +79,11 @@ for t in range(T):
 
 qpos_traj = np.array(qpos_traj)
 np.save(os.path.join(RUN, "native_rollout.npy"), qpos_traj)
+
+import json
+with open(os.path.join(RUN, "golden_obs.json"), "w") as f:
+    json.dump({"env": ENV, "note": "Phase 3 웹 obs-builder는 같은 (qpos,qvel,last_act,command)에서 동일 obs48을 재현해야 함",
+               "samples": golden}, f, indent=2)
 
 walked_steps = fell_at if fell_at >= 0 else T
 walked_s = walked_steps * CTRL_DT

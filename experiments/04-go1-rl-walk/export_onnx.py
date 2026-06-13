@@ -12,6 +12,7 @@ import numpy as np
 import jax, jax.numpy as jp
 from brax.training.agents.ppo import networks as ppo_networks
 from brax.training.acme import running_statistics
+from mujoco_playground import registry
 from mujoco_playground.config import locomotion_params
 
 RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/yusun/playground-go1/runs/go1flat"
@@ -44,6 +45,11 @@ W = [np.asarray(P[f"hidden_{i}"]["kernel"], np.float32) for i in range(4)]
 B = [np.asarray(P[f"hidden_{i}"]["bias"], np.float32) for i in range(4)]
 mean = np.asarray(normalizer_params.mean["state"], np.float32)
 std = np.asarray(normalizer_params.std["state"], np.float32)
+
+# default_pose (home keyframe) — obs/ctrl 재구성에 필수 (Phase 2/3 진실원천)
+_env = registry.load(ENV, config_overrides={"impl": "jax"})
+default_pose = np.asarray(_env.mj_model.keyframe("home").qpos[7:], np.float32)
+assert default_pose.shape == (ACT,), default_pose.shape
 
 def silu(x):
     return x * (1.0 / (1.0 + np.exp(-x)))
@@ -140,7 +146,7 @@ spec = {
     ],
     "normalization": "(obs - mean) / std, baked into onnx",
     "mean": mean.tolist(), "std": std.tolist(),
-    "default_pose": None,  # filled by verify_native from keyframe
+    "default_pose": default_pose.tolist(),  # home keyframe qpos[7:] (12)
     "action": "motor_targets = default_pose + action * 0.5; ctrl_dt=0.02 (50Hz); n_substeps=5",
     "activation": "silu", "policy_mlp": [512, 256, 128, 24],
     "onnx": "go1_policy.onnx (input obs[1,48] -> action[1,12] in [-1,1])",

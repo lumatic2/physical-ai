@@ -72,3 +72,8 @@
 
 ### 다음 실험 후보
 - Phase 2: `experiments.json`에 `policy` 블록 + `rollout_policy.py`(같은 onnx를 mujoco-python closed-loop) → mp4 + obs parity.
+- Phase 3: 웹 onnxruntime-web. **obs-builder를 `verify/golden_obs.json`에 슬롯 단위로 단언**(Codex 교차검증 권고 — 난수 parity만으론 builder 버그 못 잡음). `obs_spec.json`의 `default_pose`로 obs/ctrl 재구성.
+
+### Codex 교차검증 (2026-06-13, adversarial-review)
+- [high→해결] `obs_spec.json` `default_pose`가 None이라 웹이 obs/ctrl 재구성 불가 → export가 home keyframe에서 채우도록 수정(len 12 단언).
+- [medium→가드화] 난수 obs parity는 obs *조립*을 검증 못 함 → `golden_obs.json` 박제로 Phase 3 슬롯 단언 표적 제공. S4 보행 추종이 builder를 경험적으로 검증 중.

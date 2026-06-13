@@ -41,3 +41,8 @@
 
 ## 종료(넘어짐) 판정
 - `get_upvector(data)[-1] < 0.0` → fall (몸통 z축이 아래로 뒤집힘). native 검증의 "안 넘어짐" 기준과 동일하게 사용.
+
+## ⚠ Phase 2/3 parity 가드 (Codex 교차검증 반영, 2026-06-13)
+- ONNX parity(onnx vs jax 5e-6)는 *네트워크* 동치만 증명 — **obs 조립(슬롯 순서·gravity 부호·last_act 타이밍·command)은 별도로 검증해야 함**. Phase 1에선 S4 보행(command 0.99/1.0 추종)이 obs builder를 경험적으로 검증.
+- **`verify/golden_obs.json`** = 실제 native 롤아웃 첫 5스텝의 `(qpos,qvel,last_act,command) → obs48`(+슬롯 분해)·action 박제. **Phase 3 웹 obs-builder는 같은 입력에서 동일 obs48을 재현해야 한다** — 이 fixture에 슬롯 단위로 단언할 것(난수 obs parity만으론 builder 버그를 못 잡는다).
+- `default_pose`(home keyframe qpos[7:], 12)는 `obs_spec.json`에 박제됨 — 웹에서 `qpos[7:]-default_pose`·`default_pose+a*0.5` 재구성에 필수.
