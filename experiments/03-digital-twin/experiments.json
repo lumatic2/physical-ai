@@ -152,6 +152,7 @@
       "scene": "panda/scene.xml",
       "trajectory": "panda_sweep.json",
       "ee_body": "hand",
+      "teleop": true,
       "render_out": "media/panda_sweep.mp4",
       "camera": {
         "lookat": [
@@ -272,6 +273,7 @@
       "scene": "trs_so_arm100/scene_twin.xml",
       "trajectory": "pick_trajectory.json",
       "ee_body": "Moving_Jaw",
+      "teleop": true,
       "render_out": "media/so100_twin.mp4",
       "camera": {
         "lookat": [

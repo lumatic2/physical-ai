@@ -165,6 +165,9 @@ export class MuJoCoDemo {
         this.replayStartMS = null;
         if (!v) { this.seedFrame(0); }
       });
+      // (C) EE teleop for fixed-base arms (experiments.json `teleop: true`).
+      this.teleopCfg = exp.teleop ? { ee_body: exp.ee_body } : null;
+      if (this.teleopCfg) { this.initTeleop(); }
     }
 
     this.addControlHints();
@@ -182,8 +185,104 @@ export class MuJoCoDemo {
       'max-width:46vw;pointer-events:none;';
     const lines = ['🖱 로봇 드래그 = 밀기 · 빈곳 드래그 = 회전 · 휠 = 줌'];
     if (this.policy) { lines.unshift('⌨ WASD 이동 · Q/E 회전 · Space 일시정지'); }
+    if (this.teleopCfg) { lines.push('🤏 Teleop 켠 뒤 드래그 = 팔 끝 IK 조종'); }
     hint.innerHTML = lines.join('<br>');
     this.container.appendChild(hint);
+  }
+
+  // (C) Mouse EE teleop for fixed-base arms. Drag a body and damped-LS IK chases the mouse
+  // point with the gripper. The Jacobian is built by finite differences (perturb each actuated
+  // joint, mj_forward, read the EE body's xpos delta) — binding-agnostic, reuses only the
+  // qpos/xpos + mj_forward calls already in use (mj_jacBody's output args are awkward in this
+  // wasm build). Honest about reach: SO-100's 5-DOF can't hold arbitrary poses (M6/ADR 0004),
+  // so the EE simply tracks as close as the damped solution allows — it won't snap to the mouse.
+  initTeleop() {
+    const m = this.model, mj = this.mujoco;
+    const eeId = mj.mj_name2id(m, mj.mjtObj.mjOBJ_BODY.value, this.teleopCfg.ee_body);
+    const joints = [];
+    const JOINT = mj.mjtTrn.mjTRN_JOINT.value;
+    for (let i = 0; i < m.nu; i++) {
+      // Only joint-driven actuators (skip e.g. Panda's tendon gripper — its trnid is a tendon id).
+      if (m.actuator_trntype[i] !== JOINT) { continue; }
+      const jid = m.actuator_trnid[2 * i];
+      if (jid < 0) { continue; }
+      joints.push({
+        q: m.jnt_qposadr[jid], d: m.jnt_dofadr[jid], u: i,
+        lo: m.jnt_range[2 * jid], hi: m.jnt_range[2 * jid + 1],
+        clo: m.actuator_ctrlrange[2 * i], chi: m.actuator_ctrlrange[2 * i + 1],
+      });
+    }
+    this.tele = { eeId, joints, target: new THREE.Vector3(), active: false, enabled: false };
+    this.gui.add(this.tele, 'enabled').name('🤏 Teleop arm (drag gripper)').onChange((v) => {
+      if (v) {   // hand control to IK: freeze replay/physics, IK drives qpos in render()
+        this.params.replay = false; this.params.paused = false;
+        if (this.replayToggle) { this.replayToggle.updateDisplay(); }
+      }
+    });
+  }
+
+  // Teleop step (called from render when tele.enabled): pull the IK target from the live drag
+  // point while a body is grabbed and run one IK step toward it; otherwise just hold the pose.
+  // The final mj_forward (here or inside solveIK) refreshes xpos for the body-transform update.
+  stepTeleop() {
+    const drag = this.dragStateManager;
+    if (drag.physicsObject && drag.physicsObject.bodyID) {
+      drag.update();
+      const w = toMujocoPos(drag.currentWorld.clone());
+      this.tele.target.set(w.x, w.y, w.z);
+      this.solveIK();
+    } else {
+      this.mujoco.mj_forward(this.model, this.data);
+    }
+  }
+
+  // One damped-least-squares IK step toward this.tele.target (MuJoCo coords). Mutates qpos of the
+  // actuated arm joints + mirrors into ctrl (position actuators). Velocities zeroed for stability.
+  solveIK() {
+    const m = this.model, d = this.data, mj = this.mujoco, T = this.tele, J = T.joints, n = J.length;
+    const eb = 3 * T.eeId, eps = 1e-4, STEP = 0.05, l2 = 0.04 * 0.04;
+    mj.mj_forward(m, d);
+    const p0 = [d.xpos[eb], d.xpos[eb + 1], d.xpos[eb + 2]];
+    let e = [T.target.x - p0[0], T.target.y - p0[1], T.target.z - p0[2]];
+    const emag = Math.hypot(e[0], e[1], e[2]);
+    if (emag > STEP) { const s = STEP / emag; e = e.map((v) => v * s); }   // clamp EE step/frame
+    // finite-difference position Jacobian (3 x n)
+    const Jac = [new Array(n), new Array(n), new Array(n)];
+    for (let j = 0; j < n; j++) {
+      const q = J[j].q, save = d.qpos[q];
+      d.qpos[q] = save + eps; mj.mj_forward(m, d);
+      Jac[0][j] = (d.xpos[eb] - p0[0]) / eps;
+      Jac[1][j] = (d.xpos[eb + 1] - p0[1]) / eps;
+      Jac[2][j] = (d.xpos[eb + 2] - p0[2]) / eps;
+      d.qpos[q] = save;
+    }
+    mj.mj_forward(m, d);
+    // A = J Jt + l2 I  (3x3);  y = A^-1 e;  dq = Jt y
+    const A = [[l2, 0, 0], [0, l2, 0], [0, 0, l2]];
+    for (let a = 0; a < 3; a++) { for (let b = 0; b < 3; b++) { let s = 0; for (let j = 0; j < n; j++) { s += Jac[a][j] * Jac[b][j]; } A[a][b] += s; } }
+    const y = this.solve3(A, e);
+    for (let j = 0; j < n; j++) {
+      let s = 0; for (let a = 0; a < 3; a++) { s += Jac[a][j] * y[a]; }
+      let nq = d.qpos[J[j].q] + s;
+      if (J[j].hi > J[j].lo) { nq = Math.min(J[j].hi, Math.max(J[j].lo, nq)); }   // joint limit
+      d.qpos[J[j].q] = nq;
+      let cu = nq;
+      if (J[j].chi > J[j].clo) { cu = Math.min(J[j].chi, Math.max(J[j].clo, nq)); }
+      d.ctrl[J[j].u] = cu;
+      d.qvel[J[j].d] = 0;
+    }
+  }
+
+  // Solve 3x3 A x = b by Cramer's rule (A is small + well-conditioned via the l2 damping).
+  solve3(A, b) {
+    const det = (a) =>
+      a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1]) -
+      a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0]) +
+      a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]);
+    const D = det(A);
+    if (Math.abs(D) < 1e-12) { return [0, 0, 0]; }
+    const col = (a, c, v) => a.map((row, i) => row.map((x, j) => (j === c ? v[i] : x)));
+    return [det(col(A, 0, b)) / D, det(col(A, 1, b)) / D, det(col(A, 2, b)) / D];
   }
 
   // (A) Live learned-policy closed loop. ONNX policy + obs construction are byte-parity with
@@ -369,6 +468,25 @@ export class MuJoCoDemo {
     return { frame: f, nframes: this.replayN, nq: this.model.nq };
   }
 
+  // QA hook for EE teleop: enable teleop, set the IK target to (start EE + delta) and run n IK
+  // steps — no human drag — then report the residual so the harness can assert the arm tracks.
+  qaTeleop(delta, n = 80) {
+    if (!this.tele) { return { error: 'no teleop in this experiment' }; }
+    this.tele.enabled = true; this.params.replay = false; this.params.paused = false;
+    this.mujoco.mj_forward(this.model, this.data);
+    const eb = 3 * this.tele.eeId;
+    const start = [this.data.xpos[eb], this.data.xpos[eb + 1], this.data.xpos[eb + 2]];
+    const target = [start[0] + delta[0], start[1] + delta[1], start[2] + delta[2]];
+    this.tele.target.set(target[0], target[1], target[2]);
+    for (let i = 0; i < n; i++) { this.solveIK(); }
+    this.render(0);
+    const ee = [this.data.xpos[eb], this.data.xpos[eb + 1], this.data.xpos[eb + 2]];
+    const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+    let nan = false;
+    for (let i = 0; i < this.model.nq; i++) { if (!Number.isFinite(this.data.qpos[i])) { nan = true; break; } }
+    return { start, target, ee, residual: dist(ee, target), startResidual: dist(start, target), nan };
+  }
+
   // Seed the scene from a recorded trajectory frame (qpos + arm ctrl + zero velocity).
   seedFrame(frame) {
     const q = this.replayQpos[frame];
@@ -396,7 +514,10 @@ export class MuJoCoDemo {
     }
     this.controls.update();
 
-    if (this.params["replay"] && this.replayQpos) {
+    if (this.tele && this.tele.enabled) {
+      // (C) EE teleop: IK drives the arm toward the drag point; replay/physics suspended.
+      this.stepTeleop();
+    } else if (this.params["replay"] && this.replayQpos) {
       // Grab-to-take-over: if the user starts dragging a body mid-replay, auto-pause the
       // rollout *in place* and hand off to physics. Hold the current pose (ctrl = current
       // qpos) so the arm doesn't snap to home, and don't reset (unlike the manual toggle).
@@ -415,8 +536,7 @@ export class MuJoCoDemo {
         for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
         this.mujoco.mj_forward(this.model, this.data);
       }
-    }
-    if (!this.params["replay"] && !this.params["paused"]) {
+    } else if (!this.params["replay"] && !this.params["paused"]) {
       let timestep = this.model.opt.timestep;
       if (timeMS - this.mujoco_time > 35.0) { this.mujoco_time = timeMS; }
       while (this.mujoco_time < timeMS) {

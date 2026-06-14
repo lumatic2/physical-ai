@@ -33,6 +33,8 @@ const cmdArg = args.find(a => a.startsWith('--cmd='));   // e.g. --cmd=1,0,1  (v
 const cmd    = cmdArg ? cmdArg.split('=')[1].split(',').map(Number) : null;
 const keysArg = args.find(a => a.startsWith('--keys=')); // e.g. --keys=w  hold real keys (WASD/QE)
 const keys   = keysArg ? keysArg.split('=')[1].split('') : null;
+const teleArg = args.find(a => a.startsWith('--teleop='));// e.g. --teleop=0.1,0,0.1  EE delta (m)
+const tele   = teleArg ? teleArg.split('=')[1].split(',').map(Number) : null;
 const PORT   = 8132;
 const BASE   = live ? 'https://physical-ai-arm.askewly.com' : `http://127.0.0.1:${PORT}`;
 const URL    = `${BASE}/?exp=${exp}`;
@@ -86,7 +88,17 @@ async function main() {
   console.log(`[qa] ready (${isPolicy ? 'policy closed-loop' : 'replay'})`);
 
   let diag = null, pass = false;
-  if (isPolicy) {
+  if (tele) {
+    // EE teleop test: drive IK to (start EE + delta) and assert the gripper tracked toward it.
+    await page.screenshot({ path: join(OUT_DIR, `${exp}_tele_before.png`) });
+    diag = await page.evaluate(d => window.demo.qaTeleop(d), tele);
+    await page.screenshot({ path: join(OUT_DIR, `${exp}_tele_after.png`) });
+    console.log('[qa] teleop', JSON.stringify(diag));
+    // Pass = arm moved meaningfully toward the target (residual shrank), no NaN/console errors.
+    // Not residual≈0: SO-100's 5-DOF can't reach every pose (M6/ADR), so we assert tracking, not exactness.
+    pass = diag && !diag.error && !diag.nan &&
+           diag.residual < diag.startResidual * 0.6 && consoleErrors.length === 0;
+  } else if (isPolicy) {
     if (cmd) {
       await page.evaluate(c => { for (let i = 0; i < c.length; i++) window.demo.pol.command[i] = c[i]; }, cmd);
       console.log('[qa] command set to', cmd);
