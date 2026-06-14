@@ -177,13 +177,20 @@ export class MuJoCoDemo {
     ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/';
     this.ort = ort;
     const p = this.policy, ix = p.indices;
+    const sceneDir = this.params.scene.split('/')[0];   // onnx lives next to its bundled scene
     this.pol = {
-      onnx: './assets/scenes/go1/' + p.onnx,
+      onnx: './assets/scenes/' + sceneDir + '/' + p.onnx,
       obs_dim: p.obs_dim, act_dim: p.act_dim, action_scale: p.action_scale,
       n_substeps: p.n_substeps, command: p.command,
       gy: ix.gyro_adr, lv: ix.local_linvel_adr, imu: ix.imu_site_id,
       qj: p.qpos_joint_start, vj: p.qvel_joint_start, dp: ix.default_pose,
       lastAct: new Float32Array(p.act_dim),
+      obs_layout: p.obs_layout || null,
+      // gait phase clock (humanoid joystick policies, e.g. G1): a 2-vec advanced each control
+      // step by phase_dt; obs uses concat([cos(phase),sin(phase)]). null for policies w/o gait.
+      phase: p.gait ? Float64Array.from(p.gait.phase_init) : null,
+      phaseDt: p.gait ? 2 * Math.PI * p.ctrl_dt * p.gait.gait_freq : 0,
+      cmdRange: p.command_range || null,
     };
     // seed home keyframe (key 0)
     for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = this.model.key_qpos[i]; }
@@ -201,28 +208,51 @@ export class MuJoCoDemo {
   // live robot — buildPolicyObs reads this.pol.command in place every control step.
   addCommandGUI() {
     const c = this.pol.command;
+    const r = this.pol.cmdRange || { vx: [-1.0, 1.5], vy: [-0.8, 0.8], vyaw: [-1.5, 1.5] };
     const f = this.gui.addFolder('Command (drag to steer)');
-    f.add(c, '0', -1.0, 1.5, 0.05).name('vx  forward');
-    f.add(c, '1', -0.8, 0.8, 0.05).name('vy  strafe');
-    f.add(c, '2', -1.5, 1.5, 0.05).name('vyaw  turn');
+    f.add(c, '0', r.vx[0], r.vx[1], 0.05).name('vx  forward');
+    f.add(c, '1', r.vy[0], r.vy[1], 0.05).name('vy  strafe');
+    f.add(c, '2', r.vyaw[0], r.vyaw[1], 0.05).name('vyaw  turn');
     f.open();
   }
 
-  // obs = [local_linvel(3), gyro(3), gravity(3), qpos[7:]-default(12), qvel[6:](12),
-  //        last_act(12), command(3)] = 48. Read sensordata AS-IS (1-substep stale, same as
-  //        training) — do NOT mj_forward before reading. gravity = -(site_xmat third row).
+  // Build the policy obs by walking the experiment's obs_layout (named slots), so a new
+  // embodiment with a different obs (order / joint count / gait clock) needs zero JS changes —
+  // it's the same single-source-of-truth as obs_spec.json. Read sensordata AS-IS (1-substep
+  // stale, same as training) — do NOT mj_forward first. gravity = -(site_xmat third row) =
+  // site_xmat.T @ [0,0,-1]. Slot dims come from p.act_dim (joints) so go1(12) and G1(29) both work.
+  //   go1 obs(48): [local_linvel, gyro, gravity, joints, joint_vel, last_act, command]
+  //   G1  obs(103):[local_linvel, gyro, gravity, command, joints, joint_vel, last_act, phase_cos_sin]
   buildPolicyObs() {
-    const d = this.data, p = this.pol, o = new Float32Array(p.obs_dim);
-    let k = 0;
-    for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.lv + i]; }
-    for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.gy + i]; }
+    const d = this.data, p = this.pol, o = new Float32Array(p.obs_dim), nu = p.act_dim;
     const x = p.imu * 9;
-    o[k++] = -d.site_xmat[x + 6]; o[k++] = -d.site_xmat[x + 7]; o[k++] = -d.site_xmat[x + 8];
-    for (let i = 0; i < 12; i++) { o[k++] = d.qpos[p.qj + i] - p.dp[i]; }
-    for (let i = 0; i < 12; i++) { o[k++] = d.qvel[p.vj + i]; }
-    for (let i = 0; i < 12; i++) { o[k++] = p.lastAct[i]; }
-    for (let i = 0; i < 3; i++) { o[k++] = p.command[i]; }
+    let k = 0;
+    for (const [name] of p.obs_layout) {
+      switch (name) {
+        case 'local_linvel': for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.lv + i]; } break;
+        case 'gyro':         for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.gy + i]; } break;
+        case 'gravity':      o[k++] = -d.site_xmat[x + 6]; o[k++] = -d.site_xmat[x + 7]; o[k++] = -d.site_xmat[x + 8]; break;
+        case 'command':      for (let i = 0; i < 3; i++) { o[k++] = p.command[i]; } break;
+        case 'joint_angles_minus_default': for (let i = 0; i < nu; i++) { o[k++] = d.qpos[p.qj + i] - p.dp[i]; } break;
+        case 'joint_vel':    for (let i = 0; i < nu; i++) { o[k++] = d.qvel[p.vj + i]; } break;
+        case 'last_act':     for (let i = 0; i < nu; i++) { o[k++] = p.lastAct[i]; } break;
+        case 'phase_cos_sin': o[k++] = Math.cos(p.phase[0]); o[k++] = Math.cos(p.phase[1]);
+                              o[k++] = Math.sin(p.phase[0]); o[k++] = Math.sin(p.phase[1]); break;
+      }
+    }
     return o;
+  }
+
+  // Advance the gait phase clock one control step (no-op if the policy has no gait):
+  // phase += phase_dt, wrapped to [-pi, pi). Must be called once per control step, AFTER mj_step,
+  // mirroring the training env's step() so the web phase sequence matches golden byte-for-byte.
+  advancePhase() {
+    const p = this.pol;
+    if (!p.phase) return;
+    const TWO = 2 * Math.PI;
+    for (let i = 0; i < p.phase.length; i++) {
+      p.phase[i] = (((p.phase[i] + p.phaseDt + Math.PI) % TWO) + TWO) % TWO - Math.PI;
+    }
   }
 
   async runPolicyLoop() {
@@ -244,6 +274,7 @@ export class MuJoCoDemo {
           this.mujoco.mj_applyFT(this.model, this.data, [f.x, f.y, f.z], [0, 0, 0], [pt.x, pt.y, pt.z], dragged.bodyID, this.data.qfrc_applied);
         }
         for (let s = 0; s < nsub; s++) { this.mujoco.mj_step(this.model, this.data); }
+        this.advancePhase();
       }
       const dt = performance.now() - t0;
       await new Promise((r) => setTimeout(r, Math.max(0, 20 - dt)));   // ~50Hz real-time
@@ -265,6 +296,7 @@ export class MuJoCoDemo {
       const act = out[Object.keys(out)[0]].data;
       for (let i = 0; i < p.act_dim; i++) { p.lastAct[i] = act[i]; this.data.ctrl[i] = p.dp[i] + act[i] * A; }
       for (let s = 0; s < nsub; s++) { this.mujoco.mj_step(this.model, this.data); }
+      this.advancePhase();
     }
     this.render(0);
     let nan = false;
