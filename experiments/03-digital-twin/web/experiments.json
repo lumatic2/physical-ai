@@ -1,6 +1,15 @@
 {
   "default": "so100-stack",
   "experiments": {
+    "panda-sweep": {
+      "title": "Franka Emika Panda — 7-DOF 관절 sweep (scripted ctrl sweep, fixed-base arm)",
+      "scene": "panda/scene.xml",
+      "trajectory": "panda_sweep.json",
+      "ee_body": "hand",
+      "render_out": "media/panda_sweep.mp4",
+      "camera": { "lookat": [0.2, 0.0, 0.4], "distance": 1.9, "azimuth": 120, "elevation": -20 },
+      "web": { "target": [0.15, 0.0, 0.45], "offset": [1.2, 0.9, 1.1], "fovDist": 1.0 }
+    },
     "g1-stand": {
       "title": "Unitree G1 — 휴머노이드 직립 (물리 settle, floating-base 29-DOF)",
       "scene": "g1/scene.xml",
