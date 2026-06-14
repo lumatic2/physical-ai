@@ -273,6 +273,20 @@ export class MuJoCoDemo {
     return { steps: n, x: this.data.qpos[0], y: this.data.qpos[1], height: h, fell: h < 0.2, nan };
   }
 
+  // QA hook for replay (non-policy) experiments: seek to a trajectory frame (frac in [0,1])
+  // and render it. Freezes auto-replay (replay=false) + paused so the seeked pose isn't
+  // overwritten by the wall-clock playhead. Lets the harness screenshot any frame on demand.
+  qaSeek(frac) {
+    if (!this.replayQpos) return { error: 'no replay' };
+    this.params.replay = false; this.params.paused = true;
+    const f = Math.max(0, Math.min(this.replayN - 1, Math.round(frac * (this.replayN - 1))));
+    const q = this.replayQpos[f];
+    for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = q[i]; }
+    this.mujoco.mj_forward(this.model, this.data);
+    this.render(0);
+    return { frame: f, nframes: this.replayN, nq: this.model.nq };
+  }
+
   // Seed the scene from a recorded trajectory frame (qpos + arm ctrl + zero velocity).
   seedFrame(frame) {
     const q = this.replayQpos[frame];

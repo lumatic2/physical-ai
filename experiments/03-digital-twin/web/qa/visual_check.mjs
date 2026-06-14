@@ -70,35 +70,47 @@ async function main() {
   console.log(`[qa] navigate ${URL}`);
   await page.goto(URL, { waitUntil: 'networkidle', timeout: 120000 });
 
-  // Wait for the live policy session (onnx + mujoco wasm loaded from CDN — can be slow).
-  await page.waitForFunction(() => window.demo && window.demo.session, null,
+  // Wait for the model to load (mujoco wasm from CDN — slow). Policy experiments additionally
+  // need the onnx session before we can drive qaStep.
+  await page.waitForFunction(() => window.demo && window.demo.model, null,
     { timeout: 120000, polling: 500 });
-  console.log('[qa] policy session ready');
-
-  if (cmd) {
-    await page.evaluate(c => { for (let i = 0; i < c.length; i++) window.demo.pol.command[i] = c[i]; }, cmd);
-    console.log('[qa] command set to', cmd);
+  const isPolicy = await page.evaluate(() => !!window.demo.policy);
+  if (isPolicy) {
+    await page.waitForFunction(() => window.demo.session, null, { timeout: 120000, polling: 500 });
   }
+  console.log(`[qa] ready (${isPolicy ? 'policy closed-loop' : 'replay'})`);
 
-  // Baseline (home pose, before stepping).
-  await page.screenshot({ path: join(OUT_DIR, `${exp}_000.png`) });
-
-  let diag = null;
-  for (let done = 0; done < steps; done += chunk) {
-    diag = await page.evaluate(n => window.demo.qaStep(n), chunk);
-    const tag = String(done + chunk).padStart(3, '0');
-    await page.screenshot({ path: join(OUT_DIR, `${exp}_${tag}.png`) });
-    console.log(`[qa] step ${done + chunk}: x=${diag.x?.toFixed(3)} h=${diag.height?.toFixed(3)} fell=${diag.fell} nan=${diag.nan}`);
+  let diag = null, pass = false;
+  if (isPolicy) {
+    if (cmd) {
+      await page.evaluate(c => { for (let i = 0; i < c.length; i++) window.demo.pol.command[i] = c[i]; }, cmd);
+      console.log('[qa] command set to', cmd);
+    }
+    await page.screenshot({ path: join(OUT_DIR, `${exp}_000.png`) });
+    for (let done = 0; done < steps; done += chunk) {
+      diag = await page.evaluate(n => window.demo.qaStep(n), chunk);
+      const tag = String(done + chunk).padStart(3, '0');
+      await page.screenshot({ path: join(OUT_DIR, `${exp}_${tag}.png`) });
+      console.log(`[qa] step ${done + chunk}: x=${diag.x?.toFixed(3)} h=${diag.height?.toFixed(3)} fell=${diag.fell} nan=${diag.nan}`);
+    }
+    // Forward walk: assert x-progress. Steering test (--cmd): assert it moved off the origin
+    // (curved trajectories may have small/negative x), upright, no NaN/console errors.
+    const moved = diag ? Math.hypot(diag.x, diag.y) : 0;
+    const progressed = cmd ? moved > 0.5 : (diag && diag.x > 0.3);
+    pass = diag && !diag.nan && !diag.fell && progressed && consoleErrors.length === 0;
+  } else {
+    // Replay experiment: sample frames across the trajectory and screenshot each.
+    for (const frac of [0, 0.33, 0.66, 1.0]) {
+      diag = await page.evaluate(f => window.demo.qaSeek(f), frac);
+      const tag = String(Math.round(frac * 100)).padStart(3, '0');
+      await page.screenshot({ path: join(OUT_DIR, `${exp}_${tag}.png`) });
+      console.log(`[qa] frame ${diag.frame}/${diag.nframes} nq=${diag.nq}`);
+    }
+    pass = diag && !diag.error && consoleErrors.length === 0;
   }
 
   await browser.close();
-
-  // Forward walk: assert x-progress. Steering test (--cmd): assert it moved off the origin
-  // (curved trajectories may have small/negative x), still upright, no NaN/console errors.
-  const moved = diag ? Math.hypot(diag.x, diag.y) : 0;
-  const progressed = cmd ? moved > 0.5 : (diag && diag.x > 0.3);
-  const pass = diag && !diag.nan && !diag.fell && progressed && consoleErrors.length === 0;
-  console.log('\n[qa] RESULT', JSON.stringify({ exp, live, steps, diag, consoleErrors: consoleErrors.length }, null, 2));
+  console.log('\n[qa] RESULT', JSON.stringify({ exp, live, mode: isPolicy ? 'policy' : 'replay', diag, consoleErrors: consoleErrors.length }, null, 2));
   if (consoleErrors.length) console.log('[qa] console errors:', consoleErrors.slice(0, 5));
   console.log(`[qa] screenshots in ${OUT_DIR}`);
   console.log(pass ? '[qa] PASS ✅' : '[qa] FAIL ❌');

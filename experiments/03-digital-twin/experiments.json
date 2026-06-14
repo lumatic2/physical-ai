@@ -1,6 +1,15 @@
 {
   "default": "so100-stack",
   "experiments": {
+    "shadow-hand": {
+      "title": "Shadow Hand — 손가락 굴곡 (scripted ctrl sweep, dexterous hand)",
+      "scene": "shadow_hand/scene_right.xml",
+      "trajectory": "shadow_hand_sweep.json",
+      "ee_body": "palm",
+      "render_out": "media/shadow_hand.mp4",
+      "camera": { "lookat": [0.3, 0, 0.05], "distance": 0.55, "azimuth": 160, "elevation": -20 },
+      "web": { "target": [0.31, 0, 0.04], "offset": [0.32, 0.22, 0.32], "fovDist": 1.0 }
+    },
     "so100-stack": {
       "title": "SO-100 — scripted pick-and-place 3단 스택",
       "scene": "trs_so_arm100/scene_twin.xml",

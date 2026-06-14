@@ -667,6 +667,24 @@ export async function downloadExampleScenesFolder(mujoco) {
     "go1/assets/thigh.stl",
     "go1/assets/thigh_mirror.stl",
     "go1/assets/calf.stl",
+    // Shadow Hand (dexterous-hand gallery entry, scripted ctrl-sweep replay). Menagerie
+    // visual meshes are ASCII .obj (written via .text() below, like the .xml files).
+    "shadow_hand/scene_right.xml",
+    "shadow_hand/right_hand.xml",
+    "shadow_hand/assets/forearm_0.obj",
+    "shadow_hand/assets/forearm_1.obj",
+    "shadow_hand/assets/forearm_collision.obj",
+    "shadow_hand/assets/wrist.obj",
+    "shadow_hand/assets/palm.obj",
+    "shadow_hand/assets/mounting_plate.obj",
+    "shadow_hand/assets/lf_metacarpal.obj",
+    "shadow_hand/assets/f_knuckle.obj",
+    "shadow_hand/assets/f_proximal.obj",
+    "shadow_hand/assets/f_middle.obj",
+    "shadow_hand/assets/f_distal_pst.obj",
+    "shadow_hand/assets/th_proximal.obj",
+    "shadow_hand/assets/th_middle.obj",
+    "shadow_hand/assets/th_distal_pst.obj",
   ];
 
   let requests = allFiles.map((url) => fetch("./assets/scenes/" + url));
