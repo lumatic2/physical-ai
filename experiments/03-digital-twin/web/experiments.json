@@ -1,6 +1,24 @@
 {
   "default": "so100-stack",
   "experiments": {
+    "g1-stand": {
+      "title": "Unitree G1 — 휴머노이드 직립 (물리 settle, floating-base 29-DOF)",
+      "scene": "g1/scene.xml",
+      "trajectory": "g1_settle.json",
+      "ee_body": "pelvis",
+      "render_out": "media/g1_settle.mp4",
+      "camera": { "lookat": [0.0, 0.0, 0.6], "distance": 2.6, "azimuth": 140, "elevation": -10 },
+      "web": { "target": [0.0, 0.0, 0.65], "offset": [2.3, 1.6, 2.3], "fovDist": 1.0 }
+    },
+    "spot-stand": {
+      "title": "Boston Dynamics Spot — 4족 직립 (물리 settle, floating-base)",
+      "scene": "spot/scene.xml",
+      "trajectory": "spot_settle.json",
+      "ee_body": "body",
+      "render_out": "media/spot_settle.mp4",
+      "camera": { "lookat": [0.0, 0.0, 0.25], "distance": 2.2, "azimuth": 220, "elevation": -15 },
+      "web": { "target": [0.0, 0.0, 0.3], "offset": [1.3, 0.9, 1.3], "fovDist": 1.0 }
+    },
     "shadow-hand": {
       "title": "Shadow Hand — 손가락 굴곡 (scripted ctrl sweep, dexterous hand)",
       "scene": "shadow_hand/scene_right.xml",

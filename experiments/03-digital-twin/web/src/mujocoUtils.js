@@ -651,7 +651,11 @@ export async function downloadExampleScenesFolder(mujoco) {
           working += "/";
       }
 
-      if (allFiles[i].endsWith(".png") || allFiles[i].endsWith(".stl") || allFiles[i].endsWith(".skn")) {
+      // Case-insensitive: binary assets must be written as bytes. Some menagerie models ship
+      // meshes with uppercase extensions (e.g. Unitree G1's *.STL); a lowercase-only check
+      // would write them via .text() and corrupt the binary payload (mjCError on mesh load).
+      const lower = allFiles[i].toLowerCase();
+      if (lower.endsWith(".png") || lower.endsWith(".stl") || lower.endsWith(".skn")) {
           mujoco.FS.writeFile("/working/" + allFiles[i], new Uint8Array(await responses[i].arrayBuffer()));
       } else {
           mujoco.FS.writeFile("/working/" + allFiles[i], await responses[i].text());
