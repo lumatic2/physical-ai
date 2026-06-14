@@ -318,6 +318,14 @@ export class MuJoCoDemo {
       phase: p.gait ? Float64Array.from(p.gait.phase_init) : null,
       phaseDt: p.gait ? 2 * Math.PI * p.ctrl_dt * p.gait.gait_freq : 0,
       cmdRange: p.command_range || null,
+      // Spot extras (null/no-op for go1/G1): gravity = upvector sensor, feet = 4 framepos sensor
+      // adrs, lowers/uppers = ctrl clip, qposErrHistory = stateful 3-step joint-error buffer.
+      grav: ix.upvector_adr ?? null,
+      feet: ix.feet_adrs || null,
+      lowers: ix.lowers || null,
+      uppers: ix.uppers || null,
+      qposErrHistory: p.history_len ? new Float32Array(p.history_len * 12) : null,
+      motorTargets: new Float32Array(p.act_dim),
     };
     // seed home keyframe (key 0)
     for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = this.model.key_qpos[i]; }
@@ -391,6 +399,11 @@ export class MuJoCoDemo {
         case 'local_linvel': for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.lv + i]; } break;
         case 'gyro':         for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.gy + i]; } break;
         case 'gravity':      o[k++] = -d.site_xmat[x + 6]; o[k++] = -d.site_xmat[x + 7]; o[k++] = -d.site_xmat[x + 8]; break;
+        // Spot: gravity_projected = upvector sensor (3); feet_pos = 4 framepos sensors (FL,FR,HL,HR
+        // order, trunk-relative, 12); qpos_error_history = stateful 3-step buffer (36).
+        case 'gravity_projected': for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[p.grav + i]; } break;
+        case 'feet_pos':     for (const a of p.feet) { for (let i = 0; i < 3; i++) { o[k++] = d.sensordata[a + i]; } } break;
+        case 'qpos_error_history': { const h = p.qposErrHistory; for (let i = 0; i < h.length; i++) { o[k++] = h[i]; } } break;
         case 'command':      for (let i = 0; i < 3; i++) { o[k++] = p.command[i]; } break;
         case 'joint_angles_minus_default': for (let i = 0; i < nu; i++) { o[k++] = d.qpos[p.qj + i] - p.dp[i]; } break;
         case 'joint_vel':    for (let i = 0; i < nu; i++) { o[k++] = d.qvel[p.vj + i]; } break;
@@ -414,15 +427,41 @@ export class MuJoCoDemo {
     }
   }
 
+  // Roll the qpos-error history one control step (no-op if the policy has no history, e.g. go1/G1):
+  // prepend (joint_angles - last motor_targets), drop the oldest. Called BEFORE buildPolicyObs each
+  // step, mirroring the env's _get_obs ordering so the web buffer matches golden byte-for-byte.
+  advanceHistory() {
+    const p = this.pol;
+    if (!p.qposErrHistory) return;
+    const h = p.qposErrHistory, nu = p.act_dim, qj = p.qj;
+    h.copyWithin(nu, 0, h.length - nu);   // shift older errors back by one slot (= np.roll(h, 12))
+    for (let i = 0; i < nu; i++) { h[i] = this.data.qpos[qj + i] - p.motorTargets[i]; }
+  }
+
+  // One control step's policy compute: update history, build obs, run onnx, set ctrl. Shared by the
+  // real-time loop and the QA stepper so both stay byte-identical. motor_targets = clip(default +
+  // act*scale, [lowers, uppers]) — the clip matters for Spot's history (no-op clip for go1/G1).
+  async computeAndApplyAction() {
+    const p = this.pol, A = p.action_scale;
+    this.advanceHistory();
+    const obs = this.buildPolicyObs();
+    const out = await this.session.run({ obs: new this.ort.Tensor('float32', obs, [1, p.obs_dim]) });
+    const act = out[Object.keys(out)[0]].data;
+    for (let i = 0; i < p.act_dim; i++) {
+      p.lastAct[i] = act[i];
+      let mt = p.dp[i] + act[i] * A;
+      if (p.lowers) { mt = Math.min(p.uppers[i], Math.max(p.lowers[i], mt)); }
+      p.motorTargets[i] = mt;
+      this.data.ctrl[i] = mt;
+    }
+  }
+
   async runPolicyLoop() {
-    const p = this.pol, A = p.action_scale, nsub = p.n_substeps;
+    const p = this.pol, nsub = p.n_substeps;
     while (this.params.policyRunning) {
       const t0 = performance.now();
       if (!this.params.paused) {
-        const obs = this.buildPolicyObs();
-        const out = await this.session.run({ obs: new this.ort.Tensor('float32', obs, [1, p.obs_dim]) });
-        const act = out[Object.keys(out)[0]].data;
-        for (let i = 0; i < p.act_dim; i++) { p.lastAct[i] = act[i]; this.data.ctrl[i] = p.dp[i] + act[i] * A; }
+        await this.computeAndApplyAction();
         // optional drag force — poke the walking robot
         for (let i = 0; i < this.data.qfrc_applied.length; i++) { this.data.qfrc_applied[i] = 0.0; }
         const dragged = this.dragStateManager.physicsObject;
@@ -447,13 +486,10 @@ export class MuJoCoDemo {
   // Returns diagnostics so the harness can assert walk progress / fall / NaN without eyeballing.
   async qaStep(n = 50) {
     if (!this.pol) return { error: 'no policy in this experiment' };
-    const p = this.pol, A = p.action_scale, nsub = p.n_substeps;
+    const p = this.pol, nsub = p.n_substeps;
     this.params.paused = true;
     for (let step = 0; step < n; step++) {
-      const obs = this.buildPolicyObs();
-      const out = await this.session.run({ obs: new this.ort.Tensor('float32', obs, [1, p.obs_dim]) });
-      const act = out[Object.keys(out)[0]].data;
-      for (let i = 0; i < p.act_dim; i++) { p.lastAct[i] = act[i]; this.data.ctrl[i] = p.dp[i] + act[i] * A; }
+      await this.computeAndApplyAction();
       for (let s = 0; s < nsub; s++) { this.mujoco.mj_step(this.model, this.data); }
       this.advancePhase();
     }

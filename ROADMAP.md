@@ -32,7 +32,7 @@
 | M8 | 학습 정책 sandbox (sim) | 직접 학습한 정책이 브라우저에서 몸을 제어한다 | live Go1 보행(onnxruntime-web) + config-driven 하네스 | ✅ |
 | M9 | 인터랙티브 텔레옵 | 트윈을 *관전*이 아니라 *내가 직접 조작*한다 | 키보드로 보행 로봇 조종 + 마우스로 팔 EE 텔레옵 ([라이브](https://physical-ai-arm.askewly.com)) | ✅ |
 | M10 | 확장 가능한 트윈 플랫폼 | 새 임베디먼트·정책을 저마찰로 늘린다 | 단일-소스 config + 한 커맨드 `add_scene.sh` + [추가 가이드](experiments/03-digital-twin/ADDING_EMBODIMENTS.md)(문서만 보고 bespoke 0줄 추가, dummy-arm 검증) | ✅ |
-| M11 | 학습 정책 갤러리 확장 | 플랫폼이 새 정책을 흡수한다 (4족 2종 비교) | live Spot 보행 정책(onnxruntime-web) + Go1↔Spot 비교 | ⬜ |
+| M11 | 학습 정책 갤러리 확장 | 플랫폼이 새 정책을 흡수한다 (4족 2종 비교) | live Spot 보행 정책(onnxruntime-web, byte-parity 2.9e-7) + Go1↔Spot 비교, 학습정책 3종 | ✅ |
 | M7 | 실물 도달 (하드웨어 게이트, 보류) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
 
 ### 완료된 마일스톤 (M1–M8) — 요약
@@ -72,15 +72,13 @@
 - [x] **추가 가이드 문서** ✅ (2026-06-15) — [`ADDING_EMBODIMENTS.md`](experiments/03-digital-twin/ADDING_EMBODIMENTS.md): 씬 번들→감축→레지스트리 항목→궤적→`add_scene.sh`→배포 N단계 + 박제 함정→코드화 매핑 표. 03 README에서 링크.
 - ✅ **완료 기준 충족** — 더미 임베디먼트 `dummy-arm`(2링크 팔, self-contained primitives MJCF + experiments.json 1항목, **파이프라인 코드 0줄**)을 `bash add_scene.sh dummy-arm --record` 한 커맨드로 추가: smoke PASS·wasm OK(nq2/nu2)·render 90f·sync·visual PASS✅(스크린샷 육안 확인 — 팔·tip 정상 렌더). **🟢 라이브** `?exp=dummy-arm`(deploy `dpl_E9GLr1LG`, 라이브 QA PASS — replay 90f, consoleErrors 0; 셀렉터 없어 쇼케이스 무오염). + experiments.json 단일 소스(step1).
 
-### M11 — 학습 정책 갤러리 확장 (Spot 4족 보행) ⬜ [독립]
-> 플랫폼(M10)이 새 정책을 흡수하는지 dogfood. 4족 정책 2종(Go1↔Spot) 비교로 서사 확장.
-- [ ] **Spot 정책 학습** — Playground `SpotFlatTerrainJoystick` PPO(exp 04/05 파이프라인 재사용, ENV만 교체). 학습 8~47분.
-  - verify: native mujoco closed-loop 보행 거리 ≥ 기준
-- [ ] **obs parity** — Spot obs 레이아웃 확인(Go1 유사 48-d 가정 검증, gait clock 유무 env 확인) → ONNX(parity ≤ 1e-5).
-- [ ] **번들 씬 + 웹 live closed-loop** — 번들 씬 obs byte-parity 0.0 + `?exp=spot-walk` 브라우저 추론.
-  - verify: `qa/visual_check.mjs --live --exp=spot-walk` PASS + 0 콘솔에러
-- [ ] **(선택) Go1↔Spot 비교 노트** — 4족 정책 2종 obs/보행 비교.
-- 완료 기준: 라이브 `?exp=spot-walk` 보행 + 0 콘솔에러. **학습 정책 임베디먼트 3종**(Go1·G1·Spot).
+### M11 — 학습 정책 갤러리 확장 (Spot 4족 보행) ✅ (2026-06-15) [독립]
+> 플랫폼(M10)이 새 정책을 흡수하는지 dogfood. 4족 정책 2종(Go1↔Spot) 비교로 서사 확장. → [exp 06](experiments/06-spot-rl-walk/README.md).
+- [x] **Spot 정책 학습** ✅ — `SpotFlatTerrainJoystick` PPO(train.py ENV 1줄 교체), 6.5분, reward 7.96→30.6. native closed-loop **12s·11.09m·0.92m/s** 보행 PASS.
+- [x] **obs parity** ✅ — 핸드오프 가정(Go1 유사 48-d) **틀림**: Spot 81-d, gait clock·linear velocity 없음, 대신 stateful `qpos_error_history`(36)+`feet_pos`(12). ONNX parity **4.07e-6**(5층 동적 export).
+- [x] **번들 씬 + 웹 live closed-loop** ✅ — 번들 씬 obs byte-parity **2.91e-7**(env PD게인 런타임 오버라이드 Kp400→300·Kd2→1을 xml에 박아 수렴). main.js 슬롯 빌더 확장(go1/G1 무회귀). 웹 0.93m/s. wasm OK·로컬 QA PASS.
+- [x] **Go1↔Spot 비교 노트** ✅ — exp06 §4: obs 아키텍처는 정책별 상이(재사용 불가)지만 파이프라인은 동일 골격(흡수). byte-parity의 적은 숨은 런타임 오버라이드.
+- ✅ **완료 기준 충족**: `?exp=spot-walk` 라이브 보행. **학습 정책 임베디먼트 3종**(Go1 4족·G1 휴머노이드·Spot 4족), 4족 2종 비교 서사.
 
 ### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립

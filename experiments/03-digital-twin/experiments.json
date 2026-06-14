@@ -462,6 +462,163 @@
         ],
         "fovDist": 1.0
       }
+    },
+    "spot-walk": {
+      "title": "Boston Dynamics Spot — 직접 학습한 joystick 보행 정책 (live closed-loop, 4족)",
+      "scene": "spot/scene_spot_policy.xml",
+      "trajectory": "spot_walk_trajectory.json",
+      "ee_body": "body",
+      "render_out": "media/spot_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.5,
+          0.0,
+          0.4
+        ],
+        "distance": 4.0,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0.0,
+          0.0,
+          0.45
+        ],
+        "offset": [
+          2.4,
+          1.6,
+          2.2
+        ],
+        "fovDist": 1.0
+      },
+      "policy": {
+        "onnx": "spot_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 81,
+        "act_dim": 12,
+        "action_scale": 0.3,
+        "ctrl_dt": 0.02,
+        "n_substeps": 5,
+        "command": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "obs_layout": [
+          [
+            "gyro",
+            3
+          ],
+          [
+            "gravity_projected",
+            3
+          ],
+          [
+            "joint_angles_minus_default",
+            12
+          ],
+          [
+            "qpos_error_history",
+            36
+          ],
+          [
+            "feet_pos",
+            12
+          ],
+          [
+            "last_act",
+            12
+          ],
+          [
+            "command",
+            3
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro",
+          "gravity": "upvector",
+          "feet": [
+            "FL_pos",
+            "FR_pos",
+            "HL_pos",
+            "HR_pos"
+          ]
+        },
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "history_len": 3,
+        "command_range": {
+          "vx": [
+            -1.0,
+            1.5
+          ],
+          "vy": [
+            -0.8,
+            0.8
+          ],
+          "vyaw": [
+            -1.5,
+            1.5
+          ]
+        },
+        "_indices_note": "rollout_spot.py가 번들 씬에서 유도해 박제 (gyro_adr/upvector_adr/feet_adrs/lowers/uppers/default_pose/nq/nu/nv)",
+        "indices": {
+          "gyro_adr": 0,
+          "upvector_adr": 12,
+          "feet_adrs": [
+            43,
+            40,
+            49,
+            46
+          ],
+          "lowers": [
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929
+          ],
+          "uppers": [
+            0.785398,
+            2.29511,
+            -0.25440200000000024,
+            0.785398,
+            2.24363,
+            -0.2556479999999999,
+            0.785398,
+            2.29511,
+            -0.24706699999999993,
+            0.785398,
+            2.29511,
+            -0.2482820000000001
+          ],
+          "nq": 19,
+          "nu": 12,
+          "nv": 18,
+          "default_pose": [
+            0.0,
+            1.04,
+            -1.8,
+            0.0,
+            1.04,
+            -1.8,
+            0.0,
+            1.04,
+            -1.8,
+            0.0,
+            1.04,
+            -1.8
+          ]
+        }
+      }
     }
   }
 }

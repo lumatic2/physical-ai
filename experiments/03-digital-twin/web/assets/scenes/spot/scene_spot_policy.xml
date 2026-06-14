@@ -1,0 +1,33 @@
+<!-- Spot feetonly policy scene for the web bundle (M11). Mirrors playground's
+     scene_mjx_feetonly_flat_terrain.xml — same robot model (spot_mjx_feetonly.xml, which carries
+     the policy sensors gyro/upvector/<foot>_pos) and IDENTICAL floor (contact byte-parity). The
+     contact sensors (sensor.xml) are omitted: not part of the policy obs and unsupported by
+     wasm 0.0.7. Only visual textures differ from training (no effect on dynamics/obs). -->
+<mujoco model="spot feetonly policy">
+  <include file="spot_mjx_feetonly.xml"/>
+
+  <statistic center="0 0 0.1" extent="0.8" meansize="0.04"/>
+
+  <visual>
+    <headlight diffuse=".8 .8 .8" ambient=".2 .2 .2" specular="1 1 1"/>
+    <global azimuth="120" elevation="-20" offwidth="1280" offheight="960"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="32" height="512"/>
+    <texture type="2d" name="groundplane" builtin="checker" width="300" height="300"
+      rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="0 0 0.01" type="plane" material="groundplane" contype="1" conaffinity="0"
+      priority="1" friction="0.6" condim="3"/>
+  </worldbody>
+
+  <keyframe>
+    <key name="home"
+      qpos="0 0 0.46  1 0 0 0  0 1.04 -1.8  0 1.04 -1.8  0 1.04 -1.8  0 1.04 -1.8"
+      ctrl="0 1.04 -1.8  0 1.04 -1.8  0 1.04 -1.8  0 1.04 -1.8"/>
+  </keyframe>
+</mujoco>
