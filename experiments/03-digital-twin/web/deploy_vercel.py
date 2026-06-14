@@ -14,7 +14,7 @@ TOKEN = os.environ["VERCEL_TOKEN"]
 API = "https://api.vercel.com"
 
 # Only the files the hosted site needs (deps come from CDN, so no node_modules).
-INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".png", ".onnx"}
+INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".obj", ".png", ".onnx"}
 EXCLUDE_DIRS = {"node_modules", "media", ".vercel", "qa"}
 EXCLUDE_NAMES = {"serve_coi.py", "deploy_vercel.py", "README.md", "mujoco_wasm.patch", ".gitignore"}
 
