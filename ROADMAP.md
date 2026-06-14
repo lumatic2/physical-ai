@@ -78,7 +78,7 @@
 - [x] **obs parity** ✅ — 핸드오프 가정(Go1 유사 48-d) **틀림**: Spot 81-d, gait clock·linear velocity 없음, 대신 stateful `qpos_error_history`(36)+`feet_pos`(12). ONNX parity **4.07e-6**(5층 동적 export).
 - [x] **번들 씬 + 웹 live closed-loop** ✅ — 번들 씬 obs byte-parity **2.91e-7**(env PD게인 런타임 오버라이드 Kp400→300·Kd2→1을 xml에 박아 수렴). main.js 슬롯 빌더 확장(go1/G1 무회귀). 웹 0.93m/s. wasm OK·로컬 QA PASS.
 - [x] **Go1↔Spot 비교 노트** ✅ — exp06 §4: obs 아키텍처는 정책별 상이(재사용 불가)지만 파이프라인은 동일 골격(흡수). byte-parity의 적은 숨은 런타임 오버라이드.
-- ✅ **완료 기준 충족**: `?exp=spot-walk` 라이브 보행. **학습 정책 임베디먼트 3종**(Go1 4족·G1 휴머노이드·Spot 4족), 4족 2종 비교 서사.
+- ✅ **완료 기준 충족**: `?exp=spot-walk` **🟢 라이브 보행**(deploy `dpl_BLdS5XaC`, 라이브 QA PASS — x 7.44m·0.93m/s·height 0.43·consoleErrors 0, 로컬과 byte-identical). **학습 정책 임베디먼트 3종**(Go1 4족·G1 휴머노이드·Spot 4족), 4족 2종 비교 서사.
 
 ### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
 - [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
