@@ -183,9 +183,19 @@ export class MuJoCoDemo {
       'position:absolute;left:10px;bottom:10px;color:#fff;font:13px/1.6 Arial;' +
       'background:rgba(0,0,0,0.45);padding:8px 12px;border-radius:8px;z-index:1000;' +
       'max-width:46vw;pointer-events:none;';
-    const lines = ['🖱 로봇 드래그 = 밀기 · 빈곳 드래그 = 회전 · 휠 = 줌'];
-    if (this.policy) { lines.unshift('⌨ WASD 이동 · Q/E 회전 · Space 일시정지'); }
-    if (this.teleopCfg) { lines.push('🤏 Teleop 켠 뒤 드래그 = 팔 끝 IK 조종'); }
+    // Touch devices have no keyboard — steer via the command sliders instead of WASD, and the
+    // mouse verbs become touch gestures (DragStateManager/OrbitControls are pointer-event based,
+    // so the drag/orbit/zoom interactions themselves already work under touch).
+    const coarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    const lines = [coarse
+      ? '👆 로봇 끌기 = 밀기 · 한 손가락 = 회전 · 두 손가락 = 줌'
+      : '🖱 로봇 드래그 = 밀기 · 빈곳 드래그 = 회전 · 휠 = 줌'];
+    if (this.policy) {
+      lines.unshift(coarse ? '🕹 슬라이더로 조종 (vx/vy/vyaw)' : '⌨ WASD 이동 · Q/E 회전 · Space 일시정지');
+    }
+    if (this.teleopCfg) {
+      lines.push('🤏 Teleop 켠 뒤 ' + (coarse ? '끌기' : '드래그') + ' = 팔 끝 IK 조종');
+    }
     hint.innerHTML = lines.join('<br>');
     this.container.appendChild(hint);
   }

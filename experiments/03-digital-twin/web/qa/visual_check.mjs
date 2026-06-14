@@ -65,7 +65,12 @@ async function main() {
            '--disable-backgrounding-occluded-windows',
            '--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist'],
   });
-  const page = await browser.newPage({ viewport: { width: 1280, height: 960 } });
+  // --mobile: iPhone-14-class portrait viewport (390x844) to verify the layout/controls on a phone.
+  const mobile = args.includes('--mobile');
+  const page = await browser.newPage({
+    viewport: mobile ? { width: 390, height: 844 } : { width: 1280, height: 960 },
+    hasTouch: mobile, isMobile: mobile,
+  });
 
   const consoleErrors = [];
   page.on('console', m => { if (m.type() === 'error') consoleErrors.push(m.text()); });
