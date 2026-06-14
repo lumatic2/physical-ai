@@ -70,7 +70,7 @@
   - verify(나머지): 더미 임베디먼트 1종을 가이드만 보고 bespoke 0줄 추가 — 가이드 문서(step 4)와 함께 최종 확인
 - [x] **메시 변환 가드 코드화** ✅ (2026-06-15) — `decimate_meshes.py`가 `m.is_watertight`로 자동 분기: watertight만 simplify, non-watertight(열린 shell)는 KEPT(무감축, 재export만), HARDCAP(150k면) 초과 시 WARN. 박제 함정 #1(fast_simplification이 열린 shell을 파편화)을 코드가 막음. verify(WSL venv, 실 메시 사본): panda link1(12516f, watertight)→decimated 4000f, go1 trunk(20000f, **non-watertight**)→KEPT 20000f(붕괴 안 함), 200f watertight→passthrough.
 - [x] **추가 가이드 문서** ✅ (2026-06-15) — [`ADDING_EMBODIMENTS.md`](experiments/03-digital-twin/ADDING_EMBODIMENTS.md): 씬 번들→감축→레지스트리 항목→궤적→`add_scene.sh`→배포 N단계 + 박제 함정→코드화 매핑 표. 03 README에서 링크.
-- ✅ **완료 기준 충족** — 더미 임베디먼트 `dummy-arm`(2링크 팔, self-contained primitives MJCF + experiments.json 1항목, **파이프라인 코드 0줄**)을 `bash add_scene.sh dummy-arm --record` 한 커맨드로 추가: smoke PASS·wasm OK(nq2/nu2)·render 90f·sync·visual PASS✅(스크린샷 육안 확인 — 팔·tip 정상 렌더). 라이브 `?exp=dummy-arm`(셀렉터 없어 쇼케이스 무오염). + experiments.json 단일 소스(step1).
+- ✅ **완료 기준 충족** — 더미 임베디먼트 `dummy-arm`(2링크 팔, self-contained primitives MJCF + experiments.json 1항목, **파이프라인 코드 0줄**)을 `bash add_scene.sh dummy-arm --record` 한 커맨드로 추가: smoke PASS·wasm OK(nq2/nu2)·render 90f·sync·visual PASS✅(스크린샷 육안 확인 — 팔·tip 정상 렌더). 로컬 QA PASS·커밋 완료, **프로덕션 배포 대기**(`deploy_vercel.py` 실행 시 `?exp=dummy-arm`; 셀렉터 없어 쇼케이스 무오염). + experiments.json 단일 소스(step1).
 
 ### M11 — 학습 정책 갤러리 확장 (Spot 4족 보행) ⬜ [독립]
 > 플랫폼(M10)이 새 정책을 흡수하는지 dogfood. 4족 정책 2종(Go1↔Spot) 비교로 서사 확장.
