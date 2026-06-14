@@ -166,6 +166,24 @@ export class MuJoCoDemo {
         if (!v) { this.seedFrame(0); }
       });
     }
+
+    this.addControlHints();
+  }
+
+  // Always-on control hint (bottom-left). Discoverability for the interactive controls — the
+  // teleop only matters if the visitor knows it's there. Embodiment-aware: keyboard-steer line
+  // appears only for policy (joystick) experiments; the drag/orbit line is universal. The arm
+  // EE-teleop line is added in step 3. pointer-events:none so it never blocks a drag.
+  addControlHints() {
+    const hint = document.createElement('div');
+    hint.style.cssText =
+      'position:absolute;left:10px;bottom:10px;color:#fff;font:13px/1.6 Arial;' +
+      'background:rgba(0,0,0,0.45);padding:8px 12px;border-radius:8px;z-index:1000;' +
+      'max-width:46vw;pointer-events:none;';
+    const lines = ['🖱 로봇 드래그 = 밀기 · 빈곳 드래그 = 회전 · 휠 = 줌'];
+    if (this.policy) { lines.unshift('⌨ WASD 이동 · Q/E 회전 · Space 일시정지'); }
+    hint.innerHTML = lines.join('<br>');
+    this.container.appendChild(hint);
   }
 
   // (A) Live learned-policy closed loop. ONNX policy + obs construction are byte-parity with
