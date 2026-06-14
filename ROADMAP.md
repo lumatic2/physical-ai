@@ -2,7 +2,7 @@
 
 > 이 레포의 마일스톤·완료 이력. **포트폴리오 모드** — 완료 기준은 "내가 이해했다"(내부)가 아니라
 > "남이 5분 보고 납득한다"(외부). 마일스톤마다 보여줄 수 있는 산출물(showable artifact)이 나온다.
-> 마지막 업데이트: 2026-06-12
+> 마지막 업데이트: 2026-06-14
 
 ## 왜 이 레포 (포트폴리오 thesis)
 
@@ -74,6 +74,7 @@
 - [x] **Phase 1 학습 spike** — Playground Go1 joystick PPO 200M steps **8.8분**(RTX5090, jax 0.9.2) → 손작성 ONNX(parity 4.8e-6) → native mujoco 보행 12s·11.8m·0.99m/s. [experiment 04](experiments/04-go1-rl-walk/README.md) (`66f7ff5`).
 - [x] **Phase 2 데스크탑 통합** — go1 씬 self-contained 번들 + `policy` 블록 + `rollout_policy.py`(closed-loop). 번들 씬 obs parity 0.0 + 보행 mp4 (`5f74ead`).
 - [x] **Phase 3 웹 live closed-loop** — `onnxruntime-web` 브라우저 추론(obs→onnx→ctrl→mj_step@50Hz). JS obs builder byte-parity 0.0, 카메라 추적. **라이브 `?exp=go1-walk` 보행 7.84m + 0 콘솔에러** (`c535311`).
+- [x] **후속 다듬기 (2026-06-14)** — go1 메시 깨짐 수정 + **자동 시각 QA 하네스**(qaStep+playwright, Claude가 라이브 자가검증) + command 조이스틱 슬라이더 + 배포 무캡(SHA 업로드) + **Shadow Hand 갤러리 추가**(축 A 폭). 라이브 4종(팔·사족+정책·휴머노이드·손) QA PASS. Spot·Panda·G1은 별도 세션 보류.
 - 완료 기준: 라이브에서 직접 학습한 정책이 실시간으로 Go1을 걷게 한다 + 0 콘솔 에러. ✅ **달성** — https://physical-ai-arm.askewly.com/?exp=go1-walk
 
 ### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
@@ -94,6 +95,8 @@
 
 - 2026-06-12 (후속3) — **M8 착수: 트윈을 학습 정책 sandbox로**. 저가팔 구매 비현실 → M7(실물) 보류, sim sandbox로 방향 전환. ① **config-driven 하네스 리팩터**(`0ecb94f`): SO-100 하드코딩(smoke/render/web)을 `experiments.json` 레지스트리 + `harness.py` + 범용 물리 레코더 `record_trajectory.py`로 일반화. `make_pick_trajectory.py`(IK)는 불변. humanoid-settle을 bespoke 0줄로 record→smoke→render→웹(`?exp=`) 통과시켜 일반성 실증. 라이브 재배포(기본값 SO-100 무변화, 0 에러). ② **축 설계 [ADR 0005](docs/adr/0005-learned-policy-sandbox.md)**(`b98198c`): A+B 결합(갤러리+직접학습), 파일럿=Go1 보행, MuJoCo Playground 학습→ONNX→onnxruntime-web closed-loop. ADR 0004 되돌림 조건 (a) 발동. 외부 리서치로 경로 검증(Playground Go1 5분 학습·50Hz ONNX·RSS2025 브라우저 데모). obs parity·JAX-on-Blackwell(rsl_rl 폴백)이 핵심 리스크.
 - 2026-06-13 — **M8 완주: 직접 학습한 정책이 브라우저에서 Go1을 걷게 한다**. **Phase 1**([exp 04](experiments/04-go1-rl-walk/README.md), `66f7ff5`): WSL+RTX5090서 Playground `Go1JoystickFlatTerrain` PPO 200M **8.8분**(reward 0.001→29.7) → 손작성 ONNX(onnx vs jax parity 4.8e-6) → native mujoco closed-loop 12s·11.8m·0.99m/s. 함정: brax0.14.2↔jax0.10 비호환→**jax 0.9.2 다운핀**(sm_120 PASS), impl=warp→jax. **Phase 2**(`5f74ead`): go1 씬을 `web/assets/scenes/go1/`에 self-contained 번들, `policy` 블록 + `rollout_policy.py`(번들 씬 closed-loop). 번들 씬 rollout 첫5 obs == 학습 golden **0.0**(씬 바이트 동일). 함정: mj_step 후 sensordata 1-substep stale. **Phase 3**(`c535311`): `onnxruntime-web` 브라우저 closed-loop(obs→onnx→ctrl→mj_step@50Hz, 별도 제어 루프), 카메라가 free-joint 루트 추적. JS obs builder byte-parity **0.0**. 헤드리스+node서버로 검증(throttle 우회 400스텝 7.9m). 메시 데시메이트(15MB→5.9MB)로 Vercel 배포(`bd7824a`). **라이브 `?exp=go1-walk` 보행 7.84m + 0 콘솔에러** 확인. obs parity(최대리스크) 단일 진실원천(obs_spec→번들씬→policy.indices→JS)으로 해소. Codex adversarial 교차검증으로 default_pose 누락 + golden fixture 보강(`fef8d5e`).
+
+- 2026-06-14 — **M8 후속: 라이브 다듬기 + 갤러리 폭 + 자동 시각 QA**. ① go1 비주얼 메시 깨짐 수정 — `bd7824a`가 5메시를 6000면 고정 데시메이트(trunk 112k→6k, 95% 손실)해 점 무더기로 렌더되던 걸, trimesh weld 후 per-mesh 예산(trunk 20k 등 2.45MB) 재데시메이트(`f3a6921`). ② **자동 시각 QA 하네스**(`7b46ece`): `window.demo.qaStep`(결정론적 N스텝+render, 헤드리스 setTimeout throttle 우회) + playwright `qa/visual_check.mjs`(serve/--live, 스크린샷+보행 diagnostics assert) → Claude가 육안 대신 라이브 자가검증. 이걸로 go1 메시 깨짐을 잡음. ③ go1 command 조이스틱 슬라이더(vx/vy/vyaw)(`069e4f1`). ④ 배포 SHA 파일업로드 API 전환(`42a302b`) — 인라인 단일-POST ~10MB 캡 제거로 갤러리 확장 가능. ⑤ **Shadow Hand 갤러리 추가**(`fa9d1e3` + `.obj` 배포 누락 404 수정 `9b9c8f9`): 손가락 굴곡 scripted ctrl-sweep replay(`record_ctrl_sweep.py`), 메시 replay용 `qaSeek` QA 훅. ⑥ C3 그라운드워크(`f9aa01f`): 씬 로더 하드코딩 목록→`manifest.json`(gen_scene_manifest.py), 범용 `decimate_meshes.py`, QA goto networkidle→domcontentloaded(무거운 씬). **라이브 갤러리 4종 전부 QA PASS**(go1·shadow-hand·humanoid·so100). Spot·Panda·G1은 원본 Meshlab OBJ의 mujoco-js 로드(trimesh 재export로 해결)·표면 품질(점박이, 공유 렌더 z-fighting/노멀 의심) 튜닝이 모델마다 비자명(Panda서 확인)이라 별도 세션 보류. 7커밋 push(`20c9ab9..f9aa01f`).
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
