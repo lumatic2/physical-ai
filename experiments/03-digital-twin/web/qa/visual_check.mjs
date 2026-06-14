@@ -31,6 +31,8 @@ const steps  = parseInt((args.find(a => a.startsWith('--steps=')) || '--steps=40
 const chunk  = parseInt((args.find(a => a.startsWith('--chunk=')) || '--chunk=50').split('=')[1], 10);
 const cmdArg = args.find(a => a.startsWith('--cmd='));   // e.g. --cmd=1,0,1  (vx,vy,vyaw) to steer
 const cmd    = cmdArg ? cmdArg.split('=')[1].split(',').map(Number) : null;
+const keysArg = args.find(a => a.startsWith('--keys=')); // e.g. --keys=w  hold real keys (WASD/QE)
+const keys   = keysArg ? keysArg.split('=')[1].split('') : null;
 const PORT   = 8132;
 const BASE   = live ? 'https://physical-ai-arm.askewly.com' : `http://127.0.0.1:${PORT}`;
 const URL    = `${BASE}/?exp=${exp}`;
@@ -89,6 +91,16 @@ async function main() {
       await page.evaluate(c => { for (let i = 0; i < c.length; i++) window.demo.pol.command[i] = c[i]; }, cmd);
       console.log('[qa] command set to', cmd);
     }
+    // Keyboard steering test: hold real keys (page.keyboard.down fires the keydown the
+    // bindCommandKeys listener catches) and assert the policy command vector actually moved
+    // off zero — proves the WASD→command path, not just the slider path (--cmd).
+    let keysCmd = null;
+    if (keys) {
+      await page.click('canvas').catch(() => {});   // focus the page so key events land
+      for (const k of keys) { await page.keyboard.down(k); }
+      keysCmd = await page.evaluate(() => Array.from(window.demo.pol.command));
+      console.log('[qa] keys held', keys.join('+'), '-> command', keysCmd);
+    }
     await page.screenshot({ path: join(OUT_DIR, `${exp}_000.png`) });
     for (let done = 0; done < steps; done += chunk) {
       diag = await page.evaluate(n => window.demo.qaStep(n), chunk);
@@ -99,8 +111,10 @@ async function main() {
     // Forward walk: assert x-progress. Steering test (--cmd): assert it moved off the origin
     // (curved trajectories may have small/negative x), upright, no NaN/console errors.
     const moved = diag ? Math.hypot(diag.x, diag.y) : 0;
-    const progressed = cmd ? moved > 0.5 : (diag && diag.x > 0.3);
-    pass = diag && !diag.nan && !diag.fell && progressed && consoleErrors.length === 0;
+    const progressed = (cmd || keys) ? moved > 0.5 : (diag && diag.x > 0.3);
+    // Keyboard test additionally requires the held keys to have driven the command off zero.
+    const keysOk = !keys || (keysCmd && keysCmd.some(v => Math.abs(v) > 1e-6));
+    pass = diag && !diag.nan && !diag.fell && progressed && keysOk && consoleErrors.length === 0;
   } else {
     // Replay experiment: sample frames across the trajectory and screenshot each.
     for (const frac of [0, 0.33, 0.66, 1.0]) {

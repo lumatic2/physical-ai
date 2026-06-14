@@ -209,11 +209,43 @@ export class MuJoCoDemo {
   addCommandGUI() {
     const c = this.pol.command;
     const r = this.pol.cmdRange || { vx: [-1.0, 1.5], vy: [-0.8, 0.8], vyaw: [-1.5, 1.5] };
-    const f = this.gui.addFolder('Command (drag to steer)');
-    f.add(c, '0', r.vx[0], r.vx[1], 0.05).name('vx  forward');
-    f.add(c, '1', r.vy[0], r.vy[1], 0.05).name('vy  strafe');
-    f.add(c, '2', r.vyaw[0], r.vyaw[1], 0.05).name('vyaw  turn');
+    const f = this.gui.addFolder('Command (drag or WASD/QE to steer)');
+    this.cmdControllers = [
+      f.add(c, '0', r.vx[0], r.vx[1], 0.05).name('vx  forward'),
+      f.add(c, '1', r.vy[0], r.vy[1], 0.05).name('vy  strafe'),
+      f.add(c, '2', r.vyaw[0], r.vyaw[1], 0.05).name('vyaw  turn'),
+    ];
     f.open();
+    this.bindCommandKeys(r);
+  }
+
+  // Keyboard steering: hold W/S → +/- vx, A/D → +/- vy (left/right), Q/E → +/- vyaw (turn
+  // left/right). A held key sets that command axis to the range edge; releasing it returns the
+  // axis to 0. Keys are tracked in a set so axes combine (W+A = forward-left). The command is
+  // part of the policy obs (joystick-conditioned), so this drives the live robot exactly like
+  // the sliders — sliders are refreshed via updateDisplay so the GUI mirrors the keys.
+  bindCommandKeys(r) {
+    const c = this.pol.command;
+    const held = new Set();
+    const keys = new Set(['w', 'a', 's', 'd', 'q', 'e']);
+    const apply = () => {
+      c[0] = held.has('w') ? r.vx[1]   : held.has('s') ? r.vx[0]   : 0;
+      c[1] = held.has('a') ? r.vy[1]   : held.has('d') ? r.vy[0]   : 0;
+      c[2] = held.has('q') ? r.vyaw[1] : held.has('e') ? r.vyaw[0] : 0;
+      for (const ctl of this.cmdControllers) { ctl.updateDisplay(); }
+    };
+    // Ignore keystrokes while a GUI text field has focus, so typing a value isn't hijacked.
+    const typing = (e) => e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
+    window.addEventListener('keydown', (e) => {
+      const k = e.key.toLowerCase();
+      if (!keys.has(k) || typing(e)) { return; }
+      held.add(k); apply(); e.preventDefault();
+    });
+    window.addEventListener('keyup', (e) => {
+      const k = e.key.toLowerCase();
+      if (!keys.has(k)) { return; }
+      held.delete(k); apply(); e.preventDefault();
+    });
   }
 
   // Build the policy obs by walking the experiment's obs_layout (named slots), so a new
