@@ -30,7 +30,7 @@
 | M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
 | M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 replay(pick-and-place 3단 스택) | ✅ |
 | M8 | 학습 정책 sandbox (sim) | 직접 학습한 정책이 브라우저에서 몸을 제어한다 | live Go1 보행(onnxruntime-web) + config-driven 하네스 | ✅ |
-| M9 | 인터랙티브 텔레옵 | 트윈을 *관전*이 아니라 *내가 직접 조작*한다 | 키보드로 보행 로봇 조종 + 마우스로 팔 EE 텔레옵 | 🟡 구현·로컬QA 완료 (배포 대기) |
+| M9 | 인터랙티브 텔레옵 | 트윈을 *관전*이 아니라 *내가 직접 조작*한다 | 키보드로 보행 로봇 조종 + 마우스로 팔 EE 텔레옵 ([라이브](https://physical-ai-arm.askewly.com)) | ✅ |
 | M10 | 확장 가능한 트윈 플랫폼 | 새 임베디먼트·정책을 저마찰로 늘린다 | 단일-소스 config + 추가 가이드(문서만 보고 bespoke 0줄 추가) | ⬜ |
 | M11 | 학습 정책 갤러리 확장 | 플랫폼이 새 정책을 흡수한다 (4족 2종 비교) | live Spot 보행 정책(onnxruntime-web) + Go1↔Spot 비교 | ⬜ |
 | M7 | 실물 도달 (하드웨어 게이트, 보류) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
@@ -59,7 +59,7 @@
   - verify: `qa/visual_check.mjs --teleop` so100 잔차 1e-16, panda 0.141→0.080, 0 콘솔에러 ✅
 - [x] **조작 UI + 모바일/터치 폴백** — bottom-left 안내 오버레이(임베디먼트·포인터 인식), 터치 제스처 동작(pointer 이벤트). QA `--mobile` 추가. (`8090888`)
   - verify: 모바일 390×844 go1 보행·so100 텔레옵 PASS, 터치-aware 문구 렌더 확인 ✅
-- 완료 기준: 키보드로 보행 로봇 조종 + 마우스로 팔 포즈 텔레옵 + 0 콘솔에러. ✅ **로컬 QA 전부 PASS** (go1·g1 키보드 보행, so100·panda IK 텔레옵, 모바일). ⏳ 라이브 배포는 outward 단계 — 별도 승인.
+- 완료 기준: 키보드로 보행 로봇 조종 + 마우스로 팔 포즈 텔레옵 + 0 콘솔에러. ✅ **달성·배포 완료** — 로컬 + **라이브** QA 전부 PASS(go1 키보드 4.4m·so100 IK 잔차 0). https://physical-ai-arm.askewly.com
 
 ### M10 — 확장 가능한 트윈 플랫폼 (갤러리를 저마찰로 늘린다) ⬜
 > 도구를 *플랫폼*으로. 지금은 새 임베디먼트 추가에 박제된 함정 다수(experiments.json 이중화,
@@ -105,7 +105,7 @@
 
 - 2026-06-14 (후속2) — **갤러리 폭 완성(축 A) + G1 휴머노이드 보행 정책(축 B)**. ① **Spot·G1 floating-base settle** 추가(position kp keyframe hold), **Franka Panda** 추가 — 지난 세션 보류였던 "표면 점박이"를 **데스크탑 MuJoCo 렌더로 격리**해 web이 아닌 메시 데이터 문제로 확정(이전 "공유 렌더 코드" 가설 오진), 원인은 `fast_simplification`이 Franka의 non-watertight 코스메틱 shell을 붕괴(see-through 슬라이버)시킨 것 → 총 134k면뿐이라 **simplify 없이 바이너리 STL(6.7MB)** 로 변환해 해소. 부수 수정: mujocoUtils 바이너리 확장자 대소문자 무관(G1 `.STL`). 갤러리 **8종**(`02765e5`·`cb5a439`). ② **G1 휴머노이드 보행 정책**([exp 05](experiments/05-g1-rl-walk/README.md), `e6dd6c5`): Go1(exp 04) 파이프라인을 휴머노이드에 적용 — PPO 200M 46.5분(reward −6.4→+14.8) → ONNX(parity 2.1e-6) → native 9.38m 보행 → 번들 씬 **obs byte-parity 0.00e+00**(layout+scene) → 브라우저 live closed-loop 5.0m·0에러. **난관=obs parity**: Go1 48-d와 달리 103-d·command 중간·**gait phase clock**(stateful 외부 클록 native/desktop/JS 3곳 일치). main.js obs builder를 `obs_layout` 기반 일반 빌더로(go1·G1 한 경로, go1 회귀 PASS). 학습 정책 임베디먼트 **2종**(4족 Go1 + 휴머노이드 G1). ③ 패키징: README(갤러리 8종·학습정책·마일스톤 현행화)·exp 03/05 README·ROADMAP 갱신 + **askewly 블로그 2편째 "하드웨어 없이 로봇을 걷게 하는 법"** 발행(anti-AI verify PASS, 큐리 커버, R2+KV 라이브). 커밋 `02765e5`·`cb5a439`·`e6dd6c5`·`65a676b` origin push 완료.
 
-- 2026-06-14 (후속3) — **M9 인터랙티브 텔레옵 구현·로컬 QA 완주**(배포 대기). 트윈을 *관전*에서 *직접 조작*으로 격상. **step1** 키보드 보행 조종(WASD=vx/vy, Q/E=vyaw hold-to-drive→`pol.command` 직결, 슬라이더 동기)(`244d418`) — QA `--keys` 모드 신설, go1 5.9m·g1 3.4m PASS. **step2** 조작 안내 오버레이(bottom-left, 임베디먼트별)(`a87bb49`) — 드래그-힘은 이미 정책+물리 루프 양쪽 배선 확인, 실질은 discoverability. **step3** 마우스 EE 텔레옵(`5071668`) — 그리퍼 드래그→**유한차분 Jacobian damped-LS IK**(wasm `mj_jacBody` 출력인자 회피, qpos/xpos+mj_forward만 사용). SO-100·Panda `teleop:true`, 비-joint 액추에이터(Panda 텐던 그리퍼) 제외·관절/ctrl 클램프. QA `--teleop`: so100 잔차 1e-16(완전추종)·panda 0.141→0.080(컨토트 sweep-start 한계). 5-DOF 도달 한계는 정직 추종(M6/ADR 0004). **step4** 모바일/터치 폴백(`8090888`) — coarse pointer 감지→안내를 슬라이더/손가락으로(WASD 숨김), QA `--mobile`(390×844) go1·so100-텔레옵 PASS. 4스텝 4커밋, 라이브 배포는 outward 단계로 보류.
+- 2026-06-14 (후속3) — **M9 인터랙티브 텔레옵 구현·로컬 QA 완주**(배포 대기). 트윈을 *관전*에서 *직접 조작*으로 격상. **step1** 키보드 보행 조종(WASD=vx/vy, Q/E=vyaw hold-to-drive→`pol.command` 직결, 슬라이더 동기)(`244d418`) — QA `--keys` 모드 신설, go1 5.9m·g1 3.4m PASS. **step2** 조작 안내 오버레이(bottom-left, 임베디먼트별)(`a87bb49`) — 드래그-힘은 이미 정책+물리 루프 양쪽 배선 확인, 실질은 discoverability. **step3** 마우스 EE 텔레옵(`5071668`) — 그리퍼 드래그→**유한차분 Jacobian damped-LS IK**(wasm `mj_jacBody` 출력인자 회피, qpos/xpos+mj_forward만 사용). SO-100·Panda `teleop:true`, 비-joint 액추에이터(Panda 텐던 그리퍼) 제외·관절/ctrl 클램프. QA `--teleop`: so100 잔차 1e-16(완전추종)·panda 0.141→0.080(컨토트 sweep-start 한계). 5-DOF 도달 한계는 정직 추종(M6/ADR 0004). **step4** 모바일/터치 폴백(`8090888`) — coarse pointer 감지→안내를 슬라이더/손가락으로(WASD 숨김), QA `--mobile`(390×844) go1·so100-텔레옵 PASS. 4스텝 4커밋. **Vercel 재배포 후 라이브 QA PASS**(키보드 go1 4.4m·so100 텔레옵 잔차 0) → https://physical-ai-arm.askewly.com 반영.
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
