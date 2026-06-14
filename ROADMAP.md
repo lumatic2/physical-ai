@@ -66,8 +66,8 @@
 > 수동 manifest 재생성, 메시 변환 모델별 비자명). 추가 마찰을 코드·문서로 제거한다.
 - [x] **experiments.json 단일 소스화** ✅ (2026-06-14) — `03/` 루트가 canonical(파이썬 툴링이 읽고 씀), `web/`는 파생. `sync_web.py`가 03/ 루트 모든 `*.json`(experiments.json + 궤적 8종)을 web/로 멱등 복사(자동 발견 → 새 궤적 누락 불가). `--check` 가드 + `deploy_vercel.py` 시작 시 자동 sync → 프로덕션이 stale 사본 배포 불가능. 수동 `cp` 폐기. (박제 함정 #2 제거)
   - verify: 한 곳 수정 → 양쪽 자동 반영, sync 누락 불가능
-- [ ] **씬 추가 파이프라인 일원화** — record→smoke→render→`gen_scene_manifest`→`decimate_meshes`→QA를 한 커맨드/문서로 묶기. (manifest·decimate 수동 단계 자동화)
-  - verify: 더미 임베디먼트 1종을 가이드만 보고 bespoke 코드 0줄로 추가
+- [x] **씬 추가 파이프라인 일원화** ✅ (2026-06-15) — `add_scene.sh <exp>`가 결정론적 체인(decimate→manifest→record→smoke→loadtest→render→sync→visual)을 한 커맨드로 fail-fast 실행. 모든 step은 experiments.json(harness.py) 구동 — 임베디먼트별 하드코딩 0. `--record`(generic recorder)·`--decimate <dir>`(WSL venv, sed로 /mnt 경로 변환→trap#6 회피)·`--skip-render/--skip-qa` 플래그. verify: so100-stack 풀런 EXIT=0(smoke PASS·wasm OK·render 442f·visual PASS✅), decimate WSL 경로 무뮤테이션 probe 통과.
+  - verify(나머지): 더미 임베디먼트 1종을 가이드만 보고 bespoke 0줄 추가 — 가이드 문서(step 4)와 함께 최종 확인
 - [ ] **메시 변환 가드 코드화** — watertight 여부 자동 판정 → STL 무감축 vs decimate 분기. (박제 함정 #1: fast_simplification non-watertight 붕괴를 코드가 막게)
 - [ ] **추가 가이드 문서** — `docs/` 또는 web README에 "새 임베디먼트/정책 추가 N단계".
 - 완료 기준: **문서만 보고 새 임베디먼트 1종을 bespoke 코드 0줄로 추가** 가능 + experiments.json 단일 소스.
