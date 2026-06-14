@@ -6,12 +6,16 @@ Files are uploaded individually by SHA1 (POST /v2/files) first, then the deploym
 references them by {file, sha, size}. This lifts the ~10MB single-POST body limit of the
 old inline-base64 approach, so the asset gallery (multiple robot mesh sets) can grow.
 Run:  python deploy_vercel.py"""
-import hashlib, json, os, sys, time, urllib.request, urllib.error
+import hashlib, json, os, subprocess, sys, time, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 NAME = "physical-ai-so100-twin"
 TOKEN = os.environ["VERCEL_TOKEN"]
 API = "https://api.vercel.com"
+
+# Single-source guard: mirror canonical data JSONs from 03/ root into web/ before upload,
+# so a forgotten sync can never ship a stale copy to production. See ../sync_web.py.
+subprocess.run([sys.executable, os.path.join(os.path.dirname(ROOT), "sync_web.py")], check=True)
 
 # Only the files the hosted site needs (deps come from CDN, so no node_modules).
 INCLUDE_EXT = {".html", ".js", ".json", ".xml", ".stl", ".obj", ".png", ".onnx"}

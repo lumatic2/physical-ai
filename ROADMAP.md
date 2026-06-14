@@ -64,7 +64,7 @@
 ### M10 — 확장 가능한 트윈 플랫폼 (갤러리를 저마찰로 늘린다) ⬜
 > 도구를 *플랫폼*으로. 지금은 새 임베디먼트 추가에 박제된 함정 다수(experiments.json 이중화,
 > 수동 manifest 재생성, 메시 변환 모델별 비자명). 추가 마찰을 코드·문서로 제거한다.
-- [ ] **experiments.json 단일 소스화** — `web/` + `03/` 이중 사본을 한 곳(빌드/복사 스크립트 또는 심볼릭)으로 통일. (박제 함정 #2 제거)
+- [x] **experiments.json 단일 소스화** ✅ (2026-06-14) — `03/` 루트가 canonical(파이썬 툴링이 읽고 씀), `web/`는 파생. `sync_web.py`가 03/ 루트 모든 `*.json`(experiments.json + 궤적 8종)을 web/로 멱등 복사(자동 발견 → 새 궤적 누락 불가). `--check` 가드 + `deploy_vercel.py` 시작 시 자동 sync → 프로덕션이 stale 사본 배포 불가능. 수동 `cp` 폐기. (박제 함정 #2 제거)
   - verify: 한 곳 수정 → 양쪽 자동 반영, sync 누락 불가능
 - [ ] **씬 추가 파이프라인 일원화** — record→smoke→render→`gen_scene_manifest`→`decimate_meshes`→QA를 한 커맨드/문서로 묶기. (manifest·decimate 수동 단계 자동화)
   - verify: 더미 임베디먼트 1종을 가이드만 보고 bespoke 코드 0줄로 추가

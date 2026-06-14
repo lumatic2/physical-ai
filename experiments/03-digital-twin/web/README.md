@@ -39,6 +39,8 @@ python serve_coi.py 8132    # COOP/COEP 헤더 필요 (WASM). deps는 CDN이라 
 순수 정적 — 빌드 없음. [`vercel.json`](vercel.json)이 COOP/COEP 헤더만 설정. `web/`를 루트로 올리면 끝.
 (이 레포는 REST API 직접 업로드로 배포: [`deploy_vercel.py`](deploy_vercel.py), `VERCEL_TOKEN` env 필요.)
 
+> **데이터 단일 소스**: `experiments.json`·궤적 JSON의 canonical 사본은 `03/` 루트(파이썬 툴링이 읽고 씀). `web/`는 파생 — 직접 편집하지 말고 `03/`에서 고친 뒤 `python ../sync_web.py`로 미러. `deploy_vercel.py`가 업로드 전 자동 sync하므로 프로덕션은 항상 최신.
+
 ## upstream 대비 변경
 
 베이스: [zalo/mujoco_wasm](https://github.com/zalo/mujoco_wasm) (ISC). 주요 delta:
