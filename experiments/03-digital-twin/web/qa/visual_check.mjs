@@ -68,7 +68,10 @@ async function main() {
   page.on('pageerror', e => consoleErrors.push(String(e)));
 
   console.log(`[qa] navigate ${URL}`);
-  await page.goto(URL, { waitUntil: 'networkidle', timeout: 120000 });
+  // Use 'domcontentloaded' not 'networkidle': heavy scenes (many MB of meshes across dozens
+  // of files) keep the network busy past the timeout. The real readiness gate is the
+  // window.demo.model waitForFunction below.
+  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
 
   // Wait for the model to load (mujoco wasm from CDN — slow). Policy experiments additionally
   // need the onnx session before we can drive qaStep.
