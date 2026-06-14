@@ -432,6 +432,36 @@
           ]
         }
       }
+    },
+    "dummy-arm": {
+      "title": "Dummy 2-link arm — M10 zero-code add 검증용 (replay)",
+      "scene": "dummy/scene_dummy.xml",
+      "trajectory": "dummy_arm_trajectory.json",
+      "ee_body": "tip",
+      "render_out": "media/dummy_arm.mp4",
+      "camera": {
+        "lookat": [
+          0,
+          0,
+          0.3
+        ],
+        "distance": 1.8,
+        "azimuth": 120,
+        "elevation": -15
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.3
+        ],
+        "offset": [
+          1.2,
+          1.2,
+          0.9
+        ],
+        "fovDist": 1.0
+      }
     }
   }
 }

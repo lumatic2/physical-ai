@@ -1,0 +1,54 @@
+<!-- Dummy 2-link arm — minimal self-contained embodiment used to verify M10's zero-code
+     "add a scene" pipeline. Primitives only (no mesh files), so it loads in mujoco-js wasm
+     0.0.7 without any decimation. ee body = "tip". Authored as data, not pipeline code. -->
+<mujoco model="dummy_arm">
+  <option timestep="0.005"/>
+
+  <visual>
+    <global offwidth="1280" offheight="960" elevation="-15" azimuth="120"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+  </visual>
+  <statistic center="0 0 0.3" extent="1.0"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="32" height="512"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
+    <material name="link" rgba="0.7 0.5 0.3 1"/>
+    <material name="tip"  rgba="0.9 0.3 0.2 1"/>
+  </asset>
+
+  <default>
+    <joint type="hinge" axis="0 1 0" damping="0.5" armature="0.01"/>
+    <motor ctrlrange="-1 1" ctrllimited="true" gear="8"/>
+    <geom type="capsule" size="0.03" material="link"/>
+  </default>
+
+  <worldbody>
+    <geom name="floor" size="0 0 .05" type="plane" material="grid" condim="3"/>
+    <light name="top" pos="0 0 2" dir="0 0 -1" diffuse=".8 .8 .8"/>
+    <body name="base" pos="0 0 0.05">
+      <geom name="base" type="cylinder" size="0.05 0.05" material="link"/>
+      <body name="upper" pos="0 0 0.05">
+        <joint name="base_pitch"/>
+        <geom name="upper" fromto="0 0 0 0 0 0.25"/>
+        <body name="lower" pos="0 0 0.25">
+          <joint name="elbow"/>
+          <geom name="lower" fromto="0 0 0 0 0 0.22"/>
+          <body name="tip" pos="0 0 0.22">
+            <geom name="tip" type="sphere" size="0.04" material="tip"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="base_pitch" joint="base_pitch"/>
+    <motor name="elbow" joint="elbow"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0.3 -1.2"/>
+  </keyframe>
+</mujoco>
