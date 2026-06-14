@@ -1,0 +1,29 @@
+{
+  "env": "SpotFlatTerrainJoystick",
+  "obs_dim": 81,
+  "act_dim": 12,
+  "_source": "mujoco_playground _src/locomotion/spot/joystick.py _get_obs() — state (policy) branch, not privileged_state",
+  "layout": [
+    ["gyro", 3],
+    ["gravity_projected", 3],
+    ["joint_angles_minus_default", 12],
+    ["qpos_error_history", 36],
+    ["feet_pos", 12],
+    ["last_act", 12],
+    ["command", 3]
+  ],
+  "notes": {
+    "no_phase_clock": "Spot joystick has the gait-phase code COMMENTED OUT (lines 172-182, 349-351) — unlike G1's phase_cos_sin(4). No external gait clock needed. ",
+    "no_linear_velocity": "Policy state has NO local_linvel (privileged_state adds it for the critic only). Differs from go1/g1.",
+    "qpos_error_history": "Rolling buffer, history_len=3 -> 3*12=36. Each step prepends (noisy_joint_angles - motor_targets). STATEFUL: web obs builder must track motor_targets + joint history across steps.",
+    "feet_pos": "get_feet_pos(data) -> 4 feet site_xpos raveled (4*3=12). Frame TBD (resolve against bundled scene during web parity). FEET_SITES from spot_constants.",
+    "motor_targets": "default_pose + action*action_scale, clipped to [lowers, uppers]. action_scale=0.3.",
+    "default_pose": "keyframe('home').qpos[7:] (12-d) — exact values to be baked by the rollout script from the bundled scene (g1 pattern).",
+    "ctrl_dt": 0.02,
+    "Kp": 300.0,
+    "action_scale": 0.3,
+    "history_len": 3,
+    "net": [128, 128, 128, 128]
+  },
+  "parity_risk": "HARDER than go1/g1. Two new web-obs components not present in any current gallery policy: (1) stateful qpos_error_history (needs motor_target tracking), (2) kinematic feet_pos (needs foot-site FK + frame). The web obs builder (main.js) must gain both before byte-parity 0.0 is achievable."
+}
