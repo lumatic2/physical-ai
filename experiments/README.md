@@ -11,7 +11,7 @@
 | 02 | [action-repr-bench](02-action-repr-bench/README.md) | 같은 libero_spatial서 π0.5(flow-matching chunk)가 OpenVLA(이산토큰)와 비교 가능한 SR | ✅ matched 3task: π0.5 **98.7%**(148/150) vs OpenVLA 73.3%(11/15), Fisher p<1e-3 |
 | 03 | [digital-twin](03-digital-twin/README.md) | 하드웨어 없이 SO-100을 sim에 세우고 정책 롤아웃을 웹에서 인터랙티브로 보여줄 수 있다 | ✅ 트윈 [라이브](https://physical-ai-arm.askewly.com) + scripted pick-and-place **3단 스택** replay(IK 0.1mm). **+ Go1 live 학습정책**(`?exp=go1-walk`, onnxruntime-web closed-loop, exp04 정책). **+ M9 인터랙티브 텔레옵**(키보드 WASD 보행 조종 + 마우스 EE IK 텔레옵, 로컬 QA PASS). ADR [0004](../docs/adr/0004-digital-twin-stack.md)·[0005](../docs/adr/0005-learned-policy-sandbox.md) |
 | 04 | [go1-rl-walk](04-go1-rl-walk/README.md) | RTX5090서 Playground Go1 joystick 정책을 직접 학습→ONNX→native mujoco에서 N초 안 넘어지고 보행 | ✅ 학습 8.8분(reward→29.7), onnx parity 4.8e-6, native 12s·11.8m·0.99m/s 보행. ADR [0005](../docs/adr/0005-learned-policy-sandbox.md) 단계 1 |
-| 06 | [spot-rl-walk](06-spot-rl-walk/README.md) | RTX5090서 Playground Spot 4족 joystick 정책 학습→ONNX→native→웹 byte-parity 보행 (M11, Go1↔Spot 비교) | 🔄 진행 중 — S1 obs 조사 완료(81-d, qpos_error_history+feet_pos, gait clock 없음), S2 학습 실행 중 |
+| 06 | [spot-rl-walk](06-spot-rl-walk/README.md) | RTX5090서 Playground Spot 4족 joystick 정책 학습→ONNX→native→웹 byte-parity 보행 (M11, Go1↔Spot 비교) | 🔄 S2~S4 ✅ — 학습 6.5분(reward 30.6), onnx parity 4.07e-6, native 12s·11.1m·0.92m/s 보행. S5 웹 parity·S6 라이브 남음 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

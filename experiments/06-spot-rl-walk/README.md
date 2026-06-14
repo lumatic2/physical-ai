@@ -19,11 +19,11 @@ MuJoCo Playground `SpotFlatTerrainJoystick` env를 로컬 RTX5090(WSL)에서 RL 
 | 단계 | 내용 | verify |
 |---|---|---|
 | **S1** env 조사 | `SpotFlatTerrainJoystick` obs/act 구조 파악 | ✅ obs=81-d(state)/12-act, gait clock 없음(주석 처리됨) → [`obs_spec.json`](obs_spec.json) |
-| **S2** 학습 | `train.py`(ENV 교체) PPO, impl=jax, 100M steps, net(128⁴) | reward 수렴 + `params.pkl` |
-| **S3** ONNX export | ckpt → onnx + obs 정규화 baked | onnx 파일 |
-| **S4** native 검증 ★ | native mujoco closed-loop 롤아웃 | Spot ≥10s 보행, command 추종 |
-| **S5** 웹 parity ★★ | main.js obs builder에 **qpos_error_history(36)+feet_pos(12)** 추가 → 번들 씬 byte-parity 0.0 | native↔web obs 차 0.0 |
-| **S6** 라이브 | `experiments.json` policy 항목 + `add_scene.sh` → `?exp=spot-walk` | 라이브 QA PASS |
+| **S2** 학습 | `train.py`(ENV 교체) PPO, impl=jax, 100M steps, net(128⁴) | ✅ 6.5분, reward 7.96→30.6 수렴, `params.pkl` |
+| **S3** ONNX export | ckpt → onnx + obs 정규화 baked | ✅ `spot_policy.onnx`, onnx↔jax parity **4.07e-6** (5층 동적 그래프) |
+| **S4** native 검증 ★ | native mujoco closed-loop 롤아웃 | ✅ **PASS** — 12s 안 넘어짐, **11.09m 전진·0.92m/s**, final_h 0.43 |
+| **S5** 웹 parity ★★ | main.js obs builder에 **qpos_error_history(36)+feet_pos(12)** 추가 → 번들 씬 byte-parity 0.0 | ⬜ native↔web obs 차 0.0 |
+| **S6** 라이브 | `experiments.json` policy 항목 + `add_scene.sh` → `?exp=spot-walk` | ⬜ 라이브 QA PASS |
 
 ### obs parity 핵심 (S1 발견 — 핸드오프 가정과 다름)
 
@@ -34,9 +34,12 @@ MuJoCo Playground `SpotFlatTerrainJoystick` env를 로컬 RTX5090(WSL)에서 RL 
 
 → **웹 obs 빌더(main.js) 신규 코드 필요** = M11 최대 난관. (g1·go1은 이 두 컴포넌트가 없어 재사용 불가.)
 
-## 3. 결과 (Results)
+## 3. 결과 (Results) — S2~S4 (학습→ONNX→native)
 
-> 학습/검증 완료 후 기록 — reward 곡선·학습 시간·native 보행 시간·web parity 잔차.
+- **학습(S2)**: 6.5분(100M steps, impl=jax, net 128⁴), reward 7.96→**30.6** 수렴(go1 29.7 동급). `verify/train.log`.
+- **export(S3)**: 5층(hidden 4 + 출력) silu MLP → 손그래프 ONNX, **onnx↔jax 4.07e-6**(go1 4.8e-6 동급). `spot_policy.onnx`.
+- **native(S4)**: onnx closed-loop, **12s 안 넘어지고 11.09m 전진·0.92m/s**(go1 12s·11.8m·0.99). `native_rollout.mp4`, `golden_obs.json`(웹 parity 기준).
+- **남음(S5~S6)**: 웹 obs 빌더(qpos_error_history+feet_pos) + 번들 씬 byte-parity + 라이브 배포.
 
 ## 4. 통찰 / 한계 (Insight)
 
