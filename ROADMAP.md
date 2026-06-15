@@ -102,9 +102,10 @@
 - [x] M22 reference tracking reward를 결합했지만 native fall time은 1.24초로 개선되지 않았다.
 - [x] 기존 G1 walking policy를 stabilizer prior로 restore해 native 6초 no-fall을 달성했다.
 - [x] stabilizer를 유지한 채 height/reference reward를 강화했지만 min height는 0.7523m -> 0.7501m로만 개선됐다.
-- [ ] squat depth curriculum 또는 action/reference target 재설계 후 ONNX export와 browser playback/live inference까지 연결한다.
+- [x] native target sanity probe에서 squat reference/action target이 height drop은 만들지만 1.22초 전후 fall함을 확인했다.
+- [ ] squat depth curriculum/controller redesign 후 ONNX export와 browser playback/live inference까지 연결한다.
 
-완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe + reference tracking reward 결합 + walking stabilizer init + depth fine-tune probe는 완료. native 6초 no-fall은 달성했지만 base height가 0.750m 근처에 머물러 squat depth는 아직 부족하다. G1이 내가 정의한 squat skill을 실제로 수행한다고 말하려면 depth curriculum 또는 action/reference target 재설계 후 native height drop을 확인하고, 그 뒤 ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md)에 박제했다.
+완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe + reference tracking reward 결합 + walking stabilizer init + depth fine-tune probe + target sanity probe는 완료. native 6초 no-fall은 달성했지만 base height가 0.750m 근처에 머물러 squat depth는 아직 부족하다. target sanity상 reference/action target은 height drop을 만들 수 있지만 open-loop로는 1.22초 전후 fall하므로, 다음은 target 재작성보다 stabilizer를 유지한 staged depth curriculum/controller가 우선이다. 그 뒤 ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md)에 박제했다.
 
 ### M20 - Acrobatic feasibility gate
 
