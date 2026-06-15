@@ -24,6 +24,7 @@
 | 15 | [g1-skill-baseline](15-g1-skill-baseline/README.md) | `g1_squat` compiled spec이 native G1 position-control baseline으로 안정적인지 검증 | 🟥 scripted baseline FAIL: hold/mild/deep 모두 1.24~1.25초 fall, balance reward wrapper 필요 |
 | 16 | [ball-skill-sandbox](16-ball-skill-sandbox/README.md) | 축구/라보나슛 전 단계로 G1+ball scene과 ball distance/direction metric을 만들 수 있는지 검증 | ✅ scene load + ball metric PASS: injected ball distance 0.862m, direction error 0.000rad |
 | 17 | [motion-to-policy-loop](17-motion-to-policy-loop/README.md) | 키프레임 reference motion을 policy 학습 신호로 바꾸는 최소 포맷/컴파일 경로를 열 수 있는지 검증 | ✅ G1 squat reference 201 samples compile PASS, tracking reward 계약 생성 |
+| 18 | [g1-squat-reward-smoke](18-g1-squat-reward-smoke/README.md) | G1 squat balance reward wrapper가 reset/step/PPO 학습 루프에 들어가는지 검증 | ✅ 5-step rollout PASS, 100k PPO smoke reward 1.524→3.316 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

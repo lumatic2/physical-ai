@@ -1,0 +1,35 @@
+{
+  "rollout": {
+    "action_size": 29,
+    "obs_state_shape": [
+      103
+    ],
+    "obs_privileged_shape": [
+      216
+    ],
+    "rollout_steps": 5,
+    "reward_first": 0.10542967915534973,
+    "reward_last": 0.10454079508781433,
+    "height_min": 0.7391588091850281,
+    "height_last": 0.7391588091850281,
+    "done_any": false,
+    "pose_error_last": 0.0023739240132272243
+  },
+  "train": {
+    "timesteps": 100000,
+    "train_min": 4.999150686166589,
+    "reward_points": [
+      [
+        0,
+        1.524237871170044
+      ],
+      [
+        102400,
+        3.3162543773651123
+      ]
+    ],
+    "params_path": "verify/train/params.pkl",
+    "rewards_path": "verify/train/rewards.txt"
+  },
+  "verdict": "PASS"
+}

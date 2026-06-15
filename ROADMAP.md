@@ -27,7 +27,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 게이트 완료 / RL 대기 |
+| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | reward smoke 완료 / native 평가 대기 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | format/probe 완료 |
@@ -95,11 +95,12 @@
 - [x] 첫 skill 후보를 `g1_squat`으로 고정하고 compiled behavior spec에서 시작했다.
 - [x] native MuJoCo에서 hold/mild/deep squat scripted baseline을 평가했다.
 - [x] 세 변형 모두 1.24~1.25초에 fall했다. open-loop position target은 실패한다.
-- [ ] G1 기존 walking env에 balance-stabilized custom reward wrapper를 붙인다.
-- [ ] short PPO smoke 후 native MuJoCo에서 fall, height, joint-limit, energy, target error를 평가한다.
+- [x] G1 기존 walking env에 balance-stabilized custom reward wrapper를 붙였다.
+- [x] short PPO smoke에서 eval reward가 1.524 -> 3.316으로 상승했다.
+- [ ] trained params로 native MuJoCo에서 fall, height, joint-limit, energy, target error를 평가한다.
 - [ ] ONNX export와 browser playback/live inference까지 연결한다.
 
-완료 기준: 🟨 scripted baseline gate는 완료. G1이 기존 joystick walking이 아니라, 내가 정의한 단일 skill을 학습해 수행하려면 balance reward wrapper + PPO smoke가 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md)에 박제했다.
+완료 기준: 🟨 balance reward wrapper + short PPO smoke는 완료. G1이 기존 joystick walking이 아니라, 내가 정의한 단일 skill을 실제로 수행한다고 말하려면 longer PPO, native verify, ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md)와 [exp18](experiments/18-g1-squat-reward-smoke/README.md)에 박제했다.
 
 ### M20 - Acrobatic feasibility gate
 

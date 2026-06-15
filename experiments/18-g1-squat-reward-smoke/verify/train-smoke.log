@@ -1,0 +1,34 @@
+E0615 23:24:10.221584   11841 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+E0615 23:24:10.232825   11685 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+compile reset/step...
+/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/jax/_src/abstract_arrays.py:193: RuntimeWarning: overflow encountered in cast
+  return literals.TypedNdArray(np.asarray(x, dtype), weak_type=False)
+E0615 23:26:42.649216   11853 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:26:42.748668   11863 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:27:00.423745   11866 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:27:00.498116   11863 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+0: reward=1.524
+E0615 23:27:56.707000   11874 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:27:56.788799   11849 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:27:56.866174   11856 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:27:57.000371   11852 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:28:09.023345   11853 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 23:28:09.113479   11872 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+102400: reward=3.316
+E0615 23:30:31.660891   11877 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+PASS {
+  "action_size": 29,
+  "obs_state_shape": [
+    103
+  ],
+  "obs_privileged_shape": [
+    216
+  ],
+  "rollout_steps": 5,
+  "reward_first": 0.10542967915534973,
+  "reward_last": 0.10454079508781433,
+  "height_min": 0.7391588091850281,
+  "height_last": 0.7391588091850281,
+  "done_any": false,
+  "pose_error_last": 0.0023739240132272243
+}
