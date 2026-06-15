@@ -1,0 +1,681 @@
+{
+  "source_spec": "experiments/14-skill-authoring/verify/g1_squat.compiled.json",
+  "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_policy.xml",
+  "variants": [
+    {
+      "source_spec": "experiments/14-skill-authoring/verify/g1_squat.compiled.json",
+      "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_policy.xml",
+      "horizon_s": 6.0,
+      "min_height": -0.7788510218071022,
+      "target_min_height": 0.42,
+      "max_joint_limit_violation": 0.028668906543815043,
+      "energy_proxy": 13.43206200000027,
+      "fell_at": 1.24,
+      "variant": "hold_knees_bent",
+      "verdict": "FAIL",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.7549859005746887,
+          "up_z": 0.9999999997000476,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7235432212442234,
+          "up_z": 0.9948575175964496,
+          "target_knee": 0.6690000000000002,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7241027212967052,
+          "up_z": 0.9963485067642117,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7258487284301955,
+          "up_z": 0.9996619709320956,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7146781537848271,
+          "up_z": 0.9796362767881625,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.6561690968751507,
+          "up_z": 0.8748779123231574,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.48757633098138076,
+          "up_z": 0.5332379629637116,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 1.4,
+          "base_height": -0.008739597910469743,
+          "up_z": -0.11814930189979742,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 1.6,
+          "base_height": -0.7132891827596821,
+          "up_z": -0.9594102451598913,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 1.8,
+          "base_height": -0.7133636766269285,
+          "up_z": -0.8920107834493489,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 2.0,
+          "base_height": -0.5889129449288045,
+          "up_z": -0.735830854947694,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 2.2,
+          "base_height": -0.632615757050306,
+          "up_z": -0.7843795107072864,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 2.4,
+          "base_height": -0.7326829007489877,
+          "up_z": -0.9445286636176743,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 2.6,
+          "base_height": -0.7487532149412838,
+          "up_z": -0.9926275681799891,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 2.8,
+          "base_height": -0.664601046090515,
+          "up_z": -0.8674326117380666,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 3.0,
+          "base_height": -0.6313243654446647,
+          "up_z": -0.8104047470845003,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 3.2,
+          "base_height": -0.7030974284365313,
+          "up_z": -0.9299601140128197,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 3.4,
+          "base_height": -0.7586525169537652,
+          "up_z": -0.9985185261929398,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 3.6,
+          "base_height": -0.7158205292199143,
+          "up_z": -0.905419772788006,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 3.8,
+          "base_height": -0.6710224012961064,
+          "up_z": -0.841637020279982,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 4.0,
+          "base_height": -0.7129912881555037,
+          "up_z": -0.9047198960856959,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 4.2,
+          "base_height": -0.7569554852094057,
+          "up_z": -0.9966081453056216,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 4.4,
+          "base_height": -0.7182377344478466,
+          "up_z": -0.9512377251170143,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 4.6,
+          "base_height": -0.6606592573609393,
+          "up_z": -0.8623781118300473,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 4.8,
+          "base_height": -0.6850506742276368,
+          "up_z": -0.9006092131025673,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 5.0,
+          "base_height": -0.7477968689184386,
+          "up_z": -0.9925809575312908,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 5.2,
+          "base_height": -0.7467100155528125,
+          "up_z": -0.9685116304637222,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 5.4,
+          "base_height": -0.7040864737395456,
+          "up_z": -0.8856567165203046,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 5.6,
+          "base_height": -0.70834477825315,
+          "up_z": -0.8986496867576672,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        },
+        {
+          "t": 5.8,
+          "base_height": -0.7503401091789922,
+          "up_z": -0.9793853014786527,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.028668906543815043
+        }
+      ]
+    },
+    {
+      "source_spec": "experiments/14-skill-authoring/verify/g1_squat.compiled.json",
+      "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_policy.xml",
+      "horizon_s": 6.0,
+      "min_height": -0.7720872874489455,
+      "target_min_height": 0.42,
+      "max_joint_limit_violation": 0.028650269770513992,
+      "energy_proxy": 15.716407249320028,
+      "fell_at": 1.246,
+      "variant": "mild_squat",
+      "verdict": "FAIL",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.7549859005746887,
+          "up_z": 0.9999999997000476,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7216192636599605,
+          "up_z": 0.9949618967235041,
+          "target_knee": 0.6841151151151152,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7191452622126987,
+          "up_z": 0.9962811066374266,
+          "target_knee": 0.6992302302302302,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7186250873764227,
+          "up_z": 0.9997020041377084,
+          "target_knee": 0.7143453453453454,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7061213232625848,
+          "up_z": 0.9800930465241505,
+          "target_knee": 0.7294604604604604,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.6565566441445604,
+          "up_z": 0.8707648019937949,
+          "target_knee": 0.7445755755755756,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.49484655564966246,
+          "up_z": 0.54263530922251,
+          "target_knee": 0.7596906906906907,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.009058564737371537,
+          "up_z": -0.1000420598634613,
+          "target_knee": 0.7748058058058058,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 1.6,
+          "base_height": -0.7115864391228071,
+          "up_z": -0.9521253814077827,
+          "target_knee": 0.7899209209209208,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 1.8,
+          "base_height": -0.7082456967384686,
+          "up_z": -0.8854887295699979,
+          "target_knee": 0.805036036036036,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 2.0,
+          "base_height": -0.5755507608195789,
+          "up_z": -0.7196401182642731,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 2.2,
+          "base_height": -0.6196705175126128,
+          "up_z": -0.7668507508340576,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 2.4,
+          "base_height": -0.7219222613106367,
+          "up_z": -0.9335837653736737,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 2.6,
+          "base_height": -0.7395743166199958,
+          "up_z": -0.9960375414510885,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 2.8,
+          "base_height": -0.6534402369691406,
+          "up_z": -0.877985635179874,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 3.0,
+          "base_height": -0.615544918130741,
+          "up_z": -0.8159854598974827,
+          "target_knee": 0.82,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 3.2,
+          "base_height": -0.689279385589771,
+          "up_z": -0.932780158685775,
+          "target_knee": 0.8099266177451634,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 3.4,
+          "base_height": -0.7495758023813895,
+          "up_z": -0.9982469923123282,
+          "target_knee": 0.7998532354903269,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 3.6,
+          "base_height": -0.7112034444356811,
+          "up_z": -0.9036473357179302,
+          "target_knee": 0.7897798532354903,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 3.8,
+          "base_height": -0.6679688113680038,
+          "up_z": -0.8390078312413888,
+          "target_knee": 0.7797064709806538,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 4.0,
+          "base_height": -0.7090605675842104,
+          "up_z": -0.9033788087616992,
+          "target_knee": 0.7696330887258173,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 4.2,
+          "base_height": -0.7507437984915174,
+          "up_z": -0.996271289180185,
+          "target_knee": 0.7595597064709807,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 4.4,
+          "base_height": -0.7113966072260322,
+          "up_z": -0.9534396903409055,
+          "target_knee": 0.7494863242161441,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 4.6,
+          "base_height": -0.6556378135836914,
+          "up_z": -0.8679393145376847,
+          "target_knee": 0.7394129419613076,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 4.8,
+          "base_height": -0.6822854034921241,
+          "up_z": -0.9073194373144803,
+          "target_knee": 0.7293395597064709,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 5.0,
+          "base_height": -0.7450326109909853,
+          "up_z": -0.9942356213047493,
+          "target_knee": 0.7192661774516345,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 5.2,
+          "base_height": -0.7438959182204565,
+          "up_z": -0.9665724198022502,
+          "target_knee": 0.7091927951967979,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 5.4,
+          "base_height": -0.703818766758313,
+          "up_z": -0.8865473869651089,
+          "target_knee": 0.6991194129419613,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 5.6,
+          "base_height": -0.7105615932502831,
+          "up_z": -0.9023797349197223,
+          "target_knee": 0.6890460306871248,
+          "joint_limit_violation": 0.028650269770513992
+        },
+        {
+          "t": 5.8,
+          "base_height": -0.7507286254386837,
+          "up_z": -0.981954033324722,
+          "target_knee": 0.6789726484322882,
+          "joint_limit_violation": 0.028650269770513992
+        }
+      ]
+    },
+    {
+      "source_spec": "experiments/14-skill-authoring/verify/g1_squat.compiled.json",
+      "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_policy.xml",
+      "horizon_s": 6.0,
+      "min_height": -0.754953912629481,
+      "target_min_height": 0.42,
+      "max_joint_limit_violation": 0.03087948122101536,
+      "energy_proxy": 22.901707185948013,
+      "fell_at": 1.25,
+      "variant": "deep_squat",
+      "verdict": "FAIL",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.7549859005746887,
+          "up_z": 0.9999999997000476,
+          "target_knee": 0.669,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7166250697296642,
+          "up_z": 0.9951687256490972,
+          "target_knee": 0.7201511511511512,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7068744762712682,
+          "up_z": 0.9962654531158718,
+          "target_knee": 0.7713023023023023,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7007544699214966,
+          "up_z": 0.9996238960552705,
+          "target_knee": 0.8224534534534536,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.6829921096906647,
+          "up_z": 0.9787164526707107,
+          "target_knee": 0.8736046046046047,
+          "joint_limit_violation": 0.0
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.6532470973366454,
+          "up_z": 0.8550878949786789,
+          "target_knee": 0.9247557557557557,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.5014392683012515,
+          "up_z": 0.5559464156362153,
+          "target_knee": 0.975906906906907,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.036458727984292144,
+          "up_z": -0.07994963229878038,
+          "target_knee": 1.027058058058058,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 1.6,
+          "base_height": -0.7094323895878494,
+          "up_z": -0.950193208598254,
+          "target_knee": 1.0782092092092093,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 1.8,
+          "base_height": -0.6972047419000116,
+          "up_z": -0.8738079352167801,
+          "target_knee": 1.1293603603603604,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 2.0,
+          "base_height": -0.5319447179603629,
+          "up_z": -0.6559363357009695,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 2.2,
+          "base_height": -0.5466317484299837,
+          "up_z": -0.6948135712164685,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 2.4,
+          "base_height": -0.6952180033566651,
+          "up_z": -0.8858213629849732,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 2.6,
+          "base_height": -0.7032720850209839,
+          "up_z": -0.9996437035948456,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 2.8,
+          "base_height": -0.6146340574273693,
+          "up_z": -0.8990903610971982,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 3.0,
+          "base_height": -0.5587574140703527,
+          "up_z": -0.8154708891470713,
+          "target_knee": 1.18,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 3.2,
+          "base_height": -0.6447068973430375,
+          "up_z": -0.9349409814875276,
+          "target_knee": 1.145910607071381,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 3.4,
+          "base_height": -0.7212706320304054,
+          "up_z": -0.9966667892601127,
+          "target_knee": 1.1118212141427617,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 3.6,
+          "base_height": -0.6892402944774181,
+          "up_z": -0.887290792694726,
+          "target_knee": 1.077731821214143,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 3.8,
+          "base_height": -0.6469529917030141,
+          "up_z": -0.8171770340561376,
+          "target_knee": 1.0436424282855237,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 4.0,
+          "base_height": -0.6915595045785751,
+          "up_z": -0.8916883791737604,
+          "target_knee": 1.0095530353569047,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 4.2,
+          "base_height": -0.7323344436956912,
+          "up_z": -0.9951944278921434,
+          "target_knee": 0.9754636424282855,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 4.4,
+          "base_height": -0.6895075439075791,
+          "up_z": -0.9549951979494865,
+          "target_knee": 0.9413742494996665,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 4.6,
+          "base_height": -0.6352748731028576,
+          "up_z": -0.8717951102698249,
+          "target_knee": 0.9072848565710474,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 4.8,
+          "base_height": -0.6706142043573308,
+          "up_z": -0.9183282557412867,
+          "target_knee": 0.8731954636424283,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 5.0,
+          "base_height": -0.7375998229070487,
+          "up_z": -0.9975512780464709,
+          "target_knee": 0.8391060707138092,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 5.2,
+          "base_height": -0.734968116704961,
+          "up_z": -0.9577582228273128,
+          "target_knee": 0.8050166777851901,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 5.4,
+          "base_height": -0.6982146246803373,
+          "up_z": -0.87973702582296,
+          "target_knee": 0.7709272848565711,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 5.6,
+          "base_height": -0.7111813031077274,
+          "up_z": -0.9057409352745827,
+          "target_knee": 0.736837891927952,
+          "joint_limit_violation": 0.03087948122101536
+        },
+        {
+          "t": 5.8,
+          "base_height": -0.7509318943318198,
+          "up_z": -0.9862850241040169,
+          "target_knee": 0.7027484989993329,
+          "joint_limit_violation": 0.03087948122101536
+        }
+      ]
+    }
+  ],
+  "best_variant": null,
+  "verdict": "FAIL",
+  "next": "Open-loop position control is only a baseline. If all variants fail, M19 must start with balance reward/controller stabilization before squat RL."
+}
