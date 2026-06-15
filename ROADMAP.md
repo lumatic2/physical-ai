@@ -21,69 +21,66 @@
 
 ## 마일스톤 (한눈에)
 
-| # | 마일스톤 | 입증하는 것 | 산출물 (showable) | 상태 |
-|---|---------|------------|-------------------|------|
-| M1 | 지형 파악 | 분야 전체를 매핑한다 | `docs/landscape.md` | ✅ |
-| M2 | 레퍼런스 정독 + ADR | 1차 문헌을 비판적으로 읽는다 | 5× `ANALYSIS.md`, ADR 0001 | ✅ |
-| M3 | 첫 실험 (이론 직접 실행) | 논문 모델을 내 GPU에서 실행·평가한다 | `experiments/01` (H1·H2·H3 PASS, LIBERO 73%) | ✅ |
-| M4 | 쓸만한 SW 승격 (flagship) | 실험을 남이 쓸 도구/데모로 만든다 | 클린 README + 1-command 재현 + 2모델 결과표 | ✅ |
-| M5 | 포트폴리오 패키징 | 5분 안에 실력이 읽힌다 | public README + 블로그 글 1편 + vault 정리 | ✅ |
-| M6 | 디지털 트윈 (sim) | 하드웨어 없이 sim→real 직전까지, 웹에서 보여준다 | 인터랙티브 3D 트윈 [라이브](https://physical-ai-arm.askewly.com) + 정책 롤아웃 replay(pick-and-place 3단 스택) | ✅ |
-| M8 | 학습 정책 sandbox (sim) | 직접 학습한 정책이 브라우저에서 몸을 제어한다 | live Go1 보행(onnxruntime-web) + config-driven 하네스 | ✅ |
-| M9 | 인터랙티브 텔레옵 | 트윈을 *관전*이 아니라 *내가 직접 조작*한다 | 키보드로 보행 로봇 조종 + 마우스로 팔 EE 텔레옵 ([라이브](https://physical-ai-arm.askewly.com)) | ✅ |
-| M10 | 확장 가능한 트윈 플랫폼 | 새 임베디먼트·정책을 저마찰로 늘린다 | 단일-소스 config + 한 커맨드 `add_scene.sh` + [추가 가이드](experiments/03-digital-twin/ADDING_EMBODIMENTS.md)(문서만 보고 bespoke 0줄 추가, dummy-arm 검증) | ✅ |
-| M11 | 학습 정책 갤러리 확장 | 플랫폼이 새 정책을 흡수한다 (4족 2종 비교) | live Spot 보행 정책(onnxruntime-web, byte-parity 2.9e-7) + Go1↔Spot 비교, 학습정책 3종 | ✅ |
-| M7 | 실물 도달 (하드웨어 게이트, 보류) | sim→real 한 바퀴, 실물까지 만든다 | SO-100 저가팔 + ACT, 수행 영상 | ⬜ |
+| # | 목표군 | 입증하는 것 | 산출물 (showable) | 상태 |
+|---|--------|-------------|-------------------|------|
+| M1-M3 | 기초 지형 + 첫 실험 | 분야를 이해하고 논문 모델을 직접 실행한다 | `docs/landscape.md`, 5× analysis, exp01 LIBERO | ✅ 압축 |
+| M4-M6 | 포트폴리오 1차 + 디지털 트윈 | 실험을 남이 볼 수 있는 도구/데모로 만든다 | README, 블로그 1편, SO-100 웹 트윈 | ✅ 압축 |
+| M8-M11 | 브라우저 정책 플랫폼 | 직접 학습한 정책을 웹에서 closed-loop로 돌리고, 새 임베디먼트를 흡수한다 | Go1/G1/Spot 정책 3종, teleop, `add_scene.sh`, dummy-arm | ✅ 압축 |
+| M12 | 명령·지형 강건성 검증 | 평지 전진 데모를 넘어 turn/strafe/rough terrain에서 정책 한계를 측정한다 | Go1↔Spot command sweep + rough terrain QA 리포트 + 라이브 데모 | ⬜ 다음 목표 |
+| M13 | 정책 추가 확장 | M10/M11 플랫폼이 새 정책을 반복적으로 흡수하는지 확인한다 | Barkour/Go2/H1 중 1종 추가, byte-parity 문서화 | ⬜ 후보 |
+| M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ⬜ 후보 |
+| M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-100 저가팔 + ACT + 수행 영상 | ⬜ 하드웨어 게이트 |
 
-### 완료된 마일스톤 (M1–M8) — 요약
-> 상세 내역은 ↓[완료 이력](#완료-이력)에 보존. 여기서는 산출물·완료일만.
+## 닫힌 마일스톤 압축
 
-- **M1 지형 파악** ✅ (2026-06-09) — `docs/landscape.md`(용어·taxonomy·플레이어 맵·reading list 15).
-- **M2 레퍼런스 정독** ✅ (2026-06-09) — 핵심 5편 5섹션 분석 + [ADR 0001](docs/adr/0001-vla-action-representation.md) + vault 이전.
-- **M3 첫 실험** ✅ (2026-06-09) — [experiment 01](experiments/01-vla-local-eval) VLA 로컬 추론 + LIBERO 평가(H1·H2·H3 PASS, success 73%).
-- **M4 쓸만한 SW (flagship)** ✅ (2026-06-11) — exp01 도구화(1커맨드 재현) + [exp02](experiments/02-action-repr-bench/README.md) π0.5 vs OpenVLA 대칭·공식 head-to-head(98.4% vs 77.4%, +21pp, Fisher p=1.4e-27). [ADR 0002](docs/adr/0002-act-deferred-to-m6.md)·[0003](docs/adr/0003-second-policy-separate-harness.md).
-- **M5 포트폴리오 패키징** ✅ (2026-06-11) — public README 랜딩 + askewly 블로그 1편 라이브 + vault synthesis.
-- **M6 디지털 트윈 (sim)** ✅ (2026-06-12) — 라이브 인터랙티브 SO-100 3D 트윈 + scripted pick-and-place 3단 스택 replay. [ADR 0004](docs/adr/0004-digital-twin-stack.md). **라이브: https://physical-ai-arm.askewly.com**
-- **M8 학습 정책 sandbox (sim)** ✅ (2026-06-14) — 임베디먼트 갤러리 8종 + 직접 학습 정책 2종(Go1 4족·G1 휴머노이드) live closed-loop(onnxruntime-web) + config-driven 하네스. [ADR 0005](docs/adr/0005-learned-policy-sandbox.md), [exp 04](experiments/04-go1-rl-walk/README.md)·[exp 05](experiments/05-g1-rl-walk/README.md).
+### M1-M3 — 지형 파악에서 첫 실행까지 ✅
+- **M1**: `docs/landscape.md`로 피지컬 AI 용어·스택·플레이어·reading list 정리.
+- **M2**: 핵심 5편을 5섹션 분석하고 ADR 0001로 동작표현 기준 수립.
+- **M3**: exp01에서 VLA 로컬 추론·LIBERO 평가를 실행해 H1/H2/H3 PASS와 73% 성공률 확보.
+
+### M4-M6 — 외부에 보이는 포트폴리오와 디지털 트윈 ✅
+- **M4**: exp01을 1-command 재현 가능한 도구로 정리하고, exp02에서 π0.5 vs OpenVLA head-to-head를 수행.
+- **M5**: public README, askewly 블로그 1편, vault synthesis로 첫 포트폴리오 패키징 완료.
+- **M6**: SO-100 웹 디지털 트윈과 pick-and-place replay를 라이브 배포. 5-DOF 기구학 한계와 scripted replay trade-off는 ADR로 박제.
+
+### M8-M11 — 브라우저 정책 플랫폼 ✅
+- **M8**: MuJoCo Playground 정책을 학습해 Go1/G1 closed-loop ONNX 정책을 브라우저에서 실행.
+- **M9**: WASD 보행, 마우스 EE 텔레옵, 모바일/터치 폴백으로 트윈을 조작 가능한 데모로 전환.
+- **M10**: `experiments.json` 단일 소스, `sync_web.py`, `add_scene.sh`, watertight 메시 가드, `ADDING_EMBODIMENTS.md`로 새 임베디먼트 추가 마찰 제거. `dummy-arm`을 bespoke 0줄로 검증.
+- **M11**: Spot 정책을 추가해 Go1/G1/Spot 학습 정책 3종을 라이브화. Spot의 81-d obs와 PD gain bake 함정을 ADR 0007로 기록.
 
 ---
 
-### M9 — 인터랙티브 텔레옵 (마우스+키보드로 직접 조종) ⬜
-> 트윈을 *관전 데모*에서 *내가 직접 조작하는 데모*로 격상한다. 지금 있는 건 OrbitControls(카메라),
-> 드래그-힘 perturbation(밀치기), 정책 command 슬라이더뿐 — 키보드 조종·EE 텔레옵은 없다.
-- [x] **키보드 → 보행 정책 command** — WASD=vx/vy, Q·E=vyaw hold-to-drive를 `pol.command`에 직결, 슬라이더 동기. (`244d418`)
-  - verify: `qa/visual_check.mjs --keys=w` go1(5.9m)·g1(3.4m) 둘 다 PASS, 0 콘솔에러 ✅
-- [x] **마우스 밀기 일관화 + 조작 안내 오버레이** — 드래그-힘은 이미 전 씬 배선됨(정책+물리 루프) 확인 → 실질은 discoverability. bottom-left 임베디먼트별 힌트 오버레이 추가. (`a87bb49`)
-  - verify: so100-stack QA PASS + 오버레이 렌더 스크린샷 확인, 0 콘솔에러 ✅
-- [x] **마우스 EE 텔레옵 (고정팔)** — 그리퍼 드래그→유한차분 Jacobian damped-LS IK 추종. SO-100·Panda teleop 토글. 비-joint 액추에이터 제외·관절/ctrl 클램프·5-DOF 한계 정직 추종. (`5071668`)
-  - verify: `qa/visual_check.mjs --teleop` so100 잔차 1e-16, panda 0.141→0.080, 0 콘솔에러 ✅
-- [x] **조작 UI + 모바일/터치 폴백** — bottom-left 안내 오버레이(임베디먼트·포인터 인식), 터치 제스처 동작(pointer 이벤트). QA `--mobile` 추가. (`8090888`)
-  - verify: 모바일 390×844 go1 보행·so100 텔레옵 PASS, 터치-aware 문구 렌더 확인 ✅
-- 완료 기준: 키보드로 보행 로봇 조종 + 마우스로 팔 포즈 텔레옵 + 0 콘솔에러. ✅ **달성·배포 완료** — 로컬 + **라이브** QA 전부 PASS(go1 키보드 4.4m·so100 IK 잔차 0). https://physical-ai-arm.askewly.com
+## 새 목표군: M12-M14
 
-### M10 — 확장 가능한 트윈 플랫폼 (갤러리를 저마찰로 늘린다) ✅ (2026-06-15)
-> 도구를 *플랫폼*으로. 지금은 새 임베디먼트 추가에 박제된 함정 다수(experiments.json 이중화,
-> 수동 manifest 재생성, 메시 변환 모델별 비자명). 추가 마찰을 코드·문서로 제거한다.
-- [x] **experiments.json 단일 소스화** ✅ (2026-06-14) — `03/` 루트가 canonical(파이썬 툴링이 읽고 씀), `web/`는 파생. `sync_web.py`가 03/ 루트 모든 `*.json`(experiments.json + 궤적 8종)을 web/로 멱등 복사(자동 발견 → 새 궤적 누락 불가). `--check` 가드 + `deploy_vercel.py` 시작 시 자동 sync → 프로덕션이 stale 사본 배포 불가능. 수동 `cp` 폐기. (박제 함정 #2 제거)
-  - verify: 한 곳 수정 → 양쪽 자동 반영, sync 누락 불가능
-- [x] **씬 추가 파이프라인 일원화** ✅ (2026-06-15) — `add_scene.sh <exp>`가 결정론적 체인(decimate→manifest→record→smoke→loadtest→render→sync→visual)을 한 커맨드로 fail-fast 실행. 모든 step은 experiments.json(harness.py) 구동 — 임베디먼트별 하드코딩 0. `--record`(generic recorder)·`--decimate <dir>`(WSL venv, sed로 /mnt 경로 변환→trap#6 회피)·`--skip-render/--skip-qa` 플래그. verify: so100-stack 풀런 EXIT=0(smoke PASS·wasm OK·render 442f·visual PASS✅), decimate WSL 경로 무뮤테이션 probe 통과.
-  - verify(나머지): 더미 임베디먼트 1종을 가이드만 보고 bespoke 0줄 추가 — 가이드 문서(step 4)와 함께 최종 확인
-- [x] **메시 변환 가드 코드화** ✅ (2026-06-15) — `decimate_meshes.py`가 `m.is_watertight`로 자동 분기: watertight만 simplify, non-watertight(열린 shell)는 KEPT(무감축, 재export만), HARDCAP(150k면) 초과 시 WARN. 박제 함정 #1(fast_simplification이 열린 shell을 파편화)을 코드가 막음. verify(WSL venv, 실 메시 사본): panda link1(12516f, watertight)→decimated 4000f, go1 trunk(20000f, **non-watertight**)→KEPT 20000f(붕괴 안 함), 200f watertight→passthrough.
-- [x] **추가 가이드 문서** ✅ (2026-06-15) — [`ADDING_EMBODIMENTS.md`](experiments/03-digital-twin/ADDING_EMBODIMENTS.md): 씬 번들→감축→레지스트리 항목→궤적→`add_scene.sh`→배포 N단계 + 박제 함정→코드화 매핑 표. 03 README에서 링크.
-- ✅ **완료 기준 충족** — 더미 임베디먼트 `dummy-arm`(2링크 팔, self-contained primitives MJCF + experiments.json 1항목, **파이프라인 코드 0줄**)을 `bash add_scene.sh dummy-arm --record` 한 커맨드로 추가: smoke PASS·wasm OK(nq2/nu2)·render 90f·sync·visual PASS✅(스크린샷 육안 확인 — 팔·tip 정상 렌더). **🟢 라이브** `?exp=dummy-arm`(deploy `dpl_E9GLr1LG`, 라이브 QA PASS — replay 90f, consoleErrors 0; 셀렉터 없어 쇼케이스 무오염). + experiments.json 단일 소스(step1).
+### M12 — 명령·지형 강건성 검증 ⬜
+> 지금까지는 “브라우저에서 걷는다”를 입증했다. 다음은 “명령이 바뀌고 지형이 거칠어져도 어디까지 버티는가”를 측정한다.
 
-### M11 — 학습 정책 갤러리 확장 (Spot 4족 보행) ✅ (2026-06-15) [독립]
-> 플랫폼(M10)이 새 정책을 흡수하는지 dogfood. 4족 정책 2종(Go1↔Spot) 비교로 서사 확장. → [exp 06](experiments/06-spot-rl-walk/README.md).
-- [x] **Spot 정책 학습** ✅ — `SpotFlatTerrainJoystick` PPO(train.py ENV 1줄 교체), 6.5분, reward 7.96→30.6. native closed-loop **12s·11.09m·0.92m/s** 보행 PASS.
-- [x] **obs parity** ✅ — 핸드오프 가정(Go1 유사 48-d) **틀림**: Spot 81-d, gait clock·linear velocity 없음, 대신 stateful `qpos_error_history`(36)+`feet_pos`(12). ONNX parity **4.07e-6**(5층 동적 export).
-- [x] **번들 씬 + 웹 live closed-loop** ✅ — 번들 씬 obs byte-parity **2.91e-7**(env PD게인 런타임 오버라이드 Kp400→300·Kd2→1을 xml에 박아 수렴). main.js 슬롯 빌더 확장(go1/G1 무회귀). 웹 0.93m/s. wasm OK·로컬 QA PASS.
-- [x] **Go1↔Spot 비교 노트** ✅ — exp06 §4: obs 아키텍처는 정책별 상이(재사용 불가)지만 파이프라인은 동일 골격(흡수). byte-parity의 적은 숨은 런타임 오버라이드.
-- ✅ **완료 기준 충족**: `?exp=spot-walk` **🟢 라이브 보행**(deploy `dpl_BLdS5XaC`, 라이브 QA PASS — x 7.44m·0.93m/s·height 0.43·consoleErrors 0, 로컬과 byte-identical). **학습 정책 임베디먼트 3종**(Go1 4족·G1 휴머노이드·Spot 4족), 4족 2종 비교 서사.
+- [ ] **Command sweep QA** — Go1·Spot에 대해 vx/vy/vyaw 격자 또는 대표 시나리오(forward, strafe, turn, diagonal)를 실행하고 거리·속도·낙상·NaN·heading drift를 기록.
+- [ ] **Keyboard 시연 정리** — M9의 WASD/QE 입력을 QA와 live demo 서사에 연결. 단순 조종이 아니라 정책 command tracking 검증으로 위치시킨다.
+- [ ] **Rough terrain scene 1종** — heightfield 또는 stepped terrain을 번들 씬으로 추가하고 Go1·Spot 정책을 같은 프로토콜로 평가.
+- [ ] **비교 리포트** — exp03 또는 신규 exp07 README에 Go1↔Spot 한계 표, 실패 모드, byte-parity/scene-drift 체크를 정리.
+- 완료 기준: 로컬+라이브 QA PASS, `?exp=` 링크로 재현 가능, README/ROADMAP에 결과 표 반영.
+
+### M13 — 정책 추가 확장 후보 ⬜
+> M12 이후 플랫폼 반복성을 더 보이기 위한 후보. 새 정책 추가가 연구가 아니라 운영 가능한 루틴인지 검증한다.
+
+- 후보: Barkour, Go2, H1/G1 변형, 다른 Playground locomotion env.
+- 필수 게이트: env 런타임 모델 변경 diff, ONNX parity, 번들 scene byte-parity, live closed-loop QA.
+- 완료 기준: 기존 Go1/G1/Spot 무회귀 + 새 정책 1종 live.
+
+### M14 — 포트폴리오 2차 패키징 후보 ⬜
+> M8-M13의 기술 디테일을 외부 독자가 읽을 수 있는 구조로 재압축한다.
+
+- README 상단을 “정책 플랫폼” 중심으로 개편.
+- askewly 후속 글: byte-parity, hidden runtime override, browser closed-loop 정책 실행 서사.
+- vault synthesis: browser robot policy runtime + robustness 결과 통합.
+- 완료 기준: GitHub README, 블로그, vault가 같은 thesis를 말하고 중복/장황함이 줄어든 상태.
 
 ### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
-- [ ] SO-100류 저가 로봇팔(~$200-400) 구매·조립
-- [ ] teleoperation 데이터 수집 → ACT 모방학습 → sim→real 이식, 1개 태스크 수행
-- 완료 기준: 실물 팔 태스크 수행 영상 + reality gap 회고. ※ 저가팔 구매 시 착수 (현재 보류)
+- SO-100류 저가 로봇팔 구매·조립.
+- teleoperation 데이터 수집 → ACT 모방학습 → sim→real 이식.
+- 완료 기준: 실물 팔 태스크 수행 영상 + reality gap 회고.
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악. `docs/landscape.md`(정의·용어 11종·4레이어 스택·플레이어 맵·reading list 15개).
