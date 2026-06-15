@@ -1,0 +1,2 @@
+PASS_DIAGNOSTIC upright_s= 6.0 fell_at= None min_height= 0.752 max_reference_error= 0.006602 max_height_error= 0.018982 energy= 11.02
+baseline_upright_s= 1.24 improved= True

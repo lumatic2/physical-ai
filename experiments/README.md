@@ -27,6 +27,7 @@
 | 18 | [g1-squat-reward-smoke](18-g1-squat-reward-smoke/README.md) | G1 squat balance reward wrapper가 reset/step/PPO/native 평가 루프에 들어가는지 검증 | 🟨 wrapper/PPO smoke PASS, native diagnostic FAIL: 1.24s fall |
 | 19 | [g1-squat-recovery-longrun](19-g1-squat-recovery-longrun/README.md) | exp18의 native 1.24s fall을 줄이기 위해 recovery/upright/height-aware reward를 검증 | 🟥 300k PPO reward 1.406→5.994, native fall 1.24s unchanged |
 | 20 | [g1-squat-reference-tracking](20-g1-squat-reference-tracking/README.md) | exp17 squat reference trajectory를 실제 PPO reward에 결합해 native fall time 개선 여부를 검증 | 🟥 reference PPO reward 2.612→7.565, native fall 1.24s unchanged |
+| 21 | [g1-stabilizer-init-probe](21-g1-stabilizer-init-probe/README.md) | 기존 G1 walking policy를 stabilizer prior로 restore해 squat reference env를 fine-tune할 수 있는지 검증 | 🟨 walking init native no-fall 6.0s PASS, squat depth pending |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
