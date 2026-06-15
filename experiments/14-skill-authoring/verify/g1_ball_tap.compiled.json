@@ -1,0 +1,45 @@
+{
+  "compiled_schema_version": "0.1",
+  "source_behavior_id": "g1_ball_tap",
+  "embodiment": "g1",
+  "skill": "ball_tap",
+  "objective_type": "move_object",
+  "preferred_method": "rl",
+  "scene_requirements": [
+    "g1_mjx_feetonly.xml",
+    "ball_body",
+    "ball_velocity_sensor",
+    "goal_direction_metric"
+  ],
+  "reward_terms": [
+    "ball_velocity_to_goal",
+    "foot_ball_contact",
+    "balance",
+    "energy_penalty"
+  ],
+  "eval_metrics": [
+    "fall",
+    "base_height",
+    "foot_contact",
+    "ball_distance",
+    "ball_direction_error",
+    "energy"
+  ],
+  "done_conditions": {
+    "max_time_s": 5.0,
+    "fall_terminates": true,
+    "min_base_height_m": 0.58
+  },
+  "raw_target": {
+    "ball_initial_pos": [
+      0.35,
+      -0.08,
+      0.06
+    ],
+    "goal_direction_xy": [
+      1.0,
+      0.0
+    ],
+    "min_ball_distance_m": 0.6
+  }
+}

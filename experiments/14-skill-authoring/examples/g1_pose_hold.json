@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "id": "g1_pose_hold",
+  "embodiment": "g1",
+  "skill": "pose_hold",
+  "level": "L0",
+  "objective": {
+    "type": "hold_pose",
+    "pose": "stand"
+  },
+  "target": {
+    "duration_s": 5.0,
+    "base_height_m": 0.79,
+    "base_yaw_rad": 0.0
+  },
+  "constraints": {
+    "max_time_s": 5.0,
+    "no_fall": true,
+    "min_base_height_m": 0.60,
+    "max_joint_limit_violation": 0.0
+  },
+  "metrics": ["fall", "base_height", "pose_error", "energy", "joint_limit_violation"],
+  "training": {
+    "preferred_method": "rl",
+    "reward_terms": ["alive", "pose_tracking", "height", "energy_penalty", "joint_limit_penalty"]
+  }
+}

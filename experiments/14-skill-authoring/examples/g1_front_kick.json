@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.1",
+  "id": "g1_front_kick",
+  "embodiment": "g1",
+  "skill": "front_kick",
+  "level": "L2",
+  "objective": {
+    "type": "strike_target",
+    "limb": "right_foot"
+  },
+  "target": {
+    "foot_peak_x_m": 0.35,
+    "foot_peak_height_m": 0.18,
+    "strike_window_s": [1.0, 2.0]
+  },
+  "constraints": {
+    "max_time_s": 4.0,
+    "no_fall": true,
+    "min_base_height_m": 0.58,
+    "max_joint_limit_violation": 0.0
+  },
+  "metrics": ["fall", "base_height", "foot_contact", "strike_speed", "pose_error", "energy", "joint_limit_violation"],
+  "training": {
+    "preferred_method": "rl",
+    "reward_terms": ["single_support_balance", "foot_target", "strike_speed", "support_foot_contact", "energy_penalty"]
+  }
+}

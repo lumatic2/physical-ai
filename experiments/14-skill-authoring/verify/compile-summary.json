@@ -1,0 +1,27 @@
+{
+  "schema": "behavior_spec.schema.json",
+  "schema_title": "Physical AI behavior spec",
+  "compiled": [
+    {
+      "path": "examples/g1_ball_tap.json",
+      "out": "verify/g1_ball_tap.compiled.json",
+      "id": "g1_ball_tap"
+    },
+    {
+      "path": "examples/g1_front_kick.json",
+      "out": "verify/g1_front_kick.compiled.json",
+      "id": "g1_front_kick"
+    },
+    {
+      "path": "examples/g1_pose_hold.json",
+      "out": "verify/g1_pose_hold.compiled.json",
+      "id": "g1_pose_hold"
+    },
+    {
+      "path": "examples/g1_squat.json",
+      "out": "verify/g1_squat.compiled.json",
+      "id": "g1_squat"
+    }
+  ],
+  "failed": []
+}

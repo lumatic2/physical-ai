@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "id": "g1_ball_tap",
+  "embodiment": "g1",
+  "skill": "ball_tap",
+  "level": "L2",
+  "objective": {
+    "type": "move_object",
+    "object": "soccer_ball",
+    "limb": "right_foot"
+  },
+  "target": {
+    "ball_initial_pos": [0.35, -0.08, 0.06],
+    "goal_direction_xy": [1.0, 0.0],
+    "min_ball_distance_m": 0.6
+  },
+  "constraints": {
+    "max_time_s": 5.0,
+    "no_fall": true,
+    "min_base_height_m": 0.58,
+    "max_joint_limit_violation": 0.0
+  },
+  "metrics": ["fall", "base_height", "foot_contact", "ball_distance", "ball_direction_error", "energy"],
+  "training": {
+    "preferred_method": "rl",
+    "reward_terms": ["ball_velocity_to_goal", "foot_ball_contact", "balance", "energy_penalty"]
+  }
+}

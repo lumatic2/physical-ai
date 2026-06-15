@@ -1,0 +1,36 @@
+{
+  "compiled_schema_version": "0.1",
+  "source_behavior_id": "g1_squat",
+  "embodiment": "g1",
+  "skill": "squat",
+  "objective_type": "transition_pose",
+  "preferred_method": "rl",
+  "scene_requirements": [
+    "g1_mjx_feetonly.xml"
+  ],
+  "reward_terms": [
+    "height_tracking",
+    "pose_tracking",
+    "smoothness",
+    "feet_contact",
+    "energy_penalty"
+  ],
+  "eval_metrics": [
+    "fall",
+    "base_height",
+    "pose_error",
+    "transition_time",
+    "energy",
+    "joint_limit_violation"
+  ],
+  "done_conditions": {
+    "max_time_s": 6.0,
+    "fall_terminates": true,
+    "min_base_height_m": 0.42
+  },
+  "raw_target": {
+    "base_height_m": 0.52,
+    "hold_s": 1.0,
+    "return_to_stand": true
+  }
+}

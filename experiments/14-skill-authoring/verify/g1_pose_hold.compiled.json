@@ -1,0 +1,35 @@
+{
+  "compiled_schema_version": "0.1",
+  "source_behavior_id": "g1_pose_hold",
+  "embodiment": "g1",
+  "skill": "pose_hold",
+  "objective_type": "hold_pose",
+  "preferred_method": "rl",
+  "scene_requirements": [
+    "g1_mjx_feetonly.xml"
+  ],
+  "reward_terms": [
+    "alive",
+    "pose_tracking",
+    "height",
+    "energy_penalty",
+    "joint_limit_penalty"
+  ],
+  "eval_metrics": [
+    "fall",
+    "base_height",
+    "pose_error",
+    "energy",
+    "joint_limit_violation"
+  ],
+  "done_conditions": {
+    "max_time_s": 5.0,
+    "fall_terminates": true,
+    "min_base_height_m": 0.6
+  },
+  "raw_target": {
+    "duration_s": 5.0,
+    "base_height_m": 0.79,
+    "base_yaw_rad": 0.0
+  }
+}

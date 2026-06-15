@@ -26,7 +26,7 @@
 | M15 | 새 정책 1종 end-to-end 흡수 | 플랫폼이 미보유 policy를 새 학습부터 live QA까지 받아낸다 | Barkour train log, ONNX, native parity, web/live QA | 완료 |
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
-| M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 다음 |
+| M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
 | M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 후보 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | 후보 |
@@ -80,13 +80,13 @@
 
 > 목표: "이 동작을 만들어줘"를 바로 학습으로 보내지 않고, 먼저 실험 가능한 task spec으로 고정한다.
 
-- [ ] `experiments/13-skill-authoring/README.md`를 만들고 skill taxonomy를 정의한다.
-- [ ] `behavior_spec.schema.json`으로 embodiment, objective, target, constraints, metrics를 표준화한다.
-- [ ] 예시 spec 4개를 만든다: `g1_pose_hold`, `g1_squat`, `g1_front_kick`, `g1_ball_tap`.
-- [ ] spec을 train/eval config 초안으로 바꾸는 `compile_behavior.py`를 만든다.
-- [ ] 성공/실패 metric을 command sweep처럼 raw JSON으로 남기는 평가 형식을 정한다.
+- [x] `experiments/14-skill-authoring/README.md`를 만들고 skill taxonomy를 정의했다.
+- [x] `behavior_spec.schema.json`으로 embodiment, objective, target, constraints, metrics를 표준화했다.
+- [x] 예시 spec 4개를 만들었다: `g1_pose_hold`, `g1_squat`, `g1_front_kick`, `g1_ball_tap`.
+- [x] spec을 train/eval config 초안으로 바꾸는 `compile_behavior.py`를 만들었다.
+- [x] 성공/실패 metric을 command sweep처럼 raw JSON으로 남기는 평가 형식을 정했다.
 
-완료 기준: 새 skill을 시작할 때 자연어 목표가 아니라 versioned spec에서 출발한다.
+완료 기준: ✅ 새 skill을 시작할 때 자연어 목표가 아니라 versioned spec에서 출발한다. 결과는 [exp14](experiments/14-skill-authoring/README.md)에 박제했다.
 
 ### M19 - Humanoid skill baseline
 

@@ -20,6 +20,7 @@
 | 11 | [policy-addition-routine](11-policy-addition-routine/README.md) | 새 policy 추가가 매번 bespoke 작업이 아니라 체크 가능한 운영 루틴인지 검증 | ✅ `POLICY_ADDITION.md` + `check_policy_bundle.py`, 현재 policy 7종 PASS |
 | 12 | [policy-gallery-comparison](12-policy-gallery-comparison/README.md) | 정책 갤러리를 같은 command sweep protocol로 비교 가능한 실험판으로 만들 수 있는지 검증 | ✅ 6개 sweep report 통합, failures=0, [비교표](12-policy-gallery-comparison/verify/policy-gallery-report.md) |
 | 13 | [acrobatic-feasibility](13-acrobatic-feasibility/README.md) | Atlas식 물구나무·덤블링·축구 skill을 현 G1 스택으로 바로 학습 가능한지 판단 | ✅ G1 static gate PASS: squat/front kick는 go, handstand는 hand-floor contact 부재로 blocked, tumble은 reference motion 필요 |
+| 14 | [skill-authoring](14-skill-authoring/README.md) | 원하는 동작을 versioned behavior spec으로 고정해 reward/scene/metric으로 번역할 수 있는지 검증 | ✅ 4개 G1 skill spec compile PASS, failed=0, M19/M21/M22 입력 계약 생성 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

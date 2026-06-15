@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1",
+  "id": "g1_squat",
+  "embodiment": "g1",
+  "skill": "squat",
+  "level": "L1",
+  "objective": {
+    "type": "transition_pose",
+    "from_pose": "stand",
+    "to_pose": "squat"
+  },
+  "target": {
+    "base_height_m": 0.52,
+    "hold_s": 1.0,
+    "return_to_stand": true
+  },
+  "constraints": {
+    "max_time_s": 6.0,
+    "no_fall": true,
+    "min_base_height_m": 0.42,
+    "max_joint_limit_violation": 0.0
+  },
+  "metrics": ["fall", "base_height", "pose_error", "transition_time", "energy", "joint_limit_violation"],
+  "training": {
+    "preferred_method": "rl",
+    "reward_terms": ["height_tracking", "pose_tracking", "smoothness", "feet_contact", "energy_penalty"]
+  }
+}
