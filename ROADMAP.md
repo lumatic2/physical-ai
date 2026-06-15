@@ -29,7 +29,7 @@
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
 | M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 게이트 완료 / RL 대기 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
-| M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | 후보 |
+| M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 후보 |
 
 ## 닫힌 증거
@@ -116,12 +116,13 @@
 
 > 목표: 축구/라보나슛의 전 단계로 공이 있는 접촉 task를 만든다.
 
-- [ ] G1 + ball scene을 만들고 공 위치/속도/goal metric을 읽는다.
-- [ ] `ball tap`, `front kick`, `angled kick`을 skill spec으로 정의한다.
-- [ ] 공 이동거리, 방향 오차, 발-공 접촉, 낙상 여부를 평가한다.
+- [x] G1 + ball scene을 만들고 공 위치/속도/goal metric을 읽었다.
+- [x] `ball_tap` skill spec과 scene requirement를 M18에서 정의했다.
+- [x] 공 이동거리와 방향 오차 metric을 native MuJoCo smoke로 검증했다.
+- [ ] 발-공 접촉과 낙상 여부를 실제 kick policy에서 평가한다.
 - [ ] 라보나슛은 바로 목표로 삼지 않고, crossing-leg kick feasibility까지 본다.
 
-완료 기준: 로봇이 단순 pose가 아니라 외부 물체를 목표 방향으로 움직이는 첫 skill을 만든다.
+완료 기준: ✅ scene/metric gate는 완료. 로봇이 실제로 외부 물체를 목표 방향으로 움직이는 learned skill은 M19 balance wrapper 이후 진행한다. 현재 증거는 [exp16](experiments/16-ball-skill-sandbox/README.md)에 박제했다.
 
 ### M22 - Motion-to-policy loop
 

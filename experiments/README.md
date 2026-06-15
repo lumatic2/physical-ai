@@ -22,6 +22,7 @@
 | 13 | [acrobatic-feasibility](13-acrobatic-feasibility/README.md) | Atlas식 물구나무·덤블링·축구 skill을 현 G1 스택으로 바로 학습 가능한지 판단 | ✅ G1 static gate PASS: squat/front kick는 go, handstand는 hand-floor contact 부재로 blocked, tumble은 reference motion 필요 |
 | 14 | [skill-authoring](14-skill-authoring/README.md) | 원하는 동작을 versioned behavior spec으로 고정해 reward/scene/metric으로 번역할 수 있는지 검증 | ✅ 4개 G1 skill spec compile PASS, failed=0, M19/M21/M22 입력 계약 생성 |
 | 15 | [g1-skill-baseline](15-g1-skill-baseline/README.md) | `g1_squat` compiled spec이 native G1 position-control baseline으로 안정적인지 검증 | 🟥 scripted baseline FAIL: hold/mild/deep 모두 1.24~1.25초 fall, balance reward wrapper 필요 |
+| 16 | [ball-skill-sandbox](16-ball-skill-sandbox/README.md) | 축구/라보나슛 전 단계로 G1+ball scene과 ball distance/direction metric을 만들 수 있는지 검증 | ✅ scene load + ball metric PASS: injected ball distance 0.862m, direction error 0.000rad |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

@@ -1,0 +1,23 @@
+{
+  "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_ball.xml",
+  "source_spec": "experiments/14-skill-authoring/verify/g1_ball_tap.compiled.json",
+  "nq": 43,
+  "nv": 41,
+  "nu": 29,
+  "nsensor": 23,
+  "ball_initial_pos": [
+    0.35,
+    -0.08,
+    0.06
+  ],
+  "ball_final_pos": [
+    1.2123183130411344,
+    -0.08,
+    0.059632818157539826
+  ],
+  "ball_distance": 0.8623183130411344,
+  "ball_direction_error_rad": 0.0,
+  "min_required_distance": 0.6,
+  "verdict": "PASS",
+  "next": "Use the same ball body and metrics for foot-ball contact reward; this smoke injects velocity and does not test kicking."
+}
