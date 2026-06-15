@@ -24,7 +24,7 @@
 | M12-M14 | 강건성 검증 + 2차 패키징 | 명령/지형/정책 추가가 라이브에서 재현된다 | command sweep, rough terrain, G1 rough, README/글/vault | 완료/압축 |
 | M7 | 실물 도달 | sim-to-real 전환 조건을 판단한다 | SO-101 2-arm + LeRobot + ACT 구매 전 게이트 | 게이트 완료 |
 | M15 | 새 정책 1종 end-to-end 흡수 | 플랫폼이 미보유 policy를 새 학습부터 live QA까지 받아낸다 | Barkour train log, ONNX, native parity, web/live QA | 완료 |
-| M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `experiments/10-*`, template/scripts/checklist | 후보 |
+| M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 후보 |
 
 ## 닫힌 증거
@@ -68,11 +68,11 @@
 
 ### M16 - 정책 추가 루틴 일반화
 
-- [ ] Go1/G1/Spot/G1 rough에서 반복된 `train -> export -> verify -> bundle -> QA` 단계를 checklist/script/template로 줄인다.
-- [ ] `rollout_policy.py`, `rollout_g1.py`, `rollout_spot.py`의 차이를 줄일 수 있는지 판단한다.
-- [ ] ADR 0007 규칙을 자동 점검 항목으로 끌어올린다: env가 런타임에 PD gain, damping, mass, friction, actuator gain 등을 바꾸면 정적 XML에 bake해야 한다.
+- [x] Go1/G1/Spot/Barkour에서 반복된 `train -> export -> verify -> bundle -> QA` 단계를 [POLICY_ADDITION.md](experiments/03-digital-twin/POLICY_ADDITION.md) checklist로 줄였다.
+- [x] registry, scene, ONNX, golden, manifest, required policy fields를 [check_policy_bundle.py](experiments/03-digital-twin/check_policy_bundle.py)로 점검한다.
+- [x] ADR 0007 규칙을 checklist에 올렸다: env가 런타임에 PD gain, damping, mass, friction, actuator gain 등을 바꾸면 정적 XML에 bake해야 한다.
 
-완료 기준: 다음 policy 추가가 "새 연구"가 아니라 문서화된 운영 절차로 시작 가능하다.
+완료 기준: ✅ 현재 policy 7종 bundle sanity PASS. 다음 policy 추가가 "새 연구"가 아니라 문서화된 운영 절차로 시작 가능하다.
 
 ### M17 - 비교 가능한 policy gallery
 

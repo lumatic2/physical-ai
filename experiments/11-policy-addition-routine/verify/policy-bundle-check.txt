@@ -1,0 +1,15 @@
+WARN g1-walk: missing optional web obs_spec.json
+OK g1-walk: scene=g1/scene_g1_policy.xml obs=103 act=29
+WARN g1-rough-walk: missing optional web obs_spec.json
+OK g1-rough-walk: scene=g1/scene_g1_rough.xml obs=103 act=29
+OK barkour-walk: scene=barkour/scene_barkour_policy.xml obs=465 act=12
+WARN go1-walk: missing optional web obs_spec.json
+OK go1-walk: scene=go1/scene_go1_flat.xml obs=48 act=12
+WARN spot-walk: missing optional web obs_spec.json
+OK spot-walk: scene=spot/scene_spot_policy.xml obs=81 act=12
+WARN go1-rough-walk: missing optional web obs_spec.json
+OK go1-rough-walk: scene=go1/scene_go1_rough.xml obs=48 act=12
+WARN spot-rough-walk: missing optional web obs_spec.json
+OK spot-rough-walk: scene=spot/scene_spot_rough.xml obs=81 act=12
+checked 7 policy experiments
+policy bundle check PASS
