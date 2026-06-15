@@ -1,0 +1,339 @@
+E0616 00:31:50.887354    6651 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+E0616 00:31:50.898858    6495 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/jax/_src/abstract_arrays.py:193: RuntimeWarning: overflow encountered in cast
+  return literals.TypedNdArray(np.asarray(x, dtype), weak_type=False)
+E0616 00:31:56.309693    6689 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:34:11.570240    6661 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:34:11.658914    6662 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:34:25.932077    6664 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+0: reward=2.612
+E0616 00:35:13.263150    6681 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:13.356615    6686 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:13.437471    6678 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:13.514453    6680 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:13.596568    6666 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:23.380227    6678 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0616 00:35:23.451993    6676 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+163840: reward=6.440
+327680: reward=7.565
+E0616 00:38:23.627176    6675 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+FAIL_DIAGNOSTIC {
+  "baseline_exp18_exp19_upright_s": 1.24,
+  "engine": "native mujoco.MjData closed-loop with Brax JAX inference params",
+  "seconds": 6.0,
+  "ctrl_dt": 0.02,
+  "sim_dt": 0.002,
+  "n_substeps": 10,
+  "fell_at": 1.24,
+  "upright_s": 1.24,
+  "improved_vs_baseline": false,
+  "min_height": -0.7387680321693506,
+  "final_height": -0.7164736095038353,
+  "max_reference_error": 0.15843604881450088,
+  "max_height_error": 2.177960972060353,
+  "max_joint_limit_violation": 0.05861878254138031,
+  "energy_proxy": 30.57193212942252,
+  "verdict": "FAIL_DIAGNOSTIC",
+  "samples": [
+    {
+      "t": 0.0,
+      "base_height": 0.755,
+      "target_height": 0.7549999952316284,
+      "reference_error": 1.2614786223382194e-16,
+      "height_error": 2.2737367586674853e-17,
+      "up_z": 1.0,
+      "joint_limit_violation": 0.0,
+      "action_l2": 0.25616827607154846
+    },
+    {
+      "t": 0.2,
+      "base_height": 0.7363890248002343,
+      "target_height": 0.7369999885559082,
+      "reference_error": 0.005971566430214332,
+      "height_error": 3.7327671074719635e-07,
+      "up_z": 0.9996104898097186,
+      "joint_limit_violation": 0.0,
+      "action_l2": 0.2512860894203186
+    },
+    {
+      "t": 0.4,
+      "base_height": 0.7355777664702318,
+      "target_height": 0.718999981880188,
+      "reference_error": 0.008315905763551958,
+      "height_error": 0.0002748229419138929,
+      "up_z": 0.9975867985082024,
+      "joint_limit_violation": 0.0,
+      "action_l2": 0.23027384281158447
+    },
+    {
+      "t": 0.6,
+      "base_height": 0.7360475218841462,
+      "target_height": 0.7009999752044678,
+      "reference_error": 0.005934123909291484,
+      "height_error": 0.001228330528264241,
+      "up_z": 0.9985962402069918,
+      "joint_limit_violation": 0.0,
+      "action_l2": 0.26823484897613525
+    },
+    {
+      "t": 0.8,
+      "base_height": 0.7225872400143998,
+      "target_height": 0.6830000281333923,
+      "reference_error": 0.012162998197345658,
+      "height_error": 0.001567147344511777,
+      "up_z": 0.9795882598220553,
+      "joint_limit_violation": 0.0,
+      "action_l2": 0.19596853852272034
+    },
+    {
+      "t": 1.0,
+      "base_height": 0.6598185574627942,
+      "target_height": 0.6650000214576721,
+      "reference_error": 0.038490475112722335,
+      "height_error": 2.6847569130216617e-05,
+      "up_z": 0.9105243241861452,
+      "joint_limit_violation": 0.056306855824732605,
+      "action_l2": 0.8320679664611816
+    },
+    {
+      "t": 1.2,
+      "base_height": 0.535092029149337,
+      "target_height": 0.6470000147819519,
+      "reference_error": 0.025221325519949395,
+      "height_error": 0.012523397248349553,
+      "up_z": 0.7032833641976984,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 1.400673508644104
+    },
+    {
+      "t": 1.4,
+      "base_height": 0.0994832982822558,
+      "target_height": 0.6290000081062317,
+      "reference_error": 0.030144678834171174,
+      "height_error": 0.2803879459828087,
+      "up_z": 0.14785848057631368,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 5.6094231605529785
+    },
+    {
+      "t": 1.6,
+      "base_height": -0.6894108887327887,
+      "target_height": 0.6200000047683716,
+      "reference_error": 0.14069045209408906,
+      "height_error": 1.714556888019507,
+      "up_z": -0.8145487905475636,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 9.672316551208496
+    },
+    {
+      "t": 1.8,
+      "base_height": -0.7156449322844975,
+      "target_height": 0.6200000047683716,
+      "reference_error": 0.04176180899906876,
+      "height_error": 1.7839473978749627,
+      "up_z": -0.9616048706571858,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 10.370598793029785
+    },
+    {
+      "t": 2.0,
+      "base_height": -0.596026212568487,
+      "target_height": 0.6200000047683716,
+      "reference_error": 0.0612943871412031,
+      "height_error": 1.4787197612505887,
+      "up_z": -0.8030451839607032,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.82909107208252
+    },
+    {
+      "t": 2.2,
+      "base_height": -0.6122601311312461,
+      "target_height": 0.6200000047683716,
+      "reference_error": 0.07122452404177289,
+      "height_error": 1.5184650425273443,
+      "up_z": -0.7349874226955228,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 12.748435974121094
+    },
+    {
+      "t": 2.4,
+      "base_height": -0.6731525666199465,
+      "target_height": 0.6200000047683716,
+      "reference_error": 0.03359464844558994,
+      "height_error": 1.672243572888219,
+      "up_z": -0.9048714644809681,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.150562286376953
+    },
+    {
+      "t": 2.6,
+      "base_height": -0.7253470580186497,
+      "target_height": 0.6290000081062317,
+      "reference_error": 0.036413060317589306,
+      "height_error": 1.8342559755210737,
+      "up_z": -0.9938484293811183,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.228673934936523
+    },
+    {
+      "t": 2.8,
+      "base_height": -0.6862318980428331,
+      "target_height": 0.6470000147819519,
+      "reference_error": 0.04495913073516123,
+      "height_error": 1.7775073333744356,
+      "up_z": -0.9552416672515849,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.720298767089844
+    },
+    {
+      "t": 3.0,
+      "base_height": -0.6534842763411453,
+      "target_height": 0.6650000214576721,
+      "reference_error": 0.048284342574683045,
+      "height_error": 1.7384008435420406,
+      "up_z": -0.9280217037524385,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 10.14349365234375
+    },
+    {
+      "t": 3.2,
+      "base_height": -0.6604986241162808,
+      "target_height": 0.6830000281333923,
+      "reference_error": 0.04447723395502516,
+      "height_error": 1.8049886285966885,
+      "up_z": -0.9439168136580167,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 10.65294075012207
+    },
+    {
+      "t": 3.4,
+      "base_height": -0.7038466385612032,
+      "target_height": 0.7009999752044678,
+      "reference_error": 0.03942280275506659,
+      "height_error": 1.9735940082088723,
+      "up_z": -0.9863515058774541,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.879806518554688
+    },
+    {
+      "t": 3.6,
+      "base_height": -0.7192260139419239,
+      "target_height": 0.718999981880188,
+      "reference_error": 0.038027327753231775,
+      "height_error": 2.068494015058506,
+      "up_z": -0.983416135616648,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 12.229326248168945
+    },
+    {
+      "t": 3.8,
+      "base_height": -0.7000354523416671,
+      "target_height": 0.7369999885559082,
+      "reference_error": 0.03837475098369924,
+      "height_error": 2.0650708583956883,
+      "up_z": -0.9410057324842815,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 12.612728118896484
+    },
+    {
+      "t": 4.0,
+      "base_height": -0.6936264863285805,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.04674395159685401,
+      "height_error": 2.0985186830775104,
+      "up_z": -0.9446632457663954,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.601007461547852
+    },
+    {
+      "t": 4.2,
+      "base_height": -0.7165591607460559,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.042975788352526086,
+      "height_error": 2.1654863495417542,
+      "up_z": -0.9841092980708721,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.555644989013672
+    },
+    {
+      "t": 4.4,
+      "base_height": -0.7105568296995318,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.038501189217522575,
+      "height_error": 2.147856807102303,
+      "up_z": -0.9925330463486338,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.767571449279785
+    },
+    {
+      "t": 4.6,
+      "base_height": -0.6753376568196074,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.04522458343102494,
+      "height_error": 2.0458657988754423,
+      "up_z": -0.9559025943422897,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.14959716796875
+    },
+    {
+      "t": 4.8,
+      "base_height": -0.6617808239449047,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.050354953324476016,
+      "height_error": 2.0072678895865277,
+      "up_z": -0.9370707501252289,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.132734298706055
+    },
+    {
+      "t": 5.0,
+      "base_height": -0.6985514631729342,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.043185612013888694,
+      "height_error": 2.112811842230031,
+      "up_z": -0.9796034206168429,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.454548835754395
+    },
+    {
+      "t": 5.2,
+      "base_height": -0.7207543119227084,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.03646008141296966,
+      "height_error": 2.177850775084577,
+      "up_z": -0.994922062210765,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 11.668057441711426
+    },
+    {
+      "t": 5.4,
+      "base_height": -0.7083629452723353,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.041307522673268184,
+      "height_error": 2.141431095640407,
+      "up_z": -0.9672346004468412,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.062383651733398
+    },
+    {
+      "t": 5.6,
+      "base_height": -0.701181112182137,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.0509752599296998,
+      "height_error": 2.12046341758878,
+      "up_z": -0.955501458337285,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 13.582183837890625
+    },
+    {
+      "t": 5.8,
+      "base_height": -0.7166894852214286,
+      "target_height": 0.7549999952316284,
+      "reference_error": 0.043009620642670617,
+      "height_error": 2.1658699268761885,
+      "up_z": -0.9776586953365928,
+      "joint_limit_violation": 0.05861878254138031,
+      "action_l2": 12.862937927246094
+    }
+  ]
+}

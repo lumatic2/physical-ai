@@ -27,10 +27,10 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | reward-only 개선 FAIL / reference 대기 |
+| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | reference도 FAIL / stabilizer 대기 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
-| M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | format/probe 완료 |
+| M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
 
 ## 닫힌 증거
 
@@ -99,9 +99,10 @@
 - [x] short PPO smoke에서 eval reward가 1.524 -> 3.316으로 상승했다.
 - [x] trained params로 native MuJoCo에서 fall, height, joint-limit, energy, target error를 평가했다.
 - [x] recovery/upright/height-aware reward로 300k PPO를 돌렸지만 native fall time은 1.24초로 개선되지 않았다.
-- [ ] M22 reference tracking 또는 pretrained stabilizer를 결합한 뒤 ONNX export와 browser playback/live inference까지 연결한다.
+- [x] M22 reference tracking reward를 결합했지만 native fall time은 1.24초로 개선되지 않았다.
+- [ ] pretrained stabilizer 또는 stable standing policy initialization을 결합한 뒤 ONNX export와 browser playback/live inference까지 연결한다.
 
-완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe는 완료. 300k PPO에서도 native MuJoCo fall time이 1.24초로 유지되어, G1이 내가 정의한 단일 skill을 실제로 수행한다고 말하려면 M22 reference tracking 또는 pretrained stabilizer 결합 후 no-fall native verify, ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md)에 박제했다.
+완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe + reference tracking reward 결합은 완료. 300k PPO에서도 native MuJoCo fall time이 1.24초로 유지되어, G1이 내가 정의한 단일 skill을 실제로 수행한다고 말하려면 pretrained stabilizer 또는 stable standing policy initialization 후 no-fall native verify, ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md)에 박제했다.
 
 ### M20 - Acrobatic feasibility gate
 
@@ -133,10 +134,10 @@
 - [x] 키프레임 reference trajectory 포맷을 정했다.
 - [x] G1 squat reference를 50Hz fixed-rate trajectory로 compile했다.
 - [x] `reference_tracking_error`, `base_height_error`, `smoothness_penalty`, `fall_penalty` reward term 계약을 만들었다.
-- [ ] motion tracking reward 또는 imitation pretraining 후보를 실제 env에 결합한다.
+- [x] motion tracking reward를 실제 G1 squat env에 결합했다.
 - [ ] 브라우저에서 reference vs policy rollout을 나란히 확인하는 viewer를 만든다.
 
-완료 기준: ✅ reference format/probe 경로는 열렸다. "동작을 보여주고 policy가 따라 하게 한다"는 학습 루프는 M19 balance wrapper 이후 진행한다. 현재 증거는 [exp17](experiments/17-motion-to-policy-loop/README.md)에 박제했다.
+완료 기준: 🟨 reference format/probe와 reward-env 결합은 열렸다. 다만 exp20에서 native fall time이 1.24초로 개선되지 않아, "동작을 보여주고 policy가 따라 하게 한다"는 루프는 stabilizer prior 없이 충분하지 않다. 현재 증거는 [exp17](experiments/17-motion-to-policy-loop/README.md)와 [exp20](experiments/20-g1-squat-reference-tracking/README.md)에 박제했다.
 
 ## 닫힌 목표군 상세
 

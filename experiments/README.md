@@ -26,6 +26,7 @@
 | 17 | [motion-to-policy-loop](17-motion-to-policy-loop/README.md) | 키프레임 reference motion을 policy 학습 신호로 바꾸는 최소 포맷/컴파일 경로를 열 수 있는지 검증 | ✅ G1 squat reference 201 samples compile PASS, tracking reward 계약 생성 |
 | 18 | [g1-squat-reward-smoke](18-g1-squat-reward-smoke/README.md) | G1 squat balance reward wrapper가 reset/step/PPO/native 평가 루프에 들어가는지 검증 | 🟨 wrapper/PPO smoke PASS, native diagnostic FAIL: 1.24s fall |
 | 19 | [g1-squat-recovery-longrun](19-g1-squat-recovery-longrun/README.md) | exp18의 native 1.24s fall을 줄이기 위해 recovery/upright/height-aware reward를 검증 | 🟥 300k PPO reward 1.406→5.994, native fall 1.24s unchanged |
+| 20 | [g1-squat-reference-tracking](20-g1-squat-reference-tracking/README.md) | exp17 squat reference trajectory를 실제 PPO reward에 결합해 native fall time 개선 여부를 검증 | 🟥 reference PPO reward 2.612→7.565, native fall 1.24s unchanged |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
