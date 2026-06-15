@@ -497,7 +497,18 @@ export class MuJoCoDemo {
     let nan = false;
     for (let i = 0; i < this.model.nq; i++) { if (!Number.isFinite(this.data.qpos[i])) { nan = true; break; } }
     const h = this.data.qpos[2];
-    return { steps: n, x: this.data.qpos[0], y: this.data.qpos[1], height: h, fell: h < 0.2, nan };
+    const qw = this.data.qpos[3], qx = this.data.qpos[4], qy = this.data.qpos[5], qz = this.data.qpos[6];
+    const yaw = Math.atan2(2 * (qw * qz + qx * qy), 1 - 2 * (qy * qy + qz * qz));
+    return {
+      steps: n,
+      x: this.data.qpos[0],
+      y: this.data.qpos[1],
+      yaw,
+      height: h,
+      fell: h < 0.2,
+      nan,
+      command: Array.from(p.command),
+    };
   }
 
   // QA hook for replay (non-policy) experiments: seek to a trajectory frame (frac in [0,1])
