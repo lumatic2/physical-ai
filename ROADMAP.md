@@ -30,6 +30,7 @@
 | M13 | 정책 추가 확장 | M10/M11 플랫폼이 새 정책 패키지를 반복적으로 흡수하는지 확인한다 | G1 rough policy package + byte-parity + live QA | ✅ 완료 |
 | M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ✅ 완료 |
 | M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-101 2-arm + ACT 구매 전 게이트 | 🟨 게이트 완료 |
+| M15+ | 다음 목표군 재설계 | 닫힌 마일스톤을 압축하고 다음 포트폴리오/실험 축을 고른다 | 새 ROADMAP 구조 + 후보 우선순위 | ⬜ 다음 세션 |
 
 ## 닫힌 마일스톤 압축
 
@@ -87,6 +88,14 @@
 - [x] **정책 경로** — ACT-first. LeRobot 기반 데이터 수집 → ACT 학습 → held-out pose eval → reality-gap 회고.
 - [ ] **외부 입력 필요** — 예산/배송/작업공간/카메라/조립 시간 확보.
 - 완료 기준(실물): 실물 팔 pick/place 수행 영상 + dataset/train/eval log + reality gap 회고.
+
+### M15+ — 다음 목표군 재설계 ⬜
+> M12-M14와 M7 게이트까지 닫힌 상태. 다음 세션에서 로드맵을 다시 짜고 새 마일스톤 묶음을 정의한다.
+
+- 후보 A: **새 정책 학습 확장** — Barkour/Go2/H1 등 Playground policy를 새로 학습해 train→ONNX→native parity→web live QA까지 반복.
+- 후보 B: **실물 M7a bring-up** — SO-101 2-arm 구매가 확정되면 LeRobot calibration, data capture, ACT baseline으로 이동.
+- 후보 C: **포트폴리오 배포면 정리** — 예약 블로그 공개 후 README/askewly/vault 간 메시지 drift 점검.
+- 다음 세션 완료 기준: M15+ 목표군과 2~4개 세부 마일스톤을 새 ROADMAP 구조로 확정.
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악. `docs/landscape.md`(정의·용어 11종·4레이어 스택·플레이어 맵·reading list 15개).
