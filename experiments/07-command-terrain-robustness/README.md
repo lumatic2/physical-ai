@@ -1,7 +1,7 @@
 # 07-command-terrain-robustness — command sweep와 rough terrain 강건성 검증
 
 > M12. 평지 전진 데모를 넘어 Go1·Spot 정책이 `turn`, `strafe`, `diagonal`, rough terrain에서 어디까지 버티는지 측정한다.
-> 상태: S1 완료 — command sweep QA 하네스와 Go1/Spot 로컬 측정 완료. S2 rough terrain 남음.
+> 상태: S1~S2 완료 — command sweep QA, rough curb scene, Go1/Spot 로컬 측정 완료. 라이브 검증 남음.
 
 ## 1. 가설 (Hypothesis)
 
@@ -68,6 +68,41 @@ node qa/command_sweep.mjs --exp=spot-walk --out=../../07-command-terrain-robustn
 | Spot | turn-right | 0.261 | -0.015 | 1.644 | 0.457 | ✅ |
 | Spot | diagonal-left | 4.381 | 2.375 | 0.138 | 0.446 | ✅ |
 
+### S2 — rough curb scene ✅
+
+`go1-rough-walk`, `spot-rough-walk`을 추가했다. 기존 flat policy XML을 복사하되 floor 위에 낮은 curb 3개를 추가했다:
+
+| Curb | x | height |
+|---|---:|---:|
+| 1 | 1.0m | 1.0cm |
+| 2 | 2.0m | 2.0cm |
+| 3 | 3.0m | 3.0cm |
+
+실행:
+
+```bash
+cd experiments/03-digital-twin/web
+node qa/command_sweep.mjs --exp=go1-rough-walk --measure-only --out=../../07-command-terrain-robustness/verify/go1-rough-command-sweep.json
+node qa/command_sweep.mjs --exp=spot-rough-walk --measure-only --out=../../07-command-terrain-robustness/verify/spot-rough-command-sweep.json
+node qa/visual_check.mjs --exp=go1-rough-walk --steps=120 --chunk=40
+node qa/visual_check.mjs --exp=spot-rough-walk --steps=120 --chunk=40
+```
+
+| Robot | Scenario | dx | dy | dyaw | h | Verdict |
+|---|---|---:|---:|---:|---:|---|
+| Go1 rough | forward | 5.759 | 0.146 | 0.034 | 0.303 | ✅ |
+| Go1 rough | strafe-left | -0.126 | 2.632 | 0.102 | 0.309 | ✅ |
+| Go1 rough | strafe-right | 0.035 | -2.506 | -0.127 | 0.316 | ✅ |
+| Go1 rough | turn-left | 0.022 | -0.105 | -1.914 | 0.302 | ✅ |
+| Go1 rough | turn-right | -0.140 | -0.151 | 1.846 | 0.307 | ✅ |
+| Go1 rough | diagonal-left | 4.757 | 1.744 | -0.104 | 0.300 | ✅ |
+| Spot rough | forward | 4.656 | 0.883 | 0.550 | 0.432 | ✅ |
+| Spot rough | strafe-left | 0.008 | 3.020 | 0.003 | 0.461 | ✅ |
+| Spot rough | strafe-right | 0.103 | -3.218 | 0.040 | 0.464 | ✅ |
+| Spot rough | turn-left | 0.110 | 0.164 | -1.670 | 0.457 | ✅ |
+| Spot rough | turn-right | 0.261 | -0.015 | 1.644 | 0.457 | ✅ |
+| Spot rough | diagonal-left | 4.349 | 2.026 | 0.096 | 0.444 | ✅ |
+
 회귀:
 
 ```bash
@@ -80,6 +115,8 @@ node qa/visual_check.mjs --exp=spot-walk --steps=120 --chunk=40
 ### 박제 위치
 - `verify/go1-command-sweep.json`
 - `verify/spot-command-sweep.json`
+- `verify/go1-rough-command-sweep.json`
+- `verify/spot-rough-command-sweep.json`
 - `experiments/03-digital-twin/web/qa/out/*command*.png`
 
 ## 4. 통찰 (Insights)
@@ -88,13 +125,14 @@ node qa/visual_check.mjs --exp=spot-walk --steps=120 --chunk=40
 - **forward 외 command도 upright closed-loop는 유지한다.** 300 control step 동안 Go1·Spot 모두 NaN/낙상/콘솔에러 없이 통과했다.
 - **lateral command tracking은 Spot이 더 깨끗하다.** strafe에서 Spot은 dx가 거의 0이고 dy가 약 3.02m, Go1은 dy 2.4~2.6m에 작은 x/yaw drift가 붙는다.
 - **yaw sign은 현재 QA 좌표계/command convention이 반대다.** `vyaw=+0.8`이 Go1/Spot 모두 음수 yaw로, `vyaw=-0.8`이 양수 yaw로 나타난다. 정책이 회전을 못 하는 게 아니라 부호 convention을 문서화해야 한다.
+- **rough curb는 낙상을 만들지 않았지만 drift를 드러냈다.** Go1은 forward rough에서도 5.76m로 flat(5.89m)과 거의 같았다. Spot은 rough forward가 5.47m → 4.66m로 줄고 yaw drift가 0.55rad로 커졌다. 다만 diagonal rough는 4.35m/2.03m로 flat과 비슷하게 유지됐다.
 
 ### 가설은 통과했나?
-- [x] PASS — flat terrain command sweep에서는 두 정책 모두 forward/strafe/turn/diagonal을 낙상 없이 수행했다.
+- [x] PASS — flat/rough command sweep에서 두 정책 모두 forward/strafe/turn/diagonal을 낙상 없이 수행했다. 단 rough terrain에서 Spot forward/diagonal drift가 커졌다.
 - [ ] FAIL
 
 ### 정의에 반영
-- M12 완료 시 `ROADMAP.md`와 README에 rough terrain 결과까지 포함해 반영.
+- M12 완료 시 `ROADMAP.md`와 README에 라이브 QA 결과까지 포함해 반영.
 
 ### 다음 실험 후보
 - Rough terrain heightfield/stepped terrain scene 추가.

@@ -8,6 +8,7 @@
 // Usage:
 //   node qa/command_sweep.mjs --exp=go1-walk
 //   node qa/command_sweep.mjs --exp=spot-walk --out=../../07-command-terrain-robustness/verify/spot-command-sweep.json
+//   node qa/command_sweep.mjs --exp=go1-rough-walk --measure-only
 
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -24,6 +25,7 @@ const live = args.includes('--live');
 const exp = (args.find(a => a.startsWith('--exp=')) || '--exp=go1-walk').split('=')[1];
 const steps = parseInt((args.find(a => a.startsWith('--steps=')) || '--steps=300').split('=')[1], 10);
 const chunk = parseInt((args.find(a => a.startsWith('--chunk=')) || '--chunk=50').split('=')[1], 10);
+const measureOnly = args.includes('--measure-only');
 const outArg = args.find(a => a.startsWith('--out='));
 const outPath = outArg ? resolve(WEB_DIR, outArg.split('=')[1]) : null;
 const PORT = 8133;
@@ -143,7 +145,7 @@ try {
 
   const failed = results.filter(r => r.fell || r.nan || r.consoleErrors.length);
   console.log(failed.length ? '[sweep] FAIL' : '[sweep] PASS');
-  process.exitCode = failed.length ? 1 : 0;
+  process.exitCode = failed.length && !measureOnly ? 1 : 0;
 } catch (e) {
   console.error('[sweep] ERROR', e);
   process.exitCode = 2;

@@ -56,10 +56,10 @@
 ### M12 — 명령·지형 강건성 검증 ⬜
 > 지금까지는 “브라우저에서 걷는다”를 입증했다. 다음은 “명령이 바뀌고 지형이 거칠어져도 어디까지 버티는가”를 측정한다.
 
-- [ ] **Command sweep QA** — Go1·Spot에 대해 vx/vy/vyaw 격자 또는 대표 시나리오(forward, strafe, turn, diagonal)를 실행하고 거리·속도·낙상·NaN·heading drift를 기록.
-- [ ] **Keyboard 시연 정리** — M9의 WASD/QE 입력을 QA와 live demo 서사에 연결. 단순 조종이 아니라 정책 command tracking 검증으로 위치시킨다.
-- [ ] **Rough terrain scene 1종** — heightfield 또는 stepped terrain을 번들 씬으로 추가하고 Go1·Spot 정책을 같은 프로토콜로 평가.
-- [ ] **비교 리포트** — exp03 또는 신규 exp07 README에 Go1↔Spot 한계 표, 실패 모드, byte-parity/scene-drift 체크를 정리.
+- [x] **Command sweep QA** — Go1·Spot에 대해 vx/vy/vyaw 대표 시나리오(forward, strafe, turn, diagonal)를 실행하고 거리·속도·낙상·NaN·heading drift를 기록. flat 6종 모두 PASS.
+- [x] **Keyboard 시연 정리** — M9의 WASD/QE 입력을 QA와 live demo 서사에 연결. `command_sweep.mjs`가 command vector를 직접 주입해 정책 command tracking 검증으로 승격.
+- [x] **Rough terrain scene 1종** — 낮은 curb 3개가 있는 `go1-rough-walk`, `spot-rough-walk`를 추가하고 같은 프로토콜로 평가.
+- [x] **비교 리포트** — 신규 exp07 README에 Go1↔Spot flat/rough 한계 표, yaw convention, Spot rough drift를 정리.
 - 완료 기준: 로컬+라이브 QA PASS, `?exp=` 링크로 재현 가능, README/ROADMAP에 결과 표 반영.
 
 ### M13 — 정책 추가 확장 후보 ⬜

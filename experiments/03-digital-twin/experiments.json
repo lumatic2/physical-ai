@@ -10,7 +10,7 @@
       "camera": {
         "lookat": [
           2.5,
-          0.0,
+          0,
           0.6
         ],
         "distance": 4.5,
@@ -19,8 +19,8 @@
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.6
         ],
         "offset": [
@@ -28,7 +28,7 @@
           1.6,
           2.6
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       },
       "policy": {
         "onnx": "g1_policy.onnx",
@@ -39,9 +39,9 @@
         "ctrl_dt": 0.02,
         "n_substeps": 10,
         "command": [
-          1.0,
-          0.0,
-          0.0
+          1,
+          0,
+          0
         ],
         "obs_layout": [
           [
@@ -86,23 +86,23 @@
         "qvel_joint_start": 6,
         "gait": {
           "phase_init": [
-            0.0,
+            0,
             3.141592653589793
           ],
           "gait_freq": 1.375
         },
         "command_range": {
           "vx": [
-            -1.0,
-            1.0
+            -1,
+            1
           ],
           "vy": [
             -0.8,
             0.8
           ],
           "vyaw": [
-            -1.0,
-            1.0
+            -1,
+            1
           ]
         },
         "_indices_note": "rollout_g1.py가 번들 씬에서 유도해 박제 (gyro_adr/local_linvel_adr/imu_site_id/default_pose/nq/nu/nv)",
@@ -115,34 +115,34 @@
           "nv": 35,
           "default_pose": [
             -0.312,
-            0.0,
-            0.0,
+            0,
+            0,
             0.669,
             -0.363,
-            0.0,
+            0,
             -0.312,
-            0.0,
-            0.0,
+            0,
+            0,
             0.669,
             -0.363,
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             0.073,
             0.2,
             0.2,
-            0.0,
+            0,
             0.6,
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             0.2,
             -0.2,
-            0.0,
+            0,
             0.6,
-            0.0,
-            0.0,
-            0.0
+            0,
+            0,
+            0
           ]
         }
       }
@@ -157,7 +157,7 @@
       "camera": {
         "lookat": [
           0.2,
-          0.0,
+          0,
           0.4
         ],
         "distance": 1.9,
@@ -167,7 +167,7 @@
       "web": {
         "target": [
           0.15,
-          0.0,
+          0,
           0.45
         ],
         "offset": [
@@ -175,7 +175,7 @@
           0.9,
           1.1
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "g1-stand": {
@@ -186,8 +186,8 @@
       "render_out": "media/g1_settle.mp4",
       "camera": {
         "lookat": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.6
         ],
         "distance": 2.6,
@@ -196,8 +196,8 @@
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.65
         ],
         "offset": [
@@ -205,7 +205,7 @@
           1.6,
           2.3
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "spot-stand": {
@@ -216,8 +216,8 @@
       "render_out": "media/spot_settle.mp4",
       "camera": {
         "lookat": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.25
         ],
         "distance": 2.2,
@@ -226,8 +226,8 @@
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.3
         ],
         "offset": [
@@ -235,7 +235,7 @@
           0.9,
           1.3
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "shadow-hand": {
@@ -265,7 +265,7 @@
           0.22,
           0.32
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "so100-stack": {
@@ -296,7 +296,7 @@
           0.42,
           0.52
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "humanoid-settle": {
@@ -307,18 +307,18 @@
       "render_out": "media/humanoid_settle.mp4",
       "camera": {
         "lookat": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.5
         ],
-        "distance": 4.0,
+        "distance": 4,
         "azimuth": 120,
         "elevation": -15
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.7
         ],
         "offset": [
@@ -326,7 +326,7 @@
           1.6,
           2.2
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "go1-walk": {
@@ -338,7 +338,7 @@
       "camera": {
         "lookat": [
           2.5,
-          0.0,
+          0,
           0.3
         ],
         "distance": 4.5,
@@ -347,8 +347,8 @@
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.35
         ],
         "offset": [
@@ -356,7 +356,7 @@
           1.4,
           2.4
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       },
       "policy": {
         "onnx": "go1_policy.onnx",
@@ -367,9 +367,9 @@
         "ctrl_dt": 0.02,
         "n_substeps": 5,
         "command": [
-          1.0,
-          0.0,
-          0.0
+          1,
+          0,
+          0
         ],
         "obs_layout": [
           [
@@ -460,7 +460,7 @@
           1.2,
           0.9
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       }
     },
     "spot-walk": {
@@ -472,17 +472,17 @@
       "camera": {
         "lookat": [
           2.5,
-          0.0,
+          0,
           0.4
         ],
-        "distance": 4.0,
+        "distance": 4,
         "azimuth": 130,
         "elevation": -12
       },
       "web": {
         "target": [
-          0.0,
-          0.0,
+          0,
+          0,
           0.45
         ],
         "offset": [
@@ -490,7 +490,7 @@
           1.6,
           2.2
         ],
-        "fovDist": 1.0
+        "fovDist": 1
       },
       "policy": {
         "onnx": "spot_policy.onnx",
@@ -501,9 +501,9 @@
         "ctrl_dt": 0.02,
         "n_substeps": 5,
         "command": [
-          1.0,
-          0.0,
-          0.0
+          1,
+          0,
+          0
         ],
         "obs_layout": [
           [
@@ -550,7 +550,7 @@
         "history_len": 3,
         "command_range": {
           "vx": [
-            -1.0,
+            -1,
             1.5
           ],
           "vy": [
@@ -604,16 +604,277 @@
           "nu": 12,
           "nv": 18,
           "default_pose": [
-            0.0,
+            0,
             1.04,
             -1.8,
-            0.0,
+            0,
             1.04,
             -1.8,
-            0.0,
+            0,
             1.04,
             -1.8,
-            0.0,
+            0,
+            1.04,
+            -1.8
+          ]
+        }
+      }
+    },
+    "go1-rough-walk": {
+      "title": "Unitree Go1 — rough curb command robustness (live closed-loop)",
+      "scene": "go1/scene_go1_rough.xml",
+      "trajectory": "go1_walk_trajectory.json",
+      "ee_body": "trunk",
+      "render_out": "media/go1_rough_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.2,
+          0,
+          0.3
+        ],
+        "distance": 4.5,
+        "azimuth": 120,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.35
+        ],
+        "offset": [
+          2.4,
+          1.4,
+          2.4
+        ],
+        "fovDist": 1
+      },
+      "policy": {
+        "onnx": "go1_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 48,
+        "act_dim": 12,
+        "action_scale": 0.5,
+        "ctrl_dt": 0.02,
+        "n_substeps": 5,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "obs_layout": [
+          [
+            "local_linvel",
+            3
+          ],
+          [
+            "gyro",
+            3
+          ],
+          [
+            "gravity",
+            3
+          ],
+          [
+            "joint_angles_minus_default",
+            12
+          ],
+          [
+            "joint_vel",
+            12
+          ],
+          [
+            "last_act",
+            12
+          ],
+          [
+            "command",
+            3
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro",
+          "local_linvel": "local_linvel"
+        },
+        "imu_site": "imu",
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "_indices_note": "gyro_adr/local_linvel_adr/imu_site_id/default_pose/nq/nu는 rollout_policy.py가 번들 씬에서 유도해 박제 (JS 고정 인덱스용)",
+        "indices": {
+          "gyro_adr": 0,
+          "local_linvel_adr": 3,
+          "imu_site_id": 1,
+          "nq": 19,
+          "nu": 12,
+          "nv": 18,
+          "default_pose": [
+            0.1,
+            0.9,
+            -1.8,
+            -0.1,
+            0.9,
+            -1.8,
+            0.1,
+            0.9,
+            -1.8,
+            -0.1,
+            0.9,
+            -1.8
+          ]
+        }
+      }
+    },
+    "spot-rough-walk": {
+      "title": "Boston Dynamics Spot — rough curb command robustness (live closed-loop)",
+      "scene": "spot/scene_spot_rough.xml",
+      "trajectory": "spot_walk_trajectory.json",
+      "ee_body": "body",
+      "render_out": "media/spot_rough_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.2,
+          0,
+          0.4
+        ],
+        "distance": 4,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.45
+        ],
+        "offset": [
+          2.4,
+          1.6,
+          2.2
+        ],
+        "fovDist": 1
+      },
+      "policy": {
+        "onnx": "spot_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 81,
+        "act_dim": 12,
+        "action_scale": 0.3,
+        "ctrl_dt": 0.02,
+        "n_substeps": 5,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "obs_layout": [
+          [
+            "gyro",
+            3
+          ],
+          [
+            "gravity_projected",
+            3
+          ],
+          [
+            "joint_angles_minus_default",
+            12
+          ],
+          [
+            "qpos_error_history",
+            36
+          ],
+          [
+            "feet_pos",
+            12
+          ],
+          [
+            "last_act",
+            12
+          ],
+          [
+            "command",
+            3
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro",
+          "gravity": "upvector",
+          "feet": [
+            "FL_pos",
+            "FR_pos",
+            "HL_pos",
+            "HR_pos"
+          ]
+        },
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "history_len": 3,
+        "command_range": {
+          "vx": [
+            -1,
+            1.5
+          ],
+          "vy": [
+            -0.8,
+            0.8
+          ],
+          "vyaw": [
+            -1.5,
+            1.5
+          ]
+        },
+        "_indices_note": "rollout_spot.py가 번들 씬에서 유도해 박제 (gyro_adr/upvector_adr/feet_adrs/lowers/uppers/default_pose/nq/nu/nv)",
+        "indices": {
+          "gyro_adr": 0,
+          "upvector_adr": 12,
+          "feet_adrs": [
+            43,
+            40,
+            49,
+            46
+          ],
+          "lowers": [
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929,
+            -0.785398,
+            -0.8988450000000001,
+            -2.7929
+          ],
+          "uppers": [
+            0.785398,
+            2.29511,
+            -0.25440200000000024,
+            0.785398,
+            2.24363,
+            -0.2556479999999999,
+            0.785398,
+            2.29511,
+            -0.24706699999999993,
+            0.785398,
+            2.29511,
+            -0.2482820000000001
+          ],
+          "nq": 19,
+          "nu": 12,
+          "nv": 18,
+          "default_pose": [
+            0,
+            1.04,
+            -1.8,
+            0,
+            1.04,
+            -1.8,
+            0,
+            1.04,
+            -1.8,
+            0,
             1.04,
             -1.8
           ]
