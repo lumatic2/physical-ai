@@ -16,6 +16,7 @@
 | 07 | [command-terrain-robustness](07-command-terrain-robustness/README.md) | Go1·Spot 정책이 forward 외 strafe/turn/diagonal 및 rough terrain에서도 버티는지 측정 | ✅ 로컬+라이브 flat/rough command sweep PASS. live `go1-rough-walk`, `spot-rough-walk` 재현 가능 |
 | 08 | [policy-expansion](08-policy-expansion/README.md) | G1 rough 변형을 새 policy package처럼 흡수해 플랫폼 반복성을 검증 | ✅ native byte-parity 0.0, WASM load OK, 로컬+라이브 G1 rough command sweep PASS, Go1/G1/Spot 회귀 PASS |
 | 09 | [real-arm-gate](09-real-arm-gate/README.md) | M7 실물 도달 전에 SO-101 구매/조립/ACT 경로를 닫을 수 있는지 판단 | 🟨 게이트 패키지 완료: SO-101 leader+follower + ACT-first 추천, 실제 구매는 외부 입력 필요 |
+| 10 | [barkour-rl-walk](10-barkour-rl-walk/README.md) | Barkour Playground policy를 새 학습부터 ONNX/native/web/live QA까지 end-to-end로 흡수할 수 있는지 검증 | ✅ 학습 6.5분(reward 1.76→38.25), ONNX parity 2.95e-6, native/web/live QA PASS, live `?exp=barkour-walk` |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

@@ -1,0 +1,33 @@
+[qa] navigate http://127.0.0.1:8132/?exp=barkour-walk
+[qa] ready (policy closed-loop)
+[qa] step 50: x=0.260 h=0.287 fell=false nan=false
+[qa] step 100: x=0.666 h=0.279 fell=false nan=false
+[qa] step 150: x=1.121 h=0.270 fell=false nan=false
+[qa] step 200: x=1.610 h=0.276 fell=false nan=false
+[qa] step 250: x=2.106 h=0.273 fell=false nan=false
+[qa] step 300: x=2.556 h=0.275 fell=false nan=false
+[qa] step 350: x=3.057 h=0.274 fell=false nan=false
+[qa] step 400: x=3.600 h=0.277 fell=false nan=false
+
+[qa] RESULT {
+  "exp": "barkour-walk",
+  "live": false,
+  "mode": "policy",
+  "diag": {
+    "steps": 50,
+    "x": 3.599644496033512,
+    "y": 0.5989067411729068,
+    "yaw": -0.3919017960221185,
+    "height": 0.2768057796199444,
+    "fell": false,
+    "nan": false,
+    "command": [
+      1,
+      0,
+      0
+    ]
+  },
+  "consoleErrors": 0
+}
+[qa] screenshots in C:\Users\yusun\projects\physical-ai\experiments\03-digital-twin\web\qa\out
+[qa] PASS ✅

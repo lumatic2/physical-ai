@@ -1,0 +1,99 @@
+E0615 21:51:25.230420    3169 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+E0615 21:51:25.244848    2191 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+ENV BarkourJoystick | num_timesteps 100000000 | net (128, 128, 128, 128)
+E0615 21:51:29.881008    3198 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:51:32.720474    3180 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:51:59.704228    3199 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+0: reward=1.759
+E0615 21:52:34.709744    3197 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.60 = f32[32,256,256]{2,1,0} fusion(bitcast.3, bitcast.2), kind=kCustom, calls=gemm_fusion_dot.60_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"8","output_tiles":[{"sizes":["1","128","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:34.709827    3197 xtile_compiler.cc:401] Computation: gemm_fusion_dot.60_computation.clone {
+  parameter_0.34 = f32[32,160,256]{2,1,0} parameter(0)
+  parameter_1.34 = f32[256,32,160]{0,2,1} parameter(1)
+  ROOT dot = f32[32,256,256]{2,1,0} dot(parameter_0.34, parameter_1.34), lhs_batch_dims={0}, lhs_contracting_dims={1}, rhs_batch_dims={1}, rhs_contracting_dims={2}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:34.738258    3190 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.60 = f32[32,256,256]{2,1,0} fusion(bitcast.3, bitcast.2), kind=kCustom, calls=gemm_fusion_dot.60_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["1","128","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:34.738388    3190 xtile_compiler.cc:401] Computation: gemm_fusion_dot.60_computation.clone {
+  parameter_0.34 = f32[32,160,256]{2,1,0} parameter(0)
+  parameter_1.34 = f32[256,32,160]{0,2,1} parameter(1)
+  ROOT dot = f32[32,256,256]{2,1,0} dot(parameter_0.34, parameter_1.34), lhs_batch_dims={0}, lhs_contracting_dims={1}, rhs_batch_dims={1}, rhs_contracting_dims={2}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:34.872381    3180 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.120 = f32[4,384,465]{1,2,0} fusion(bitcast.2, bitcast.8387, bitcast.8390), kind=kCustom, calls=gemm_fusion_dot.120_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["1","64","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:34.872469    3180 xtile_compiler.cc:401] Computation: gemm_fusion_dot.120_computation.clone {
+  parameter_1.29 = f32[5120,128]{1,0} parameter(1)
+  parameter_2.5 = f32[5120,256]{1,0} parameter(2)
+  concatenate.1729 = f32[5120,384]{1,0} concatenate(parameter_1.29, parameter_2.5), dimensions={1}
+  bitcast.11771 = f32[384,4,1280]{0,2,1} bitcast(concatenate.1729)
+  parameter_0.29 = f32[4,1280,465]{2,1,0} parameter(0)
+  ROOT dot = f32[4,384,465]{1,2,0} dot(bitcast.11771, parameter_0.29), lhs_batch_dims={1}, lhs_contracting_dims={2}, rhs_batch_dims={0}, rhs_contracting_dims={1}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:34.974080    3189 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.116 = f32[5376,256]{1,0} fusion(mul.7194, bitcast.810, get-tuple-element.9155), kind=kCustom, calls=gemm_fusion_dot.116_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["64","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:34.974139    3189 xtile_compiler.cc:401] Computation: gemm_fusion_dot.116_computation.clone {
+  parameter_0.17 = f32[256,256]{1,0} parameter(0)
+  parameter_1.17 = f32[5120,256]{1,0} parameter(1)
+  concatenate.1725 = f32[5376,256]{1,0} concatenate(parameter_0.17, parameter_1.17), dimensions={0}
+  parameter_2.1 = f32[256,256]{1,0} parameter(2)
+  ROOT dot.154 = f32[5376,256]{1,0} dot(concatenate.1725, parameter_2.1), lhs_contracting_dims={1}, rhs_contracting_dims={0}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:35.136882    3199 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.120 = f32[8,384,465]{1,2,0} fusion(bitcast.2, bitcast.8387, bitcast.8390), kind=kCustom, calls=gemm_fusion_dot.120_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["1","128","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:35.137036    3199 xtile_compiler.cc:401] Computation: gemm_fusion_dot.120_computation.clone {
+  parameter_1.29 = f32[5120,128]{1,0} parameter(1)
+  parameter_2.5 = f32[5120,256]{1,0} parameter(2)
+  concatenate.1729 = f32[5120,384]{1,0} concatenate(parameter_1.29, parameter_2.5), dimensions={1}
+  bitcast.11771 = f32[384,8,640]{0,2,1} bitcast(concatenate.1729)
+  parameter_0.29 = f32[8,640,465]{2,1,0} parameter(0)
+  ROOT dot = f32[8,384,465]{1,2,0} dot(bitcast.11771, parameter_0.29), lhs_batch_dims={1}, lhs_contracting_dims={2}, rhs_batch_dims={0}, rhs_contracting_dims={1}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:35.556481    3200 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:35.725570    3198 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.120 = f32[384,465]{0,1} fusion(bitcast.792, bitcast.8387, bitcast.8390), kind=kCustom, calls=gemm_fusion_dot.120_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"2","output_tiles":[{"sizes":["32","16"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":true,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:35.725920    3198 xtile_compiler.cc:401] Computation: gemm_fusion_dot.120_computation.clone {
+  parameter_1.29 = f32[5120,128]{1,0} parameter(1)
+  parameter_2.5 = f32[5120,256]{1,0} parameter(2)
+  concatenate.1729 = f32[5120,384]{1,0} concatenate(parameter_1.29, parameter_2.5), dimensions={1}
+  bitcast.11771 = f32[384,5120]{0,1} bitcast(concatenate.1729)
+  parameter_0.29 = f32[5120,465]{1,0} parameter(0)
+  ROOT dot.175 = f32[384,465]{0,1} dot(bitcast.11771, parameter_0.29), lhs_contracting_dims={1}, rhs_contracting_dims={0}, backend_config={"sizes":["256"]}
+}
+E0615 21:52:35.757774    3203 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.115 = f32[5376,256]{1,0} fusion(bitcast.808, bitcast.792, get-tuple-element.9153), kind=kCustom, calls=gemm_fusion_dot.115_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["64","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:35.757973    3203 xtile_compiler.cc:401] Computation: gemm_fusion_dot.115_computation.clone {
+  parameter_0.16 = f32[256,465]{1,0} parameter(0)
+  parameter_1.16 = f32[5120,465]{1,0} parameter(1)
+  concatenate.1724 = f32[5376,465]{1,0} concatenate(parameter_0.16, parameter_1.16), dimensions={0}
+  parameter_2 = f32[465,256]{1,0} parameter(2)
+  ROOT dot.153 = f32[5376,256]{1,0} dot(concatenate.1724, parameter_2), lhs_contracting_dims={1}, rhs_contracting_dims={0}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:36.129712    3177 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.120 = f32[16,384,465]{1,2,0} fusion(bitcast.2, bitcast.8387, bitcast.8390), kind=kCustom, calls=gemm_fusion_dot.120_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"8","output_tiles":[{"sizes":["1","128","64"]}],"num_ctas":1,"num_stages":3,"is_tma_allowed":false,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:36.129864    3177 xtile_compiler.cc:401] Computation: gemm_fusion_dot.120_computation.clone {
+  parameter_1.29 = f32[5120,128]{1,0} parameter(1)
+  parameter_2.5 = f32[5120,256]{1,0} parameter(2)
+  concatenate.1729 = f32[5120,384]{1,0} concatenate(parameter_1.29, parameter_2.5), dimensions={1}
+  bitcast.11771 = f32[384,16,320]{0,2,1} bitcast(concatenate.1729)
+  parameter_0.29 = f32[16,320,465]{2,1,0} parameter(0)
+  ROOT dot = f32[16,384,465]{1,2,0} dot(bitcast.11771, parameter_0.29), lhs_batch_dims={1}, lhs_contracting_dims={2}, rhs_batch_dims={0}, rhs_contracting_dims={1}, backend_config={"sizes":["64"]}
+}
+E0615 21:52:36.154485    3185 xtile_compiler.cc:399] Fusion: gemm_fusion_dot.120 = f32[16,384,465]{1,2,0} fusion(bitcast.2, bitcast.8387, bitcast.8390), kind=kCustom, calls=gemm_fusion_dot.120_computation.clone, backend_config={"operation_queue_id":"0","wait_on_operation_queues":[],"fusion_backend_config":{"kind":"__triton_nested_gemm_fusion","block_level_fusion_config":{"num_warps":"4","output_tiles":[{"sizes":["1","128","128"]}],"num_ctas":1,"num_stages":4,"is_tma_allowed":true,"is_warp_specialization_allowed":false}},"force_earliest_schedule":false,"reification_cost":[],"device_type":"DEVICE_TYPE_INVALID"}
+E0615 21:52:36.154594    3185 xtile_compiler.cc:401] Computation: gemm_fusion_dot.120_computation.clone {
+  parameter_1.29 = f32[5120,128]{1,0} parameter(1)
+  parameter_2.5 = f32[5120,256]{1,0} parameter(2)
+  concatenate.1729 = f32[5120,384]{1,0} concatenate(parameter_1.29, parameter_2.5), dimensions={1}
+  bitcast.11771 = f32[384,16,320]{0,2,1} bitcast(concatenate.1729)
+  parameter_0.29 = f32[16,320,465]{2,1,0} parameter(0)
+  ROOT dot = f32[16,384,465]{1,2,0} dot(bitcast.11771, parameter_0.29), lhs_batch_dims={1}, lhs_contracting_dims={2}, rhs_batch_dims={0}, rhs_contracting_dims={1}, backend_config={"sizes":["32"]}
+}
+E0615 21:52:36.368717    3186 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:36.438485    3186 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:36.521120    3202 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:42.156535    3187 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:42.238088    3194 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:42.573585    3186 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0615 21:52:42.684882    3202 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+11468800: reward=17.874
+22937600: reward=28.642
+34406400: reward=34.624
+45875200: reward=35.828
+57344000: reward=37.322
+68812800: reward=37.176
+80281600: reward=36.849
+91750400: reward=36.486
+103219200: reward=38.249
+TRAIN DONE in 6.5 min
+saved -> /home/yusun/playground-go1/runs/barkour/params.pkl

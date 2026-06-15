@@ -1,0 +1,19 @@
+E0615 21:58:59.923793   10684 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+E0615 21:58:59.935605   10277 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+/usr/lib/python3.12/subprocess.py:1885: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.
+  self.pid = _fork_exec(
+n_substeps=5 sim_dt=0.004 T=400 steps (8.0s) cmd_vx=-1.0
+FELL_AT=never | upright=8.0s | forward=5.93m | avg_vx=0.74m/s | final_h=0.269
+S4 PASS
+wrote native_rollout.mp4 200 frames
+Exception ignored in: <function Renderer.__del__ at 0x7c3848796660>
+Traceback (most recent call last):
+  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 343, in __del__
+  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 329, in close
+  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
+TypeError: 'NoneType' object is not callable
+Exception ignored in: <function GLContext.__del__ at 0x7c384b5336a0>
+Traceback (most recent call last):
+  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 41, in __del__
+  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
+TypeError: 'NoneType' object is not callable

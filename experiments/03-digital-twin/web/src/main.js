@@ -313,6 +313,10 @@ export class MuJoCoDemo {
       qj: p.qpos_joint_start, vj: p.qvel_joint_start, dp: ix.default_pose,
       lastAct: new Float32Array(p.act_dim),
       obs_layout: p.obs_layout || null,
+      obsHistory: p.obs_history ? new Float32Array(p.obs_dim) : null,
+      currentObsDim: p.obs_history?.current_dim || 0,
+      commandTransform: p.command_transform || [1, 1, 1],
+      commandScale: p.command_scale || [1, 1, 1],
       // gait phase clock (humanoid joystick policies, e.g. G1): a 2-vec advanced each control
       // step by phase_dt; obs uses concat([cos(phase),sin(phase)]). null for policies w/o gait.
       phase: p.gait ? Float64Array.from(p.gait.phase_init) : null,
@@ -392,6 +396,20 @@ export class MuJoCoDemo {
   //   G1  obs(103):[local_linvel, gyro, gravity, command, joints, joint_vel, last_act, phase_cos_sin]
   buildPolicyObs() {
     const d = this.data, p = this.pol, o = new Float32Array(p.obs_dim), nu = p.act_dim;
+    if (p.obsHistory) {
+      const cur = new Float32Array(p.currentObsDim);
+      let j = 0;
+      cur[j++] = d.sensordata[p.gy + 2] * 0.25;       // Barkour _get_localrpyrate(data)[-1] * 0.25
+      for (let i = 0; i < 3; i++) { cur[j++] = d.sensordata[p.grav + i]; }
+      for (let i = 0; i < 3; i++) {
+        cur[j++] = p.command[i] * p.commandTransform[i] * p.commandScale[i];
+      }
+      for (let i = 0; i < nu; i++) { cur[j++] = d.qpos[p.qj + i] - p.dp[i]; }
+      for (let i = 0; i < nu; i++) { cur[j++] = p.lastAct[i]; }
+      p.obsHistory.copyWithin(p.currentObsDim, 0, p.obsHistory.length - p.currentObsDim);
+      p.obsHistory.set(cur, 0);
+      return p.obsHistory;
+    }
     const x = p.imu * 9;
     let k = 0;
     for (const [name] of p.obs_layout) {

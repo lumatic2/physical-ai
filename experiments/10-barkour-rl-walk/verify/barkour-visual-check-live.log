@@ -1,0 +1,33 @@
+[qa] navigate https://physical-ai-arm.askewly.com/?exp=barkour-walk
+[qa] ready (policy closed-loop)
+[qa] step 50: x=0.253 h=0.288 fell=false nan=false
+[qa] step 100: x=0.645 h=0.273 fell=false nan=false
+[qa] step 150: x=1.066 h=0.271 fell=false nan=false
+[qa] step 200: x=1.509 h=0.278 fell=false nan=false
+[qa] step 250: x=2.068 h=0.278 fell=false nan=false
+[qa] step 300: x=2.660 h=0.270 fell=false nan=false
+[qa] step 350: x=3.186 h=0.278 fell=false nan=false
+[qa] step 400: x=3.695 h=0.270 fell=false nan=false
+
+[qa] RESULT {
+  "exp": "barkour-walk",
+  "live": true,
+  "mode": "policy",
+  "diag": {
+    "steps": 50,
+    "x": 3.695156850795839,
+    "y": 0.4488051440930155,
+    "yaw": -0.5258177135604217,
+    "height": 0.26992582112175895,
+    "fell": false,
+    "nan": false,
+    "command": [
+      1,
+      0,
+      0
+    ]
+  },
+  "consoleErrors": 0
+}
+[qa] screenshots in C:\Users\yusun\projects\physical-ai\experiments\03-digital-twin\web\qa\out
+[qa] PASS ✅

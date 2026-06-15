@@ -1,0 +1,6 @@
+E0615 21:58:08.698684    9450 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+E0615 21:58:08.710075    9310 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
+[np vs jax] max abs err = 8.01e-07
+[onnx vs jax] max abs err over 50 obs = 2.95e-06
+PARITY PASS -> saved /home/yusun/playground-go1/runs/barkour/barkour_policy.onnx
+wrote obs_spec.json

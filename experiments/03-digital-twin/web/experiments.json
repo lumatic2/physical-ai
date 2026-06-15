@@ -293,6 +293,140 @@
         }
       }
     },
+    "barkour-walk": {
+      "title": "Google Barkour — 직접 학습한 joystick 보행 정책 (live closed-loop, history obs)",
+      "scene": "barkour/scene_barkour_policy.xml",
+      "trajectory": "barkour_walk_trajectory.json",
+      "ee_body": "torso",
+      "render_out": "media/barkour_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.5,
+          0,
+          0.3
+        ],
+        "distance": 4.5,
+        "azimuth": 120,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.35
+        ],
+        "offset": [
+          2.4,
+          1.4,
+          2.4
+        ],
+        "fovDist": 1
+      },
+      "policy": {
+        "onnx": "barkour_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 465,
+        "act_dim": 12,
+        "action_scale": 0.3,
+        "ctrl_dt": 0.02,
+        "n_substeps": 5,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "command_transform": [
+          -1,
+          1,
+          1
+        ],
+        "command_scale": [
+          2,
+          2,
+          0.25
+        ],
+        "obs_history": {
+          "frames": 15,
+          "current_dim": 31
+        },
+        "obs_layout": [
+          [
+            "barkour_history",
+            465
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro",
+          "gravity": "upvector"
+        },
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "command_range": {
+          "vx": [
+            -1,
+            1
+          ],
+          "vy": [
+            -0.8,
+            0.8
+          ],
+          "vyaw": [
+            -0.7,
+            0.7
+          ]
+        },
+        "_indices_note": "Barkour obs is 15x history of [yaw_rate_z_scaled, upvector, command_scaled, joint_delta, last_act]. Runtime env mutations are baked into scene_barkour_policy.xml.",
+        "indices": {
+          "gyro_adr": 24,
+          "upvector_adr": 36,
+          "lowers": [
+            -0.7,
+            -1,
+            0.05,
+            -0.7,
+            -1,
+            0.05,
+            -0.7,
+            -1,
+            0.05,
+            -0.7,
+            -1,
+            0.05
+          ],
+          "uppers": [
+            0.52,
+            2.1,
+            2.1,
+            0.52,
+            2.1,
+            2.1,
+            0.52,
+            2.1,
+            2.1,
+            0.52,
+            2.1,
+            2.1
+          ],
+          "nq": 19,
+          "nu": 12,
+          "nv": 18,
+          "default_pose": [
+            0,
+            0.5,
+            1,
+            0,
+            0.5,
+            1,
+            0,
+            0.5,
+            1,
+            0,
+            0.5,
+            1
+          ]
+        }
+      }
+    },
     "panda-sweep": {
       "title": "Franka Emika Panda — 7-DOF 관절 sweep (scripted ctrl sweep, fixed-base arm)",
       "scene": "panda/scene.xml",
