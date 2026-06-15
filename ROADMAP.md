@@ -25,7 +25,7 @@
 | M7 | 실물 도달 | sim-to-real 전환 조건을 판단한다 | SO-101 2-arm + LeRobot + ACT 구매 전 게이트 | 게이트 완료 |
 | M15 | 새 정책 1종 end-to-end 흡수 | 플랫폼이 미보유 policy를 새 학습부터 live QA까지 받아낸다 | Barkour train log, ONNX, native parity, web/live QA | 완료 |
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
-| M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 후보 |
+| M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 
 ## 닫힌 증거
 
@@ -76,11 +76,11 @@
 
 ### M17 - 비교 가능한 policy gallery
 
-- [ ] Go1/G1/Spot/M15 policy를 같은 command sweep/rough terrain 프로토콜로 비교한다.
-- [ ] 거리, 속도, 낙상, NaN, heading drift, command tracking을 같은 표로 묶는다.
-- [ ] README/live demo에서 "많이 넣었다"가 아니라 "같은 기준으로 비교했다"가 보이게 한다.
+- [x] Go1/G1/Spot/M15 policy를 같은 command sweep/rough terrain 프로토콜로 비교했다.
+- [x] 거리, 낙상, NaN, heading drift, command tracking을 같은 표로 묶었다.
+- [x] README/live demo 메시지를 "많이 넣었다"보다 "같은 기준으로 비교했다" 쪽으로 이동했다.
 
-완료 기준: 외부 독자가 5분 안에 어떤 policy가 어떤 조건에서 강하고 약한지 볼 수 있다.
+완료 기준: ✅ 외부 독자가 5분 안에 어떤 policy가 어떤 조건에서 강하고 약한지 볼 수 있다. 결과는 [exp12 report](experiments/12-policy-gallery-comparison/verify/policy-gallery-report.md)에 박제했다.
 
 ## 대기 항목
 

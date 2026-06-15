@@ -18,6 +18,7 @@
 | 09 | [real-arm-gate](09-real-arm-gate/README.md) | M7 실물 도달 전에 SO-101 구매/조립/ACT 경로를 닫을 수 있는지 판단 | 🟨 게이트 패키지 완료: SO-101 leader+follower + ACT-first 추천, 실제 구매는 외부 입력 필요 |
 | 10 | [barkour-rl-walk](10-barkour-rl-walk/README.md) | Barkour Playground policy를 새 학습부터 ONNX/native/web/live QA까지 end-to-end로 흡수할 수 있는지 검증 | ✅ 학습 6.5분(reward 1.76→38.25), ONNX parity 2.95e-6, native/web/live QA PASS, live `?exp=barkour-walk` |
 | 11 | [policy-addition-routine](11-policy-addition-routine/README.md) | 새 policy 추가가 매번 bespoke 작업이 아니라 체크 가능한 운영 루틴인지 검증 | ✅ `POLICY_ADDITION.md` + `check_policy_bundle.py`, 현재 policy 7종 PASS |
+| 12 | [policy-gallery-comparison](12-policy-gallery-comparison/README.md) | 정책 갤러리를 같은 command sweep protocol로 비교 가능한 실험판으로 만들 수 있는지 검증 | ✅ 6개 sweep report 통합, failures=0, [비교표](12-policy-gallery-comparison/verify/policy-gallery-report.md) |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
