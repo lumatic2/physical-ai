@@ -5,7 +5,8 @@ joint_vel(29), last_act(29), phase_cos_sin(4)] = 103 이고, gait phase clock(2-
 전진)을 JS 와 동일하게 유지한다. init = keyframe("knees_bent"). 번들 씬 obs == 학습 golden 검증 →
 g1_walk_trajectory.json 덤프 → policy.indices 를 experiments.json 에 박제.
 
-  python rollout_g1.py [seconds]
+  python rollout_g1.py [experiment] [seconds]
+  python rollout_g1.py [seconds]  # backwards-compatible: g1-walk
 """
 import sys, json
 import numpy as np
@@ -13,8 +14,15 @@ import mujoco
 import onnxruntime as ort
 from harness import get_experiment, REGISTRY
 
-SECONDS = float(sys.argv[1]) if len(sys.argv) > 1 else 12.0
-exp = get_experiment("g1-walk")
+arg1 = sys.argv[1] if len(sys.argv) > 1 else None
+arg2 = sys.argv[2] if len(sys.argv) > 2 else None
+if arg1 and arg1.replace(".", "", 1).isdigit():
+    exp_name, SECONDS = "g1-walk", float(arg1)
+else:
+    exp_name = arg1 or "g1-walk"
+    SECONDS = float(arg2) if arg2 else 12.0
+
+exp = get_experiment(exp_name)
 pol = exp["policy"]
 scene_dir = exp["scene_path"].parent
 
@@ -32,7 +40,7 @@ ACT = pol["act_dim"]
 ctrl_dt, n_sub = pol["ctrl_dt"], pol["n_substeps"]
 gait_freq = pol["gait"].get("gait_freq", 1.375)
 phase_dt = 2 * np.pi * ctrl_dt * gait_freq
-print(f"== g1-walk scene: nq={model.nq} nu={model.nu} nv={model.nv} | gyro={gy_a} linvel={lv_a} "
+print(f"== {exp['name']} scene: nq={model.nq} nu={model.nu} nv={model.nv} | gyro={gy_a} linvel={lv_a} "
       f"imu_site={imu_site} | n_sub={n_sub} phase_dt={phase_dt:.4f}")
 
 

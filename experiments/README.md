@@ -14,6 +14,7 @@
 | 05 | [g1-rl-walk](05-g1-rl-walk/README.md) | RTX5090서 Playground G1 휴머노이드 joystick 정책 학습→ONNX→native→웹 live closed-loop (M8, gait phase clock) | ✅ 학습 46.5분(reward −6.4→14.8), onnx parity 2.1e-6, native 12s·9.38m·0.78m/s, 번들 byte-parity 0.0, 라이브 `?exp=g1-walk`(5.0m·0 에러). ADR [0005](../docs/adr/0005-learned-policy-sandbox.md) |
 | 06 | [spot-rl-walk](06-spot-rl-walk/README.md) | RTX5090서 Playground Spot 4족 joystick 정책 학습→ONNX→native→웹 byte-parity 보행 (M11, Go1↔Spot 비교) | ✅ 학습 6.5분(reward 30.6), onnx parity 4.07e-6, native 12s·11.1m·0.92m/s, **웹 byte-parity 2.91e-7**·라이브 `?exp=spot-walk`. 학습정책 3종(Go1·G1·Spot) |
 | 07 | [command-terrain-robustness](07-command-terrain-robustness/README.md) | Go1·Spot 정책이 forward 외 strafe/turn/diagonal 및 rough terrain에서도 버티는지 측정 | ✅ 로컬+라이브 flat/rough command sweep PASS. live `go1-rough-walk`, `spot-rough-walk` 재현 가능 |
+| 08 | [policy-expansion](08-policy-expansion/README.md) | G1 rough 변형을 새 policy package처럼 흡수해 플랫폼 반복성을 검증 | ✅ native byte-parity 0.0, WASM load OK, 로컬+라이브 G1 rough command sweep PASS, Go1/G1/Spot 회귀 PASS |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

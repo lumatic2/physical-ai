@@ -147,6 +147,152 @@
         }
       }
     },
+    "g1-rough-walk": {
+      "title": "Unitree G1 — rough curb gait-phase robustness (live closed-loop, humanoid)",
+      "scene": "g1/scene_g1_rough.xml",
+      "trajectory": "g1_rough_walk_trajectory.json",
+      "ee_body": "pelvis",
+      "render_out": "media/g1_rough_walk.mp4",
+      "camera": {
+        "lookat": [
+          2.5,
+          0,
+          0.6
+        ],
+        "distance": 4.5,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.6
+        ],
+        "offset": [
+          2.6,
+          1.6,
+          2.6
+        ],
+        "fovDist": 1
+      },
+      "policy": {
+        "onnx": "g1_policy.onnx",
+        "golden": "golden_obs.json",
+        "obs_dim": 103,
+        "act_dim": 29,
+        "action_scale": 0.5,
+        "ctrl_dt": 0.02,
+        "n_substeps": 10,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "obs_layout": [
+          [
+            "local_linvel",
+            3
+          ],
+          [
+            "gyro",
+            3
+          ],
+          [
+            "gravity",
+            3
+          ],
+          [
+            "command",
+            3
+          ],
+          [
+            "joint_angles_minus_default",
+            29
+          ],
+          [
+            "joint_vel",
+            29
+          ],
+          [
+            "last_act",
+            29
+          ],
+          [
+            "phase_cos_sin",
+            4
+          ]
+        ],
+        "sensors": {
+          "gyro": "gyro_pelvis",
+          "local_linvel": "local_linvel_pelvis"
+        },
+        "imu_site": "imu_in_pelvis",
+        "qpos_joint_start": 7,
+        "qvel_joint_start": 6,
+        "gait": {
+          "phase_init": [
+            0,
+            3.141592653589793
+          ],
+          "gait_freq": 1.375
+        },
+        "command_range": {
+          "vx": [
+            -1,
+            1
+          ],
+          "vy": [
+            -0.8,
+            0.8
+          ],
+          "vyaw": [
+            -1,
+            1
+          ]
+        },
+        "_indices_note": "rollout_g1.py가 번들 씬에서 유도해 박제 (gyro_adr/local_linvel_adr/imu_site_id/default_pose/nq/nu/nv)",
+        "indices": {
+          "gyro_adr": 18,
+          "local_linvel_adr": 6,
+          "imu_site_id": 0,
+          "nq": 36,
+          "nu": 29,
+          "nv": 35,
+          "default_pose": [
+            -0.312,
+            0.0,
+            0.0,
+            0.669,
+            -0.363,
+            0.0,
+            -0.312,
+            0.0,
+            0.0,
+            0.669,
+            -0.363,
+            0.0,
+            0.0,
+            0.0,
+            0.073,
+            0.2,
+            0.2,
+            0.0,
+            0.6,
+            0.0,
+            0.0,
+            0.0,
+            0.2,
+            -0.2,
+            0.0,
+            0.6,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
     "panda-sweep": {
       "title": "Franka Emika Panda — 7-DOF 관절 sweep (scripted ctrl sweep, fixed-base arm)",
       "scene": "panda/scene.xml",

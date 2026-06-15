@@ -60,7 +60,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | `go1-walk` | Unitree Go1 (4족) | ⭐ **직접 학습한 RL 정책** — onnxruntime-web live closed-loop + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | ⭐ **직접 학습한 RL 정책** — 103-d obs + gait phase clock, live closed-loop |
 | `spot-walk` | Boston Dynamics Spot (4족) | ⭐ **직접 학습한 RL 정책** — 81-d obs + qpos error history, live closed-loop |
-| `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | ⭐ **명령·지형 강건성 QA** — 1/2/3cm curb + forward/strafe/turn/diagonal sweep |
+| `g1-rough-walk` · `go1-rough-walk` · `spot-rough-walk` | G1 · Go1 · Spot rough curb | ⭐ **명령·지형 강건성 QA** — 1/2/3cm curb + forward/strafe/turn/diagonal sweep |
 | `so100-stack` | SO-ARM100 팔 | scripted pick-and-place 3단 스택 replay |
 | `panda-sweep` | Franka Panda 팔 | scripted 관절 sweep replay |
 | `shadow-hand` | Shadow Hand | scripted 손가락 굴곡 replay |
