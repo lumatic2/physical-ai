@@ -28,7 +28,7 @@
 | M8-M11 | 브라우저 정책 플랫폼 | 직접 학습한 정책을 웹에서 closed-loop로 돌리고, 새 임베디먼트를 흡수한다 | Go1/G1/Spot 정책 3종, teleop, `add_scene.sh`, dummy-arm | ✅ 압축 |
 | M12 | 명령·지형 강건성 검증 | 평지 전진 데모를 넘어 turn/strafe/rough terrain에서 정책 한계를 측정한다 | Go1↔Spot command sweep + rough terrain QA 리포트 + 라이브 데모 | ✅ 완료 |
 | M13 | 정책 추가 확장 | M10/M11 플랫폼이 새 정책을 반복적으로 흡수하는지 확인한다 | Barkour/Go2/H1 중 1종 추가, byte-parity 문서화 | ⬜ 후보 |
-| M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ⬜ 후보 |
+| M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ✅ 완료 |
 | M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-100 저가팔 + ACT + 수행 영상 | ⬜ 하드웨어 게이트 |
 
 ## 닫힌 마일스톤 압축
@@ -69,13 +69,13 @@
 - 필수 게이트: env 런타임 모델 변경 diff, ONNX parity, 번들 scene byte-parity, live closed-loop QA.
 - 완료 기준: 기존 Go1/G1/Spot 무회귀 + 새 정책 1종 live.
 
-### M14 — 포트폴리오 2차 패키징 후보 ⬜
-> M8-M13의 기술 디테일을 외부 독자가 읽을 수 있는 구조로 재압축한다.
+### M14 — 포트폴리오 2차 패키징 ✅
+> M8-M12의 기술 디테일을 외부 독자가 읽을 수 있는 구조로 재압축한다.
 
-- README 상단을 “정책 플랫폼” 중심으로 개편.
-- askewly 후속 글: byte-parity, hidden runtime override, browser closed-loop 정책 실행 서사.
-- vault synthesis: browser robot policy runtime + robustness 결과 통합.
-- 완료 기준: GitHub README, 블로그, vault가 같은 thesis를 말하고 중복/장황함이 줄어든 상태.
+- [x] README 상단을 “정책 플랫폼 + 검증 하네스” 중심으로 개편.
+- [x] askewly 후속 글: command sweep, rough terrain, browser closed-loop 검증 서사. `robot-walk-qa-after-demo`, 2026-06-22 예약 시드.
+- [x] vault synthesis: browser robot policy runtime + robustness 결과 통합.
+- 완료 기준: ✅ GitHub README, 블로그, vault가 같은 thesis를 말하고 중복/장황함이 줄어든 상태.
 
 ### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
 - SO-100류 저가 로봇팔 구매·조립.
@@ -102,6 +102,7 @@
 
 - 2026-06-14 (후속3) — **M9 인터랙티브 텔레옵 구현·로컬 QA 완주**(배포 대기). 트윈을 *관전*에서 *직접 조작*으로 격상. **step1** 키보드 보행 조종(WASD=vx/vy, Q/E=vyaw hold-to-drive→`pol.command` 직결, 슬라이더 동기)(`244d418`) — QA `--keys` 모드 신설, go1 5.9m·g1 3.4m PASS. **step2** 조작 안내 오버레이(bottom-left, 임베디먼트별)(`a87bb49`) — 드래그-힘은 이미 정책+물리 루프 양쪽 배선 확인, 실질은 discoverability. **step3** 마우스 EE 텔레옵(`5071668`) — 그리퍼 드래그→**유한차분 Jacobian damped-LS IK**(wasm `mj_jacBody` 출력인자 회피, qpos/xpos+mj_forward만 사용). SO-100·Panda `teleop:true`, 비-joint 액추에이터(Panda 텐던 그리퍼) 제외·관절/ctrl 클램프. QA `--teleop`: so100 잔차 1e-16(완전추종)·panda 0.141→0.080(컨토트 sweep-start 한계). 5-DOF 도달 한계는 정직 추종(M6/ADR 0004). **step4** 모바일/터치 폴백(`8090888`) — coarse pointer 감지→안내를 슬라이더/손가락으로(WASD 숨김), QA `--mobile`(390×844) go1·so100-텔레옵 PASS. 4스텝 4커밋. **Vercel 재배포 후 라이브 QA PASS**(키보드 go1 4.4m·so100 텔레옵 잔차 0) → https://physical-ai-arm.askewly.com 반영.
 - 2026-06-15 — **M12 완주: 명령·지형 강건성 검증**. `command_sweep.mjs`로 Go1·Spot flat/rough 6시나리오(forward, strafe-left/right, turn-left/right, diagonal-left)를 측정하고 yaw/command diagnostics를 `qaStep`에 추가. rough curb scene(`go1-rough-walk`, `spot-rough-walk`)은 1/2/3cm step으로 고정해 로컬+라이브 모두 낙상·NaN·콘솔에러 0 PASS. 라이브 alias: `?exp=go1-rough-walk`, `?exp=spot-rough-walk`. 결과와 raw JSON은 [exp 07](experiments/07-command-terrain-robustness/README.md)에 박제.
+- 2026-06-15 — **M14 완주: 포트폴리오 2차 패키징**. README를 “검증 가능한 브라우저 로봇 정책 플랫폼” 중심으로 재압축하고 M12 rough command QA를 상단 노출. askewly 글 `robot-walk-qa-after-demo` 작성·큐리 커버 생성·R2 업로드·KV targeted 예약 시드(2026-06-22 KST 공개). vault synthesis `2026-06-15-browser-robot-policy-runtime.md`에 M12 command/terrain robustness 통합.
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.

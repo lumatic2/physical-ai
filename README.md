@@ -1,6 +1,6 @@
 # physical-ai
 
-> 컨슈머 GPU에서 VLA(Vision-Language-Action) 정책을 직접 돌리고, 서로 다른 **동작 표현(action representation)** 두 가지를 같은 벤치마크로 실측 비교한 뒤, 브라우저에서 학습 정책 3종을 live closed-loop로 구동한 피지컬 AI 학습·리서치 레포.
+> 컨슈머 GPU에서 VLA(Vision-Language-Action) 정책을 직접 돌리고, 서로 다른 **동작 표현(action representation)** 두 가지를 같은 벤치마크로 실측 비교한 뒤, 브라우저에서 학습 정책 3종을 live closed-loop로 구동·조작·검증하는 피지컬 AI 학습 레포.
 
 피지컬 AI(embodied AI·로보틱스)를 논문·코드 수준으로 정독해 쌓고, 그 위에서 *실제로 돌아가는 도구와 실측 결과*로 검증한다. 정의만 외우지 않고 — **컨슈머 GPU(RTX 5090/WSL2)에서 모델을 직접 띄워 숫자를 낸다.**
 
@@ -13,7 +13,7 @@
 **무엇을 만들었나** —
 1. **[vla-eval](experiments/01-vla-local-eval/README.md)** — 컨슈머 GPU에서 **1커맨드로 VLA 정책을 평가**하는 도구 (Windows/WSL2·Blackwell sm_120·세그폴트/의존성 해법 내장).
 2. **[action-repr-bench](experiments/02-action-repr-bench/README.md)** — 두 동작표현을 같은 LIBERO 벤치마크로 **head-to-head 실측**.
-3. **[digital-twin](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 3D 임베디먼트 갤러리**. 그중 셋은 **내가 직접 RL로 학습한 보행 정책이 onnxruntime-web으로 실시간 closed-loop** 구동(4족 Go1 · 휴머노이드 G1 · 4족 Spot). 키보드로 보행 로봇을 조종하고, 마우스로 팔 EE를 텔레옵한다. → **라이브: [physical-ai-arm.askewly.com](https://physical-ai-arm.askewly.com)**
+3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 3D 임베디먼트 갤러리**. 그중 셋은 **내가 직접 RL로 학습한 보행 정책이 onnxruntime-web으로 실시간 closed-loop** 구동(4족 Go1 · 휴머노이드 G1 · 4족 Spot). 키보드로 보행 command를 바꾸고, 마우스로 팔 EE를 텔레옵하고, command/rough terrain QA로 “걷는다”를 검증한다. → **라이브: [physical-ai-arm.askewly.com](https://physical-ai-arm.askewly.com)**
 
 ---
 
@@ -60,6 +60,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | `go1-walk` | Unitree Go1 (4족) | ⭐ **직접 학습한 RL 정책** — onnxruntime-web live closed-loop + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | ⭐ **직접 학습한 RL 정책** — 103-d obs + gait phase clock, live closed-loop |
 | `spot-walk` | Boston Dynamics Spot (4족) | ⭐ **직접 학습한 RL 정책** — 81-d obs + qpos error history, live closed-loop |
+| `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | ⭐ **명령·지형 강건성 QA** — 1/2/3cm curb + forward/strafe/turn/diagonal sweep |
 | `so100-stack` | SO-ARM100 팔 | scripted pick-and-place 3단 스택 replay |
 | `panda-sweep` | Franka Panda 팔 | scripted 관절 sweep replay |
 | `shadow-hand` | Shadow Hand | scripted 손가락 굴곡 replay |
@@ -68,6 +69,8 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 **직접 학습한 정책이 브라우저에서 몸을 제어한다** — MuJoCo Playground에서 PPO로 보행 정책을 학습(RTX5090, ~7~47분)하고 ONNX로 뽑은 뒤, 브라우저에서 `obs→onnx→ctrl→mj_step@50Hz` closed-loop로 돌린다. 학습 sim과 **obs 바이트 단위 parity**(golden fixture 단언)로 sim2sim 충실도를 보장 → [exp 04 (Go1)](experiments/04-go1-rl-walk/README.md) · [exp 05 (G1 휴머노이드)](experiments/05-g1-rl-walk/) · [exp 06 (Spot)](experiments/06-spot-rl-walk/README.md). config-driven 하네스(`experiments.json`)라 새 임베디먼트는 `add_scene.sh` 한 커맨드로 추가 → [추가 가이드](experiments/03-digital-twin/ADDING_EMBODIMENTS.md).
 
 **관전 데모가 아니라 조작 가능한 플랫폼** — 키보드 WASD/QE가 보행 정책 command에 직접 연결되고, SO-100·Panda는 마우스 드래그로 end-effector를 추종한다. M10에서 `experiments.json` 단일 소스화, manifest 자동 생성, watertight 메시 가드, `add_scene.sh`를 묶어 새 씬 추가 마찰을 코드화했다.
+
+**“걷는다” 다음의 질문까지 측정** — M12에서 `command_sweep.mjs`를 추가해 Go1·Spot의 forward, strafe, turn, diagonal을 로컬+라이브에서 자동 측정했다. 낮은 rough curb scene에서도 낙상·NaN·콘솔에러 0으로 통과했고, yaw convention과 Spot rough drift 같은 한계는 표로 남겼다. → [exp 07](experiments/07-command-terrain-robustness/README.md)
 
 ---
 
@@ -101,6 +104,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | **M9** 인터랙티브 텔레옵 | ✅ | 키보드 보행 조종 + 마우스 EE 텔레옵, 모바일 폴백 |
 | **M10** 확장 가능한 트윈 플랫폼 | ✅ | 단일 소스 config + `add_scene.sh` + [ADDING_EMBODIMENTS.md](experiments/03-digital-twin/ADDING_EMBODIMENTS.md), dummy-arm 0-code 검증 |
 | **M11** 학습 정책 갤러리 확장 | ✅ | [exp 06](experiments/06-spot-rl-walk/README.md) — Spot 보행 정책 + Go1↔Spot 비교, 학습 정책 3종 |
+| **M12** 명령·지형 강건성 | ✅ | [exp 07](experiments/07-command-terrain-robustness/README.md) — Go1·Spot flat/rough command sweep + live QA |
 | **M7** 실물 도달 (하드웨어) | ⬜ | 저가팔 + ACT (구매 게이트, 보류) |
 
 상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0007)
@@ -115,7 +119,8 @@ physical-ai/
 │   ├── 03-digital-twin/      #   브라우저 임베디먼트 갤러리 (MuJoCo WASM) + config 하네스
 │   ├── 04-go1-rl-walk/       #   Go1 보행 정책 학습 → ONNX → live closed-loop
 │   ├── 05-g1-rl-walk/        #   G1 휴머노이드 보행 정책 (동 파이프라인)
-│   └── 06-spot-rl-walk/      #   Spot 4족 보행 정책 + byte-parity 디버깅
+│   ├── 06-spot-rl-walk/      #   Spot 4족 보행 정책 + byte-parity 디버깅
+│   └── 07-command-terrain-robustness/ # Go1·Spot command/rough QA
 ├── references/           # 외부 레포·논문 정독 노트 (ANALYSIS.md 5섹션)
 ├── docs/
 │   ├── landscape.md      #   피지컬 AI 지형도
