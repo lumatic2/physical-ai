@@ -8,9 +8,9 @@
 
 피지컬 AI(embodied AI/robotics) 기초 지식을 **실행 가능한 포트폴리오**로 입증한다.
 
-한 문장: *"문헌과 이론을 읽었고 -> 직접 실험으로 검증했고 -> 브라우저에서 조작 가능한 로봇 정책 플랫폼으로 만들었고 -> 다음은 새 정책을 반복 흡수하거나 실물로 넘어간다."*
+한 문장: *"문헌과 이론을 읽었고 -> 직접 실험으로 검증했고 -> 브라우저에서 조작 가능한 로봇 정책 플랫폼을 만들었고 -> 이제 Atlas식 고난도 동작을 디지털 트윈에서 설계·학습·검증한다."*
 
-현재 thesis: **브라우저 로봇 정책 플랫폼이 새 embodiment/policy를 반복적으로 흡수할 수 있는지 검증한다.**
+현재 thesis: **피지컬 AI 연구 루프의 다음 증거는 로봇 수를 늘리는 것이 아니라, 원하는 동작을 명세하고 학습시켜 디지털 트윈에서 재현 가능한 skill로 만드는 것이다.**
 
 노출면: GitHub README(개발자/채용), askewly 블로그(판단과 서사), `~/vault/`(장기 자료집), live demo(`physical-ai-arm.askewly.com`).
 
@@ -26,6 +26,11 @@
 | M15 | 새 정책 1종 end-to-end 흡수 | 플랫폼이 미보유 policy를 새 학습부터 live QA까지 받아낸다 | Barkour train log, ONNX, native parity, web/live QA | 완료 |
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
+| M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 다음 |
+| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 후보 |
+| M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 후보 |
+| M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | 후보 |
+| M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 후보 |
 
 ## 닫힌 증거
 
@@ -50,7 +55,83 @@
 - 실제 M7a는 예산, 배송, 작업공간, 카메라 2대, 조립 시간이 확보될 때만 연다.
 - 근거: [ADR 0008](docs/adr/0008-m7-real-arm-gate.md), [exp09](experiments/09-real-arm-gate/README.md).
 
-## 다음 목표군
+## 다음 목표군 - Atlas식 skill lab
+
+사용자가 원하는 새 목표는 "로봇이 걷는다"가 아니라 **로봇에게 특정 동작을 학습시킨다**이다. 기준 이미지는 Atlas 같은 휴머노이드가 물구나무, 덤블링, 축구, 라보나슛처럼 이름 붙은 skill을 수행하는 장면이다.
+
+이 레포의 다음 전환은 다음과 같다.
+
+- 이전: env가 이미 제공하는 joystick locomotion policy를 학습하고 브라우저에 흡수한다.
+- 이후: 내가 원하는 skill을 명세하고, reward/scene/metric으로 컴파일하고, 학습한 뒤, 브라우저에서 실패까지 보이는 demo로 검증한다.
+
+우선순위는 **G1 humanoid를 주 embodiment로 삼고**, Go1/Spot/Barkour는 control/QA 비교군으로 유지한다. Atlas 자체를 복제하는 것이 아니라, Atlas식 연구 질문을 이 레포의 디지털 트윈에서 실험 가능한 작은 skill ladder로 쪼갠다.
+
+### Skill ladder
+
+| 단계 | skill 예시 | 왜 먼저/나중인가 |
+|---|---|---|
+| L0 안정화 | stand, pose hold, recover | 고난도 동작의 실패 판정과 안정성 기준 |
+| L1 자세 전환 | squat, lean, one-foot balance | reward shaping과 balance metric 검증 |
+| L2 접촉/타격 | front kick, side kick, ball tap | 축구/라보나슛 전의 단일 접촉 skill |
+| L3 동적 전신 | jump, handstand prep, cartwheel prep | 고난도 동작의 전 단계 |
+| L4 고난도 | handstand, flip/tumble, rabona kick | 장기 목표. 바로 시작하지 않는다 |
+
+### M18 - Skill authoring foundation
+
+> 목표: "이 동작을 만들어줘"를 바로 학습으로 보내지 않고, 먼저 실험 가능한 task spec으로 고정한다.
+
+- [ ] `experiments/13-skill-authoring/README.md`를 만들고 skill taxonomy를 정의한다.
+- [ ] `behavior_spec.schema.json`으로 embodiment, objective, target, constraints, metrics를 표준화한다.
+- [ ] 예시 spec 4개를 만든다: `g1_pose_hold`, `g1_squat`, `g1_front_kick`, `g1_ball_tap`.
+- [ ] spec을 train/eval config 초안으로 바꾸는 `compile_behavior.py`를 만든다.
+- [ ] 성공/실패 metric을 command sweep처럼 raw JSON으로 남기는 평가 형식을 정한다.
+
+완료 기준: 새 skill을 시작할 때 자연어 목표가 아니라 versioned spec에서 출발한다.
+
+### M19 - Humanoid skill baseline
+
+> 목표: G1에서 Atlas식 동작의 기초가 되는 균형·포즈·전환 skill을 직접 학습한다.
+
+- [ ] G1 기존 walking env를 분석해 custom reward wrapper 가능 지점을 찾는다.
+- [ ] 첫 학습 skill은 고난도 대신 `squat -> stand` 또는 `front kick`으로 잡는다.
+- [ ] native MuJoCo에서 fall, height, joint-limit, energy, target error를 평가한다.
+- [ ] ONNX export와 browser playback/live inference까지 연결한다.
+
+완료 기준: G1이 기존 joystick walking이 아니라, 내가 정의한 단일 skill을 학습해 수행한다.
+
+### M20 - Acrobatic feasibility gate
+
+> 목표: 물구나무/덤블링을 지금 스택으로 바로 할지, reference motion/imitation이 필요한지 판단한다.
+
+- [ ] handstand, cartwheel, flip/tumble을 난이도와 필요 기술로 분해한다.
+- [ ] 현 MuJoCo Playground/G1 모델의 손 접촉, 관절 한계, actuator 성능, reward만 RL로 가능한 범위를 점검한다.
+- [ ] 최소 hard skill 하나를 고른다: `handstand prep`, `jump-turn`, `cartwheel prep` 중 하나.
+- [ ] 실패해도 된다. 단, 왜 실패했는지 reward/physics/reference-motion 관점으로 남긴다.
+
+완료 기준: "멋진 동작"을 막연히 시도하지 않고, 고난도 skill의 병목을 기술적으로 분리한다.
+
+### M21 - Ball-skill sandbox
+
+> 목표: 축구/라보나슛의 전 단계로 공이 있는 접촉 task를 만든다.
+
+- [ ] G1 + ball scene을 만들고 공 위치/속도/goal metric을 읽는다.
+- [ ] `ball tap`, `front kick`, `angled kick`을 skill spec으로 정의한다.
+- [ ] 공 이동거리, 방향 오차, 발-공 접촉, 낙상 여부를 평가한다.
+- [ ] 라보나슛은 바로 목표로 삼지 않고, crossing-leg kick feasibility까지 본다.
+
+완료 기준: 로봇이 단순 pose가 아니라 외부 물체를 목표 방향으로 움직이는 첫 skill을 만든다.
+
+### M22 - Motion-to-policy loop
+
+> 목표: handstand/flip처럼 sparse reward만으로 어려운 동작을 위해 reference motion 기반 루프를 연다.
+
+- [ ] 키프레임 또는 reference trajectory 포맷을 정한다.
+- [ ] motion tracking reward 또는 imitation pretraining 후보를 비교한다.
+- [ ] 브라우저에서 reference vs policy rollout을 나란히 확인하는 viewer를 만든다.
+
+완료 기준: "동작을 보여주고 policy가 따라 하게 한다"는 경로가 최소 실험으로 열린다.
+
+## 닫힌 목표군 상세
 
 ### M15 - 새 Playground policy 1종 end-to-end 흡수
 
