@@ -28,7 +28,7 @@
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 다음 |
 | M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 후보 |
-| M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 후보 |
+| M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | 후보 |
 | M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 후보 |
 
@@ -103,12 +103,12 @@
 
 > 목표: 물구나무/덤블링을 지금 스택으로 바로 할지, reference motion/imitation이 필요한지 판단한다.
 
-- [ ] handstand, cartwheel, flip/tumble을 난이도와 필요 기술로 분해한다.
-- [ ] 현 MuJoCo Playground/G1 모델의 손 접촉, 관절 한계, actuator 성능, reward만 RL로 가능한 범위를 점검한다.
-- [ ] 최소 hard skill 하나를 고른다: `handstand prep`, `jump-turn`, `cartwheel prep` 중 하나.
-- [ ] 실패해도 된다. 단, 왜 실패했는지 reward/physics/reference-motion 관점으로 남긴다.
+- [x] handstand, cartwheel, flip/tumble, rabona를 난이도와 필요 기술로 분해했다.
+- [x] 현 G1 모델의 손 접촉, 관절 한계, actuator 성능, scene 요구사항을 정적 검사했다.
+- [x] 바로 학습할 후보는 `squat_or_pose_hold`와 `front_kick`으로 좁혔다.
+- [x] handstand는 palm site/hand collision은 있으나 hand-floor contact pair가 없어 보류, tumble/cartwheel은 reference motion 루프 전에는 보류로 판정했다.
 
-완료 기준: "멋진 동작"을 막연히 시도하지 않고, 고난도 skill의 병목을 기술적으로 분리한다.
+완료 기준: ✅ "멋진 동작"을 막연히 시도하지 않고, 고난도 skill의 병목을 기술적으로 분리했다. 결과는 [exp13](experiments/13-acrobatic-feasibility/README.md)에 박제했다.
 
 ### M21 - Ball-skill sandbox
 

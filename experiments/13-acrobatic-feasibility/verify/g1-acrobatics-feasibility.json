@@ -1,0 +1,160 @@
+{
+  "model": "experiments/03-digital-twin/web/assets/scenes/g1/g1_mjx_feetonly.xml",
+  "joint_count": 29,
+  "actuator_count": 29,
+  "sensor_count": 22,
+  "contact_pair_count": 5,
+  "hand_collision_geoms": [
+    "left_hand_collision",
+    "right_hand_collision"
+  ],
+  "palm_sites": [
+    "left_palm",
+    "right_palm"
+  ],
+  "foot_floor_pairs": [
+    {
+      "name": "left_foot_floor",
+      "geom1": "left_foot",
+      "geom2": "floor",
+      "condim": "3",
+      "friction": "0.6 0.6"
+    },
+    {
+      "name": "right_foot_floor",
+      "geom1": "right_foot",
+      "geom2": "floor",
+      "condim": "3",
+      "friction": "0.6 0.6"
+    }
+  ],
+  "hand_floor_pairs": [],
+  "wrist_low_torque_joints": [
+    {
+      "name": "left_wrist_roll_joint",
+      "class": "wrist_roll",
+      "range": [
+        -1.97222,
+        1.97222
+      ],
+      "actuatorfrcrange": [
+        -25.0,
+        25.0
+      ],
+      "damping": 0.2,
+      "armature": 0.003609725
+    },
+    {
+      "name": "left_wrist_pitch_joint",
+      "class": "wrist_pitch",
+      "range": [
+        -1.61443,
+        1.61443
+      ],
+      "actuatorfrcrange": [
+        -5.0,
+        5.0
+      ],
+      "damping": 0.2,
+      "armature": 0.00425
+    },
+    {
+      "name": "left_wrist_yaw_joint",
+      "class": "wrist_yaw",
+      "range": [
+        -1.61443,
+        1.61443
+      ],
+      "actuatorfrcrange": [
+        -5.0,
+        5.0
+      ],
+      "damping": 0.2,
+      "armature": 0.00425
+    },
+    {
+      "name": "right_wrist_roll_joint",
+      "class": "wrist_roll",
+      "range": [
+        -1.97222,
+        1.97222
+      ],
+      "actuatorfrcrange": [
+        -25.0,
+        25.0
+      ],
+      "damping": 0.2,
+      "armature": 0.003609725
+    },
+    {
+      "name": "right_wrist_pitch_joint",
+      "class": "wrist_pitch",
+      "range": [
+        -1.61443,
+        1.61443
+      ],
+      "actuatorfrcrange": [
+        -5.0,
+        5.0
+      ],
+      "damping": 0.2,
+      "armature": 0.00425
+    },
+    {
+      "name": "right_wrist_yaw_joint",
+      "class": "wrist_yaw",
+      "range": [
+        -1.61443,
+        1.61443
+      ],
+      "actuatorfrcrange": [
+        -5.0,
+        5.0
+      ],
+      "damping": 0.2,
+      "armature": 0.00425
+    }
+  ],
+  "min_leg_torque_nm": 50.0,
+  "max_leg_torque_nm": 139.0,
+  "min_arm_torque_nm": 5.0,
+  "max_arm_torque_nm": 25.0,
+  "feasibility": [
+    {
+      "skill": "squat_or_pose_hold",
+      "verdict": "go",
+      "reason": "Uses leg/waist position control and existing foot-floor contacts; no new contact class required.",
+      "next_gate": "M19 custom reward wrapper."
+    },
+    {
+      "skill": "front_kick",
+      "verdict": "go_with_guardrails",
+      "reason": "Leg torques reach 50-139 Nm and foot contact sensors exist, but single-support balance must be evaluated.",
+      "next_gate": "Start with no-ball kick target before ball contact."
+    },
+    {
+      "skill": "ball_tap_or_simple_kick",
+      "verdict": "needs_scene",
+      "reason": "Robot model is usable, but no ball body, ball sensor, or goal metric exists in current scene.",
+      "next_gate": "M21 ball-skill sandbox."
+    },
+    {
+      "skill": "handstand",
+      "verdict": "blocked_until_contact_model_update",
+      "reason": "Palm sites and hand collision geoms exist, but there is no hand-floor contact pair; wrist torque is only 5 Nm on pitch/yaw.",
+      "next_gate": "Add palm-floor contact, hand force sensors, and a hand support pose test before RL."
+    },
+    {
+      "skill": "cartwheel_or_tumble",
+      "verdict": "blocked_until_reference_motion",
+      "reason": "The model has feet-only locomotion contacts and no reference motion/tracking objective for aerial full-body rotation.",
+      "next_gate": "M22 reference-motion loop, then a prep skill such as jump-turn or handstand prep."
+    },
+    {
+      "skill": "rabona_kick",
+      "verdict": "defer",
+      "reason": "Requires ball scene plus crossing-leg balance and target-direction kick; this is downstream of simple kick and ball tap.",
+      "next_gate": "M21 angled kick after front kick succeeds."
+    }
+  ]
+}
