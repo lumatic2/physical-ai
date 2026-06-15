@@ -27,7 +27,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | stabilizer init PASS / squat depth 대기 |
+| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | no-fall PASS / depth curriculum 필요 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
@@ -101,9 +101,10 @@
 - [x] recovery/upright/height-aware reward로 300k PPO를 돌렸지만 native fall time은 1.24초로 개선되지 않았다.
 - [x] M22 reference tracking reward를 결합했지만 native fall time은 1.24초로 개선되지 않았다.
 - [x] 기존 G1 walking policy를 stabilizer prior로 restore해 native 6초 no-fall을 달성했다.
-- [ ] stabilizer를 유지한 채 squat depth tracking을 강화한 뒤 ONNX export와 browser playback/live inference까지 연결한다.
+- [x] stabilizer를 유지한 채 height/reference reward를 강화했지만 min height는 0.7523m -> 0.7501m로만 개선됐다.
+- [ ] squat depth curriculum 또는 action/reference target 재설계 후 ONNX export와 browser playback/live inference까지 연결한다.
 
-완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe + reference tracking reward 결합 + walking stabilizer init probe는 완료. stabilizer init은 native 6초 no-fall을 처음 달성했지만 base height가 0.752m 이상으로 유지되어 squat depth는 아직 부족하다. G1이 내가 정의한 squat skill을 실제로 수행한다고 말하려면 안정성을 유지한 채 height/reference tracking을 강화하고, 그 뒤 ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md)에 박제했다.
+완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe + reference tracking reward 결합 + walking stabilizer init + depth fine-tune probe는 완료. native 6초 no-fall은 달성했지만 base height가 0.750m 근처에 머물러 squat depth는 아직 부족하다. G1이 내가 정의한 squat skill을 실제로 수행한다고 말하려면 depth curriculum 또는 action/reference target 재설계 후 native height drop을 확인하고, 그 뒤 ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md)에 박제했다.
 
 ### M20 - Acrobatic feasibility gate
 

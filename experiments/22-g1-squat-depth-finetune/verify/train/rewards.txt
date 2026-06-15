@@ -1,0 +1,4 @@
+# timesteps=150000 train_min=5.46 source=/mnt/c/Users/yusun/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl
+0	80.49137878417969
+81920	81.45121765136719
+163840	83.34011840820312

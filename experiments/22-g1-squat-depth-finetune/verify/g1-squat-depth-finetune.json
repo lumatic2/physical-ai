@@ -1,0 +1,440 @@
+{
+  "compatibility": {
+    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
+    "source_exists": true,
+    "source_policy_shapes": {
+      "hidden_0": {
+        "bias": [
+          512
+        ],
+        "kernel": [
+          103,
+          512
+        ]
+      },
+      "hidden_1": {
+        "bias": [
+          256
+        ],
+        "kernel": [
+          512,
+          256
+        ]
+      },
+      "hidden_2": {
+        "bias": [
+          128
+        ],
+        "kernel": [
+          256,
+          128
+        ]
+      },
+      "hidden_3": {
+        "bias": [
+          58
+        ],
+        "kernel": [
+          128,
+          58
+        ]
+      }
+    },
+    "target_policy_shapes": {
+      "hidden_0": {
+        "kernel": [
+          103,
+          512
+        ],
+        "bias": [
+          512
+        ]
+      },
+      "hidden_1": {
+        "kernel": [
+          512,
+          256
+        ],
+        "bias": [
+          256
+        ]
+      },
+      "hidden_2": {
+        "kernel": [
+          256,
+          128
+        ],
+        "bias": [
+          128
+        ]
+      },
+      "hidden_3": {
+        "kernel": [
+          128,
+          58
+        ],
+        "bias": [
+          58
+        ]
+      }
+    },
+    "policy_shape_match": true
+  },
+  "rollout": {
+    "action_size": 29,
+    "obs_state_shape": [
+      103
+    ],
+    "obs_privileged_shape": [
+      216
+    ],
+    "rollout_steps": 20,
+    "reward_first": 0.3985092341899872,
+    "reward_last": 0.38577136397361755,
+    "height_min": 0.7216300368309021,
+    "height_last": 0.724085807800293,
+    "height_error_last": 1.0796647984534502e-05,
+    "done_any": false
+  },
+  "train": {
+    "timesteps": 150000,
+    "train_min": 5.46117803549981,
+    "reward_points": [
+      [
+        0,
+        80.49137878417969
+      ],
+      [
+        81920,
+        81.45121765136719
+      ],
+      [
+        163840,
+        83.34011840820312
+      ]
+    ],
+    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
+    "params_path": "verify/train/params.pkl",
+    "rewards_path": "verify/train/rewards.txt"
+  },
+  "native": {
+    "baseline_exp21_min_height": 0.7522832074616519,
+    "target_depth_height": 0.7,
+    "engine": "native mujoco.MjData closed-loop depth fine-tune from exp21 stabilizer",
+    "seconds": 6.0,
+    "fell_at": null,
+    "upright_s": 6.0,
+    "min_height": 0.7500645585567972,
+    "final_height": 0.7516961766528159,
+    "improved_depth_vs_exp21": true,
+    "depth_pass": false,
+    "max_reference_error": 0.005362241441246024,
+    "max_height_error": 0.018535012801326658,
+    "max_joint_limit_violation": 0.0,
+    "energy_proxy": 11.286212093801403,
+    "verdict": "IMPROVED_DEPTH_PENDING",
+    "samples": [
+      {
+        "t": 0.0,
+        "base_height": 0.755,
+        "target_height": 0.7549999952316284,
+        "reference_error": 1.2614786223382194e-16,
+        "height_error": 2.2737367586674853e-17,
+        "up_z": 1.0,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.3574107885360718
+      },
+      {
+        "t": 0.2,
+        "base_height": 0.7544479134652589,
+        "target_height": 0.7369999885559082,
+        "reference_error": 0.0004040680983991154,
+        "height_error": 0.000304430083642339,
+        "up_z": 0.9995634459488684,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.5687992572784424
+      },
+      {
+        "t": 0.4,
+        "base_height": 0.755071057036048,
+        "target_height": 0.718999981880188,
+        "reference_error": 0.0006042587435826951,
+        "height_error": 0.0013011224628997045,
+        "up_z": 0.9995224153383998,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.4241327047348022
+      },
+      {
+        "t": 0.6,
+        "base_height": 0.7539606983329091,
+        "target_height": 0.7009999752044678,
+        "reference_error": 0.0008056021549135202,
+        "height_error": 0.002804838194287423,
+        "up_z": 0.9990307989089884,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.7291086912155151
+      },
+      {
+        "t": 0.8,
+        "base_height": 0.7514838905292756,
+        "target_height": 0.6830000281333923,
+        "reference_error": 0.0007228850255567356,
+        "height_error": 0.004690039408658268,
+        "up_z": 0.9990011459012259,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.2322587966918945
+      },
+      {
+        "t": 1.0,
+        "base_height": 0.7561904673834086,
+        "target_height": 0.6650000214576721,
+        "reference_error": 0.0025787185662737066,
+        "height_error": 0.008315697428134662,
+        "up_z": 0.9988435282732402,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.9948298931121826
+      },
+      {
+        "t": 1.2,
+        "base_height": 0.7528400743739476,
+        "target_height": 0.6470000147819519,
+        "reference_error": 0.001998938569145808,
+        "height_error": 0.011202118214437205,
+        "up_z": 0.9990923615346344,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.2672942876815796
+      },
+      {
+        "t": 1.4,
+        "base_height": 0.7542286539631922,
+        "target_height": 0.6290000081062317,
+        "reference_error": 0.0031429343771130053,
+        "height_error": 0.015682213743168024,
+        "up_z": 0.9989063222827635,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.282283902168274
+      },
+      {
+        "t": 1.6,
+        "base_height": 0.7515637421211305,
+        "target_height": 0.6200000047683716,
+        "reference_error": 0.003079588136218715,
+        "height_error": 0.01730901698622574,
+        "up_z": 0.9983464879891364,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.1637331247329712
+      },
+      {
+        "t": 1.8,
+        "base_height": 0.755877645137119,
+        "target_height": 0.6200000047683716,
+        "reference_error": 0.004976161214660892,
+        "height_error": 0.01846273315217865,
+        "up_z": 0.99877510140026,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.7390046119689941
+      },
+      {
+        "t": 2.0,
+        "base_height": 0.7516542940718988,
+        "target_height": 0.6200000047683716,
+        "reference_error": 0.0029100591178529626,
+        "height_error": 0.017332851892016832,
+        "up_z": 0.9986309106628795,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.36646568775177
+      },
+      {
+        "t": 2.2,
+        "base_height": 0.7529064739584044,
+        "target_height": 0.6200000047683716,
+        "reference_error": 0.0033617701611400727,
+        "height_error": 0.017664129552561136,
+        "up_z": 0.998890630197095,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0907773971557617
+      },
+      {
+        "t": 2.4,
+        "base_height": 0.7538051542080939,
+        "target_height": 0.6200000047683716,
+        "reference_error": 0.004271592602045252,
+        "height_error": 0.017903818016586425,
+        "up_z": 0.9982268312296771,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.9981219172477722
+      },
+      {
+        "t": 2.6,
+        "base_height": 0.7538604117388759,
+        "target_height": 0.6290000081062317,
+        "reference_error": 0.0033964860921636363,
+        "height_error": 0.015590120395306821,
+        "up_z": 0.9988146018396878,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.8056150674819946
+      },
+      {
+        "t": 2.8,
+        "base_height": 0.7527230937542609,
+        "target_height": 0.6470000147819519,
+        "reference_error": 0.0020778426772446175,
+        "height_error": 0.011177369427385094,
+        "up_z": 0.9986167093377322,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.428768515586853
+      },
+      {
+        "t": 3.0,
+        "base_height": 0.7514638979954845,
+        "target_height": 0.6650000214576721,
+        "reference_error": 0.0012414740972940947,
+        "height_error": 0.007476001945946066,
+        "up_z": 0.9985605704188906,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.072345495223999
+      },
+      {
+        "t": 3.2,
+        "base_height": 0.7559568365050957,
+        "target_height": 0.6830000281333923,
+        "reference_error": 0.002104142969632573,
+        "height_error": 0.005322695887785447,
+        "up_z": 0.9984305811847478,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.8223897814750671
+      },
+      {
+        "t": 3.4,
+        "base_height": 0.7513430452438181,
+        "target_height": 0.7009999752044678,
+        "reference_error": 0.0005703069800750791,
+        "height_error": 0.0025344247009869343,
+        "up_z": 0.9987114925417507,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.1105198860168457
+      },
+      {
+        "t": 3.6,
+        "base_height": 0.7534505177964097,
+        "target_height": 0.718999981880188,
+        "reference_error": 0.0005517423662820115,
+        "height_error": 0.0011868394249148822,
+        "up_z": 0.998848789546351,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.1533242464065552
+      },
+      {
+        "t": 3.8,
+        "base_height": 0.75170731705258,
+        "target_height": 0.7369999885559082,
+        "reference_error": 0.0006949594269013774,
+        "height_error": 0.00021630551150901377,
+        "up_z": 0.9982129140710678,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0911555290222168
+      },
+      {
+        "t": 4.0,
+        "base_height": 0.7553836016537611,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0006826992940787623,
+        "height_error": 1.4715388710140746e-07,
+        "up_z": 0.9985840602305406,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.736815333366394
+      },
+      {
+        "t": 4.2,
+        "base_height": 0.7510420095383136,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0008891764992929249,
+        "height_error": 1.5665650748485012e-05,
+        "up_z": 0.9985507034479758,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.2726341485977173
+      },
+      {
+        "t": 4.4,
+        "base_height": 0.7523657913627579,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0007551807594590239,
+        "height_error": 6.939030022772191e-06,
+        "up_z": 0.9987682611629513,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0272295475006104
+      },
+      {
+        "t": 4.6,
+        "base_height": 0.7542391309748172,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0008447081273341011,
+        "height_error": 5.789144172928768e-07,
+        "up_z": 0.9982013570438766,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.9233562350273132
+      },
+      {
+        "t": 4.8,
+        "base_height": 0.7526573631950901,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0007792001324462872,
+        "height_error": 5.4879248586155056e-06,
+        "up_z": 0.9985848017007615,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.8292237520217896
+      },
+      {
+        "t": 5.0,
+        "base_height": 0.7524121907817742,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0007708363445496179,
+        "height_error": 6.696731870685099e-06,
+        "up_z": 0.9986169651605791,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.257757544517517
+      },
+      {
+        "t": 5.2,
+        "base_height": 0.7510430134264198,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0009987221136209274,
+        "height_error": 1.565770500675229e-05,
+        "up_z": 0.9983117039355758,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0238906145095825
+      },
+      {
+        "t": 5.4,
+        "base_height": 0.7558411312944431,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0009223666772559033,
+        "height_error": 7.075098761673518e-07,
+        "up_z": 0.9982942461844704,
+        "joint_limit_violation": 0.0,
+        "action_l2": 0.7758550047874451
+      },
+      {
+        "t": 5.6,
+        "base_height": 0.7501898358029219,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0011003619209711535,
+        "height_error": 2.313763372957453e-05,
+        "up_z": 0.9984505179684028,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0295228958129883
+      },
+      {
+        "t": 5.8,
+        "base_height": 0.7527959858134681,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.000790342743225709,
+        "height_error": 4.857657515339509e-06,
+        "up_z": 0.9987312397228719,
+        "joint_limit_violation": 0.0,
+        "action_l2": 1.0543265342712402
+      }
+    ]
+  },
+  "verdict": "IMPROVED_DEPTH_PENDING"
+}
