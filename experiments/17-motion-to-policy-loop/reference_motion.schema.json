@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Physical AI reference motion",
+  "type": "object",
+  "required": ["schema_version", "id", "embodiment", "fps", "joints", "frames", "metrics"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "embodiment": {
+      "type": "string",
+      "enum": ["g1"]
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "joints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frames": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["t", "base_height", "joint_targets"],
+        "properties": {
+          "t": {
+            "type": "number",
+            "minimum": 0
+          },
+          "base_height": {
+            "type": "number"
+          },
+          "joint_targets": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["reference_tracking_error", "base_height_error", "smoothness", "duration"]
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@
 | M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | 게이트 완료 / RL 대기 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
-| M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 후보 |
+| M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | format/probe 완료 |
 
 ## 닫힌 증거
 
@@ -128,11 +128,13 @@
 
 > 목표: handstand/flip처럼 sparse reward만으로 어려운 동작을 위해 reference motion 기반 루프를 연다.
 
-- [ ] 키프레임 또는 reference trajectory 포맷을 정한다.
-- [ ] motion tracking reward 또는 imitation pretraining 후보를 비교한다.
+- [x] 키프레임 reference trajectory 포맷을 정했다.
+- [x] G1 squat reference를 50Hz fixed-rate trajectory로 compile했다.
+- [x] `reference_tracking_error`, `base_height_error`, `smoothness_penalty`, `fall_penalty` reward term 계약을 만들었다.
+- [ ] motion tracking reward 또는 imitation pretraining 후보를 실제 env에 결합한다.
 - [ ] 브라우저에서 reference vs policy rollout을 나란히 확인하는 viewer를 만든다.
 
-완료 기준: "동작을 보여주고 policy가 따라 하게 한다"는 경로가 최소 실험으로 열린다.
+완료 기준: ✅ reference format/probe 경로는 열렸다. "동작을 보여주고 policy가 따라 하게 한다"는 학습 루프는 M19 balance wrapper 이후 진행한다. 현재 증거는 [exp17](experiments/17-motion-to-policy-loop/README.md)에 박제했다.
 
 ## 닫힌 목표군 상세
 

@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1",
+  "id": "g1_squat_reference",
+  "embodiment": "g1",
+  "fps": 50,
+  "joints": [
+    "left_hip_pitch", "left_hip_roll", "left_hip_yaw", "left_knee", "left_ankle_pitch", "left_ankle_roll",
+    "right_hip_pitch", "right_hip_roll", "right_hip_yaw", "right_knee", "right_ankle_pitch", "right_ankle_roll",
+    "waist_yaw", "waist_roll", "waist_pitch"
+  ],
+  "frames": [
+    {
+      "t": 0.0,
+      "base_height": 0.755,
+      "joint_targets": [-0.312, 0.0, 0.0, 0.669, -0.363, 0.0, -0.312, 0.0, 0.0, 0.669, -0.363, 0.0, 0.0, 0.0, 0.073]
+    },
+    {
+      "t": 1.5,
+      "base_height": 0.62,
+      "joint_targets": [-0.40, 0.0, 0.0, 0.82, -0.42, 0.0, -0.40, 0.0, 0.0, 0.82, -0.42, 0.0, 0.0, 0.0, 0.10]
+    },
+    {
+      "t": 2.5,
+      "base_height": 0.62,
+      "joint_targets": [-0.40, 0.0, 0.0, 0.82, -0.42, 0.0, -0.40, 0.0, 0.0, 0.82, -0.42, 0.0, 0.0, 0.0, 0.10]
+    },
+    {
+      "t": 4.0,
+      "base_height": 0.755,
+      "joint_targets": [-0.312, 0.0, 0.0, 0.669, -0.363, 0.0, -0.312, 0.0, 0.0, 0.669, -0.363, 0.0, 0.0, 0.0, 0.073]
+    }
+  ],
+  "metrics": ["reference_tracking_error", "base_height_error", "smoothness", "duration"]
+}
