@@ -2,7 +2,7 @@
 
 > 이 레포의 마일스톤과 다음 증거 생산 계획. **포트폴리오 모드** - 완료 기준은 "내가 이해했다"가 아니라
 > "남이 5분 보고 납득한다"이다. 마일스톤마다 보여줄 수 있는 산출물(showable artifact)이 나와야 한다.
-> 마지막 업데이트: 2026-06-15
+> 마지막 업데이트: 2026-06-16
 
 ## 왜 이 레포
 
@@ -27,7 +27,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 매번 bespoke 작업이 아니라 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 단순 갤러리가 아니라 같은 프로토콜로 비교되는 실험판이 된다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역할 수 있다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | native 진단 FAIL / long-run 대기 |
+| M19 | Humanoid skill baseline | Atlas식 고난도 동작 전에 G1에서 균형·포즈·전환 skill을 만든다 | stand/squat/kick/pose-hold policies + QA | reward-only 개선 FAIL / reference 대기 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 같은 동작을 현 스택으로 학습 가능한지 판단한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛을 위해 공·접촉·목표를 포함한 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 키프레임/데모/참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | format/probe 완료 |
@@ -98,9 +98,10 @@
 - [x] G1 기존 walking env에 balance-stabilized custom reward wrapper를 붙였다.
 - [x] short PPO smoke에서 eval reward가 1.524 -> 3.316으로 상승했다.
 - [x] trained params로 native MuJoCo에서 fall, height, joint-limit, energy, target error를 평가했다.
-- [ ] native 진단 실패를 줄인 뒤 ONNX export와 browser playback/live inference까지 연결한다.
+- [x] recovery/upright/height-aware reward로 300k PPO를 돌렸지만 native fall time은 1.24초로 개선되지 않았다.
+- [ ] M22 reference tracking 또는 pretrained stabilizer를 결합한 뒤 ONNX export와 browser playback/live inference까지 연결한다.
 
-완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic은 완료. 100k short-trained params는 native MuJoCo에서 1.24초에 fall하므로, G1이 내가 정의한 단일 skill을 실제로 수행한다고 말하려면 longer PPO 또는 reward/recovery shaping 개선 후 no-fall native verify, ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md)와 [exp18](experiments/18-g1-squat-reward-smoke/README.md)에 박제했다.
+완료 기준: 🟨 balance reward wrapper + short PPO smoke + native diagnostic + reward-only recovery probe는 완료. 300k PPO에서도 native MuJoCo fall time이 1.24초로 유지되어, G1이 내가 정의한 단일 skill을 실제로 수행한다고 말하려면 M22 reference tracking 또는 pretrained stabilizer 결합 후 no-fall native verify, ONNX/browser playback이 남았다. 현재 증거는 [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md)에 박제했다.
 
 ### M20 - Acrobatic feasibility gate
 
