@@ -105,9 +105,9 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | **M10** 확장 가능한 트윈 플랫폼 | ✅ | 단일 소스 config + `add_scene.sh` + [ADDING_EMBODIMENTS.md](experiments/03-digital-twin/ADDING_EMBODIMENTS.md), dummy-arm 0-code 검증 |
 | **M11** 학습 정책 갤러리 확장 | ✅ | [exp 06](experiments/06-spot-rl-walk/README.md) — Spot 보행 정책 + Go1↔Spot 비교, 학습 정책 3종 |
 | **M12** 명령·지형 강건성 | ✅ | [exp 07](experiments/07-command-terrain-robustness/README.md) — Go1·Spot flat/rough command sweep + live QA |
-| **M7** 실물 도달 (하드웨어) | ⬜ | 저가팔 + ACT (구매 게이트, 보류) |
+| **M7** 실물 도달 (하드웨어) | 🟨 | [exp 09](experiments/09-real-arm-gate/README.md) — SO-101 2-arm + ACT 구매 전 게이트 완료, 실제 구매 대기 |
 
-상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0007)
+상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0008)
 
 ## 구조
 
@@ -120,7 +120,9 @@ physical-ai/
 │   ├── 04-go1-rl-walk/       #   Go1 보행 정책 학습 → ONNX → live closed-loop
 │   ├── 05-g1-rl-walk/        #   G1 휴머노이드 보행 정책 (동 파이프라인)
 │   ├── 06-spot-rl-walk/      #   Spot 4족 보행 정책 + byte-parity 디버깅
-│   └── 07-command-terrain-robustness/ # Go1·Spot command/rough QA
+│   ├── 07-command-terrain-robustness/ # Go1·Spot command/rough QA
+│   ├── 08-policy-expansion/      # G1 rough policy package absorption
+│   └── 09-real-arm-gate/         # M7 SO-101 hardware gate
 ├── references/           # 외부 레포·논문 정독 노트 (ANALYSIS.md 5섹션)
 ├── docs/
 │   ├── landscape.md      #   피지컬 AI 지형도

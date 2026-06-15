@@ -29,7 +29,7 @@
 | M12 | 명령·지형 강건성 검증 | 평지 전진 데모를 넘어 turn/strafe/rough terrain에서 정책 한계를 측정한다 | Go1↔Spot command sweep + rough terrain QA 리포트 + 라이브 데모 | ✅ 완료 |
 | M13 | 정책 추가 확장 | M10/M11 플랫폼이 새 정책 패키지를 반복적으로 흡수하는지 확인한다 | G1 rough policy package + byte-parity + live QA | ✅ 완료 |
 | M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ✅ 완료 |
-| M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-100 저가팔 + ACT + 수행 영상 | ⬜ 하드웨어 게이트 |
+| M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-101 2-arm + ACT 구매 전 게이트 | 🟨 게이트 완료 |
 
 ## 닫힌 마일스톤 압축
 
@@ -79,10 +79,14 @@
 - [x] vault synthesis: browser robot policy runtime + robustness 결과 통합.
 - 완료 기준: ✅ GitHub README, 블로그, vault가 같은 thesis를 말하고 중복/장황함이 줄어든 상태.
 
-### M7 — 실물 도달 (하드웨어 게이트, 보류) ⬜
-- SO-100류 저가 로봇팔 구매·조립.
-- teleoperation 데이터 수집 → ACT 모방학습 → sim→real 이식.
-- 완료 기준: 실물 팔 태스크 수행 영상 + reality gap 회고.
+### M7 — 실물 도달 (하드웨어 게이트) 🟨
+> 코드만으로 끝낼 수 없는 외부 게이트. 구매 전 판단은 닫고, 실제 실물 완료는 하드웨어 확보 후 재개한다.
+
+- [x] **구매 전 게이트** — 신규 구매는 SO-100이 아니라 SO-101 leader+follower 2-arm teleop로 좁힘. [ADR 0008](docs/adr/0008-m7-real-arm-gate.md), [exp09](experiments/09-real-arm-gate/README.md).
+- [x] **첫 task 축소** — M6에서 확인한 5-DOF top-down lift 한계를 반영해 stacking이 아니라 tabletop pick/place로 시작.
+- [x] **정책 경로** — ACT-first. LeRobot 기반 데이터 수집 → ACT 학습 → held-out pose eval → reality-gap 회고.
+- [ ] **외부 입력 필요** — 예산/배송/작업공간/카메라/조립 시간 확보.
+- 완료 기준(실물): 실물 팔 pick/place 수행 영상 + dataset/train/eval log + reality gap 회고.
 
 ## 완료 이력
 - 2026-06-09 — M1 지형 파악. `docs/landscape.md`(정의·용어 11종·4레이어 스택·플레이어 맵·reading list 15개).
@@ -105,6 +109,8 @@
 - 2026-06-14 (후속3) — **M9 인터랙티브 텔레옵 구현·로컬 QA 완주**(배포 대기). 트윈을 *관전*에서 *직접 조작*으로 격상. **step1** 키보드 보행 조종(WASD=vx/vy, Q/E=vyaw hold-to-drive→`pol.command` 직결, 슬라이더 동기)(`244d418`) — QA `--keys` 모드 신설, go1 5.9m·g1 3.4m PASS. **step2** 조작 안내 오버레이(bottom-left, 임베디먼트별)(`a87bb49`) — 드래그-힘은 이미 정책+물리 루프 양쪽 배선 확인, 실질은 discoverability. **step3** 마우스 EE 텔레옵(`5071668`) — 그리퍼 드래그→**유한차분 Jacobian damped-LS IK**(wasm `mj_jacBody` 출력인자 회피, qpos/xpos+mj_forward만 사용). SO-100·Panda `teleop:true`, 비-joint 액추에이터(Panda 텐던 그리퍼) 제외·관절/ctrl 클램프. QA `--teleop`: so100 잔차 1e-16(완전추종)·panda 0.141→0.080(컨토트 sweep-start 한계). 5-DOF 도달 한계는 정직 추종(M6/ADR 0004). **step4** 모바일/터치 폴백(`8090888`) — coarse pointer 감지→안내를 슬라이더/손가락으로(WASD 숨김), QA `--mobile`(390×844) go1·so100-텔레옵 PASS. 4스텝 4커밋. **Vercel 재배포 후 라이브 QA PASS**(키보드 go1 4.4m·so100 텔레옵 잔차 0) → https://physical-ai-arm.askewly.com 반영.
 - 2026-06-15 — **M12 완주: 명령·지형 강건성 검증**. `command_sweep.mjs`로 Go1·Spot flat/rough 6시나리오(forward, strafe-left/right, turn-left/right, diagonal-left)를 측정하고 yaw/command diagnostics를 `qaStep`에 추가. rough curb scene(`go1-rough-walk`, `spot-rough-walk`)은 1/2/3cm step으로 고정해 로컬+라이브 모두 낙상·NaN·콘솔에러 0 PASS. 라이브 alias: `?exp=go1-rough-walk`, `?exp=spot-rough-walk`. 결과와 raw JSON은 [exp 07](experiments/07-command-terrain-robustness/README.md)에 박제.
 - 2026-06-15 — **M14 완주: 포트폴리오 2차 패키징**. README를 “검증 가능한 브라우저 로봇 정책 플랫폼” 중심으로 재압축하고 M12 rough command QA를 상단 노출. askewly 글 `robot-walk-qa-after-demo` 작성·큐리 커버 생성·R2 업로드·KV targeted 예약 시드(2026-06-22 KST 공개). vault synthesis `2026-06-15-browser-robot-policy-runtime.md`에 M12 command/terrain robustness 통합.
+- 2026-06-15 — **M13 완주: 정책 추가 확장**. `g1-rough-walk` policy package 추가. G1 rough scene + registry + `rollout_g1.py [experiment]` 일반화, native byte-parity 0.0, 로컬+라이브 visual/command QA PASS, 기존 Go1/G1/Spot 회귀 PASS. raw JSON은 [exp 08](experiments/08-policy-expansion/README.md).
+- 2026-06-15 — **M7 구매 전 게이트 완료**. SO-100 신규 구매는 제외하고 SO-101 leader+follower 2-arm + LeRobot + ACT-first로 실물 경로를 좁힘. 첫 task는 stack이 아니라 tabletop pick/place. 실제 M7 완료는 예산·배송·작업공간·조립 시간 확보 후 재개. [ADR 0008](docs/adr/0008-m7-real-arm-gate.md), [exp 09](experiments/09-real-arm-gate/README.md).
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.
