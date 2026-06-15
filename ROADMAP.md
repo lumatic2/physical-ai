@@ -26,7 +26,7 @@
 | M1-M3 | 기초 지형 + 첫 실험 | 분야를 이해하고 논문 모델을 직접 실행한다 | `docs/landscape.md`, 5× analysis, exp01 LIBERO | ✅ 압축 |
 | M4-M6 | 포트폴리오 1차 + 디지털 트윈 | 실험을 남이 볼 수 있는 도구/데모로 만든다 | README, 블로그 1편, SO-100 웹 트윈 | ✅ 압축 |
 | M8-M11 | 브라우저 정책 플랫폼 | 직접 학습한 정책을 웹에서 closed-loop로 돌리고, 새 임베디먼트를 흡수한다 | Go1/G1/Spot 정책 3종, teleop, `add_scene.sh`, dummy-arm | ✅ 압축 |
-| M12 | 명령·지형 강건성 검증 | 평지 전진 데모를 넘어 turn/strafe/rough terrain에서 정책 한계를 측정한다 | Go1↔Spot command sweep + rough terrain QA 리포트 + 라이브 데모 | ⬜ 다음 목표 |
+| M12 | 명령·지형 강건성 검증 | 평지 전진 데모를 넘어 turn/strafe/rough terrain에서 정책 한계를 측정한다 | Go1↔Spot command sweep + rough terrain QA 리포트 + 라이브 데모 | ✅ 완료 |
 | M13 | 정책 추가 확장 | M10/M11 플랫폼이 새 정책을 반복적으로 흡수하는지 확인한다 | Barkour/Go2/H1 중 1종 추가, byte-parity 문서화 | ⬜ 후보 |
 | M14 | 포트폴리오 2차 패키징 | 기술 디테일을 외부 독자가 5분 안에 이해하게 만든다 | README 압축 개편 + askewly 후속 글 + vault synthesis | ⬜ 후보 |
 | M7 | 실물 도달 | sim→real을 실제 로봇팔로 닫는다 | SO-100 저가팔 + ACT + 수행 영상 | ⬜ 하드웨어 게이트 |
@@ -53,14 +53,14 @@
 
 ## 새 목표군: M12-M14
 
-### M12 — 명령·지형 강건성 검증 ⬜
+### M12 — 명령·지형 강건성 검증 ✅
 > 지금까지는 “브라우저에서 걷는다”를 입증했다. 다음은 “명령이 바뀌고 지형이 거칠어져도 어디까지 버티는가”를 측정한다.
 
 - [x] **Command sweep QA** — Go1·Spot에 대해 vx/vy/vyaw 대표 시나리오(forward, strafe, turn, diagonal)를 실행하고 거리·속도·낙상·NaN·heading drift를 기록. flat 6종 모두 PASS.
 - [x] **Keyboard 시연 정리** — M9의 WASD/QE 입력을 QA와 live demo 서사에 연결. `command_sweep.mjs`가 command vector를 직접 주입해 정책 command tracking 검증으로 승격.
 - [x] **Rough terrain scene 1종** — 낮은 curb 3개가 있는 `go1-rough-walk`, `spot-rough-walk`를 추가하고 같은 프로토콜로 평가.
 - [x] **비교 리포트** — 신규 exp07 README에 Go1↔Spot flat/rough 한계 표, yaw convention, Spot rough drift를 정리.
-- 완료 기준: 로컬+라이브 QA PASS, `?exp=` 링크로 재현 가능, README/ROADMAP에 결과 표 반영.
+- 완료 기준: ✅ 로컬+라이브 QA PASS, `?exp=go1-rough-walk`·`?exp=spot-rough-walk` 링크 재현 가능, README/ROADMAP에 결과 표 반영.
 
 ### M13 — 정책 추가 확장 후보 ⬜
 > M12 이후 플랫폼 반복성을 더 보이기 위한 후보. 새 정책 추가가 연구가 아니라 운영 가능한 루틴인지 검증한다.
@@ -101,6 +101,7 @@
 - 2026-06-14 (후속2) — **갤러리 폭 완성(축 A) + G1 휴머노이드 보행 정책(축 B)**. ① **Spot·G1 floating-base settle** 추가(position kp keyframe hold), **Franka Panda** 추가 — 지난 세션 보류였던 "표면 점박이"를 **데스크탑 MuJoCo 렌더로 격리**해 web이 아닌 메시 데이터 문제로 확정(이전 "공유 렌더 코드" 가설 오진), 원인은 `fast_simplification`이 Franka의 non-watertight 코스메틱 shell을 붕괴(see-through 슬라이버)시킨 것 → 총 134k면뿐이라 **simplify 없이 바이너리 STL(6.7MB)** 로 변환해 해소. 부수 수정: mujocoUtils 바이너리 확장자 대소문자 무관(G1 `.STL`). 갤러리 **8종**(`02765e5`·`cb5a439`). ② **G1 휴머노이드 보행 정책**([exp 05](experiments/05-g1-rl-walk/README.md), `e6dd6c5`): Go1(exp 04) 파이프라인을 휴머노이드에 적용 — PPO 200M 46.5분(reward −6.4→+14.8) → ONNX(parity 2.1e-6) → native 9.38m 보행 → 번들 씬 **obs byte-parity 0.00e+00**(layout+scene) → 브라우저 live closed-loop 5.0m·0에러. **난관=obs parity**: Go1 48-d와 달리 103-d·command 중간·**gait phase clock**(stateful 외부 클록 native/desktop/JS 3곳 일치). main.js obs builder를 `obs_layout` 기반 일반 빌더로(go1·G1 한 경로, go1 회귀 PASS). 학습 정책 임베디먼트 **2종**(4족 Go1 + 휴머노이드 G1). ③ 패키징: README(갤러리 8종·학습정책·마일스톤 현행화)·exp 03/05 README·ROADMAP 갱신 + **askewly 블로그 2편째 "하드웨어 없이 로봇을 걷게 하는 법"** 발행(anti-AI verify PASS, 큐리 커버, R2+KV 라이브). 커밋 `02765e5`·`cb5a439`·`e6dd6c5`·`65a676b` origin push 완료.
 
 - 2026-06-14 (후속3) — **M9 인터랙티브 텔레옵 구현·로컬 QA 완주**(배포 대기). 트윈을 *관전*에서 *직접 조작*으로 격상. **step1** 키보드 보행 조종(WASD=vx/vy, Q/E=vyaw hold-to-drive→`pol.command` 직결, 슬라이더 동기)(`244d418`) — QA `--keys` 모드 신설, go1 5.9m·g1 3.4m PASS. **step2** 조작 안내 오버레이(bottom-left, 임베디먼트별)(`a87bb49`) — 드래그-힘은 이미 정책+물리 루프 양쪽 배선 확인, 실질은 discoverability. **step3** 마우스 EE 텔레옵(`5071668`) — 그리퍼 드래그→**유한차분 Jacobian damped-LS IK**(wasm `mj_jacBody` 출력인자 회피, qpos/xpos+mj_forward만 사용). SO-100·Panda `teleop:true`, 비-joint 액추에이터(Panda 텐던 그리퍼) 제외·관절/ctrl 클램프. QA `--teleop`: so100 잔차 1e-16(완전추종)·panda 0.141→0.080(컨토트 sweep-start 한계). 5-DOF 도달 한계는 정직 추종(M6/ADR 0004). **step4** 모바일/터치 폴백(`8090888`) — coarse pointer 감지→안내를 슬라이더/손가락으로(WASD 숨김), QA `--mobile`(390×844) go1·so100-텔레옵 PASS. 4스텝 4커밋. **Vercel 재배포 후 라이브 QA PASS**(키보드 go1 4.4m·so100 텔레옵 잔차 0) → https://physical-ai-arm.askewly.com 반영.
+- 2026-06-15 — **M12 완주: 명령·지형 강건성 검증**. `command_sweep.mjs`로 Go1·Spot flat/rough 6시나리오(forward, strafe-left/right, turn-left/right, diagonal-left)를 측정하고 yaw/command diagnostics를 `qaStep`에 추가. rough curb scene(`go1-rough-walk`, `spot-rough-walk`)은 1/2/3cm step으로 고정해 로컬+라이브 모두 낙상·NaN·콘솔에러 0 PASS. 라이브 alias: `?exp=go1-rough-walk`, `?exp=spot-rough-walk`. 결과와 raw JSON은 [exp 07](experiments/07-command-terrain-robustness/README.md)에 박제.
 
 ## 의사결정 이력
 "왜 X 안 봄?", "왜 Y 갈래로 안 감?" 같은 *의도적 제외*는 `docs/adr/`에 ADR로.

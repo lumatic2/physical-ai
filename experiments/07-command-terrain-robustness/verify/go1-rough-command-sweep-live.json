@@ -1,0 +1,117 @@
+{
+  "exp": "go1-rough-walk",
+  "live": true,
+  "steps": 300,
+  "chunk": 50,
+  "generatedAt": "2026-06-15T08:08:07.313Z",
+  "results": [
+    {
+      "name": "forward",
+      "command": [
+        1,
+        0,
+        0
+      ],
+      "expect": "x+",
+      "steps": 300,
+      "dx": 5.825055056109131,
+      "dy": 0.11306256377932977,
+      "distance": 5.826152207935432,
+      "dyaw": 0.032101777224151626,
+      "finalHeight": 0.2969897365372477,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    },
+    {
+      "name": "strafe-left",
+      "command": [
+        0,
+        0.5,
+        0
+      ],
+      "expect": "y+",
+      "steps": 300,
+      "dx": -0.1344511376876666,
+      "dy": 2.6057415687367187,
+      "distance": 2.609207970144964,
+      "dyaw": 0.07341867855639674,
+      "finalHeight": 0.3028679775342322,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    },
+    {
+      "name": "strafe-right",
+      "command": [
+        0,
+        -0.5,
+        0
+      ],
+      "expect": "y-",
+      "steps": 300,
+      "dx": 0.04965883783478509,
+      "dy": -2.473897033277297,
+      "distance": 2.474395387045755,
+      "dyaw": -0.15994924397166935,
+      "finalHeight": 0.2982140975376077,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    },
+    {
+      "name": "turn-left",
+      "command": [
+        0,
+        0,
+        0.8
+      ],
+      "expect": "yaw+",
+      "steps": 300,
+      "dx": 0.021896497341085466,
+      "dy": -0.10481296007276367,
+      "distance": 0.10707573579024761,
+      "dyaw": -1.9136479916764886,
+      "finalHeight": 0.30185494037671345,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    },
+    {
+      "name": "turn-right",
+      "command": [
+        0,
+        0,
+        -0.8
+      ],
+      "expect": "yaw-",
+      "steps": 300,
+      "dx": -0.11163002845880932,
+      "dy": -0.13686868715323522,
+      "distance": 0.1766190838408034,
+      "dyaw": 1.8643154040130119,
+      "finalHeight": 0.31212084318515926,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    },
+    {
+      "name": "diagonal-left",
+      "command": [
+        0.8,
+        0.4,
+        0
+      ],
+      "expect": "x+y+",
+      "steps": 300,
+      "dx": 4.565085722059174,
+      "dy": 1.985879778020575,
+      "distance": 4.978325636446412,
+      "dyaw": -0.046979795165671204,
+      "finalHeight": 0.3042447644560943,
+      "fell": false,
+      "nan": false,
+      "consoleErrors": []
+    }
+  ]
+}

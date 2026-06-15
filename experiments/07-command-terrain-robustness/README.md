@@ -1,7 +1,7 @@
 # 07-command-terrain-robustness — command sweep와 rough terrain 강건성 검증
 
 > M12. 평지 전진 데모를 넘어 Go1·Spot 정책이 `turn`, `strafe`, `diagonal`, rough terrain에서 어디까지 버티는지 측정한다.
-> 상태: S1~S2 완료 — command sweep QA, rough curb scene, Go1/Spot 로컬 측정 완료. 라이브 검증 남음.
+> 상태: 완료 — command sweep QA, rough curb scene, Go1/Spot 로컬+라이브 측정 완료.
 
 ## 1. 가설 (Hypothesis)
 
@@ -103,6 +103,38 @@ node qa/visual_check.mjs --exp=spot-rough-walk --steps=120 --chunk=40
 | Spot rough | turn-right | 0.261 | -0.015 | 1.644 | 0.457 | ✅ |
 | Spot rough | diagonal-left | 4.349 | 2.026 | 0.096 | 0.444 | ✅ |
 
+### S3 — live rough command sweep ✅
+
+배포 alias:
+
+- `https://physical-ai-arm.askewly.com/?exp=go1-rough-walk`
+- `https://physical-ai-arm.askewly.com/?exp=spot-rough-walk`
+
+실행:
+
+```bash
+cd experiments/03-digital-twin/web
+node qa/command_sweep.mjs --live --exp=go1-rough-walk --measure-only --out=../../07-command-terrain-robustness/verify/go1-rough-command-sweep-live.json
+node qa/command_sweep.mjs --live --exp=spot-rough-walk --measure-only --out=../../07-command-terrain-robustness/verify/spot-rough-command-sweep-live.json
+node qa/visual_check.mjs --live --exp=go1-rough-walk --steps=120 --chunk=40
+node qa/visual_check.mjs --live --exp=spot-rough-walk --steps=120 --chunk=40
+```
+
+| Robot | Scenario | dx | dy | dyaw | h | Verdict |
+|---|---|---:|---:|---:|---:|---|
+| Go1 live rough | forward | 5.825 | 0.113 | 0.032 | 0.297 | ✅ |
+| Go1 live rough | strafe-left | -0.134 | 2.606 | 0.073 | 0.303 | ✅ |
+| Go1 live rough | strafe-right | 0.050 | -2.474 | -0.160 | 0.298 | ✅ |
+| Go1 live rough | turn-left | 0.022 | -0.105 | -1.914 | 0.302 | ✅ |
+| Go1 live rough | turn-right | -0.112 | -0.137 | 1.864 | 0.312 | ✅ |
+| Go1 live rough | diagonal-left | 4.565 | 1.986 | -0.047 | 0.304 | ✅ |
+| Spot live rough | forward | 5.201 | 0.540 | 0.177 | 0.444 | ✅ |
+| Spot live rough | strafe-left | -0.095 | 2.920 | 0.044 | 0.464 | ✅ |
+| Spot live rough | strafe-right | 0.193 | -2.958 | 0.037 | 0.466 | ✅ |
+| Spot live rough | turn-left | 0.052 | -0.019 | -1.569 | 0.459 | ✅ |
+| Spot live rough | turn-right | 0.086 | -0.110 | 2.168 | 0.434 | ✅ |
+| Spot live rough | diagonal-left | 4.432 | 2.294 | 0.101 | 0.447 | ✅ |
+
 회귀:
 
 ```bash
@@ -117,6 +149,8 @@ node qa/visual_check.mjs --exp=spot-walk --steps=120 --chunk=40
 - `verify/spot-command-sweep.json`
 - `verify/go1-rough-command-sweep.json`
 - `verify/spot-rough-command-sweep.json`
+- `verify/go1-rough-command-sweep-live.json`
+- `verify/spot-rough-command-sweep-live.json`
 - `experiments/03-digital-twin/web/qa/out/*command*.png`
 
 ## 4. 통찰 (Insights)
@@ -132,7 +166,7 @@ node qa/visual_check.mjs --exp=spot-walk --steps=120 --chunk=40
 - [ ] FAIL
 
 ### 정의에 반영
-- M12 완료 시 `ROADMAP.md`와 README에 라이브 QA 결과까지 포함해 반영.
+- M12 완료: `ROADMAP.md`, `experiments/README.md`, live `?exp=` 링크, 로컬+라이브 QA raw JSON까지 반영.
 
 ### 다음 실험 후보
 - Rough terrain heightfield/stepped terrain scene 추가.
