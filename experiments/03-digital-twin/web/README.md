@@ -2,7 +2,7 @@
 
 로봇 MJCF를 **브라우저에서 실제 물리째** 돌리는 인터랙티브 트윈. DeepMind 공식 MuJoCo WASM
 바인딩(`mujoco-js`) + three.js. 빌드·node_modules 불필요 — deps는 jsDelivr CDN, ES module 직접 로드(순수 정적).
-하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **8종 임베디먼트**를 굴린다.
+하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **10개 씬**을 굴린다.
 
 **라이브: https://physical-ai-arm.askewly.com** (`?exp=<name>` 으로 전환)
 
@@ -10,14 +10,16 @@
 |---|---|---|
 | `go1-walk` | Unitree Go1 (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (onnxruntime-web) + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | ⭐ **직접 학습한 RL 정책** live closed-loop (103-d obs + gait phase clock) |
+| `spot-walk` | Boston Dynamics Spot (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (81-d obs + qpos error history) |
 | `so100-stack` (기본) | SO-ARM100 팔 | scripted pick-and-place 3단 스택 replay |
 | `panda-sweep` | Franka Panda 팔 | scripted 관절 sweep replay |
 | `shadow-hand` | Shadow Hand | scripted 손가락 굴곡 replay |
 | `spot-stand` | Boston Dynamics Spot | 물리 settle (floating-base) |
 | `g1-stand` | Unitree G1 | 물리 settle (floating-base 29-DOF) |
 | `humanoid-settle` | Humanoid | 물리 settle |
+| `dummy-arm` | Dummy 2-link arm | M10 zero-code add 검증용 replay |
 
-- **정책 실험**(go1/g1-walk): `obs→onnx→ctrl→mj_step@50Hz` closed-loop — 학습한 신경망이 실시간으로 몸을 제어한다. 학습 sim과 obs byte-parity. → [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md).
+- **정책 실험**(go1/g1/spot-walk): `obs→onnx→ctrl→mj_step@50Hz` closed-loop — 학습한 신경망이 실시간으로 몸을 제어한다. 학습 sim과 obs byte-parity. → [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)·[06](../../06-spot-rl-walk/README.md).
 - **replay 실험**: 데스크탑에서 기록한 qpos 궤적을 운동학 재생(mp4==웹). 시점 궤도/드래그로 직접 구동도 가능.
 - **새 임베디먼트 추가 = JS 0줄**: 씬 번들 + `experiments.json` 한 항목 + 궤적/정책. 로더는 `manifest.json`을 fetch.
 - 반응형(QHD/노트북/모바일) · 자동 시각 QA 하네스(`qa/visual_check.mjs`, playwright)로 라이브 자가검증.
@@ -45,10 +47,10 @@ python serve_coi.py 8132    # COOP/COEP 헤더 필요 (WASM). deps는 CDN이라 
 
 베이스: [zalo/mujoco_wasm](https://github.com/zalo/mujoco_wasm) (ISC). 주요 delta:
 1. `src/mujocoUtils.js` — 씬 파일 목록을 `manifest.json` fetch로(하드코딩 제거), 바이너리 확장자 대소문자 무관 로드.
-2. `src/main.js` — `experiments.json` 레지스트리로 씬·카메라 선택, **정책 closed-loop**(onnxruntime-web obs builder + gait phase clock) vs 궤적 replay 2모드, 반응형 카메라.
+2. `src/main.js` — `experiments.json` 레지스트리로 씬·카메라 선택, **정책 closed-loop**(onnxruntime-web obs builder + gait phase clock / qpos error history) vs 궤적 replay 2모드, 반응형 카메라.
 3. `index.html` — 모바일 컨트롤 패널 축소 CSS.
 
-추가: `assets/scenes/<model>/`(Menagerie 모델 + 우리 scene xml), `gen_scene_manifest.py`(manifest 생성), `decimate_meshes.py`(웹 전송 예산), `qa/`(자동 시각 QA). 학습 정책은 [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)에서 ONNX로 뽑아 번들.
+추가: `assets/scenes/<model>/`(Menagerie 모델 + 우리 scene xml), `gen_scene_manifest.py`(manifest 생성), `decimate_meshes.py`(웹 전송 예산), `qa/`(자동 시각 QA). 학습 정책은 [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)·[06](../../06-spot-rl-walk/README.md)에서 ONNX로 뽑아 번들.
 
 ## 출처 / 라이선스
 
