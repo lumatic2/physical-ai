@@ -119,6 +119,9 @@ export class MuJoCoDemo {
     const registry = await (await fetch("./experiments.json")).json();
     const expName = new URLSearchParams(location.search).get("exp") || registry.default;
     const exp = registry.experiments[expName] || registry.experiments[registry.default];
+    this.registry = registry;
+    this.expName = registry.experiments[expName] ? expName : registry.default;
+    this.exp = exp;
 
     const startScene = exp.scene;
     this.params.scene = startScene;
@@ -171,6 +174,213 @@ export class MuJoCoDemo {
     }
 
     this.addControlHints();
+    this.addProjectOverlay();
+  }
+
+  addProjectOverlay() {
+    const groups = [
+      ['learned', 'Learned policies', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
+      ['arms', 'Robot arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
+      ['settle', 'Embodiment checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
+    ];
+    const panel = document.createElement('section');
+    panel.className = 'project-panel';
+    panel.innerHTML = `
+      <div class="project-panel__head">
+        <div>
+          <div class="project-panel__brand">Robotics Lab</div>
+          <div class="project-panel__domain">robotics.askewly.com</div>
+        </div>
+        <button class="project-panel__toggle" type="button" aria-expanded="true" title="Collapse panel">-</button>
+      </div>
+      <div class="project-panel__body">
+        <label class="project-panel__label" for="robot-exp-select">Robot / experiment</label>
+        <select id="robot-exp-select" class="project-panel__select"></select>
+        <div class="project-panel__current"></div>
+        <div class="project-panel__links"></div>
+        <div class="project-panel__status">
+          <div class="project-panel__status-title">Current research gate</div>
+          <div class="project-panel__status-main">G1 squat skill: native only</div>
+          <div class="project-panel__metric-row"><span>6.0s no-fall</span><span>PASS</span></div>
+          <div class="project-panel__metric-row"><span>stage 0.74m depth</span><span>PENDING</span></div>
+          <div class="project-panel__metric-row"><span>min height</span><span>0.7501m</span></div>
+        </div>
+      </div>
+    `;
+    const style = document.createElement('style');
+    style.textContent = `
+      .project-panel {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        z-index: 1200;
+        width: min(360px, calc(100vw - 28px));
+        color: #f7fbff;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: rgba(8, 12, 16, 0.76);
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: 0 18px 60px rgba(0,0,0,0.34);
+        backdrop-filter: blur(14px);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .project-panel, .project-panel * { box-sizing: border-box; }
+      .project-panel__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 13px 14px 11px;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+      }
+      .project-panel__brand {
+        font-size: 16px;
+        line-height: 1.15;
+        font-weight: 700;
+      }
+      .project-panel__domain {
+        margin-top: 3px;
+        color: rgba(247,251,255,0.66);
+        font-size: 12px;
+        line-height: 1.2;
+      }
+      .project-panel__toggle {
+        width: 28px;
+        height: 28px;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 6px;
+        color: #f7fbff;
+        background: rgba(255,255,255,0.08);
+        font: 700 16px/1 ui-sans-serif, system-ui, sans-serif;
+        cursor: pointer;
+      }
+      .project-panel__body { padding: 13px 14px 14px; }
+      .project-panel__label {
+        display: block;
+        margin-bottom: 7px;
+        color: rgba(247,251,255,0.72);
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 650;
+      }
+      .project-panel__select {
+        width: 100%;
+        min-height: 36px;
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 6px;
+        padding: 0 10px;
+        color: #f7fbff;
+        background: rgba(0,0,0,0.42);
+        font: 13px/1.2 ui-sans-serif, system-ui, sans-serif;
+      }
+      .project-panel__select option { color: #111820; background: #fff; }
+      .project-panel__current {
+        margin-top: 10px;
+        color: rgba(247,251,255,0.86);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+      .project-panel__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+        margin-top: 12px;
+      }
+      .project-panel__link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        color: #f7fbff;
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 6px;
+        background: rgba(255,255,255,0.07);
+        font-size: 12px;
+        line-height: 1;
+      }
+      .project-panel__status {
+        margin-top: 13px;
+        padding-top: 12px;
+        border-top: 1px solid rgba(255,255,255,0.12);
+      }
+      .project-panel__status-title {
+        color: rgba(247,251,255,0.62);
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .project-panel__status-main {
+        margin-top: 5px;
+        margin-bottom: 8px;
+        font-size: 13px;
+        line-height: 1.25;
+        font-weight: 700;
+      }
+      .project-panel__metric-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: rgba(247,251,255,0.78);
+        font-size: 12px;
+        line-height: 1.7;
+      }
+      .project-panel.is-collapsed .project-panel__body { display: none; }
+      .project-panel.is-collapsed { width: auto; min-width: 210px; }
+      @media (max-width: 640px) {
+        .project-panel {
+          top: 8px;
+          left: 8px;
+          width: calc(100vw - 16px);
+        }
+        .project-panel__links { display: none; }
+        .project-panel__status { display: none; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const select = panel.querySelector('#robot-exp-select');
+    const current = panel.querySelector('.project-panel__current');
+    const links = panel.querySelector('.project-panel__links');
+    const titleFor = (key) => this.registry.experiments[key]?.title || key;
+    for (const [, label, keys] of groups) {
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = label;
+      for (const key of keys) {
+        if (!this.registry.experiments[key]) continue;
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = titleFor(key);
+        optgroup.appendChild(option);
+      }
+      if (optgroup.children.length) select.appendChild(optgroup);
+    }
+    select.value = this.expName;
+    const currentUrl = new URL(location.href);
+    select.addEventListener('change', () => {
+      currentUrl.searchParams.set('exp', select.value);
+      location.href = currentUrl.toString();
+    });
+
+    const mode = this.exp.policy ? 'Live learned policy' : this.exp.teleop ? 'Replay + teleop' : 'Replay / settle';
+    current.textContent = `${mode}: ${this.exp.title}`;
+    for (const key of ['g1-walk', 'barkour-walk', 'so100-stack', 'g1-stand']) {
+      if (!this.registry.experiments[key]) continue;
+      const a = document.createElement('a');
+      a.className = 'project-panel__link';
+      a.href = `?exp=${encodeURIComponent(key)}`;
+      a.textContent = key;
+      links.appendChild(a);
+    }
+    panel.querySelector('.project-panel__toggle').addEventListener('click', (event) => {
+      const button = event.currentTarget;
+      const collapsed = panel.classList.toggle('is-collapsed');
+      button.textContent = collapsed ? '+' : '-';
+      button.setAttribute('aria-expanded', String(!collapsed));
+    });
+    this.container.appendChild(panel);
   }
 
   // Always-on control hint (bottom-left). Discoverability for the interactive controls — the

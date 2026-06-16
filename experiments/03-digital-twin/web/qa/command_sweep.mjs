@@ -29,7 +29,7 @@ const measureOnly = args.includes('--measure-only');
 const outArg = args.find(a => a.startsWith('--out='));
 const outPath = outArg ? resolve(WEB_DIR, outArg.split('=')[1]) : null;
 const PORT = 8133;
-const BASE = live ? 'https://physical-ai-arm.askewly.com' : `http://127.0.0.1:${PORT}`;
+const BASE = live ? 'https://robotics.askewly.com' : `http://127.0.0.1:${PORT}`;
 
 const SCENARIOS = [
   { name: 'forward', cmd: [1.0, 0.0, 0.0], expect: 'x+' },

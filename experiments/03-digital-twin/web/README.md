@@ -4,7 +4,7 @@
 바인딩(`mujoco-js`) + three.js. 빌드·node_modules 불필요 — deps는 jsDelivr CDN, ES module 직접 로드(순수 정적).
 하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **11개 씬**을 굴린다.
 
-**라이브: https://physical-ai-arm.askewly.com** (`?exp=<name>` 으로 전환)
+**라이브: https://robotics.askewly.com** (상단 패널에서 선택하거나 `?exp=<name>` 으로 직접 전환)
 
 | `?exp=` | 임베디먼트 | 구동 |
 |---|---|---|

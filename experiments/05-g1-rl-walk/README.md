@@ -15,7 +15,7 @@
 | 번들 씬 parity | desktop rollout: obs **byte parity 0.00e+00** (layout + scene 둘 다 — 학습 씬과 완전 동일) |
 | 브라우저 (Phase 3) | onnxruntime-web live closed-loop: **5.0 m 전진 · 0 콘솔 에러**, gait phase clock JS 구현 |
 
-**라이브: [physical-ai-arm.askewly.com/?exp=g1-walk](https://physical-ai-arm.askewly.com/?exp=g1-walk)**
+**라이브: [robotics.askewly.com/?exp=g1-walk](https://robotics.askewly.com/?exp=g1-walk)**
 
 ## 파이프라인 (= 04, ENV만 G1)
 

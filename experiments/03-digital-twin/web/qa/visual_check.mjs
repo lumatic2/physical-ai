@@ -9,7 +9,7 @@
 //
 // Usage:
 //   node qa/visual_check.mjs                 # local: spawns serve_coi.py, tests the working tree
-//   node qa/visual_check.mjs --live          # tests https://physical-ai-arm.askewly.com
+//   node qa/visual_check.mjs --live          # tests https://robotics.askewly.com
 //   node qa/visual_check.mjs --exp=go1-walk --steps=400 --chunk=50
 //
 // Screenshots land in qa/out/*.png. Exit code 0 = pass (intact + walking + 0 console errors).
@@ -36,7 +36,7 @@ const keys   = keysArg ? keysArg.split('=')[1].split('') : null;
 const teleArg = args.find(a => a.startsWith('--teleop='));// e.g. --teleop=0.1,0,0.1  EE delta (m)
 const tele   = teleArg ? teleArg.split('=')[1].split(',').map(Number) : null;
 const PORT   = 8132;
-const BASE   = live ? 'https://physical-ai-arm.askewly.com' : `http://127.0.0.1:${PORT}`;
+const BASE   = live ? 'https://robotics.askewly.com' : `http://127.0.0.1:${PORT}`;
 const URL    = `${BASE}/?exp=${exp}`;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }

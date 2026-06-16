@@ -13,7 +13,7 @@
 **무엇을 만들었나** —
 1. **[vla-eval](experiments/01-vla-local-eval/README.md)** — 컨슈머 GPU에서 **1커맨드로 VLA 정책을 평가**하는 도구 (Windows/WSL2·Blackwell sm_120·세그폴트/의존성 해법 내장).
 2. **[action-repr-bench](experiments/02-action-repr-bench/README.md)** — 두 동작표현을 같은 LIBERO 벤치마크로 **head-to-head 실측**.
-3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 3D 임베디먼트 갤러리**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드로 보행 command를 바꾸고, 마우스로 팔 EE를 텔레옵하고, command/rough terrain QA로 “걷는다”를 검증한다. → **라이브: [physical-ai-arm.askewly.com](https://physical-ai-arm.askewly.com)**
+3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 3D 임베디먼트 갤러리**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드로 보행 command를 바꾸고, 마우스로 팔 EE를 텔레옵하고, command/rough terrain QA로 “걷는다”를 검증한다. → **라이브: [robotics.askewly.com](https://robotics.askewly.com)**
 
 ---
 
@@ -53,7 +53,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 
 ## 만든 것 ③ digital-twin — 브라우저 임베디먼트 갤러리 + 직접 학습한 보행 정책
 
-**[physical-ai-arm.askewly.com](https://physical-ai-arm.askewly.com)** — 하드웨어 없이 sim→real 직전까지. MuJoCo를 WASM으로 브라우저에 띄워 로봇 갤러리를 인터랙티브 3D로 돌린다(`?exp=` 로 전환).
+**[robotics.askewly.com](https://robotics.askewly.com)** — 하드웨어 없이 sim→real 직전까지. MuJoCo를 WASM으로 브라우저에 띄워 로봇 갤러리를 인터랙티브 3D로 돌린다(`?exp=` 로 전환).
 
 | `?exp=` | 임베디먼트 | 구동 방식 |
 |---|---|---|

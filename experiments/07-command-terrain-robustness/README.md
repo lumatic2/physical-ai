@@ -107,8 +107,8 @@ node qa/visual_check.mjs --exp=spot-rough-walk --steps=120 --chunk=40
 
 배포 alias:
 
-- `https://physical-ai-arm.askewly.com/?exp=go1-rough-walk`
-- `https://physical-ai-arm.askewly.com/?exp=spot-rough-walk`
+- `https://robotics.askewly.com/?exp=go1-rough-walk`
+- `https://robotics.askewly.com/?exp=spot-rough-walk`
 
 실행:
 

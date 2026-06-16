@@ -10,6 +10,7 @@ import hashlib, json, os, subprocess, sys, time, urllib.request, urllib.error
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 NAME = "physical-ai-so100-twin"
+CUSTOM_DOMAIN = "robotics.askewly.com"
 TOKEN = os.environ["VERCEL_TOKEN"]
 API = "https://api.vercel.com"
 
@@ -73,6 +74,22 @@ for _ in range(60):
     print(f"  state={rs}")
     if rs in ("READY", "ERROR", "CANCELED"):
         print(f"\nFINAL state={rs}\ndeployment: https://{url}")
+        if rs == "READY":
+            try:
+                alias_body = json.dumps({"alias": CUSTOM_DOMAIN}).encode()
+                alias_out = json.load(req(
+                    f"{API}/v2/deployments/{dep_id}/aliases",
+                    data=alias_body,
+                    headers={"Content-Type": "application/json"},
+                    method="POST",
+                    timeout=60,
+                ))
+                alias = alias_out.get("alias") or CUSTOM_DOMAIN
+                print(f"custom alias: https://{alias}")
+            except urllib.error.HTTPError as e:
+                msg = e.read().decode()[:1000]
+                print(f"custom alias failed for {CUSTOM_DOMAIN}: HTTP {e.code} {msg}")
+                print("If this is a first-time domain, add it to the Vercel project Domains settings and set the subdomain CNAME as required.")
         for a in st.get("alias") or []:
             print(f"alias: https://{a}")
         sys.exit(0 if rs == "READY" else 2)

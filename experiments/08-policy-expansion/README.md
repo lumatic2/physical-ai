@@ -75,7 +75,7 @@ Raw: [`verify/g1-rough-command-sweep.json`](verify/g1-rough-command-sweep.json)
 
 ### Live QA ✅
 
-- Live URL: [`https://physical-ai-arm.askewly.com/?exp=g1-rough-walk`](https://physical-ai-arm.askewly.com/?exp=g1-rough-walk)
+- Live URL: [`https://robotics.askewly.com/?exp=g1-rough-walk`](https://robotics.askewly.com/?exp=g1-rough-walk)
 - visual QA: 120 steps, x `1.832m`, height `0.758m`, fell false, nan false, console errors 0
 - command sweep: all 6 scenarios PASS, fell false, nan false, console errors 0
 - Raw: [`verify/g1-rough-command-sweep-live.json`](verify/g1-rough-command-sweep-live.json)
