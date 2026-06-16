@@ -88,8 +88,11 @@ for _ in range(60):
                 print(f"custom alias: https://{alias}")
             except urllib.error.HTTPError as e:
                 msg = e.read().decode()[:1000]
-                print(f"custom alias failed for {CUSTOM_DOMAIN}: HTTP {e.code} {msg}")
-                print("If this is a first-time domain, add it to the Vercel project Domains settings and set the subdomain CNAME as required.")
+                if e.code == 409 and "not_modified" in msg:
+                    print(f"custom alias: https://{CUSTOM_DOMAIN} (already associated)")
+                else:
+                    print(f"custom alias failed for {CUSTOM_DOMAIN}: HTTP {e.code} {msg}")
+                    print("If this is a first-time domain, add it to the Vercel project Domains settings and set the subdomain CNAME as required.")
         for a in st.get("alias") or []:
             print(f"alias: https://{a}")
         sys.exit(0 if rs == "READY" else 2)

@@ -179,10 +179,110 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['learned', 'Learned policies', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
-      ['arms', 'Robot arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
-      ['settle', 'Embodiment checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
+      ['policy', 'Walking policies', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
+      ['manipulation', 'Arms and hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
+      ['checks', 'Model checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
     ];
+    const experimentCopy = {
+      'g1-walk': {
+        name: 'Unitree G1',
+        kind: 'Humanoid walking',
+        description: 'A full-body humanoid policy running closed-loop in the browser.',
+        actions: ['Walk forward', 'Strafe', 'Turn', 'Push and recover'],
+        learned: 'Joystick-conditioned balance and locomotion policy.',
+      },
+      'g1-rough-walk': {
+        name: 'Unitree G1 Rough',
+        kind: 'Humanoid terrain',
+        description: 'The G1 walking policy tested on low curb terrain.',
+        actions: ['Walk over curbs', 'Turn', 'Command sweep'],
+        learned: 'Same G1 gait policy checked against rough-terrain robustness.',
+      },
+      'barkour-walk': {
+        name: 'Google Barkour',
+        kind: 'Quadruped walking',
+        description: 'A compact quadruped policy with observation history.',
+        actions: ['Walk forward', 'Strafe', 'Turn'],
+        learned: 'History-based joystick locomotion policy.',
+      },
+      'go1-walk': {
+        name: 'Unitree Go1',
+        kind: 'Quadruped walking',
+        description: 'A four-legged robot policy running directly in WebAssembly.',
+        actions: ['Walk forward', 'Strafe', 'Turn', 'Drag test'],
+        learned: 'Joystick locomotion policy exported to ONNX.',
+      },
+      'go1-rough-walk': {
+        name: 'Unitree Go1 Rough',
+        kind: 'Quadruped terrain',
+        description: 'Go1 locomotion checked on rough curb scenes.',
+        actions: ['Walk over curbs', 'Command sweep', 'Drag test'],
+        learned: 'Go1 policy reused for terrain robustness checks.',
+      },
+      'spot-walk': {
+        name: 'Boston Dynamics Spot',
+        kind: 'Quadruped walking',
+        description: 'A Spot model driven by a live closed-loop policy.',
+        actions: ['Walk forward', 'Strafe', 'Turn', 'Drag test'],
+        learned: 'Joystick locomotion with short motion history.',
+      },
+      'spot-rough-walk': {
+        name: 'Spot Rough',
+        kind: 'Quadruped terrain',
+        description: 'Spot policy tested against curb terrain and command changes.',
+        actions: ['Walk over curbs', 'Command sweep', 'Drag test'],
+        learned: 'Terrain robustness check for the Spot walking policy.',
+      },
+      'so100-stack': {
+        name: 'SO-100',
+        kind: 'Robot arm',
+        description: 'A low-cost arm digital twin replaying a three-block pick-and-place task.',
+        actions: ['Replay stack', 'Drag objects', 'Teleop gripper'],
+        learned: 'Scripted trajectory and teleop harness; not a learned policy.',
+      },
+      'panda-sweep': {
+        name: 'Franka Panda',
+        kind: 'Robot arm',
+        description: 'A 7-DOF arm scene for joint motion and teleop checks.',
+        actions: ['Replay joint sweep', 'Teleop end-effector'],
+        learned: 'Control and visualization baseline for arm embodiments.',
+      },
+      'shadow-hand': {
+        name: 'Shadow Hand',
+        kind: 'Dexterous hand',
+        description: 'A hand model replaying finger flexion and contact-ready motion.',
+        actions: ['Replay finger curl', 'Inspect joints'],
+        learned: 'Dexterous-hand scene and replay baseline.',
+      },
+      'dummy-arm': {
+        name: 'Dummy 2-link arm',
+        kind: 'Harness check',
+        description: 'A small test arm used to prove new scenes can be added cleanly.',
+        actions: ['Replay motion', 'Scene loading check'],
+        learned: 'Zero-code embodiment addition workflow.',
+      },
+      'g1-stand': {
+        name: 'Unitree G1 Stand',
+        kind: 'Model check',
+        description: 'The G1 model settling under physics without the walking policy.',
+        actions: ['Settle', 'Drag test', 'Inspect posture'],
+        learned: 'Baseline model stability check before skill work.',
+      },
+      'spot-stand': {
+        name: 'Spot Stand',
+        kind: 'Model check',
+        description: 'Spot model settling under physics.',
+        actions: ['Settle', 'Drag test'],
+        learned: 'Baseline model stability check.',
+      },
+      'humanoid-settle': {
+        name: 'Humanoid',
+        kind: 'Model check',
+        description: 'A generic humanoid scene used to validate the platform.',
+        actions: ['Settle', 'Drag test'],
+        learned: 'General MuJoCo loading and replay coverage.',
+      },
+    };
     const panel = document.createElement('section');
     panel.className = 'project-panel';
     panel.innerHTML = `
@@ -194,16 +294,31 @@ export class MuJoCoDemo {
         <button class="project-panel__toggle" type="button" aria-expanded="true" title="Collapse panel">-</button>
       </div>
       <div class="project-panel__body">
-        <label class="project-panel__label" for="robot-exp-select">Robot / experiment</label>
-        <select id="robot-exp-select" class="project-panel__select"></select>
-        <div class="project-panel__current"></div>
-        <div class="project-panel__links"></div>
-        <div class="project-panel__status">
-          <div class="project-panel__status-title">Current research gate</div>
-          <div class="project-panel__status-main">G1 squat skill: native only</div>
-          <div class="project-panel__metric-row"><span>6.0s no-fall</span><span>PASS</span></div>
-          <div class="project-panel__metric-row"><span>stage 0.74m depth</span><span>PENDING</span></div>
-          <div class="project-panel__metric-row"><span>min height</span><span>0.7501m</span></div>
+        <div class="robot-picker">
+          <button class="robot-picker__button" type="button" aria-expanded="false">
+            <span>
+              <span class="robot-picker__name"></span>
+              <span class="robot-picker__kind"></span>
+            </span>
+            <span class="robot-picker__chevron">v</span>
+          </button>
+          <div class="robot-picker__menu" role="menu"></div>
+        </div>
+        <div class="robot-card">
+          <div class="robot-card__description"></div>
+          <div class="robot-card__section">
+            <div class="robot-card__label">Try</div>
+            <div class="robot-card__chips robot-card__actions"></div>
+          </div>
+          <div class="robot-card__section">
+            <div class="robot-card__label">What this shows</div>
+            <div class="robot-card__learned"></div>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-card__label">Current skill work</div>
+          <div class="research-card__title">G1 squat is still native-only</div>
+          <div class="research-card__text">Stable for 6.0s, but stage 0.74m depth is pending. It will appear here only after the motion is visible and controlled.</div>
         </div>
       </div>
     `;
@@ -214,7 +329,7 @@ export class MuJoCoDemo {
         top: 14px;
         left: 14px;
         z-index: 1200;
-        width: min(360px, calc(100vw - 28px));
+        width: min(344px, calc(100vw - 28px));
         color: #f7fbff;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background: rgba(8, 12, 16, 0.76);
@@ -255,77 +370,156 @@ export class MuJoCoDemo {
         cursor: pointer;
       }
       .project-panel__body { padding: 13px 14px 14px; }
-      .project-panel__label {
-        display: block;
-        margin-bottom: 7px;
-        color: rgba(247,251,255,0.72);
-        font-size: 12px;
-        line-height: 1.2;
-        font-weight: 650;
+      .robot-picker {
+        position: relative;
       }
-      .project-panel__select {
+      .robot-picker__button {
         width: 100%;
-        min-height: 36px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 6px;
-        padding: 0 10px;
+        padding: 8px 10px;
         color: #f7fbff;
         background: rgba(0,0,0,0.42);
-        font: 13px/1.2 ui-sans-serif, system-ui, sans-serif;
+        text-align: left;
+        cursor: pointer;
       }
-      .project-panel__select option { color: #111820; background: #fff; }
-      .project-panel__current {
-        margin-top: 10px;
-        color: rgba(247,251,255,0.86);
-        font-size: 13px;
-        line-height: 1.35;
+      .robot-picker__name {
+        display: block;
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 750;
       }
-      .project-panel__links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-        margin-top: 12px;
-      }
-      .project-panel__link {
-        display: inline-flex;
-        align-items: center;
-        min-height: 28px;
-        padding: 0 10px;
-        color: #f7fbff;
-        text-decoration: none;
-        border: 1px solid rgba(255,255,255,0.16);
-        border-radius: 6px;
-        background: rgba(255,255,255,0.07);
+      .robot-picker__kind {
+        display: block;
+        margin-top: 3px;
+        color: rgba(247,251,255,0.62);
         font-size: 12px;
+        line-height: 1.2;
+      }
+      .robot-picker__chevron {
+        color: rgba(247,251,255,0.7);
+        font-size: 13px;
         line-height: 1;
       }
-      .project-panel__status {
-        margin-top: 13px;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255,255,255,0.12);
+      .robot-picker__menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        max-height: min(430px, calc(100vh - 180px));
+        overflow: auto;
+        padding: 8px;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 8px;
+        background: #081016;
+        box-shadow: 0 18px 50px rgba(0,0,0,0.42);
       }
-      .project-panel__status-title {
-        color: rgba(247,251,255,0.62);
+      .robot-picker.is-open .robot-picker__menu { display: block; }
+      .robot-picker.is-open ~ .robot-card,
+      .robot-picker.is-open ~ .research-card { visibility: hidden; }
+      .robot-picker__group {
+        margin: 8px 4px 5px;
+        color: rgba(247,251,255,0.48);
         font-size: 11px;
         line-height: 1.2;
-        font-weight: 700;
+        font-weight: 750;
         text-transform: uppercase;
         letter-spacing: 0.06em;
       }
-      .project-panel__status-main {
-        margin-top: 5px;
-        margin-bottom: 8px;
+      .robot-picker__item {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        align-items: center;
+        min-height: 38px;
+        padding: 7px 8px;
+        border: 0;
+        border-radius: 6px;
+        color: #f7fbff;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+      }
+      .robot-picker__item:hover,
+      .robot-picker__item.is-active {
+        background: rgba(255,255,255,0.10);
+      }
+      .robot-picker__item-name {
+        font-size: 13px;
+        line-height: 1.2;
+        font-weight: 700;
+      }
+      .robot-picker__item-kind {
+        color: rgba(247,251,255,0.54);
+        font-size: 11px;
+      }
+      .robot-card {
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.045);
+      }
+      .robot-card__description {
+        color: rgba(247,251,255,0.88);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .robot-card__section {
+        margin-top: 11px;
+      }
+      .robot-card__label,
+      .research-card__label {
+        margin-bottom: 6px;
+        color: rgba(247,251,255,0.54);
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 750;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .robot-card__chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .robot-card__chip {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 8px;
+        color: #f7fbff;
+        border: 1px solid rgba(255,255,255,0.16);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.07);
+        font-size: 11px;
+        line-height: 1;
+      }
+      .robot-card__learned,
+      .research-card__text {
+        color: rgba(247,251,255,0.76);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+      .research-card {
+        margin-top: 13px;
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(73, 124, 176, 0.16);
+        border: 1px solid rgba(156, 202, 255, 0.18);
+      }
+      .research-card__title {
+        margin-bottom: 5px;
         font-size: 13px;
         line-height: 1.25;
         font-weight: 700;
-      }
-      .project-panel__metric-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        color: rgba(247,251,255,0.78);
-        font-size: 12px;
-        line-height: 1.7;
       }
       .project-panel.is-collapsed .project-panel__body { display: none; }
       .project-panel.is-collapsed { width: auto; min-width: 210px; }
@@ -335,45 +529,76 @@ export class MuJoCoDemo {
           left: 8px;
           width: calc(100vw - 16px);
         }
-        .project-panel__links { display: none; }
-        .project-panel__status { display: none; }
+        .robot-picker__menu {
+          max-height: min(420px, calc(100vh - 150px));
+        }
+        .research-card { display: none; }
       }
     `;
     document.head.appendChild(style);
 
-    const select = panel.querySelector('#robot-exp-select');
-    const current = panel.querySelector('.project-panel__current');
-    const links = panel.querySelector('.project-panel__links');
-    const titleFor = (key) => this.registry.experiments[key]?.title || key;
+    const picker = panel.querySelector('.robot-picker');
+    const pickerButton = panel.querySelector('.robot-picker__button');
+    const pickerName = panel.querySelector('.robot-picker__name');
+    const pickerKind = panel.querySelector('.robot-picker__kind');
+    const pickerMenu = panel.querySelector('.robot-picker__menu');
+    const description = panel.querySelector('.robot-card__description');
+    const actions = panel.querySelector('.robot-card__actions');
+    const learned = panel.querySelector('.robot-card__learned');
+    const metaFor = (key) => experimentCopy[key] || {
+      name: key,
+      kind: this.registry.experiments[key]?.policy ? 'Policy' : 'Replay',
+      description: this.registry.experiments[key]?.title || key,
+      actions: ['Inspect scene'],
+      learned: 'Experiment registered in the robot platform.',
+    };
+    const navigateTo = (key) => {
+      const next = new URL(location.href);
+      next.searchParams.set('exp', key);
+      location.href = next.toString();
+    };
     for (const [, label, keys] of groups) {
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = label;
+      const groupLabel = document.createElement('div');
+      groupLabel.className = 'robot-picker__group';
+      groupLabel.textContent = label;
+      pickerMenu.appendChild(groupLabel);
       for (const key of keys) {
         if (!this.registry.experiments[key]) continue;
-        const option = document.createElement('option');
-        option.value = key;
-        option.textContent = titleFor(key);
-        optgroup.appendChild(option);
+        const meta = metaFor(key);
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = `robot-picker__item${key === this.expName ? ' is-active' : ''}`;
+        item.dataset.exp = key;
+        item.innerHTML = `
+          <span class="robot-picker__item-name">${meta.name}</span>
+          <span class="robot-picker__item-kind">${meta.kind}</span>
+        `;
+        item.addEventListener('click', () => navigateTo(key));
+        pickerMenu.appendChild(item);
       }
-      if (optgroup.children.length) select.appendChild(optgroup);
     }
-    select.value = this.expName;
-    const currentUrl = new URL(location.href);
-    select.addEventListener('change', () => {
-      currentUrl.searchParams.set('exp', select.value);
-      location.href = currentUrl.toString();
-    });
 
-    const mode = this.exp.policy ? 'Live learned policy' : this.exp.teleop ? 'Replay + teleop' : 'Replay / settle';
-    current.textContent = `${mode}: ${this.exp.title}`;
-    for (const key of ['g1-walk', 'barkour-walk', 'so100-stack', 'g1-stand']) {
-      if (!this.registry.experiments[key]) continue;
-      const a = document.createElement('a');
-      a.className = 'project-panel__link';
-      a.href = `?exp=${encodeURIComponent(key)}`;
-      a.textContent = key;
-      links.appendChild(a);
+    const currentMeta = metaFor(this.expName);
+    pickerName.textContent = currentMeta.name;
+    pickerKind.textContent = currentMeta.kind;
+    description.textContent = currentMeta.description;
+    learned.textContent = currentMeta.learned;
+    for (const action of currentMeta.actions) {
+      const chip = document.createElement('span');
+      chip.className = 'robot-card__chip';
+      chip.textContent = action;
+      actions.appendChild(chip);
     }
+    pickerButton.addEventListener('click', () => {
+      const open = picker.classList.toggle('is-open');
+      pickerButton.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!panel.contains(event.target)) {
+        picker.classList.remove('is-open');
+        pickerButton.setAttribute('aria-expanded', 'false');
+      }
+    });
     panel.querySelector('.project-panel__toggle').addEventListener('click', (event) => {
       const button = event.currentTarget;
       const collapsed = panel.classList.toggle('is-collapsed');
