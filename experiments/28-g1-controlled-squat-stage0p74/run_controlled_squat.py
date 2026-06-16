@@ -59,6 +59,9 @@ def contact_aware_config() -> config_dict.ConfigDict:
         staged_height_tracking=12.0,
         controlled_depth=7.0,
         contact_at_depth=7.0,
+        pose_prior=5.0,
+        height_push=4.0,
+        action_target=6.0,
         return_to_stand=3.0,
         torso_upright=3.5,
         pelvis_upright=1.2,
@@ -82,6 +85,9 @@ class ContactAwareSquat(EXP25.G1SquatCurriculum):
     def reset(self, rng: jax.Array):
         state = super().reset(rng)
         state.metrics["contact_at_depth"] = jp.zeros(())
+        state.metrics["pose_prior"] = jp.zeros(())
+        state.metrics["height_push"] = jp.zeros(())
+        state.metrics["action_target"] = jp.zeros(())
         return state
 
     def _get_reward(
@@ -96,12 +102,26 @@ class ContactAwareSquat(EXP25.G1SquatCurriculum):
     ) -> dict[str, jax.Array]:
         rewards = super()._get_reward(data, action, info, metrics, done, first_contact, contact)
         ref_joints, ref_height = self._reference(info["step"])
-        del ref_joints
         both_feet = jp.all(contact)
         at_depth = data.qpos[2] <= ref_height + 0.015
         contact_at_depth = jp.where(at_depth, both_feet.astype(jp.float32), 0.25 * both_feet.astype(jp.float32))
+        pose_error = jp.mean(jp.square(data.qpos[7:22] - ref_joints))
+        target_pose = data.qpos[7:]
+        target_pose = target_pose.at[:15].set(ref_joints)
+        desired_action = (target_pose - self._default_pose) / self._config.action_scale
+        desired_action = jp.clip(desired_action, -1.0, 1.0)
+        action_target = jp.exp(-6.0 * jp.mean(jp.square(action - desired_action)))
+        target_drop = jp.maximum(self.stand_height - ref_height, 1e-3)
+        actual_drop = jp.clip(self.stand_height - data.qpos[2], 0.0, target_drop)
+        height_push = actual_drop / target_drop
         rewards["contact_at_depth"] = contact_at_depth
+        rewards["pose_prior"] = jp.exp(-16.0 * pose_error)
+        rewards["height_push"] = height_push
+        rewards["action_target"] = action_target
         metrics["contact_at_depth"] = contact_at_depth
+        metrics["pose_prior"] = rewards["pose_prior"]
+        metrics["height_push"] = height_push
+        metrics["action_target"] = action_target
         return rewards
 
 
@@ -170,6 +190,9 @@ def rollout_smoke(stage_height: float, steps: int = 20) -> dict:
     rewards = []
     target_heights = []
     contacts = []
+    pose_priors = []
+    height_pushes = []
+    action_targets = []
     dones = []
     for _ in range(steps):
         state = step_fn(state, zero)
@@ -177,6 +200,9 @@ def rollout_smoke(stage_height: float, steps: int = 20) -> dict:
         rewards.append(float(state.reward))
         target_heights.append(float(state.metrics["target_height"]))
         contacts.append(float(state.metrics["contact_at_depth"]))
+        pose_priors.append(float(state.metrics["pose_prior"]))
+        height_pushes.append(float(state.metrics["height_push"]))
+        action_targets.append(float(state.metrics["action_target"]))
         dones.append(float(state.done))
     return {
         "stage_height": stage_height,
@@ -186,6 +212,9 @@ def rollout_smoke(stage_height: float, steps: int = 20) -> dict:
         "height_min": min(heights),
         "target_height_min": min(target_heights),
         "contact_at_depth_max": max(contacts),
+        "pose_prior_max": max(pose_priors),
+        "height_push_max": max(height_pushes),
+        "action_target_max": max(action_targets),
         "done_any": any(v > 0 for v in dones),
     }
 

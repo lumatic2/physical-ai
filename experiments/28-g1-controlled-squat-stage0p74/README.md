@@ -57,6 +57,8 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 | py_compile | PASS | local Python | 0 | runner syntax/import 확인 |
 | attempt-001-source-baseline | DEPTH_PENDING | local WSL/JAX + native MuJoCo / 6.0s | 0 | source policy: no-fall/contact 1.00, min height 0.7501m |
 | attempt-002-contact-aware-10k | DEPTH_PENDING | local WSL/JAX PPO + native MuJoCo / ~6.9min | 1 | 첫 run은 metric shape mismatch로 실패, reset metric 추가 후 재실행 |
+| attempt-003-pose-prior-10k | DEPTH_PENDING | local WSL/JAX PPO + native MuJoCo / ~5.5min | 0 | pose_prior/height_push 추가, contact 1.00 유지하나 min height 0.7495m로 악화 |
+| attempt-004-action-target-10k | DEPTH_PENDING | local WSL/JAX PPO + native MuJoCo / ~5.5min | 0 | action_target 추가, contact 1.00 유지하나 min height 0.7493m로 gate 미달 |
 
 ### best gate
 | Metric | Best | Gate | 상태 |
@@ -71,6 +73,8 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 ### 박제 위치
 - `verify/stage-0p74/attempts/attempt-001-source-baseline/result.json`
 - `verify/stage-0p74/attempts/attempt-002-contact-aware-10k/result.json`
+- `verify/stage-0p74/attempts/attempt-003-pose-prior-10k/result.json`
+- `verify/stage-0p74/attempts/attempt-004-action-target-10k/result.json`
 - `verify/stage-0p74/best.json`
 - `verify/stage-0p74/summary.md`
 
@@ -80,6 +84,8 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - exp28 runner는 `stage 0.74 controlled squat PASS`를 단일 experiment 내부 attempt loop로 다룬다. 이제 다음 시도들은 새 exp가 아니라 exp28의 attempt로 누적하면 된다.
 - contact-aware reward는 안정성과 foot contact를 보존했다. attempt-002는 6초 no-fall, foot contact ratio 1.00, joint violation 0.0이다.
 - 하지만 depth는 아직 부족하다. attempt-002의 min height는 0.7489m로 gate 0.745m에 못 미치고, hold duration도 0.0s다.
+- attempt-003에서 pose_prior/height_push를 추가했지만 min height가 0.7495m로 오히려 나빠졌다. reward만 추가하는 방식은 source policy의 standing attractor를 충분히 깨지 못한다.
+- attempt-004에서 action_target 보상을 추가해도 min height는 0.7493m에 머물렀다. 짧은 PPO fine-tune의 reward shaping만으로는 exp27의 blend controller가 만든 0.741m depth를 재현하지 못한다.
 - exp27의 controller blend는 depth를 만들지만 contact를 잃었고, exp28 contact-aware reward는 contact를 보존하지만 depth를 잃었다. 다음 attempt는 이 둘을 결합해야 한다.
 
 ### 가설은 통과했나?
@@ -90,5 +96,5 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - M19는 아직 완료가 아니다. 다음 작업은 `blend_0p18~0p22` corridor를 reward target/behavior prior로 넣으면서 contact-aware reward를 유지하는 exp28 attempt다.
 
 ### 다음 attempt 후보
-- attempt-003: policy-only action에 맡기지 말고 `blend_0p18~0p20` staged pose prior를 reward 또는 action target으로 명시한다.
+- attempt-005: reward term만 더하지 말고 training/eval controller 자체에 `blend_0p18~0p20` staged pose residual을 주입하고, policy는 그 위의 stabilizing residual만 학습하게 한다.
 - contact 1.00을 유지하면서 min height를 0.745m 아래로 낮추는 것이 다음 단일 목표다.
