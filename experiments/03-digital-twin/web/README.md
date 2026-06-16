@@ -8,12 +8,12 @@
 
 | `?exp=` | 임베디먼트 | 구동 |
 |---|---|---|
-| `go1-walk` | Unitree Go1 (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (onnxruntime-web) + 조이스틱 조향 |
-| `g1-walk` | Unitree G1 (휴머노이드) | ⭐ **직접 학습한 RL 정책** live closed-loop (103-d obs + gait phase clock) |
-| `g1-controlled-squat` | Unitree G1 (휴머노이드) | shallow lowering micro-dip replay — stable balance probe, not a visible squat success |
-| `spot-walk` | Boston Dynamics Spot (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (81-d obs + qpos error history) |
-| `g1-rough-walk` | Unitree G1 rough curb | ⭐ **정책 확장 QA** — gait phase humanoid policy + 1/2/3cm curb |
-| `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | ⭐ **명령·지형 강건성 QA** — 1/2/3cm curb + command sweep |
+| `go1-walk` | Unitree Go1 (4족) | verified joystick locomotion policy live closed-loop (onnxruntime-web) + 조이스틱 조향 |
+| `g1-walk` | Unitree G1 (휴머노이드) | verified humanoid locomotion policy live closed-loop (103-d obs + gait phase clock) |
+| `g1-controlled-squat` | Unitree G1 (휴머노이드) | shallow lowering micro-dip replay — stable balance probe, not a completed squat |
+| `spot-walk` | Boston Dynamics Spot (4족) | verified joystick locomotion policy live closed-loop (81-d obs + qpos error history) |
+| `g1-rough-walk` | Unitree G1 rough curb | terrain robustness QA — gait phase humanoid policy + 1/2/3cm curb |
+| `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | command/terrain robustness QA — 1/2/3cm curb + command sweep |
 | `so100-stack` (기본) | SO-ARM100 팔 | scripted pick-and-place 3단 스택 replay |
 | `panda-sweep` | Franka Panda 팔 | scripted 관절 sweep replay |
 | `shadow-hand` | Shadow Hand | scripted 손가락 굴곡 replay |
@@ -22,7 +22,7 @@
 | `humanoid-settle` | Humanoid | 물리 settle |
 | `dummy-arm` | Dummy 2-link arm | M10 zero-code add 검증용 replay |
 
-- **정책 실험**(go1/g1/spot-walk): `obs→onnx→ctrl→mj_step@50Hz` closed-loop — 학습한 신경망이 실시간으로 몸을 제어한다. 학습 sim과 obs byte-parity. → [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)·[06](../../06-spot-rl-walk/README.md).
+- **정책 실험**(go1/g1/spot-walk): `obs→onnx→ctrl→mj_step@50Hz` closed-loop — 신경망 정책이 실시간으로 몸을 제어한다. 학습 sim과 obs byte-parity. → [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)·[06](../../06-spot-rl-walk/README.md).
 - **replay 실험**: 데스크탑에서 기록한 qpos 궤적을 운동학 재생(mp4==웹). 시점 궤도/드래그로 직접 구동도 가능.
 - **새 임베디먼트 추가 = JS 0줄**: 씬 번들 + `experiments.json` 한 항목 + 궤적/정책. 로더는 `manifest.json`을 fetch.
 - 반응형(QHD/노트북/모바일) · 자동 시각 QA 하네스(`qa/visual_check.mjs`, playwright)로 라이브 자가검증.

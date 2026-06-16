@@ -179,116 +179,191 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['policy', 'Learned locomotion', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
-      ['skills', 'Humanoid probes', ['g1-controlled-squat']],
-      ['manipulation', 'Arms and hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
-      ['checks', 'Model checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
+      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'g1-stand']],
+      ['quadrupeds', 'Quadrupeds', ['barkour-walk', 'go1-walk', 'go1-rough-walk', 'spot-walk', 'spot-rough-walk', 'spot-stand']],
+      ['arms', 'Arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand']],
+      ['checks', 'Harness checks', ['dummy-arm', 'humanoid-settle']],
     ];
     const experimentCopy = {
       'g1-walk': {
         name: 'Unitree G1',
-        kind: 'Humanoid walking',
-        description: 'A full-body humanoid policy running closed-loop in the browser.',
-        actions: ['Walk forward', 'Strafe', 'Turn', 'Push and recover'],
-        learned: 'Joystick-conditioned balance and locomotion policy.',
+        kind: 'Humanoid',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'MuJoCo Playground policy bundle',
+        mode: 'Learned policy',
+        status: 'Verified walking',
+        description: 'Full-body humanoid walking controlled by a neural policy running closed-loop in the browser.',
+        actions: ['Walk forward', 'Strafe', 'Turn', 'Drag recovery'],
+        evidence: ['ONNX parity', 'native rollout', 'browser byte-parity', 'live QA'],
+        limit: 'This is locomotion, not a squat or acrobatic skill.',
       },
       'g1-rough-walk': {
         name: 'Unitree G1 Rough',
-        kind: 'Humanoid terrain',
-        description: 'The G1 walking policy tested on low curb terrain.',
+        kind: 'Humanoid',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'G1 policy on rough curb scene',
+        mode: 'Learned policy',
+        status: 'Robustness check',
+        description: 'The G1 walking policy is placed on low curb terrain to expose terrain and command robustness.',
         actions: ['Walk over curbs', 'Turn', 'Command sweep'],
-        learned: 'Same G1 gait policy checked against rough-terrain robustness.',
+        evidence: ['rough terrain scene', 'command sweep', 'live QA'],
+        limit: 'Terrain robustness does not prove named skills such as squat, kick, or jump.',
       },
       'g1-controlled-squat': {
         name: 'Unitree G1 Lowering Probe',
-        kind: 'Humanoid balance probe',
-        description: 'A shallow lowering replay from the humanoid controller audit. It is stable, but not a finished squat skill.',
-        actions: ['Balance', 'Lower slightly', 'Return upright'],
-        learned: 'Verified as a micro-dip artifact; visible squat work is paused while the public gallery is polished.',
+        kind: 'Humanoid',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'exp28/29/30 controller audit',
+        mode: 'Replay / probe',
+        status: 'Not a squat',
+        description: 'A shallow lowering trajectory from the G1 controller audit. It is useful evidence, but visually it is only a micro-dip.',
+        actions: ['Replay probe', 'Compare posture', 'Audit depth'],
+        evidence: ['6s no-fall', 'about 1cm pelvis dip', 'visible-squat gate failed'],
+        limit: 'Squat remains paused until pelvis drop, knee flexion, hip pitch, and no-fall gates pass together.',
       },
       'barkour-walk': {
         name: 'Google Barkour',
-        kind: 'Quadruped walking',
-        description: 'A compact quadruped policy with observation history.',
+        kind: 'Quadruped',
+        model: 'Floating-base quadruped',
+        source: 'MuJoCo Playground Barkour task',
+        mode: 'Learned policy',
+        status: 'Verified walking',
+        description: 'A compact quadruped policy with observation history, added through the policy ingestion routine.',
         actions: ['Walk forward', 'Strafe', 'Turn'],
-        learned: 'History-based joystick locomotion policy.',
+        evidence: ['training log', 'ONNX parity', 'native rollout', 'live QA'],
+        limit: 'Locomotion baseline only; not an object-contact skill.',
       },
       'go1-walk': {
         name: 'Unitree Go1',
-        kind: 'Quadruped walking',
-        description: 'A four-legged robot policy running directly in WebAssembly.',
+        kind: 'Quadruped',
+        model: 'Floating-base 12-actuator Go1',
+        source: 'MuJoCo Playground policy bundle',
+        mode: 'Learned policy',
+        status: 'Verified walking',
+        description: 'A four-legged robot policy running directly in WebAssembly with live joystick commands.',
         actions: ['Walk forward', 'Strafe', 'Turn', 'Drag test'],
-        learned: 'Joystick locomotion policy exported to ONNX.',
+        evidence: ['training log', 'ONNX parity', 'native rollout', 'live QA'],
+        limit: 'Shows policy deployment and interaction, not manipulation.',
       },
       'go1-rough-walk': {
         name: 'Unitree Go1 Rough',
-        kind: 'Quadruped terrain',
-        description: 'Go1 locomotion checked on rough curb scenes.',
+        kind: 'Quadruped',
+        model: 'Floating-base 12-actuator Go1',
+        source: 'Go1 policy on rough curb scene',
+        mode: 'Learned policy',
+        status: 'Robustness check',
+        description: 'Go1 locomotion checked on rough curb scenes and command changes.',
         actions: ['Walk over curbs', 'Command sweep', 'Drag test'],
-        learned: 'Go1 policy reused for terrain robustness checks.',
+        evidence: ['rough terrain scene', 'command sweep', 'live QA'],
+        limit: 'Terrain coverage is limited to the bundled curb scenes.',
       },
       'spot-walk': {
         name: 'Boston Dynamics Spot',
-        kind: 'Quadruped walking',
-        description: 'A Spot model driven by a live closed-loop policy.',
+        kind: 'Quadruped',
+        model: 'Floating-base Spot model',
+        source: 'MuJoCo Playground policy bundle',
+        mode: 'Learned policy',
+        status: 'Verified walking',
+        description: 'A Spot model driven by a live closed-loop policy and browser joystick command.',
         actions: ['Walk forward', 'Strafe', 'Turn', 'Drag test'],
-        learned: 'Joystick locomotion with short motion history.',
+        evidence: ['ONNX parity', 'native rollout', 'browser parity', 'live QA'],
+        limit: 'Public demo uses simulation only.',
       },
       'spot-rough-walk': {
         name: 'Spot Rough',
-        kind: 'Quadruped terrain',
+        kind: 'Quadruped',
+        model: 'Floating-base Spot model',
+        source: 'Spot policy on rough curb scene',
+        mode: 'Learned policy',
+        status: 'Robustness check',
         description: 'Spot policy tested against curb terrain and command changes.',
         actions: ['Walk over curbs', 'Command sweep', 'Drag test'],
-        learned: 'Terrain robustness check for the Spot walking policy.',
+        evidence: ['rough terrain scene', 'command sweep', 'live QA'],
+        limit: 'Robustness check, not sim-to-real proof.',
       },
       'so100-stack': {
         name: 'SO-100',
         kind: 'Robot arm',
+        model: 'Low-cost fixed-base arm',
+        source: 'SO-100 MuJoCo scene and recorded trajectory',
+        mode: 'Scripted replay',
+        status: 'Verified replay',
         description: 'A low-cost arm digital twin replaying a three-block pick-and-place task.',
         actions: ['Replay stack', 'Drag objects', 'Teleop gripper'],
-        learned: 'Scripted trajectory and teleop harness; not a learned policy.',
+        evidence: ['three-block stack', 'IK residual check', 'browser replay QA'],
+        limit: 'This is scripted control, not learned manipulation.',
       },
       'panda-sweep': {
         name: 'Franka Panda',
         kind: 'Robot arm',
+        model: '7-DOF fixed-base arm',
+        source: 'MuJoCo Menagerie style scene',
+        mode: 'Scripted control',
+        status: 'Control baseline',
         description: 'A 7-DOF arm scene for joint motion and teleop checks.',
         actions: ['Replay joint sweep', 'Teleop end-effector'],
-        learned: 'Control and visualization baseline for arm embodiments.',
+        evidence: ['joint sweep replay', 'teleop check'],
+        limit: 'Used as an embodiment/control baseline.',
       },
       'shadow-hand': {
         name: 'Shadow Hand',
         kind: 'Dexterous hand',
+        model: 'Dexterous hand scene',
+        source: 'MuJoCo hand model',
+        mode: 'Scripted replay',
+        status: 'Replay baseline',
         description: 'A hand model replaying finger flexion and contact-ready motion.',
         actions: ['Replay finger curl', 'Inspect joints'],
-        learned: 'Dexterous-hand scene and replay baseline.',
+        evidence: ['finger curl replay', 'joint visualization'],
+        limit: 'No learned dexterous policy is claimed.',
       },
       'dummy-arm': {
         name: 'Dummy 2-link arm',
         kind: 'Harness check',
+        model: 'Minimal 2-link arm',
+        source: 'Local regression scene',
+        mode: 'Replay',
+        status: 'Registry check',
         description: 'A small test arm used to prove new scenes can be added cleanly.',
         actions: ['Replay motion', 'Scene loading check'],
-        learned: 'Zero-code embodiment addition workflow.',
+        evidence: ['zero-code registry add', 'replay QA'],
+        limit: 'Validation fixture only.',
       },
       'g1-stand': {
         name: 'Unitree G1 Stand',
         kind: 'Model check',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'G1 settle scene',
+        mode: 'Physics check',
+        status: 'Settle check',
         description: 'The G1 model settling under physics without the walking policy.',
         actions: ['Settle', 'Drag test', 'Inspect posture'],
-        learned: 'Baseline model stability check before skill work.',
+        evidence: ['model loads', 'settle replay', 'drag interaction'],
+        limit: 'No policy or skill is running.',
       },
       'spot-stand': {
         name: 'Spot Stand',
         kind: 'Model check',
+        model: 'Floating-base Spot model',
+        source: 'Spot settle scene',
+        mode: 'Physics check',
+        status: 'Settle check',
         description: 'Spot model settling under physics.',
         actions: ['Settle', 'Drag test'],
-        learned: 'Baseline model stability check.',
+        evidence: ['model loads', 'settle replay'],
+        limit: 'No policy or skill is running.',
       },
       'humanoid-settle': {
         name: 'Humanoid',
         kind: 'Model check',
+        model: 'Generic humanoid scene',
+        source: 'MuJoCo example scene',
+        mode: 'Physics check',
+        status: 'Platform check',
         description: 'A generic humanoid scene used to validate the platform.',
         actions: ['Settle', 'Drag test'],
-        learned: 'General MuJoCo loading and replay coverage.',
+        evidence: ['scene load', 'settle replay'],
+        limit: 'General loader coverage, not G1 evidence.',
       },
     };
     const panel = document.createElement('section');
@@ -296,14 +371,19 @@ export class MuJoCoDemo {
     panel.innerHTML = `
       <div class="project-panel__head">
         <div>
-          <div class="project-panel__eyebrow">Interactive MuJoCo gallery</div>
+          <div class="project-panel__eyebrow">Browser robotics lab</div>
           <div class="project-panel__brand">Robotics Lab</div>
-          <div class="project-panel__domain">robotics.askewly.com</div>
+          <div class="project-panel__domain">Live MuJoCo twins, policies, and replay probes</div>
         </div>
         <button class="project-panel__toggle" type="button" aria-expanded="true" title="Collapse panel">-</button>
       </div>
       <div class="project-panel__body">
-        <div class="robot-picker__label">Robot / experiment</div>
+        <div class="lab-status">
+          <span>Live physics</span>
+          <span>Policy gallery</span>
+          <span>Squat paused</span>
+        </div>
+        <div class="robot-picker__label">Robot selection</div>
         <div class="robot-picker">
           <button class="robot-picker__button" type="button" aria-expanded="false">
             <span>
@@ -315,21 +395,39 @@ export class MuJoCoDemo {
           <div class="robot-picker__menu" role="menu"></div>
         </div>
         <div class="robot-card">
+          <div class="robot-card__topline">
+            <span class="robot-card__mode"></span>
+            <span class="robot-card__status"></span>
+          </div>
           <div class="robot-card__label">Robot description</div>
           <div class="robot-card__description"></div>
+          <div class="robot-card__facts">
+            <div>
+              <span>Model</span>
+              <strong class="robot-card__model"></strong>
+            </div>
+            <div>
+              <span>Source</span>
+              <strong class="robot-card__source"></strong>
+            </div>
+          </div>
           <div class="robot-card__section">
-            <div class="robot-card__label">Try</div>
+            <div class="robot-card__label">Available motions</div>
             <div class="robot-card__chips robot-card__actions"></div>
           </div>
           <div class="robot-card__section">
-            <div class="robot-card__label">Verified / learned</div>
-            <div class="robot-card__learned"></div>
+            <div class="robot-card__label">Evidence</div>
+            <div class="robot-card__chips robot-card__evidence"></div>
+          </div>
+          <div class="robot-card__section">
+            <div class="robot-card__label">Current limit</div>
+            <div class="robot-card__limit"></div>
           </div>
         </div>
         <div class="research-card">
-          <div class="research-card__label">Platform status</div>
-          <div class="research-card__title">Policy gallery first</div>
-          <div class="research-card__text">Walking policies and robot-arm replays are the polished public surface. Humanoid squat work is paused until a visible, no-fall motion exists.</div>
+          <div class="research-card__label">Lab direction</div>
+          <div class="research-card__title">Show verified capability, not experiment numbers</div>
+          <div class="research-card__text">The public surface is organized by robot, motion, and evidence. G1 squat research is paused until visible-depth and no-fall gates both pass.</div>
         </div>
       </div>
     `;
@@ -340,7 +438,7 @@ export class MuJoCoDemo {
         top: 14px;
         left: 14px;
         z-index: 1200;
-        width: min(372px, calc(100vw - 28px));
+        width: min(404px, calc(100vw - 28px));
         color: #f8fafc;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background: rgba(10, 14, 18, 0.84);
@@ -393,6 +491,27 @@ export class MuJoCoDemo {
         padding: 13px 14px 14px;
         border-radius: 0 0 8px 8px;
         background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0));
+      }
+      .lab-status {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .lab-status span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 28px;
+        padding: 0 7px;
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 6px;
+        background: rgba(255,255,255,0.055);
+        color: rgba(248,250,252,0.76);
+        font-size: 10px;
+        line-height: 1.15;
+        font-weight: 720;
+        text-align: center;
       }
       .robot-picker {
         position: relative;
@@ -501,10 +620,63 @@ export class MuJoCoDemo {
         border-radius: 8px;
         background: rgba(255,255,255,0.04);
       }
+      .robot-card__topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .robot-card__mode,
+      .robot-card__status {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        line-height: 1;
+        font-weight: 760;
+      }
+      .robot-card__mode {
+        color: #dbeafe;
+        border: 1px solid rgba(147,197,253,0.28);
+        background: rgba(37,99,235,0.18);
+      }
+      .robot-card__status {
+        color: #e2e8f0;
+        border: 1px solid rgba(226,232,240,0.18);
+        background: rgba(15,23,42,0.34);
+      }
       .robot-card__description {
         color: rgba(248,250,252,0.88);
         font-size: 13px;
         line-height: 1.45;
+      }
+      .robot-card__facts {
+        display: grid;
+        gap: 7px;
+        margin-top: 11px;
+      }
+      .robot-card__facts div {
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        gap: 8px;
+        align-items: baseline;
+      }
+      .robot-card__facts span {
+        color: rgba(248,250,252,0.48);
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 760;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .robot-card__facts strong {
+        color: rgba(248,250,252,0.82);
+        font-size: 12px;
+        line-height: 1.35;
+        font-weight: 650;
       }
       .robot-card__section {
         margin-top: 11px;
@@ -536,11 +708,16 @@ export class MuJoCoDemo {
         font-size: 11px;
         line-height: 1;
       }
-      .robot-card__learned,
+      .robot-card__limit,
       .research-card__text {
         color: rgba(248,250,252,0.76);
         font-size: 12px;
         line-height: 1.45;
+      }
+      .robot-card__evidence .robot-card__chip {
+        color: rgba(248,250,252,0.82);
+        border-color: rgba(134,239,172,0.20);
+        background: rgba(22,101,52,0.16);
       }
       .research-card {
         margin-top: 13px;
@@ -562,6 +739,8 @@ export class MuJoCoDemo {
           top: 8px;
           left: 8px;
           width: calc(100vw - 16px);
+          max-height: 60vh;
+          overflow: auto;
         }
         .robot-picker__menu {
           max-height: min(420px, calc(100vh - 150px));
@@ -577,14 +756,24 @@ export class MuJoCoDemo {
     const pickerKind = panel.querySelector('.robot-picker__kind');
     const pickerMenu = panel.querySelector('.robot-picker__menu');
     const description = panel.querySelector('.robot-card__description');
+    const mode = panel.querySelector('.robot-card__mode');
+    const status = panel.querySelector('.robot-card__status');
+    const model = panel.querySelector('.robot-card__model');
+    const source = panel.querySelector('.robot-card__source');
     const actions = panel.querySelector('.robot-card__actions');
-    const learned = panel.querySelector('.robot-card__learned');
+    const evidence = panel.querySelector('.robot-card__evidence');
+    const limit = panel.querySelector('.robot-card__limit');
     const metaFor = (key) => experimentCopy[key] || {
       name: key,
       kind: this.registry.experiments[key]?.policy ? 'Policy' : 'Replay',
+      model: 'Registered MuJoCo embodiment',
+      source: this.registry.experiments[key]?.scene || 'experiments.json',
+      mode: this.registry.experiments[key]?.policy ? 'Learned policy' : 'Replay',
+      status: 'Registered',
       description: this.registry.experiments[key]?.title || key,
       actions: ['Inspect scene'],
-      learned: 'Experiment registered in the robot platform.',
+      evidence: ['registry entry'],
+      limit: 'No public evidence summary has been written yet.',
     };
     const navigateTo = (key) => {
       const next = new URL(location.href);
@@ -615,13 +804,23 @@ export class MuJoCoDemo {
     const currentMeta = metaFor(this.expName);
     pickerName.textContent = currentMeta.name;
     pickerKind.textContent = currentMeta.kind;
+    mode.textContent = currentMeta.mode;
+    status.textContent = currentMeta.status;
     description.textContent = currentMeta.description;
-    learned.textContent = currentMeta.learned;
+    model.textContent = currentMeta.model;
+    source.textContent = currentMeta.source;
+    limit.textContent = currentMeta.limit;
     for (const action of currentMeta.actions) {
       const chip = document.createElement('span');
       chip.className = 'robot-card__chip';
       chip.textContent = action;
       actions.appendChild(chip);
+    }
+    for (const proof of currentMeta.evidence) {
+      const chip = document.createElement('span');
+      chip.className = 'robot-card__chip';
+      chip.textContent = proof;
+      evidence.appendChild(chip);
     }
     pickerButton.addEventListener('click', () => {
       const open = picker.classList.toggle('is-open');

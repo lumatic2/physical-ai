@@ -1,7 +1,7 @@
 # ROADMAP
 
 > 이 레포의 마일스톤과 다음 증거 생산 계획. **포트폴리오 모드** - 완료 기준은 "내가 이해했다"가 아니라 "남이 5분 보고 납득한다"이다.
-> 마지막 업데이트: 2026-06-16
+> 마지막 업데이트: 2026-06-17
 
 ## 왜 이 레포
 
@@ -9,7 +9,7 @@
 
 한 문장: *"문헌과 이론을 읽었고 -> 직접 실험으로 검증했고 -> 브라우저에서 조작 가능한 로봇 정책 플랫폼을 만들었고 -> 이제 Atlas식 고난도 동작을 디지털 트윈에서 설계·학습·검증한다."*
 
-현재 thesis: **피지컬 AI 연구 루프의 다음 증거는 로봇 수를 늘리는 것이 아니라, 원하는 동작을 명세하고 학습시켜 디지털 트윈에서 재현 가능한 skill로 만드는 것이다.**
+현재 thesis: **지금 필요한 증거는 새 학습 시도가 아니라, 이미 확보한 로봇/정책/리플레이를 방문자가 이해 가능한 Robotics Lab으로 정리하고, 아직 아닌 것(M19 squat)을 정직하게 분리하는 것이다.**
 
 노출면: GitHub README(개발자/채용), askewly 블로그(판단과 서사), `~/vault/`(장기 자료집), live demo(`robotics.askewly.com`).
 
@@ -28,7 +28,7 @@
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
-| M23 | Public UI polish | 방문자가 로봇/동작/검증 내용을 바로 이해한다 | robotics.askewly.com gallery UI | 1차 완료 |
+| M23 | Robotics Lab gallery | 방문자가 로봇/동작/검증/한계를 바로 이해한다 | robotics.askewly.com lab gallery UI | 진행 중 |
 
 ## 닫힌 증거 요약
 
@@ -37,7 +37,16 @@
 - M7: 신규 구매는 SO-101 leader+follower 2-arm + LeRobot + ACT-first로 좁혔다. 실제 M7a는 예산/배송/공간/카메라/조립 시간이 확보될 때만 연다. 근거: [ADR 0008](docs/adr/0008-m7-real-arm-gate.md), [exp09](experiments/09-real-arm-gate/README.md).
 - M15-M17: Barkour policy를 새 학습부터 live demo까지 흡수했고, policy 추가 루틴과 비교 가능한 gallery를 문서/검증 스크립트로 일반화했다. live: `https://robotics.askewly.com/?exp=barkour-walk`.
 
-## 다음 목표군 - Atlas식 skill lab
+## 현재 목표군 - Robotics Lab public gallery
+
+현재는 Atlas식 skill 학습을 재개하지 않는다. 먼저 `robotics.askewly.com`을 실험 장부가 아니라 공개 실험실 갤러리로 만든다.
+
+- 로봇 선택은 exp id가 아니라 embodiment 중심이어야 한다.
+- 각 로봇은 가능한 동작, 구동 방식, 증거, 한계를 같이 보여야 한다.
+- G1 lowering probe는 "스쿼트 성공"이 아니라 "micro-dip evidence / not a squat"으로 표시해야 한다.
+- askewly.com에서 들어온 방문자가 404 없이 canonical `robotics.askewly.com`으로 이동해야 한다.
+
+### 다음 목표군 - Atlas식 skill lab
 
 사용자가 원하는 새 목표는 "로봇이 걷는다"가 아니라 **로봇에게 특정 동작을 학습시킨다**이다. 기준 이미지는 Atlas 같은 휴머노이드가 물구나무, 덤블링, 축구, 라보나슛처럼 이름 붙은 skill을 수행하는 장면이다.
 
@@ -85,14 +94,17 @@
 
 완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md).
 
-### M23 - Public UI polish
+### M23 - Robotics Lab gallery
 
 - [x] `robotics.askewly.com`을 canonical 도메인으로 고정했다.
 - [x] Vercel project domain에서 legacy `physical-ai-arm.askewly.com`을 제거했다.
+- [x] askewly.com 진입 링크를 `robotics.askewly.com`으로 교체했다.
 - [x] 로봇 선택, 설명, 가능한 조작, 검증/학습 내용을 first-view panel에서 명확히 보이게 다듬었다.
-- [x] desktop/mobile live QA를 통과했다.
+- [x] public overlay를 `robot + motion + evidence + limit` 구조로 재편했다.
+- [x] G1 lowering probe를 "not a squat"으로 노출하고 M19 재개 조건을 명확히 뒀다.
+- [x] desktop/mobile live QA를 다시 통과했다.
 
-완료 기준: ✅ live gallery가 기술 실험 장부가 아니라 방문자가 이해 가능한 로봇 포트폴리오로 보인다. 증거: [web](experiments/03-digital-twin/web/README.md), `node qa/visual_check.mjs --live`.
+완료 기준: ✅ live gallery가 기술 실험 장부가 아니라 방문자가 이해 가능한 로봇 포트폴리오로 보이고, old label/stale claim audit과 desktop/mobile live QA를 통과했다. 증거: [exp31](experiments/31-robotics-lab-gallery-polish/README.md), [web](experiments/03-digital-twin/web/README.md), deploy `dpl_FjcwuMkkwUhztEvMM9Si3V9ZpzAW`.
 
 ### M20 - Acrobatic feasibility gate
 

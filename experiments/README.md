@@ -37,6 +37,7 @@
 | 28 | [g1-controlled-squat-stage0p74](28-g1-controlled-squat-stage0p74/README.md) | stage 0.74 controlled squat PASS를 단일 실험 목표로 두고 attempts를 누적 | 🟨 weak numeric gate PASS, but visual audit says micro-dip only: drop ~1cm |
 | 29 | [g1-visible-squat-feasibility](29-g1-visible-squat-feasibility/README.md) | G1 모델/웹 replay가 visible squat 목표에 맞는지 먼저 수치로 감사 | ✅ current replay FAIL_VISIBLE_SQUAT_MICRO_DIP, local joint range target plausible |
 | 30 | [g1-visible-squat-controller](30-g1-visible-squat-controller/README.md) | visible-depth target을 기존 controller로 native에서 안정적으로 만들 수 있는지 검증 | 🟥 weak blend shallow, strong blend falls at 2.06s |
+| 31 | [robotics-lab-gallery-polish](31-robotics-lab-gallery-polish/README.md) | public UI를 exp 목록이 아니라 로봇/동작/증거/한계 갤러리로 재편한다 | ✅ live overlay + desktop/mobile QA PASS |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
