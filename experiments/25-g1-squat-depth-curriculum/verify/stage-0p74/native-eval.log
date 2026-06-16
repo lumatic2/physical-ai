@@ -1,0 +1,10 @@
+stage_height=0.74
+params=/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl
+fell_at=None
+upright_s=6.0
+min_height=0.7500645592076753
+hold_duration_at_or_below_stage=0.0
+final_height=0.7511621768409372
+return_to_stand=True
+foot_contact_ratio=1.0
+max_foot_slip=0.026228168608278632

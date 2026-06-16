@@ -30,6 +30,8 @@
 | 21 | [g1-stabilizer-init-probe](21-g1-stabilizer-init-probe/README.md) | 기존 G1 walking policy를 stabilizer prior로 restore해 squat reference env를 fine-tune할 수 있는지 검증 | 🟨 walking init native no-fall 6.0s PASS, squat depth pending |
 | 22 | [g1-squat-depth-finetune](22-g1-squat-depth-finetune/README.md) | exp21 stabilizer에서 height/reference reward를 강화해 native squat depth가 생기는지 검증 | 🟨 no-fall 유지, min height 0.7523→0.7501m, depth target 미달 |
 | 23 | [g1-squat-target-sanity](23-g1-squat-target-sanity/README.md) | 추가 PPO 전에 squat reference/action target이 native에서 실제 height drop을 만드는지 분리 검증 | 🟥 target은 height drop 생성, 모든 variant 1.22s fall → depth curriculum/controller 필요 |
+| 24 | [g1-squat-skill-design](24-g1-squat-skill-design/README.md) | 더 학습하기 전에 G1 squat의 정의, 성공 기준, 방법론을 고정한다 | ✅ design gate PASS, 다음은 staged depth curriculum |
+| 25 | [g1-squat-depth-curriculum](25-g1-squat-depth-curriculum/README.md) | exp24 정의에 따라 stage별 target height curriculum으로 G1 squat depth를 검증한다 | 🟨 scaffold/native diagnostic PASS, stage 0.74 depth pending |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
