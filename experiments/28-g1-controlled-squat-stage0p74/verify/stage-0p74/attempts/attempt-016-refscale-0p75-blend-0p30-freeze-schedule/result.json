@@ -1,0 +1,413 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "stage 0.74 controlled squat PASS as a single experiment with attempts",
+    "dod": [
+      "compatibility and reward smoke execute",
+      "native controlled squat gate evaluated",
+      "attempt result plus best summary produced"
+    ]
+  },
+  "attempt": "attempt-016-refscale-0p75-blend-0p30-freeze-schedule",
+  "stage_height": 0.74,
+  "controller_blend": 0.3,
+  "freeze_phase": true,
+  "blend_schedule": "squat",
+  "reference_scale": 0.75,
+  "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "compatibility": {
+    "stage_height": 0.74,
+    "controller_blend": 0.3,
+    "freeze_phase": true,
+    "blend_schedule": "squat",
+    "reference_scale": 0.75,
+    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "source_exists": true,
+    "obs_size": {
+      "privileged_state": [
+        216
+      ],
+      "state": [
+        103
+      ]
+    },
+    "action_size": 29,
+    "policy_shape_match": true
+  },
+  "rollout": {
+    "stage_height": 0.74,
+    "controller_blend": 0.3,
+    "freeze_phase": true,
+    "blend_schedule": "squat",
+    "reference_scale": 0.75,
+    "rollout_steps": 20,
+    "reward_first": 1.1036739349365234,
+    "reward_last": 1.066117286682129,
+    "height_min": 0.7215119004249573,
+    "target_height_min": 0.7400000095367432,
+    "contact_at_depth_max": 1.0,
+    "pose_prior_max": 0.9991260170936584,
+    "height_push_max": 1.0,
+    "action_target_max": 0.9999825954437256,
+    "done_any": false
+  },
+  "native": {
+    "stage_height": 0.74,
+    "controller_blend": 0.3,
+    "freeze_phase": true,
+    "blend_schedule": "squat",
+    "reference_scale": 0.75,
+    "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "seconds": 6.0,
+    "fell_at": null,
+    "upright_s": 6.0,
+    "min_height": 0.745575398204096,
+    "hold_duration_at_or_below_stage": 0.0,
+    "final_height": 0.7498571569103131,
+    "return_to_stand": true,
+    "torso_up_min": 0.9990098298391367,
+    "foot_contact_ratio": 1.0,
+    "foot_slip_distance": 0.011702886017455085,
+    "max_reference_error": 0.0011037886075619615,
+    "max_height_error": 0.00019080393879775874,
+    "max_joint_limit_violation": 0.0,
+    "mean_action_delta": 0.0007104210861487292,
+    "pass_gate": false,
+    "reached_depth": false,
+    "held_depth": false,
+    "verdict": "DEPTH_PENDING",
+    "samples": [
+      {
+        "t": 0.0,
+        "base_height": 0.755,
+        "target_height": 0.7549999952316284,
+        "reference_error": 1.2614786223382194e-16,
+        "height_error": 2.2737367586674853e-17,
+        "up_z": 1.0,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 0.2,
+        "base_height": 0.7535386756758375,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00037560302560424216,
+        "height_error": 0.00018329548082586072,
+        "up_z": 0.9997359322237771,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0005451985582480201,
+        "effective_controller_blend": 0.05
+      },
+      {
+        "t": 0.4,
+        "base_height": 0.7514571990920111,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0004861770315766322,
+        "height_error": 0.00013126719250534163,
+        "up_z": 0.9993679142332945,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0009854932899131415,
+        "effective_controller_blend": 0.1
+      },
+      {
+        "t": 0.6,
+        "base_height": 0.7497818736410652,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0004388110845536447,
+        "height_error": 9.568486535542373e-05,
+        "up_z": 0.9991613862019152,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.001440225544575838,
+        "effective_controller_blend": 0.15
+      },
+      {
+        "t": 0.8,
+        "base_height": 0.7486027943211337,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00037089584742037047,
+        "height_error": 7.400790604654213e-05,
+        "up_z": 0.9990425587682403,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0018531392764680053,
+        "effective_controller_blend": 0.2
+      },
+      {
+        "t": 1.0,
+        "base_height": 0.7474859226725443,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00032991295620003584,
+        "height_error": 5.603889547676034e-05,
+        "up_z": 0.9990098369523064,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.002262762938999612,
+        "effective_controller_blend": 0.25
+      },
+      {
+        "t": 1.2,
+        "base_height": 0.7463039790023419,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00030493259197076744,
+        "height_error": 3.9740031023201344e-05,
+        "up_z": 0.999025835434072,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.002655404230181236,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 1.4,
+        "base_height": 0.7457528952292273,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0003154712674286562,
+        "height_error": 3.309569379078839e-05,
+        "up_z": 0.9990816090241798,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0030397756246908917,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 1.6,
+        "base_height": 0.7455969593029155,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00033537629528822044,
+        "height_error": 3.132584668505628e-05,
+        "up_z": 0.999155583391,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0034269600648228152,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 1.8,
+        "base_height": 0.7455907277674783,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.000328771279914957,
+        "height_error": 3.125613033547372e-05,
+        "up_z": 0.9992020621901544,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0038104800625639048,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 2.0,
+        "base_height": 0.7455966165012875,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00032613738351868583,
+        "height_error": 3.132200951558618e-05,
+        "up_z": 0.9992311021165501,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.004190479960786197,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 2.2,
+        "base_height": 0.7455979864763594,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0003257545012878213,
+        "height_error": 3.133734581647563e-05,
+        "up_z": 0.9992455940263901,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.004568116692087982,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 2.4,
+        "base_height": 0.7455886080188668,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0003269992563017121,
+        "height_error": 3.123243299439504e-05,
+        "up_z": 0.999249136916051,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0049432363414331874,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 2.6,
+        "base_height": 0.7455783747452606,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.00029440453454306065,
+        "height_error": 3.111815839959737e-05,
+        "up_z": 0.999244902841527,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.005314571889296913,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 2.8,
+        "base_height": 0.7457767737109909,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0002985506201910241,
+        "height_error": 3.337100432487255e-05,
+        "up_z": 0.9992027509639139,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.005683195438659372,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 3.0,
+        "base_height": 0.7460664740447559,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.000369056003066094,
+        "height_error": 3.680199162697821e-05,
+        "up_z": 0.9991469361546131,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0060525059555921355,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 3.2,
+        "base_height": 0.7464123555224098,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0004937957994883176,
+        "height_error": 4.111818103989514e-05,
+        "up_z": 0.9991072353407371,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.006417970525774114,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 3.4,
+        "base_height": 0.7467942776136312,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0006715363834412063,
+        "height_error": 4.61620787006192e-05,
+        "up_z": 0.9990777686949875,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00678079936505453,
+        "effective_controller_blend": 0.3
+      },
+      {
+        "t": 3.6,
+        "base_height": 0.747940090133843,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0007796943903880042,
+        "height_error": 6.304487988844119e-05,
+        "up_z": 0.9991014497340096,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0071523455775473425,
+        "effective_controller_blend": 0.22499999999999992
+      },
+      {
+        "t": 3.8,
+        "base_height": 0.749264647604983,
+        "target_height": 0.7400000095367432,
+        "reference_error": 0.0008651752918279131,
+        "height_error": 8.583351853547902e-05,
+        "up_z": 0.9991782498303204,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00754747859662737,
+        "effective_controller_blend": 0.14999999999999986
+      },
+      {
+        "t": 4.0,
+        "base_height": 0.7501861547274441,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010303166524000074,
+        "height_error": 2.3173060399725538e-05,
+        "up_z": 0.9992353622607653,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.007962608919011693,
+        "effective_controller_blend": 0.07499999999999997
+      },
+      {
+        "t": 4.2,
+        "base_height": 0.7506720224345113,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0009494513719503792,
+        "height_error": 1.873134853258616e-05,
+        "up_z": 0.999215996373953,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00840095186787485,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 4.4,
+        "base_height": 0.750607205700647,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0009621669236393949,
+        "height_error": 1.9296599863500082e-05,
+        "up_z": 0.9991492665202136,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.008842021377540457,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 4.6,
+        "base_height": 0.7503054146857283,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010157702296621908,
+        "height_error": 2.2039086501943744e-05,
+        "up_z": 0.9990884644274634,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.009247772828185261,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 4.8,
+        "base_height": 0.750099209527068,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010504656247473606,
+        "height_error": 2.4017700522023856e-05,
+        "up_z": 0.9990462608374596,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.009632041710331826,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 5.0,
+        "base_height": 0.7499876008271512,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010692083000972427,
+        "height_error": 2.5124097666034394e-05,
+        "up_z": 0.999030579927808,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.010006401314336886,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 5.2,
+        "base_height": 0.7499350376005754,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010793829218477863,
+        "height_error": 2.5653795804361702e-05,
+        "up_z": 0.9990305145277742,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.010369069273657997,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 5.4,
+        "base_height": 0.7499129111460283,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010856941197010933,
+        "height_error": 2.5878424493965825e-05,
+        "up_z": 0.9990348215090108,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.010721159634836736,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 5.6,
+        "base_height": 0.7498956382887945,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010917500285921725,
+        "height_error": 2.605445979985719e-05,
+        "up_z": 0.9990404691156561,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.011065880670225512,
+        "effective_controller_blend": 0.0
+      },
+      {
+        "t": 5.8,
+        "base_height": 0.7498770163466915,
+        "target_height": 0.7549999952316284,
+        "reference_error": 0.0010978790245017957,
+        "height_error": 2.624491265550991e-05,
+        "up_z": 0.9990436494071968,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.011403979726072605,
+        "effective_controller_blend": 0.0
+      }
+    ]
+  },
+  "verdict": "DEPTH_PENDING"
+}

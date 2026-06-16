@@ -34,7 +34,7 @@
 | 25 | [g1-squat-depth-curriculum](25-g1-squat-depth-curriculum/README.md) | exp24 정의에 따라 stage별 target height curriculum으로 G1 squat depth를 검증한다 | 🟨 scaffold/native diagnostic PASS, stage 0.74 depth pending |
 | 26 | [g1-squat-controller-probe](26-g1-squat-controller-probe/README.md) | stabilizer policy와 stage 0.74 reference pose blend가 안정적 squat depth를 만드는지 분리 검증 | 🟨 depth/hold 후보 발견, contact gate 미달 |
 | 27 | [g1-squat-contact-controller](27-g1-squat-contact-controller/README.md) | stage 0.74 depth 후보에서 foot contact gate를 닫기 위해 narrow blend와 contact guard를 비교 | 🟨 depth corridor 확인, heuristic contact guard 실패 |
-| 28 | [g1-controlled-squat-stage0p74](28-g1-controlled-squat-stage0p74/README.md) | stage 0.74 controlled squat PASS를 단일 실험 목표로 두고 attempts를 누적 | 🟨 attempt loop 시작, contact 보존 but depth pending |
+| 28 | [g1-controlled-squat-stage0p74](28-g1-controlled-squat-stage0p74/README.md) | stage 0.74 controlled squat PASS를 단일 실험 목표로 두고 attempts를 누적 | ✅ PASS: refscale 0.75 + blend 0.35, no-fall, min 0.7446m, hold 1.32s, contact 1.00 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

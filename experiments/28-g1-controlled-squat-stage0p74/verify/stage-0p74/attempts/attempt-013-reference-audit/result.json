@@ -1,0 +1,215 @@
+{
+  "attempt": "attempt-013-reference-audit",
+  "stage_height": 0.74,
+  "reference_source": "experiments/17-motion-to-policy-loop/verify/g1_squat_reference.compiled.json",
+  "env_source": "experiments/25-g1-squat-depth-curriculum/g1_squat_curriculum_env.py",
+  "summary": {
+    "max_foot_xy_drift_m": 0.0011505110129237154,
+    "max_abs_foot_z_error_at_declared_m": 0.013233736238773636,
+    "min_foot_anchored_base_height_m": 0.7532337457675591,
+    "max_abs_height_delta_if_foot_anchored_m": 0.013233736238773663,
+    "max_joint_limit_violation": 0.0,
+    "max_lower_joint_delta_rad": 0.016777783393859824,
+    "min_declared_height_m": 0.7400000095367432,
+    "min_raw_reference_height_m": 0.6200000047683716,
+    "sample_count": 201,
+    "sample_stride": 5,
+    "initial_base_height_m": 0.755,
+    "initial_foot_z_mean_m": 0.03330197040558823
+  },
+  "gates": {
+    "declared_height_reaches_stage": true,
+    "foot_anchored_reaches_stage": false,
+    "foot_xy_drift_small": true,
+    "foot_z_error_small_at_declared": true,
+    "joint_limits_ok": true,
+    "contact_preserving_reference": false
+  },
+  "raw_reference_scale_sweep": [
+    {
+      "scale": 0.1,
+      "min_foot_anchored_base_height_m": 0.753412366360263,
+      "max_foot_xy_drift_m": 0.001035673961971631,
+      "max_abs_foot_z_error_at_declared_m": 0.014999999691209239,
+      "max_lower_joint_delta_rad": 0.015099999284744259,
+      "max_joint_limit_violation": 0.0
+    },
+    {
+      "scale": 0.25,
+      "min_foot_anchored_base_height_m": 0.7509636860764124,
+      "max_foot_xy_drift_m": 0.002581661948362497,
+      "max_abs_foot_z_error_at_declared_m": 0.014999999228023444,
+      "max_lower_joint_delta_rad": 0.03774999821186065,
+      "max_joint_limit_violation": 0.0
+    },
+    {
+      "scale": 0.5,
+      "min_foot_anchored_base_height_m": 0.7467041196667312,
+      "max_foot_xy_drift_m": 0.005137022258291126,
+      "max_abs_foot_z_error_at_declared_m": 0.014999998456046996,
+      "max_lower_joint_delta_rad": 0.0754999964237213,
+      "max_joint_limit_violation": 0.0
+    },
+    {
+      "scale": 0.75,
+      "min_foot_anchored_base_height_m": 0.742222948230494,
+      "max_foot_xy_drift_m": 0.007663796515629968,
+      "max_abs_foot_z_error_at_declared_m": 0.014999997684070315,
+      "max_lower_joint_delta_rad": 0.11324999463558194,
+      "max_joint_limit_violation": 0.0
+    },
+    {
+      "scale": 1.0,
+      "min_foot_anchored_base_height_m": 0.7375219102117994,
+      "max_foot_xy_drift_m": 0.010159720791987306,
+      "max_abs_foot_z_error_at_declared_m": 0.014999996912093642,
+      "max_lower_joint_delta_rad": 0.1509999928474426,
+      "max_joint_limit_violation": 0.0
+    }
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "t": 0.0,
+      "raw_reference_height": 0.7549999952316284,
+      "declared_stage_height": 0.7549999952316284,
+      "foot_anchored_base_height": 0.7549999969120936,
+      "height_delta_if_foot_anchored": 1.6804652114288388e-09,
+      "foot_xy_drift": 4.74835873160058e-09,
+      "foot_z_error_at_declared": 1.6804652114288388e-09,
+      "pelvis_support_offset": 0.0014175205919186398,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 2.95639037695139e-08
+    },
+    {
+      "index": 20,
+      "t": 0.4,
+      "raw_reference_height": 0.718999981880188,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457675591,
+      "height_delta_if_foot_anchored": 0.013233736230815918,
+      "foot_xy_drift": 0.0011504926179833153,
+      "foot_z_error_at_declared": 0.01323373623081587,
+      "pelvis_support_offset": 0.00026702322557659296,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 40,
+      "t": 0.8,
+      "raw_reference_height": 0.6830000281333923,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457755168,
+      "height_delta_if_foot_anchored": 0.013233736238773663,
+      "foot_xy_drift": 0.0011505110129237154,
+      "foot_z_error_at_declared": 0.013233736238773636,
+      "pelvis_support_offset": 0.0002670048306361929,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 60,
+      "t": 1.2,
+      "raw_reference_height": 0.6470000147819519,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457755168,
+      "height_delta_if_foot_anchored": 0.013233736238773663,
+      "foot_xy_drift": 0.0011505110129237154,
+      "foot_z_error_at_declared": 0.013233736238773636,
+      "pelvis_support_offset": 0.0002670048306361929,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 80,
+      "t": 1.6,
+      "raw_reference_height": 0.6200000047683716,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457675591,
+      "height_delta_if_foot_anchored": 0.013233736230815918,
+      "foot_xy_drift": 0.0011504926179833153,
+      "foot_z_error_at_declared": 0.01323373623081587,
+      "pelvis_support_offset": 0.00026702322557659296,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 100,
+      "t": 2.0,
+      "raw_reference_height": 0.6200000047683716,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457675591,
+      "height_delta_if_foot_anchored": 0.013233736230815918,
+      "foot_xy_drift": 0.0011504926179833153,
+      "foot_z_error_at_declared": 0.01323373623081587,
+      "pelvis_support_offset": 0.00026702322557659296,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 120,
+      "t": 2.4,
+      "raw_reference_height": 0.6200000047683716,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457675591,
+      "height_delta_if_foot_anchored": 0.013233736230815918,
+      "foot_xy_drift": 0.0011504926179833153,
+      "foot_z_error_at_declared": 0.01323373623081587,
+      "pelvis_support_offset": 0.00026702322557659296,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 140,
+      "t": 2.8,
+      "raw_reference_height": 0.6470000147819519,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457755168,
+      "height_delta_if_foot_anchored": 0.013233736238773663,
+      "foot_xy_drift": 0.0011505110129237154,
+      "foot_z_error_at_declared": 0.013233736238773636,
+      "pelvis_support_offset": 0.0002670048306361929,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 160,
+      "t": 3.2,
+      "raw_reference_height": 0.6830000281333923,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457755168,
+      "height_delta_if_foot_anchored": 0.013233736238773663,
+      "foot_xy_drift": 0.0011505110129237154,
+      "foot_z_error_at_declared": 0.013233736238773636,
+      "pelvis_support_offset": 0.0002670048306361929,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 180,
+      "t": 3.6,
+      "raw_reference_height": 0.718999981880188,
+      "declared_stage_height": 0.7400000095367432,
+      "foot_anchored_base_height": 0.7532337457675591,
+      "height_delta_if_foot_anchored": 0.013233736230815918,
+      "foot_xy_drift": 0.0011504926179833153,
+      "foot_z_error_at_declared": 0.01323373623081587,
+      "pelvis_support_offset": 0.00026702322557659296,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 0.016777783393859824
+    },
+    {
+      "index": 200,
+      "t": 4.0,
+      "raw_reference_height": 0.7549999952316284,
+      "declared_stage_height": 0.7549999952316284,
+      "foot_anchored_base_height": 0.7549999969120936,
+      "height_delta_if_foot_anchored": 1.6804652114288388e-09,
+      "foot_xy_drift": 4.74835873160058e-09,
+      "foot_z_error_at_declared": 1.6804652114288388e-09,
+      "pelvis_support_offset": 0.0014175205919186398,
+      "joint_limit_violation": 0.0,
+      "max_lower_joint_delta": 2.95639037695139e-08
+    }
+  ]
+}

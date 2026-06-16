@@ -89,12 +89,18 @@ class ContactAwareSquat(EXP25.G1SquatCurriculum):
         controller_blend: float = 0.0,
         freeze_phase: bool = False,
         blend_schedule: str = "fixed",
+        reference_scale: float | None = None,
         **kwargs,
     ):
         super().__init__(*args, **kwargs)
         self._controller_blend = float(controller_blend)
         self._freeze_phase = bool(freeze_phase)
         self._blend_schedule = blend_schedule
+        self._reference_scale = reference_scale
+        if reference_scale is not None:
+            default_lower = jp.asarray(self._default_pose[:15], dtype=jp.float32)
+            scale = jp.asarray(reference_scale, dtype=jp.float32)
+            self._ref_joints = default_lower + scale * (self._raw_ref_joints - default_lower)
 
     def reset(self, rng: jax.Array):
         state = super().reset(rng)
@@ -105,6 +111,7 @@ class ContactAwareSquat(EXP25.G1SquatCurriculum):
         state.metrics["controller_blend"] = jp.asarray(self._controller_blend, dtype=jp.float32)
         state.metrics["freeze_phase"] = jp.asarray(float(self._freeze_phase), dtype=jp.float32)
         state.metrics["effective_controller_blend"] = jp.zeros(())
+        state.metrics["reference_scale"] = jp.asarray(0.0 if self._reference_scale is None else self._reference_scale, dtype=jp.float32)
         if self._freeze_phase:
             state.info["phase"] = jp.ones(2) * jp.pi
         return state
@@ -185,6 +192,7 @@ class ContactAwareSquat(EXP25.G1SquatCurriculum):
         state.metrics["controller_blend"] = jp.asarray(self._controller_blend, dtype=jp.float32)
         state.metrics["freeze_phase"] = jp.asarray(float(self._freeze_phase), dtype=jp.float32)
         state.metrics["effective_controller_blend"] = self._effective_controller_blend(state.info["step"])
+        state.metrics["reference_scale"] = jp.asarray(0.0 if self._reference_scale is None else self._reference_scale, dtype=jp.float32)
 
         done = done.astype(reward.dtype)
         return state.replace(data=data, obs=obs, reward=reward, done=done)
@@ -253,12 +261,20 @@ def layer_shapes(params: Any) -> dict[str, dict[str, list[int]]]:
     }
 
 
-def compatibility(source: Path, stage_height: float, controller_blend: float, freeze_phase: bool, blend_schedule: str) -> dict:
+def compatibility(
+    source: Path,
+    stage_height: float,
+    controller_blend: float,
+    freeze_phase: bool,
+    blend_schedule: str,
+    reference_scale: float | None,
+) -> dict:
     env = ContactAwareSquat(
         stage_height=stage_height,
         controller_blend=controller_blend,
         freeze_phase=freeze_phase,
         blend_schedule=blend_schedule,
+        reference_scale=reference_scale,
         config_overrides={"impl": "jax"},
     )
     cfg = ppo_config(1)
@@ -280,6 +296,7 @@ def compatibility(source: Path, stage_height: float, controller_blend: float, fr
         "controller_blend": controller_blend,
         "freeze_phase": freeze_phase,
         "blend_schedule": blend_schedule,
+        "reference_scale": reference_scale,
         "source_params": str(source),
         "source_exists": source.exists(),
         "obs_size": env.observation_size,
@@ -288,12 +305,20 @@ def compatibility(source: Path, stage_height: float, controller_blend: float, fr
     }
 
 
-def rollout_smoke(stage_height: float, controller_blend: float, freeze_phase: bool, blend_schedule: str, steps: int = 20) -> dict:
+def rollout_smoke(
+    stage_height: float,
+    controller_blend: float,
+    freeze_phase: bool,
+    blend_schedule: str,
+    reference_scale: float | None,
+    steps: int = 20,
+) -> dict:
     env = ContactAwareSquat(
         stage_height=stage_height,
         controller_blend=controller_blend,
         freeze_phase=freeze_phase,
         blend_schedule=blend_schedule,
+        reference_scale=reference_scale,
         config_overrides={"impl": "jax"},
     )
     reset_fn = jax.jit(env.reset)
@@ -323,6 +348,7 @@ def rollout_smoke(stage_height: float, controller_blend: float, freeze_phase: bo
         "controller_blend": controller_blend,
         "freeze_phase": freeze_phase,
         "blend_schedule": blend_schedule,
+        "reference_scale": reference_scale,
         "rollout_steps": steps,
         "reward_first": rewards[0],
         "reward_last": rewards[-1],
@@ -374,6 +400,7 @@ def native_eval(
     controller_blend: float,
     freeze_phase: bool,
     blend_schedule: str,
+    reference_scale: float | None,
     params_path: Path,
     seconds: float,
     out_dir: Path,
@@ -383,6 +410,7 @@ def native_eval(
         controller_blend=controller_blend,
         freeze_phase=freeze_phase,
         blend_schedule=blend_schedule,
+        reference_scale=reference_scale,
         config_overrides={"impl": "jax"},
     )
     policy = build_policy(env, params_path)
@@ -543,6 +571,7 @@ def native_eval(
         "controller_blend": controller_blend,
         "freeze_phase": freeze_phase,
         "blend_schedule": blend_schedule,
+        "reference_scale": reference_scale,
         "params_path": str(params_path),
         "seconds": seconds,
         "fell_at": fell_at,
@@ -574,6 +603,7 @@ def train(
     controller_blend: float,
     freeze_phase: bool,
     blend_schedule: str,
+    reference_scale: float | None,
     timesteps: int,
     attempt_dir: Path,
     seed: int,
@@ -583,6 +613,7 @@ def train(
         controller_blend=controller_blend,
         freeze_phase=freeze_phase,
         blend_schedule=blend_schedule,
+        reference_scale=reference_scale,
         config_overrides={"impl": "jax"},
     )
     eval_env = ContactAwareSquat(
@@ -590,6 +621,7 @@ def train(
         controller_blend=controller_blend,
         freeze_phase=freeze_phase,
         blend_schedule=blend_schedule,
+        reference_scale=reference_scale,
         config_overrides={"impl": "jax"},
     )
     cfg = ppo_config(timesteps)
@@ -634,6 +666,7 @@ def train(
             f"# controller_blend={controller_blend}",
             f"# freeze_phase={freeze_phase}",
             f"# blend_schedule={blend_schedule}",
+            f"# reference_scale={reference_scale}",
             f"# timesteps={timesteps} train_min={elapsed/60:.2f} seed={seed} source={source}",
             *[f"{s}\t{r}" for s, r in rewards],
         ]) + "\n",
@@ -644,6 +677,7 @@ def train(
         "controller_blend": controller_blend,
         "freeze_phase": freeze_phase,
         "blend_schedule": blend_schedule,
+        "reference_scale": reference_scale,
         "timesteps": timesteps,
         "train_min": elapsed / 60,
         "seed": seed,
@@ -717,6 +751,7 @@ def main() -> None:
     parser.add_argument("--controller-blend", type=float, default=0.0)
     parser.add_argument("--freeze-phase", action="store_true")
     parser.add_argument("--blend-schedule", choices=["fixed", "squat"], default="fixed")
+    parser.add_argument("--reference-scale", type=float, default=None)
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--timesteps", type=int, default=20_000)
     parser.add_argument("--seed", type=int, default=8)
@@ -742,6 +777,7 @@ def main() -> None:
         "controller_blend": args.controller_blend,
         "freeze_phase": args.freeze_phase,
         "blend_schedule": args.blend_schedule,
+        "reference_scale": args.reference_scale,
         "source_params": str(source),
         "compatibility": compatibility(
             source,
@@ -749,12 +785,14 @@ def main() -> None:
             args.controller_blend,
             args.freeze_phase,
             args.blend_schedule,
+            args.reference_scale,
         ),
         "rollout": rollout_smoke(
             args.stage_height,
             args.controller_blend,
             args.freeze_phase,
             args.blend_schedule,
+            args.reference_scale,
         ),
     }
     if not result["compatibility"]["policy_shape_match"]:
@@ -766,6 +804,7 @@ def main() -> None:
             args.controller_blend,
             args.freeze_phase,
             args.blend_schedule,
+            args.reference_scale,
             args.timesteps,
             attempt_dir,
             args.seed,
@@ -778,6 +817,7 @@ def main() -> None:
         args.controller_blend,
         args.freeze_phase,
         args.blend_schedule,
+        args.reference_scale,
         params_path,
         args.seconds,
         attempt_dir,

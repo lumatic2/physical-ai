@@ -42,6 +42,9 @@ planning_gate:
   - source params는 exp22, 없으면 exp21을 사용한다.
   - `--train`이 없으면 source policy native baseline만 평가한다.
   - `--train`이면 attempt 폴더에 params/rewards/native 결과를 저장한다.
+- `audit_reference.py`
+  - staged reference가 실제 foot-contact preserving squat target인지 기하적으로 검사한다.
+  - raw reference scale sweep으로 stage 0.74에 필요한 calibrated reference scale을 찾는다.
 - `verify/stage-0p74/attempts/attempt-*/result.json`
 - `verify/stage-0p74/best.json`
 - `verify/stage-0p74/summary.md`
@@ -67,14 +70,19 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 | attempt-010-source-blend-0p20-freeze-phase | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | contact 1.00/slip 0.012m 유지, depth는 0.7490m에서 정체 |
 | attempt-011-squat-schedule-0p25-freeze-phase | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | descent/hold/return blend schedule, contact 1.00/slip 0.012m이나 min height 0.7484m |
 | attempt-012-squat-schedule-0p35-freeze-phase | FAIL_FALL | native MuJoCo / 6.0s | 0 | stronger schedule은 depth를 만들지만 3.76s fall |
+| attempt-013-reference-audit | REFERENCE_GATE_FAIL | native MuJoCo geometry audit | 0 | staged reference는 declared 0.740m이지만 foot-anchored height 0.7532m라 실제로는 거의 서 있는 포즈 |
+| attempt-014-refscale-0p75-blend-0p05-freeze-schedule | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | raw reference 0.75 scale + weak blend, contact 1.00이나 min height 0.7496m |
+| attempt-015-refscale-0p75-blend-0p15-freeze-schedule | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | calibrated reference가 depth를 늘렸지만 min height 0.7480m |
+| attempt-016-refscale-0p75-blend-0p30-freeze-schedule | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | no-fall/contact 1.00, min height 0.7456m로 gate 직전 |
+| attempt-017-refscale-0p75-blend-0p35-freeze-schedule | PASS_CONTROLLED_SQUAT | native MuJoCo / 6.0s | 0 | no-fall, min height 0.7446m, hold 1.32s, contact 1.00 |
 
 ### best gate
 | Metric | Best | Gate | 상태 |
 |---|---:|---:|---|
 | fell_at | None | None | PASS |
-| min_height | 0.7489 | <= 0.745 | FAIL |
-| hold_duration | 0.00s | >= 0.50s | FAIL |
-| final_height | 0.7501 | >= 0.740 | PASS |
+| min_height | 0.7446 | <= 0.745 | PASS |
+| hold_duration | 1.32s | >= 0.50s | PASS |
+| final_height | 0.7497 | >= 0.740 | PASS |
 | foot_contact_ratio | 1.00 | >= 0.90 | PASS |
 | joint_limit_violation | 0.0000 | <= 0.05 | PASS |
 
@@ -91,6 +99,12 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - `verify/stage-0p74/attempts/attempt-010-source-blend-0p20-freeze-phase/result.json`
 - `verify/stage-0p74/attempts/attempt-011-squat-schedule-0p25-freeze-phase/result.json`
 - `verify/stage-0p74/attempts/attempt-012-squat-schedule-0p35-freeze-phase/result.json`
+- `verify/stage-0p74/attempts/attempt-013-reference-audit/result.json`
+- `verify/stage-0p74/attempts/attempt-013-reference-audit/reference-audit.md`
+- `verify/stage-0p74/attempts/attempt-014-refscale-0p75-blend-0p05-freeze-schedule/result.json`
+- `verify/stage-0p74/attempts/attempt-015-refscale-0p75-blend-0p15-freeze-schedule/result.json`
+- `verify/stage-0p74/attempts/attempt-016-refscale-0p75-blend-0p30-freeze-schedule/result.json`
+- `verify/stage-0p74/attempts/attempt-017-refscale-0p75-blend-0p35-freeze-schedule/result.json`
 - `verify/stage-0p74/best.json`
 - `verify/stage-0p74/summary.md`
 
@@ -107,14 +121,17 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - 하지만 freeze phase는 depth를 0.749m 근처에서 막는다. blend를 0.25~0.35로 키우면 깊이는 생기지만 fall한다. 즉 현재 병목은 `phase/contact/depth` 세 항의 동시 controller 설계다.
 - squat-specific blend schedule도 같은 trade-off를 보였다. 0.25 schedule은 안정적이지만 shallow, 0.35 schedule은 depth를 만들지만 fall한다.
 - exp27의 moving-phase blend는 depth를 만들지만 contact를 잃고, freeze-phase blend는 contact를 보존하지만 depth를 잃는다. 단순 reward/fine-tune보다 squat 전용 reference/controller가 필요하다.
+- reference audit에서 핵심 원인을 찾았다. 기존 staged reference는 declared target이 0.740m여도 foot-anchored base height가 0.7532m라 실제 관절 포즈는 stage depth를 만들지 못한다.
+- raw reference scale sweep상 0.75 scale은 foot-anchored min height 0.7422m, foot XY drift 0.0077m, joint violation 0.0으로 stage 0.74에 맞는 calibrated target이다.
+- `reference_scale=0.75`, `freeze_phase`, squat blend schedule, `controller_blend=0.35` 조합은 native 6초 gate를 통과했다. 결과: no-fall, min height 0.7446m, hold 1.32s, return true, contact 1.00, joint violation 0.0.
 
 ### 가설은 통과했나?
-- [ ] PASS — stage 0.74 controlled squat gate를 모두 통과한다.
-- [x] FAIL_PARTIAL — attempt loop와 contact-aware training path는 열렸지만, 첫 fine-tune은 depth gate 미달이다.
+- [x] PASS — stage 0.74 controlled squat gate를 모두 통과한다.
+- [ ] FAIL_PARTIAL — attempt loop와 contact-aware training path는 열렸지만, 첫 fine-tune은 depth gate 미달이다.
 
 ### 정의에 반영
-- M19는 아직 완료가 아니다. 다음 작업은 `blend_0p18~0p22` corridor를 reward target/behavior prior로 넣으면서 contact-aware reward를 유지하는 exp28 attempt다.
+- M19의 stage 0.74 depth/contact gate는 닫혔다. 다만 이 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller다.
+- 다음 M19 작업은 이 PASS controller를 browser/ONNX playback 가능한 skill artifact로 패키징하거나, 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류하는 것이다.
 
 ### 다음 attempt 후보
-- attempt-013: 현재 exp17 squat reference 자체가 contact-preserving squat target인지 재검사한다. 필요하면 foot-anchored IK/reference를 새로 만들고 그 reference로 stage 0.74를 다시 평가한다.
-- contact 1.00을 유지하면서 min height를 0.745m 아래로 낮추는 것이 다음 단일 목표다.
+- exp28 후속은 새 attempt가 아니라 integration step이어야 한다. `attempt-017`의 controller contract를 web/native playback에 옮기고 live에서 사람이 확인 가능한 squat clip 또는 selectable skill로 노출한다.
