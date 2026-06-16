@@ -1,0 +1,6 @@
+# stage_height=0.74
+# controller_blend=0.18
+# timesteps=10000 train_min=5.45 seed=11 source=/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl
+0	272.00970458984375
+20480	272.1903076171875
+40960	272.89990234375
