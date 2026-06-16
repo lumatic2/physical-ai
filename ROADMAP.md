@@ -79,9 +79,10 @@
 - [x] 사용자 visual review와 trajectory audit으로 exp28 replay가 visible squat이 아니라 약 1cm micro-dip임을 확인했다.
 - [x] exp29에서 visible squat gate를 다시 정의했다: pelvis drop >=8cm, knee flexion delta >=0.60rad, hip pitch delta >=0.35rad.
 - [x] exp29 static audit상 local G1 lower-body joint ranges는 visible squat target 후보를 담을 수 있다. 단, 동역학/접촉/학습 성공은 아직 미증명이다.
-- [ ] **다음 작업: visible squat controller probe** — deeper foot-anchored reference target을 만들고 native MuJoCo에서 fall/contact/visual gate를 먼저 통과시킨다.
+- [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
+- [ ] **다음 작업: guarded descent controller** — torso/upright/support guard와 descent speed cap을 넣어 visible-depth와 no-fall을 동시에 만족시키는 native controller를 먼저 만든다.
 
-완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md).
+완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md).
 
 ### M20 - Acrobatic feasibility gate
 
