@@ -148,7 +148,7 @@
       }
     },
     "g1-controlled-squat": {
-      "title": "Unitree G1 — controlled squat stage 0.74 replay",
+      "title": "Unitree G1 — shallow lowering micro-dip replay",
       "scene": "g1/scene_g1_policy.xml",
       "trajectory": "g1_controlled_squat_trajectory.json",
       "ee_body": "pelvis",

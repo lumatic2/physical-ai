@@ -10,7 +10,7 @@
 |---|---|---|
 | `go1-walk` | Unitree Go1 (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (onnxruntime-web) + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | ⭐ **직접 학습한 RL 정책** live closed-loop (103-d obs + gait phase clock) |
-| `g1-controlled-squat` | Unitree G1 (휴머노이드) | controlled squat stage 0.74 PASS replay — 0.7446m min height, 1.32s hold, foot contact 1.00 |
+| `g1-controlled-squat` | Unitree G1 (휴머노이드) | shallow lowering micro-dip replay — stable balance probe, not a visible squat success |
 | `spot-walk` | Boston Dynamics Spot (4족) | ⭐ **직접 학습한 RL 정책** live closed-loop (81-d obs + qpos error history) |
 | `g1-rough-walk` | Unitree G1 rough curb | ⭐ **정책 확장 QA** — gait phase humanoid policy + 1/2/3cm curb |
 | `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | ⭐ **명령·지형 강건성 QA** — 1/2/3cm curb + command sweep |

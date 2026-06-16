@@ -1,6 +1,8 @@
-# 28-g1-controlled-squat-stage0p74 — controlled G1 squat stage 0.74
+# 28-g1-controlled-squat-stage0p74 — controlled G1 stage 0.74 micro-dip
 
-> M19k. exp26/27에서 stage 0.74 depth corridor는 찾았지만 contact gate가 남았다. 이번 실험은 exp 단위를 더 쪼개지 않고, `stage 0.74 controlled squat PASS`를 목표로 attempts를 누적한다.
+> M19k. exp26/27에서 stage 0.74 depth corridor는 찾았지만 contact gate가 남았다. 이번 실험은 exp 단위를 더 쪼개지 않고, `stage 0.74 controlled squat PASS`를 목표로 attempts를 누적했다.
+>
+> 2026-06-16 correction: 이 실험의 native numeric gate는 통과했지만, 사용자 visual review와 exp29 trajectory audit 기준으로는 visible squat이 아니다. 현재 browser artifact는 약 1cm lowering이 있는 stable micro-dip/balance probe로 취급한다.
 
 ## 1. 가설 (Hypothesis)
 
@@ -134,8 +136,8 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - [ ] FAIL_PARTIAL — attempt loop와 contact-aware training path는 열렸지만, 첫 fine-tune은 depth gate 미달이다.
 
 ### 정의에 반영
-- M19의 stage 0.74 depth/contact gate와 browser replay packaging은 닫혔다. 다만 이 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller다.
-- 다음 M19 작업은 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류하거나, 더 낮은 stage height로 curriculum을 확장하는 것이다.
+- M19의 약한 stage 0.74 numeric gate와 browser replay packaging은 닫혔다. 다만 이 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller이며, visible squat도 아니다.
+- 다음 M19 작업은 exp29 visible gate 기준으로 deeper foot-anchored target을 만들고 native MuJoCo에서 먼저 fall/contact/visual criteria를 통과시키는 것이다.
 
 ### 다음 attempt 후보
-- exp28 후속은 learned-policy packaging 여부를 결정하는 integration step이다. 현재 웹에는 `g1-controlled-squat` replay로 노출된다.
+- exp28 후속은 exp29 visible squat feasibility gate다. 현재 웹의 `g1-controlled-squat` replay는 squat success가 아니라 shallow lowering/micro-dip artifact로 노출해야 한다.

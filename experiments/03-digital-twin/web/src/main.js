@@ -200,11 +200,11 @@ export class MuJoCoDemo {
         learned: 'Same G1 gait policy checked against rough-terrain robustness.',
       },
       'g1-controlled-squat': {
-        name: 'Unitree G1 Squat',
-        kind: 'Humanoid skill',
-        description: 'A controlled lowering, hold, and return squat replay from the M19 stage 0.74 gate.',
-        actions: ['Lower', 'Hold squat', 'Return to stand'],
-        learned: 'Stabilizer policy plus calibrated reference controller; native gate PASS.',
+        name: 'Unitree G1 Lowering Probe',
+        kind: 'Humanoid balance probe',
+        description: 'A shallow lowering replay from the M19 controller audit. It is stable, but not a visible squat.',
+        actions: ['Balance', 'Lower slightly', 'Return upright'],
+        learned: 'Stabilizer policy plus calibrated reference controller; visible squat gate remains open.',
       },
       'barkour-walk': {
         name: 'Google Barkour',
@@ -325,8 +325,8 @@ export class MuJoCoDemo {
         </div>
         <div class="research-card">
           <div class="research-card__label">Current skill work</div>
-          <div class="research-card__title">G1 squat stage 0.74 passed</div>
-          <div class="research-card__text">Native gate: 6.0s no-fall, 0.7446m minimum height, 1.32s hold, and both feet in contact. This replay shows that controlled motion.</div>
+          <div class="research-card__title">G1 visible squat gate open</div>
+          <div class="research-card__text">The current replay is a stable micro-dip, not a finished squat. Next gate: at least 8cm pelvis drop with knee and hip flexion, no fall, and both feet in contact.</div>
         </div>
       </div>
     `;
