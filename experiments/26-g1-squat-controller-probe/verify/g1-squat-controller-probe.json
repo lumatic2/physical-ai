@@ -1,0 +1,1626 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "exp25 depth curriculum refined into controller arbitration probe",
+    "dod": [
+      "policy-only and blend variants evaluated with identical native metrics",
+      "verify JSON and markdown report produced"
+    ]
+  },
+  "stage_height": 0.74,
+  "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "variants": [
+    {
+      "variant": "policy_only",
+      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "seconds": 6.0,
+      "stage_height": 0.74,
+      "fell_at": null,
+      "upright_s": 6.0,
+      "min_height": 0.7500645585567972,
+      "hold_duration_at_or_below_stage": 0.0,
+      "final_height": 0.7511621764549127,
+      "return_to_stand": true,
+      "torso_up_min": 0.9980331697747686,
+      "foot_contact_ratio": 1.0,
+      "foot_slip_distance": 0.026228168407605612,
+      "max_reference_error": 0.0011135085723311137,
+      "max_height_error": 0.00027849621149620736,
+      "max_joint_limit_violation": 0.0,
+      "mean_action_delta": 0.0007921082646741222,
+      "verdict": "NO_FALL_DEPTH_PENDING",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.755,
+          "target_height": 0.7549999952316284,
+          "up_z": 1.0,
+          "reference_error": 1.2614786223382194e-16,
+          "height_error": 2.2737367586674853e-17,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7544479134652589,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995634459488684,
+          "reference_error": 0.0004070929667627069,
+          "height_error": 0.00020874192792761918,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0008228054120989788
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.755071057036048,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995224153383998,
+          "reference_error": 0.0004738883897072249,
+          "height_error": 0.00022713647272630386,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0014290092499570726
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7539606983329091,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9990307989089884,
+          "reference_error": 0.0005201389256132461,
+          "height_error": 0.0001949008316633939,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0019990967646663998
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7514838905292756,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9990011459012259,
+          "reference_error": 0.0006008329771414997,
+          "height_error": 0.00013187952265064675,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.004515608511209394
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.7561904673834086,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9988435282732402,
+          "reference_error": 0.000580143231018095,
+          "height_error": 0.0002621309252846491,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.005423564935115742
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.7528400743739476,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9990923615346344,
+          "reference_error": 0.0004891614751400269,
+          "height_error": 0.00016486726502361432,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.006382131937982014
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.7542286539631922,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9989063222827635,
+          "reference_error": 0.00036732193724284083,
+          "height_error": 0.00020245432221431818,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.00766440193122027
+        },
+        {
+          "t": 1.6,
+          "base_height": 0.7515637421211305,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9983464879891364,
+          "reference_error": 0.0005856182379485359,
+          "height_error": 0.00013371991128322209,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.008844497343786076
+        },
+        {
+          "t": 1.8,
+          "base_height": 0.755877645137119,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.99877510140026,
+          "reference_error": 0.0005835282867085039,
+          "height_error": 0.0002520993122583212,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.009788114782980759
+        },
+        {
+          "t": 2.0,
+          "base_height": 0.7516542940718988,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9986309106628795,
+          "reference_error": 0.0005165599706011131,
+          "height_error": 0.00013582234802636702,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.01057815200867313
+        },
+        {
+          "t": 2.2,
+          "base_height": 0.7529064739584044,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.998890630197095,
+          "reference_error": 0.000490741858041997,
+          "height_error": 0.0001665768238676067,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.012057849616690236
+        },
+        {
+          "t": 2.4,
+          "base_height": 0.7538051542080939,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9982268312296771,
+          "reference_error": 0.0006145905387964386,
+          "height_error": 0.00019058201939692386,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.012755407671195955
+        },
+        {
+          "t": 2.6,
+          "base_height": 0.7538604117388759,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9988146018396878,
+          "reference_error": 0.0004864208630807458,
+          "height_error": 0.00019211074920488482,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.013716658195794136
+        },
+        {
+          "t": 2.8,
+          "base_height": 0.7527230937542609,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9986167093377322,
+          "reference_error": 0.00047372155392267544,
+          "height_error": 0.00016187687200604995,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.014334888143266224
+        },
+        {
+          "t": 3.0,
+          "base_height": 0.7514638979954845,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9985605704188906,
+          "reference_error": 0.0006066750851228534,
+          "height_error": 0.00013142073859446327,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.015607421007692013
+        },
+        {
+          "t": 3.2,
+          "base_height": 0.7559568365050957,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9984305811847478,
+          "reference_error": 0.000784368248167877,
+          "height_error": 0.00025462032689794307,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.016390532715539516
+        },
+        {
+          "t": 3.4,
+          "base_height": 0.7513430452438181,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9987114925417507,
+          "reference_error": 0.0006145619398635749,
+          "height_error": 0.00012866445905197743,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.017302166470369914
+        },
+        {
+          "t": 3.6,
+          "base_height": 0.7534505177964097,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.998848789546351,
+          "reference_error": 0.000513038774933554,
+          "height_error": 0.00018091617244335776,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.018244416364274325
+        },
+        {
+          "t": 3.8,
+          "base_height": 0.75170731705258,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9982129140710678,
+          "reference_error": 0.0007153479282466133,
+          "height_error": 0.00013706104927036923,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.018793520199085197
+        },
+        {
+          "t": 4.0,
+          "base_height": 0.7553836016537611,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9985840602305406,
+          "reference_error": 0.0006826992940787623,
+          "height_error": 1.4715388710140746e-07,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0197075729428786
+        },
+        {
+          "t": 4.2,
+          "base_height": 0.7510420095383136,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9985507034479758,
+          "reference_error": 0.0008891764992929249,
+          "height_error": 1.5665650748485012e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.020448323503809526
+        },
+        {
+          "t": 4.4,
+          "base_height": 0.7523657913627579,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9987682611629513,
+          "reference_error": 0.0007551807594590239,
+          "height_error": 6.939030022772191e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.021266660955549375
+        },
+        {
+          "t": 4.6,
+          "base_height": 0.7542391309748172,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9982013570438766,
+          "reference_error": 0.0008447081273341011,
+          "height_error": 5.789144172928768e-07,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.021778664973975348
+        },
+        {
+          "t": 4.8,
+          "base_height": 0.7526573631950901,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9985848017007615,
+          "reference_error": 0.0007792001324462872,
+          "height_error": 5.4879248586155056e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.02271171961105413
+        },
+        {
+          "t": 5.0,
+          "base_height": 0.7524121907817742,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9986169651605791,
+          "reference_error": 0.0007708363445496179,
+          "height_error": 6.696731870685099e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.02321657669295342
+        },
+        {
+          "t": 5.2,
+          "base_height": 0.7510430134264198,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9983117039355758,
+          "reference_error": 0.0009987221136209274,
+          "height_error": 1.565770500675229e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.023890004551071087
+        },
+        {
+          "t": 5.4,
+          "base_height": 0.7558411312944431,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9982942461844704,
+          "reference_error": 0.0009223666772559033,
+          "height_error": 7.075098761673518e-07,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.024591132941660078
+        },
+        {
+          "t": 5.6,
+          "base_height": 0.7501898358029219,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9984505179684028,
+          "reference_error": 0.0011003619209711535,
+          "height_error": 2.313763372957453e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.025434668679334194
+        },
+        {
+          "t": 5.8,
+          "base_height": 0.7527959858134681,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9987312397228719,
+          "reference_error": 0.000790342743225709,
+          "height_error": 4.857657515339509e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.025967666405324098
+        }
+      ]
+    },
+    {
+      "variant": "blend_0p10",
+      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "seconds": 6.0,
+      "stage_height": 0.74,
+      "fell_at": null,
+      "upright_s": 6.0,
+      "min_height": 0.7500868457410936,
+      "hold_duration_at_or_below_stage": 0.0,
+      "final_height": 0.7502202999632831,
+      "return_to_stand": true,
+      "torso_up_min": 0.9991495170150205,
+      "foot_contact_ratio": 0.8666666666666667,
+      "foot_slip_distance": 0.6029147189424476,
+      "max_reference_error": 0.0032278972405434692,
+      "max_height_error": 0.0003478216477921904,
+      "max_joint_limit_violation": 0.0,
+      "mean_action_delta": 0.0018370850782472796,
+      "verdict": "NO_FALL_DEPTH_PENDING",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.755,
+          "target_height": 0.7549999952316284,
+          "up_z": 1.0,
+          "reference_error": 1.2614786223382194e-16,
+          "height_error": 2.2737367586674853e-17,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7530279714543087,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995472842517228,
+          "reference_error": 0.00047458317673327617,
+          "height_error": 0.00016972779172553696,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0007356297770661938
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7535372896684698,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995629467121582,
+          "reference_error": 0.0005061186595789361,
+          "height_error": 0.00018325795336484015,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0012800728500172703
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7528344669275446,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9992089019269583,
+          "reference_error": 0.0006114607521217338,
+          "height_error": 0.00016472329651629844,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0017225571284702923
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7509799741578514,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9993784027007776,
+          "reference_error": 0.0006751115450324975,
+          "height_error": 0.0001205596230807896,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0031830718653193812
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.755185774994284,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9992781245932206,
+          "reference_error": 0.0005768384421744249,
+          "height_error": 0.00023060747253143937,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.003977739518810548
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.7521093333982786,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999640312154743,
+          "reference_error": 0.0007226153380066396,
+          "height_error": 0.0001466357243835507,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.005079693311334816
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.7531454047827174,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9994927018272106,
+          "reference_error": 0.0004439667010513671,
+          "height_error": 0.00017280141617288228,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.005595487459933325
+        },
+        {
+          "t": 1.6,
+          "base_height": 0.7517432746364623,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.99954230212529,
+          "reference_error": 0.0006793324968182371,
+          "height_error": 0.0001379042752022812,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.006166776827417818
+        },
+        {
+          "t": 1.8,
+          "base_height": 0.7547474398023436,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999525312975577,
+          "reference_error": 0.0007142942543297576,
+          "height_error": 0.00021748669943874775,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0071976143467349495
+        },
+        {
+          "t": 2.0,
+          "base_height": 0.7528677377367277,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999775869498671,
+          "reference_error": 0.0008195556537474598,
+          "height_error": 0.00016557842902867624,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.008183866284871373
+        },
+        {
+          "t": 2.2,
+          "base_height": 0.7524898697008874,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9998066689644342,
+          "reference_error": 0.0007096114979648615,
+          "height_error": 0.00015599660691987662,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0064005645294305195
+        },
+        {
+          "t": 2.4,
+          "base_height": 0.7539127897477955,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9998358214742262,
+          "reference_error": 0.0008499651346914617,
+          "height_error": 0.00019356545320105002,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.007690513099961643
+        },
+        {
+          "t": 2.6,
+          "base_height": 0.7528409693559114,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999385740963518,
+          "reference_error": 0.0012426107434445252,
+          "height_error": 0.00016489024907749268,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.012061903877736114
+        },
+        {
+          "t": 2.8,
+          "base_height": 0.7567850197223867,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9994791111174567,
+          "reference_error": 0.001065998960095344,
+          "height_error": 0.0002817365669321557,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.01627945116535739
+        },
+        {
+          "t": 3.0,
+          "base_height": 0.7513003357790355,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999660424539976,
+          "reference_error": 0.0017525991551365285,
+          "height_error": 0.00012769737318224183,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.07340789496263761
+        },
+        {
+          "t": 3.2,
+          "base_height": 0.7553340027680207,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999491045655771,
+          "reference_error": 0.0014231391258818134,
+          "height_error": 0.0002351313484168638,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.07346164546456846
+        },
+        {
+          "t": 3.4,
+          "base_height": 0.751123588420348,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999272377112591,
+          "reference_error": 0.002279236966417323,
+          "height_error": 0.00012373400717977912,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.1435524467364416
+        },
+        {
+          "t": 3.6,
+          "base_height": 0.7570417755453177,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9998895556517263,
+          "reference_error": 0.0007389911273911299,
+          "height_error": 0.0002904217886910067,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.1689628249017211
+        },
+        {
+          "t": 3.8,
+          "base_height": 0.7512034732576851,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999141082994064,
+          "reference_error": 0.0016865111815075999,
+          "height_error": 0.00012551759934646226,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.18126378648833347
+        },
+        {
+          "t": 4.0,
+          "base_height": 0.7562703984400336,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9994557759411073,
+          "reference_error": 0.0018935298090871759,
+          "height_error": 1.6139243119262592e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.19737178678620226
+        },
+        {
+          "t": 4.2,
+          "base_height": 0.7526784527137002,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9998602266274557,
+          "reference_error": 0.002167210204727568,
+          "height_error": 5.389559662548712e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.26147492139823436
+        },
+        {
+          "t": 4.4,
+          "base_height": 0.7527862122058572,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9999686565083475,
+          "reference_error": 0.001502657594376388,
+          "height_error": 4.900835285192881e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.31031157352138494
+        },
+        {
+          "t": 4.6,
+          "base_height": 0.752673228614071,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.999495008934396,
+          "reference_error": 0.002283953383620098,
+          "height_error": 5.413842892579384e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.31085391477582136
+        },
+        {
+          "t": 4.8,
+          "base_height": 0.7509209032030966,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9999280764969131,
+          "reference_error": 0.0028177717000432787,
+          "height_error": 1.6638991777232082e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.40574144999805106
+        },
+        {
+          "t": 5.0,
+          "base_height": 0.759193015783226,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9995587533580333,
+          "reference_error": 0.0017883856957596966,
+          "height_error": 1.7581421346119314e-05,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.40601887062548236
+        },
+        {
+          "t": 5.2,
+          "base_height": 0.7503594753957615,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9999933278251235,
+          "reference_error": 0.0023225673654147265,
+          "height_error": 2.1534424347074024e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.45372781310338284
+        },
+        {
+          "t": 5.4,
+          "base_height": 0.7570101966658188,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9991495170150205,
+          "reference_error": 0.0025711980036262553,
+          "height_error": 4.0409098060211215e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.45342341911325795
+        },
+        {
+          "t": 5.6,
+          "base_height": 0.7504316665609451,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.999935793548993,
+          "reference_error": 0.003117404096793132,
+          "height_error": 2.0869626843387526e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.5591274036355431
+        },
+        {
+          "t": 5.8,
+          "base_height": 0.7569848081155133,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9999670675635893,
+          "reference_error": 0.0011883192256059406,
+          "height_error": 3.939482184035321e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.5965935662961941
+        }
+      ]
+    },
+    {
+      "variant": "blend_0p20",
+      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "seconds": 6.0,
+      "stage_height": 0.74,
+      "fell_at": null,
+      "upright_s": 6.0,
+      "min_height": 0.7412406699524872,
+      "hold_duration_at_or_below_stage": 0.86,
+      "final_height": 0.7429829287768899,
+      "return_to_stand": true,
+      "torso_up_min": 0.9968744612024858,
+      "foot_contact_ratio": 0.7133333333333334,
+      "foot_slip_distance": 1.858793507898713,
+      "max_reference_error": 0.008806047066641167,
+      "max_height_error": 0.0005006614950064957,
+      "max_joint_limit_violation": 0.0,
+      "mean_action_delta": 0.0039065493892121595,
+      "verdict": "STABLE_DEPTH_CONTACT_GAP",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.755,
+          "target_height": 0.7549999952316284,
+          "up_z": 1.0,
+          "reference_error": 1.2614786223382194e-16,
+          "height_error": 2.2737367586674853e-17,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7513915760752833,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999508095483059,
+          "reference_error": 0.0006444743904975895,
+          "height_error": 0.00012976778820198695,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0006672890650822008
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7517921504006521,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995793164835446,
+          "reference_error": 0.0006805947570939897,
+          "height_error": 0.00013905458615427003,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.001146966442690662
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7514544802964604,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9993886786557582,
+          "reference_error": 0.0008497555471139289,
+          "height_error": 0.00013120490038521823,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0013718311265541311
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7499893025587389,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9997045010357761,
+          "reference_error": 0.0010311497275327243,
+          "height_error": 9.978597507929185e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.002044695158257794
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.753354911759507,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9997607390548419,
+          "reference_error": 0.0009101762095595696,
+          "height_error": 0.00017835341337958172,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0025752894011376857
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.7497500747635059,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999053392944763,
+          "reference_error": 0.001916407651666286,
+          "height_error": 9.506377192612707e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.007810518724532164
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.7557903486693793,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9994231895980317,
+          "reference_error": 0.0014179837987875498,
+          "height_error": 0.0002493348099236611,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.04190414074515795
+        },
+        {
+          "t": 1.6,
+          "base_height": 0.7473401515886016,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9993172580117483,
+          "reference_error": 0.003754117204499051,
+          "height_error": 5.387768534146005e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.09576943955819056
+        },
+        {
+          "t": 1.8,
+          "base_height": 0.7547372122536617,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9984757492075094,
+          "reference_error": 0.003932021281267416,
+          "height_error": 0.00021718514391955252,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.09457828651095605
+        },
+        {
+          "t": 2.0,
+          "base_height": 0.7505960505679573,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9994072252022638,
+          "reference_error": 0.003672175874303171,
+          "height_error": 0.00011227608553517368,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.2097273421055085
+        },
+        {
+          "t": 2.2,
+          "base_height": 0.7495229584884312,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999871403681618,
+          "reference_error": 0.005513365603584954,
+          "height_error": 9.068655673645629e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.3716586228193749
+        },
+        {
+          "t": 2.4,
+          "base_height": 0.746571693544345,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9982773073539102,
+          "reference_error": 0.005083631922980861,
+          "height_error": 4.318703069577038e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.37190111415162924
+        },
+        {
+          "t": 2.6,
+          "base_height": 0.7495796491589807,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9998048852263317,
+          "reference_error": 0.0041687569081797216,
+          "height_error": 9.176949529194287e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.472934678556567
+        },
+        {
+          "t": 2.8,
+          "base_height": 0.7592361188076701,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9985347267114977,
+          "reference_error": 0.0030348469387978935,
+          "height_error": 0.0003700278998830396,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.4730878752030404
+        },
+        {
+          "t": 3.0,
+          "base_height": 0.7432122486150223,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9996819759933622,
+          "reference_error": 0.006950155929223243,
+          "height_error": 1.031847989602379e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.6452917315860158
+        },
+        {
+          "t": 3.2,
+          "base_height": 0.753968242409939,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9972145332954995,
+          "reference_error": 0.0049956157783799865,
+          "height_error": 0.0001951115295998283,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.6445734353584827
+        },
+        {
+          "t": 3.4,
+          "base_height": 0.7486080608530044,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9993995095418192,
+          "reference_error": 0.004469338322300145,
+          "height_error": 7.4098547463386e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.7629697022204994
+        },
+        {
+          "t": 3.6,
+          "base_height": 0.7603055068370262,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9988951493339058,
+          "reference_error": 0.0027318221421051606,
+          "height_error": 0.00041231322061180355,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.8707152872976669
+        },
+        {
+          "t": 3.8,
+          "base_height": 0.741937038859777,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.998422104718808,
+          "reference_error": 0.008724359913127679,
+          "height_error": 3.7520825982930004e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.9611753755415925
+        },
+        {
+          "t": 4.0,
+          "base_height": 0.7560459294535667,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.999391064780223,
+          "reference_error": 0.0028161265169038777,
+          "height_error": 1.0939783966217338e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.9711342948927965
+        },
+        {
+          "t": 4.2,
+          "base_height": 0.7564069380682269,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9985212394485472,
+          "reference_error": 0.003957514800621146,
+          "height_error": 1.9794881454557752e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.0552380923806204
+        },
+        {
+          "t": 4.4,
+          "base_height": 0.74712624963775,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9998723720379888,
+          "reference_error": 0.006794566932291444,
+          "height_error": 6.199586967712005e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.253103376319417
+        },
+        {
+          "t": 4.6,
+          "base_height": 0.7483994391563992,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.996968751784708,
+          "reference_error": 0.004938970618678475,
+          "height_error": 4.356734050224572e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.2529664679971926
+        },
+        {
+          "t": 4.8,
+          "base_height": 0.7483949270383718,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9996229564542097,
+          "reference_error": 0.005447997753783168,
+          "height_error": 4.36269258375696e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.3545806443381065
+        },
+        {
+          "t": 5.0,
+          "base_height": 0.7624877513590079,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9980165017267182,
+          "reference_error": 0.0020644520516170297,
+          "height_error": 5.606649182310937e-05,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.3703322405895078
+        },
+        {
+          "t": 5.2,
+          "base_height": 0.7423077591677941,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9995489550784564,
+          "reference_error": 0.008305327300734607,
+          "height_error": 0.00016109285630009588,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.5631674022603768
+        },
+        {
+          "t": 5.4,
+          "base_height": 0.7560327803794088,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9978310583128286,
+          "reference_error": 0.005582334859715954,
+          "height_error": 1.0666451614757404e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.5623829606286885
+        },
+        {
+          "t": 5.6,
+          "base_height": 0.7509891446235301,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9991032656221542,
+          "reference_error": 0.0039850175730857616,
+          "height_error": 1.608692260048298e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.6479265550080253
+        },
+        {
+          "t": 5.8,
+          "base_height": 0.757444006327281,
+          "target_height": 0.7549999952316284,
+          "up_z": 0.9994447573066704,
+          "reference_error": 0.0035932324733342212,
+          "height_error": 5.973190235673124e-06,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.8158519425202628
+        }
+      ]
+    },
+    {
+      "variant": "blend_0p35",
+      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "seconds": 6.0,
+      "stage_height": 0.74,
+      "fell_at": 2.36,
+      "upright_s": 2.36,
+      "min_height": -0.7640311736975388,
+      "hold_duration_at_or_below_stage": 3.2800000000000002,
+      "final_height": -0.7561482893676024,
+      "return_to_stand": false,
+      "torso_up_min": -0.9999581652559932,
+      "foot_contact_ratio": 0.7133333333333334,
+      "foot_slip_distance": 1.9419266873331504,
+      "max_reference_error": 0.1304391453479017,
+      "max_height_error": 2.307455692178312,
+      "max_joint_limit_violation": 0.06089165985323075,
+      "mean_action_delta": 0.005082161077007185,
+      "verdict": "DEPTH_WITH_FALL",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.755,
+          "target_height": 0.7549999952316284,
+          "up_z": 1.0,
+          "reference_error": 1.2614786223382194e-16,
+          "height_error": 2.2737367586674853e-17,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7483811185394541,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9993895687535155,
+          "reference_error": 0.0011759667051386663,
+          "height_error": 7.024298811532238e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0005643664932626506
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7486933776786975,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995529758226525,
+          "reference_error": 0.0012839290034989007,
+          "height_error": 7.557464965154624e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0009676884841361387
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7485496397816532,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.999647076559122,
+          "reference_error": 0.0016246095186965386,
+          "height_error": 7.309617732468097e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.000793521805997855
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7444979640955809,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9999545503290599,
+          "reference_error": 0.003329063145801842,
+          "height_error": 2.023159521336907e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.008278348764632867
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.7476093758727522,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9988378601959377,
+          "reference_error": 0.0030243133473852324,
+          "height_error": 5.790245603558795e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.007617481430083917
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.7432658967925366,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9973622517338956,
+          "reference_error": 0.00976766175714563,
+          "height_error": 1.0666019567554168e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0668357189186691
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.7406340595917507,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9875596755460173,
+          "reference_error": 0.017420037184444747,
+          "height_error": 4.020194722550083e-07,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.09919050513858682
+        },
+        {
+          "t": 1.6,
+          "base_height": 0.7131829720224749,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9855762563183363,
+          "reference_error": 0.02435180208110382,
+          "height_error": 0.0007191535010416695,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.3518689904992845
+        },
+        {
+          "t": 1.8,
+          "base_height": 0.7154879253359091,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9797759255068691,
+          "reference_error": 0.04667899260257316,
+          "height_error": 0.0006008422718687788,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.6277815440116509
+        },
+        {
+          "t": 2.0,
+          "base_height": 0.6941097225068006,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9645303041932842,
+          "reference_error": 0.030709606735646645,
+          "height_error": 0.002105918443690516,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.6901713060722363
+        },
+        {
+          "t": 2.2,
+          "base_height": 0.6293185903794973,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.8851307994536028,
+          "reference_error": 0.04590453376169765,
+          "height_error": 0.012250376546661945,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.8966705855363706
+        },
+        {
+          "t": 2.4,
+          "base_height": 0.37166799565370306,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.5881910705671786,
+          "reference_error": 0.03334026476821306,
+          "height_error": 0.13566847245113606,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.9759336919990084
+        },
+        {
+          "t": 2.6,
+          "base_height": -0.22731969735791627,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.20231594896990204,
+          "reference_error": 0.04836775394702995,
+          "height_error": 0.9357074153467698,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.3423703375787963
+        },
+        {
+          "t": 2.8,
+          "base_height": -0.7624782219502149,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9989927395159898,
+          "reference_error": 0.11053459712795738,
+          "height_error": 2.257440836092177,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.9147378203346948
+        },
+        {
+          "t": 3.0,
+          "base_height": -0.7134256923559463,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9032396092369133,
+          "reference_error": 0.01681192922860233,
+          "height_error": 2.112446270922257,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.937527220837135
+        },
+        {
+          "t": 3.2,
+          "base_height": -0.6174802704333138,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.7050239966302341,
+          "reference_error": 0.017093796170909545,
+          "height_error": 1.8427527105075843,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.9102898809343032
+        },
+        {
+          "t": 3.4,
+          "base_height": -0.6585220477388608,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.7256209373253478,
+          "reference_error": 0.03123580158444392,
+          "height_error": 1.955863944686388,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8641956038956542
+        },
+        {
+          "t": 3.6,
+          "base_height": -0.7389339600620622,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9147752563873238,
+          "reference_error": 0.02212053588170787,
+          "height_error": 2.18724568643328,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8394209366066099
+        },
+        {
+          "t": 3.8,
+          "base_height": -0.739067263129129,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9953881514923116,
+          "reference_error": 0.026503037440506725,
+          "height_error": 2.1876399970712614,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8385287778481632
+        },
+        {
+          "t": 4.0,
+          "base_height": -0.6847752920196727,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.8916287275739626,
+          "reference_error": 0.04155736577649515,
+          "height_error": 2.0729528777795663,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8325610213942432
+        },
+        {
+          "t": 4.2,
+          "base_height": -0.6831049233750822,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.8592951303495562,
+          "reference_error": 0.057423999939896664,
+          "height_error": 2.068145756920814,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8487048772845773
+        },
+        {
+          "t": 4.4,
+          "base_height": -0.7379453948001418,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.981826272493406,
+          "reference_error": 0.03527350892492128,
+          "height_error": 2.228885937617114,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8809346497106163
+        },
+        {
+          "t": 4.6,
+          "base_height": -0.7624538070210192,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9873700372672178,
+          "reference_error": 0.014648924882980025,
+          "height_error": 2.302666041971017,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.9108259911162124
+        },
+        {
+          "t": 4.8,
+          "base_height": -0.7178366132992074,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9378159741116134,
+          "reference_error": 0.008553406587178057,
+          "height_error": 2.169247675428615,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.9067076094860536
+        },
+        {
+          "t": 5.0,
+          "base_height": -0.7283442695591655,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.8884111964360993,
+          "reference_error": 0.01749456123087802,
+          "height_error": 2.2003102078877412,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.8947429277307655
+        },
+        {
+          "t": 5.2,
+          "base_height": -0.7421021151492966,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9672227154461109,
+          "reference_error": 0.009581219155816932,
+          "height_error": 2.241314728907019,
+          "both_feet_contact": false,
+          "foot_slip_distance": 1.8060683958880719
+        },
+        {
+          "t": 5.4,
+          "base_height": -0.7464481051525055,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9984682516285475,
+          "reference_error": 0.008605646721804971,
+          "height_error": 2.2543463981471237,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.7259176043870128
+        },
+        {
+          "t": 5.6,
+          "base_height": -0.7349937159786849,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9742934346421745,
+          "reference_error": 0.01692218893536757,
+          "height_error": 2.220081259446283,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.7162761917364242
+        },
+        {
+          "t": 5.8,
+          "base_height": -0.7433136875037548,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9802415973645642,
+          "reference_error": 0.027508725263865202,
+          "height_error": 2.244943891872067,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.717677109826832
+        }
+      ]
+    },
+    {
+      "variant": "blend_0p50",
+      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "seconds": 6.0,
+      "stage_height": 0.74,
+      "fell_at": 1.54,
+      "upright_s": 1.54,
+      "min_height": -0.7885758495515924,
+      "hold_duration_at_or_below_stage": 4.98,
+      "final_height": -0.7443402754408858,
+      "return_to_stand": false,
+      "torso_up_min": -0.9999504061803784,
+      "foot_contact_ratio": 0.8833333333333333,
+      "foot_slip_distance": 1.0047427935377624,
+      "max_reference_error": 0.14862774343882384,
+      "max_height_error": 2.3365441569876433,
+      "max_joint_limit_violation": 0.08064109968350097,
+      "mean_action_delta": 0.0031756411427826,
+      "verdict": "DEPTH_WITH_FALL",
+      "samples": [
+        {
+          "t": 0.0,
+          "base_height": 0.755,
+          "target_height": 0.7549999952316284,
+          "up_z": 1.0,
+          "reference_error": 1.2614786223382194e-16,
+          "height_error": 2.2737367586674853e-17,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0
+        },
+        {
+          "t": 0.2,
+          "base_height": 0.7445220219638227,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9991689946106753,
+          "reference_error": 0.0022004456426376055,
+          "height_error": 2.0448596390661453e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0004754754149265646
+        },
+        {
+          "t": 0.4,
+          "base_height": 0.7447642907249276,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9994640508369259,
+          "reference_error": 0.0024592616827867012,
+          "height_error": 2.26983752400877e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0007703803011085634
+        },
+        {
+          "t": 0.6,
+          "base_height": 0.7444065357218843,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9998476449906246,
+          "reference_error": 0.0031408962085488165,
+          "height_error": 1.9417473020334586e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.0008415961182161391
+        },
+        {
+          "t": 0.8,
+          "base_height": 0.7375078751841323,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9995300880173047,
+          "reference_error": 0.0079863839517103,
+          "height_error": 6.2107336314631706e-06,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.014668323267060154
+        },
+        {
+          "t": 1.0,
+          "base_height": 0.7348024000863136,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9924019845485105,
+          "reference_error": 0.00961843578456818,
+          "height_error": 2.7015143999194823e-05,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.01703283448841744
+        },
+        {
+          "t": 1.2,
+          "base_height": 0.716245007399466,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.9638137538916949,
+          "reference_error": 0.02200029125603644,
+          "height_error": 0.0005643001265420451,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.048775451822346334
+        },
+        {
+          "t": 1.4,
+          "base_height": 0.602554108119519,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.7871572721926685,
+          "reference_error": 0.04044425069925434,
+          "height_error": 0.01889137581639329,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.031562837165119484
+        },
+        {
+          "t": 1.6,
+          "base_height": 0.3058353229938605,
+          "target_height": 0.7400000095367432,
+          "up_z": 0.4482246554455435,
+          "reference_error": 0.01882183394321308,
+          "height_error": 0.18849897504087954,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.11959544514223007
+        },
+        {
+          "t": 1.8,
+          "base_height": -0.35099111423491053,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.36405254504477724,
+          "reference_error": 0.0464971857688093,
+          "height_error": 1.1902616321485358,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.4705534935961981
+        },
+        {
+          "t": 2.0,
+          "base_height": -0.7834173957004134,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9593142296610369,
+          "reference_error": 0.06587889658464821,
+          "height_error": 2.320800590579511,
+          "both_feet_contact": true,
+          "foot_slip_distance": 1.0044084943217468
+        },
+        {
+          "t": 2.2,
+          "base_height": -0.6450733926346811,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.8228459558351342,
+          "reference_error": 0.010728065292046457,
+          "height_error": 1.9184283294027242,
+          "both_feet_contact": false,
+          "foot_slip_distance": 0.9760504421387115
+        },
+        {
+          "t": 2.4,
+          "base_height": -0.5955744861223774,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.6667197890612359,
+          "reference_error": 0.02213392669673957,
+          "height_error": 1.7837592334551144,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.9012578113570769
+        },
+        {
+          "t": 2.6,
+          "base_height": -0.687223724553171,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.8166356599419204,
+          "reference_error": 0.02469751749854892,
+          "height_error": 2.0369675871495585,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8271545385029017
+        },
+        {
+          "t": 2.8,
+          "base_height": -0.7533641473910135,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9795788260661762,
+          "reference_error": 0.008744245418044548,
+          "height_error": 2.2301365051965494,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.821570702507288
+        },
+        {
+          "t": 3.0,
+          "base_height": -0.7209448110055335,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9653200891463057,
+          "reference_error": 0.02636529887454039,
+          "height_error": 2.1343597686693054,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.832820633130667
+        },
+        {
+          "t": 3.2,
+          "base_height": -0.6707574048436861,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.8847734170325802,
+          "reference_error": 0.04167318309381905,
+          "height_error": 1.9902364822293543,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8619495316534389
+        },
+        {
+          "t": 3.4,
+          "base_height": -0.6985251154694937,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.8963933491957158,
+          "reference_error": 0.04310690560894022,
+          "height_error": 2.069354535274209,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8670798257092243
+        },
+        {
+          "t": 3.6,
+          "base_height": -0.748496486933302,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.992607303942465,
+          "reference_error": 0.027215983531832837,
+          "height_error": 2.215621820003599,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8687594090338013
+        },
+        {
+          "t": 3.8,
+          "base_height": -0.751010298252413,
+          "target_height": 0.7400000095367432,
+          "up_z": -0.9689782696494958,
+          "reference_error": 0.013840073426256748,
+          "height_error": 2.223111737933514,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8681389570907577
+        },
+        {
+          "t": 4.0,
+          "base_height": -0.7122233413153115,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9056827254281173,
+          "reference_error": 0.010808290425330106,
+          "height_error": 2.1527443193079345,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.863950383258004
+        },
+        {
+          "t": 4.2,
+          "base_height": -0.719123052948916,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.8897985426684402,
+          "reference_error": 0.013971508299285689,
+          "height_error": 2.1730387611771,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8362501977132019
+        },
+        {
+          "t": 4.4,
+          "base_height": -0.7511446324503008,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9637393825384719,
+          "reference_error": 0.008491135015515237,
+          "height_error": 2.268471639495137,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8344946054562246
+        },
+        {
+          "t": 4.6,
+          "base_height": -0.7508787680140575,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9987943327384574,
+          "reference_error": 0.010296125233229132,
+          "height_error": 2.267670849594356,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8341144267921824
+        },
+        {
+          "t": 4.8,
+          "base_height": -0.7227225180372259,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9593705595449683,
+          "reference_error": 0.026209917697415874,
+          "height_error": 2.1836638262216193,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8351746922360559
+        },
+        {
+          "t": 5.0,
+          "base_height": -0.7172496888867854,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9385954644437262,
+          "reference_error": 0.0322372751202124,
+          "height_error": 2.1675191323867695,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8366128819432265
+        },
+        {
+          "t": 5.2,
+          "base_height": -0.7457521894249016,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9862831783637138,
+          "reference_error": 0.02533467531054421,
+          "height_error": 2.2522571197513472,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.837901926035616
+        },
+        {
+          "t": 5.4,
+          "base_height": -0.7614578947850928,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.996232627694298,
+          "reference_error": 0.011984207347620032,
+          "height_error": 2.299644532193966,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8383044735684091
+        },
+        {
+          "t": 5.6,
+          "base_height": -0.73989947010321,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9568408952537939,
+          "reference_error": 0.007195938005929144,
+          "height_error": 2.234724411458386,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8373916246926991
+        },
+        {
+          "t": 5.8,
+          "base_height": -0.7322573202160169,
+          "target_height": 0.7549999952316284,
+          "up_z": -0.9169478748414247,
+          "reference_error": 0.00944505923425654,
+          "height_error": 2.211934322352537,
+          "both_feet_contact": true,
+          "foot_slip_distance": 0.8356019904259624
+        }
+      ]
+    }
+  ],
+  "verdict": "CONTROLLER_DEPTH_NEEDS_CONTACT",
+  "next": "Use a stable depth blend as curriculum controller; if none reaches depth, redesign action arbitration or run longer fine-tune with behavior cloning toward staged pose."
+}

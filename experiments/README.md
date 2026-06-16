@@ -32,6 +32,7 @@
 | 23 | [g1-squat-target-sanity](23-g1-squat-target-sanity/README.md) | 추가 PPO 전에 squat reference/action target이 native에서 실제 height drop을 만드는지 분리 검증 | 🟥 target은 height drop 생성, 모든 variant 1.22s fall → depth curriculum/controller 필요 |
 | 24 | [g1-squat-skill-design](24-g1-squat-skill-design/README.md) | 더 학습하기 전에 G1 squat의 정의, 성공 기준, 방법론을 고정한다 | ✅ design gate PASS, 다음은 staged depth curriculum |
 | 25 | [g1-squat-depth-curriculum](25-g1-squat-depth-curriculum/README.md) | exp24 정의에 따라 stage별 target height curriculum으로 G1 squat depth를 검증한다 | 🟨 scaffold/native diagnostic PASS, stage 0.74 depth pending |
+| 26 | [g1-squat-controller-probe](26-g1-squat-controller-probe/README.md) | stabilizer policy와 stage 0.74 reference pose blend가 안정적 squat depth를 만드는지 분리 검증 | 🟨 depth/hold 후보 발견, contact gate 미달 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
