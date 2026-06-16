@@ -179,8 +179,8 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['policy', 'Walking policies', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
-      ['skills', 'Humanoid skills', ['g1-controlled-squat']],
+      ['policy', 'Learned locomotion', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
+      ['skills', 'Humanoid probes', ['g1-controlled-squat']],
       ['manipulation', 'Arms and hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
       ['checks', 'Model checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
     ];
@@ -202,9 +202,9 @@ export class MuJoCoDemo {
       'g1-controlled-squat': {
         name: 'Unitree G1 Lowering Probe',
         kind: 'Humanoid balance probe',
-        description: 'A shallow lowering replay from the M19 controller audit. It is stable, but not a visible squat.',
+        description: 'A shallow lowering replay from the humanoid controller audit. It is stable, but not a finished squat skill.',
         actions: ['Balance', 'Lower slightly', 'Return upright'],
-        learned: 'Stabilizer policy plus calibrated reference controller; visible squat gate remains open.',
+        learned: 'Verified as a micro-dip artifact; visible squat work is paused while the public gallery is polished.',
       },
       'barkour-walk': {
         name: 'Google Barkour',
@@ -296,12 +296,14 @@ export class MuJoCoDemo {
     panel.innerHTML = `
       <div class="project-panel__head">
         <div>
+          <div class="project-panel__eyebrow">Interactive MuJoCo gallery</div>
           <div class="project-panel__brand">Robotics Lab</div>
           <div class="project-panel__domain">robotics.askewly.com</div>
         </div>
         <button class="project-panel__toggle" type="button" aria-expanded="true" title="Collapse panel">-</button>
       </div>
       <div class="project-panel__body">
+        <div class="robot-picker__label">Robot / experiment</div>
         <div class="robot-picker">
           <button class="robot-picker__button" type="button" aria-expanded="false">
             <span>
@@ -313,20 +315,21 @@ export class MuJoCoDemo {
           <div class="robot-picker__menu" role="menu"></div>
         </div>
         <div class="robot-card">
+          <div class="robot-card__label">Robot description</div>
           <div class="robot-card__description"></div>
           <div class="robot-card__section">
             <div class="robot-card__label">Try</div>
             <div class="robot-card__chips robot-card__actions"></div>
           </div>
           <div class="robot-card__section">
-            <div class="robot-card__label">What this shows</div>
+            <div class="robot-card__label">Verified / learned</div>
             <div class="robot-card__learned"></div>
           </div>
         </div>
         <div class="research-card">
-          <div class="research-card__label">Current skill work</div>
-          <div class="research-card__title">G1 visible squat gate open</div>
-          <div class="research-card__text">The current replay is a stable micro-dip, not a finished squat. Next gate: at least 8cm pelvis drop with knee and hip flexion, no fall, and both feet in contact.</div>
+          <div class="research-card__label">Platform status</div>
+          <div class="research-card__title">Policy gallery first</div>
+          <div class="research-card__text">Walking policies and robot-arm replays are the polished public surface. Humanoid squat work is paused until a visible, no-fall motion exists.</div>
         </div>
       </div>
     `;
@@ -337,15 +340,15 @@ export class MuJoCoDemo {
         top: 14px;
         left: 14px;
         z-index: 1200;
-        width: min(344px, calc(100vw - 28px));
-        color: #f7fbff;
+        width: min(372px, calc(100vw - 28px));
+        color: #f8fafc;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: rgba(8, 12, 16, 0.76);
-        border: 1px solid rgba(255,255,255,0.16);
-        box-shadow: 0 18px 60px rgba(0,0,0,0.34);
-        backdrop-filter: blur(14px);
+        background: rgba(10, 14, 18, 0.84);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 20px 70px rgba(0,0,0,0.36);
+        backdrop-filter: blur(16px);
         border-radius: 8px;
-        overflow: hidden;
+        overflow: visible;
       }
       .project-panel, .project-panel * { box-sizing: border-box; }
       .project-panel__head {
@@ -353,17 +356,26 @@ export class MuJoCoDemo {
         align-items: center;
         justify-content: space-between;
         gap: 14px;
-        padding: 13px 14px 11px;
+        padding: 14px 15px 12px;
         border-bottom: 1px solid rgba(255,255,255,0.12);
       }
+      .project-panel__eyebrow {
+        margin-bottom: 4px;
+        color: rgba(248,250,252,0.52);
+        font-size: 10px;
+        line-height: 1.2;
+        font-weight: 760;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
       .project-panel__brand {
-        font-size: 16px;
+        font-size: 17px;
         line-height: 1.15;
-        font-weight: 700;
+        font-weight: 780;
       }
       .project-panel__domain {
         margin-top: 3px;
-        color: rgba(247,251,255,0.66);
+        color: rgba(248,250,252,0.64);
         font-size: 12px;
         line-height: 1.2;
       }
@@ -372,18 +384,31 @@ export class MuJoCoDemo {
         height: 28px;
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 6px;
-        color: #f7fbff;
+        color: #f8fafc;
         background: rgba(255,255,255,0.08);
         font: 700 16px/1 ui-sans-serif, system-ui, sans-serif;
         cursor: pointer;
       }
-      .project-panel__body { padding: 13px 14px 14px; }
+      .project-panel__body {
+        padding: 13px 14px 14px;
+        border-radius: 0 0 8px 8px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0));
+      }
       .robot-picker {
         position: relative;
       }
+      .robot-picker__label {
+        margin: 0 0 7px;
+        color: rgba(248,250,252,0.58);
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 760;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
       .robot-picker__button {
         width: 100%;
-        min-height: 48px;
+        min-height: 52px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -391,26 +416,26 @@ export class MuJoCoDemo {
         border: 1px solid rgba(255,255,255,0.18);
         border-radius: 6px;
         padding: 8px 10px;
-        color: #f7fbff;
-        background: rgba(0,0,0,0.42);
+        color: #f8fafc;
+        background: rgba(2,6,10,0.62);
         text-align: left;
         cursor: pointer;
       }
       .robot-picker__name {
         display: block;
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1.2;
         font-weight: 750;
       }
       .robot-picker__kind {
         display: block;
         margin-top: 3px;
-        color: rgba(247,251,255,0.62);
+        color: rgba(248,250,252,0.62);
         font-size: 12px;
         line-height: 1.2;
       }
       .robot-picker__chevron {
-        color: rgba(247,251,255,0.7);
+        color: rgba(248,250,252,0.7);
         font-size: 13px;
         line-height: 1;
       }
@@ -425,7 +450,8 @@ export class MuJoCoDemo {
         padding: 8px;
         border: 1px solid rgba(255,255,255,0.16);
         border-radius: 8px;
-        background: #081016;
+        z-index: 2;
+        background: #090f14;
         box-shadow: 0 18px 50px rgba(0,0,0,0.42);
       }
       .robot-picker.is-open .robot-picker__menu { display: block; }
@@ -433,7 +459,7 @@ export class MuJoCoDemo {
       .robot-picker.is-open ~ .research-card { visibility: hidden; }
       .robot-picker__group {
         margin: 8px 4px 5px;
-        color: rgba(247,251,255,0.48);
+        color: rgba(248,250,252,0.48);
         font-size: 11px;
         line-height: 1.2;
         font-weight: 750;
@@ -450,7 +476,7 @@ export class MuJoCoDemo {
         padding: 7px 8px;
         border: 0;
         border-radius: 6px;
-        color: #f7fbff;
+        color: #f8fafc;
         background: transparent;
         text-align: left;
         cursor: pointer;
@@ -465,18 +491,18 @@ export class MuJoCoDemo {
         font-weight: 700;
       }
       .robot-picker__item-kind {
-        color: rgba(247,251,255,0.54);
+        color: rgba(248,250,252,0.54);
         font-size: 11px;
       }
       .robot-card {
         margin-top: 12px;
         padding: 12px;
-        border: 1px solid rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.11);
         border-radius: 8px;
-        background: rgba(255,255,255,0.045);
+        background: rgba(255,255,255,0.04);
       }
       .robot-card__description {
-        color: rgba(247,251,255,0.88);
+        color: rgba(248,250,252,0.88);
         font-size: 13px;
         line-height: 1.45;
       }
@@ -486,7 +512,7 @@ export class MuJoCoDemo {
       .robot-card__label,
       .research-card__label {
         margin-bottom: 6px;
-        color: rgba(247,251,255,0.54);
+        color: rgba(248,250,252,0.54);
         font-size: 11px;
         line-height: 1.2;
         font-weight: 750;
@@ -503,7 +529,7 @@ export class MuJoCoDemo {
         align-items: center;
         min-height: 24px;
         padding: 0 8px;
-        color: #f7fbff;
+        color: #f8fafc;
         border: 1px solid rgba(255,255,255,0.16);
         border-radius: 999px;
         background: rgba(255,255,255,0.07);
@@ -512,7 +538,7 @@ export class MuJoCoDemo {
       }
       .robot-card__learned,
       .research-card__text {
-        color: rgba(247,251,255,0.76);
+        color: rgba(248,250,252,0.76);
         font-size: 12px;
         line-height: 1.45;
       }
@@ -520,8 +546,8 @@ export class MuJoCoDemo {
         margin-top: 13px;
         padding: 12px;
         border-radius: 8px;
-        background: rgba(73, 124, 176, 0.16);
-        border: 1px solid rgba(156, 202, 255, 0.18);
+        background: rgba(31, 44, 54, 0.72);
+        border: 1px solid rgba(255,255,255,0.10);
       }
       .research-card__title {
         margin-bottom: 5px;

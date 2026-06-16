@@ -24,10 +24,11 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 같은 프로토콜로 정책을 비교한다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역한다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | micro-dip 확인 / visible gate 진행 |
+| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 보류 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
+| M23 | Public UI polish | 방문자가 로봇/동작/검증 내용을 바로 이해한다 | robotics.askewly.com gallery UI | 1차 완료 |
 
 ## 닫힌 증거 요약
 
@@ -80,9 +81,18 @@
 - [x] exp29에서 visible squat gate를 다시 정의했다: pelvis drop >=8cm, knee flexion delta >=0.60rad, hip pitch delta >=0.35rad.
 - [x] exp29 static audit상 local G1 lower-body joint ranges는 visible squat target 후보를 담을 수 있다. 단, 동역학/접촉/학습 성공은 아직 미증명이다.
 - [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
-- [ ] **다음 작업: guarded descent controller** — torso/upright/support guard와 descent speed cap을 넣어 visible-depth와 no-fall을 동시에 만족시키는 native controller를 먼저 만든다.
+- [ ] **보류** — UI/포트폴리오 정리 후 재개한다. 다음 기술 작업은 guarded descent controller다.
 
 완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md).
+
+### M23 - Public UI polish
+
+- [x] `robotics.askewly.com`을 canonical 도메인으로 고정했다.
+- [x] Vercel project domain에서 legacy `physical-ai-arm.askewly.com`을 제거했다.
+- [x] 로봇 선택, 설명, 가능한 조작, 검증/학습 내용을 first-view panel에서 명확히 보이게 다듬었다.
+- [x] desktop/mobile live QA를 통과했다.
+
+완료 기준: ✅ live gallery가 기술 실험 장부가 아니라 방문자가 이해 가능한 로봇 포트폴리오로 보인다. 증거: [web](experiments/03-digital-twin/web/README.md), `node qa/visual_check.mjs --live`.
 
 ### M20 - Acrobatic feasibility gate
 
