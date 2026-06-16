@@ -180,6 +180,7 @@ export class MuJoCoDemo {
   addProjectOverlay() {
     const groups = [
       ['policy', 'Walking policies', ['g1-walk', 'barkour-walk', 'go1-walk', 'spot-walk', 'g1-rough-walk', 'go1-rough-walk', 'spot-rough-walk']],
+      ['skills', 'Humanoid skills', ['g1-controlled-squat']],
       ['manipulation', 'Arms and hands', ['so100-stack', 'panda-sweep', 'shadow-hand', 'dummy-arm']],
       ['checks', 'Model checks', ['g1-stand', 'spot-stand', 'humanoid-settle']],
     ];
@@ -197,6 +198,13 @@ export class MuJoCoDemo {
         description: 'The G1 walking policy tested on low curb terrain.',
         actions: ['Walk over curbs', 'Turn', 'Command sweep'],
         learned: 'Same G1 gait policy checked against rough-terrain robustness.',
+      },
+      'g1-controlled-squat': {
+        name: 'Unitree G1 Squat',
+        kind: 'Humanoid skill',
+        description: 'A controlled lowering, hold, and return squat replay from the M19 stage 0.74 gate.',
+        actions: ['Lower', 'Hold squat', 'Return to stand'],
+        learned: 'Stabilizer policy plus calibrated reference controller; native gate PASS.',
       },
       'barkour-walk': {
         name: 'Google Barkour',
@@ -317,8 +325,8 @@ export class MuJoCoDemo {
         </div>
         <div class="research-card">
           <div class="research-card__label">Current skill work</div>
-          <div class="research-card__title">G1 squat is still native-only</div>
-          <div class="research-card__text">Stable for 6.0s, but stage 0.74m depth is pending. It will appear here only after the motion is visible and controlled.</div>
+          <div class="research-card__title">G1 squat stage 0.74 passed</div>
+          <div class="research-card__text">Native gate: 6.0s no-fall, 0.7446m minimum height, 1.32s hold, and both feet in contact. This replay shows that controlled motion.</div>
         </div>
       </div>
     `;

@@ -24,7 +24,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 같은 프로토콜로 정책을 비교한다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역한다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | controlled squat policy/controller + browser QA | stage 0.74 PASS / browser packaging 필요 |
+| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | controlled squat controller + browser QA | stage 0.74 PASS + browser replay |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
@@ -75,9 +75,10 @@
 - [x] squat skill design gate에서 G1 squat를 controlled lowering/hold/return으로 재정의하고 success metric을 고정했다.
 - [x] staged curriculum scaffold와 stage 0.74 native diagnostic을 만들었다. exp22 source policy는 6초 no-fall이지만 min height 0.7501m로 stage depth는 아직 미달이다.
 - [x] exp28에서 calibrated reference controller로 stage 0.74 controlled squat gate를 통과했다: no-fall 6.0s, min height 0.7446m, hold 1.32s, foot contact 1.00.
-- [ ] **🔄 browser packaging / policy distillation** — exp28 PASS controller를 브라우저에서 재생 가능한 skill artifact로 패키징하거나, 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류한다.
+- [x] exp28 PASS rollout을 50Hz qpos trajectory로 기록해 browser replay artifact `g1-controlled-squat`로 연결했고 local visual QA를 통과했다.
+- [ ] **선택 후속: policy distillation / deeper curriculum** — 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류하거나, stage 0.72 이하로 curriculum을 확장한다.
 
-완료 기준: 🟨 stage 0.74 native depth/contact gate는 닫혔다. 다만 현재 산출물은 stabilizer policy + calibrated reference controller이며, live browser QA 또는 learned residual policy packaging이 남아 M19 전체 완료는 아니다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md).
+완료 기준: ✅ controlled squat stage 0.74는 native gate와 browser replay QA까지 닫혔다. 현재 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller이므로, policy distillation과 더 깊은 stage는 후속 연구 후보로 둔다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md).
 
 ### M20 - Acrobatic feasibility gate
 

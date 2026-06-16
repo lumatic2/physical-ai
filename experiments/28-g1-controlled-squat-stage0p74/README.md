@@ -75,6 +75,7 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 | attempt-015-refscale-0p75-blend-0p15-freeze-schedule | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | calibrated reference가 depth를 늘렸지만 min height 0.7480m |
 | attempt-016-refscale-0p75-blend-0p30-freeze-schedule | DEPTH_PENDING | native MuJoCo / 6.0s | 0 | no-fall/contact 1.00, min height 0.7456m로 gate 직전 |
 | attempt-017-refscale-0p75-blend-0p35-freeze-schedule | PASS_CONTROLLED_SQUAT | native MuJoCo / 6.0s | 0 | no-fall, min height 0.7446m, hold 1.32s, contact 1.00 |
+| attempt-018-web-replay-record | PASS_CONTROLLED_SQUAT | native MuJoCo / 6.0s + web replay QA | 0 | attempt-017 controller를 50Hz qpos trajectory로 기록하고 `g1-controlled-squat` replay QA PASS |
 
 ### best gate
 | Metric | Best | Gate | 상태 |
@@ -105,6 +106,8 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - `verify/stage-0p74/attempts/attempt-015-refscale-0p75-blend-0p15-freeze-schedule/result.json`
 - `verify/stage-0p74/attempts/attempt-016-refscale-0p75-blend-0p30-freeze-schedule/result.json`
 - `verify/stage-0p74/attempts/attempt-017-refscale-0p75-blend-0p35-freeze-schedule/result.json`
+- `verify/stage-0p74/attempts/attempt-018-web-replay-record/result.json`
+- `../03-digital-twin/g1_controlled_squat_trajectory.json`
 - `verify/stage-0p74/best.json`
 - `verify/stage-0p74/summary.md`
 
@@ -124,14 +127,15 @@ exp24/25/27에서 확정한 controlled squat gate를 그대로 쓴다. stage 0.7
 - reference audit에서 핵심 원인을 찾았다. 기존 staged reference는 declared target이 0.740m여도 foot-anchored base height가 0.7532m라 실제 관절 포즈는 stage depth를 만들지 못한다.
 - raw reference scale sweep상 0.75 scale은 foot-anchored min height 0.7422m, foot XY drift 0.0077m, joint violation 0.0으로 stage 0.74에 맞는 calibrated target이다.
 - `reference_scale=0.75`, `freeze_phase`, squat blend schedule, `controller_blend=0.35` 조합은 native 6초 gate를 통과했다. 결과: no-fall, min height 0.7446m, hold 1.32s, return true, contact 1.00, joint violation 0.0.
+- 같은 controller rollout을 50Hz qpos trajectory로 기록해 browser replay artifact로 연결했다. local visual QA는 `?exp=g1-controlled-squat` replay mode, 300 frames, console errors 0으로 PASS했다.
 
 ### 가설은 통과했나?
 - [x] PASS — stage 0.74 controlled squat gate를 모두 통과한다.
 - [ ] FAIL_PARTIAL — attempt loop와 contact-aware training path는 열렸지만, 첫 fine-tune은 depth gate 미달이다.
 
 ### 정의에 반영
-- M19의 stage 0.74 depth/contact gate는 닫혔다. 다만 이 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller다.
-- 다음 M19 작업은 이 PASS controller를 browser/ONNX playback 가능한 skill artifact로 패키징하거나, 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류하는 것이다.
+- M19의 stage 0.74 depth/contact gate와 browser replay packaging은 닫혔다. 다만 이 산출물은 learned residual policy가 아니라 stabilizer policy + calibrated reference controller다.
+- 다음 M19 작업은 같은 calibrated reference를 reward/prior로 넣어 residual policy로 증류하거나, 더 낮은 stage height로 curriculum을 확장하는 것이다.
 
 ### 다음 attempt 후보
-- exp28 후속은 새 attempt가 아니라 integration step이어야 한다. `attempt-017`의 controller contract를 web/native playback에 옮기고 live에서 사람이 확인 가능한 squat clip 또는 selectable skill로 노출한다.
+- exp28 후속은 learned-policy packaging 여부를 결정하는 integration step이다. 현재 웹에는 `g1-controlled-squat` replay로 노출된다.

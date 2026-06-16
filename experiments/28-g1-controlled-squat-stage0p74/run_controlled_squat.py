@@ -404,6 +404,7 @@ def native_eval(
     params_path: Path,
     seconds: float,
     out_dir: Path,
+    trajectory_out: Path | None = None,
 ) -> dict:
     env = ContactAwareSquat(
         stage_height=stage_height,
@@ -453,6 +454,7 @@ def native_eval(
     hold_count = 0
     max_foot_slip = 0.0
     samples = []
+    qpos_frames = []
 
     def native_effective_blend(step: int) -> float:
         if blend_schedule != "squat":
@@ -520,6 +522,8 @@ def native_eval(
         data.ctrl[:] = (1.0 - effective_blend) * policy_targets + effective_blend * staged_pose
         for _ in range(n_substeps):
             mujoco.mj_step(model, data)
+        if trajectory_out is not None:
+            qpos_frames.append([float(v) for v in data.qpos[: model.nq]])
         if freeze_phase:
             phase = np.ones(2, dtype=np.float32) * np.pi
         else:
@@ -593,6 +597,18 @@ def native_eval(
         "verdict": verdict,
         "samples": samples,
     }
+    if trajectory_out is not None:
+        trajectory_out.parent.mkdir(parents=True, exist_ok=True)
+        trajectory = {
+            "fps": int(round(1.0 / ctrl_dt)),
+            "nq": int(model.nq),
+            "scene": "g1/scene_g1_policy.xml",
+            "note": "G1 controlled squat stage 0.74 replay from exp28 calibrated reference controller.",
+            "source_attempt": out_dir.name,
+            "qpos": qpos_frames,
+        }
+        trajectory_out.write_text(json.dumps(trajectory), encoding="utf-8")
+        native["trajectory_out"] = str(trajectory_out)
     (out_dir / "native-eval.json").write_text(json.dumps(native, indent=2), encoding="utf-8")
     return native
 
@@ -756,6 +772,7 @@ def main() -> None:
     parser.add_argument("--timesteps", type=int, default=20_000)
     parser.add_argument("--seed", type=int, default=8)
     parser.add_argument("--attempt", default=None)
+    parser.add_argument("--trajectory-out", type=Path, default=None)
     args = parser.parse_args()
 
     source = args.source or default_source()
@@ -821,6 +838,7 @@ def main() -> None:
         params_path,
         args.seconds,
         attempt_dir,
+        args.trajectory_out,
     )
     result["verdict"] = result["native"]["verdict"]
     (attempt_dir / "result.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
