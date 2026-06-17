@@ -41,6 +41,7 @@
 | 32 | [digital-twin-architecture-gate](32-digital-twin-architecture-gate/README.md) | 현재 웹 구현을 public twin viewer로 재정의하고 backend twin 후보를 결정할 수 있는지 검증 | ✅ MuJoCo/Web 유지 + Unitree MuJoCo/IsaacLab backend gate 추천 |
 | 33 | [unitree-mujoco-g1-bridge-probe](33-unitree-mujoco-g1-bridge-probe/README.md) | Unitree-style G1 trace를 현재 web trajectory contract로 변환할 수 있는지 검증 | ✅ COMPLETE: Unitree MJCF DDS/browser bridge + collapse rejection + Unitree RL Lab G1-29DOF unassisted policy candidate PASS |
 | 34 | [g1-guarded-descent-controller](34-g1-guarded-descent-controller/README.md) | G1 visible squat 실패가 과격한 reference blend 문제라면 guarded descent로 fall 없이 drop을 키울 수 있는지 검증 | 🟥 no-fall visible drop 후보는 찾았지만 contact/return gate 실패 |
+| 35 | [g1-stance-anchored-squat-controller](35-g1-stance-anchored-squat-controller/README.md) | foot slip/contact를 state transition으로 다뤄 visible drop 직후 return하면 M19 gate를 닫을 수 있는지 검증 | 🟥 early return/stance scheduling도 fall; WBC 또는 stance-aware training 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
