@@ -46,6 +46,7 @@
 | 37 | [g1-com-support-squat-guard](37-g1-com-support-squat-guard/README.md) | CoM/support polygon guard가 visible IK squat collapse를 조기 감지하거나 완화하는지 검증 | 🟥 support breach는 fall보다 먼저 잡히지만 heuristic guard는 collapse 회복 실패 |
 | 38 | [g1-support-aware-depth-finetune](38-g1-support-aware-depth-finetune/README.md) | support margin과 vertical velocity reward를 넣으면 staged squat depth가 native에서 개선되는지 검증 | 🟥 50k finetune no-fall 유지, reward 상승, but visible drop 0.62cm로 standing attractor 유지 |
 | 39 | [g1-reference-offset-action-probe](39-g1-reference-offset-action-probe/README.md) | policy action을 default offset이 아니라 reference offset residual로 해석하면 visible depth leverage가 생기는지 검증 | 🟥 direct reference-offset은 fall, ramp는 안정적 micro-dip |
+| 40 | [g1-reference-base-finetune](40-g1-reference-base-finetune/README.md) | reference-base action target을 학습 env에 직접 넣으면 visible depth와 balance가 같이 개선되는지 검증 | 🟥 20k reward 상승에도 drop 0.56cm, standing attractor 유지 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

@@ -1,0 +1,2 @@
+C:\tmp\e34\Lib\site-packages\jax\_src\abstract_arrays.py:145: RuntimeWarning: overflow encountered in cast
+  return literals.TypedNdArray(np.asarray(x, dtype))
