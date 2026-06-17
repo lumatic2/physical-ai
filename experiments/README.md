@@ -84,6 +84,7 @@
 | 75 | [g1-pose-aware-selector](75-g1-pose-aware-selector/README.md) | raw knee offset 대신 selector cost에 achieved knee/hip flexion reward를 넣으면 knee gap이 닫히는지 검증 | 🟨 7.61cm recoverable 유지, knee는 0.513rad에 고정되어 selector score만으로는 visible gate 미달 |
 | 76 | [g1-knee-flexion-microphase](76-g1-knee-flexion-microphase/README.md) | support/ZMP health-gated knee micro-phase가 recoverable squat에서 knee plateau를 넘기는지 검증 | 🟨 7.70cm recoverable까지 전진, but stable knee 0.516rad로 visible gate 미달; knee push branch는 late fall |
 | 77 | [g1-descend-only-knee-phase](77-g1-descend-only-knee-phase/README.md) | knee micro-target을 return phase에서 제거하면 late fall 없이 knee plateau를 넘는지 검증 | 🟨 return cutoff도 7.60cm/0.512rad로 후퇴; one-step target family 한계 확인 |
+| 78 | [g1-trajectory-schedule-search](78-g1-trajectory-schedule-search/README.md) | MPC-style trajectory schedule search가 8cm/knee/hip visible gate를 닫는지 검증 | 🟨 schedule search도 7.69cm/0.515rad recoverable에서 포화; deeper branch는 late fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
