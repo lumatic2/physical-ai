@@ -1,0 +1,328 @@
+{
+  "attempt": "ik-drop-0p08-blend-0p35",
+  "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\22-g1-squat-depth-finetune\\verify\\train\\params.pkl",
+  "native": {
+    "drop": 0.08,
+    "max_blend": 0.35,
+    "policy_weight": 1.0,
+    "descend_s": 3.0,
+    "hold_s": 0.2,
+    "return_s": 2.4,
+    "seconds": 6.0,
+    "params_path": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\22-g1-squat-depth-finetune\\verify\\train\\params.pkl",
+    "ik": {
+      "drop": 0.08,
+      "start_height": 0.755,
+      "target_height": 0.675,
+      "success": true,
+      "cost": 0.07527746714403195,
+      "nfev": 6,
+      "rms_foot_error": 0.0006108590297431658,
+      "max_foot_error": 0.0006108590424735445,
+      "lower_body_target": [
+        -0.575114476925352,
+        -0.0003914080673100065,
+        -0.00037249026131839743,
+        1.2168642879959017,
+        -0.35307724934194473,
+        -1.8902048011641678e-17,
+        -0.5751144768987575,
+        0.0003914087744053887,
+        0.0003724908824383186,
+        1.2168642877780107,
+        -0.3530772461397548,
+        2.482051673038081e-17,
+        0.0,
+        0.0,
+        0.073
+      ]
+    },
+    "start_height": 0.755,
+    "min_height": -0.7521981336930337,
+    "visible_drop": 1.5071981336930338,
+    "fell_at": 4.02,
+    "upright_s": 4.02,
+    "final_height": -0.7381126666315091,
+    "return_to_stand": false,
+    "torso_up_min_observed": -0.999998145580948,
+    "foot_contact_ratio": 0.8633333333333333,
+    "foot_slip_distance": 0.8161155461583224,
+    "stance_ok": false,
+    "max_joint_limit_violation": 0.04293655266143104,
+    "max_observed_blend": 0.35,
+    "pass_gate": false,
+    "verdict": "FAIL_FALL",
+    "samples": [
+      {
+        "t": 0.0,
+        "base_height": 0.755,
+        "visible_drop": 0.0,
+        "up_z": 1.0,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0,
+        "controller_blend": 0.0
+      },
+      {
+        "t": 0.2,
+        "base_height": 0.7531998581206324,
+        "visible_drop": 0.0018001418793676116,
+        "up_z": 0.9997845578095151,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0005543479687664382,
+        "controller_blend": 0.02333333333333333
+      },
+      {
+        "t": 0.4,
+        "base_height": 0.7505676609587525,
+        "visible_drop": 0.004432339041247513,
+        "up_z": 0.999521061247083,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0010134858970966122,
+        "controller_blend": 0.04666666666666666
+      },
+      {
+        "t": 0.6,
+        "base_height": 0.7482055198040871,
+        "visible_drop": 0.006794480195912889,
+        "up_z": 0.9993979251449199,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0014846663018088881,
+        "controller_blend": 0.06999999999999999
+      },
+      {
+        "t": 0.8,
+        "base_height": 0.7463225934391414,
+        "visible_drop": 0.00867740656085858,
+        "up_z": 0.9993077610000439,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.001899640776360064,
+        "controller_blend": 0.09333333333333332
+      },
+      {
+        "t": 1.0,
+        "base_height": 0.7445178170273129,
+        "visible_drop": 0.010482182972687104,
+        "up_z": 0.9992529752469772,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.002304339405337133,
+        "controller_blend": 0.11666666666666665
+      },
+      {
+        "t": 1.2,
+        "base_height": 0.7427360679109355,
+        "visible_drop": 0.012263932089064511,
+        "up_z": 0.9992241619685605,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.002687291950154401,
+        "controller_blend": 0.13999999999999999
+      },
+      {
+        "t": 1.4,
+        "base_height": 0.7409363608432399,
+        "visible_drop": 0.014063639156760122,
+        "up_z": 0.9991775695492306,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0030501618922781394,
+        "controller_blend": 0.16333333333333336
+      },
+      {
+        "t": 1.6,
+        "base_height": 0.7390048235632817,
+        "visible_drop": 0.015995176436718328,
+        "up_z": 0.9991117168667295,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0034012128001748923,
+        "controller_blend": 0.18666666666666665
+      },
+      {
+        "t": 1.8,
+        "base_height": 0.7369864860064217,
+        "visible_drop": 0.01801351399357831,
+        "up_z": 0.9989949237095593,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0037487457261762844,
+        "controller_blend": 0.21
+      },
+      {
+        "t": 2.0,
+        "base_height": 0.735354178289905,
+        "visible_drop": 0.01964582171009499,
+        "up_z": 0.9988451087000784,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.004148988214724638,
+        "controller_blend": 0.2333333333333333
+      },
+      {
+        "t": 2.2,
+        "base_height": 0.7337874960070094,
+        "visible_drop": 0.021212503992990572,
+        "up_z": 0.9985021398029396,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.004559086158729553,
+        "controller_blend": 0.25666666666666665
+      },
+      {
+        "t": 2.4,
+        "base_height": 0.7309821516761983,
+        "visible_drop": 0.024017848323801716,
+        "up_z": 0.9978457912248827,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.005051490091134463,
+        "controller_blend": 0.27999999999999997
+      },
+      {
+        "t": 2.6,
+        "base_height": 0.7280637136568113,
+        "visible_drop": 0.026936286343188676,
+        "up_z": 0.9967426907876243,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0056714332547966855,
+        "controller_blend": 0.30333333333333334
+      },
+      {
+        "t": 2.8,
+        "base_height": 0.7246088482848468,
+        "visible_drop": 0.030391151715153164,
+        "up_z": 0.9947000136706763,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.006318519304342233,
+        "controller_blend": 0.3266666666666667
+      },
+      {
+        "t": 3.0,
+        "base_height": 0.7201826940852577,
+        "visible_drop": 0.0348173059147423,
+        "up_z": 0.9911644518286435,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.006999036859189429,
+        "controller_blend": 0.35
+      },
+      {
+        "t": 3.2,
+        "base_height": 0.7159179082726271,
+        "visible_drop": 0.03908209172737287,
+        "up_z": 0.9844195381370493,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.007688658094031904,
+        "controller_blend": 0.3499999999999999
+      },
+      {
+        "t": 3.4,
+        "base_height": 0.7120367014381004,
+        "visible_drop": 0.04296329856189962,
+        "up_z": 0.9720937912059477,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00822253452412122,
+        "controller_blend": 0.32083333333333336
+      },
+      {
+        "t": 3.6,
+        "base_height": 0.7004182124602026,
+        "visible_drop": 0.054581787539797366,
+        "up_z": 0.9468825591004288,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.008065997325556356,
+        "controller_blend": 0.29166666666666663
+      },
+      {
+        "t": 3.8,
+        "base_height": 0.6519767560325932,
+        "visible_drop": 0.10302324396740681,
+        "up_z": 0.899613614312607,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.013925961334557996,
+        "controller_blend": 0.2624999999999999
+      },
+      {
+        "t": 4.0,
+        "base_height": 0.4713934670658077,
+        "visible_drop": 0.2836065329341923,
+        "up_z": 0.8257450689774252,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.030646906774395848,
+        "controller_blend": 0.2333333333333333
+      },
+      {
+        "t": 4.2,
+        "base_height": -0.04476601805912255,
+        "visible_drop": 0.7997660180591225,
+        "up_z": 0.4195135374230314,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.18863247230429137,
+        "controller_blend": 0.20416666666666664
+      },
+      {
+        "t": 4.4,
+        "base_height": -0.6987783840998117,
+        "visible_drop": 1.4537783840998117,
+        "up_z": -0.7862469644102962,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.6164569197026178,
+        "controller_blend": 0.1749999999999999
+      },
+      {
+        "t": 4.6,
+        "base_height": -0.6908448905192639,
+        "visible_drop": 1.4458448905192638,
+        "up_z": -0.9550587158750506,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.8113474166278737,
+        "controller_blend": 0.14583333333333323
+      },
+      {
+        "t": 4.8,
+        "base_height": -0.5152833276671867,
+        "visible_drop": 1.2702833276671868,
+        "up_z": -0.7336745715604329,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.7053800179376104,
+        "controller_blend": 0.11666666666666667
+      },
+      {
+        "t": 5.0,
+        "base_height": -0.5597394668029827,
+        "visible_drop": 1.3147394668029828,
+        "up_z": -0.7904589044124083,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.5357114107538404,
+        "controller_blend": 0.0875
+      },
+      {
+        "t": 5.2,
+        "base_height": -0.7184602663582701,
+        "visible_drop": 1.47346026635827,
+        "up_z": -0.9786932003966825,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.4114019951118933,
+        "controller_blend": 0.05833333333333331
+      },
+      {
+        "t": 5.4,
+        "base_height": -0.7479363788887867,
+        "visible_drop": 1.5029363788887866,
+        "up_z": -0.9984092842757223,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.4606979393384311,
+        "controller_blend": 0.02916666666666664
+      },
+      {
+        "t": 5.6,
+        "base_height": -0.7515139488565223,
+        "visible_drop": 1.5065139488565222,
+        "up_z": -0.9846463294174412,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.4798423415302034,
+        "controller_blend": 0.0
+      },
+      {
+        "t": 5.8,
+        "base_height": -0.7399901260236418,
+        "visible_drop": 1.4949901260236418,
+        "up_z": -0.9372739904538052,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.47351707228275597,
+        "controller_blend": 0.0
+      }
+    ]
+  }
+}
