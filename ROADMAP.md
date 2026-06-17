@@ -1,7 +1,7 @@
 # ROADMAP
 
 > 이 레포의 마일스톤과 다음 증거 생산 계획. **포트폴리오 모드** - 완료 기준은 "내가 이해했다"가 아니라 "남이 5분 보고 납득한다"이다.
-> 마지막 업데이트: 2026-06-17
+> 마지막 업데이트: 2026-06-18
 
 ## 왜 이 레포
 
@@ -9,7 +9,7 @@
 
 한 문장: *"문헌과 이론을 읽었고 -> 직접 실험으로 검증했고 -> 브라우저에서 조작 가능한 로봇 정책 플랫폼을 만들었고 -> 이제 Atlas식 고난도 동작을 디지털 트윈에서 설계·학습·검증한다."*
 
-현재 thesis: **지금 필요한 증거는 새 학습 시도가 아니라, 이미 확보한 로봇/정책/리플레이를 방문자가 이해 가능한 Robotics Lab으로 정리하고, 아직 아닌 것(M19 squat)을 정직하게 분리하는 것이다.**
+현재 thesis: **Robotics Lab 공개 정리는 닫혔다. 이제 필요한 증거는 G1 humanoid에서 원하는 skill을 명세하고, 안정화/controller/replay gate를 통과시키는 Atlas식 skill lab 재개다.**
 
 노출면: GitHub README(개발자/채용), askewly 블로그(판단과 서사), `~/vault/`(장기 자료집), live demo(`robotics.askewly.com`).
 
@@ -24,7 +24,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 같은 프로토콜로 정책을 비교한다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역한다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 보류 |
+| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 다음 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
@@ -37,23 +37,20 @@
 - M8-M14: MuJoCo Playground Go1/G1/Spot 정책을 학습해 ONNX export, native rollout, browser closed-loop, WASD/마우스 teleop, rough terrain/command sweep, live QA까지 닫았다.
 - M7: 신규 구매는 SO-101 leader+follower 2-arm + LeRobot + ACT-first로 좁혔다. 실제 M7a는 예산/배송/공간/카메라/조립 시간이 확보될 때만 연다. 근거: [ADR 0008](docs/adr/0008-m7-real-arm-gate.md), [exp09](experiments/09-real-arm-gate/README.md).
 - M15-M17: Barkour policy를 새 학습부터 live demo까지 흡수했고, policy 추가 루틴과 비교 가능한 gallery를 문서/검증 스크립트로 일반화했다. live: `https://robotics.askewly.com/?exp=barkour-walk`.
+- M23-M24: Robotics Lab public gallery와 simulated controller-backed G1 digital twin gate를 닫았다. real robot telemetry twin은 future work다.
 
-## 현재 목표군 - Robotics Lab public gallery
+## 현재 목표군 - Atlas식 skill lab
 
-현재는 Atlas식 skill 학습을 재개하지 않는다. 먼저 `robotics.askewly.com`을 실험 장부가 아니라 공개 실험실 갤러리로 만든다.
+현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**을 다시 연다.
 
-- 로봇 선택은 exp id가 아니라 embodiment 중심이어야 한다.
-- 각 로봇은 가능한 동작, 구동 방식, 증거, 한계를 같이 보여야 한다.
-- G1 lowering probe는 "스쿼트 성공"이 아니라 "micro-dip evidence / not a squat"으로 표시해야 한다.
-- askewly.com에서 들어온 방문자가 404 없이 canonical `robotics.askewly.com`으로 이동해야 한다.
+- 첫 목표는 M19 `g1_squat` guarded descent controller다.
+- 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
+- reward scale만 반복하지 않는다. exp30이 이미 weak blend=shallow, strong blend=fall을 보였다.
+- M22 side-by-side viewer와 M21 ball/kick은 M19 안정화 evidence 뒤에 붙인다.
 
-### 다음 목표군 - Atlas식 skill lab
+### 다음 목표군 - Public drift audit
 
-사용자가 원하는 새 목표는 "로봇이 걷는다"가 아니라 **로봇에게 특정 동작을 학습시킨다**이다. 기준 이미지는 Atlas 같은 휴머노이드가 물구나무, 덤블링, 축구, 라보나슛처럼 이름 붙은 skill을 수행하는 장면이다.
-
-- 이전: env가 이미 제공하는 joystick locomotion policy를 학습하고 브라우저에 흡수한다.
-- 이후: 내가 원하는 skill을 명세하고, reward/scene/metric으로 컴파일하고, 학습한 뒤, 브라우저에서 실패까지 보이는 demo로 검증한다.
-- 우선순위는 **G1 humanoid**다. Go1/Spot/Barkour는 locomotion baseline과 QA 비교군으로 유지한다.
+2026-06-22 예약 글 공개 후 README/askewly/vault/live demo 메시지 drift를 점검한다.
 
 ### Skill ladder
 
@@ -91,7 +88,7 @@
 - [x] exp29에서 visible squat gate를 다시 정의했다: pelvis drop >=8cm, knee flexion delta >=0.60rad, hip pitch delta >=0.35rad.
 - [x] exp29 static audit상 local G1 lower-body joint ranges는 visible squat target 후보를 담을 수 있다. 단, 동역학/접촉/학습 성공은 아직 미증명이다.
 - [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
-- [ ] **보류** — UI/포트폴리오 정리 후 재개한다. 다음 기술 작업은 guarded descent controller다.
+- [ ] **재개** — 다음 기술 작업은 guarded descent controller다. visible-depth target을 fall 없이 낮추는 native evidence부터 만든다.
 
 완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md).
 
