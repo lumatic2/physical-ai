@@ -82,6 +82,7 @@
 | 73 | [g1-visible-gate-extension](73-g1-visible-gate-extension/README.md) | exp72 recapture corridor를 8cm/knee/hip visible gate로 확장할 수 있는지 검증 | 🟨 recoverable 7.60cm까지 확장, visible gate는 drop 4mm/knee 0.088rad/hip 0.043rad 부족 |
 | 74 | [g1-knee-hip-biased-target](74-g1-knee-hip-biased-target/README.md) | exp73 target에 knee/hip actuator bias를 넣으면 pose gap이 닫히는지 검증 | 🟨 hip-only micro-bias는 7.61cm recoverable 유지+hip gap 축소, knee direct bias는 depth 후퇴/지연 collapse |
 | 75 | [g1-pose-aware-selector](75-g1-pose-aware-selector/README.md) | raw knee offset 대신 selector cost에 achieved knee/hip flexion reward를 넣으면 knee gap이 닫히는지 검증 | 🟨 7.61cm recoverable 유지, knee는 0.513rad에 고정되어 selector score만으로는 visible gate 미달 |
+| 76 | [g1-knee-flexion-microphase](76-g1-knee-flexion-microphase/README.md) | support/ZMP health-gated knee micro-phase가 recoverable squat에서 knee plateau를 넘기는지 검증 | 🟨 7.70cm recoverable까지 전진, but stable knee 0.516rad로 visible gate 미달; knee push branch는 late fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
