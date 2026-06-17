@@ -1,0 +1,5 @@
+# target_drop=0.03 support_floor=-0.005 slip_limit=0.08
+# timesteps=20000 train_min=3.90 seed=52 source=experiments\46-g1-force-torque-residual\verify\stage-0p74\attempts\force-torque-20k\train\params.pkl
+0	79.91434478759766
+20480	80.82521057128906
+40960	80.98751831054688
