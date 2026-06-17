@@ -53,6 +53,7 @@
 | 44 | [g1-qplite-wbc](44-g1-qplite-wbc/README.md) | one-step QP-lite WBC가 visible-depth IK blend를 collapse 없이 고를 수 있는지 검증 | 🟥 best no-fall 3.86cm, aggressive visible-depth는 2.14~2.34s fall |
 | 45 | [g1-stance-stable-manifold](45-g1-stance-stable-manifold/README.md) | CoM/support residual을 넣은 lower-body target이 visible-depth collapse를 줄이는지 검증 | 🟥 static visible/support target은 찾았지만 native tracking은 전부 3.16~3.72s fall |
 | 46 | [g1-force-torque-residual](46-g1-force-torque-residual/README.md) | contact force balance와 lower-body torque proxy reward가 visible-depth residual을 키우는지 검증 | 🟥 force balance는 개선됐지만 0.97cm stable / 5.0cm slip trade-off로 visible gate 실패 |
+| 47 | [g1-visible-target-command](47-g1-visible-target-command/README.md) | static visible target을 stabilizer action 위 additive command로 넣으면 depth/contact trade-off가 줄어드는지 검증 | 🟥 stable depth는 2.32cm까지 개선, 0.35+ command는 support breach/fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
