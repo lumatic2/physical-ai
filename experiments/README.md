@@ -74,6 +74,7 @@
 | 65 | [g1-recoverable-7cm-qfrc-corridor](65-g1-recoverable-7cm-qfrc-corridor/README.md) | qfrc recoverable corridor를 6cm에서 7cm로 확장할 수 있는지 검증 | 🟥 7cm+ depth는 가능하지만 return/support-ZMP가 깨져 recoverable gate 실패 |
 | 66 | [g1-return-phase-support-zmp-clamp](66-g1-return-phase-support-zmp-clamp/README.md) | exp65의 return/support-ZMP collapse를 rate-limited return clamp로 닫을 수 있는지 검증 | 🟥 8s stress에서도 support/ZMP collapse와 fall, WBC/QP return selector 필요 |
 | 67 | [g1-qfrc-wbc-return-selector](67-g1-qfrc-wbc-return-selector/README.md) | qfrc 후보를 한 step rollout으로 점수화해 WBC/QP-lite return selector를 만들 수 있는지 검증 | 🟥 안정 복귀는 6cm대, 7cm+는 fall/return pending → multi-step CoM/ZMP trajectory 필요 |
+| 68 | [g1-com-zmp-trajectory-replan](68-g1-com-zmp-trajectory-replan/README.md) | multi-step descend/return timing과 CoM/ZMP-heavy 비용으로 7cm recoverable gate를 닫을 수 있는지 검증 | 🟥 안정 복귀 6.51cm까지 개선, 7cm 직전 cliff → 실제 horizon optimizer 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
