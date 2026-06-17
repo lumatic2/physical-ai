@@ -1,0 +1,83 @@
+{
+  "visible_gate": {
+    "pelvis_drop_m": 0.08,
+    "knee_delta_rad": 0.6,
+    "hip_pitch_delta_rad": 0.35
+  },
+  "public_evidence": [
+    {
+      "source": "Unitree G1-Comp product page",
+      "url": "https://www.unitree.com/robocup/",
+      "accessed": "2026-06-18",
+      "claim": "standing height 1320mm, folded height 690mm, 6 DoF per leg, knee 0~165deg, hip pitch +/-154deg, knee torque 120N.m",
+      "weight": "official-spec"
+    },
+    {
+      "source": "IEEE Robots Guide: Unitree G1",
+      "url": "https://robotsguide.com/robots/unitree-g1",
+      "accessed": "2026-06-18",
+      "claim": "shows Unitree G1 squatting down all the way; lists 130cm height, 35kg mass, 90Nm knee torque with EDU 120Nm",
+      "weight": "credible-public-media"
+    },
+    {
+      "source": "HuB: Learning Extreme Humanoid Balance",
+      "url": "https://hub-robot.github.io/",
+      "accessed": "2026-06-18",
+      "claim": "reports validation on Unitree G1 and includes Deep Squat among extreme balance tasks",
+      "weight": "research-project"
+    }
+  ],
+  "static_probes": [
+    {
+      "drop_m": 0.08,
+      "target_height_m": 0.675,
+      "ik_success": true,
+      "ik_cost": 0.07527746714403195,
+      "ik_max_foot_error_m": 0.0006108590424735445,
+      "knee_delta_rad": 0.5478642879959017,
+      "hip_pitch_delta_rad": 0.263114476925352,
+      "ankle_pitch_delta_rad": 0.009922753860245215,
+      "visible_gate": {
+        "pelvis_drop_pass": true,
+        "knee_delta_pass": false,
+        "hip_pitch_delta_pass": false
+      }
+    },
+    {
+      "drop_m": 0.12,
+      "target_height_m": 0.635,
+      "ik_success": true,
+      "ik_cost": 0.14072283146357953,
+      "ik_max_foot_error_m": 0.0007334521535204833,
+      "knee_delta_rad": 0.7498779672913398,
+      "hip_pitch_delta_rad": 0.35919455028692665,
+      "ankle_pitch_delta_rad": 0.018296925950376797,
+      "visible_gate": {
+        "pelvis_drop_pass": true,
+        "knee_delta_pass": true,
+        "hip_pitch_delta_pass": true
+      }
+    },
+    {
+      "drop_m": 0.16,
+      "target_height_m": 0.595,
+      "ik_success": true,
+      "ik_cost": 0.21609929180101234,
+      "ik_max_foot_error_m": 0.0008275154204383251,
+      "knee_delta_rad": 0.9300896213025323,
+      "hip_pitch_delta_rad": 0.44410709947163013,
+      "ankle_pitch_delta_rad": 0.02673676235067135,
+      "visible_gate": {
+        "pelvis_drop_pass": true,
+        "knee_delta_pass": true,
+        "hip_pitch_delta_pass": true
+      }
+    }
+  ],
+  "verdict": {
+    "public": "SUPPORTED_BY_OFFICIAL_SPECS_AND_PUBLIC_DEEP_SQUAT_EVIDENCE",
+    "local_static": "KINEMATICALLY_PLAUSIBLE",
+    "dynamic_policy": "UNPROVEN_CURRENT_POLICY_NEEDS_WBC_CONTACT_FORCE_CONTROL",
+    "next_action": "run_qplite_wbc_before_browser_replay"
+  }
+}
