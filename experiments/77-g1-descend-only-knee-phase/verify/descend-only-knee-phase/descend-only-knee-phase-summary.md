@@ -1,0 +1,39 @@
+# G1 Descend-Only Knee Phase Summary
+
+| Attempt | 8cm | 7cm | Verdict | Drop | Knee | Hip | Contact | Slip | CoM min | ZMP min | Final h | Fell | k/h/window/min-health | Gap d/k/h |
+|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|
+| desc-k0p10-h0p03-p0p45-0p65-0p85-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.326 | 0.98 | 0.045m | 0.0135m | -0.0195m | 0.7505m | never | 0.10/0.03/0.45-0.65-0.85/0.85 | 0.0040/0.088/0.024 |
+| desc-k0p11-h0p02-p0p45-0p65-0p85-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.324 | 0.97 | 0.045m | 0.0137m | -0.0330m | 0.7502m | never | 0.11/0.02/0.45-0.65-0.85/0.85 | 0.0040/0.088/0.026 |
+| desc-k0p11-h0p04-p0p45-0p65-0p85-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.321 | 0.97 | 0.057m | 0.0135m | -0.0698m | 0.7498m | never | 0.11/0.04/0.45-0.65-0.85/0.85 | 0.0040/0.088/0.029 |
+| desc-k0p11-h0p03-p0p45-0p65-0p85-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.318 | 0.98 | 0.054m | 0.0136m | -0.0301m | 0.7501m | never | 0.11/0.03/0.45-0.65-0.85/0.85 | 0.0040/0.088/0.032 |
+| desc-k0p12-h0p03-p0p45-0p65-0p85-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.308 | 0.97 | 0.056m | 0.0135m | -0.0177m | 0.7498m | never | 0.12/0.03/0.45-0.65-0.85/0.85 | 0.0040/0.088/0.042 |
+| desc-k0p11-h0p03-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.11/0.03/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p11-h0p02-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.11/0.02/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p11-h0p04-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.11/0.04/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p10-h0p03-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.10/0.03/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p12-h0p03-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.12/0.03/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p10-h0p02-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.10/0.02/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p12-h0p02-p0p55-0p75-0p95-mh0p85 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0760m | 0.512 | 0.306 | 0.97 | 0.058m | 0.0140m | -0.0176m | 0.7494m | never | 0.12/0.02/0.55-0.75-0.95/0.85 | 0.0040/0.088/0.044 |
+| desc-k0p11-h0p03-p0p45-0p65-0p85-mh0p75 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0751m | 0.509 | 0.297 | 0.98 | 0.053m | 0.0222m | -0.0309m | 0.7489m | never | 0.11/0.03/0.45-0.65-0.85/0.75 | 0.0049/0.091/0.053 |
+| desc-k0p11-h0p03-p0p45-0p65-0p85-mh0p65 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0751m | 0.509 | 0.297 | 0.98 | 0.053m | 0.0222m | -0.0309m | 0.7489m | never | 0.11/0.03/0.45-0.65-0.85/0.65 | 0.0049/0.091/0.053 |
+| desc-k0p10-h0p03-p0p45-0p65-0p85-mh0p75 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0753m | 0.510 | 0.281 | 0.99 | 0.048m | 0.0211m | -0.0314m | 0.7498m | never | 0.10/0.03/0.45-0.65-0.85/0.75 | 0.0047/0.090/0.069 |
+| desc-k0p10-h0p03-p0p45-0p65-0p85-mh0p65 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0753m | 0.510 | 0.281 | 0.99 | 0.048m | 0.0211m | -0.0314m | 0.7498m | never | 0.10/0.03/0.45-0.65-0.85/0.65 | 0.0047/0.090/0.069 |
+| desc-k0p11-h0p04-p0p45-0p65-0p85-mh0p75 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0751m | 0.510 | 0.282 | 0.98 | 0.049m | 0.0225m | -0.0272m | 0.7495m | never | 0.11/0.04/0.45-0.65-0.85/0.75 | 0.0049/0.090/0.068 |
+| desc-k0p11-h0p04-p0p45-0p65-0p85-mh0p65 | FAIL | PASS | PASS_RECOVERABLE_7CM_GATE | 0.0751m | 0.510 | 0.282 | 0.98 | 0.049m | 0.0225m | -0.0272m | 0.7495m | never | 0.11/0.04/0.45-0.65-0.85/0.65 | 0.0049/0.090/0.068 |
+| desc-k0p11-h0p03-p0p55-0p75-0p95-mh0p75 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0664m | 0.464 | 0.331 | 0.98 | 0.082m | 0.0238m | -0.0235m | 0.7492m | never | 0.11/0.03/0.55-0.75-0.95/0.75 | 0.0136/0.136/0.019 |
+| desc-k0p11-h0p03-p0p55-0p75-0p95-mh0p65 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0664m | 0.464 | 0.331 | 0.98 | 0.082m | 0.0238m | -0.0235m | 0.7492m | never | 0.11/0.03/0.55-0.75-0.95/0.65 | 0.0136/0.136/0.019 |
+| desc-k0p11-h0p02-p0p55-0p75-0p95-mh0p75 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0663m | 0.463 | 0.271 | 0.98 | 0.046m | 0.0246m | -0.0277m | 0.7497m | never | 0.11/0.02/0.55-0.75-0.95/0.75 | 0.0137/0.137/0.079 |
+| desc-k0p11-h0p02-p0p55-0p75-0p95-mh0p65 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0663m | 0.463 | 0.271 | 0.98 | 0.046m | 0.0246m | -0.0277m | 0.7497m | never | 0.11/0.02/0.55-0.75-0.95/0.65 | 0.0137/0.137/0.079 |
+| desc-k0p10-h0p03-p0p55-0p75-0p95-mh0p75 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0661m | 0.463 | 0.271 | 0.98 | 0.048m | 0.0248m | -0.0266m | 0.7496m | never | 0.10/0.03/0.55-0.75-0.95/0.75 | 0.0139/0.137/0.079 |
+| desc-k0p10-h0p03-p0p55-0p75-0p95-mh0p65 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0661m | 0.463 | 0.271 | 0.98 | 0.048m | 0.0248m | -0.0266m | 0.7496m | never | 0.10/0.03/0.55-0.75-0.95/0.65 | 0.0139/0.137/0.079 |
+| desc-k0p12-h0p03-p0p55-0p75-0p95-mh0p75 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0661m | 0.462 | 0.271 | 0.98 | 0.049m | 0.0240m | -0.0325m | 0.7496m | never | 0.12/0.03/0.55-0.75-0.95/0.75 | 0.0139/0.138/0.079 |
+| desc-k0p11-h0p04-p0p55-0p75-0p95-mh0p75 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0660m | 0.461 | 0.263 | 0.98 | 0.048m | 0.0242m | -0.0384m | 0.7497m | never | 0.11/0.04/0.55-0.75-0.95/0.75 | 0.0140/0.139/0.087 |
+| desc-k0p11-h0p04-p0p55-0p75-0p95-mh0p65 | FAIL | FAIL | DEPTH_PENDING_7CM | 0.0660m | 0.461 | 0.263 | 0.98 | 0.048m | 0.0242m | -0.0384m | 0.7497m | never | 0.11/0.04/0.55-0.75-0.95/0.65 | 0.0140/0.139/0.087 |
+| desc-k0p12-h0p03-p0p45-0p65-0p85-mh0p75 | FAIL | FAIL | FAIL_FALL | 1.5240m | 0.516 | 0.264 | 0.81 | 0.799m | -0.6047m | -0.6468m | -0.7258m | 5.38s | 0.12/0.03/0.45-0.65-0.85/0.75 | 0.0000/0.084/0.086 |
+| desc-k0p11-h0p02-p0p45-0p65-0p85-mh0p75 | FAIL | FAIL | FAIL_FALL | 1.5285m | 0.534 | 0.340 | 0.83 | 1.071m | -0.5840m | -0.5847m | -0.7607m | 5.64s | 0.11/0.02/0.45-0.65-0.85/0.75 | 0.0000/0.066/0.010 |
+| desc-k0p11-h0p02-p0p45-0p65-0p85-mh0p65 | FAIL | FAIL | FAIL_FALL | 1.5285m | 0.534 | 0.340 | 0.83 | 1.071m | -0.5840m | -0.5847m | -0.7607m | 5.64s | 0.11/0.02/0.45-0.65-0.85/0.65 | 0.0000/0.066/0.010 |
+
+Best visible run: None
+Best recoverable run: {'attempt': 'desc-k0p11-h0p02-p0p45-0p65-0p85-mh0p85', 'visible_drop': 0.07604922617274612, 'max_knee_delta_rad': 0.5122702339821934, 'max_hip_pitch_delta_rad': 0.32359412414943406, 'transition_verdict': 'PASS_RECOVERABLE_7CM_GATE', 'visible_gap': {'drop_shortfall_m': 0.003950773827253881, 'knee_shortfall_rad': 0.08772976601780658, 'hip_shortfall_rad': 0.02640587585056592, 'slip_excess_m': 0.0}}
+Best no-fall run: {'attempt': 'desc-k0p10-h0p03-p0p45-0p65-0p85-mh0p85', 'visible_drop': 0.07604857738255055, 'max_knee_delta_rad': 0.5122918485162757, 'max_hip_pitch_delta_rad': 0.3262440076914312, 'transition_verdict': 'PASS_RECOVERABLE_7CM_GATE', 'visible_gap': {'drop_shortfall_m': 0.003951422617449449, 'knee_shortfall_rad': 0.08770815148372424, 'hip_shortfall_rad': 0.023755992308568785, 'slip_excess_m': 0.0}, 'final_height': 0.7504951173944254}
+Best depth run: {'attempt': 'desc-k0p11-h0p02-p0p45-0p65-0p85-mh0p75', 'visible_drop': 1.5284623718579187, 'max_knee_delta_rad': 0.5338407217068669, 'max_hip_pitch_delta_rad': 0.3396694725640027, 'fell_at': 5.64, 'transition_verdict': 'FAIL_FALL'}
