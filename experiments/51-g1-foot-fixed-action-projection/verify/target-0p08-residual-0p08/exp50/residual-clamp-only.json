@@ -1,0 +1,539 @@
+{
+  "mode": "residual-clamp-only",
+  "params_path": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\50-g1-stance-constrained-curriculum-ppo\\verify\\target-0p03-slip-0p08\\train\\params.pkl",
+  "target_drop": 0.08,
+  "support_floor": -0.005,
+  "slip_limit": 0.08,
+  "residual_limit": 0.08,
+  "start_height": 0.755,
+  "min_height": -0.7628903771530144,
+  "visible_drop": 1.5178903771530146,
+  "first_visible_at": 0.88,
+  "fell_at": 1.24,
+  "final_height": -0.74793414484274,
+  "return_to_stand": false,
+  "foot_contact_ratio": 0.93,
+  "foot_slip_distance": 0.9373168482824694,
+  "min_support_margin": -0.6304957787497142,
+  "first_support_breach_at": 0.68,
+  "first_slip_breach_at": 1.3,
+  "max_joint_limit_violation": 0.03492760113718518,
+  "max_knee_delta_rad": 0.5215394944915184,
+  "max_hip_pitch_delta_rad": 0.29419918350767654,
+  "max_action_norm": 1.604408860206604,
+  "max_projected_delta": 1.4656291007995605,
+  "pass_gate": false,
+  "samples": [
+    {
+      "t": 0.0,
+      "height": 0.7542077685764249,
+      "visible_drop": 0.000792231423575096,
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "support_margin": 0.08662714377162475,
+      "health": 1.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 3.988665450763639e-05,
+      "up_z": 0.9999972541482787,
+      "action_norm": 1.2528657913208008,
+      "projected_action_norm": 0.38234615325927734
+    },
+    {
+      "t": 0.2,
+      "height": 0.726659033722424,
+      "visible_drop": 0.028340966277575985,
+      "command": [
+        0.07692307233810425,
+        0.0,
+        0.05128204822540283
+      ],
+      "support_margin": 0.08229365736008301,
+      "health": 0.9960617683389426,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.00033828706492886816,
+      "up_z": 0.9984328796172796,
+      "action_norm": 1.5182536840438843,
+      "projected_action_norm": 0.3660304546356201
+    },
+    {
+      "t": 0.4,
+      "height": 0.7272515747912094,
+      "visible_drop": 0.027748425208790617,
+      "command": [
+        0.1538461446762085,
+        0.0,
+        0.10256409645080566
+      ],
+      "support_margin": 0.06184561647072506,
+      "health": 0.9930810445751792,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.0005939922224849645,
+      "up_z": 0.9999024671277637,
+      "action_norm": 1.6315160989761353,
+      "projected_action_norm": 0.3803347647190094
+    },
+    {
+      "t": 0.6,
+      "height": 0.7184037405523863,
+      "visible_drop": 0.03659625944761369,
+      "command": [
+        0.23076923191547394,
+        0.0,
+        0.1538461595773697
+      ],
+      "support_margin": 0.01842402542770985,
+      "health": 0.7220379407822201,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.001128018676345646,
+      "up_z": 0.9984457957085998,
+      "action_norm": 1.751080870628357,
+      "projected_action_norm": 0.43552422523498535
+    },
+    {
+      "t": 0.8,
+      "height": 0.6923001268477504,
+      "visible_drop": 0.06269987315224956,
+      "command": [
+        0.307692289352417,
+        0.0,
+        0.20512819290161133
+      ],
+      "support_margin": -0.06660233266280716,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.0017794335513729497,
+      "up_z": 0.9836182028648962,
+      "action_norm": 1.7766551971435547,
+      "projected_action_norm": 0.5650075078010559
+    },
+    {
+      "t": 1.0,
+      "height": 0.6488419648020248,
+      "visible_drop": 0.10615803519797518,
+      "command": [
+        0.38461539149284363,
+        0.0,
+        0.25641027092933655
+      ],
+      "support_margin": -0.20749922726367426,
+      "health": 0.0,
+      "both_feet_contact": false,
+      "foot_slip_distance": 0.006593096551307561,
+      "up_z": 0.8972465401679888,
+      "action_norm": 1.9902900457382202,
+      "projected_action_norm": 0.6887010931968689
+    },
+    {
+      "t": 1.2,
+      "height": 0.5052872982454666,
+      "visible_drop": 0.24971270175453342,
+      "command": [
+        0.4615384638309479,
+        0.0,
+        0.3076923191547394
+      ],
+      "support_margin": -0.42225433164562926,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.033731062001235365,
+      "up_z": 0.5969681208967598,
+      "action_norm": 2.06941556930542,
+      "projected_action_norm": 0.713162362575531
+    },
+    {
+      "t": 1.4,
+      "height": 0.04068678994410425,
+      "visible_drop": 0.7143132100558958,
+      "command": [
+        0.5384615659713745,
+        0.0,
+        0.3589743971824646
+      ],
+      "support_margin": -0.609758905689519,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.22286054674317402,
+      "up_z": -0.023072165183094722,
+      "action_norm": 2.10741925239563,
+      "projected_action_norm": 0.824303150177002
+    },
+    {
+      "t": 1.6,
+      "height": -0.7043763911333664,
+      "visible_drop": 1.4593763911333664,
+      "command": [
+        0.615384578704834,
+        0.0,
+        0.41025638580322266
+      ],
+      "support_margin": -0.23103253511197486,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.7283750037910846,
+      "up_z": -0.9278322611321999,
+      "action_norm": 2.7674877643585205,
+      "projected_action_norm": 0.9911187291145325
+    },
+    {
+      "t": 1.8,
+      "height": -0.70293791319211,
+      "visible_drop": 1.45793791319211,
+      "command": [
+        0.692307710647583,
+        0.0,
+        0.46153849363327026
+      ],
+      "support_margin": -0.11067783509555196,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.9348786543363462,
+      "up_z": -0.8838530239705553,
+      "action_norm": 1.499695062637329,
+      "projected_action_norm": 1.0662791728973389
+    },
+    {
+      "t": 2.0,
+      "height": -0.5462082995869464,
+      "visible_drop": 1.3012082995869463,
+      "command": [
+        0.7692307829856873,
+        0.0,
+        0.5128205418586731
+      ],
+      "support_margin": -0.31559575651473165,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.8809783372395774,
+      "up_z": -0.6835618543640624,
+      "action_norm": 1.8425527811050415,
+      "projected_action_norm": 1.2305158376693726
+    },
+    {
+      "t": 2.2,
+      "height": -0.5705971151340532,
+      "visible_drop": 1.325597115134053,
+      "command": [
+        0.8461539149284363,
+        0.0,
+        0.5641026496887207
+      ],
+      "support_margin": -0.2778421111387992,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.7675480411893825,
+      "up_z": -0.7039596172311008,
+      "action_norm": 2.555556297302246,
+      "projected_action_norm": 1.3969839811325073
+    },
+    {
+      "t": 2.4,
+      "height": -0.7003960413244418,
+      "visible_drop": 1.4553960413244418,
+      "command": [
+        0.9230769276618958,
+        0.0,
+        0.6153846383094788
+      ],
+      "support_margin": -0.09704049832369444,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.670379719513992,
+      "up_z": -0.9059537037701108,
+      "action_norm": 2.2992284297943115,
+      "projected_action_norm": 1.5010861158370972
+    },
+    {
+      "t": 2.6,
+      "height": -0.7116617884755448,
+      "visible_drop": 1.4666617884755448,
+      "command": [
+        1.0,
+        0.0,
+        0.6666666865348816
+      ],
+      "support_margin": 0.02192355295677495,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6696781813614063,
+      "up_z": -0.9979236399947035,
+      "action_norm": 1.650608777999878,
+      "projected_action_norm": 1.604408860206604
+    },
+    {
+      "t": 2.8,
+      "height": -0.6243254107731776,
+      "visible_drop": 1.3793254107731776,
+      "command": [
+        1.0,
+        0.0,
+        0.6666666865348816
+      ],
+      "support_margin": -0.19236774609690588,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6773729280096529,
+      "up_z": -0.8813035634231546,
+      "action_norm": 1.4127168655395508,
+      "projected_action_norm": 1.548203706741333
+    },
+    {
+      "t": 3.0,
+      "height": -0.5751629080573751,
+      "visible_drop": 1.3301629080573751,
+      "command": [
+        1.0,
+        0.0,
+        0.6666666865348816
+      ],
+      "support_margin": -0.24502716569740646,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6879351318497062,
+      "up_z": -0.7929567266460007,
+      "action_norm": 1.7691009044647217,
+      "projected_action_norm": 1.5490142107009888
+    },
+    {
+      "t": 3.2,
+      "height": -0.6578498533493673,
+      "visible_drop": 1.4128498533493672,
+      "command": [
+        0.857142984867096,
+        0.14285701513290405,
+        0.571428656578064
+      ],
+      "support_margin": -0.15597759372099362,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6938671547771479,
+      "up_z": -0.9197863455614048,
+      "action_norm": 1.9080277681350708,
+      "projected_action_norm": 1.3291661739349365
+    },
+    {
+      "t": 3.4,
+      "height": -0.7338673872065444,
+      "visible_drop": 1.4888673872065445,
+      "command": [
+        0.7142858505249023,
+        0.28571417927742004,
+        0.47619056701660156
+      ],
+      "support_margin": 0.06712058547596234,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6962436033615149,
+      "up_z": -0.9996126926219563,
+      "action_norm": 1.8653513193130493,
+      "projected_action_norm": 1.0939699411392212
+    },
+    {
+      "t": 3.6,
+      "height": -0.7044077932749119,
+      "visible_drop": 1.4594077932749119,
+      "command": [
+        0.571428656578064,
+        0.4285713732242584,
+        0.3809524476528168
+      ],
+      "support_margin": -0.10183152061011208,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.694679879793753,
+      "up_z": -0.9089443022101948,
+      "action_norm": 1.491041660308838,
+      "projected_action_norm": 0.9149469137191772
+    },
+    {
+      "t": 3.8,
+      "height": -0.666139946762225,
+      "visible_drop": 1.421139946762225,
+      "command": [
+        0.4285714626312256,
+        0.5714285373687744,
+        0.285714328289032
+      ],
+      "support_margin": -0.18527755637616844,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6886682612319769,
+      "up_z": -0.8328191680305688,
+      "action_norm": 2.0488317012786865,
+      "projected_action_norm": 0.7084038853645325
+    },
+    {
+      "t": 4.0,
+      "height": -0.7065101878017355,
+      "visible_drop": 1.4615101878017356,
+      "command": [
+        0.2857142686843872,
+        0.7142857313156128,
+        0.1904761791229248
+      ],
+      "support_margin": -0.12300421576390574,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6837609110192259,
+      "up_z": -0.8867404609849158,
+      "action_norm": 2.170795440673828,
+      "projected_action_norm": 0.5594190955162048
+    },
+    {
+      "t": 4.2,
+      "height": -0.7507451809509795,
+      "visible_drop": 1.5057451809509796,
+      "command": [
+        0.14285725355148315,
+        0.8571427464485168,
+        0.09523817151784897
+      ],
+      "support_margin": 0.06582682349984448,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6813900235510569,
+      "up_z": -0.9936995097600526,
+      "action_norm": 1.8871569633483887,
+      "projected_action_norm": 0.46168026328086853
+    },
+    {
+      "t": 4.4,
+      "height": -0.7237739116386647,
+      "visible_drop": 1.4787739116386647,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.09901599459770083,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6820145720781084,
+      "up_z": -0.9684387974688381,
+      "action_norm": 1.353945255279541,
+      "projected_action_norm": 0.39341211318969727
+    },
+    {
+      "t": 4.6,
+      "height": -0.6710070538884599,
+      "visible_drop": 1.42600705388846,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.20795708580297834,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6864965740646952,
+      "up_z": -0.8722441756998863,
+      "action_norm": 1.5164315700531006,
+      "projected_action_norm": 0.4028744697570801
+    },
+    {
+      "t": 4.8,
+      "height": -0.6907082265910747,
+      "visible_drop": 1.4457082265910746,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.17327366615528839,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6927121900219441,
+      "up_z": -0.9047394704675301,
+      "action_norm": 1.8486270904541016,
+      "projected_action_norm": 0.41419336199760437
+    },
+    {
+      "t": 5.0,
+      "height": -0.7490261127276456,
+      "visible_drop": 1.5040261127276455,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.015206560042695938,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6954032698753556,
+      "up_z": -0.9935398059321608,
+      "action_norm": 1.8068093061447144,
+      "projected_action_norm": 0.41233596205711365
+    },
+    {
+      "t": 5.2,
+      "height": -0.7488351610481179,
+      "visible_drop": 1.503835161048118,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.0026645096330034646,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6954546610193199,
+      "up_z": -0.9705206234167516,
+      "action_norm": 1.620700478553772,
+      "projected_action_norm": 0.39179322123527527
+    },
+    {
+      "t": 5.4,
+      "height": -0.7084325294358587,
+      "visible_drop": 1.4634325294358588,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.12810618543767072,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6923017154113301,
+      "up_z": -0.8961112601951008,
+      "action_norm": 1.7529844045639038,
+      "projected_action_norm": 0.3988856375217438
+    },
+    {
+      "t": 5.6,
+      "height": -0.7125755223609793,
+      "visible_drop": 1.4675755223609794,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": -0.11969715602946085,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.6853331329831387,
+      "up_z": -0.8911784250463323,
+      "action_norm": 2.0854270458221436,
+      "projected_action_norm": 0.39904630184173584
+    },
+    {
+      "t": 5.8,
+      "height": -0.7497582354692728,
+      "visible_drop": 1.5047582354692728,
+      "command": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "support_margin": 0.009501736690210816,
+      "health": 0.0,
+      "both_feet_contact": true,
+      "foot_slip_distance": 0.682535146621122,
+      "up_z": -0.9757759224365569,
+      "action_norm": 1.9352126121520996,
+      "projected_action_norm": 0.39862769842147827
+    }
+  ],
+  "verdict": "FAIL_FALL"
+}
