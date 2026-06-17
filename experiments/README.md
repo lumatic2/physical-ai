@@ -44,6 +44,7 @@
 | 35 | [g1-stance-anchored-squat-controller](35-g1-stance-anchored-squat-controller/README.md) | foot slip/contact를 state transition으로 다뤄 visible drop 직후 return하면 M19 gate를 닫을 수 있는지 검증 | 🟥 early return/stance scheduling도 fall; WBC 또는 stance-aware training 필요 |
 | 36 | [g1-wbc-ik-squat-prototype](36-g1-wbc-ik-squat-prototype/README.md) | foot-fixed IK target이 visible squat geometry와 native contact gate를 같이 개선하는지 검증 | 🟥 static IK는 <1mm foot error로 풀렸지만 native 추적은 shallow 안정 또는 visible fall |
 | 37 | [g1-com-support-squat-guard](37-g1-com-support-squat-guard/README.md) | CoM/support polygon guard가 visible IK squat collapse를 조기 감지하거나 완화하는지 검증 | 🟥 support breach는 fall보다 먼저 잡히지만 heuristic guard는 collapse 회복 실패 |
+| 38 | [g1-support-aware-depth-finetune](38-g1-support-aware-depth-finetune/README.md) | support margin과 vertical velocity reward를 넣으면 staged squat depth가 native에서 개선되는지 검증 | 🟥 50k finetune no-fall 유지, reward 상승, but visible drop 0.62cm로 standing attractor 유지 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
