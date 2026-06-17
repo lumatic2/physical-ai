@@ -50,6 +50,7 @@
 | 41 | [g1-operational-space-soft-wbc](41-g1-operational-space-soft-wbc/README.md) | support/velocity/contact cost로 IK blend를 연속 완화하면 visible-depth collapse를 피할 수 있는지 검증 | 🟥 no-fall corridor 2.56cm까지 개선, 0.8+ blend는 fall |
 | 42 | [g1-contact-inverse-force-probe](42-g1-contact-inverse-force-probe/README.md) | MuJoCo contact wrench와 inverse dynamics torque가 shallow/soft/collapse rollout을 분리하는지 검증 | ✅ collapse는 normal force 6배, LR imbalance 1.00, inverse torque spike로 분리 |
 | 43 | [g1-public-squat-feasibility](43-g1-public-squat-feasibility/README.md) | G1로 visible/deep squat가 가능한지 공개 근거와 local static target으로 다시 확인 | ✅ public evidence + 0.12/0.16m static visible target PASS, dynamic policy는 WBC 필요 |
+| 44 | [g1-qplite-wbc](44-g1-qplite-wbc/README.md) | one-step QP-lite WBC가 visible-depth IK blend를 collapse 없이 고를 수 있는지 검증 | 🟥 best no-fall 3.86cm, aggressive visible-depth는 2.14~2.34s fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
