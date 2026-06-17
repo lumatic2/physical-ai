@@ -48,6 +48,7 @@
 | 39 | [g1-reference-offset-action-probe](39-g1-reference-offset-action-probe/README.md) | policy action을 default offset이 아니라 reference offset residual로 해석하면 visible depth leverage가 생기는지 검증 | 🟥 direct reference-offset은 fall, ramp는 안정적 micro-dip |
 | 40 | [g1-reference-base-finetune](40-g1-reference-base-finetune/README.md) | reference-base action target을 학습 env에 직접 넣으면 visible depth와 balance가 같이 개선되는지 검증 | 🟥 20k reward 상승에도 drop 0.56cm, standing attractor 유지 |
 | 41 | [g1-operational-space-soft-wbc](41-g1-operational-space-soft-wbc/README.md) | support/velocity/contact cost로 IK blend를 연속 완화하면 visible-depth collapse를 피할 수 있는지 검증 | 🟥 no-fall corridor 2.56cm까지 개선, 0.8+ blend는 fall |
+| 42 | [g1-contact-inverse-force-probe](42-g1-contact-inverse-force-probe/README.md) | MuJoCo contact wrench와 inverse dynamics torque가 shallow/soft/collapse rollout을 분리하는지 검증 | ✅ collapse는 normal force 6배, LR imbalance 1.00, inverse torque spike로 분리 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

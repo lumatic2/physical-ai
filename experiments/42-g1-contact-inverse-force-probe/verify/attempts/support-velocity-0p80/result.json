@@ -1,0 +1,953 @@
+{
+  "native": {
+    "attempt": "support-velocity-0p80",
+    "mode": "support-velocity",
+    "drop": 0.08,
+    "max_blend": 0.8,
+    "ik": {
+      "drop": 0.08,
+      "start_height": 0.755,
+      "target_height": 0.675,
+      "success": true,
+      "cost": 0.07527746714403195,
+      "nfev": 6,
+      "rms_foot_error": 0.0006108590297431658,
+      "max_foot_error": 0.0006108590424735445,
+      "lower_body_target": [
+        -0.575114476925352,
+        -0.0003914080673100065,
+        -0.00037249026131839743,
+        1.2168642879959017,
+        -0.35307724934194473,
+        -1.8902048011641678e-17,
+        -0.5751144768987575,
+        0.0003914087744053887,
+        0.0003724908824383186,
+        1.2168642877780107,
+        -0.3530772461397548,
+        2.482051673038081e-17,
+        0.0,
+        0.0,
+        0.073
+      ]
+    },
+    "start_height": 0.755,
+    "min_height": -0.7484210717594576,
+    "visible_drop": 1.5034210717594576,
+    "fell_at": 4.72,
+    "final_height": -0.7480042931106844,
+    "return_to_stand": false,
+    "foot_contact_ratio": 0.8566666666666667,
+    "foot_slip_distance": 0.894814569154001,
+    "min_support_margin": -0.5704252617566384,
+    "max_downward_velocity": -3.9568420870758736,
+    "max_total_foot_normal_force": 2747.6562150836776,
+    "max_lr_normal_imbalance": 1.0,
+    "max_lower_inverse_torque": 6558.331954559308,
+    "max_inverse_minus_actuator": 23227.159955176092,
+    "pass_gate": false,
+    "verdict": "FAIL_FALL",
+    "samples": [
+      {
+        "t": 0.0,
+        "base_height": 0.755,
+        "visible_drop": 0.0,
+        "vertical_velocity": 0.0,
+        "up_z": 1.0,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0,
+        "support_margin": 0.08631053913643147,
+        "desired_blend": 0.0,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 127.01024014584681,
+          "right_normal": 193.10486158667788,
+          "total_foot_normal": 320.1151017325247,
+          "left_tangent": 19.35487466816442,
+          "right_tangent": 25.607905235297416,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.20647142569380275
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 183.61155781378756,
+          "qfrc_actuator_linf": 11.820841942650237,
+          "qfrc_inverse_minus_actuator_linf": 183.61155781378756,
+          "lower_inverse_linf": 12.855626482333326,
+          "lower_actuator_linf": 11.491044832216371
+        }
+      },
+      {
+        "t": 0.2,
+        "base_height": 0.752347961692911,
+        "visible_drop": 0.002652038307089044,
+        "vertical_velocity": -0.02307599283158379,
+        "up_z": 0.9998156538000085,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0005614184261696934,
+        "support_margin": 0.08621924685932891,
+        "desired_blend": 0.05333333333333334,
+        "effective_blend": 0.05333333333333334,
+        "contact_wrench": {
+          "left_normal": 168.006670378239,
+          "right_normal": 160.85989756217168,
+          "total_foot_normal": 328.8665679404107,
+          "left_tangent": 15.597101466880424,
+          "right_tangent": 14.35621912841226,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.021731527351123995
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 10.878602016855135,
+          "qfrc_actuator_linf": 10.893526374257156,
+          "qfrc_inverse_minus_actuator_linf": 0.5536849210250239,
+          "lower_inverse_linf": 10.878602016855135,
+          "lower_actuator_linf": 10.893526374257156
+        }
+      },
+      {
+        "t": 0.4,
+        "base_height": 0.7482780249941083,
+        "visible_drop": 0.006721975005891667,
+        "vertical_velocity": -0.019289031579083904,
+        "up_z": 0.9996662321868934,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0010106127049562884,
+        "support_margin": 0.08169533002726533,
+        "desired_blend": 0.10666666666666667,
+        "effective_blend": 0.10666666666666667,
+        "contact_wrench": {
+          "left_normal": 168.82250570720782,
+          "right_normal": 159.19956130721488,
+          "total_foot_normal": 328.0220670144227,
+          "left_tangent": 13.764732360813971,
+          "right_tangent": 13.364685464088772,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.029336271451425974
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 12.74853290889984,
+          "qfrc_actuator_linf": 12.728237765623817,
+          "qfrc_inverse_minus_actuator_linf": 0.2673446136014377,
+          "lower_inverse_linf": 12.74853290889984,
+          "lower_actuator_linf": 12.728237765623817
+        }
+      },
+      {
+        "t": 0.6,
+        "base_height": 0.7442050760400709,
+        "visible_drop": 0.010794923959929092,
+        "vertical_velocity": -0.020270434656910474,
+        "up_z": 0.9996355867124859,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0014496774573872473,
+        "support_margin": 0.07534593367815623,
+        "desired_blend": 0.16,
+        "effective_blend": 0.16,
+        "contact_wrench": {
+          "left_normal": 165.51693772328338,
+          "right_normal": 162.74273139310978,
+          "total_foot_normal": 328.2596691163932,
+          "left_tangent": 11.935542938160873,
+          "right_tangent": 12.052160710644648,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.008451255488196845
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 13.96049167113706,
+          "qfrc_actuator_linf": 13.941861338048682,
+          "qfrc_inverse_minus_actuator_linf": 0.2652976275520018,
+          "lower_inverse_linf": 13.96049167113706,
+          "lower_actuator_linf": 13.941861338048682
+        }
+      },
+      {
+        "t": 0.8,
+        "base_height": 0.7400167310992996,
+        "visible_drop": 0.014983268900700453,
+        "vertical_velocity": -0.022519917291496938,
+        "up_z": 0.9995484295494225,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0018206346769653492,
+        "support_margin": 0.06843318800056444,
+        "desired_blend": 0.21333333333333335,
+        "effective_blend": 0.21333333333333335,
+        "contact_wrench": {
+          "left_normal": 166.30895494900736,
+          "right_normal": 161.51998093962,
+          "total_foot_normal": 327.82893588862737,
+          "left_tangent": 12.02055938879422,
+          "right_tangent": 11.478615426330574,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.014608149205640266
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 15.542769322898751,
+          "qfrc_actuator_linf": 15.522374064888666,
+          "qfrc_inverse_minus_actuator_linf": 0.2978280212988693,
+          "lower_inverse_linf": 15.542769322898751,
+          "lower_actuator_linf": 15.522374064888666
+        }
+      },
+      {
+        "t": 1.0,
+        "base_height": 0.7350591264002901,
+        "visible_drop": 0.019940873599709863,
+        "vertical_velocity": -0.025925439808788253,
+        "up_z": 0.9994043716489794,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.002184579299937129,
+        "support_margin": 0.06068441773261458,
+        "desired_blend": 0.26666666666666666,
+        "effective_blend": 0.26666666666666666,
+        "contact_wrench": {
+          "left_normal": 164.01496935673288,
+          "right_normal": 164.14139629486812,
+          "total_foot_normal": 328.156365651601,
+          "left_tangent": 14.10548664563862,
+          "right_tangent": 13.039000575731816,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.0003852643171623399
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 16.939735829254026,
+          "qfrc_actuator_linf": 16.932938491449647,
+          "qfrc_inverse_minus_actuator_linf": 0.2674611485436458,
+          "lower_inverse_linf": 16.939735829254026,
+          "lower_actuator_linf": 16.932938491449647
+        }
+      },
+      {
+        "t": 1.2,
+        "base_height": 0.7313252968595669,
+        "visible_drop": 0.023674703140433073,
+        "vertical_velocity": -0.00956109935407734,
+        "up_z": 0.9990014452373713,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0025742416772501146,
+        "support_margin": 0.05192616281807672,
+        "desired_blend": 0.32,
+        "effective_blend": 0.27693953502974256,
+        "contact_wrench": {
+          "left_normal": 145.6266421616869,
+          "right_normal": 180.8084310378203,
+          "total_foot_normal": 326.4350731995072,
+          "left_tangent": 28.321597779552327,
+          "right_tangent": 21.43044950663206,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.1077757623631066
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 17.11288061126494,
+          "qfrc_actuator_linf": 16.99217292289923,
+          "qfrc_inverse_minus_actuator_linf": 0.3918168210494066,
+          "lower_inverse_linf": 17.11288061126494,
+          "lower_actuator_linf": 16.99217292289923
+        }
+      },
+      {
+        "t": 1.4,
+        "base_height": 0.732173029254157,
+        "visible_drop": 0.022826970745843056,
+        "vertical_velocity": 0.012461326062868094,
+        "up_z": 0.9981761061561453,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0031511466219650832,
+        "support_margin": 0.041404472530549186,
+        "desired_blend": 0.3733333333333334,
+        "effective_blend": 0.25762782907897275,
+        "contact_wrench": {
+          "left_normal": 126.0532134396798,
+          "right_normal": 192.06899010418562,
+          "total_foot_normal": 318.1222035438654,
+          "left_tangent": 39.29620285444249,
+          "right_tangent": 27.971905870326644,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.20751703568343668
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 27.916719744541467,
+          "qfrc_actuator_linf": 20.243038427449292,
+          "qfrc_inverse_minus_actuator_linf": 27.916719744541467,
+          "lower_inverse_linf": 20.193627183184038,
+          "lower_actuator_linf": 20.243038427449292
+        }
+      },
+      {
+        "t": 1.6,
+        "base_height": 0.7347190673443799,
+        "visible_drop": 0.020280932655620143,
+        "vertical_velocity": 0.024789575772798944,
+        "up_z": 0.9961420369786907,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00396341724875843,
+        "support_margin": 0.03048484827565326,
+        "desired_blend": 0.4266666666666667,
+        "effective_blend": 0.21678114329353432,
+        "contact_wrench": {
+          "left_normal": 159.03607302723455,
+          "right_normal": 162.6081921567515,
+          "total_foot_normal": 321.644265183986,
+          "left_tangent": 37.596131395549534,
+          "right_tangent": 24.375779508330005,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.011105806992932505
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 20.048173078606112,
+          "qfrc_actuator_linf": 20.34772366767215,
+          "qfrc_inverse_minus_actuator_linf": 0.9128664232344939,
+          "lower_inverse_linf": 20.048173078606112,
+          "lower_actuator_linf": 20.34772366767215
+        }
+      },
+      {
+        "t": 1.8,
+        "base_height": 0.7386037722824482,
+        "visible_drop": 0.01639622771755178,
+        "vertical_velocity": 0.018274294751324804,
+        "up_z": 0.9940361491379849,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00466292569280002,
+        "support_margin": 0.022652846752396292,
+        "desired_blend": 0.48,
+        "effective_blend": 0.18122277401917034,
+        "contact_wrench": {
+          "left_normal": 163.5999002104231,
+          "right_normal": 153.29452268897896,
+          "total_foot_normal": 316.89442289940206,
+          "left_tangent": 30.00813426159813,
+          "right_tangent": 26.285799424687355,
+          "left_contacts": 3,
+          "right_contacts": 3,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.032519908135825976
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 22.59624471771337,
+          "qfrc_actuator_linf": 22.908605927818883,
+          "qfrc_inverse_minus_actuator_linf": 1.6228471563395643,
+          "lower_inverse_linf": 22.59624471771337,
+          "lower_actuator_linf": 22.908605927818883
+        }
+      },
+      {
+        "t": 2.0,
+        "base_height": 0.7401808154214345,
+        "visible_drop": 0.014819184578565459,
+        "vertical_velocity": 0.0016785561310017627,
+        "up_z": 0.9933903892342244,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.005407523844132426,
+        "support_margin": 0.020504443648929185,
+        "desired_blend": 0.5333333333333333,
+        "effective_blend": 0.182261721323815,
+        "contact_wrench": {
+          "left_normal": 148.70181871748963,
+          "right_normal": 173.38435649861208,
+          "total_foot_normal": 322.0861752161017,
+          "left_tangent": 22.662288092025086,
+          "right_tangent": 26.620735099687423,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.07663333505252702
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 19.837626879445917,
+          "qfrc_actuator_linf": 19.688432580751765,
+          "qfrc_inverse_minus_actuator_linf": 5.081578388836533,
+          "lower_inverse_linf": 19.837626879445917,
+          "lower_actuator_linf": 19.688432580751765
+        }
+      },
+      {
+        "t": 2.2,
+        "base_height": 0.7377260941817356,
+        "visible_drop": 0.01727390581826438,
+        "vertical_velocity": -0.021129456040985817,
+        "up_z": 0.9939246663962356,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.006413995279867271,
+        "support_margin": 0.0225234796685784,
+        "desired_blend": 0.5866666666666668,
+        "effective_blend": 0.22022957898165552,
+        "contact_wrench": {
+          "left_normal": 138.18301502660734,
+          "right_normal": 184.66762445792932,
+          "total_foot_normal": 322.85063948453666,
+          "left_tangent": 23.90817124753934,
+          "right_tangent": 28.583408034724727,
+          "left_contacts": 3,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.14398177902183906
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 18.79470004746822,
+          "qfrc_actuator_linf": 18.752467860989363,
+          "qfrc_inverse_minus_actuator_linf": 7.736933699532983,
+          "lower_inverse_linf": 18.79470004746822,
+          "lower_actuator_linf": 18.752467860989363
+        }
+      },
+      {
+        "t": 2.4,
+        "base_height": 0.7316447386977776,
+        "visible_drop": 0.02335526130222243,
+        "vertical_velocity": -0.031588772182350455,
+        "up_z": 0.9950995741382677,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.007239452755953791,
+        "support_margin": 0.026042589634976736,
+        "desired_blend": 0.64,
+        "effective_blend": 0.2777876227730852,
+        "contact_wrench": {
+          "left_normal": 140.35687476781618,
+          "right_normal": 186.26845314025027,
+          "total_foot_normal": 326.6253279080664,
+          "left_tangent": 30.91973841399678,
+          "right_tangent": 27.45308412557688,
+          "left_contacts": 3,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.14056343599096696
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 19.19758574490948,
+          "qfrc_actuator_linf": 19.086024213243192,
+          "qfrc_inverse_minus_actuator_linf": 1.0232575153952783,
+          "lower_inverse_linf": 19.19758574490948,
+          "lower_actuator_linf": 19.086024213243192
+        }
+      },
+      {
+        "t": 2.6,
+        "base_height": 0.7261826488460313,
+        "visible_drop": 0.028817351153968662,
+        "vertical_velocity": -0.0169415003832607,
+        "up_z": 0.9960321401085626,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.007916309355888745,
+        "support_margin": 0.02687615857432101,
+        "desired_blend": 0.6933333333333334,
+        "effective_blend": 0.31056894352548725,
+        "contact_wrench": {
+          "left_normal": 150.10154031492323,
+          "right_normal": 182.34483546013502,
+          "total_foot_normal": 332.44637577505824,
+          "left_tangent": 35.09774646486255,
+          "right_tangent": 24.501898694449448,
+          "left_contacts": 4,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.09698795804297904
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 19.436039461812346,
+          "qfrc_actuator_linf": 19.31640044624531,
+          "qfrc_inverse_minus_actuator_linf": 0.7362454614784042,
+          "lower_inverse_linf": 19.436039461812346,
+          "lower_actuator_linf": 19.31640044624531
+        }
+      },
+      {
+        "t": 2.8,
+        "base_height": 0.7258980839267689,
+        "visible_drop": 0.029101916073231093,
+        "vertical_velocity": 0.01830446382928841,
+        "up_z": 0.9953149967411536,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.00859809199240239,
+        "support_margin": 0.022757375194578874,
+        "desired_blend": 0.7466666666666668,
+        "effective_blend": 0.28320289131031495,
+        "contact_wrench": {
+          "left_normal": 157.35026095911707,
+          "right_normal": 175.84376257576446,
+          "total_foot_normal": 333.1940235348815,
+          "left_tangent": 36.332981919450276,
+          "right_tangent": 23.436321553594304,
+          "left_contacts": 3,
+          "right_contacts": 4,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.05550370147834101
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 20.24971169839476,
+          "qfrc_actuator_linf": 20.815319157031013,
+          "qfrc_inverse_minus_actuator_linf": 1.9501414206989693,
+          "lower_inverse_linf": 20.24971169839476,
+          "lower_actuator_linf": 20.815319157031013
+        }
+      },
+      {
+        "t": 3.0,
+        "base_height": 0.7334553153745317,
+        "visible_drop": 0.021544684625468324,
+        "vertical_velocity": 0.054870739817863834,
+        "up_z": 0.9927011236088126,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.009354591168761478,
+        "support_margin": 0.014781800493434145,
+        "desired_blend": 0.8,
+        "effective_blend": 0.19709067324578863,
+        "contact_wrench": {
+          "left_normal": 154.89726942776227,
+          "right_normal": 162.18294324806786,
+          "total_foot_normal": 317.0802126758301,
+          "left_tangent": 28.961249796007543,
+          "right_tangent": 23.428663485136788,
+          "left_contacts": 4,
+          "right_contacts": 3,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.022977384046837905
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 22.552807218032157,
+          "qfrc_actuator_linf": 22.556516964924164,
+          "qfrc_inverse_minus_actuator_linf": 2.6250181309861773,
+          "lower_inverse_linf": 22.552807218032157,
+          "lower_actuator_linf": 22.556516964924164
+        }
+      },
+      {
+        "t": 3.2,
+        "base_height": 0.7455886614939559,
+        "visible_drop": 0.009411338506044142,
+        "vertical_velocity": 0.05934017800392488,
+        "up_z": 0.9907232884347558,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.01019872407055978,
+        "support_margin": 0.007474503033976752,
+        "desired_blend": 0.7999999999999999,
+        "effective_blend": 0.09966004045302336,
+        "contact_wrench": {
+          "left_normal": 161.35950859112978,
+          "right_normal": 153.5926732098786,
+          "total_foot_normal": 314.95218180100835,
+          "left_tangent": 16.157132216935068,
+          "right_tangent": 14.30311936821615,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.024660363795029654
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 20.15830876178892,
+          "qfrc_actuator_linf": 20.210814910200448,
+          "qfrc_inverse_minus_actuator_linf": 0.3866643577067066,
+          "lower_inverse_linf": 20.15830876178892,
+          "lower_actuator_linf": 20.210814910200448
+        }
+      },
+      {
+        "t": 3.4,
+        "base_height": 0.753786308712282,
+        "visible_drop": 0.0012136912877179773,
+        "vertical_velocity": 0.030972698538389576,
+        "up_z": 0.9896042971040795,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.011761095559470318,
+        "support_margin": 0.0015383441536228407,
+        "desired_blend": 0.7333333333333334,
+        "effective_blend": 0.01880198409983472,
+        "contact_wrench": {
+          "left_normal": 154.72519709988342,
+          "right_normal": 172.1612638279425,
+          "total_foot_normal": 326.8864609278259,
+          "left_tangent": 8.330037354389065,
+          "right_tangent": 6.302834825454328,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.053339825328247006
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 21.506256930972445,
+          "qfrc_actuator_linf": 21.513231833383728,
+          "qfrc_inverse_minus_actuator_linf": 0.12024304816333142,
+          "lower_inverse_linf": 21.506256930972445,
+          "lower_actuator_linf": 21.513231833383728
+        }
+      },
+      {
+        "t": 3.6,
+        "base_height": 0.7587159332036124,
+        "visible_drop": -0.0037159332036124093,
+        "vertical_velocity": 0.011331020741928155,
+        "up_z": 0.9875328953452495,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0129619956387475,
+        "support_margin": -0.006272155097236373,
+        "desired_blend": 0.6666666666666666,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 139.66550832707884,
+          "right_normal": 186.64237909721874,
+          "total_foot_normal": 326.3078874242976,
+          "left_tangent": 8.104194821455552,
+          "right_tangent": 10.896508649669546,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.14396486441363876
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 23.213615154755455,
+          "qfrc_actuator_linf": 23.220389602625893,
+          "qfrc_inverse_minus_actuator_linf": 0.1892287066644821,
+          "lower_inverse_linf": 23.213615154755455,
+          "lower_actuator_linf": 23.220389602625893
+        }
+      },
+      {
+        "t": 3.8,
+        "base_height": 0.7608644684641819,
+        "visible_drop": -0.005864468464181871,
+        "vertical_velocity": 0.009744928957700072,
+        "up_z": 0.9845540796521945,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.013081890875311213,
+        "support_margin": -0.018494459194456768,
+        "desired_blend": 0.5999999999999999,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 136.64673510287201,
+          "right_normal": 190.0659397317687,
+          "total_foot_normal": 326.7126748346407,
+          "left_tangent": 12.698869255809281,
+          "right_tangent": 14.454396004248126,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.16350514915264242
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 22.878211962726414,
+          "qfrc_actuator_linf": 22.896362735760434,
+          "qfrc_inverse_minus_actuator_linf": 0.2057228998707501,
+          "lower_inverse_linf": 22.878211962726414,
+          "lower_actuator_linf": 22.896362735760434
+        }
+      },
+      {
+        "t": 4.0,
+        "base_height": 0.7621424329210984,
+        "visible_drop": -0.007142432921098396,
+        "vertical_velocity": 0.0019901921218146157,
+        "up_z": 0.9796844304690506,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.014392558585167088,
+        "support_margin": -0.04096384498959175,
+        "desired_blend": 0.5333333333333333,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 136.87957941821008,
+          "right_normal": 188.54575254225867,
+          "total_foot_normal": 325.4253319604687,
+          "left_tangent": 13.944365400223951,
+          "right_tangent": 15.14841226240554,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.15876506236559595
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 21.723872362874367,
+          "qfrc_actuator_linf": 21.75707573678507,
+          "qfrc_inverse_minus_actuator_linf": 0.5282637089624131,
+          "lower_inverse_linf": 21.723872362874367,
+          "lower_actuator_linf": 21.75707573678507
+        }
+      },
+      {
+        "t": 4.2,
+        "base_height": 0.7601978580046382,
+        "visible_drop": -0.005197858004638234,
+        "vertical_velocity": -0.026129042178413275,
+        "up_z": 0.9692559979579926,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.01932201430906977,
+        "support_margin": -0.085238348967584,
+        "desired_blend": 0.4666666666666666,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 130.30310167976057,
+          "right_normal": 188.04964685516956,
+          "total_foot_normal": 318.35274853493013,
+          "left_tangent": 19.655913767436363,
+          "right_tangent": 28.907539525657825,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.18139169660435003
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 20.758223300737402,
+          "qfrc_actuator_linf": 20.836576504154095,
+          "qfrc_inverse_minus_actuator_linf": 1.8341159745904179,
+          "lower_inverse_linf": 20.758223300737402,
+          "lower_actuator_linf": 20.836576504154095
+        }
+      },
+      {
+        "t": 4.4,
+        "base_height": 0.7410003322640241,
+        "visible_drop": 0.01399966773597594,
+        "vertical_velocity": -0.1987636555058403,
+        "up_z": 0.9510656841641139,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.031201763561774527,
+        "support_margin": -0.17532023650926998,
+        "desired_blend": 0.39999999999999986,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 88.20974093286779,
+          "right_normal": 183.44200545114126,
+          "total_foot_normal": 271.651746384009,
+          "left_tangent": 21.385125419795838,
+          "right_tangent": 57.72245268579729,
+          "left_contacts": 2,
+          "right_contacts": 2,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.35056746656674315
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 39.77961950382536,
+          "qfrc_actuator_linf": 18.24110383145861,
+          "qfrc_inverse_minus_actuator_linf": 39.77961950382536,
+          "lower_inverse_linf": 17.931016755690155,
+          "lower_actuator_linf": 18.24110383145861
+        }
+      },
+      {
+        "t": 4.6,
+        "base_height": 0.6300420768785097,
+        "visible_drop": 0.12495792312149034,
+        "vertical_velocity": -0.9648576899964179,
+        "up_z": 0.9297692963605286,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.04308892164160142,
+        "support_margin": -0.3388885870860961,
+        "desired_blend": 0.33333333333333315,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 61.35975908323067,
+          "right_normal": 0.0,
+          "total_foot_normal": 61.35975908323067,
+          "left_tangent": 26.41784853707519,
+          "right_tangent": 0.0,
+          "left_contacts": 1,
+          "right_contacts": 0,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 1.0
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 1616.883743589442,
+          "qfrc_actuator_linf": 11.338483133433051,
+          "qfrc_inverse_minus_actuator_linf": 1616.883743589442,
+          "lower_inverse_linf": 426.48326474963045,
+          "lower_actuator_linf": 11.338483133433051
+        }
+      },
+      {
+        "t": 4.8,
+        "base_height": 0.244064129031389,
+        "visible_drop": 0.510935870968611,
+        "vertical_velocity": -2.805913090828939,
+        "up_z": 0.774937885649869,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.11997220716681756,
+        "support_margin": -0.5686658593373316,
+        "desired_blend": 0.2666666666666667,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 23.006053781016757,
+          "right_normal": 0.0,
+          "total_foot_normal": 23.006053781016757,
+          "left_tangent": 0.0,
+          "right_tangent": 0.0,
+          "left_contacts": 1,
+          "right_contacts": 0,
+          "other_contacts": 1,
+          "lr_normal_imbalance": 1.0
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 177.38440280249222,
+          "qfrc_actuator_linf": 13.358477678125059,
+          "qfrc_inverse_minus_actuator_linf": 164.42326042470356,
+          "lower_inverse_linf": 177.38440280249222,
+          "lower_actuator_linf": 13.358477678125059
+        }
+      },
+      {
+        "t": 5.0,
+        "base_height": -0.478642784122219,
+        "visible_drop": 1.233642784122219,
+        "vertical_velocity": -3.9292306976599964,
+        "up_z": -0.1014476739079096,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.4513928712895238,
+        "support_margin": -0.325853216790022,
+        "desired_blend": 0.2,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 464.96994037084346,
+          "right_normal": 508.70752406531835,
+          "total_foot_normal": 973.6774644361618,
+          "left_tangent": 278.98196422250606,
+          "right_tangent": 305.224514439191,
+          "left_contacts": 1,
+          "right_contacts": 1,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.04491999177551315
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 963.2344270420805,
+          "qfrc_actuator_linf": 15.465597563776726,
+          "qfrc_inverse_minus_actuator_linf": 963.2344270420805,
+          "lower_inverse_linf": 403.7618023818196,
+          "lower_actuator_linf": 13.322980757546492
+        }
+      },
+      {
+        "t": 5.2,
+        "base_height": -0.7303562591457369,
+        "visible_drop": 1.4853562591457368,
+        "vertical_velocity": 0.3776255399445261,
+        "up_z": -0.9948603273553003,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.894814569154001,
+        "support_margin": 0.1223393764144998,
+        "desired_blend": 0.1333333333333333,
+        "effective_blend": 0.1333333333333333,
+        "contact_wrench": {
+          "left_normal": 479.63370875520934,
+          "right_normal": 40.15455707454683,
+          "total_foot_normal": 519.7882658297561,
+          "left_tangent": 226.693930651245,
+          "right_tangent": 20.112011577778823,
+          "left_contacts": 4,
+          "right_contacts": 3,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.8454964849564401
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 62.30206349320392,
+          "qfrc_actuator_linf": 40.08760856095594,
+          "qfrc_inverse_minus_actuator_linf": 62.30206349320392,
+          "lower_inverse_linf": 40.459127006158084,
+          "lower_actuator_linf": 40.08760856095594
+        }
+      },
+      {
+        "t": 5.4,
+        "base_height": -0.5763882766006732,
+        "visible_drop": 1.331388276600673,
+        "vertical_velocity": 0.7703061246461751,
+        "up_z": -0.7976314526841172,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.8368847652383264,
+        "support_margin": -0.2941142754207547,
+        "desired_blend": 0.06666666666666661,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 0.0,
+          "right_normal": 0.0,
+          "total_foot_normal": 0.0,
+          "left_tangent": 0.0,
+          "right_tangent": 0.0,
+          "left_contacts": 0,
+          "right_contacts": 0,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.0
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 8485.714391719119,
+          "qfrc_actuator_linf": 30.52220968108565,
+          "qfrc_inverse_minus_actuator_linf": 8485.714391719119,
+          "lower_inverse_linf": 2921.31442253025,
+          "lower_actuator_linf": 30.52220968108565
+        }
+      },
+      {
+        "t": 5.6,
+        "base_height": -0.54273032022039,
+        "visible_drop": 1.29773032022039,
+        "vertical_velocity": -0.3921301610891603,
+        "up_z": -0.7764551079411313,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.7718445327298131,
+        "support_margin": -0.3082827391956855,
+        "desired_blend": 0.0,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 0.0,
+          "right_normal": 0.0,
+          "total_foot_normal": 0.0,
+          "left_tangent": 0.0,
+          "right_tangent": 0.0,
+          "left_contacts": 0,
+          "right_contacts": 0,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 0.0
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 4507.607230920017,
+          "qfrc_actuator_linf": 9.120008643068935,
+          "qfrc_inverse_minus_actuator_linf": 4507.607230920017,
+          "lower_inverse_linf": 867.0649619639056,
+          "lower_actuator_linf": 9.120008643068935
+        }
+      },
+      {
+        "t": 5.8,
+        "base_height": -0.7091842159757256,
+        "visible_drop": 1.4641842159757257,
+        "vertical_velocity": -0.7021065168826723,
+        "up_z": -0.946563866688942,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.6468397024061241,
+        "support_margin": -0.03401145361859789,
+        "desired_blend": 0.0,
+        "effective_blend": 0.0,
+        "contact_wrench": {
+          "left_normal": 552.3342850915758,
+          "right_normal": 0.0,
+          "total_foot_normal": 552.3342850915758,
+          "left_tangent": 245.02610561556062,
+          "right_tangent": 0.0,
+          "left_contacts": 4,
+          "right_contacts": 0,
+          "other_contacts": 0,
+          "lr_normal_imbalance": 1.0
+        },
+        "inverse": {
+          "qfrc_inverse_linf": 200.35384005147398,
+          "qfrc_actuator_linf": 30.696833484441868,
+          "qfrc_inverse_minus_actuator_linf": 200.35384005147398,
+          "lower_inverse_linf": 41.6301641619576,
+          "lower_actuator_linf": 30.696833484441868
+        }
+      }
+    ]
+  }
+}
