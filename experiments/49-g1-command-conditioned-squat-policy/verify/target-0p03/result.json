@@ -1,0 +1,602 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "M19 target command is moved into the policy observation/reward contract while keeping the restored stabilizer network shape.",
+    "perspectives": {
+      "product": "moves M19 from external target injection toward a learned command-conditioned squat skill",
+      "architecture": "reuses existing command observation slots to preserve checkpoint compatibility",
+      "security": "no secrets or external credentials",
+      "qa": "compatibility, rollout smoke, restored PPO, native gate audit",
+      "skeptic": "short PPO may ignore the repurposed command or preserve the standing attractor"
+    },
+    "dod": [
+      "source checkpoint shape remains compatible",
+      "command-conditioned reward metrics execute",
+      "restored PPO produces params",
+      "native visible squat gate is audited"
+    ]
+  },
+  "target_drop": 0.03,
+  "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\46-g1-force-torque-residual\\verify\\stage-0p74\\attempts\\force-torque-20k\\train\\params.pkl",
+  "compatibility": {
+    "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\46-g1-force-torque-residual\\verify\\stage-0p74\\attempts\\force-torque-20k\\train\\params.pkl",
+    "source_exists": true,
+    "obs_size": {
+      "privileged_state": [
+        216
+      ],
+      "state": [
+        103
+      ]
+    },
+    "action_size": 29,
+    "policy_shape_match": true
+  },
+  "rollout": {
+    "rollout_steps": 20,
+    "reward_first": 2.0135443210601807,
+    "reward_last": 1.9364664554595947,
+    "target_fraction_last": 0.14615385234355927,
+    "target_height_min": 0.7506153583526611,
+    "command_progress_max": 1.0,
+    "support_gate_min": 1.0,
+    "done_any": false
+  },
+  "train": {
+    "target_drop": 0.03,
+    "timesteps": 20000,
+    "train_min": 4.272133333333356,
+    "seed": 50,
+    "reward_points": [
+      [
+        0,
+        294.7016296386719
+      ],
+      [
+        20480,
+        289.0077819824219
+      ],
+      [
+        40960,
+        296.8204345703125
+      ]
+    ],
+    "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\46-g1-force-torque-residual\\verify\\stage-0p74\\attempts\\force-torque-20k\\train\\params.pkl",
+    "params_path": "verify\\target-0p03\\train\\params.pkl",
+    "rewards_path": "verify\\target-0p03\\train\\rewards.txt"
+  },
+  "native": {
+    "target_drop": 0.03,
+    "params_path": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\49-g1-command-conditioned-squat-policy\\verify\\target-0p03\\train\\params.pkl",
+    "start_height": 0.755,
+    "min_height": 0.5014229036098936,
+    "visible_drop": 0.2535770963901064,
+    "first_visible_at": 5.78,
+    "fell_at": null,
+    "final_height": 0.5014229036098936,
+    "return_to_stand": false,
+    "foot_contact_ratio": 0.37333333333333335,
+    "foot_slip_distance": 3.0279465351845127,
+    "min_support_margin": -0.41301106289255984,
+    "first_support_breach_at": 1.38,
+    "max_joint_limit_violation": 0.030306330808556547,
+    "max_lr_normal_imbalance": 1.0,
+    "max_lower_inverse_torque": 16154.523970569613,
+    "max_action_norm": 2.5637786388397217,
+    "pass_gate": false,
+    "verdict": "RETURN_PENDING",
+    "samples": [
+      {
+        "t": 0.0,
+        "height": 0.7540662301695861,
+        "visible_drop": 0.000933769830413933,
+        "command": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "support_margin": 0.08655211460556744,
+        "both_feet_contact": true,
+        "foot_slip_distance": 9.727434995496425e-05,
+        "lr_normal_imbalance": 0.2711901863653754,
+        "inverse_torque": 10.055586153412762,
+        "up_z": 0.9999916602932126,
+        "action_norm": 1.2604984045028687
+      },
+      {
+        "t": 0.2,
+        "height": 0.7507328777711545,
+        "visible_drop": 0.00426712222884551,
+        "command": [
+          0.07692307233810425,
+          0.0,
+          0.019230768084526062
+        ],
+        "support_margin": 0.08696438761590135,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0006357912861406484,
+        "lr_normal_imbalance": 0.056533389524141,
+        "inverse_torque": 12.833428223709092,
+        "up_z": 0.9995686449463407,
+        "action_norm": 0.8942647576332092
+      },
+      {
+        "t": 0.4,
+        "height": 0.7489382475153739,
+        "visible_drop": 0.006061752484626148,
+        "command": [
+          0.1538461446762085,
+          0.0,
+          0.038461536169052124
+        ],
+        "support_margin": 0.08760091458696453,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.001169375659268956,
+        "lr_normal_imbalance": 0.017566416629538333,
+        "inverse_torque": 14.211270132290672,
+        "up_z": 0.9993939013828983,
+        "action_norm": 0.7563151717185974
+      },
+      {
+        "t": 0.6,
+        "height": 0.7489084313123165,
+        "visible_drop": 0.006091568687683457,
+        "command": [
+          0.23076923191547394,
+          0.0,
+          0.057692307978868484
+        ],
+        "support_margin": 0.08675126763963556,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0016472186013009324,
+        "lr_normal_imbalance": 0.0632063487726876,
+        "inverse_torque": 13.412791148932543,
+        "up_z": 0.999678491338929,
+        "action_norm": 0.7858198285102844
+      },
+      {
+        "t": 0.8,
+        "height": 0.7498313769550939,
+        "visible_drop": 0.005168623044906062,
+        "command": [
+          0.307692289352417,
+          0.0,
+          0.07692307233810425
+        ],
+        "support_margin": 0.07448837595366653,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0021415957520984877,
+        "lr_normal_imbalance": 0.007939421166803575,
+        "inverse_torque": 11.893022055457578,
+        "up_z": 0.9999389502546737,
+        "action_norm": 0.9405971169471741
+      },
+      {
+        "t": 1.0,
+        "height": 0.7503383677654948,
+        "visible_drop": 0.00466163223450522,
+        "command": [
+          0.38461539149284363,
+          0.0,
+          0.09615384787321091
+        ],
+        "support_margin": 0.05673461074539775,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0027397158991565116,
+        "lr_normal_imbalance": 0.01628939305432155,
+        "inverse_torque": 9.933634694647028,
+        "up_z": 0.9994406346470346,
+        "action_norm": 1.1886261701583862
+      },
+      {
+        "t": 1.2,
+        "height": 0.7488489970533023,
+        "visible_drop": 0.006151002946697681,
+        "command": [
+          0.4615384638309479,
+          0.0,
+          0.11538461595773697
+        ],
+        "support_margin": 0.031617204005157176,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0033201600124481254,
+        "lr_normal_imbalance": 0.028186023483353244,
+        "inverse_torque": 11.653119311804408,
+        "up_z": 0.9968783302641115,
+        "action_norm": 1.3648993968963623
+      },
+      {
+        "t": 1.4,
+        "height": 0.7419466898223321,
+        "visible_drop": 0.013053310177667865,
+        "command": [
+          0.5384615659713745,
+          0.0,
+          0.13461539149284363
+        ],
+        "support_margin": -0.007403321679383901,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.0038944622480492027,
+        "lr_normal_imbalance": 0.02726246586189853,
+        "inverse_torque": 13.786075395311377,
+        "up_z": 0.989258065215945,
+        "action_norm": 1.4515209197998047
+      },
+      {
+        "t": 1.6,
+        "height": 0.716528450244053,
+        "visible_drop": 0.03847154975594702,
+        "command": [
+          0.615384578704834,
+          0.0,
+          0.1538461446762085
+        ],
+        "support_margin": -0.07370505572355501,
+        "both_feet_contact": true,
+        "foot_slip_distance": 0.007685474654535975,
+        "lr_normal_imbalance": 0.3797412556762387,
+        "inverse_torque": 30.518181062351957,
+        "up_z": 0.9792387684308961,
+        "action_norm": 1.8636045455932617
+      },
+      {
+        "t": 1.8,
+        "height": 0.6970782567427781,
+        "visible_drop": 0.05792174325722188,
+        "command": [
+          0.692307710647583,
+          0.0,
+          0.17307692766189575
+        ],
+        "support_margin": 0.059198612896597114,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.29130010251496097,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 40.385589340703255,
+        "up_z": 0.9605030661797072,
+        "action_norm": 2.1206352710723877
+      },
+      {
+        "t": 2.0,
+        "height": 0.7275321532170241,
+        "visible_drop": 0.02746784678297587,
+        "command": [
+          0.7692307829856873,
+          0.0,
+          0.19230769574642181
+        ],
+        "support_margin": 0.07958249420415882,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.6684792170670694,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 357.3669015201998,
+        "up_z": 0.9801147640593196,
+        "action_norm": 1.684324026107788
+      },
+      {
+        "t": 2.2,
+        "height": 0.7639962946853643,
+        "visible_drop": -0.008996294685364337,
+        "command": [
+          0.8461539149284363,
+          0.0,
+          0.21153847873210907
+        ],
+        "support_margin": 0.048719788413988,
+        "both_feet_contact": false,
+        "foot_slip_distance": 0.9325602089067936,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 23.305361404129968,
+        "up_z": 0.9803775091224908,
+        "action_norm": 1.6558011770248413
+      },
+      {
+        "t": 2.4,
+        "height": 0.7330728690739404,
+        "visible_drop": 0.02192713092605958,
+        "command": [
+          0.9230769276618958,
+          0.0,
+          0.23076923191547394
+        ],
+        "support_margin": 0.06516956369443204,
+        "both_feet_contact": false,
+        "foot_slip_distance": 1.2774542353996885,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 44.535423246959766,
+        "up_z": 0.9907553375835362,
+        "action_norm": 1.8380330801010132
+      },
+      {
+        "t": 2.6,
+        "height": 0.7589231778864293,
+        "visible_drop": -0.003923177886429263,
+        "command": [
+          1.0,
+          0.0,
+          0.25
+        ],
+        "support_margin": 0.09736341977539098,
+        "both_feet_contact": false,
+        "foot_slip_distance": 1.27810331649283,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 45.276787199672725,
+        "up_z": 0.9988579490827811,
+        "action_norm": 0.9387102127075195
+      },
+      {
+        "t": 2.8,
+        "height": 0.753707603543167,
+        "visible_drop": 0.0012923964568329893,
+        "command": [
+          1.0,
+          0.0,
+          0.25
+        ],
+        "support_margin": 0.0565417373922954,
+        "both_feet_contact": false,
+        "foot_slip_distance": 1.3960583532353916,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 35.70623173659351,
+        "up_z": 0.9980267609668143,
+        "action_norm": 2.060628652572632
+      },
+      {
+        "t": 3.0,
+        "height": 0.7594752538151581,
+        "visible_drop": -0.00447525381515812,
+        "command": [
+          1.0,
+          0.0,
+          0.25
+        ],
+        "support_margin": 0.0857179960347545,
+        "both_feet_contact": false,
+        "foot_slip_distance": 1.6016941339124997,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 28.585582417295935,
+        "up_z": 0.995493500160609,
+        "action_norm": 1.688252329826355
+      },
+      {
+        "t": 3.2,
+        "height": 0.7418482111661426,
+        "visible_drop": 0.01315178883385737,
+        "command": [
+          0.857142984867096,
+          0.14285701513290405,
+          0.214285746216774
+        ],
+        "support_margin": 0.13974012068191705,
+        "both_feet_contact": false,
+        "foot_slip_distance": 1.8493778415787228,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 56.15536778877157,
+        "up_z": 0.9872168343437291,
+        "action_norm": 1.601521611213684
+      },
+      {
+        "t": 3.4,
+        "height": 0.7530166673442139,
+        "visible_drop": 0.0019833326557860964,
+        "command": [
+          0.7142858505249023,
+          0.28571417927742004,
+          0.17857146263122559
+        ],
+        "support_margin": 0.09318117356025196,
+        "both_feet_contact": true,
+        "foot_slip_distance": 2.153683725444496,
+        "lr_normal_imbalance": 0.9214830363022832,
+        "inverse_torque": 69.27294417394764,
+        "up_z": 0.9959704407796288,
+        "action_norm": 1.8072506189346313
+      },
+      {
+        "t": 3.6,
+        "height": 0.776225154632067,
+        "visible_drop": -0.021225154632066978,
+        "command": [
+          0.571428656578064,
+          0.4285713732242584,
+          0.142857164144516
+        ],
+        "support_margin": 0.07120218763050756,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.153176048196289,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 13.205055106997449,
+        "up_z": 0.9970828601779681,
+        "action_norm": 1.625162959098816
+      },
+      {
+        "t": 3.8,
+        "height": 0.7413268205377681,
+        "visible_drop": 0.0136731794622319,
+        "command": [
+          0.4285714626312256,
+          0.5714285373687744,
+          0.1071428656578064
+        ],
+        "support_margin": 0.16124042863941157,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.4838984893633294,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 17.572720682114017,
+        "up_z": 0.994119462602926,
+        "action_norm": 1.422331690788269
+      },
+      {
+        "t": 4.0,
+        "height": 0.7597311615907936,
+        "visible_drop": -0.0047311615907935645,
+        "command": [
+          0.2857142686843872,
+          0.7142857313156128,
+          0.0714285671710968
+        ],
+        "support_margin": 0.11097243294896453,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.5455188990742283,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 23.682773315250884,
+        "up_z": 0.9985842717530536,
+        "action_norm": 1.8335100412368774
+      },
+      {
+        "t": 4.2,
+        "height": 0.7710779765282989,
+        "visible_drop": -0.0160779765282989,
+        "command": [
+          0.14285725355148315,
+          0.8571427464485168,
+          0.03571431338787079
+        ],
+        "support_margin": 0.07208579440101115,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.587434524454654,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 17.5183510235132,
+        "up_z": 0.9969819883998762,
+        "action_norm": 1.7182084321975708
+      },
+      {
+        "t": 4.4,
+        "height": 0.7637560441871915,
+        "visible_drop": -0.008756044187191447,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.12402247948893896,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.700069380431394,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 32.5273768113052,
+        "up_z": 0.9969784057875324,
+        "action_norm": 1.9039198160171509
+      },
+      {
+        "t": 4.6,
+        "height": 0.7634359526134364,
+        "visible_drop": -0.008435952613436437,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.0895777457438931,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.674453094439931,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 27.37150238407238,
+        "up_z": 0.9973286676017136,
+        "action_norm": 2.2059731483459473
+      },
+      {
+        "t": 4.8,
+        "height": 0.7578167659096555,
+        "visible_drop": -0.0028167659096555164,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.15556282954848688,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.872363852412503,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 32.70453297789598,
+        "up_z": 0.9881422560474681,
+        "action_norm": 1.8482465744018555
+      },
+      {
+        "t": 5.0,
+        "height": 0.7651559923664789,
+        "visible_drop": -0.010155992366478905,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.07376310540982178,
+        "both_feet_contact": false,
+        "foot_slip_distance": 2.865837343379456,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 39.72487648614741,
+        "up_z": 0.9871030190794277,
+        "action_norm": 2.063997745513916
+      },
+      {
+        "t": 5.2,
+        "height": 0.7532017574085382,
+        "visible_drop": 0.001798242591461774,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.13425583489711146,
+        "both_feet_contact": false,
+        "foot_slip_distance": 3.0094315950595516,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 29.965975006389957,
+        "up_z": 0.9918999613148918,
+        "action_norm": 1.6847621202468872
+      },
+      {
+        "t": 5.4,
+        "height": 0.7556606971903829,
+        "visible_drop": -0.000660697190382864,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": 0.028484225256155016,
+        "both_feet_contact": false,
+        "foot_slip_distance": 3.0088530773018363,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 37.56516297062936,
+        "up_z": 0.9863308702085615,
+        "action_norm": 1.7637068033218384
+      },
+      {
+        "t": 5.6,
+        "height": 0.7027340992184318,
+        "visible_drop": 0.05226590078156823,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": -0.060498558915683676,
+        "both_feet_contact": false,
+        "foot_slip_distance": 3.016290898661573,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 44.997022177447626,
+        "up_z": 0.9720976891949009,
+        "action_norm": 1.5365607738494873
+      },
+      {
+        "t": 5.8,
+        "height": 0.6598036138052412,
+        "visible_drop": 0.09519638619475879,
+        "command": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "support_margin": -0.20635552173946503,
+        "both_feet_contact": false,
+        "foot_slip_distance": 3.0201528313614836,
+        "lr_normal_imbalance": 1.0,
+        "inverse_torque": 36.1706598040728,
+        "up_z": 0.9215428636228346,
+        "action_norm": 1.8093405961990356
+      }
+    ]
+  },
+  "verdict": "RETURN_PENDING"
+}

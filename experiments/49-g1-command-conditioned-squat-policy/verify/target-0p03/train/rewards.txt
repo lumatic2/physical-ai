@@ -1,0 +1,5 @@
+# target_drop=0.03
+# timesteps=20000 train_min=4.27 seed=50 source=C:\Users\yusun\projects\physical-ai\experiments\46-g1-force-torque-residual\verify\stage-0p74\attempts\force-torque-20k\train\params.pkl
+0	294.7016296386719
+20480	289.0077819824219
+40960	296.8204345703125

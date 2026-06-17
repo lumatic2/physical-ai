@@ -55,6 +55,7 @@
 | 46 | [g1-force-torque-residual](46-g1-force-torque-residual/README.md) | contact force balance와 lower-body torque proxy reward가 visible-depth residual을 키우는지 검증 | 🟥 force balance는 개선됐지만 0.97cm stable / 5.0cm slip trade-off로 visible gate 실패 |
 | 47 | [g1-visible-target-command](47-g1-visible-target-command/README.md) | static visible target을 stabilizer action 위 additive command로 넣으면 depth/contact trade-off가 줄어드는지 검증 | 🟥 stable depth는 2.32cm까지 개선, 0.35+ command는 support breach/fall |
 | 48 | [g1-phase-conditioned-trajectory-optimization](48-g1-phase-conditioned-trajectory-optimization/README.md) | descend/return phase guard로 visible target command를 더 깊고 안전하게 만들 수 있는지 검증 | 🟥 stable depth는 3.11cm까지 개선, 5cm+는 return 뒤 지연 fall |
+| 49 | [g1-command-conditioned-squat-policy](49-g1-command-conditioned-squat-policy/README.md) | visible target command를 observation/reward contract로 넣으면 PPO가 안정적 squat를 학습하는지 검증 | 🟥 20k PPO는 3/8cm 모두 large slip + return 실패 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
