@@ -77,6 +77,7 @@
 | 68 | [g1-com-zmp-trajectory-replan](68-g1-com-zmp-trajectory-replan/README.md) | multi-step descend/return timing과 CoM/ZMP-heavy 비용으로 7cm recoverable gate를 닫을 수 있는지 검증 | 🟥 안정 복귀 6.51cm까지 개선, 7cm 직전 cliff → 실제 horizon optimizer 필요 |
 | 69 | [g1-terminal-stand-horizon-optimizer](69-g1-terminal-stand-horizon-optimizer/README.md) | terminal stand objective로 full-rollout horizon plan을 고르면 7cm recoverable gate를 닫을 수 있는지 검증 | 🟥 terminal-safe는 6.55cm에서 포화, deep no-fall은 14.49cm까지 가능하지만 return pending |
 | 70 | [g1-full-return-recovery-horizon](70-g1-full-return-recovery-horizon/README.md) | exp69 deep 후보가 단순 cutoff였는지 7초 full-return horizon으로 검증 | 🟥 cutoff 아님: 안전 복귀는 6.55cm 포화, deep branch는 return 중 support/ZMP fall |
+| 71 | [g1-event-triggered-recapture](71-g1-event-triggered-recapture/README.md) | 7cm 근처에서 fixed schedule 대신 event-triggered support recapture로 전환하면 recoverable gate가 닫히는지 검증 | 🟥 안정 복귀 경계 6.86cm까지 전진, 0.20s hold/6.7cm trigger는 support-ZMP collapse |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
