@@ -1,0 +1,7 @@
+# stage_height=0.74
+# controller_blend=0.18
+# reference_scale=0.75
+# timesteps=20000 train_min=3.93 seed=46 source=C:\Users\yusun\projects\physical-ai\experiments\38-g1-support-aware-depth-finetune\verify\stage-0p74\train\params.pkl
+0	180.2110595703125
+20480	184.84414672851562
+40960	180.39971923828125
