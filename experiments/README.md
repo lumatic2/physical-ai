@@ -64,6 +64,7 @@
 | 55 | [g1-com-zmp-feedback-probe](55-g1-com-zmp-feedback-probe/README.md) | online CoM/ZMP recentering이 visible squat 안정 corridor를 깊게 하는지 검증 | 🟨 CoM feedback으로 no-fall 4.73cm까지 개선, 8cm gate는 아직 실패 |
 | 56 | [g1-com-aware-qplite-selector](56-g1-com-aware-qplite-selector/README.md) | CoM feedback scale까지 고르는 QP-lite selector가 delayed collapse를 줄이는지 검증 | 🟥 one-step selector는 best no-fall 3.32cm, depth-biased 후보는 3.16~3.94s fall |
 | 57 | [g1-multistep-rollout-risk](57-g1-multistep-rollout-risk/README.md) | 0.4~0.8s rollout risk selector가 delayed collapse를 비용화해 visible squat을 안정화하는지 검증 | 🟥 0.8s horizon은 fall을 4.62s까지 늦췄지만 모든 8~10cm 후보가 fall, no-fall run 없음 |
+| 58 | [g1-teacher-residual-probe](58-g1-teacher-residual-probe/README.md) | exp55 teacher 위 bounded residual이 stable corridor를 깊게 하는지 검증 | 🟥 ankle residual은 안정하지만 shallow, knee/hip residual은 1.5m collapse로 fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
