@@ -1,0 +1,21 @@
+{
+  "verdict": "PASS",
+  "mode": "local Playwright replay QA",
+  "url": "http://127.0.0.1:8132/?exp=unitree-g1-elastic-stand",
+  "exp": "unitree-g1-elastic-stand",
+  "replay": {
+    "frame": 99,
+    "nframes": 100,
+    "nq": 36,
+    "telemetry": {
+      "format": "physical-ai-g1-telemetry-sidecar-v0",
+      "frame": 99,
+      "tick": 99,
+      "t": 1.98,
+      "joint_count": 29,
+      "height": 0.7940262423180965,
+      "max_abs_joint_vel": 0.0035029471335299572
+    }
+  },
+  "consoleErrors": 0
+}

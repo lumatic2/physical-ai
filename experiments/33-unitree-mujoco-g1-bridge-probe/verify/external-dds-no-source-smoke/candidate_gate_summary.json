@@ -1,0 +1,33 @@
+{
+  "verdict": "FAIL",
+  "contract": "physical-ai-external-dds-browser-candidate-v0",
+  "candidate_kind": "real-robot",
+  "domain_id": 52,
+  "web_port": 8143,
+  "stream_port": 8903,
+  "frames": 10,
+  "thresholds": {
+    "min_fps": 5.0,
+    "max_height_range_m": 0.01
+  },
+  "command": [
+    "node",
+    "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\03-digital-twin\\web\\qa\\dds_stream_check.mjs",
+    "--sdk-path=C:\\Users\\yusun\\AppData\\Local\\Temp\\unitree_sdk2_python_probe",
+    "--publisher=external",
+    "--domain-id=52",
+    "--web-port=8143",
+    "--stream-port=8903",
+    "--exp=unitree-g1-elastic-stand",
+    "--label=real-robot",
+    "--frames=10",
+    "--min-fps=5.0",
+    "--max-height-range=0.01"
+  ],
+  "timeout_s": 20.0,
+  "timed_out": true,
+  "returncode": 124,
+  "stdout": "",
+  "stderr": "",
+  "next_step_if_fail": "Start an external Unitree SDK2 DDS publisher on the same domain/topic and rerun this gate."
+}

@@ -1,0 +1,43 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-g1-twin-candidate-gate-v0",
+  "capture": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree_elastic_stand_lowstate_trace.json",
+  "source": "assisted-elastic-stand",
+  "scene": "g1/scene_g1_policy.xml",
+  "thresholds": {
+    "min_frames": 40,
+    "max_height_range_m": 0.01,
+    "max_root_height_drop_m": 0.01
+  },
+  "checks": {
+    "normalize_pass": true,
+    "bridge_pass": true,
+    "contract_pass": true,
+    "finite_pass": true,
+    "min_frames_pass": true,
+    "height_range_pass": true,
+    "root_height_drop_pass": true
+  },
+  "metrics": {
+    "frames": 100,
+    "fps": 50.0,
+    "duration_s": 2.0,
+    "nq": 36,
+    "joint_count": 29,
+    "start_height_m": 0.793,
+    "min_height_m": 0.7929042031798216,
+    "max_height_m": 0.7971504496050551,
+    "end_height_m": 0.7940262423180965,
+    "height_range_m": 0.004246246425233524,
+    "root_height_drop_m": 9.579682017846203e-05
+  },
+  "artifacts": {
+    "normalized": "normalized_lowstate_trace.json",
+    "trajectory": "web_trajectory.json",
+    "telemetry": "telemetry_sidecar.json",
+    "normalize_summary": "normalize_summary.json",
+    "bridge_summary": "bridge_summary.json",
+    "contract_summary": "contract_summary.json"
+  },
+  "next_required_evidence": "For full digital twin completion, run this on live DDS LowState + root pose capture or an unassisted controller trace."
+}

@@ -1,0 +1,33 @@
+{
+  "verdict": "FAIL",
+  "contract": "physical-ai-external-dds-browser-candidate-v0",
+  "candidate_kind": "unassisted-controller",
+  "domain_id": 70,
+  "web_port": 8150,
+  "stream_port": 8910,
+  "frames": 45,
+  "thresholds": {
+    "min_fps": 15.0,
+    "max_height_range_m": 0.01
+  },
+  "command": [
+    "node",
+    "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\03-digital-twin\\web\\qa\\dds_stream_check.mjs",
+    "--sdk-path=C:\\Users\\yusun\\AppData\\Local\\Temp\\unitree_sdk2_python_probe",
+    "--publisher=external",
+    "--domain-id=70",
+    "--web-port=8150",
+    "--stream-port=8910",
+    "--exp=unitree-g1-elastic-stand",
+    "--label=unassisted-controller",
+    "--frames=45",
+    "--min-fps=15.0",
+    "--max-height-range=0.01"
+  ],
+  "timeout_s": 75.0,
+  "timed_out": false,
+  "returncode": 1,
+  "stdout": "{\n  \"verdict\": \"FAIL\",\n  \"domainId\": 70,\n  \"streamPort\": 8910,\n  \"publisherMode\": \"external\",\n  \"elasticBand\": true,\n  \"consoleErrors\": [],\n  \"expName\": \"unitree-g1-elastic-stand\",\n  \"stream\": {\n    \"enabled\": true,\n    \"connected\": true,\n    \"received\": 84,\n    \"errors\": 0,\n    \"droppedOrOutOfOrder\": 0,\n    \"repeatedTicks\": 18,\n    \"lastTick\": 169,\n    \"firstReceiveMS\": 4449.794999998063,\n    \"lastReceiveMS\": 5904.234999999404,\n    \"minHeight\": 0.15007799863815308,\n    \"maxHeight\": 0.27842795848846436,\n    \"expectedFrames\": null,\n    \"measuredFps\": 57.06663733115389,\n    \"heightRange\": 0.12834995985031128,\n    \"height\": 0.17318075895309448,\n    \"telemetry\": {\n      \"format\": \"physical-ai-stream-frame-v0\",\n      \"frame\": 83,\n      \"tick\": 169,\n      \"t\": 6.576751600001444,\n      \"joint_count\": 29,\n      \"height\": 0.17318075895309448,\n      \"max_abs_joint_vel\": 0.03915991261601448,\n      \"stream\": true\n    }\n  },\n  \"readout\": [\n    \"stream 83\",\n    \"tick 169\",\n    \"height 0.173m\",\n    \"max |dq| 0.04\"\n  ],\n  \"qpos0\": [\n    0.7754504084587097,\n    0.0006244445685297251,\n    0.17318075895309448,\n    0.8975528478622437,\n    -0.0007585192215628922,\n    0.44090622663497925,\n    0.00007221193664008752\n  ]\n}\n",
+  "stderr": "",
+  "next_step_if_fail": "Start an external Unitree SDK2 DDS publisher on the same domain/topic and rerun this gate."
+}

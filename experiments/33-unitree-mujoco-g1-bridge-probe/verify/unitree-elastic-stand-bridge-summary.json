@@ -1,0 +1,19 @@
+{
+  "verdict": "PASS",
+  "source_format": "unitree-g1-lowstate-trace-v0",
+  "source_kind": "synthetic_lowstate_from_headless_qpos",
+  "contract": "physical-ai-web-trajectory-v1",
+  "telemetry_sidecar": "physical-ai-g1-telemetry-sidecar-v0",
+  "frames": 100,
+  "fps": 50.0,
+  "duration_s": 2.0,
+  "nq": 36,
+  "joint_count": 29,
+  "scene": "g1/scene_g1_policy.xml",
+  "finite_valid": true,
+  "start_height_m": 0.793,
+  "min_height_m": 0.7929042031798216,
+  "end_height_m": 0.7940262423180965,
+  "root_height_drop_m": 9.579682017846203e-05,
+  "next_required_evidence": "Replace synthetic frames with live DDS LowState/pose capture and rerun the same adapter."
+}

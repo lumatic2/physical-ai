@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "format": "unitree-g1-lowstate-trace-v0",
+  "source": "nested-jsonl-capture-fixture",
+  "frames": 4,
+  "joint_count": 29,
+  "fps_estimate": 50.0,
+  "duration_s": 0.06,
+  "time_jitter_s": 3.469446951953614e-18,
+  "non_monotonic_time_pairs": 0,
+  "root_pose_required": true,
+  "next_step": "Feed this normalized trace into bridge_lowstate_trace.py."
+}

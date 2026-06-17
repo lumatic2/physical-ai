@@ -1,0 +1,39 @@
+{
+  "format": "unitree-g1-trace-v0",
+  "kind": "mock",
+  "source": "mock-unitree-g1-standing-micro-lower",
+  "fps": 50,
+  "joint_names": [
+    "left_hip_pitch", "left_hip_roll", "left_hip_yaw", "left_knee", "left_ankle_pitch", "left_ankle_roll",
+    "right_hip_pitch", "right_hip_roll", "right_hip_yaw", "right_knee", "right_ankle_pitch", "right_ankle_roll",
+    "waist_yaw", "waist_roll", "waist_pitch",
+    "left_shoulder_pitch", "left_shoulder_roll", "left_shoulder_yaw", "left_elbow", "left_wrist_roll", "left_wrist_pitch", "left_wrist_yaw",
+    "right_shoulder_pitch", "right_shoulder_roll", "right_shoulder_yaw", "right_elbow", "right_wrist_roll", "right_wrist_pitch", "right_wrist_yaw"
+  ],
+  "frames": [
+    {
+      "t": 0.00,
+      "root_pos": [0.0, 0.0, 0.754],
+      "root_quat": [1.0, 0.0, 0.0, 0.0],
+      "joint_pos": [-0.312, 0.0, 0.0, 0.669, -0.363, 0.0, -0.312, 0.0, 0.0, 0.669, -0.363, 0.0, 0.0, 0.0, 0.073, 0.2, 0.2, 0.0, 0.6, 0.0, 0.0, 0.0, 0.2, -0.2, 0.0, 0.6, 0.0, 0.0, 0.0]
+    },
+    {
+      "t": 0.02,
+      "root_pos": [0.0, 0.0, 0.750],
+      "root_quat": [0.99999, 0.0, 0.004, 0.0],
+      "joint_pos": [-0.330, 0.0, 0.0, 0.705, -0.383, 0.0, -0.330, 0.0, 0.0, 0.705, -0.383, 0.0, 0.0, 0.0, 0.073, 0.2, 0.2, 0.0, 0.6, 0.0, 0.0, 0.0, 0.2, -0.2, 0.0, 0.6, 0.0, 0.0, 0.0]
+    },
+    {
+      "t": 0.04,
+      "root_pos": [0.0, 0.0, 0.746],
+      "root_quat": [0.99998, 0.0, 0.006, 0.0],
+      "joint_pos": [-0.350, 0.0, 0.0, 0.745, -0.405, 0.0, -0.350, 0.0, 0.0, 0.745, -0.405, 0.0, 0.0, 0.0, 0.073, 0.2, 0.2, 0.0, 0.6, 0.0, 0.0, 0.0, 0.2, -0.2, 0.0, 0.6, 0.0, 0.0, 0.0]
+    },
+    {
+      "t": 0.06,
+      "root_pos": [0.0, 0.0, 0.754],
+      "root_quat": [1.0, 0.0, 0.0, 0.0],
+      "joint_pos": [-0.312, 0.0, 0.0, 0.669, -0.363, 0.0, -0.312, 0.0, 0.0, 0.669, -0.363, 0.0, 0.0, 0.0, 0.073, 0.2, 0.2, 0.0, 0.6, 0.0, 0.0, 0.0, 0.2, -0.2, 0.0, 0.6, 0.0, 0.0, 0.0]
+    }
+  ]
+}

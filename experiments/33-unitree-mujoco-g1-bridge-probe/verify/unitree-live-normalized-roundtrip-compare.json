@@ -1,0 +1,14 @@
+{
+  "verdict": "PASS",
+  "expected": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree_headless_g1_web_trajectory.json",
+  "actual": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree-live-normalized-web-trajectory.json",
+  "frames_compared": 100,
+  "values_compared": 3600,
+  "max_abs_diff": 1.1102230246251565e-15,
+  "max_abs_diff_at": {
+    "frame": 76,
+    "column": 3
+  },
+  "tolerance": 1e-09,
+  "errors": []
+}

@@ -1,0 +1,11 @@
+{
+  "verdict": "PASS",
+  "expected": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree_elastic_stand_web_trajectory.json",
+  "actual": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree_elastic_stand_roundtrip_web_trajectory.json",
+  "frames_compared": 100,
+  "values_compared": 3600,
+  "max_abs_diff": 0.0,
+  "max_abs_diff_at": null,
+  "tolerance": 1e-09,
+  "errors": []
+}

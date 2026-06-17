@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "format": "unitree-g1-lowstate-trace-v0",
+  "frames": 100,
+  "fps": 50.0,
+  "duration_s": 2.0,
+  "joint_count": 29,
+  "start_height_m": 0.793,
+  "min_height_m": 0.7929042031798216,
+  "end_height_m": 0.7940262423180965,
+  "root_height_drop_m": 9.579682017846203e-05,
+  "note": "Synthetic telemetry-shaped trace. It mirrors qpos evidence and is not a live DDS capture."
+}

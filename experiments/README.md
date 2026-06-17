@@ -38,6 +38,8 @@
 | 29 | [g1-visible-squat-feasibility](29-g1-visible-squat-feasibility/README.md) | G1 모델/웹 replay가 visible squat 목표에 맞는지 먼저 수치로 감사 | ✅ current replay FAIL_VISIBLE_SQUAT_MICRO_DIP, local joint range target plausible |
 | 30 | [g1-visible-squat-controller](30-g1-visible-squat-controller/README.md) | visible-depth target을 기존 controller로 native에서 안정적으로 만들 수 있는지 검증 | 🟥 weak blend shallow, strong blend falls at 2.06s |
 | 31 | [robotics-lab-gallery-polish](31-robotics-lab-gallery-polish/README.md) | public UI를 exp 목록이 아니라 로봇/동작/증거/한계 갤러리로 재편한다 | ✅ live overlay + desktop/mobile QA PASS |
+| 32 | [digital-twin-architecture-gate](32-digital-twin-architecture-gate/README.md) | 현재 웹 구현을 public twin viewer로 재정의하고 backend twin 후보를 결정할 수 있는지 검증 | ✅ MuJoCo/Web 유지 + Unitree MuJoCo/IsaacLab backend gate 추천 |
+| 33 | [unitree-mujoco-g1-bridge-probe](33-unitree-mujoco-g1-bridge-probe/README.md) | Unitree-style G1 trace를 현재 web trajectory contract로 변환할 수 있는지 검증 | ✅ COMPLETE: Unitree MJCF DDS/browser bridge + collapse rejection + Unitree RL Lab G1-29DOF unassisted policy candidate PASS |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

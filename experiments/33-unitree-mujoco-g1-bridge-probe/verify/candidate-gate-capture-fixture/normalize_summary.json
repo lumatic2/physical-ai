@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "format": "unitree-g1-lowstate-trace-v0",
+  "source": "capture-fixture-elastic-stand",
+  "frames": 100,
+  "joint_count": 29,
+  "fps_estimate": 50.0,
+  "duration_s": 1.98,
+  "time_jitter_s": 2.0469737016526324e-16,
+  "non_monotonic_time_pairs": 0,
+  "root_pose_required": true,
+  "next_step": "Feed this normalized trace into bridge_lowstate_trace.py."
+}

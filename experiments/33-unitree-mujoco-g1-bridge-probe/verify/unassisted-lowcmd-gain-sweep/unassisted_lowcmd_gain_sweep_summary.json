@@ -1,0 +1,72 @@
+{
+  "verdict": "FAIL_EXPECTED",
+  "contract": "physical-ai-unassisted-lowcmd-gain-sweep-v0",
+  "interpretation": "Searches for an unassisted LowCmd browser closed-loop candidate. A PASS candidate could be promoted to unassisted completion evidence; otherwise failures document controller instability.",
+  "candidates": [
+    {
+      "kp_scale": 0.5,
+      "kd_scale": 1.0,
+      "returncode": 1,
+      "summary_path": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unassisted-lowcmd-gain-sweep\\kp0p5_kd1\\lowcmd_browser_closed_loop_smoke_summary.json",
+      "verdict": "FAIL",
+      "metrics": {
+        "browser_verdict": "FAIL",
+        "received": 84,
+        "measured_fps": 57.06663733115389,
+        "height_range_m": 0.12834995985031128,
+        "height_m": 0.17318075895309448,
+        "publisher_root_height_drop_m": 0.6429220032838324,
+        "lowcmd_received_count": 159
+      }
+    },
+    {
+      "kp_scale": 1.0,
+      "kd_scale": 1.0,
+      "returncode": 1,
+      "summary_path": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unassisted-lowcmd-gain-sweep\\kp1_kd1\\lowcmd_browser_closed_loop_smoke_summary.json",
+      "verdict": "FAIL",
+      "metrics": {
+        "browser_verdict": "FAIL",
+        "received": 68,
+        "measured_fps": 61.336494756594966,
+        "height_range_m": 0.2626020610332489,
+        "height_m": 0.206549733877182,
+        "publisher_root_height_drop_m": 0.6022473513147513,
+        "lowcmd_received_count": 160
+      }
+    },
+    {
+      "kp_scale": 1.0,
+      "kd_scale": 3.0,
+      "returncode": 1,
+      "summary_path": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unassisted-lowcmd-gain-sweep\\kp1_kd3\\lowcmd_browser_closed_loop_smoke_summary.json",
+      "verdict": "FAIL",
+      "metrics": {
+        "browser_verdict": "FAIL",
+        "received": 68,
+        "measured_fps": 66.7437041759742,
+        "height_range_m": 0.2622115910053253,
+        "height_m": 0.2600952684879303,
+        "publisher_root_height_drop_m": 0.5329047343990295,
+        "lowcmd_received_count": 160
+      }
+    }
+  ],
+  "best_by_height_score": {
+    "kp_scale": 0.5,
+    "kd_scale": 1.0,
+    "returncode": 1,
+    "summary_path": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unassisted-lowcmd-gain-sweep\\kp0p5_kd1\\lowcmd_browser_closed_loop_smoke_summary.json",
+    "verdict": "FAIL",
+    "metrics": {
+      "browser_verdict": "FAIL",
+      "received": 84,
+      "measured_fps": 57.06663733115389,
+      "height_range_m": 0.12834995985031128,
+      "height_m": 0.17318075895309448,
+      "publisher_root_height_drop_m": 0.6429220032838324,
+      "lowcmd_received_count": 159
+    }
+  },
+  "passing_candidates": []
+}

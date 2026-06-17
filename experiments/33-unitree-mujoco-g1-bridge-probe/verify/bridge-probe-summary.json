@@ -1,0 +1,20 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-web-trajectory-v1",
+  "source_format": "unitree-g1-trace-v0",
+  "source_kind": "mock",
+  "frames": 4,
+  "fps": 50.0,
+  "duration_s": 0.08,
+  "nq": 36,
+  "scene": "g1/scene_g1_policy.xml",
+  "shape_valid": true,
+  "finite_valid": true,
+  "start_height_m": 0.754,
+  "min_height_m": 0.746,
+  "max_height_m": 0.754,
+  "end_height_m": 0.754,
+  "root_height_drop_m": 0.008000000000000007,
+  "adapter": "bridge_unitree_trace.py",
+  "next_required_evidence": "Run the same adapter on a trace exported from unitreerobotics/unitree_mujoco."
+}

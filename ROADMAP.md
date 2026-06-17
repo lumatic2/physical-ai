@@ -28,7 +28,8 @@
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
-| M23 | Robotics Lab gallery | 방문자가 로봇/동작/검증/한계를 바로 이해한다 | robotics.askewly.com lab gallery UI | 진행 중 |
+| M23 | Robotics Lab gallery | 방문자가 로봇/동작/검증/한계를 바로 이해한다 | robotics.askewly.com lab gallery UI | 완료 |
+| M24 | Digital Twin Architecture Gate | 공개 viewer와 연구 backend twin의 경계를 정한다 | stack comparison + ADR + Unitree DDS/browser gate | 완료 |
 
 ## 닫힌 증거 요약
 
@@ -134,6 +135,10 @@
 - [ ] 브라우저에서 reference vs policy rollout을 나란히 확인하는 viewer를 만든다.
 
 완료 기준: 🟨 reference format/probe와 reward-env 결합은 열렸다. 다만 stabilizer prior 없이 motion tracking만으로는 native fall을 해결하지 못했다. 증거: [exp17](experiments/17-motion-to-policy-loop/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md).
+
+### M24 - Digital Twin Architecture Gate
+
+진행: ✅ 현재 구현을 browser-based MuJoCo robotics lab / public twin viewer로 재정의하고, MuJoCo/Web 유지 + backend twin gate로 결정했다. Unitree G1 trace adapter, Unitree MJCF DDS bridge, assisted LowCmd closed loop, collapse rejection, external DDS candidate, 그리고 Unitree RL Lab G1-29DOF unassisted policy -> official MuJoCo -> DDS -> browser candidate PASS로 readiness `COMPLETE`를 통과했다. real robot telemetry twin은 별도 future work다. 증거: [exp32](experiments/32-digital-twin-architecture-gate/README.md), [exp33](experiments/33-unitree-mujoco-g1-bridge-probe/README.md), [ADR 0009](docs/adr/0009-digital-twin-layering.md).
 
 ## 대기 항목
 

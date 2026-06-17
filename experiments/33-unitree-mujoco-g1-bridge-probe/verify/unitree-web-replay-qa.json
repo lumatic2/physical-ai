@@ -1,0 +1,15 @@
+{
+  "verdict": "PASS",
+  "browser_path": "regular Playwright",
+  "browser_plugin": "not available in this session",
+  "url": "http://127.0.0.1:8132/?exp=unitree-g1-headless",
+  "flow": "app loads -> Unitree G1 headless backend replay loads -> sampled replay frames render without console errors",
+  "mode": "replay",
+  "frames_sampled": [0, 33, 65, 99],
+  "nframes": 100,
+  "nq": 36,
+  "console_errors": 0,
+  "command": "node qa/visual_check.mjs --exp=unitree-g1-headless",
+  "result": "visual_check.mjs PASS",
+  "note": "Screenshots were captured by the existing QA harness under web/qa/out, which is not reported as a committed artifact. This verifies rendered replay wiring, not controller stability."
+}

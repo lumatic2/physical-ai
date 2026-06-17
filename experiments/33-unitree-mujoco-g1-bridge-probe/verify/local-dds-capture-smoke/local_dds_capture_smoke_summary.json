@@ -1,0 +1,64 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-local-dds-capture-smoke-v0",
+  "frames": 100,
+  "fps": 50.0,
+  "domain_id": 1,
+  "interface": "auto",
+  "publisher_returncode": 0,
+  "capture_returncode": 0,
+  "capture_jsonl": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\local_dds_capture.jsonl",
+  "publisher_stdout": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\publisher_stdout.txt",
+  "publisher_stderr": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\publisher_stderr.txt",
+  "capture_stdout": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\capture_stdout.txt",
+  "capture_stderr": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\capture_stderr.txt",
+  "candidate_gate": {
+    "verdict": "PASS",
+    "contract": "physical-ai-g1-twin-candidate-gate-v0",
+    "capture": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\local-dds-capture-smoke\\local_dds_capture.jsonl",
+    "source": "local-dds-smoke",
+    "scene": "g1/scene_g1_policy.xml",
+    "thresholds": {
+      "min_frames": 40,
+      "max_height_range_m": 0.01,
+      "max_root_height_drop_m": 0.01
+    },
+    "checks": {
+      "normalize_pass": true,
+      "bridge_pass": true,
+      "contract_pass": true,
+      "finite_pass": true,
+      "min_frames_pass": true,
+      "height_range_pass": true,
+      "root_height_drop_pass": true
+    },
+    "metrics": {
+      "frames": 100,
+      "fps": 48.778492921955916,
+      "duration_s": 2.0500838383833817,
+      "nq": 36,
+      "joint_count": 29,
+      "start_height_m": 0.7929999828338623,
+      "min_height_m": 0.7929041981697083,
+      "max_height_m": 0.7971504330635071,
+      "end_height_m": 0.794026255607605,
+      "height_range_m": 0.004246234893798828,
+      "root_height_drop_m": 9.578466415405273e-05
+    },
+    "artifacts": {
+      "normalized": "normalized_lowstate_trace.json",
+      "trajectory": "web_trajectory.json",
+      "telemetry": "telemetry_sidecar.json",
+      "normalize_summary": "normalize_summary.json",
+      "bridge_summary": "bridge_summary.json",
+      "contract_summary": "contract_summary.json"
+    },
+    "next_required_evidence": "For full digital twin completion, run this on live DDS LowState + root pose capture or an unassisted controller trace."
+  },
+  "candidate_gate_process": {
+    "ran": true,
+    "returncode": 0,
+    "stdout": "{\n  \"verdict\": \"PASS\",\n  \"contract\": \"physical-ai-g1-twin-candidate-gate-v0\",\n  \"capture\": \"experiments\\\\33-unitree-mujoco-g1-bridge-probe\\\\verify\\\\local-dds-capture-smoke\\\\local_dds_capture.jsonl\",\n  \"source\": \"local-dds-smoke\",\n  \"scene\": \"g1/scene_g1_policy.xml\",\n  \"thresholds\": {\n    \"min_frames\": 40,\n    \"max_height_range_m\": 0.01,\n    \"max_root_height_drop_m\": 0.01\n  },\n  \"checks\": {\n    \"normalize_pass\": true,\n    \"bridge_pass\": true,\n    \"contract_pass\": true,\n    \"finite_pass\": true,\n    \"min_frames_pass\": true,\n    \"height_range_pass\": true,\n    \"root_height_drop_pass\": true\n  },\n  \"metrics\": {\n    \"frames\": 100,\n    \"fps\": 48.778492921955916,\n    \"duration_s\": 2.0500838383833817,\n    \"nq\": 36,\n    \"joint_count\": 29,\n    \"start_height_m\": 0.7929999828338623,\n    \"min_height_m\": 0.7929041981697083,\n    \"max_height_m\": 0.7971504330635071,\n    \"end_height_m\": 0.794026255607605,\n    \"height_range_m\": 0.004246234893798828,\n    \"root_height_drop_m\": 9.578466415405273e-05\n  },\n  \"artifacts\": {\n    \"normalized\": \"normalized_lowstate_trace.json\",\n    \"trajectory\": \"web_trajectory.json\",\n    \"telemetry\": \"telemetry_sidecar.json\",\n    \"normalize_summary\": \"normalize_summary.json\",\n    \"bridge_summary\": \"bridge_summary.json\",\n    \"contract_summary\": \"contract_summary.json\"\n  },\n  \"next_required_evidence\": \"For full digital twin completion, run this on live DDS LowState + root pose capture or an unassisted controller trace.\"\n}\n",
+    "stderr": ""
+  }
+}

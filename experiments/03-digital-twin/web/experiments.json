@@ -177,6 +177,68 @@
         "fovDist": 1
       }
     },
+    "unitree-g1-headless": {
+      "title": "Unitree G1 — official Unitree MuJoCo headless bridge replay",
+      "scene": "g1/scene_g1_policy.xml",
+      "trajectory": "unitree_g1_headless_trajectory.json",
+      "telemetry_sidecar": "unitree_g1_headless_telemetry.json",
+      "ee_body": "pelvis",
+      "render_out": "media/unitree_g1_headless.mp4",
+      "camera": {
+        "lookat": [
+          0,
+          0,
+          0.6
+        ],
+        "distance": 3.8,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.6
+        ],
+        "offset": [
+          2.2,
+          1.5,
+          2.0
+        ],
+        "fovDist": 1
+      }
+    },
+    "unitree-g1-elastic-stand": {
+      "title": "Unitree G1 — assisted elastic-band backend stand replay",
+      "scene": "g1/scene_g1_policy.xml",
+      "trajectory": "unitree_g1_elastic_stand_trajectory.json",
+      "telemetry_sidecar": "unitree_g1_elastic_stand_telemetry.json",
+      "ee_body": "pelvis",
+      "render_out": "media/unitree_g1_elastic_stand.mp4",
+      "camera": {
+        "lookat": [
+          0,
+          0,
+          0.8
+        ],
+        "distance": 3.8,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.8
+        ],
+        "offset": [
+          2.2,
+          1.5,
+          2.0
+        ],
+        "fovDist": 1
+      }
+    },
     "g1-rough-walk": {
       "title": "Unitree G1 — rough curb gait-phase robustness (live closed-loop, humanoid)",
       "scene": "g1/scene_g1_rough.xml",

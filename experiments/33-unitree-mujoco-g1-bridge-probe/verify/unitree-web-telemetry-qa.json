@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "mode": "local Playwright DOM QA",
+  "url": "http://127.0.0.1:8132/?exp=unitree-g1-headless",
+  "expName": "unitree-g1-headless",
+  "telemetryLoaded": true,
+  "telemetryFormat": "physical-ai-g1-telemetry-sidecar-v0",
+  "telemetryFrames": 100,
+  "telemetryJointCount": 29,
+  "panelHasTelemetry": true,
+  "readout": [
+    "frame 99/99",
+    "tick 99",
+    "height 0.411m",
+    "max |dq| 0.19"
+  ],
+  "diag": {
+    "frame": 99,
+    "nframes": 100,
+    "nq": 36,
+    "telemetry": {
+      "format": "physical-ai-g1-telemetry-sidecar-v0",
+      "frame": 99,
+      "tick": 99,
+      "t": 1.98,
+      "joint_count": 29,
+      "height": 0.41141468304666456,
+      "max_abs_joint_vel": 0.19398864229173696
+    }
+  },
+  "consoleErrors": []
+}

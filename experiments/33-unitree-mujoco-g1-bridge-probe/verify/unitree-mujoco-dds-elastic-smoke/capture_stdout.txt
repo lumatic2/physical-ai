@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS",
+  "format": "physical-ai-g1-capture-jsonl-v0",
+  "output": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree-mujoco-dds-elastic-smoke\\unitree_mujoco_dds_capture.jsonl",
+  "frames": 100,
+  "fps_target": 50.0,
+  "mode": "hardware",
+  "next_step": "Run run_twin_candidate_gate.py --capture on this JSONL."
+}

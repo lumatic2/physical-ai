@@ -1,0 +1,8 @@
+{
+  "source": "https://github.com/unitreerobotics/unitree_mujoco.git",
+  "probe": "git ls-remote HEAD",
+  "accessed_at": "2026-06-17",
+  "head": "ae6a8403e272733e9996ef59990880330496177f",
+  "verdict": "REACHABLE",
+  "note": "Remote source is reachable. This experiment has not yet cloned or executed Unitree MuJoCo runtime."
+}

@@ -1,0 +1,35 @@
+{
+  "verdict": "PASS",
+  "mode": "local Playwright WebSocket stream quality QA",
+  "expName": "unitree-g1-elastic-stand",
+  "thresholds": {
+    "targetFrames": 40,
+    "minFps": 20,
+    "maxHeightRangeM": 0.01
+  },
+  "stream": {
+    "enabled": true,
+    "connected": true,
+    "received": 72,
+    "errors": 0,
+    "droppedOrOutOfOrder": 0,
+    "lastTick": 71,
+    "expectedFrames": 100,
+    "measuredFps": 58.53449413001886,
+    "minHeight": 0.7929042031798216,
+    "maxHeight": 0.7971504496050551,
+    "heightRange": 0.004246246425233524,
+    "height": 0.7956992799262924,
+    "telemetry": {
+      "format": "physical-ai-stream-frame-v0",
+      "frame": 71,
+      "tick": 71,
+      "t": 1.42,
+      "joint_count": 29,
+      "height": 0.7956992799262924,
+      "max_abs_joint_vel": 0.01161865926541314,
+      "stream": true
+    }
+  },
+  "consoleErrors": []
+}

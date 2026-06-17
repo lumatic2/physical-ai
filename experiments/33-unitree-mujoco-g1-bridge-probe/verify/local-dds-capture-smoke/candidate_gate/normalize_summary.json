@@ -1,0 +1,13 @@
+{
+  "verdict": "PASS",
+  "format": "unitree-g1-lowstate-trace-v0",
+  "source": "local-dds-smoke",
+  "frames": 100,
+  "joint_count": 29,
+  "fps_estimate": 48.778492921955916,
+  "duration_s": 2.0295829999995476,
+  "time_jitter_s": 0.000531761615837404,
+  "non_monotonic_time_pairs": 0,
+  "root_pose_required": true,
+  "next_step": "Feed this normalized trace into bridge_lowstate_trace.py."
+}

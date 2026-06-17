@@ -11,6 +11,8 @@
 | `go1-walk` | Unitree Go1 (4족) | verified joystick locomotion policy live closed-loop (onnxruntime-web) + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | verified humanoid locomotion policy live closed-loop (103-d obs + gait phase clock) |
 | `g1-controlled-squat` | Unitree G1 (휴머노이드) | shallow lowering micro-dip replay — stable balance probe, not a completed squat |
+| `unitree-g1-headless` | Unitree G1 (휴머노이드) | official Unitree MuJoCo headless bridge replay + telemetry sidecar readout — backend-to-viewer wiring, not a stable controller |
+| `unitree-g1-elastic-stand` | Unitree G1 (휴머노이드) | assisted elastic-band backend stand replay + telemetry sidecar — stable fixture, not unassisted controller proof |
 | `spot-walk` | Boston Dynamics Spot (4족) | verified joystick locomotion policy live closed-loop (81-d obs + qpos error history) |
 | `g1-rough-walk` | Unitree G1 rough curb | terrain robustness QA — gait phase humanoid policy + 1/2/3cm curb |
 | `go1-rough-walk` · `spot-rough-walk` | Go1 · Spot rough curb | command/terrain robustness QA — 1/2/3cm curb + command sweep |

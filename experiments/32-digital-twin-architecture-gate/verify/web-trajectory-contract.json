@@ -1,0 +1,40 @@
+{
+  "contract_name": "physical-ai-web-trajectory-v1",
+  "source_file": "experiments/03-digital-twin/g1_controlled_squat_trajectory.json",
+  "consumer": "experiments/03-digital-twin/web/src/main.js replay path",
+  "required_fields": {
+    "fps": "number, frames per second",
+    "nq": "number, MuJoCo model qpos width",
+    "scene": "string, relative scene path under web/assets/scenes",
+    "qpos": "array<array<number>>, shape [frames][nq]"
+  },
+  "optional_fields": {
+    "note": "string",
+    "source_attempt": "string"
+  },
+  "runtime_assumptions": [
+    "Each qpos frame is copied directly into MuJoCo data.qpos.",
+    "The web runtime calls mj_forward after seeding a replay frame.",
+    "Frame timing is floor((wall_clock_seconds * fps)) modulo frame count.",
+    "For floating-base G1, qpos[0:3] are root xyz and qpos[3:7] is root quaternion."
+  ],
+  "g1_controlled_squat_baseline": {
+    "fps": 50,
+    "nq": 36,
+    "frames": 300,
+    "duration_s": 6.0,
+    "scene": "g1/scene_g1_policy.xml",
+    "start_height_m": 0.754206726156775,
+    "min_height_m": 0.744613873497211,
+    "max_height_m": 0.754693072283058,
+    "end_height_m": 0.749692785825589,
+    "height_drop_m": 0.009593,
+    "verdict": "valid web replay contract, but only micro-dip evidence"
+  },
+  "next_bridge_probe_acceptance": [
+    "A Unitree MuJoCo exported G1 trace must produce fps, nq, scene, and qpos with consistent qpos width.",
+    "The exported nq must match the target web scene model.nq or include an explicit adapter mapping.",
+    "The trace must preserve floating-base root xyz/quaternion ordering for browser replay.",
+    "The bridge probe must report whether the trace is replay-only, policy-driven, telemetry-driven, or mixed."
+  ]
+}

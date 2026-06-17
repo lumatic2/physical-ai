@@ -1,0 +1,30 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-unitree-sdk2-python-capture-source-v0",
+  "source": "C:\\Users\\yusun\\AppData\\Local\\Temp\\unitree_sdk2_python_probe",
+  "git_head": "4f12b0134e87ae33f3401bebf1c49f527dff4abd",
+  "checks": {
+    "g1_low_level_example_exists": true,
+    "hg_lowcmd_idl_exists": true,
+    "hg_lowstate_idl_exists": true,
+    "go_sportmode_idl_exists": true,
+    "g1_imports_hg_lowstate": true,
+    "g1_imports_hg_lowcmd": true,
+    "g1_subscribes_rt_lowstate": true,
+    "g1_publishes_rt_lowcmd": true,
+    "hg_lowcmd_has_35_motors": true,
+    "hg_lowstate_has_35_motors": true,
+    "hg_lowstate_has_imu_state": true,
+    "sportmode_has_position_3": true
+  },
+  "capture_template_implication": {
+    "lowstate_import": "unitree_sdk2py.idl.unitree_hg.msg.dds_.LowState_",
+    "lowstate_topic": "rt/lowstate",
+    "lowcmd_import": "unitree_sdk2py.idl.unitree_hg.msg.dds_.LowCmd_",
+    "lowcmd_topic": "rt/lowcmd",
+    "joint_count_for_g1_29dof": 29,
+    "available_motor_state_slots": 35,
+    "optional_root_position_topic": "rt/sportmodestate",
+    "root_orientation_source": "LowState_.imu_state.quaternion"
+  }
+}

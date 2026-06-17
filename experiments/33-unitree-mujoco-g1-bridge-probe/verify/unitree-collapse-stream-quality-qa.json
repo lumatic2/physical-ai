@@ -1,0 +1,36 @@
+{
+  "verdict": "FAIL_EXPECTED_UNSTABLE_TRACE",
+  "mode": "local Playwright WebSocket stream quality QA",
+  "expName": "unitree-g1-headless",
+  "thresholds": {
+    "targetFrames": 40,
+    "minFps": 20,
+    "maxHeightRangeM": 0.01
+  },
+  "stream": {
+    "enabled": true,
+    "connected": true,
+    "received": 73,
+    "errors": 0,
+    "droppedOrOutOfOrder": 0,
+    "lastTick": 72,
+    "expectedFrames": 100,
+    "measuredFps": 54.347210742576976,
+    "minHeight": 0.48200028765572955,
+    "maxHeight": 0.793,
+    "heightRange": 0.3109997123442705,
+    "height": 0.48200028765572955,
+    "telemetry": {
+      "format": "physical-ai-stream-frame-v0",
+      "frame": 72,
+      "tick": 72,
+      "t": 1.44,
+      "joint_count": 29,
+      "height": 0.48200028765572955,
+      "max_abs_joint_vel": 1.2314800194255286,
+      "stream": true
+    }
+  },
+  "failure_reason": "stream plumbing works, but heightRange 0.311m exceeds the 0.01m stability gate",
+  "consoleErrors": []
+}

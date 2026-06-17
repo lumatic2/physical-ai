@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-unitree-mujoco-g1-dds-publisher-v0",
+  "source_xml": "C:\\Users\\yusun\\AppData\\Local\\Temp\\unitree_mujoco_probe_e788a7cbc0b64e378fe9d6b00b40c329\\unitree_robots\\g1\\scene.xml",
+  "frames": 170,
+  "fps_target": 50.0,
+  "model_timestep_s": 0.002,
+  "substeps_per_frame": 10,
+  "nq": 36,
+  "nu": 29,
+  "elastic_band": false,
+  "control_source": "dds-lowcmd",
+  "rl_lab_policy_dir": null,
+  "rl_command": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "rl_policy_action_count": 0,
+  "lowcmd_topic": "rt/lowcmd",
+  "lowcmd_received_count": 160,
+  "start_height_m": 0.793,
+  "min_height_m": 0.2600952656009705,
+  "max_height_m": 0.793,
+  "end_height_m": 0.2600952656009705,
+  "root_height_drop_m": 0.5329047343990295,
+  "lowstate_topic": "rt/lowstate",
+  "sportmode_topic": "rt/sportmodestate"
+}

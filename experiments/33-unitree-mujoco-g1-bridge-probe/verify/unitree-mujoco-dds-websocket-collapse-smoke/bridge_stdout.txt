@@ -1,0 +1,1 @@
+{"event": "ready", "contract": "physical-ai-dds-websocket-bridge-v0", "host": "127.0.0.1", "port": 8877, "fps": 50.0, "domain_id": 12, "interface": "auto"}

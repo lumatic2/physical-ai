@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "mode": "local Playwright WebSocket stream QA",
+  "url": "http://127.0.0.1:8132/?exp=unitree-g1-headless&stream=ws://127.0.0.1:8765",
+  "expName": "unitree-g1-headless",
+  "stream": {
+    "enabled": true,
+    "connected": true,
+    "received": 51,
+    "errors": 0,
+    "lastTick": 50,
+    "expectedFrames": 100,
+    "height": 0.7574673490059153,
+    "telemetry": {
+      "format": "physical-ai-stream-frame-v0",
+      "frame": 50,
+      "tick": 50,
+      "t": 1.0,
+      "joint_count": 29,
+      "height": 0.7574673490059153,
+      "max_abs_joint_vel": 0.7743269509750781,
+      "stream": true
+    }
+  },
+  "readout": [
+    "stream 50",
+    "tick 50",
+    "height 0.757m",
+    "max |dq| 0.77"
+  ],
+  "consoleErrors": []
+}

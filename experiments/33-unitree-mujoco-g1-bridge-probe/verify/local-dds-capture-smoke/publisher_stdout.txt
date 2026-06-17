@@ -1,0 +1,9 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-local-dds-lowstate-publisher-v0",
+  "trace": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unitree_elastic_stand_lowstate_trace.json",
+  "frames": 100,
+  "fps_target": 50.0,
+  "lowstate_topic": "rt/lowstate",
+  "sportmode_topic": "rt/sportmodestate"
+}

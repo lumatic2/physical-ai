@@ -158,8 +158,32 @@ export class MuJoCoDemo {
       this.replayFps = traj.fps;
       this.replayQpos = traj.qpos;            // [frame][nq]
       this.replayN = traj.qpos.length;
+      this.telemetry = null;
+      if (exp.telemetry_sidecar) {
+        const telemetry = await (await fetch("./" + exp.telemetry_sidecar)).json();
+        const frames = Array.isArray(telemetry.frames) ? telemetry.frames : [];
+        if (frames.length === this.replayN) {
+          this.telemetry = telemetry;
+        } else {
+          console.warn(`telemetry_sidecar frame mismatch: ${frames.length} vs ${this.replayN}`);
+        }
+      }
       this.replayStartMS = null;
       this.seedFrame(0);
+      this.streamFrame = null;
+      this.streamStats = {
+        enabled: false,
+        connected: false,
+        received: 0,
+        errors: 0,
+        droppedOrOutOfOrder: 0,
+        repeatedTicks: 0,
+        lastTick: null,
+        firstReceiveMS: null,
+        lastReceiveMS: null,
+        minHeight: null,
+        maxHeight: null,
+      };
 
       this.gui = new GUI();
       setupGUI(this);
@@ -171,6 +195,8 @@ export class MuJoCoDemo {
       // (C) EE teleop for fixed-base arms (experiments.json `teleop: true`).
       this.teleopCfg = exp.teleop ? { ee_body: exp.ee_body } : null;
       if (this.teleopCfg) { this.initTeleop(); }
+      const streamUrl = new URLSearchParams(location.search).get("stream");
+      if (streamUrl) { this.initTelemetryStream(streamUrl); }
     }
 
     this.addControlHints();
@@ -179,7 +205,7 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'g1-stand']],
+      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'unitree-g1-headless', 'unitree-g1-elastic-stand', 'g1-stand']],
       ['quadrupeds', 'Quadrupeds', ['barkour-walk', 'go1-walk', 'go1-rough-walk', 'spot-walk', 'spot-rough-walk', 'spot-stand']],
       ['arms', 'Arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand']],
       ['checks', 'Harness checks', ['dummy-arm', 'humanoid-settle']],
@@ -220,6 +246,30 @@ export class MuJoCoDemo {
         actions: ['Replay probe', 'Compare posture', 'Audit depth'],
         evidence: ['6s no-fall', 'about 1cm pelvis dip', 'visible-squat gate failed'],
         limit: 'Squat remains paused until pelvis drop, knee flexion, hip pitch, and no-fall gates pass together.',
+      },
+      'unitree-g1-headless': {
+        name: 'Unitree G1 Backend Bridge',
+        kind: 'Humanoid',
+        model: 'Official Unitree G1 29-DOF MJCF',
+        source: 'unitreerobotics/unitree_mujoco headless MuJoCo trace',
+        mode: 'Backend replay / bridge',
+        status: 'Bridge verified',
+        description: 'A qpos replay exported from the official Unitree MuJoCo G1 scene and loaded through the existing web twin contract.',
+        actions: ['Replay backend trace', 'Inspect qpos contract', 'Compare stability'],
+        evidence: ['Unitree source layout PASS', 'nq=36/nu=29 runtime load', 'web contract PASS'],
+        limit: 'This proves backend-to-viewer wiring, not a stable controller; the PD hold trace collapses during replay.',
+      },
+      'unitree-g1-elastic-stand': {
+        name: 'Unitree G1 Assisted Stand',
+        kind: 'Humanoid',
+        model: 'Official Unitree G1 29-DOF MJCF',
+        source: 'unitreerobotics/unitree_mujoco headless MuJoCo + elastic band',
+        mode: 'Backend replay / assisted stream',
+        status: 'Stable fixture',
+        description: 'A stable standing backend trace generated from the official Unitree G1 scene with the same elastic-band support option exposed in Unitree simulator examples.',
+        actions: ['Replay stable stand', 'Inspect telemetry', 'Stream qpos frames'],
+        evidence: ['root drop 0.096mm', 'web contract PASS', 'telemetry sidecar PASS'],
+        limit: 'This is an assisted digital-twin fixture, not proof of an unassisted humanoid standing controller.',
       },
       'barkour-walk': {
         name: 'Google Barkour',
@@ -422,6 +472,15 @@ export class MuJoCoDemo {
           <div class="robot-card__section">
             <div class="robot-card__label">Current limit</div>
             <div class="robot-card__limit"></div>
+          </div>
+          <div class="robot-card__section robot-card__telemetry-section">
+            <div class="robot-card__label">Telemetry frame</div>
+            <div class="telemetry-readout" aria-live="polite">
+              <span data-telemetry="frame"></span>
+              <span data-telemetry="tick"></span>
+              <span data-telemetry="height"></span>
+              <span data-telemetry="jointVel"></span>
+            </div>
           </div>
         </div>
         <div class="research-card">
@@ -719,6 +778,28 @@ export class MuJoCoDemo {
         border-color: rgba(134,239,172,0.20);
         background: rgba(22,101,52,0.16);
       }
+      .robot-card__telemetry-section {
+        display: none;
+      }
+      .project-panel.has-telemetry .robot-card__telemetry-section {
+        display: block;
+      }
+      .telemetry-readout {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .telemetry-readout span {
+        min-height: 25px;
+        padding: 6px 7px;
+        border-radius: 6px;
+        color: rgba(248,250,252,0.82);
+        border: 1px solid rgba(147,197,253,0.18);
+        background: rgba(30,64,175,0.14);
+        font-size: 11px;
+        line-height: 1.15;
+        font-weight: 650;
+      }
       .research-card {
         margin-top: 13px;
         padding: 12px;
@@ -763,6 +844,16 @@ export class MuJoCoDemo {
     const actions = panel.querySelector('.robot-card__actions');
     const evidence = panel.querySelector('.robot-card__evidence');
     const limit = panel.querySelector('.robot-card__limit');
+    this.telemetryEls = {
+      frame: panel.querySelector('[data-telemetry="frame"]'),
+      tick: panel.querySelector('[data-telemetry="tick"]'),
+      height: panel.querySelector('[data-telemetry="height"]'),
+      jointVel: panel.querySelector('[data-telemetry="jointVel"]'),
+    };
+    if (this.telemetry || this.streamStats?.enabled) {
+      panel.classList.add('has-telemetry');
+      this.updateTelemetryPanel(0);
+    }
     const metaFor = (key) => experimentCopy[key] || {
       name: key,
       kind: this.registry.experiments[key]?.policy ? 'Policy' : 'Replay',
@@ -1207,8 +1298,124 @@ export class MuJoCoDemo {
     const q = this.replayQpos[f];
     for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = q[i]; }
     this.mujoco.mj_forward(this.model, this.data);
+    this.updateTelemetryPanel(f);
     this.render(0);
-    return { frame: f, nframes: this.replayN, nq: this.model.nq };
+    return { frame: f, nframes: this.replayN, nq: this.model.nq, telemetry: this.telemetrySummary(f) };
+  }
+
+  telemetrySummary(frame) {
+    if (this.streamFrame) {
+      const t = this.streamFrame.telemetry || {};
+      const jointVel = Array.isArray(t.joint_vel) ? t.joint_vel : [];
+      const maxAbsJointVel = jointVel.reduce((m, v) => Math.max(m, Math.abs(v)), 0);
+      return {
+        format: this.streamFrame.format || 'physical-ai-stream-frame-v0',
+        frame: this.streamFrame.frame ?? this.streamStats.received,
+        tick: t.tick ?? this.streamFrame.tick,
+        t: t.t ?? this.streamFrame.t,
+        joint_count: t.joint_count ?? this.telemetry?.joint_count,
+        height: this.data?.qpos ? this.data.qpos[2] : null,
+        max_abs_joint_vel: maxAbsJointVel,
+        stream: true,
+      };
+    }
+    if (!this.telemetry || !this.telemetry.frames) return null;
+    const t = this.telemetry.frames[frame];
+    if (!t) return null;
+    const jointVel = Array.isArray(t.joint_vel) ? t.joint_vel : [];
+    const maxAbsJointVel = jointVel.reduce((m, v) => Math.max(m, Math.abs(v)), 0);
+    return {
+      format: this.telemetry.format,
+      frame,
+      tick: t.tick,
+      t: t.t,
+      joint_count: this.telemetry.joint_count,
+      height: this.data?.qpos ? this.data.qpos[2] : null,
+      max_abs_joint_vel: maxAbsJointVel,
+    };
+  }
+
+  updateTelemetryPanel(frame) {
+    if (!this.telemetryEls || (!this.telemetry && !this.streamStats?.enabled)) return;
+    const summary = this.telemetrySummary(frame);
+    if (!summary) return;
+    this.telemetryEls.frame.textContent = summary.stream ? `stream ${summary.frame}` : `frame ${summary.frame}/${this.replayN - 1}`;
+    this.telemetryEls.tick.textContent = `tick ${summary.tick}`;
+    this.telemetryEls.height.textContent = `height ${summary.height?.toFixed(3)}m`;
+    this.telemetryEls.jointVel.textContent = `max |dq| ${summary.max_abs_joint_vel.toFixed(2)}`;
+  }
+
+  initTelemetryStream(streamUrl) {
+    this.streamStats.enabled = true;
+    this.params.replay = false;
+    if (this.replayToggle) { this.replayToggle.updateDisplay(); }
+    try {
+      this.streamSocket = new WebSocket(streamUrl);
+    } catch (error) {
+      console.error('telemetry stream init failed', error);
+      this.streamStats.errors += 1;
+      return;
+    }
+    this.streamSocket.addEventListener('open', () => { this.streamStats.connected = true; });
+    this.streamSocket.addEventListener('close', () => { this.streamStats.connected = false; });
+    this.streamSocket.addEventListener('error', () => { this.streamStats.errors += 1; });
+    this.streamSocket.addEventListener('message', (event) => {
+      try {
+        const message = JSON.parse(event.data);
+        if (message.format === 'physical-ai-stream-hello-v0') {
+          this.streamStats.expectedFrames = message.frames;
+          return;
+        }
+        this.applyStreamFrame(message);
+      } catch (error) {
+        console.error('telemetry stream frame failed', error);
+        this.streamStats.errors += 1;
+      }
+    });
+  }
+
+  applyStreamFrame(frame) {
+    if (!frame || !Array.isArray(frame.qpos) || frame.qpos.length !== this.model.nq) {
+      throw new Error(`stream qpos must have nq=${this.model.nq}`);
+    }
+    for (let i = 0; i < this.model.nq; i++) {
+      const value = Number(frame.qpos[i]);
+      if (!Number.isFinite(value)) { throw new Error(`stream qpos[${i}] is not finite`); }
+      this.data.qpos[i] = value;
+    }
+    this.mujoco.mj_forward(this.model, this.data);
+    this.streamFrame = frame;
+    const nowMS = performance.now();
+    if (this.streamStats.firstReceiveMS === null) { this.streamStats.firstReceiveMS = nowMS; }
+    this.streamStats.lastReceiveMS = nowMS;
+    this.streamStats.received += 1;
+    const tick = frame.telemetry?.tick ?? frame.tick ?? null;
+    if (tick !== null && this.streamStats.lastTick !== null && tick < this.streamStats.lastTick) {
+      this.streamStats.droppedOrOutOfOrder += 1;
+    }
+    if (tick !== null && this.streamStats.lastTick !== null && tick === this.streamStats.lastTick) {
+      this.streamStats.repeatedTicks += 1;
+    }
+    this.streamStats.lastTick = tick;
+    const height = this.data.qpos[2];
+    this.streamStats.minHeight = this.streamStats.minHeight === null ? height : Math.min(this.streamStats.minHeight, height);
+    this.streamStats.maxHeight = this.streamStats.maxHeight === null ? height : Math.max(this.streamStats.maxHeight, height);
+    this.updateTelemetryPanel(frame.frame ?? this.streamStats.received - 1);
+  }
+
+  qaStreamStatus() {
+    const elapsedS = this.streamStats.firstReceiveMS !== null && this.streamStats.lastReceiveMS !== null
+      ? Math.max(0, (this.streamStats.lastReceiveMS - this.streamStats.firstReceiveMS) / 1000)
+      : 0;
+    return {
+      ...this.streamStats,
+      measuredFps: elapsedS > 0 ? Math.max(0, (this.streamStats.received - 1) / elapsedS) : 0,
+      heightRange: this.streamStats.minHeight !== null && this.streamStats.maxHeight !== null
+        ? this.streamStats.maxHeight - this.streamStats.minHeight
+        : null,
+      height: this.data?.qpos ? this.data.qpos[2] : null,
+      telemetry: this.telemetrySummary(this.streamFrame?.frame ?? 0),
+    };
   }
 
   // QA hook for EE teleop: enable teleop, set the IK target to (start EE + delta) and run n IK
@@ -1260,6 +1467,8 @@ export class MuJoCoDemo {
     if (this.tele && this.tele.enabled) {
       // (C) EE teleop: IK drives the arm toward the drag point; replay/physics suspended.
       this.stepTeleop();
+    } else if (this.streamStats?.enabled) {
+      this.mujoco.mj_forward(this.model, this.data);
     } else if (this.params["replay"] && this.replayQpos) {
       // Grab-to-take-over: if the user starts dragging a body mid-replay, auto-pause the
       // rollout *in place* and hand off to physics. Hold the current pose (ctrl = current
@@ -1278,6 +1487,7 @@ export class MuJoCoDemo {
         const q = this.replayQpos[frame];
         for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
         this.mujoco.mj_forward(this.model, this.data);
+        this.updateTelemetryPanel(frame);
       }
     } else if (!this.params["replay"] && !this.params["paused"]) {
       let timestep = this.model.opt.timestep;

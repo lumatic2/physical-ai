@@ -1,0 +1,43 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-live-dds-capture-preflight-v0",
+  "modules": {
+    "mujoco": true,
+    "glfw": true,
+    "pygame": true,
+    "cyclonedds": true,
+    "unitree_sdk2py": true
+  },
+  "imports": {
+    "unitree_sdk2py.core.channel": {
+      "ok": true,
+      "error": null
+    },
+    "unitree_sdk2py.idl.unitree_hg.msg.dds_": {
+      "ok": true,
+      "error": null
+    },
+    "unitree_sdk2py.idl.unitree_go.msg.dds_": {
+      "ok": true,
+      "error": null
+    }
+  },
+  "unitree_mujoco": {
+    "provided": true,
+    "simulate_python_exists": true,
+    "bridge_exists": true,
+    "simulator_exists": true,
+    "config_exists": true,
+    "robot_scene": "C:\\Users\\yusun\\AppData\\Local\\Temp\\unitree_mujoco_probe_e788a7cbc0b64e378fe9d6b00b40c329\\unitree_robots\\g1\\scene.xml",
+    "robot_scene_exists": true
+  },
+  "capture_contract": {
+    "lowstate_topic": "rt/lowstate",
+    "sportmode_topic": "rt/sportmodestate",
+    "domain_id": 1,
+    "interface": "auto",
+    "robot": "g1",
+    "capture_command_shape": "python capture_live_lowstate_jsonl.py --output capture.jsonl --root-pose-source sportmode --domain-id 1"
+  },
+  "missing_next_steps": []
+}

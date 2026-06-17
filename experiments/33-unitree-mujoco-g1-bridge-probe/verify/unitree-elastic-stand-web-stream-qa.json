@@ -1,0 +1,32 @@
+{
+  "verdict": "PASS",
+  "mode": "local Playwright WebSocket stream QA",
+  "url": "http://127.0.0.1:8132/?exp=unitree-g1-elastic-stand&stream=ws://127.0.0.1:8765",
+  "expName": "unitree-g1-elastic-stand",
+  "stream": {
+    "enabled": true,
+    "connected": true,
+    "received": 75,
+    "errors": 0,
+    "lastTick": 74,
+    "expectedFrames": 100,
+    "height": 0.795398680901027,
+    "telemetry": {
+      "format": "physical-ai-stream-frame-v0",
+      "frame": 74,
+      "tick": 74,
+      "t": 1.48,
+      "joint_count": 29,
+      "height": 0.795398680901027,
+      "max_abs_joint_vel": 0.012886023159905651,
+      "stream": true
+    }
+  },
+  "readout": [
+    "stream 74",
+    "tick 74",
+    "height 0.795m",
+    "max |dq| 0.01"
+  ],
+  "consoleErrors": []
+}
