@@ -66,6 +66,7 @@
 | 57 | [g1-multistep-rollout-risk](57-g1-multistep-rollout-risk/README.md) | 0.4~0.8s rollout risk selector가 delayed collapse를 비용화해 visible squat을 안정화하는지 검증 | 🟥 0.8s horizon은 fall을 4.62s까지 늦췄지만 모든 8~10cm 후보가 fall, no-fall run 없음 |
 | 58 | [g1-teacher-residual-probe](58-g1-teacher-residual-probe/README.md) | exp55 teacher 위 bounded residual이 stable corridor를 깊게 하는지 검증 | 🟥 ankle residual은 안정하지만 shallow, knee/hip residual은 1.5m collapse로 fall |
 | 59 | [g1-safe-basis-residual-filter](59-g1-safe-basis-residual-filter/README.md) | support/ZMP/slip gated safe residual basis가 teacher depth를 collapse 없이 늘리는지 검증 | 🟨 no-fall/contact/return 유지하며 stable drop 4.73cm→5.73cm, 8cm gate는 아직 미달 |
+| 60 | [g1-safe-combo-curriculum-probe](60-g1-safe-combo-curriculum-probe/README.md) | exp59 safe_combo basis를 scale/target curriculum으로 8cm까지 확장 가능한지 검증 | 🟥 5.73cm가 안정 경계, scale 0.09나 10cm target은 support/ZMP collapse |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
