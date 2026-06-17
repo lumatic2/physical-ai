@@ -62,6 +62,7 @@
 | 53 | [g1-contact-envelope-curriculum](53-g1-contact-envelope-curriculum/README.md) | contact-aware envelope 안에서 target drop curriculum을 2.5cm→8cm로 확장할 수 있는지 검증 | 🟥 6cm 설정도 actual 2.2cm shallow, 8cm level은 fall/slip 0.909m |
 | 54 | [g1-actuator-authority-probe](54-g1-actuator-authority-probe/README.md) | G1 공개 스펙 확인 뒤 simulated lower-body actuator authority가 visible squat 병목인지 검증 | 🟥 1.5x gain은 1.9cm shallow, ankle 증폭은 1.30~1.72s fall |
 | 55 | [g1-com-zmp-feedback-probe](55-g1-com-zmp-feedback-probe/README.md) | online CoM/ZMP recentering이 visible squat 안정 corridor를 깊게 하는지 검증 | 🟨 CoM feedback으로 no-fall 4.73cm까지 개선, 8cm gate는 아직 실패 |
+| 56 | [g1-com-aware-qplite-selector](56-g1-com-aware-qplite-selector/README.md) | CoM feedback scale까지 고르는 QP-lite selector가 delayed collapse를 줄이는지 검증 | 🟥 one-step selector는 best no-fall 3.32cm, depth-biased 후보는 3.16~3.94s fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
