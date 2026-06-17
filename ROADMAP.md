@@ -45,7 +45,7 @@
 
 - 첫 목표는 M19 `g1_squat` stance-aware return policy / WBC prototype이다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
-- reward scale만 반복하지 않는다. exp30/34-38이 weak=shallow, visible=fall을 보였고, reward-only plus hand-written guards는 depth/contact/return gate에서 막혔다.
+- reward scale만 반복하지 않는다. exp30/34-39가 weak/ramp=shallow, visible/reference=fall을 보였고, reward-only plus hand-written guards와 post-hoc action reinterpretation은 depth/contact/return gate에서 막혔다.
 - M22 side-by-side viewer와 M21 ball/kick은 M19 안정화 evidence 뒤에 붙인다.
 
 ### 다음 목표군 - Public drift audit
@@ -90,10 +90,10 @@
 - [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
 - [x] exp34에서 guarded descent controller를 native probe했다. `strict-low`는 8.7cm visible drop과 no-fall을 만들었지만 contact 0.85, foot slip 1.267m, final height 0.7034m로 return/contact gate를 실패했다.
 - [x] exp35에서 stance-anchor/early-return controller를 native probe했다. visible threshold 직후 return해도 fall했고, learned residual을 끄면 1.24초 fall로 더 나빠졌다.
-- [x] exp36-38에서 IK/support guard/support-aware reward를 probe했다. IK geometry와 support metric은 유효하지만, native 추적/heuristic guard/reward-only finetune은 shallow 안정 또는 visible-depth fall로 갈렸다.
-- [ ] **재개** — 다음 기술 작업은 reward-only가 아니라 policy action/target architecture 또는 torque-level WBC에 CoM/support/vertical momentum을 넣는 것이다.
+- [x] exp36-39에서 IK/support guard/support-aware reward/reference-offset action을 probe했다. IK geometry와 support metric은 유효하지만, native 추적/heuristic guard/reward-only finetune/post-hoc reference action은 shallow 안정 또는 visible-depth fall로 갈렸다.
+- [ ] **재개** — 다음 기술 작업은 학습 시작부터 reference-offset action base를 쓰거나 torque-level/operational-space WBC에 CoM/support/vertical momentum을 넣는 것이다.
 
-완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md), [exp34](experiments/34-g1-guarded-descent-controller/README.md), [exp35](experiments/35-g1-stance-anchored-squat-controller/README.md), [exp36](experiments/36-g1-wbc-ik-squat-prototype/README.md), [exp37](experiments/37-g1-com-support-squat-guard/README.md), [exp38](experiments/38-g1-support-aware-depth-finetune/README.md).
+완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했지만, "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md), [exp34](experiments/34-g1-guarded-descent-controller/README.md), [exp35](experiments/35-g1-stance-anchored-squat-controller/README.md), [exp36](experiments/36-g1-wbc-ik-squat-prototype/README.md), [exp37](experiments/37-g1-com-support-squat-guard/README.md), [exp38](experiments/38-g1-support-aware-depth-finetune/README.md), [exp39](experiments/39-g1-reference-offset-action-probe/README.md).
 
 ### M23 - Robotics Lab gallery
 
