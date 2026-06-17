@@ -58,6 +58,7 @@
 | 49 | [g1-command-conditioned-squat-policy](49-g1-command-conditioned-squat-policy/README.md) | visible target command를 observation/reward contract로 넣으면 PPO가 안정적 squat를 학습하는지 검증 | 🟥 20k PPO는 3/8cm 모두 large slip + return 실패 |
 | 50 | [g1-stance-constrained-curriculum-ppo](50-g1-stance-constrained-curriculum-ppo/README.md) | support/slip breach를 termination으로 넣고 stance-lock prior로 curriculum PPO를 안정화하는지 검증 | 🟥 7.62cm no-fall까지 접근, but slip 3.276m/contact 0.38/return 실패 |
 | 51 | [g1-foot-fixed-action-projection](51-g1-foot-fixed-action-projection/README.md) | policy 출력과 motor target 사이 action projection으로 foot slip을 직접 제한할 수 있는지 검증 | 🟥 slip은 3.2m→0.93m대로 줄지만 early fall, no-projection은 contact/slip/return 실패 |
+| 52 | [g1-foot-contact-aware-height-controller](52-g1-foot-contact-aware-height-controller/README.md) | foot/contact를 우선하는 낮은 차원 height controller가 stable corridor를 깊게 만들 수 있는지 검증 | 🟥 contact 1.00/slip 0.014m는 회복, but stable depth 2.64cm에서 visible gate 미달 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
