@@ -69,6 +69,7 @@
 | 60 | [g1-safe-combo-curriculum-probe](60-g1-safe-combo-curriculum-probe/README.md) | exp59 safe_combo basis를 scale/target curriculum으로 8cm까지 확장 가능한지 검증 | 🟥 5.73cm가 안정 경계, scale 0.09나 10cm target은 support/ZMP collapse |
 | 61 | [g1-contact-wbc-selector-probe](61-g1-contact-wbc-selector-probe/README.md) | one-step contact/torque-aware WBC selector가 stance foot constraint를 지키며 8cm squat로 갈 수 있는지 검증 | 🟥 safety 우선은 0.8cm micro-dip, pose/depth 우선은 support/ZMP collapse |
 | 62 | [g1-actuator-contact-wbc-probe](62-g1-actuator-contact-wbc-probe/README.md) | qfrc_applied lower-body torque와 stance-foot Jacobian force가 stable squat corridor를 넓히는지 검증 | 🟥 torque-only가 no-fall 5.80cm로 소폭 개선, 8cm/pose push는 collapse |
+| 63 | [g1-com-feasible-trajectory-probe](63-g1-com-feasible-trajectory-probe/README.md) | TP-MPC식 CoM/ZMP-feasible target trajectory가 8cm visible squat corridor를 여는지 검증 | 🟥 static 8cm target은 풀리지만 native는 5.51cm no-fall 또는 support/ZMP collapse |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
