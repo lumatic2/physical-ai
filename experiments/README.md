@@ -79,6 +79,7 @@
 | 70 | [g1-full-return-recovery-horizon](70-g1-full-return-recovery-horizon/README.md) | exp69 deep 후보가 단순 cutoff였는지 7초 full-return horizon으로 검증 | 🟥 cutoff 아님: 안전 복귀는 6.55cm 포화, deep branch는 return 중 support/ZMP fall |
 | 71 | [g1-event-triggered-recapture](71-g1-event-triggered-recapture/README.md) | 7cm 근처에서 fixed schedule 대신 event-triggered support recapture로 전환하면 recoverable gate가 닫히는지 검증 | 🟥 안정 복귀 경계 6.86cm까지 전진, 0.20s hold/6.7cm trigger는 support-ZMP collapse |
 | 72 | [g1-fine-recapture-probe](72-g1-fine-recapture-probe/README.md) | exp71의 6.86cm 경계에서 trigger/hold/blend를 좁게 조정하면 7cm recoverable gate를 닫을 수 있는지 검증 | ✅ 7.04cm recoverable PASS: no-fall/contact/slip/return OK, 8cm visible gate는 아직 미달 |
+| 73 | [g1-visible-gate-extension](73-g1-visible-gate-extension/README.md) | exp72 recapture corridor를 8cm/knee/hip visible gate로 확장할 수 있는지 검증 | 🟨 recoverable 7.60cm까지 확장, visible gate는 drop 4mm/knee 0.088rad/hip 0.043rad 부족 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
