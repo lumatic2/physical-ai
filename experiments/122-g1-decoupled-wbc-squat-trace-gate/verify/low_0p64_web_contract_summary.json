@@ -1,0 +1,17 @@
+{
+  "verdict": "PASS",
+  "contract": "physical-ai-web-trajectory-v1",
+  "frames": 300,
+  "fps": 50.0,
+  "duration_s": 6.0,
+  "nq": 36,
+  "scene": "g1/scene_g1_policy.xml",
+  "shape_valid": true,
+  "finite_valid": true,
+  "start_height_m": 0.7437936369965037,
+  "min_height_m": 0.6278502144438911,
+  "max_height_m": 0.7474579865217258,
+  "end_height_m": 0.7474109158306229,
+  "root_height_drop_m": 0.11594342255261259,
+  "errors": []
+}

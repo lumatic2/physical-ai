@@ -205,7 +205,7 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'unitree-g1-headless', 'unitree-g1-elastic-stand', 'g1-stand']],
+      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'g1-decoupled-wbc-squat', 'unitree-g1-headless', 'unitree-g1-elastic-stand', 'g1-stand']],
       ['quadrupeds', 'Quadrupeds', ['barkour-walk', 'go1-walk', 'go1-rough-walk', 'spot-walk', 'spot-rough-walk', 'spot-stand']],
       ['arms', 'Arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand']],
       ['checks', 'Harness checks', ['dummy-arm', 'humanoid-settle']],
@@ -246,6 +246,18 @@ export class MuJoCoDemo {
         actions: ['Replay probe', 'Compare posture', 'Audit depth'],
         evidence: ['6s no-fall', 'about 1cm pelvis dip', 'visible-squat gate failed'],
         limit: 'Squat remains paused until pelvis drop, knee flexion, hip pitch, and no-fall gates pass together.',
+      },
+      'g1-decoupled-wbc-squat': {
+        name: 'Unitree G1 Visible Squat',
+        kind: 'Humanoid',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'GR00T Decoupled WBC Balance ONNX',
+        mode: 'Measured WBC replay',
+        status: 'Native + browser gate',
+        description: 'A measured MuJoCo qpos trace from a Decoupled WBC height-command squat schedule, replayed through the same browser trajectory contract.',
+        actions: ['Replay squat', 'Inspect posture', 'Compare micro-dip'],
+        evidence: ['11.6cm pelvis drop', 'knee 0.707rad', 'hip 0.427rad', 'contact 1.00', 'foot slip 0.003m', 'browser QA'],
+        limit: 'This is a kinematic browser replay of a measured simulation trace, not real robot telemetry.',
       },
       'unitree-g1-headless': {
         name: 'Unitree G1 Backend Bridge',

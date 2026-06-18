@@ -177,6 +177,36 @@
         "fovDist": 1
       }
     },
+    "g1-decoupled-wbc-squat": {
+      "title": "Unitree G1 — Decoupled WBC visible squat replay",
+      "scene": "g1/scene_g1_policy.xml",
+      "trajectory": "g1_decoupled_wbc_squat_trajectory.json",
+      "ee_body": "pelvis",
+      "render_out": "media/g1_decoupled_wbc_squat.mp4",
+      "camera": {
+        "lookat": [
+          0,
+          0,
+          0.65
+        ],
+        "distance": 3.8,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.65
+        ],
+        "offset": [
+          2.2,
+          1.5,
+          2.0
+        ],
+        "fovDist": 1
+      }
+    },
     "unitree-g1-headless": {
       "title": "Unitree G1 — official Unitree MuJoCo headless bridge replay",
       "scene": "g1/scene_g1_policy.xml",

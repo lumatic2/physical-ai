@@ -2,7 +2,7 @@
 
 로봇 MJCF를 **브라우저에서 실제 물리째** 돌리는 인터랙티브 트윈. DeepMind 공식 MuJoCo WASM
 바인딩(`mujoco-js`) + three.js. 빌드·node_modules 불필요 — deps는 jsDelivr CDN, ES module 직접 로드(순수 정적).
-하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **12개 씬**을 굴린다.
+하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **13개 씬**을 굴린다.
 
 **라이브: https://robotics.askewly.com** (상단 패널에서 선택하거나 `?exp=<name>` 으로 직접 전환)
 
@@ -11,6 +11,7 @@
 | `go1-walk` | Unitree Go1 (4족) | verified joystick locomotion policy live closed-loop (onnxruntime-web) + 조이스틱 조향 |
 | `g1-walk` | Unitree G1 (휴머노이드) | verified humanoid locomotion policy live closed-loop (103-d obs + gait phase clock) |
 | `g1-controlled-squat` | Unitree G1 (휴머노이드) | shallow lowering micro-dip replay — stable balance probe, not a completed squat |
+| `g1-decoupled-wbc-squat` | Unitree G1 (휴머노이드) | GR00T Decoupled WBC measured visible squat replay — exp29 depth/knee/hip/contact/slip/return + browser QA PASS |
 | `unitree-g1-headless` | Unitree G1 (휴머노이드) | official Unitree MuJoCo headless bridge replay + telemetry sidecar readout — backend-to-viewer wiring, not a stable controller |
 | `unitree-g1-elastic-stand` | Unitree G1 (휴머노이드) | assisted elastic-band backend stand replay + telemetry sidecar — stable fixture, not unassisted controller proof |
 | `spot-walk` | Boston Dynamics Spot (4족) | verified joystick locomotion policy live closed-loop (81-d obs + qpos error history) |

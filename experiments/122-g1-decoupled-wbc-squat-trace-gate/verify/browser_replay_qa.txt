@@ -1,0 +1,21 @@
+[qa] navigate http://127.0.0.1:8132/?exp=g1-decoupled-wbc-squat
+[qa] ready (replay)
+[qa] frame 0/300 nq=36
+[qa] frame 99/300 nq=36
+[qa] frame 197/300 nq=36
+[qa] frame 299/300 nq=36
+
+[qa] RESULT {
+  "exp": "g1-decoupled-wbc-squat",
+  "live": false,
+  "mode": "replay",
+  "diag": {
+    "frame": 299,
+    "nframes": 300,
+    "nq": 36,
+    "telemetry": null
+  },
+  "consoleErrors": 0
+}
+[qa] screenshots in C:\Users\yusun\projects\physical-ai\experiments\03-digital-twin\web\qa\out
+[qa] PASS ✅

@@ -24,7 +24,7 @@
 | M16 | 정책 추가 루틴 일반화 | policy 추가가 운영 루틴이 된다 | `POLICY_ADDITION.md`, `check_policy_bundle.py` | 완료 |
 | M17 | 비교 가능한 policy gallery | 같은 프로토콜로 정책을 비교한다 | multi-policy command/terrain table + live links | 완료 |
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역한다 | behavior spec, task compiler, skill taxonomy | 완료 |
-| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 다음 |
+| M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 완료 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
 | M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
@@ -41,12 +41,12 @@
 
 ## 현재 목표군 - Atlas식 skill lab
 
-현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**을 다시 연다.
+현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**의 baseline을 닫았다.
 
-- 첫 목표는 M19 `g1_squat` stance-aware return policy / WBC prototype이다.
+- M19 `g1_squat`는 GR00T Decoupled WBC measured trace로 visible-depth/contact/slip/return/browser gate를 통과했다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
 - reward scale만 반복하지 않는다. exp30/34-41이 weak/ramp/reference-base/soft-WBC=shallow, visible/reference=fall을 보였고, reward/action-origin/hand-written guard는 depth/contact/return gate에서 막혔다.
-- M22 side-by-side viewer와 M21 ball/kick은 M19 안정화 evidence 뒤에 붙인다.
+- 다음은 M22 side-by-side viewer 또는 M21 ball/kick learned external-object skill이다.
 
 ### 다음 목표군 - Public drift audit
 
@@ -90,10 +90,9 @@
 - [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
 - [x] exp34에서 guarded descent controller를 native probe했다. `strict-low`는 8.7cm visible drop과 no-fall을 만들었지만 contact 0.85, foot slip 1.267m, final height 0.7034m로 return/contact gate를 실패했다.
 - [x] exp35에서 stance-anchor/early-return controller를 native probe했다. visible threshold 직후 return해도 fall했고, learned residual을 끄면 1.24초 fall로 더 나빠졌다.
-- [x] exp36-121에서 controller/selector/WBC/stance curriculum/corridor PPO/reference/native/ONNX adapter/public XML/mjlab/action-wrapper/future-reference/friction planner/contact-force audit/QP-lite/static ID-QP/dynamic tracking smoke/retrain/full-order formulation/longer tracker/deployable WBC/trace adapter/runtime gate를 probe했다. exp109는 visible pose가 static ID-QP에서는 plausible함을 보였고, exp118은 20k-step local tracker도 drop 2.62cm로 gate에 멀었으며, exp119-120은 GR00T/SONIC 29-DOF contract와 trace adapter를 열었고, exp121은 G1 squat posture 가능성 + WSL Git LFS/HF sample/MuJoCo sim runtime을 통과했지만 deployment trace는 아직 없다.
-- [ ] **재개** — 다음 기술 작업은 WSL-native GR00T/SONIC에서 sim loop와 deployment/controller를 함께 실행해 실제 `g1_debug`/CSV measured 29-DOF trace를 캡처하고, exp120 adapter와 exp33 browser gate로 흘려 exp29 visible gate와 browser replay를 닫는 것이다. 대안은 동등한 deployable WBC trace를 확보해 같은 gate에 넣는 것이다.
+- [x] exp36-122에서 controller/selector/WBC/curriculum/reference/native/ONNX adapter/GR00T runtime/trace adapter를 probe했고, exp122 Decoupled WBC measured trace가 11.6cm drop, knee 0.707rad, hip 0.427rad, contact 1.00, slip 0.003m, return 0.0036m, browser replay QA PASS를 달성했다.
 
-완료 기준: 🟨 M19는 균형 prior와 micro-dip/controller evidence는 확보했고 8cm depth/contact/slip+knee까지 동시에 보였으며 static ID-QP상 visible target 자체는 plausible하다고 분리했지만, controller/retrain/qfrc/20k local tracker gate는 실패했다. exp119-121로 GR00T/SONIC 통합 후보, trace adapter, WSL sim runtime은 열렸지만 "보이는 스쿼트"는 아직 완료가 아니다. 완료 조건은 exp29 visible gate를 native rollout과 browser replay가 동시에 통과하는 것이다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md), [exp18](experiments/18-g1-squat-reward-smoke/README.md), [exp19](experiments/19-g1-squat-recovery-longrun/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp21](experiments/21-g1-stabilizer-init-probe/README.md), [exp22](experiments/22-g1-squat-depth-finetune/README.md), [exp23](experiments/23-g1-squat-target-sanity/README.md), [exp24](experiments/24-g1-squat-skill-design/README.md), [exp25](experiments/25-g1-squat-depth-curriculum/README.md), [exp28](experiments/28-g1-controlled-squat-stage0p74/README.md), [exp29](experiments/29-g1-visible-squat-feasibility/README.md), [exp30](experiments/30-g1-visible-squat-controller/README.md), [exp34](experiments/34-g1-guarded-descent-controller/README.md), [exp35](experiments/35-g1-stance-anchored-squat-controller/README.md), [exp36](experiments/36-g1-wbc-ik-squat-prototype/README.md)-[exp121](experiments/121-g1-gr00t-wsl-runtime-preflight/README.md).
+완료 기준: ✅ exp29 visible gate를 native measured WBC rollout과 browser replay가 동시에 통과했다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md)-[exp122](experiments/122-g1-decoupled-wbc-squat-trace-gate/README.md), web replay `?exp=g1-decoupled-wbc-squat`.
 
 ### M23 - Robotics Lab gallery
 

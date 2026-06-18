@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS",
+  "command": "node qa/visual_check.mjs --exp=g1-decoupled-wbc-squat",
+  "cwd": "experiments/03-digital-twin/web",
+  "mode": "replay",
+  "frames_sampled": [0, 99, 197, 299],
+  "nframes": 300,
+  "nq": 36,
+  "console_errors": 0,
+  "output": "experiments/122-g1-decoupled-wbc-squat-trace-gate/verify/browser_replay_qa.txt",
+  "screenshots_dir": "experiments/03-digital-twin/web/qa/out"
+}
