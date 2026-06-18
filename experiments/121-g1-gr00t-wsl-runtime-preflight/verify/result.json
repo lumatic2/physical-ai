@@ -1,0 +1,292 @@
+{
+  "experiment": "121-g1-gr00t-wsl-runtime-preflight",
+  "verdict": "WSL_SIM_RUNTIME_PREFLIGHT_PASS__DEPLOYMENT_PARTIAL",
+  "m19_closed": false,
+  "checks": {
+    "git_lfs_healthy": true,
+    "hf_sample_download_present": true,
+    "run_sim_help_pass": true,
+    "venv_import_smoke_pass": true,
+    "torch_cuda_visible": true,
+    "g1_balance_walk_onnx_present": true,
+    "gr00t_check_environment_basic_sim_ready": true,
+    "run_sim_loop_timeout_smoke_no_traceback": true,
+    "windows_mount_install_permission_block_confirmed": true
+  },
+  "blockers": [
+    "install_mujoco_sim_must_run_on_wsl_native_filesystem_not_mnt_c",
+    "tensorrt_root_missing_for_cpp_deployment",
+    "training_stack_not_installed_but_not_needed_for_mujoco_sim_loop"
+  ],
+  "commands": {
+    "git_lfs": "git lfs version && git lfs env | sed -n '1,20p'",
+    "gr00t_check_environment": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python check_environment.py",
+    "run_sim_help": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python gear_sonic/scripts/run_sim_loop.py --help | sed -n '1,80p'",
+    "import_smoke": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport mujoco, torch, zmq, gear_sonic\nimport gear_sonic.scripts.run_sim_loop as run_sim_loop\nprint(\"IMPORT_SMOKE_PASS\")\nprint(\"mujoco\", mujoco.__version__)\nprint(\"torch\", torch.__version__)\nprint(\"cuda_available\", torch.cuda.is_available())\nprint(\"zmq\", zmq.__version__)\nprint(\"run_sim_loop_module\", run_sim_loop.__name__)\nPY",
+    "sample_download_listing": "find /home/yusun/gr00t_sample_download_probe -type f | sort | sed -n '1,80p'",
+    "native_repo_assets": "cd /home/yusun/gr00t-wbc-native && find . -type f \\( -name '*.onnx' -o -name '*.pkl' \\) | sed 's#^./##' | sort | sed -n '1,80p'",
+    "run_sim_loop_timeout_smoke": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport subprocess\ncmd = [\n    'timeout', '8s', 'python', 'gear_sonic/scripts/run_sim_loop.py',\n    '--no-enable-onscreen', '--no-enable-offscreen', '--sim-sync-mode', '--mp-start-method', 'fork',\n]\ncompleted = subprocess.run(cmd, text=True, capture_output=True, check=False)\nprint(f'RUN_SIM_RC:{completed.returncode}')\nprint('STDOUT_HEAD')\nprint('\\n'.join(completed.stdout.splitlines()[:80]))\nprint('STDERR_HEAD')\nprint('\\n'.join(completed.stderr.splitlines()[:80]))\nPY",
+    "windows_mount_install_failure_probe": "cd /mnt/c/Users/yusun/projects/physical-ai/tmp/gr00t-wbc && tr -d '\\r' < install_scripts/install_mujoco_sim.sh > /tmp/install_mujoco_sim_lf_probe.sh && bash /tmp/install_mujoco_sim_lf_probe.sh"
+  },
+  "results": {
+    "git_lfs": {
+      "returncode": 0,
+      "stdout": [
+        "git-lfs/3.4.1 (GitHub; linux amd64; go 1.22.2)",
+        "git-lfs/3.4.1 (GitHub; linux amd64; go 1.22.2)",
+        "git version 2.43.0",
+        "",
+        "Endpoint=https://github.com/lumatic2/physical-ai.git/info/lfs (auth=none)",
+        "LocalWorkingDir=/mnt/c/Users/yusun/projects/physical-ai",
+        "LocalGitDir=/mnt/c/Users/yusun/projects/physical-ai/.git",
+        "LocalGitStorageDir=/mnt/c/Users/yusun/projects/physical-ai/.git",
+        "LocalMediaDir=/mnt/c/Users/yusun/projects/physical-ai/.git/lfs/objects",
+        "LocalReferenceDirs=",
+        "TempDir=/mnt/c/Users/yusun/projects/physical-ai/.git/lfs/tmp",
+        "ConcurrentTransfers=8",
+        "TusTransfers=false",
+        "BasicTransfersOnly=false",
+        "SkipDownloadErrors=false",
+        "FetchRecentAlways=false",
+        "FetchRecentRefsDays=7",
+        "FetchRecentCommitsDays=0",
+        "FetchRecentRefsIncludeRemotes=true",
+        "PruneOffsetDays=3",
+        "PruneVerifyRemoteAlways=false"
+      ],
+      "stderr": []
+    },
+    "gr00t_check_environment": {
+      "returncode": 1,
+      "stdout": [
+        "GR00T-WholeBodyControl Environment Check",
+        "Platform: Linux x86_64",
+        "Python:   /home/yusun/gr00t-wbc-native/.venv_sim/bin/python",
+        "",
+        "Basic:",
+        "  [X] Python version: 3.10.20 (training requires 3.11.x \u2014 Isaac Lab requirement)",
+        "  [+] Git LFS: installed, files pulled",
+        "  [+] CUDA: NVIDIA GeForce RTX 5090 (CUDA 13.0)",
+        "  [+] PyTorch: 2.12.1+cu130",
+        "  [+] Disk space: 879 GB free",
+        "",
+        "Training:",
+        "  [X] Isaac Lab: not installed \u2014 see https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html",
+        "  [+] gear_sonic: installed (0.1.0)",
+        "  [X] hydra-core: not installed (pip install hydra-core)",
+        "  [X] trl: not installed (pip install trl)",
+        "  [X] transformers: not installed (pip install transformers)",
+        "  [X] accelerate: not installed (pip install accelerate)",
+        "  [X] wandb: not installed (pip install wandb)",
+        "",
+        "Deployment:",
+        "  [X] TensorRT: TensorRT_ROOT not set (export TensorRT_ROOT=$HOME/TensorRT)",
+        "",
+        "Some checks failed. See above for details."
+      ],
+      "stderr": []
+    },
+    "run_sim_help": {
+      "returncode": 0,
+      "stdout": [
+        "usage: gear_sonic/scripts/run_sim_loop.py [-h] [OPTIONS]",
+        "",
+        "Config for running the simulation loop.",
+        "",
+        "\u256d\u2500 options \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e",
+        "\u2502 -h, --help                                                                   \u2502",
+        "\u2502       show this help message and exit                                        \u2502",
+        "\u2502 --dataset-version STR                                                        \u2502",
+        "\u2502       (default: sonic_model12)                                               \u2502",
+        "\u2502 --wbc-version {sonic_model12}                                                \u2502",
+        "\u2502       Version of the whole body controller. (default: sonic_model12)         \u2502",
+        "\u2502 --wbc-model-path STR                                                         \u2502",
+        "\u2502       Path to WBC model file (relative to GearCheckpoints/wbc) (default:     \u2502",
+        "\u2502       policy/stand.onnx,policy/walk.onnx)                                    \u2502",
+        "\u2502 --wbc-policy-class STR                                                       \u2502",
+        "\u2502       Whole body policy class. (default: G1DecoupledWholeBodyPolicy)         \u2502",
+        "\u2502 --interface STR                                                              \u2502",
+        "\u2502       Interface to use for the control loop. [sim, real, lo,                 \u2502",
+        "\u2502       enxe8ea6a9c4e09] (default: sim)                                        \u2502",
+        "\u2502 --simulator STR                                                              \u2502",
+        "\u2502       Simulator to use. (default: mujoco)                                    \u2502",
+        "\u2502 --sim-sync-mode, --no-sim-sync-mode                                          \u2502",
+        "\u2502       Whether to run the control loop in sync mode. (default: False)         \u2502",
+        "\u2502 --control-frequency INT                                                      \u2502",
+        "\u2502       Frequency of the control loop. (default: 50)                           \u2502",
+        "\u2502 --sim-frequency INT                                                          \u2502",
+        "\u2502       Frequency of the simulation loop. (default: 200)                       \u2502",
+        "\u2502 --enable-waist, --no-enable-waist                                            \u2502",
+        "\u2502       Whether to include waist joints in IK. (default: True)                 \u2502",
+        "\u2502 --with-hands, --no-with-hands                                                \u2502",
+        "\u2502       Enable hand functionality. (default: True)                             \u2502",
+        "\u2502 --high-elbow-pose, --no-high-elbow-pose                                      \u2502",
+        "\u2502       Enable high elbow pose configuration. (default: False)                 \u2502",
+        "\u2502 --verbose, --no-verbose                                                      \u2502",
+        "\u2502       Verbose output, override the base config verbose (default: False)      \u2502",
+        "\u2502 --enable-offscreen, --no-enable-offscreen                                    \u2502",
+        "\u2502       Whether to enable offscreen rendering. (default: False)                \u2502",
+        "\u2502 --enable-onscreen, --no-enable-onscreen                                      \u2502",
+        "\u2502       Whether to enable onscreen rendering. (default: True)                  \u2502",
+        "\u2502 --enable-teleop-evaluator, --no-enable-teleop-evaluator                      \u2502",
+        "\u2502       Whether to enable teleop evaluator. (default: False)                   \u2502",
+        "\u2502 --upper-body-joint-speed FLOAT                                               \u2502",
+        "\u2502       Upper body joint speed. (default: 1000)                                \u2502",
+        "\u2502 --env-name STR                                                               \u2502",
+        "\u2502       Environment name. (default: default)                                   \u2502",
+        "\u2502 --ik-indicator, --no-ik-indicator                                            \u2502",
+        "\u2502       Whether to draw IK indicators. (default: False)                        \u2502",
+        "\u2502 --verbose-timing, --no-verbose-timing                                        \u2502",
+        "\u2502       Enable verbose timing output every iteration. (default: False)         \u2502",
+        "\u2502 --keyboard-dispatcher-type STR                                               \u2502",
+        "\u2502       Keyboard dispatcher to use. [raw, ros] (default: raw)                  \u2502",
+        "\u2502 --enable-gravity-compensation, --no-enable-gravity-compensation              \u2502",
+        "\u2502       Enable gravity compensation using pinocchio dynamics. (default: False) \u2502",
+        "\u2502 --gravity-compensation-joints {None}|{[STR [STR ...]]}                       \u2502",
+        "\u2502       Joint groups to apply gravity compensation to. (default: None)         \u2502",
+        "\u2502 --joint-safety-mode {kill,freeze}                                            \u2502",
+        "\u2502       Joint safety violation mode. (default: kill)                           \u2502",
+        "\u2502 --arm-velocity-limit FLOAT                                                   \u2502",
+        "\u2502       Arm joint velocity limit in rad/s. (default: 25.0)                     \u2502",
+        "\u2502 --hand-velocity-limit FLOAT                                                  \u2502",
+        "\u2502       Hand/finger joint velocity limit in rad/s. (default: 1000.0)           \u2502",
+        "\u2502 --lower-body-velocity-limit FLOAT                                            \u2502",
+        "\u2502       Lower body joint velocity limit in rad/s. (default: 20.0)              \u2502",
+        "\u2502 --waist-pitch-limit FLOAT                                                    \u2502",
+        "\u2502       Waist pitch position limit in degrees. (default: 15.0)                 \u2502",
+        "\u2502 --hand-torque-limit FLOAT                                                    \u2502",
+        "\u2502       Hand torque limit in radians. (default: 0.1)                           \u2502",
+        "\u2502 --enable-natural-walk, --no-enable-natural-walk                              \u2502",
+        "\u2502       Enable natural walk mode. (default: False)                             \u2502",
+        "\u2502 --body-control-device STR                                                    \u2502",
+        "\u2502       Device to use for body control. (default: dummy)                       \u2502",
+        "\u2502 --hand-control-device {None}|STR                                             \u2502",
+        "\u2502       Device to use for hand control. (default: dummy)                       \u2502",
+        "\u2502 --body-streamer-ip STR                                                       \u2502",
+        "\u2502       IP address for body streamer (vive only). (default: 10.112.210.229)    \u2502",
+        "\u2502 --body-streamer-keyword STR                                                  \u2502",
+        "\u2502       Body streamer keyword (vive only). (default: knee)                     \u2502",
+        "\u2502 --enable-visualization, --no-enable-visualization                            \u2502",
+        "\u2502       Whether to enable visualization. (default: False)                      \u2502",
+        "\u2502 --enable-real-device, --no-enable-real-device                                \u2502"
+      ],
+      "stderr": []
+    },
+    "import_smoke": {
+      "returncode": 0,
+      "stdout": [
+        "IMPORT_SMOKE_PASS",
+        "mujoco 3.9.0",
+        "torch 2.12.1+cu130",
+        "cuda_available True",
+        "zmq 27.1.0",
+        "run_sim_loop_module gear_sonic.scripts.run_sim_loop"
+      ],
+      "stderr": []
+    },
+    "sample_download_listing": {
+      "returncode": 0,
+      "stdout": [
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/.gitignore",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/CACHEDIR.TAG",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl",
+        "/home/yusun/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl"
+      ],
+      "stderr": []
+    },
+    "native_repo_assets": {
+      "returncode": 0,
+      "stdout": [
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.10.0_pickle_py27_np17.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.10.0_pickle_py33_np18.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.10.0_pickle_py34_np19.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.10.0_pickle_py35_np19.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.11.0_pickle_py36_np111.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.9.2_pickle_py27_np16.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.9.2_pickle_py27_np17.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.9.2_pickle_py33_np18.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.9.2_pickle_py34_np19.pkl",
+        ".venv_sim/lib/python3.10/site-packages/joblib/test/data/joblib_0.9.2_pickle_py35_np19.pkl",
+        ".venv_sim/lib/python3.10/site-packages/numpy/core/tests/data/astype_copy.pkl",
+        ".venv_sim/lib/python3.10/site-packages/numpy/core/tests/data/numpy_2_0_array.pkl",
+        "decoupled_wbc/sim2mujoco/resources/robots/g1/policy/GR00T-WholeBodyControl-Balance.onnx",
+        "decoupled_wbc/sim2mujoco/resources/robots/g1/policy/GR00T-WholeBodyControl-Walk.onnx",
+        "decoupled_wbc/tests/replay_data/all_joints_raw_data_replay.pkl",
+        "decoupled_wbc/tests/replay_data/calibration_data.pkl",
+        "decoupled_wbc/tests/replay_data/interpolation_data.pkl",
+        "decoupled_wbc/tests/replay_data/sin_wave_arm_replay.pkl",
+        "decoupled_wbc/tests/replay_data/target_joints_data.pkl",
+        "gear_sonic/data/human/human_joints_info.pkl"
+      ],
+      "stderr": []
+    },
+    "run_sim_loop_timeout_smoke": {
+      "returncode": 0,
+      "stdout": [
+        "RUN_SIM_RC:124",
+        "STDOUT_HEAD",
+        "",
+        "STDERR_HEAD",
+        "fatal: not a git repository (or any of the parent directories): .git",
+        "1781761273.760637 [0]     python: selected interface \"lo\" is not multicast-capable: disabling multicast"
+      ],
+      "stderr": []
+    },
+    "windows_mount_install_failure_probe": {
+      "returncode": 2,
+      "stdout": [
+        "[OK] Architecture: x86_64",
+        "[OK] uv uv 0.11.21 (x86_64-unknown-linux-gnu)",
+        "[INFO] Installing uv-managed Python 3.10 (includes development headers) \u2026",
+        "[OK] Using Python: /home/yusun/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
+        "[INFO] Removing old .venv_sim (if present) \u2026",
+        "[INFO] Creating .venv_sim with uv-managed Python 3.10 \u2026"
+      ],
+      "stderr": [
+        "Python 3.10 is already installed",
+        "Using CPython 3.10.20 interpreter at: /home/yusun/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
+        "Creating virtual environment at: .venv_sim",
+        "error: Failed to create virtual environment",
+        "  Caused by: failed to create directory `.venv_sim`: Permission denied (os error 13)"
+      ]
+    }
+  },
+  "interpretation": "WSL Ubuntu can now run the GR00T MuJoCo sim Python stack from a native /home checkout: Git LFS is healthy, HF sample data was downloaded, the .venv_sim install completed, run_sim_loop.py exposes its CLI, and CUDA is visible to torch. The /mnt/c checkout remains unsuitable for creating .venv_sim due mount permission behavior, so real sim2sim should run from the native WSL copy or a fresh WSL-native clone. M19 is still open because no real measured g1_debug/CSV squat trace has passed exp120.",
+  "sources": [
+    {
+      "url": "https://github.com/git-lfs/git-lfs/blob/main/INSTALLING.md",
+      "accessed": "2026-06-18",
+      "claim": "Git LFS apt/deb package install uses sudo apt-get install git-lfs after package repository availability."
+    },
+    {
+      "url": "https://nvlabs.github.io/GR00T-WholeBodyControl/getting_started/quickstart.html",
+      "accessed": "2026-06-18",
+      "claim": "GR00T MuJoCo sim2sim uses install_mujoco_sim.sh and then python gear_sonic/scripts/run_sim_loop.py."
+    },
+    {
+      "url": "https://www.unitree.com/g1/",
+      "accessed": "2026-06-18",
+      "claim": "Unitree G1 has 23 to 43 joint motors, 6 DoF per leg, knee range 0 to 165 degrees, and hip pitch plus/minus 154 degrees."
+    },
+    {
+      "url": "https://docs.quadruped.de/projects/g1/html/operation_1.2.html",
+      "accessed": "2026-06-18",
+      "claim": "The G1 control documentation lists a Squat Mode, but describes it as a transition to squat posture without balance control."
+    }
+  ],
+  "next_required_evidence": [
+    "Run GR00T sim loop and deployment together from WSL-native checkout, preferably headless/offscreen first.",
+    "Capture real measured g1_debug or StateLogger CSV output from the running controller.",
+    "Feed the measured trace through exp120 and only close M19 if native visible/contact/slip/return plus browser replay pass."
+  ]
+}

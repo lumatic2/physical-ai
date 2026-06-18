@@ -127,6 +127,7 @@
 | 118 | [g1-longer-local-tracker-training-gate](118-g1-longer-local-tracker-training-gate/README.md) | local scene restored PPO를 20k-step 수준으로 늘리면 shallow attractor를 벗어나는지 검증 | 🟥 source 대비 drop +0.62cm/contact +0.043/slip -6.9cm이나 drop 2.62cm로 gate 실패 → 짧은 local tracker sweep 반복 중단 |
 | 119 | [g1-deployable-wbc-stack-integration-gate](119-g1-deployable-wbc-stack-integration-gate/README.md) | 웹 조사로 찾은 GR00T/SONIC WBC stack이 로컬 G1 29-DOF/browser gate와 붙을 수 있는지 검증 | 🟨 29-DOF contract + exp33 browser transport PASS, but current Windows/Docker-less host cannot run official sim2sim; M19 not closed |
 | 120 | [g1-gr00t-trace-adapter-visible-gate](120-g1-gr00t-trace-adapter-visible-gate/README.md) | GR00T debug/CSV trace를 exp33 web contract와 exp29 visible gate로 바로 판정할 수 있는지 검증 | 🟨 synthetic GR00T trace adapter PASS; WSL Docker/GPU visible but Git LFS broken; real controller trace pending |
+| 121 | [g1-gr00t-wsl-runtime-preflight](121-g1-gr00t-wsl-runtime-preflight/README.md) | 웹 근거로 G1 squat posture 가능성과 GR00T/SONIC WSL runtime 준비 상태를 분리 검증 | 🟨 G1 squat posture 가능성 + WSL Git LFS/HF sample/MuJoCo sim runtime PASS; TensorRT/deployment trace pending, M19 not closed |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
