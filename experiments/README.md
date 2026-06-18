@@ -111,6 +111,7 @@
 | 102 | [g1-knee-overtarget-reference-tracker](102-g1-knee-overtarget-reference-tracker/README.md) | exp94 reference tracker의 knee shortfall이 target under-commanding인지 검증 | 🟥 knee overtarget도 no-fall branch는 knee 0.404rad에 묶이고 stronger branch는 fall/slip; dedicated tracker 필요 |
 | 103 | [g1-explicit-reference-command-tracker](103-g1-explicit-reference-command-tracker/README.md) | command-conditioned PPO target을 explicit foot-fixed visible reference로 바꾸면 M19 gate가 닫히는지 검증 | 🟥 knee gap 0.017rad까지 축소했지만 drop 5.7cm/contact 0.39/slip 3.09m; future-reference tracker 필요 |
 | 104 | [g1-contact-aware-reference-action-wrapper](104-g1-contact-aware-reference-action-wrapper/README.md) | G1 squat 가능성을 웹 근거로 확인한 뒤 exp103 policy에 contact-aware action wrapper를 얹으면 stance/slip 병목이 풀리는지 검증 | 🟥 wrapper는 contact ratio를 올려도 fall/slip을 키움; best는 direct exp103 5.7cm로 action-wrapper route 한계 |
+| 105 | [g1-future-reference-observation-tracker](105-g1-future-reference-observation-tracker/README.md) | 현재 reference만 보던 exp103 계열 command를 future-reference observation으로 바꾸면 stance breach 전 추적이 안정화되는지 검증 | 🟥 knee/hip은 근접하지만 drop 2.8cm/contact 0.48/slip 3.09m; future command 단독보다 contact-force planner 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
