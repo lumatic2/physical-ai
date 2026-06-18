@@ -1,0 +1,256 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "After exp115 blocked public upstream scene parity, M19 tests local-scene tracker retrain as the next executable route.",
+    "perspectives": {
+      "product": "tries to create a native visible squat candidate instead of another adapter audit",
+      "architecture": "reuses local scene and checkpoint-compatible future-reference tracker env",
+      "security": "local MuJoCo/JAX only; no credentials",
+      "qa": "source baseline, short restored PPO retrain, native exp29 gate, browser replay flag",
+      "skeptic": "short retrain may not escape the shallow standing attractor"
+    },
+    "dod": [
+      "run source baseline native gate",
+      "run short restored PPO retrain native gate",
+      "write raw JSON and summary with next action"
+    ]
+  },
+  "web_sources": [
+    {
+      "url": "https://arxiv.org/html/2510.02252v1",
+      "accessed": "2026-06-18",
+      "claim": "Retargeting artifacts such as foot sliding and infeasible motions can damage downstream humanoid RL tracking."
+    },
+    {
+      "url": "https://arxiv.org/html/2604.17335v1",
+      "accessed": "2026-06-18",
+      "claim": "Recent Unitree G1 whole-body locomotion systems combine generated/reference motion with RL-based tracking rather than direct kinematic playback."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11769464/",
+      "accessed": "2026-06-18",
+      "claim": "Humanoid squatting is treated as coordinated CoM, ZMP, foot-force, and whole-body control."
+    },
+    {
+      "url": "https://la.disneyresearch.com/wp-content/uploads/PROJECT_Humanoids-mocap_IEEE-RAS-ICHR-2013_PAPER1.pdf",
+      "accessed": "2026-06-18",
+      "claim": "Floating-base humanoid motion tracking depends on strict contact-force constraints, not joint targets alone."
+    }
+  ],
+  "visible_gate": {
+    "drop_m": 0.08,
+    "knee_delta_rad": 0.6,
+    "hip_delta_rad": 0.35,
+    "foot_contact_ratio": 0.9,
+    "foot_slip_m": 0.08,
+    "joint_violation_rad": 0.05
+  },
+  "evaluation_seconds": 6.0,
+  "runs": [
+    {
+      "name": "source-exp105-no-train",
+      "variant": {
+        "name": "source-exp105-no-train",
+        "train": false,
+        "target_drop": 0.09,
+        "support_floor": 0.0,
+        "slip_limit": 0.055,
+        "lookahead_s": 0.55,
+        "anticipatory_action_mix": 0.35,
+        "contact_action_scale": 0.55,
+        "timesteps": 0,
+        "seed": 1160
+      },
+      "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+      "compatibility": {
+        "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+        "source_exists": true,
+        "obs_size": {
+          "privileged_state": [
+            216
+          ],
+          "state": [
+            103
+          ]
+        },
+        "action_size": 29,
+        "policy_shape_match": true
+      },
+      "rollout_smoke": {
+        "rollout_steps": 20,
+        "reward_first": 3.511138916015625,
+        "reward_last": 3.4235103130340576,
+        "future_fraction_last": 0.31333333253860474,
+        "contact_health_min": 0.3635048270225525,
+        "support_margin_min": 0.016370579600334167,
+        "foot_slip_max": 0.00012150363909313455,
+        "done_any": false
+      },
+      "native": {
+        "verdict": "DEPTH_PENDING_7CM",
+        "visible_drop": 0.01999634191932753,
+        "max_knee_delta_rad": 0.48038403104602767,
+        "max_hip_pitch_delta_rad": 0.34499369821643816,
+        "foot_contact_ratio": 0.39,
+        "foot_slip_distance": 3.305206093464965,
+        "final_height": 0.7592163884596687,
+        "fell_at": null,
+        "return_to_stand": true,
+        "pass_visible_gate": false,
+        "visible_gap": {
+          "drop_shortfall_m": 0.06000365808067247,
+          "knee_shortfall_rad": 0.11961596895397231,
+          "hip_shortfall_rad": 0.005006301783561817,
+          "contact_shortfall": 0.51,
+          "slip_excess_m": 3.225206093464965
+        }
+      },
+      "verdict": "DEPTH_PENDING_7CM",
+      "browser_replay_attempted": false,
+      "score": 9410.206717737157
+    },
+    {
+      "name": "short-local-retrain-contact-tight",
+      "variant": {
+        "name": "short-local-retrain-contact-tight",
+        "train": true,
+        "target_drop": 0.09,
+        "support_floor": 0.0,
+        "slip_limit": 0.05,
+        "lookahead_s": 0.65,
+        "anticipatory_action_mix": 0.45,
+        "contact_action_scale": 0.7,
+        "timesteps": 512,
+        "seed": 1161
+      },
+      "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+      "compatibility": {
+        "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+        "source_exists": true,
+        "obs_size": {
+          "privileged_state": [
+            216
+          ],
+          "state": [
+            103
+          ]
+        },
+        "action_size": 29,
+        "policy_shape_match": true
+      },
+      "rollout_smoke": {
+        "rollout_steps": 20,
+        "reward_first": 3.5164718627929688,
+        "reward_last": 3.428422212600708,
+        "future_fraction_last": 0.3400000035762787,
+        "contact_health_min": 0.3634762763977051,
+        "support_margin_min": 0.016370579600334167,
+        "foot_slip_max": 0.00012150363909313455,
+        "done_any": false
+      },
+      "train": {
+        "timesteps": 512,
+        "seed": 1161,
+        "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+        "params_path": "verify\\short-local-retrain-contact-tight\\train\\params.pkl",
+        "rewards_path": "verify\\short-local-retrain-contact-tight\\train\\rewards.txt",
+        "reused_existing_train_artifact": true
+      },
+      "native": {
+        "verdict": "DEPTH_PENDING_7CM",
+        "visible_drop": 0.020687196895603055,
+        "max_knee_delta_rad": 0.48392883079153703,
+        "max_hip_pitch_delta_rad": 0.33931009538253315,
+        "foot_contact_ratio": 0.42,
+        "foot_slip_distance": 3.219200760268922,
+        "final_height": 0.7378542952325756,
+        "fell_at": null,
+        "return_to_stand": false,
+        "pass_visible_gate": false,
+        "visible_gap": {
+          "drop_shortfall_m": 0.05931280310439695,
+          "knee_shortfall_rad": 0.11607116920846294,
+          "hip_shortfall_rad": 0.010689904617466828,
+          "contact_shortfall": 0.48000000000000004,
+          "slip_excess_m": 3.139200760268922
+        }
+      },
+      "verdict": "DEPTH_PENDING_7CM",
+      "browser_replay_attempted": false,
+      "score": 9366.778067566685
+    }
+  ],
+  "best": {
+    "name": "short-local-retrain-contact-tight",
+    "variant": {
+      "name": "short-local-retrain-contact-tight",
+      "train": true,
+      "target_drop": 0.09,
+      "support_floor": 0.0,
+      "slip_limit": 0.05,
+      "lookahead_s": 0.65,
+      "anticipatory_action_mix": 0.45,
+      "contact_action_scale": 0.7,
+      "timesteps": 512,
+      "seed": 1161
+    },
+    "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+    "compatibility": {
+      "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+      "source_exists": true,
+      "obs_size": {
+        "privileged_state": [
+          216
+        ],
+        "state": [
+          103
+        ]
+      },
+      "action_size": 29,
+      "policy_shape_match": true
+    },
+    "rollout_smoke": {
+      "rollout_steps": 20,
+      "reward_first": 3.5164718627929688,
+      "reward_last": 3.428422212600708,
+      "future_fraction_last": 0.3400000035762787,
+      "contact_health_min": 0.3634762763977051,
+      "support_margin_min": 0.016370579600334167,
+      "foot_slip_max": 0.00012150363909313455,
+      "done_any": false
+    },
+    "train": {
+      "timesteps": 512,
+      "seed": 1161,
+      "source_params": "C:\\Users\\yusun\\projects\\physical-ai\\experiments\\105-g1-future-reference-observation-tracker\\verify\\train\\params.pkl",
+      "params_path": "verify\\short-local-retrain-contact-tight\\train\\params.pkl",
+      "rewards_path": "verify\\short-local-retrain-contact-tight\\train\\rewards.txt",
+      "reused_existing_train_artifact": true
+    },
+    "native": {
+      "verdict": "DEPTH_PENDING_7CM",
+      "visible_drop": 0.020687196895603055,
+      "max_knee_delta_rad": 0.48392883079153703,
+      "max_hip_pitch_delta_rad": 0.33931009538253315,
+      "foot_contact_ratio": 0.42,
+      "foot_slip_distance": 3.219200760268922,
+      "final_height": 0.7378542952325756,
+      "fell_at": null,
+      "return_to_stand": false,
+      "pass_visible_gate": false,
+      "visible_gap": {
+        "drop_shortfall_m": 0.05931280310439695,
+        "knee_shortfall_rad": 0.11607116920846294,
+        "hip_shortfall_rad": 0.010689904617466828,
+        "contact_shortfall": 0.48000000000000004,
+        "slip_excess_m": 3.139200760268922
+      }
+    },
+    "verdict": "DEPTH_PENDING_7CM",
+    "browser_replay_attempted": false,
+    "score": 9366.778067566685
+  },
+  "verdict": "FAIL_LOCAL_TRACKER_RETRAIN_SMOKE",
+  "browser_replay_attempted": false,
+  "next_action": "move_to_full_order_idqp_mpc_or_longer_motion_tracking_training"
+}

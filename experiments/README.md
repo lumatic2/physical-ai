@@ -122,6 +122,7 @@
 | 113 | [g1-terminal-stand-idqp-mpc-assist](113-g1-terminal-stand-idqp-mpc-assist/README.md) | exp112 deep crouch branch에 terminal stand IDQP/MPC assist를 추가해 return gate를 직접 공격 | 🟥 return/contact/slip은 회복 가능하지만 best stable은 5.53cm shallow; depth 보존 후보는 fall/slip |
 | 114 | [g1-squat-capability-gate](114-g1-squat-capability-gate/README.md) | 웹 근거와 최신 native evidence로 G1 squat 가능성/현재 controller 실패를 분리 | 🟨 G1은 원리상 squat/full-body tracking 가능성이 높지만 stock Squat Mode는 no-balance posture이고 현재 controller는 exp29 native gate 실패; upstream tracker scene parity 우선 |
 | 115 | [g1-moves-upstream-scene-parity-audit](115-g1-moves-upstream-scene-parity-audit/README.md) | G1 Moves upstream tracker를 local native에 붙이기 전 exact scene/action/obs parity를 감사 | 🟥 `g1_mode15_square.xml`은 공개 tree/direct probe에서 확보 실패, local scene은 position actuator 기반, exp99/100/101도 실패 → hand adapter sweep 중단 |
+| 116 | [g1-local-scene-tracker-retrain-smoke](116-g1-local-scene-tracker-retrain-smoke/README.md) | upstream parity 실패 후 local scene 기준 short restored PPO tracker retrain을 native gate로 비교 | 🟥 short retrain은 source보다 미세 개선뿐: drop 2.07cm/contact 0.42/slip 3.22m → full-order ID-QP/MPC 또는 장기 tracker training 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
