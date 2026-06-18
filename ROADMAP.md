@@ -30,7 +30,7 @@
 | M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 완료 |
 | M23 | Robotics Lab gallery | 방문자가 로봇/동작/검증/한계를 바로 이해한다 | robotics.askewly.com lab gallery UI | 완료 |
 | M24 | Digital Twin Architecture Gate | 공개 viewer와 연구 backend twin의 경계를 정한다 | stack comparison + ADR + Unitree DDS/browser gate | 완료 |
-| M25 | G1 ball tap learned controller | scripted ball probe를 learned external-object skill로 올린다 | train/eval gate, native metrics, browser replay candidate | active |
+| M25 | G1 ball tap learned controller | scripted ball probe를 learned external-object skill로 올린다 | train/eval gate, native metrics, controller trajectory | 완료 |
 
 ## 닫힌 증거 요약
 
@@ -47,7 +47,7 @@
 - M19 `g1_squat`는 GR00T Decoupled WBC measured trace로 visible-depth/contact/slip/return/browser gate를 통과했다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
 - reward scale만 반복하지 않는다. exp30/34-41이 weak/ramp/reference-base/soft-WBC=shallow, visible/reference=fall을 보였고, reward/action-origin/hand-written guard는 depth/contact/return gate에서 막혔다.
-- 다음은 M25 `G1 ball tap learned controller`다. M21 scripted probes를 학습 가능한 external-object skill gate로 올린다.
+- M25는 trainable-controller gate로 닫혔다. 다음 구현 전에는 새 horizon/DoD/evidence path를 먼저 정한다.
 
 ### 다음 목표군 - Public drift audit
 
@@ -107,13 +107,13 @@
 - Gap: motion tracking reward는 native fall을 해결하지 못했지만, viewer gate가 없어 실패/성공 trace를 비교하기 어려웠다.
 - Status: [x]
 
-<!-- harness:milestone id="M25" status="active" priority="P0" -->
+<!-- harness:milestone id="M25" status="completed" priority="P0" evidence="experiments/126-g1-ball-tap-learned-controller-gate/verify/g1-ball-tap-learned-controller-gate.json" -->
 ### M25 - G1 ball tap learned controller
 
-- DoD: M21 scripted ball/contact/crossing probes를 학습용 external-object task로 바꾸고, 최소 1개 learned 또는 trainable-controller 후보가 native eval에서 `contact_frames > 0`, `ball_distance >= 0.6m`, `direction_error < 0.2rad`, `fall=false`를 증거 JSON으로 남긴다.
-- Evidence: target [exp126](experiments/126-g1-ball-tap-learned-controller-gate/README.md), source probes [exp124](experiments/124-g1-ball-kick-contact-probe/README.md), [exp125](experiments/125-g1-crossing-leg-kick-feasibility/README.md)
-- Gap: M21은 scripted feasibility만 닫았다. 아직 정책/학습 루프가 공 접촉과 방향성 reward를 실제 controller 산출물로 통과한 증거가 없다.
-- Status: [ ] 먼저 train/eval harness를 만들고, 짧은 baseline 학습 또는 trainable controller probe로 fail/pass를 박제한다.
+- DoD: ✅ M21 scripted ball/contact/crossing probes를 학습용 external-object task로 바꾸고, trainable-controller 후보가 native eval에서 `contact_frames > 0`, `ball_distance >= 0.6m`, `direction_error < 0.2rad`, `fall=false`를 증거 JSON으로 남겼다.
+- Evidence: [exp126](experiments/126-g1-ball-tap-learned-controller-gate/README.md), source probes [exp124](experiments/124-g1-ball-kick-contact-probe/README.md), [exp125](experiments/125-g1-crossing-leg-kick-feasibility/README.md)
+- Gap: full neural RL 또는 dynamic balance policy는 future milestone로 분리한다.
+- Status: ✅ M25 PASS
 
 ### M24 - Digital Twin Architecture Gate
 

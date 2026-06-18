@@ -1,0 +1,326 @@
+{
+  "schema_version": "0.1",
+  "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_ball.xml",
+  "source_spec": "experiments/14-skill-authoring/verify/g1_ball_tap.compiled.json",
+  "method": "trainable low-dimensional open-loop controller optimized by seeded random search",
+  "thresholds": {
+    "min_contact_frames": 1,
+    "min_ball_distance_m": 0.6,
+    "max_direction_error_rad": 0.2,
+    "min_base_height_m": 0.58
+  },
+  "training": {
+    "seed": 25,
+    "optimizer": "seeded random search over 7 controller parameters",
+    "generations": [
+      {
+        "generation": 0,
+        "population": 3,
+        "best_reward": 9.044366155827769,
+        "best_pass": true,
+        "best_distance_m": 4.1150424956090434,
+        "best_direction_error_rad": 0.18975027162260094,
+        "best_contact_frames": 52,
+        "elite": [
+          {
+            "right_hip_pitch": -0.8,
+            "right_hip_roll": 0.0,
+            "right_hip_yaw": 0.0,
+            "right_knee": 0.65,
+            "right_ankle_pitch": -0.4,
+            "swing_start_s": 0.1,
+            "swing_duration_s": 0.45
+          },
+          {
+            "right_hip_pitch": -0.75,
+            "right_hip_roll": 0.05,
+            "right_hip_yaw": -0.05,
+            "right_knee": 0.72,
+            "right_ankle_pitch": -0.45,
+            "swing_start_s": 0.12,
+            "swing_duration_s": 0.5
+          },
+          {
+            "right_hip_pitch": -0.85,
+            "right_hip_roll": -0.05,
+            "right_hip_yaw": 0.05,
+            "right_knee": 0.6,
+            "right_ankle_pitch": -0.35,
+            "swing_start_s": 0.08,
+            "swing_duration_s": 0.42
+          }
+        ]
+      },
+      {
+        "generation": 1,
+        "population": 30,
+        "best_reward": 12.716250129329865,
+        "best_pass": true,
+        "best_distance_m": 5.583071209304045,
+        "best_direction_error_rad": 0.033555861628359364,
+        "best_contact_frames": 110,
+        "elite": [
+          {
+            "right_hip_pitch": -1.0947907242422388,
+            "right_hip_roll": -0.07924102348392391,
+            "right_hip_yaw": -0.112420872434911,
+            "right_knee": 0.3521821282775365,
+            "right_ankle_pitch": -0.25918984382054927,
+            "swing_start_s": 0.09459584510118779,
+            "swing_duration_s": 0.6291403766936633
+          },
+          {
+            "right_hip_pitch": -1.0616413172161105,
+            "right_hip_roll": 0.12429987937643827,
+            "right_hip_yaw": -0.1646871115666419,
+            "right_knee": 0.6081791677363824,
+            "right_ankle_pitch": -0.4453217656125558,
+            "swing_start_s": 0.11925164942465463,
+            "swing_duration_s": 0.4900391178417935
+          },
+          {
+            "right_hip_pitch": -0.9127293640342761,
+            "right_hip_roll": 0.025522243799622375,
+            "right_hip_yaw": -0.023924519243651396,
+            "right_knee": 0.8309445221268865,
+            "right_ankle_pitch": -0.39031729755682615,
+            "swing_start_s": 0.12837114581993245,
+            "swing_duration_s": 0.4048187253607226
+          },
+          {
+            "right_hip_pitch": -0.9702451373481006,
+            "right_hip_roll": -0.017089587113955886,
+            "right_hip_yaw": -0.03393579813052553,
+            "right_knee": 0.46870193212605915,
+            "right_ankle_pitch": -0.5005133568214089,
+            "swing_start_s": 0.10638581902358783,
+            "swing_duration_s": 0.43630551433925807
+          },
+          {
+            "right_hip_pitch": -0.7651202509283117,
+            "right_hip_roll": 0.05781821074855899,
+            "right_hip_yaw": 0.08059568356282486,
+            "right_knee": 0.3515960331063792,
+            "right_ankle_pitch": -0.47663049410418257,
+            "swing_start_s": 0.1814540771785511,
+            "swing_duration_s": 0.4626146314380881
+          }
+        ]
+      },
+      {
+        "generation": 2,
+        "population": 30,
+        "best_reward": 12.716250129329865,
+        "best_pass": true,
+        "best_distance_m": 5.583071209304045,
+        "best_direction_error_rad": 0.033555861628359364,
+        "best_contact_frames": 110,
+        "elite": [
+          {
+            "right_hip_pitch": -1.0947907242422388,
+            "right_hip_roll": -0.07924102348392391,
+            "right_hip_yaw": -0.112420872434911,
+            "right_knee": 0.3521821282775365,
+            "right_ankle_pitch": -0.25918984382054927,
+            "swing_start_s": 0.09459584510118779,
+            "swing_duration_s": 0.6291403766936633
+          },
+          {
+            "right_hip_pitch": -1.0616413172161105,
+            "right_hip_roll": 0.12429987937643827,
+            "right_hip_yaw": -0.1646871115666419,
+            "right_knee": 0.6081791677363824,
+            "right_ankle_pitch": -0.4453217656125558,
+            "swing_start_s": 0.11925164942465463,
+            "swing_duration_s": 0.4900391178417935
+          },
+          {
+            "right_hip_pitch": -1.0451482071680915,
+            "right_hip_roll": 0.09917727025307554,
+            "right_hip_yaw": -0.17460890727386258,
+            "right_knee": 0.6983195549319756,
+            "right_ankle_pitch": -0.42634036907535133,
+            "swing_start_s": 0.12371643615762164,
+            "swing_duration_s": 0.47014848668129616
+          },
+          {
+            "right_hip_pitch": -1.1193157332248749,
+            "right_hip_roll": 0.14781081417822256,
+            "right_hip_yaw": -0.09911385501840714,
+            "right_knee": 0.6515434592743679,
+            "right_ankle_pitch": -0.4700118660602049,
+            "swing_start_s": 0.09813722964238214,
+            "swing_duration_s": 0.4535717500768284
+          },
+          {
+            "right_hip_pitch": -1.2060303143704258,
+            "right_hip_roll": 0.11515714966700004,
+            "right_hip_yaw": -0.21444194291926838,
+            "right_knee": 0.6475001507649492,
+            "right_ankle_pitch": -0.458230532146611,
+            "swing_start_s": 0.14738760183858962,
+            "swing_duration_s": 0.47304045592405447
+          }
+        ]
+      },
+      {
+        "generation": 3,
+        "population": 30,
+        "best_reward": 12.716250129329865,
+        "best_pass": true,
+        "best_distance_m": 5.583071209304045,
+        "best_direction_error_rad": 0.033555861628359364,
+        "best_contact_frames": 110,
+        "elite": [
+          {
+            "right_hip_pitch": -1.0947907242422388,
+            "right_hip_roll": -0.07924102348392391,
+            "right_hip_yaw": -0.112420872434911,
+            "right_knee": 0.3521821282775365,
+            "right_ankle_pitch": -0.25918984382054927,
+            "swing_start_s": 0.09459584510118779,
+            "swing_duration_s": 0.6291403766936633
+          },
+          {
+            "right_hip_pitch": -1.0976541382570406,
+            "right_hip_roll": -0.06964970126732456,
+            "right_hip_yaw": -0.09718483658587808,
+            "right_knee": 0.2547238329917991,
+            "right_ankle_pitch": -0.23462162989890245,
+            "swing_start_s": 0.11681582777497285,
+            "swing_duration_s": 0.6319524076982467
+          },
+          {
+            "right_hip_pitch": -1.1134824494915911,
+            "right_hip_roll": 0.08475171083601729,
+            "right_hip_yaw": -0.13793415696877478,
+            "right_knee": 0.516232559347811,
+            "right_ankle_pitch": -0.38495707451453687,
+            "swing_start_s": 0.11158186847250291,
+            "swing_duration_s": 0.5108772962060825
+          },
+          {
+            "right_hip_pitch": -0.9958269012358816,
+            "right_hip_roll": 0.11172341975286285,
+            "right_hip_yaw": -0.19027695484963297,
+            "right_knee": 0.5725793409874325,
+            "right_ankle_pitch": -0.39238152162034223,
+            "swing_start_s": 0.09142698714255279,
+            "swing_duration_s": 0.5222408186012704
+          },
+          {
+            "right_hip_pitch": -1.107444199899868,
+            "right_hip_roll": 0.12608868269773135,
+            "right_hip_yaw": -0.15715711424427842,
+            "right_knee": 0.6275565993778811,
+            "right_ankle_pitch": -0.42016896555711386,
+            "swing_start_s": 0.11657544335864582,
+            "swing_duration_s": 0.441218512309307
+          }
+        ]
+      },
+      {
+        "generation": 4,
+        "population": 30,
+        "best_reward": 12.716250129329865,
+        "best_pass": true,
+        "best_distance_m": 5.583071209304045,
+        "best_direction_error_rad": 0.033555861628359364,
+        "best_contact_frames": 110,
+        "elite": [
+          {
+            "right_hip_pitch": -1.0947907242422388,
+            "right_hip_roll": -0.07924102348392391,
+            "right_hip_yaw": -0.112420872434911,
+            "right_knee": 0.3521821282775365,
+            "right_ankle_pitch": -0.25918984382054927,
+            "swing_start_s": 0.09459584510118779,
+            "swing_duration_s": 0.6291403766936633
+          },
+          {
+            "right_hip_pitch": -1.0976541382570406,
+            "right_hip_roll": -0.06964970126732456,
+            "right_hip_yaw": -0.09718483658587808,
+            "right_knee": 0.2547238329917991,
+            "right_ankle_pitch": -0.23462162989890245,
+            "swing_start_s": 0.11681582777497285,
+            "swing_duration_s": 0.6319524076982467
+          },
+          {
+            "right_hip_pitch": -1.0310859357041413,
+            "right_hip_roll": 0.1439019523249109,
+            "right_hip_yaw": -0.1910675303260628,
+            "right_knee": 0.5663097431831322,
+            "right_ankle_pitch": -0.3890616077435311,
+            "swing_start_s": 0.07216743591220474,
+            "swing_duration_s": 0.5092109472498164
+          },
+          {
+            "right_hip_pitch": -1.1187399283967636,
+            "right_hip_roll": 0.14771503100515526,
+            "right_hip_yaw": -0.15781390298778994,
+            "right_knee": 0.5490150308836663,
+            "right_ankle_pitch": -0.3864776060059907,
+            "swing_start_s": 0.11082973866156655,
+            "swing_duration_s": 0.47652801864559324
+          },
+          {
+            "right_hip_pitch": -1.1328540686734485,
+            "right_hip_roll": -0.07924265666824801,
+            "right_hip_yaw": -0.11885659412551387,
+            "right_knee": 0.3306842959473989,
+            "right_ankle_pitch": -0.2952540447868355,
+            "swing_start_s": 0.11107716850322161,
+            "swing_duration_s": 0.6445110430979806
+          }
+        ]
+      }
+    ],
+    "best_controller": {
+      "right_hip_pitch": -1.0947907242422388,
+      "right_hip_roll": -0.07924102348392391,
+      "right_hip_yaw": -0.112420872434911,
+      "right_knee": 0.3521821282775365,
+      "right_ankle_pitch": -0.25918984382054927,
+      "swing_start_s": 0.09459584510118779,
+      "swing_duration_s": 0.6291403766936633
+    },
+    "final_eval": {
+      "controller": {
+        "right_hip_pitch": -1.0947907242422388,
+        "right_hip_roll": -0.07924102348392391,
+        "right_hip_yaw": -0.112420872434911,
+        "right_knee": 0.3521821282775365,
+        "right_ankle_pitch": -0.25918984382054927,
+        "swing_start_s": 0.09459584510118779,
+        "swing_duration_s": 0.6291403766936633
+      },
+      "contact_frames": 110,
+      "first_contact_time_s": 0.312,
+      "max_contact_force": 138.13938213345455,
+      "ball_initial_pos": [
+        0.35,
+        -0.08,
+        0.06
+      ],
+      "ball_final_pos": [
+        5.9299282467293075,
+        -0.26730960870207393,
+        0.059632818157539846
+      ],
+      "ball_distance_m": 5.583071209304045,
+      "aligned_ball_distance_m": 5.579928246729308,
+      "ball_direction_error_rad": 0.033555861628359364,
+      "min_base_height_m": 0.7549833437734957,
+      "fell": false,
+      "energy_proxy": 3521.739872166129,
+      "reward": 12.716250129329865,
+      "pass": true
+    }
+  },
+  "verdict": "PASS",
+  "limitations": [
+    "This is a trainable controller gate, not a neural policy or full RL result.",
+    "The base pose is scripted; learned dynamic balance remains a future controller problem."
+  ]
+}
