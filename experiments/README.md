@@ -118,6 +118,7 @@
 | 109 | [g1-static-inverse-dynamics-contact-qp](109-g1-static-inverse-dynamics-contact-qp/README.md) | exp108 이후 visible squat target poses를 static inverse-dynamics contact-force QP로 평가 | 🟩 exp29 visible-min과 9cm full visible pose가 static ID-QP plausible; 병목은 target 자체보다 dynamic controller/retrain |
 | 110 | [g1-dynamic-idqp-tracking-smoke](110-g1-dynamic-idqp-tracking-smoke/README.md) | exp109 static feasible visible target을 native dynamic rollout에서 ID-QP-style qfrc/PD로 추종 | 🟥 전 후보 1.42~1.60s fall; static feasible target 직접 추종은 불안정해 horizon full ID-QP/MPC 또는 retrain 필요 |
 | 111 | [g1-contact-aware-reference-retrain](111-g1-contact-aware-reference-retrain/README.md) | exp105 future-reference tracker를 contact/slip/support-aware reward로 restored PPO 재학습 | 🟥 no-fall이지만 2.13cm shallow + contact 0.44/slip 3.24m; reward 재가중보다 WBC/MPC-in-loop 필요 |
+| 112 | [g1-wbc-mpc-inloop-reference-tracker](112-g1-wbc-mpc-inloop-reference-tracker/README.md) | G1 스쿼트 가능성을 웹 근거로 확인한 뒤 WBC primitive를 short-horizon MPC로 in-loop 선택 | 🟥 best no-fall은 26.09cm/contact 1.00/slip 4.0cm지만 knee 0.442/hip 0.216/return 실패; full ID-QP/MPC 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
