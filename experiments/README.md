@@ -108,6 +108,7 @@
 | 99 | [g1-moves-upstream-policy-adapter-parity-probe](99-g1-moves-upstream-policy-adapter-parity-probe/README.md) | upstream `run_policy.py` adapter 선택을 local model에 적용하면 ONNX native rollout이 안정화되는지 검증 | 🟥 first action은 정상이나 local XML/actuator에서 즉시 QACC/obs 폭주; upstream-compatible model parity 필요 |
 | 100 | [g1-upstream-motor-xml-squat-policy-probe](100-g1-upstream-motor-xml-squat-policy-probe/README.md) | G1이 스쿼트 가능한지 웹 근거 확인 후 public motor XML에서 G1 Moves policy를 검증 | 🟥 G1 squat 가능성은 spec/HuB 근거상 있음; public motor XML 2종 compile PASS지만 policy rollout은 0.08~0.14s fall |
 | 101 | [g1-mjlab-action-observation-contract-probe](101-g1-mjlab-action-observation-contract-probe/README.md) | G1 Moves ONNX 실패가 mjlab anchor/order/action-scale mismatch인지 검증 | 🟥 mjlab scale/order는 폭주를 줄이나 best 0.46s fall+1.07m slip; exact XML 확보 또는 local retrain 필요 |
+| 102 | [g1-knee-overtarget-reference-tracker](102-g1-knee-overtarget-reference-tracker/README.md) | exp94 reference tracker의 knee shortfall이 target under-commanding인지 검증 | 🟥 knee overtarget도 no-fall branch는 knee 0.404rad에 묶이고 stronger branch는 fall/slip; dedicated tracker 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
