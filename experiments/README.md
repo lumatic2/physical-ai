@@ -93,6 +93,7 @@
 | 84 | [g1-pose-biased-multistep-wbc-projection](84-g1-pose-biased-multistep-wbc-projection/README.md) | 웹 근거로 G1 squat 가능성을 재확인한 뒤 exp83 safe corridor에 knee/hip pose residual을 넣으면 visible gate를 닫는지 검증 | 🟨 no-fall/contact/slip 유지하며 28.43cm + knee 0.631rad PASS, but hip 0.198rad/return pending |
 | 85 | [g1-phase-split-hip-return-controller](85-g1-phase-split-hip-return-controller/README.md) | hip-forward descent와 terminal stand-up을 phase split하면 exp84 hip/return 병목을 풀 수 있는지 검증 | 🟥 직접 stand target release는 4.96~5.54s fall로 악화; recapture hold phase 필요 |
 | 86 | [g1-three-phase-recapture-stand-controller](86-g1-three-phase-recapture-stand-controller/README.md) | visible descent -> recapture hold -> stand-up 3-phase controller가 8cm visible gate를 recoverable하게 만드는지 검증 | 🟨 recapture로 no-fall/contact/slip/near-stand는 회복했지만 5.07cm에서 포화; depth push는 delayed fall |
+| 87 | [g1-depth-schedule-optimizer](87-g1-depth-schedule-optimizer/README.md) | G1 squat 가능성을 웹 근거로 확인한 뒤 exp86 safety teacher 주변 schedule search로 8cm gate를 닫는지 검증 | 🟨 no-fall 9.47cm + hip PASS까지 전진, but knee/contact/slip/return 미달 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
