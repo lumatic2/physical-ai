@@ -1,0 +1,448 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "M19 uses external retargeted G1 motion/policy ingestion as the next reference-policy route after exp94 showed local controller injection cannot satisfy knee tracking.",
+    "perspectives": {
+      "product": "turns the web-found G1 motion-tracking route into a local artifact path instead of another scalar controller tweak",
+      "architecture": "maps G1 Moves root_pos/root_quat/dof_pos[29] directly into the existing qpos[36] web trajectory contract",
+      "security": "downloads only public manifest plus one selected CSV from Hugging Face; no credentials",
+      "qa": "validates dataset metadata, local joint order, selected CSV shape, excerpt metrics, and web trajectory contract",
+      "skeptic": "kinematic reference ingestion is not yet a native dynamics policy and cannot close M19 alone"
+    },
+    "dod": [
+      "manifest top candidates ranked by knee/hip suitability",
+      "one selected retargeted CSV ingested as qpos[36]",
+      "web trajectory contract check PASS or explicit failure evidence"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves",
+      "accessed": "2026-06-18",
+      "note": "Dataset card documents 60+ Unitree G1 clips, retargeted 29-DoF CSV/PKL format, NPZ training references, and trained ONNX policies."
+    },
+    {
+      "url": "https://github.com/YanjieZe/GMR",
+      "accessed": "2026-06-18",
+      "note": "GMR supports real-time retargeting and Unitree G1 visualization, reinforcing the retargeted-motion-to-tracker path."
+    },
+    {
+      "url": "https://arxiv.org/abs/2604.17335",
+      "accessed": "2026-06-18",
+      "note": "Recent whole-body humanoid work combines reference motion generation with a reference tracker and deploys on Unitree G1."
+    }
+  ],
+  "manifest": {
+    "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/manifest.json",
+    "version": "1.0",
+    "generated": "2026-03-11T14:52:43Z",
+    "robot": "unitree_g1",
+    "dof": 29,
+    "total_clips": 60,
+    "total_duration_s": 1778.6,
+    "categories": {
+      "dance": {
+        "clips": 28,
+        "duration_s": 989.1
+      },
+      "karate": {
+        "clips": 27,
+        "duration_s": 705.7
+      },
+      "bonus": {
+        "clips": 5,
+        "duration_s": 83.9
+      }
+    }
+  },
+  "local_joint_order_check": {
+    "expected_g1_moves_joint_count": 29,
+    "local_joint_count": 29,
+    "missing": [],
+    "qpos_indices": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "matches_qpos_7_to_35": true,
+    "mapping": [
+      {
+        "g1_moves": "left_hip_pitch",
+        "local": "left_hip_pitch_joint",
+        "qpos_index": 7
+      },
+      {
+        "g1_moves": "left_hip_roll",
+        "local": "left_hip_roll_joint",
+        "qpos_index": 8
+      },
+      {
+        "g1_moves": "left_hip_yaw",
+        "local": "left_hip_yaw_joint",
+        "qpos_index": 9
+      },
+      {
+        "g1_moves": "left_knee",
+        "local": "left_knee_joint",
+        "qpos_index": 10
+      },
+      {
+        "g1_moves": "left_ankle_pitch",
+        "local": "left_ankle_pitch_joint",
+        "qpos_index": 11
+      },
+      {
+        "g1_moves": "left_ankle_roll",
+        "local": "left_ankle_roll_joint",
+        "qpos_index": 12
+      },
+      {
+        "g1_moves": "right_hip_pitch",
+        "local": "right_hip_pitch_joint",
+        "qpos_index": 13
+      },
+      {
+        "g1_moves": "right_hip_roll",
+        "local": "right_hip_roll_joint",
+        "qpos_index": 14
+      },
+      {
+        "g1_moves": "right_hip_yaw",
+        "local": "right_hip_yaw_joint",
+        "qpos_index": 15
+      },
+      {
+        "g1_moves": "right_knee",
+        "local": "right_knee_joint",
+        "qpos_index": 16
+      },
+      {
+        "g1_moves": "right_ankle_pitch",
+        "local": "right_ankle_pitch_joint",
+        "qpos_index": 17
+      },
+      {
+        "g1_moves": "right_ankle_roll",
+        "local": "right_ankle_roll_joint",
+        "qpos_index": 18
+      },
+      {
+        "g1_moves": "waist_yaw",
+        "local": "waist_yaw_joint",
+        "qpos_index": 19
+      },
+      {
+        "g1_moves": "waist_roll",
+        "local": "waist_roll_joint",
+        "qpos_index": 20
+      },
+      {
+        "g1_moves": "waist_pitch",
+        "local": "waist_pitch_joint",
+        "qpos_index": 21
+      },
+      {
+        "g1_moves": "left_shoulder_pitch",
+        "local": "left_shoulder_pitch_joint",
+        "qpos_index": 22
+      },
+      {
+        "g1_moves": "left_shoulder_roll",
+        "local": "left_shoulder_roll_joint",
+        "qpos_index": 23
+      },
+      {
+        "g1_moves": "left_shoulder_yaw",
+        "local": "left_shoulder_yaw_joint",
+        "qpos_index": 24
+      },
+      {
+        "g1_moves": "left_elbow",
+        "local": "left_elbow_joint",
+        "qpos_index": 25
+      },
+      {
+        "g1_moves": "left_wrist_roll",
+        "local": "left_wrist_roll_joint",
+        "qpos_index": 26
+      },
+      {
+        "g1_moves": "left_wrist_pitch",
+        "local": "left_wrist_pitch_joint",
+        "qpos_index": 27
+      },
+      {
+        "g1_moves": "left_wrist_yaw",
+        "local": "left_wrist_yaw_joint",
+        "qpos_index": 28
+      },
+      {
+        "g1_moves": "right_shoulder_pitch",
+        "local": "right_shoulder_pitch_joint",
+        "qpos_index": 29
+      },
+      {
+        "g1_moves": "right_shoulder_roll",
+        "local": "right_shoulder_roll_joint",
+        "qpos_index": 30
+      },
+      {
+        "g1_moves": "right_shoulder_yaw",
+        "local": "right_shoulder_yaw_joint",
+        "qpos_index": 31
+      },
+      {
+        "g1_moves": "right_elbow",
+        "local": "right_elbow_joint",
+        "qpos_index": 32
+      },
+      {
+        "g1_moves": "right_wrist_roll",
+        "local": "right_wrist_roll_joint",
+        "qpos_index": 33
+      },
+      {
+        "g1_moves": "right_wrist_pitch",
+        "local": "right_wrist_pitch_joint",
+        "qpos_index": 34
+      },
+      {
+        "g1_moves": "right_wrist_yaw",
+        "local": "right_wrist_yaw_joint",
+        "qpos_index": 35
+      }
+    ]
+  },
+  "top_candidates": [
+    {
+      "clip": "J_Dance4_Broadway",
+      "category": "dance",
+      "duration_s": 27.95,
+      "frames": 1677,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.3920000000000003,
+      "hip_pitch_range_rad": 1.8218,
+      "knee_max_rad": 2.4982,
+      "hip_pitch_min_rad": -1.57,
+      "mean_joint_velocity": 0.7036,
+      "max_joint_velocity": 80.3795,
+      "root_displacement_m": 4.9473,
+      "score": 8.943241,
+      "static_gate_like": true
+    },
+    {
+      "clip": "J_Dance17_Shuffle",
+      "category": "dance",
+      "duration_s": 32.03,
+      "frames": 1922,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.2816,
+      "hip_pitch_range_rad": 1.8576000000000001,
+      "knee_max_rad": 2.3885,
+      "hip_pitch_min_rad": -1.4091,
+      "mean_joint_velocity": 1.1009,
+      "max_joint_velocity": 26.5777,
+      "root_displacement_m": 12.9385,
+      "score": 8.7561446,
+      "static_gate_like": true
+    },
+    {
+      "clip": "J_ShortDance15_Nineties",
+      "category": "dance",
+      "duration_s": 13.12,
+      "frames": 787,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.1542000000000003,
+      "hip_pitch_range_rad": 1.8605,
+      "knee_max_rad": 2.277,
+      "hip_pitch_min_rad": -1.5468,
+      "mean_joint_velocity": 0.8944,
+      "max_joint_velocity": 35.7969,
+      "root_displacement_m": 4.1386,
+      "score": 8.374306200000001,
+      "static_gate_like": true
+    },
+    {
+      "clip": "B_LongDance",
+      "category": "dance",
+      "duration_s": 119.45,
+      "frames": 7167,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.1369000000000002,
+      "hip_pitch_range_rad": 2.0398,
+      "knee_max_rad": 2.2435,
+      "hip_pitch_min_rad": -1.57,
+      "mean_joint_velocity": 0.978,
+      "max_joint_velocity": 101.3435,
+      "root_displacement_m": 39.9683,
+      "score": 8.354413000000003,
+      "static_gate_like": true
+    },
+    {
+      "clip": "J_ShortDance16_JazzWalk",
+      "category": "dance",
+      "duration_s": 10.62,
+      "frames": 637,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.1083000000000003,
+      "hip_pitch_range_rad": 1.9694,
+      "knee_max_rad": 2.1867,
+      "hip_pitch_min_rad": -1.5137,
+      "mean_joint_velocity": 0.9673,
+      "max_joint_velocity": 14.5748,
+      "root_displacement_m": 4.2304,
+      "score": 8.343550400000002,
+      "static_gate_like": true
+    },
+    {
+      "clip": "J_Dance19_LetsGO",
+      "category": "dance",
+      "duration_s": 24.85,
+      "frames": 1491,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.1327,
+      "hip_pitch_range_rad": 1.9679,
+      "knee_max_rad": 2.2456,
+      "hip_pitch_min_rad": -1.57,
+      "mean_joint_velocity": 0.9821,
+      "max_joint_velocity": 71.9828,
+      "root_displacement_m": 4.9073,
+      "score": 8.3349344,
+      "static_gate_like": true
+    },
+    {
+      "clip": "J_Dance18_TikTok",
+      "category": "dance",
+      "duration_s": 17.95,
+      "frames": 1077,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.1408,
+      "hip_pitch_range_rad": 1.8221,
+      "knee_max_rad": 2.2105,
+      "hip_pitch_min_rad": -1.57,
+      "mean_joint_velocity": 1.1,
+      "max_joint_velocity": 54.5443,
+      "root_displacement_m": 4.6743,
+      "score": 8.2051114,
+      "static_gate_like": true
+    },
+    {
+      "clip": "M_ShortMove13",
+      "category": "karate",
+      "duration_s": 8.98,
+      "frames": 539,
+      "fps": 60,
+      "has_policy": true,
+      "knee_range_rad": 2.0429,
+      "hip_pitch_range_rad": 1.8698000000000001,
+      "knee_max_rad": 2.163,
+      "hip_pitch_min_rad": -1.57,
+      "mean_joint_velocity": 0.7401,
+      "max_joint_velocity": 19.8679,
+      "root_displacement_m": 2.1615,
+      "score": 8.0788642,
+      "static_gate_like": true
+    }
+  ],
+  "skipped_candidates": [
+    {
+      "clip": "V_PullOver",
+      "reason": "missing joint_range metadata"
+    }
+  ],
+  "selected": {
+    "clip": "J_Dance4_Broadway",
+    "category": "dance",
+    "duration_s": 27.95,
+    "frames": 1677,
+    "fps": 60,
+    "has_policy": true,
+    "knee_range_rad": 2.3920000000000003,
+    "hip_pitch_range_rad": 1.8218,
+    "knee_max_rad": 2.4982,
+    "hip_pitch_min_rad": -1.57,
+    "mean_joint_velocity": 0.7036,
+    "max_joint_velocity": 80.3795,
+    "root_displacement_m": 4.9473,
+    "score": 8.943241,
+    "static_gate_like": true
+  },
+  "selected_csv_url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/retarget/J_Dance4_Broadway.csv",
+  "selected_csv_shape": [
+    1677,
+    36
+  ],
+  "best_window": {
+    "start_frame": 360,
+    "end_frame": 720,
+    "duration_s": 6.0,
+    "root_height_drop_m": 0.19995799999999997,
+    "left_knee_range_rad": 1.876039,
+    "right_knee_range_rad": 2.37093,
+    "left_hip_pitch_range_rad": 1.8002610000000001,
+    "right_hip_pitch_range_rad": 1.8217860000000001,
+    "max_knee_delta_rad": 2.37093,
+    "max_hip_pitch_delta_rad": 1.8217860000000001,
+    "knee_max_rad": 2.498221,
+    "hip_pitch_min_rad": -1.57,
+    "reference_gate_like": true,
+    "score": 6.763604
+  },
+  "excerpt": {
+    "path": "experiments\\95-g1-moves-reference-ingestion-gate\\verify\\g1-moves-reference-ingestion-gate\\g1_moves_reference_excerpt_web_trajectory.json",
+    "frames": 360,
+    "duration_s": 6.0,
+    "nq": 36
+  },
+  "contract_check": {
+    "verdict": "PASS",
+    "contract": "physical-ai-web-trajectory-v1",
+    "frames": 360,
+    "fps": 60.0,
+    "duration_s": 6.0,
+    "nq": 36,
+    "scene": "g1/scene_g1_policy.xml",
+    "shape_valid": true,
+    "finite_valid": true,
+    "start_height_m": 0.805576,
+    "min_height_m": 0.646794,
+    "max_height_m": 0.846752,
+    "end_height_m": 0.810531,
+    "root_height_drop_m": 0.15878199999999998,
+    "errors": []
+  },
+  "verdict": "PASS_INGESTION_GATE"
+}
