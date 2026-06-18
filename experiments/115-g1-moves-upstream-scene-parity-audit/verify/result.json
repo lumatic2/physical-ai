@@ -1,0 +1,1105 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "M19 upstream tracker route now requires exact G1 Moves scene/action/observation parity before another native ONNX retry.",
+    "perspectives": {
+      "product": "prevents more opaque native failures and keeps visible squat gate honest",
+      "architecture": "separates policy artifact validity from model/scene/sensor parity",
+      "security": "public unauthenticated GitHub/Hugging Face raw reads only; no secrets",
+      "qa": "remote tree audit, local XML/compile audit, prior native failure evidence, raw JSON",
+      "skeptic": "absence from public tree is not proof the XML cannot be acquired privately"
+    },
+    "dod": [
+      "fetch public G1 Moves GitHub and Hugging Face trees",
+      "inspect local G1 scene actuator/sensor contract",
+      "produce machine-readable next action for M19"
+    ]
+  },
+  "web_sources": [
+    {
+      "url": "https://api.github.com/repos/experientialtech/g1-moves/git/trees/main?recursive=1",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/exptech/g1-moves/tree/main?recursive=1",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/experientialtech/g1-moves/main/run_policy.py",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/experientialtech/g1-moves/main/README.md",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/CLAUDE.md",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/blob/fce747a1677d5e6ffbc45e04f9fbdc0252b276f5/CLAUDE.md",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mujocolab/mjlab/main/src/mjlab/asset_zoo/robots/unitree_g1/g1_constants.py",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/mujocolab/mjlab/main/src/mjlab/tasks/tracking/config/g1/env_cfgs.py",
+      "accessed": "2026-06-18"
+    }
+  ],
+  "remote_tree": {
+    "github": {
+      "path_count": 68,
+      "contains_g1_mode15_square_xml": false,
+      "xml_paths": [],
+      "mode15_paths": [],
+      "policy_paths": [],
+      "npz_paths": [],
+      "yaml_paths": []
+    },
+    "huggingface": {
+      "path_count": 1000,
+      "contains_g1_mode15_square_xml": false,
+      "xml_paths": [],
+      "mode15_paths": [],
+      "policy_paths": [
+        "bonus/B_Fence1/policy/B_Fence1.onnx",
+        "bonus/B_Fence1/policy/B_Fence1_policy.onnx",
+        "bonus/B_Fence2/policy/B_Fence2.onnx",
+        "bonus/B_Fence2/policy/B_Fence2_policy.onnx",
+        "bonus/B_Fence2/policy_154/B_Fence2_policy.onnx",
+        "bonus/B_HandsChop/policy/B_HandsChop.onnx",
+        "bonus/B_HandsChop/policy/B_HandsChop_policy.onnx",
+        "bonus/B_HandsChop/policy_154/B_HandsChop_policy.onnx",
+        "bonus/B_HandsUp/policy/B_HandsUp.onnx",
+        "bonus/B_HandsUp/policy/B_HandsUp_policy.onnx",
+        "bonus/B_HandsUp/policy_154/B_HandsUp_policy.onnx",
+        "bonus/V_PullOver/policy_154/V_PullOver_policy.onnx",
+        "bonus/V_Rocamena/policy/V_Rocamena.onnx",
+        "bonus/V_Rocamena/policy/V_Rocamena_policy.onnx",
+        "bonus/V_Rocamena/policy_154/V_Rocamena_policy.onnx",
+        "dance/B_DadDance/policy/B_DadDance.onnx",
+        "dance/B_DadDance/policy/B_DadDance_policy.onnx",
+        "dance/B_DadDance/policy_154/B_DadDance_policy.onnx",
+        "dance/B_LongDance/policy/B_LongDance.onnx",
+        "dance/B_LongDance/policy/B_LongDance_policy.onnx"
+      ],
+      "npz_paths": [
+        "bonus/B_Fence1/training/B_Fence1.npz",
+        "bonus/B_Fence2/training/B_Fence2.npz",
+        "bonus/B_HandsChop/training/B_HandsChop.npz",
+        "bonus/B_HandsUp/training/B_HandsUp.npz",
+        "bonus/V_PullOver/training/V_PullOver.npz",
+        "bonus/V_Rocamena/training/V_Rocamena.npz",
+        "dance/B_DadDance/training/B_DadDance.npz",
+        "dance/B_LongDance/training/B_LongDance.npz",
+        "dance/B_SpiralDance/training/B_SpiralDance.npz",
+        "dance/B_StretchDance/training/B_StretchDance.npz",
+        "dance/B_WiggleDance/training/B_WiggleDance.npz",
+        "dance/J_Dance0_StepTouch/training/J_Dance0_StepTouch.npz"
+      ],
+      "yaml_paths": [
+        "bonus/B_Fence1/policy/agent.yaml",
+        "bonus/B_Fence1/policy/env.yaml",
+        "bonus/B_Fence2/policy/agent.yaml",
+        "bonus/B_Fence2/policy/env.yaml",
+        "bonus/B_Fence2/policy_154/agent.yaml",
+        "bonus/B_Fence2/policy_154/env.yaml",
+        "bonus/B_HandsChop/policy/agent.yaml",
+        "bonus/B_HandsChop/policy/env.yaml",
+        "bonus/B_HandsChop/policy_154/agent.yaml",
+        "bonus/B_HandsChop/policy_154/env.yaml",
+        "bonus/B_HandsUp/policy/agent.yaml",
+        "bonus/B_HandsUp/policy/env.yaml",
+        "bonus/B_HandsUp/policy_154/agent.yaml",
+        "bonus/B_HandsUp/policy_154/env.yaml",
+        "bonus/V_PullOver/policy_154/agent.yaml",
+        "bonus/V_PullOver/policy_154/env.yaml",
+        "bonus/V_Rocamena/policy/agent.yaml",
+        "bonus/V_Rocamena/policy/env.yaml",
+        "bonus/V_Rocamena/policy_154/agent.yaml",
+        "bonus/V_Rocamena/policy_154/env.yaml"
+      ]
+    }
+  },
+  "direct_xml_probes": [
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/assets/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/mujoco/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/scene/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/experientialtech/g1-moves/main/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/experientialtech/g1-moves/main/assets/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/experientialtech/g1-moves/main/mujoco/g1_mode15_square.xml",
+      "status": "ERROR",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    }
+  ],
+  "remote_contract": {
+    "run_policy": {
+      "g1_mode15_square_hits": [
+        {
+          "line": 14,
+          "text": "--xml /path/to/g1_mode15_square.xml"
+        },
+        {
+          "line": 228,
+          "text": "Path.home() / \"Repositories/g1-urdf/g1_mode15_square.xml\","
+        },
+        {
+          "line": 229,
+          "text": "base / \"g1_mode15_square.xml\","
+        },
+        {
+          "line": 239,
+          "text": "\"g1_mode15_square.xml in the repo root.\""
+        }
+      ],
+      "obs_action_hits": [
+        {
+          "line": 2,
+          "text": "\"\"\"Run a trained G1 Moves policy in MuJoCo simulation."
+        },
+        {
+          "line": 8,
+          "text": "python run_policy.py dance/B_DadDance"
+        },
+        {
+          "line": 11,
+          "text": "python run_policy.py \\"
+        },
+        {
+          "line": 12,
+          "text": "--onnx dance/B_DadDance/policy/B_DadDance_policy.onnx \\"
+        },
+        {
+          "line": 87,
+          "text": "def run_policy(onnx_path: str, npz_path: str, xml_path: str, speed: float = 1.0):"
+        },
+        {
+          "line": 88,
+          "text": "\"\"\"Run ONNX policy with MuJoCo viewer.\"\"\""
+        },
+        {
+          "line": 101,
+          "text": "# Load ONNX policy"
+        },
+        {
+          "line": 103,
+          "text": "print(f\"Policy: {onnx_path}\")"
+        },
+        {
+          "line": 111,
+          "text": "last_action = np.zeros(29, dtype=np.float32)"
+        },
+        {
+          "line": 120,
+          "text": "nonlocal last_action, motion_time"
+        },
+        {
+          "line": 135,
+          "text": "base_ang_vel = data.sensordata[:3].astype(np.float32) if data.sensordata.size >= 3 else np.zeros(3, dtype=np.float32)"
+        },
+        {
+          "line": 136,
+          "text": "base_lin_vel = data.sensordata[3:6].astype(np.float32) if data.sensordata.size >= 6 else np.zeros(3, dtype=np.float32)"
+        },
+        {
+          "line": 147,
+          "text": "# Build 160-dim observation"
+        },
+        {
+          "line": 148,
+          "text": "obs = np.concatenate(["
+        },
+        {
+          "line": 157,
+          "text": "last_action,                         # 29: previous action"
+        },
+        {
+          "line": 160,
+          "text": "# Run policy"
+        },
+        {
+          "line": 161,
+          "text": "actions = session.run([\"actions\"], {\"obs\": obs[None]})[0][0]"
+        },
+        {
+          "line": 162,
+          "text": "last_action = actions.copy()"
+        },
+        {
+          "line": 165,
+          "text": "target_pos = actions + DEFAULT_JOINT_POS"
+        },
+        {
+          "line": 167,
+          "text": "data.ctrl[:29] = torques"
+        },
+        {
+          "line": 199,
+          "text": "parser = argparse.ArgumentParser(description=\"Run a G1 Moves policy in MuJoCo\")"
+        },
+        {
+          "line": 201,
+          "text": "parser.add_argument(\"--onnx\", help=\"Path to ONNX policy file\")"
+        },
+        {
+          "line": 213,
+          "text": "onnx_path = str(clip_dir / \"policy\" / f\"{clip_name}_policy.onnx\")"
+        },
+        {
+          "line": 247,
+          "text": "run_policy(onnx_path, npz_path, xml_path, speed=args.speed)"
+        }
+      ]
+    },
+    "readme": {
+      "observation_hits": [
+        {
+          "line": 9,
+          "text": "Scripts and documentation for the G1 Moves motion capture dataset \u2014 60 clips for the Unitree G1 humanoid robot, captured with MOVIN TRACIN and retargeted to 29-DOF joint trajectories with trained RL policies."
+        },
+        {
+          "line": 26,
+          "text": "| [GitHub](https://github.com/experientialtech/g1-moves) (this repo) | `run_policy.py`, `retarget_all.py`, `generate_metadata.py`, `CONTROLLER.md`, documentation |"
+        },
+        {
+          "line": 104,
+          "text": "| `<clip>.pkl` | Retargeted G1 joint trajectories (29 DOF) |"
+        },
+        {
+          "line": 112,
+          "text": "All 60 clips have been retargeted to the Unitree G1 (mode 15, 29 DOF) using [movin_sdk_python](https://github.com/MOVIN3D/movin_sdk_python). The pipeline:"
+        },
+        {
+          "line": 116,
+          "text": "3. **PKL output**: `{fps, root_pos, root_rot, dof_pos}` \u2014 60 FPS, quaternions in xyzw order, 29 joint angles"
+        },
+        {
+          "line": 123,
+          "text": "Each trained clip includes an ONNX policy (`<clip>_policy.onnx`) and a PyTorch checkpoint (`<clip>_policy.pt`). The ONNX model has observation normalization baked in \u2014 feed it raw observations and it outputs 29 joint position targets direct"
+        },
+        {
+          "line": 125,
+          "text": "### Policy Format"
+        },
+        {
+          "line": 129,
+          "text": "| Input | `obs` \u2014 float32 tensor, shape `[batch, 160]` |"
+        },
+        {
+          "line": 130,
+          "text": "| Output | `actions` \u2014 float32 tensor, shape `[batch, 29]` |"
+        },
+        {
+          "line": 135,
+          "text": "### Observation Vector (160 dims)"
+        },
+        {
+          "line": 139,
+          "text": "| 0-28 | 29 | `ref_joint_pos` | Reference motion joint positions at current timestep |"
+        },
+        {
+          "line": 140,
+          "text": "| 29-57 | 29 | `ref_joint_vel` | Reference motion joint velocities at current timestep |"
+        },
+        {
+          "line": 145,
+          "text": "| 73-101 | 29 | `joint_pos_rel` | Current joint positions minus default pose |"
+        },
+        {
+          "line": 146,
+          "text": "| 102-130 | 29 | `joint_vel` | Current joint velocities |"
+        },
+        {
+          "line": 147,
+          "text": "| 131-159 | 29 | `last_action` | Previous policy output |"
+        },
+        {
+          "line": 149,
+          "text": "### Joint Order (29 DOF, Unitree G1 mode 15)"
+        },
+        {
+          "line": 167,
+          "text": "Visualize any policy in MuJoCo simulation:"
+        },
+        {
+          "line": 174,
+          "text": "# Play a trained policy"
+        },
+        {
+          "line": 177,
+          "text": "--checkpoint-file <clip>/policy/<clip>_policy.pt \\"
+        },
+        {
+          "line": 197,
+          "text": "#### Loading a Policy"
+        },
+        {
+          "line": 199,
+          "text": "Each policy needs its corresponding motion NPZ file for the reference trajectory. At each timestep, the NPZ provides the reference joint positions/velocities and body anchor positions that form the first 67 dims of the observation vector."
+        },
+        {
+          "line": 205,
+          "text": "# Load policy and motion"
+        },
+        {
+          "line": 206,
+          "text": "session = ort.InferenceSession(\"<clip>_policy.onnx\")"
+        },
+        {
+          "line": 209,
+          "text": "ref_joint_pos = motion[\"joint_pos\"]    # (T, 29) reference joint positions"
+        },
+        {
+          "line": 210,
+          "text": "ref_joint_vel = motion[\"joint_vel\"]    # (T, 29) reference joint velocities"
+        },
+        {
+          "line": 215,
+          "text": "# At each control step (50 Hz), construct the 160-dim observation:"
+        },
+        {
+          "line": 217,
+          "text": "ref_joint_pos[t],           # 29: reference joint positions"
+        },
+        {
+          "line": 218,
+          "text": "ref_joint_vel[t],           # 29: reference joint velocities"
+        },
+        {
+          "line": 223,
+          "text": "joint_pos - default_pos,    # 29: current joints minus default"
+        },
+        {
+          "line": 224,
+          "text": "joint_vel,                  # 29: current joint velocities"
+        },
+        {
+          "line": 225,
+          "text": "last_action,                # 29: previous policy output"
+        },
+        {
+          "line": 229,
+          "text": "# actions are 29 joint position targets to send to PD controller"
+        },
+        {
+          "line": 234,
+          "text": "To add G1 Moves policies as a RoboJuDo policy module, create a policy class that replays the NPZ motion and constructs the observation vector. The architecture is similar to `BeyondMimicPolicy` \u2014 an ONNX model with motion replay \u2014 but uses "
+        },
+        {
+          "line": 244,
+          "text": "Run any policy in MuJoCo simulation without the training framework:"
+        },
+        {
+          "line": 248,
+          "text": "python run_policy.py dance/B_DadDance --xml /path/to/g1_mode15_square.xml"
+        },
+        {
+          "line": 251,
+          "text": "This opens an interactive MuJoCo viewer with the robot executing the trained policy in a loop. See `run_policy.py` for the complete observation vector construction and control loop."
+        },
+        {
+          "line": 259,
+          "text": "session = ort.InferenceSession(\"B_DadDance_policy.onnx\")"
+        },
+        {
+          "line": 260,
+          "text": "actions = session.run([\"actions\"], {\"obs\": obs_160.astype(np.float32)})[0]"
+        },
+        {
+          "line": 263,
+          "text": "The ONNX model is a 4-layer MLP (160 \u2192 512 \u2192 256 \u2192 128 \u2192 29) with ELU activations. It runs in <1ms on CPU and is compatible with ONNX Runtime on all platforms including NVIDIA Jetson (TensorRT), web (ONNX.js), and mobile."
+        },
+        {
+          "line": 276,
+          "text": "Per-clip training metrics are available in each clip's `policy/training_log.csv`."
+        },
+        {
+          "line": 338,
+          "text": "| Policy (.pt) | 4 | 22 | 18 | 44 |"
+        }
+      ]
+    },
+    "hf_claude": {
+      "source_url": "https://huggingface.co/datasets/exptech/g1-moves/blob/fce747a1677d5e6ffbc45e04f9fbdc0252b276f5/CLAUDE.md",
+      "fetch_errors": [
+        {
+          "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/CLAUDE.md",
+          "error": "HTTPError: HTTP Error 404: Not Found"
+        }
+      ],
+      "g1_mode15_square_hits": [
+        {
+          "line": 88,
+          "text": "<!--[--><div class=\"flex min-h-dvh flex-col\"><div class=\"SVELTE_HYDRATER contents\" data-target=\"ClientErrorCatcher\" data-props=\"{}\"><!----></div> <div class=\"SVELTE_HYDRATER contents\" data-target=\"DeviceProvider\" data-props=\"{}\"><!----></di"
+        },
+        {
+          "line": 90,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 98,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 107,
+          "text": "<strong>Training framework</strong>: mjlab (MuJoCo-Warp + RSL-RL PPO)"
+        },
+        {
+          "line": 111,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 153,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 179,
+          "text": "<td>MuJoCo XML</td>"
+        },
+        {
+          "line": 180,
+          "text": "<td><code>~/Repositories/g1-urdf/g1_mode15_square.xml</code></td>"
+        },
+        {
+          "line": 203,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 217,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 229,
+          "text": "<li><code>gmr</code> (Python 3.10) \u2014 GMR motion retargeting (MuJoCo, mink IK solver)</li>"
+        },
+        {
+          "line": 233,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 253,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 278,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 305,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 328,
+          "text": "<a id=\"step-5-visualize-in-mujoco\" class=\"block pr-1.5 text-lg md:absolute md:p-1.5 md:opacity-0 md:group-hover:opacity-100 md:right-full\" href=\"#step-5-visualize-in-mujoco\" rel=\"nofollow\">"
+        },
+        {
+          "line": 329,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 332,
+          "text": "Step 5: Visualize in MuJoCo"
+        },
+        {
+          "line": 344,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 352,
+          "text": "<span class=\"hljs-string\">import pickle, mujoco, numpy as np</span>"
+        },
+        {
+          "line": 359,
+          "text": "<span class=\"hljs-string\">model=mujoco.MjModel.from_xml_path('<span class=\"hljs-variable\">$HOME</span>/Repositories/g1-urdf/g1_mode15_square.xml')</span>"
+        },
+        {
+          "line": 360,
+          "text": "<span class=\"hljs-string\">data=mujoco.MjData(model)</span>"
+        },
+        {
+          "line": 366,
+          "text": "<span class=\"hljs-string\">    mujoco.mj_forward(model,data)</span>"
+        },
+        {
+          "line": 420,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 427,
+          "text": "<span class=\"hljs-string\">import pickle, numpy as np, mujoco</span>"
+        },
+        {
+          "line": 435,
+          "text": "<span class=\"hljs-string\">model=mujoco.MjModel.from_xml_path('<span class=\"hljs-variable\">$HOME</span>/Repositories/g1-urdf/g1_mode15_square.xml')</span>"
+        },
+        {
+          "line": 436,
+          "text": "<span class=\"hljs-string\">data=mujoco.MjData(model)</span>"
+        },
+        {
+          "line": 442,
+          "text": "<span class=\"hljs-string\">    mujoco.mj_forward(model,data)</span>"
+        },
+        {
+          "line": 454,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 473,
+          "text": "<li>Ground calibration: MuJoCo FK finds min ankle Z, shifts root down</li>"
+        },
+        {
+          "line": 488,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 494,
+          "text": "<p>Runs MuJoCo forward kinematics to compute body positions, orientations, and velocities needed for RL training.</p>"
+        },
+        {
+          "line": 498,
+          "text": "MUJOCO_GL=egl uv run python src/mjlab/scripts/csv_to_npz.py \\"
+        },
+        {
+          "line": 507,
+          "text": "MUJOCO_GL=egl python app/scripts/process_motion_local.py \\"
+        },
+        {
+          "line": 519,
+          "text": "<li>MuJoCo FK: computes body positions, quaternions, linear/angular velocities</li>"
+        },
+        {
+          "line": 538,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 544,
+          "text": "<p>Render the NPZ training data as a MuJoCo video to visually verify the processed motion.</p>"
+        },
+        {
+          "line": 547,
+          "text": "<p>The render is produced by the <code>--render</code> flag in Stage 2, or can be generated separately using the MuJoCo offscreen renderer with the same camera settings as retarget_all.py.</p>"
+        },
+        {
+          "line": 550,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 556,
+          "text": "<p>Train a PPO policy to imitate the reference motion in MuJoCo-Warp simulation.</p>"
+        },
+        {
+          "line": 560,
+          "text": "MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 uv run train \\"
+        },
+        {
+          "line": 606,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 616,
+          "text": "MUJOCO_GL=egl uv run play \\"
+        },
+        {
+          "line": 632,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 703,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 716,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 725,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 736,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 750,
+          "text": "MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 uv run train \\"
+        },
+        {
+          "line": 762,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 777,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 785,
+          "text": "<a id=\"sim2sim-validation-mujoco-to-mujoco\" class=\"block pr-1.5 text-lg md:absolute md:p-1.5 md:opacity-0 md:group-hover:opacity-100 md:right-full\" href=\"#sim2sim-validation-mujoco-to-mujoco\" rel=\"nofollow\">"
+        },
+        {
+          "line": 786,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 789,
+          "text": "Sim2Sim Validation (MuJoCo to MuJoCo)"
+        },
+        {
+          "line": 792,
+          "text": "<p>Test the policy in a clean MuJoCo environment before deploying to hardware:</p>"
+        },
+        {
+          "line": 794,
+          "text": "MUJOCO_GL=egl uv run play \\"
+        },
+        {
+          "line": 805,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 815,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 839,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 847,
+          "text": "<li><strong>Sim validation</strong>: Extend <code>g1</code> (uses <code>G1MujocoEnvCfg</code>)</li>"
+        },
+        {
+          "line": 853,
+          "text": "<li><strong>Environment</strong>: <code>G1MujocoEnvCfg</code> (sim) or <code>G1RealEnvCfg</code> (real)</li>"
+        },
+        {
+          "line": 858,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 877,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 894,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 910,
+          "text": "<td>MuJoCo sim</td>"
+        },
+        {
+          "line": 920,
+          "text": "<td>MuJoCo sim</td>"
+        },
+        {
+          "line": 925,
+          "text": "<td>MuJoCo sim</td>"
+        },
+        {
+          "line": 930,
+          "text": "<td>MuJoCo sim</td>"
+        },
+        {
+          "line": 938,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 968,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 974,
+          "text": "<pre><code class=\"language-bash\"><span class=\"hljs-comment\"># Required for headless MuJoCo rendering</span>"
+        },
+        {
+          "line": 975,
+          "text": "<span class=\"hljs-built_in\">export</span> MUJOCO_GL=egl"
+        },
+        {
+          "line": 976,
+          "text": "<span class=\"hljs-built_in\">export</span> MUJOCO_EGL_DEVICE_ID=0"
+        },
+        {
+          "line": 995,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        },
+        {
+          "line": 1013,
+          "text": "<td><code>MUJOCO_GL error</code></td>"
+        },
+        {
+          "line": 1014,
+          "text": "<td>Set <code>export MUJOCO_GL=egl</code> before running</td>"
+        },
+        {
+          "line": 1053,
+          "text": "<span class=\"header-link\"><svg class=\"text-gray-500 hover:text-black dark:hover:text-gray-200 w-4\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" width=\"1em\" height=\"1em\" preserve"
+        }
+      ]
+    },
+    "mjlab_constants": {
+      "g1_action_scale": null,
+      "joint_name_hits": [
+        {
+          "line": 127,
+          "text": "\".*_elbow_joint\","
+        },
+        {
+          "line": 128,
+          "text": "\".*_shoulder_pitch_joint\","
+        },
+        {
+          "line": 129,
+          "text": "\".*_shoulder_roll_joint\","
+        },
+        {
+          "line": 130,
+          "text": "\".*_shoulder_yaw_joint\","
+        },
+        {
+          "line": 131,
+          "text": "\".*_wrist_roll_joint\","
+        },
+        {
+          "line": 139,
+          "text": "target_names_expr=(\".*_hip_pitch_joint\", \".*_hip_yaw_joint\", \"waist_yaw_joint\"),"
+        },
+        {
+          "line": 146,
+          "text": "target_names_expr=(\".*_hip_roll_joint\", \".*_knee_joint\"),"
+        },
+        {
+          "line": 153,
+          "text": "target_names_expr=(\".*_wrist_pitch_joint\", \".*_wrist_yaw_joint\"),"
+        },
+        {
+          "line": 161,
+          "text": "# Due to the parallel linkage, the effective armature at the ankle and waist joints"
+        },
+        {
+          "line": 163,
+          "text": "# assume a nominal 1:1 gear ratio. Under this assumption, the joint armature in the"
+        },
+        {
+          "line": 166,
+          "text": "target_names_expr=(\"waist_pitch_joint\", \"waist_roll_joint\"),"
+        },
+        {
+          "line": 173,
+          "text": "target_names_expr=(\".*_ankle_pitch_joint\", \".*_ankle_roll_joint\"),"
+        },
+        {
+          "line": 186,
+          "text": "joint_pos={"
+        },
+        {
+          "line": 187,
+          "text": "\".*_hip_pitch_joint\": -0.1,"
+        },
+        {
+          "line": 188,
+          "text": "\".*_knee_joint\": 0.3,"
+        },
+        {
+          "line": 189,
+          "text": "\".*_ankle_pitch_joint\": -0.2,"
+        },
+        {
+          "line": 190,
+          "text": "\".*_shoulder_pitch_joint\": 0.2,"
+        },
+        {
+          "line": 191,
+          "text": "\".*_elbow_joint\": 1.28,"
+        },
+        {
+          "line": 192,
+          "text": "\"left_shoulder_roll_joint\": 0.2,"
+        },
+        {
+          "line": 193,
+          "text": "\"right_shoulder_roll_joint\": -0.2,"
+        },
+        {
+          "line": 195,
+          "text": "joint_vel={\".*\": 0.0},"
+        },
+        {
+          "line": 198,
+          "text": "KNEES_BENT_KEYFRAME = EntityCfg.InitialStateCfg("
+        },
+        {
+          "line": 200,
+          "text": "joint_pos={"
+        },
+        {
+          "line": 201,
+          "text": "\".*_hip_pitch_joint\": -0.312,"
+        },
+        {
+          "line": 202,
+          "text": "\".*_knee_joint\": 0.669,"
+        },
+        {
+          "line": 203,
+          "text": "\".*_ankle_pitch_joint\": -0.363,"
+        },
+        {
+          "line": 204,
+          "text": "\".*_elbow_joint\": 0.6,"
+        },
+        {
+          "line": 205,
+          "text": "\"left_shoulder_roll_joint\": 0.2,"
+        },
+        {
+          "line": 206,
+          "text": "\"left_shoulder_pitch_joint\": 0.2,"
+        },
+        {
+          "line": 207,
+          "text": "\"right_shoulder_roll_joint\": -0.2,"
+        },
+        {
+          "line": 208,
+          "text": "\"right_shoulder_pitch_joint\": 0.2,"
+        },
+        {
+          "line": 210,
+          "text": "joint_vel={\".*\": 0.0},"
+        },
+        {
+          "line": 260,
+          "text": "soft_joint_pos_limit_factor=0.9,"
+        },
+        {
+          "line": 271,
+          "text": "init_state=KNEES_BENT_KEYFRAME,"
+        },
+        {
+          "line": 278,
+          "text": "G1_ACTION_SCALE: dict[str, float] = {}"
+        },
+        {
+          "line": 286,
+          "text": "G1_ACTION_SCALE[n] = 0.25 * e / s"
+        }
+      ]
+    },
+    "mjlab_env_cfg": {
+      "tracking_hits": [
+        {
+          "line": 1,
+          "text": "\"\"\"Unitree G1 flat tracking environment configurations.\"\"\""
+        },
+        {
+          "line": 4,
+          "text": "G1_ACTION_SCALE,"
+        },
+        {
+          "line": 5,
+          "text": "get_g1_robot_cfg,"
+        },
+        {
+          "line": 8,
+          "text": "from mjlab.envs.mdp.actions import JointPositionActionCfg"
+        },
+        {
+          "line": 9,
+          "text": "from mjlab.managers.observation_manager import ObservationGroupCfg"
+        },
+        {
+          "line": 11,
+          "text": "from mjlab.tasks.tracking.mdp import MotionCommandCfg"
+        },
+        {
+          "line": 12,
+          "text": "from mjlab.tasks.tracking.tracking_env_cfg import make_tracking_env_cfg"
+        },
+        {
+          "line": 15,
+          "text": "def unitree_g1_flat_tracking_env_cfg("
+        },
+        {
+          "line": 19,
+          "text": "\"\"\"Create Unitree G1 flat terrain tracking configuration.\"\"\""
+        },
+        {
+          "line": 20,
+          "text": "cfg = make_tracking_env_cfg()"
+        },
+        {
+          "line": 22,
+          "text": "cfg.scene.entities = {\"robot\": get_g1_robot_cfg()}"
+        },
+        {
+          "line": 35,
+          "text": "joint_pos_action = cfg.actions[\"joint_pos\"]"
+        },
+        {
+          "line": 36,
+          "text": "assert isinstance(joint_pos_action, JointPositionActionCfg)"
+        },
+        {
+          "line": 37,
+          "text": "joint_pos_action.scale = G1_ACTION_SCALE"
+        },
+        {
+          "line": 73,
+          "text": "# Modify observations if we don't have state estimation."
+        },
+        {
+          "line": 77,
+          "text": "for k, v in cfg.observations[\"actor\"].terms.items()"
+        },
+        {
+          "line": 80,
+          "text": "cfg.observations[\"actor\"] = ObservationGroupCfg("
+        },
+        {
+          "line": 91,
+          "text": "cfg.observations[\"actor\"].enable_corruption = False"
+        }
+      ]
+    }
+  },
+  "local_scene": {
+    "scene_xml": {
+      "path": "experiments\\03-digital-twin\\web\\assets\\scenes\\g1\\scene_g1_policy.xml",
+      "include_files": [
+        "g1_mjx_feetonly.xml"
+      ],
+      "actuator_tags": {},
+      "actuator_count": 0,
+      "actuator_names_first10": [],
+      "sensor_tags": {},
+      "sensor_count": 0,
+      "sensor_names": [],
+      "keyframes": [
+        "knees_bent"
+      ]
+    },
+    "base_xml": {
+      "path": "experiments\\03-digital-twin\\web\\assets\\scenes\\g1\\g1_mjx_feetonly.xml",
+      "include_files": [],
+      "actuator_tags": {
+        "position": 29
+      },
+      "actuator_count": 29,
+      "actuator_names_first10": [
+        "left_hip_pitch_joint",
+        "left_hip_roll_joint",
+        "left_hip_yaw_joint",
+        "left_knee_joint",
+        "left_ankle_pitch_joint",
+        "left_ankle_roll_joint",
+        "right_hip_pitch_joint",
+        "right_hip_roll_joint",
+        "right_hip_yaw_joint",
+        "right_knee_joint"
+      ],
+      "sensor_tags": {
+        "framezaxis": 4,
+        "velocimeter": 2,
+        "accelerometer": 2,
+        "gyro": 2,
+        "framexaxis": 2,
+        "framequat": 2,
+        "framelinvel": 4,
+        "frameangvel": 2,
+        "force": 2
+      },
+      "sensor_count": 22,
+      "sensor_names": [
+        "upvector_torso",
+        "local_linvel_torso",
+        "local_linvel_pelvis",
+        "accelerometer_torso",
+        "accelerometer_pelvis",
+        "gyro_torso",
+        "gyro_pelvis",
+        "upvector_pelvis",
+        "forwardvector_torso",
+        "forwardvector_pelvis",
+        "orientation_torso",
+        "orientation_pelvis",
+        "global_linvel_torso",
+        "global_linvel_pelvis",
+        "global_angvel_torso",
+        "global_angvel_pelvis",
+        "left_foot_global_linvel",
+        "right_foot_global_linvel",
+        "left_foot_upvector",
+        "right_foot_upvector",
+        "left_foot_force",
+        "right_foot_force"
+      ],
+      "keyframes": []
+    },
+    "compiled": {
+      "compile": "PASS",
+      "nq": 36,
+      "nv": 35,
+      "nu": 29,
+      "nsensor": 22,
+      "nkey": 1,
+      "timestep": 0.002
+    }
+  },
+  "prior_native_failures": {
+    "exp99_upstream_adapter": {
+      "verdict": "FAIL_VISIBLE_NATIVE",
+      "best": null,
+      "runs_count": 7
+    },
+    "exp100_public_motor_xml": {
+      "verdict": "FAIL_VISIBLE_NATIVE",
+      "best": null,
+      "runs_count": 2
+    },
+    "exp101_mjlab_contract": {
+      "verdict": "FAIL_VISIBLE_NATIVE",
+      "best": null,
+      "runs_count": 4
+    }
+  },
+  "decision": {
+    "verdict": "PARITY_BLOCKED_EXACT_SCENE_NOT_PUBLIC",
+    "blockers": [
+      "exact_g1_mode15_square_xml_not_present_in_public_trees_or_direct_probes",
+      "local_scene_uses_position_actuators_not_upstream_motor_pd_scene",
+      "previous_adapter_public_xml_mjlab_rollouts_all_failed_native_gate"
+    ],
+    "next_action": "stop_hand_adapter_sweeps_and_start_local_scene_tracker_retrain_or_full_order_idqp_mpc"
+  }
+}
