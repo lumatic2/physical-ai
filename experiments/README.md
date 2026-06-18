@@ -105,6 +105,7 @@
 | 96 | [g1-moves-native-reference-tracker-probe](96-g1-moves-native-reference-tracker-probe/README.md) | G1 Moves reference를 native dynamics에서 직접 추적하면 exp29 visible gate가 닫히는지 검증 | 🟥 best `converted-pd-strong`은 drop/knee/hip 충분 but 1.42s fall, contact 0.85, slip 0.330m; learned ONNX/tracker route 필요 |
 | 97 | [g1-moves-onnx-policy-contract-probe](97-g1-moves-onnx-policy-contract-probe/README.md) | G1 Moves public ONNX policy를 learned tracker route로 쓸 수 있는지 계약 검증 | 🟨 ONNX 160/154 -> 29 smoke PASS; local native adapter는 58-d motion command 재구성이 필요 |
 | 98 | [g1-moves-standalone-onnx-native-adapter-probe](98-g1-moves-standalone-onnx-native-adapter-probe/README.md) | README observation map만으로 G1 Moves ONNX actor를 native rollout에 붙일 수 있는지 검증 | 🟥 approximate adapter는 action -14..23rad로 OOD 폭주, 0.30~0.84s fall; upstream `run_policy.py` parity 필요 |
+| 99 | [g1-moves-upstream-policy-adapter-parity-probe](99-g1-moves-upstream-policy-adapter-parity-probe/README.md) | upstream `run_policy.py` adapter 선택을 local model에 적용하면 ONNX native rollout이 안정화되는지 검증 | 🟥 first action은 정상이나 local XML/actuator에서 즉시 QACC/obs 폭주; upstream-compatible model parity 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
