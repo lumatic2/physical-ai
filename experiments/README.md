@@ -98,6 +98,7 @@
 | 89 | [g1-stance-constrained-residual-finetune](89-g1-stance-constrained-residual-finetune/README.md) | exp80 visible checkpoint를 stance-constrained residual reward로 finetune하면 contact/slip/return을 회수할 수 있는지 검증 | 🟥 20k finetune도 6.32cm/contact 0.37/slip 3.25m로 reward-only 한계 확인 |
 | 90 | [g1-qfrc-stance-preload-wrapper](90-g1-qfrc-stance-preload-wrapper/README.md) | 공개 근거로 G1 squat 가능성을 확인한 뒤 qfrc foot-down preload로 stance contact gate를 닫을 수 있는지 검증 | 🟨 contact 0.93/drop 9.8cm/hip PASS까지 개선, but knee 0.427rad와 slip 9.7cm로 visible gate 실패 |
 | 91 | [g1-contact-constrained-pose-qfrc-wrapper](91-g1-contact-constrained-pose-qfrc-wrapper/README.md) | contact-gated knee/hip qfrc assist가 exp90의 knee plateau를 넘기는지 검증 | 🟥 best no-fall 8.1cm/contact 0.92/slip 9.0cm but knee 0.448rad; stronger pose qfrc는 late fall |
+| 92 | [g1-finite-horizon-trajectory-optimizer](92-g1-finite-horizon-trajectory-optimizer/README.md) | 전체 down-recapture-stand plan 후보를 native rollout으로 점수화하면 M19 gate가 닫히는지 검증 | 🟥 plan-9cm-terminal은 drop/hip/contact PASS but knee 0.421rad/slip 8.5cm; knee PASS 후보는 fall |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
