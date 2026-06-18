@@ -91,6 +91,7 @@
 | 82 | [g1-visible-stance-wbc-guard](82-g1-visible-stance-wbc-guard/README.md) | stance-foot qfrc/WBC guard를 exp29 visible gate에 직접 대입하면 contact/slip과 visible pose를 동시에 닫는지 검증 | 🟨 shallow guard는 slip 1.9cm/contact 1.00을 달성하지만 6.54cm에서 포화; depth-biased는 fall |
 | 83 | [g1-multistep-trajectory-wbc-projection](83-g1-multistep-trajectory-wbc-projection/README.md) | exp80 visible trajectory와 exp82 stance guard를 multi-step horizon cost로 결합하면 visible gate를 닫는지 검증 | 🟨 첫 8cm+ no-fall/contact/slip 조합 달성: 8.27cm/contact 1.00/slip 1.9cm, but knee/hip/return pending |
 | 84 | [g1-pose-biased-multistep-wbc-projection](84-g1-pose-biased-multistep-wbc-projection/README.md) | 웹 근거로 G1 squat 가능성을 재확인한 뒤 exp83 safe corridor에 knee/hip pose residual을 넣으면 visible gate를 닫는지 검증 | 🟨 no-fall/contact/slip 유지하며 28.43cm + knee 0.631rad PASS, but hip 0.198rad/return pending |
+| 85 | [g1-phase-split-hip-return-controller](85-g1-phase-split-hip-return-controller/README.md) | hip-forward descent와 terminal stand-up을 phase split하면 exp84 hip/return 병목을 풀 수 있는지 검증 | 🟥 직접 stand target release는 4.96~5.54s fall로 악화; recapture hold phase 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
