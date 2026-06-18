@@ -1,0 +1,115 @@
+{
+  "gate": "g1_squat_capability_before_next_native_experiment",
+  "visible_gate": {
+    "pelvis_drop_m": 0.08,
+    "knee_delta_rad": 0.6,
+    "hip_pitch_delta_rad": 0.35
+  },
+  "public_sources": [
+    {
+      "source": "Unitree G1 controls documentation",
+      "url": "https://docs.quadruped.de/projects/g1/html/operation_1.2.html",
+      "accessed": "2026-06-18",
+      "claim": "G1 has a Squat Mode, but it is described as a slow transition to squat with no balance control.",
+      "implication": "stock Squat Mode proves a posture path exists, not an autonomous balanced squat skill."
+    },
+    {
+      "source": "Unitree G1 overview documentation",
+      "url": "https://www.docs.quadruped.de/projects/g1/html/g1_overview.html",
+      "accessed": "2026-06-18",
+      "claim": "G1 has six degrees of freedom per leg and the basic model has 23 total DoF; EDU can expand with additional DoF.",
+      "implication": "leg morphology is not an obvious blocker for squat-like posture control."
+    },
+    {
+      "source": "IEEE Robots Guide: Unitree G1",
+      "url": "https://robotsguide.com/robots/unitree-g1",
+      "accessed": "2026-06-18",
+      "claim": "The guide shows a Unitree G1 in a deep squat posture and describes high flexibility.",
+      "implication": "public visual evidence supports kinematic deep squat feasibility."
+    },
+    {
+      "source": "G1 Moves dataset",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves",
+      "accessed": "2026-06-18",
+      "claim": "The dataset provides 60 G1 EDU 29-DOF motion clips with retargeted trajectories, RL training data, and ONNX policies.",
+      "implication": "learned G1 full-body motion tracking is a practical route, but scene/policy parity matters."
+    },
+    {
+      "source": "UniTracker paper",
+      "url": "https://arxiv.org/html/2507.07356v2",
+      "accessed": "2026-06-18",
+      "claim": "A 29-DoF Unitree G1 tracks over 8,100 diverse motions with a unified whole-body policy.",
+      "implication": "G1-class hardware can track rich whole-body motions when the tracker and dynamics stack are aligned."
+    },
+    {
+      "source": "Isaac Lab issue #3751",
+      "url": "https://github.com/isaac-sim/IsaacLab/issues/3751",
+      "accessed": "2026-06-18",
+      "claim": "A trained G1 policy can collapse immediately when exported and run against a mismatched MuJoCo model.",
+      "implication": "our ONNX/native failures are consistent with model-scene-action mismatch, not proof that squat is impossible."
+    }
+  ],
+  "prior_evidence": {
+    "static_feasibility": {
+      "verdict": {
+        "public": "SUPPORTED_BY_OFFICIAL_SPECS_AND_PUBLIC_DEEP_SQUAT_EVIDENCE",
+        "local_static": "KINEMATICALLY_PLAUSIBLE",
+        "dynamic_policy": "UNPROVEN_CURRENT_POLICY_NEEDS_WBC_CONTACT_FORCE_CONTROL",
+        "next_action": "run_qplite_wbc_before_browser_replay"
+      },
+      "best_static_probe": {
+        "drop_m": 0.16,
+        "target_height_m": 0.595,
+        "ik_success": true,
+        "ik_cost": 0.21609929180101234,
+        "ik_max_foot_error_m": 0.0008275154204383251,
+        "knee_delta_rad": 0.9300896213025323,
+        "hip_pitch_delta_rad": 0.44410709947163013,
+        "ankle_pitch_delta_rad": 0.02673676235067135,
+        "visible_gate": {
+          "pelvis_drop_pass": true,
+          "knee_delta_pass": true,
+          "hip_pitch_delta_pass": true
+        }
+      }
+    },
+    "latest_native": {
+      "verdict": "FAIL_VISIBLE_8CM_GATE",
+      "browser_replay_attempted": false,
+      "best_terminal_idqp": {
+        "attempt": "terminal-stand-soft",
+        "visible_verdict": "DEPTH_PENDING_8CM",
+        "visible_drop": 0.0553396075661754,
+        "max_knee_delta_rad": 0.3950387469324843,
+        "max_hip_pitch_delta_rad": 0.21602445327539038,
+        "foot_contact_ratio": 0.9966666666666667,
+        "foot_slip_distance": 0.028604200613289422,
+        "final_height": 0.7408742565362982,
+        "return_to_stand": true,
+        "fell_at": null,
+        "terminal_idqp_score": 312.97708433853575
+      },
+      "best_visible_geometry": {
+        "attempt": "terminal-depth-late-pop",
+        "visible_verdict": "FAIL_FALL",
+        "visible_drop": 1.5137747605840766,
+        "max_knee_delta_rad": 0.3889292446476658,
+        "max_hip_pitch_delta_rad": 0.8738128844601627,
+        "foot_contact_ratio": 0.8633333333333333,
+        "foot_slip_distance": 0.41548180635229975,
+        "final_height": -0.7189244432559662,
+        "return_to_stand": false,
+        "fell_at": 5.38,
+        "terminal_idqp_score": 3225.140417664797
+      }
+    }
+  },
+  "decision": {
+    "posture_supported": true,
+    "kinematics_supported": true,
+    "tracker_supported": true,
+    "native_pass": false,
+    "verdict": "CAPABLE_IN_PRINCIPLE__CURRENT_CONTROLLER_FAILS",
+    "next_action": "upstream_tracker_scene_parity_first_then_full_order_idqp_mpc"
+  }
+}

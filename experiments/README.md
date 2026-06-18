@@ -120,6 +120,7 @@
 | 111 | [g1-contact-aware-reference-retrain](111-g1-contact-aware-reference-retrain/README.md) | exp105 future-reference tracker를 contact/slip/support-aware reward로 restored PPO 재학습 | 🟥 no-fall이지만 2.13cm shallow + contact 0.44/slip 3.24m; reward 재가중보다 WBC/MPC-in-loop 필요 |
 | 112 | [g1-wbc-mpc-inloop-reference-tracker](112-g1-wbc-mpc-inloop-reference-tracker/README.md) | G1 스쿼트 가능성을 웹 근거로 확인한 뒤 WBC primitive를 short-horizon MPC로 in-loop 선택 | 🟥 best no-fall은 26.09cm/contact 1.00/slip 4.0cm지만 knee 0.442/hip 0.216/return 실패; full ID-QP/MPC 필요 |
 | 113 | [g1-terminal-stand-idqp-mpc-assist](113-g1-terminal-stand-idqp-mpc-assist/README.md) | exp112 deep crouch branch에 terminal stand IDQP/MPC assist를 추가해 return gate를 직접 공격 | 🟥 return/contact/slip은 회복 가능하지만 best stable은 5.53cm shallow; depth 보존 후보는 fall/slip |
+| 114 | [g1-squat-capability-gate](114-g1-squat-capability-gate/README.md) | 웹 근거와 최신 native evidence로 G1 squat 가능성/현재 controller 실패를 분리 | 🟨 G1은 원리상 squat/full-body tracking 가능성이 높지만 stock Squat Mode는 no-balance posture이고 현재 controller는 exp29 native gate 실패; upstream tracker scene parity 우선 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
