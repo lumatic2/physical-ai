@@ -105,19 +105,19 @@
 
 완료 기준: ✅ 고난도 skill의 병목을 기술적으로 분리했다. 증거: [exp13](experiments/13-acrobatic-feasibility/README.md).
 
-<!-- harness:milestone id="M21" status="active" priority="P0" evidence="experiments/124-g1-ball-kick-contact-probe/verify/g1-ball-kick-contact-probe.json" -->
+<!-- harness:milestone id="M21" status="completed" priority="P0" evidence="experiments/125-g1-crossing-leg-kick-feasibility/verify/g1-crossing-leg-kick-feasibility.json" -->
 ### M21 - Ball-skill sandbox
 
 - [x] G1 + ball scene을 만들고 공 위치/속도/goal metric을 읽었다.
 - [x] `ball_tap` skill spec과 scene requirement를 M18에서 정의했다.
 - [x] 공 이동거리와 방향 오차 metric을 native MuJoCo smoke로 검증했다.
 - [x] 발-공 접촉과 낙상 여부를 kick probe에서 평가했다.
-- [ ] 라보나슛은 바로 목표로 삼지 않고 crossing-leg kick feasibility까지 본다.
+- [x] 라보나슛은 바로 목표로 삼지 않고 crossing-leg kick feasibility까지 봤다.
 
-- DoD: ✅ foot-ball contact, ball movement, direction error, and fall/no-fall are evaluated in a kick probe.
-- Evidence: [exp16](experiments/16-ball-skill-sandbox/README.md), [exp124](experiments/124-g1-ball-kick-contact-probe/README.md)
-- Gap: learned controller와 crossing-leg kick feasibility는 아직 남았다.
-- Status: contact probe PASS; crossing-leg feasibility next
+- DoD: ✅ foot-ball contact, ball movement, direction error, fall/no-fall, and crossing-leg feasibility are evaluated in probes.
+- Evidence: [exp16](experiments/16-ball-skill-sandbox/README.md), [exp124](experiments/124-g1-ball-kick-contact-probe/README.md), [exp125](experiments/125-g1-crossing-leg-kick-feasibility/README.md)
+- Gap: learned rabona/external-object controller is future work, not part of this sandbox gate.
+- Status: ✅ M21 PASS
 
 <!-- harness:milestone id="M22" status="completed" priority="P0" evidence="experiments/123-g1-reference-vs-rollout-viewer/verify/browser-reference-vs-rollout.json" -->
 ### M22 - Motion-to-policy loop

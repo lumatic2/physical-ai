@@ -131,6 +131,7 @@
 | 122 | [g1-decoupled-wbc-squat-trace-gate](122-g1-decoupled-wbc-squat-trace-gate/README.md) | GR00T Decoupled WBC measured trace가 exp29 visible squat + contact/slip/return + browser replay gate를 동시에 닫는지 검증 | ✅ M19 PASS: 11.6cm drop, knee 0.707rad, hip 0.427rad, contact 1.00, slip 0.003m, browser replay QA PASS |
 | 123 | [g1-reference-vs-rollout-viewer](123-g1-reference-vs-rollout-viewer/README.md) | M22 reference motion과 measured WBC rollout을 브라우저에서 같은 qpos 계약으로 비교 | ✅ artifact PASS + browser `qaCompare()` PASS |
 | 124 | [g1-ball-kick-contact-probe](124-g1-ball-kick-contact-probe/README.md) | M21 ball scene에서 실제 foot-ball contact, 공 이동, 방향 오차, 낙상 여부를 probe로 검증 | ✅ contact_frames 50, ball 1.305m, direction error 0.148rad, fall false |
+| 125 | [g1-crossing-leg-kick-feasibility](125-g1-crossing-leg-kick-feasibility/README.md) | M21 라보나 전 단계로 right-foot crossing-leg ball contact 가능성을 probe로 검증 | ✅ back_cross PASS: y 0.153m, contact 79, foot-foot 0, ball 2.242m, error 0.083rad |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

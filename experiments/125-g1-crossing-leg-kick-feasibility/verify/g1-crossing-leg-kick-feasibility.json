@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1",
+  "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_ball.xml",
+  "method": "scripted right-leg crossing sweep with MuJoCo ball/contact dynamics",
+  "thresholds": {
+    "min_crossing_y_m": 0.05,
+    "min_contact_frames": 1,
+    "max_foot_foot_contact_frames": 0,
+    "min_ball_distance_m": 0.6,
+    "max_direction_error_rad": 0.2,
+    "min_base_height_m": 0.58
+  },
+  "verdict": "PASS",
+  "best_candidate": "back_cross",
+  "candidates": [
+    {
+      "name": "high_cross",
+      "target_right_leg": {
+        "right_hip_pitch": -0.45,
+        "right_hip_roll": 0.9,
+        "right_hip_yaw": 0.8,
+        "right_knee": 0.45,
+        "right_ankle_pitch": -0.4
+      },
+      "ball_initial_pos": [
+        0.2,
+        0.25,
+        0.06
+      ],
+      "ball_final_pos": [
+        -0.010186279494434331,
+        0.7220655541618842,
+        0.05963281815753984
+      ],
+      "crossing": {
+        "max_right_foot_y_m": 0.25152552920637733,
+        "crossed_midline": true
+      },
+      "contact_frames": 138,
+      "first_contact_time_s": 0.488,
+      "max_contact_force": 142.8324835997229,
+      "foot_foot_contact_frames": 3,
+      "ball_distance_m": 0.5167438045239433,
+      "ball_direction_error_rad": 1.9896915295273792,
+      "min_base_height_m": 0.7549572237285692,
+      "fell": false,
+      "joint_limits": {
+        "violations": [],
+        "min_margin_rad": 0.4726699999999999,
+        "margins_rad": {
+          "right_hip_pitch_joint": 2.0806999999999998,
+          "right_hip_roll_joint": 1.4236,
+          "right_hip_yaw_joint": 1.9576,
+          "right_knee_joint": 0.537267,
+          "right_ankle_pitch_joint": 0.4726699999999999
+        }
+      },
+      "pass": false
+    },
+    {
+      "name": "mid_cross",
+      "target_right_leg": {
+        "right_hip_pitch": -0.45,
+        "right_hip_roll": 0.75,
+        "right_hip_yaw": 0.8,
+        "right_knee": 0.45,
+        "right_ankle_pitch": -0.4
+      },
+      "ball_initial_pos": [
+        0.23,
+        0.17,
+        0.06
+      ],
+      "ball_final_pos": [
+        2.1859159962162247,
+        -0.3367559498653057,
+        0.05963281815753984
+      ],
+      "crossing": {
+        "max_right_foot_y_m": 0.1726675548030448,
+        "crossed_midline": true
+      },
+      "contact_frames": 69,
+      "first_contact_time_s": 0.38,
+      "max_contact_force": 64.75273157400201,
+      "foot_foot_contact_frames": 0,
+      "ball_distance_m": 2.020497210336702,
+      "ball_direction_error_rad": 0.25351437643544944,
+      "min_base_height_m": 0.7549551575392912,
+      "fell": false,
+      "joint_limits": {
+        "violations": [],
+        "min_margin_rad": 0.4726699999999999,
+        "margins_rad": {
+          "right_hip_pitch_joint": 2.0806999999999998,
+          "right_hip_roll_joint": 1.2736,
+          "right_hip_yaw_joint": 1.9576,
+          "right_knee_joint": 0.537267,
+          "right_ankle_pitch_joint": 0.4726699999999999
+        }
+      },
+      "pass": false
+    },
+    {
+      "name": "low_cross",
+      "target_right_leg": {
+        "right_hip_pitch": -0.45,
+        "right_hip_roll": 0.6,
+        "right_hip_yaw": 0.4,
+        "right_knee": 0.35,
+        "right_ankle_pitch": -0.4
+      },
+      "ball_initial_pos": [
+        0.21,
+        0.165,
+        0.06
+      ],
+      "ball_final_pos": [
+        2.5023709324633647,
+        0.10822207728786423,
+        0.05963281815753984
+      ],
+      "crossing": {
+        "max_right_foot_y_m": 0.16510820278059113,
+        "crossed_midline": true
+      },
+      "contact_frames": 83,
+      "first_contact_time_s": 0.386,
+      "max_contact_force": 126.82118684689884,
+      "foot_foot_contact_frames": 31,
+      "ball_distance_m": 2.293073968390567,
+      "ball_direction_error_rad": 0.024763146213630554,
+      "min_base_height_m": 0.7549672124376178,
+      "fell": false,
+      "joint_limits": {
+        "violations": [],
+        "min_margin_rad": 0.43726699999999996,
+        "margins_rad": {
+          "right_hip_pitch_joint": 2.0806999999999998,
+          "right_hip_roll_joint": 1.1236,
+          "right_hip_yaw_joint": 2.3576,
+          "right_knee_joint": 0.43726699999999996,
+          "right_ankle_pitch_joint": 0.4726699999999999
+        }
+      },
+      "pass": false
+    },
+    {
+      "name": "back_cross",
+      "target_right_leg": {
+        "right_hip_pitch": -0.6,
+        "right_hip_roll": 0.3,
+        "right_hip_yaw": -0.4,
+        "right_knee": 0.65,
+        "right_ankle_pitch": -0.4
+      },
+      "ball_initial_pos": [
+        0.2,
+        0.153,
+        0.06
+      ],
+      "ball_final_pos": [
+        2.434086244293817,
+        0.3388202561465179,
+        0.059632818157539846
+      ],
+      "crossing": {
+        "max_right_foot_y_m": 0.15308095689848325,
+        "crossed_midline": true
+      },
+      "contact_frames": 79,
+      "first_contact_time_s": 0.402,
+      "max_contact_force": 151.41193773079644,
+      "foot_foot_contact_frames": 0,
+      "ball_distance_m": 2.2418007303364873,
+      "ball_direction_error_rad": 0.08298404747418235,
+      "min_base_height_m": 0.7549763837217552,
+      "fell": false,
+      "joint_limits": {
+        "violations": [],
+        "min_margin_rad": 0.4726699999999999,
+        "margins_rad": {
+          "right_hip_pitch_joint": 1.9306999999999999,
+          "right_hip_roll_joint": 0.8235999999999999,
+          "right_hip_yaw_joint": 2.3576,
+          "right_knee_joint": 0.737267,
+          "right_ankle_pitch_joint": 0.4726699999999999
+        }
+      },
+      "pass": true
+    }
+  ],
+  "limitations": [
+    "This validates kinematic feasibility and scene observability, not a learned rabona controller.",
+    "The base pose is scripted; dynamic balance under policy control remains separate future work."
+  ]
+}
