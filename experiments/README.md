@@ -115,6 +115,7 @@
 | 106 | [g1-friction-cone-wbc-planner](106-g1-friction-cone-wbc-planner/README.md) | exp91 contact-qfrc planner 주변에서 slip/friction proxy를 강화하면 knee/slip tradeoff가 풀리는지 검증 | 🟥 contact 1.00/slip 1.6cm는 달성했지만 drop 5.2cm/knee 0.383/hip 0.204로 visible pose가 사라짐; full QP 또는 retrain 필요 |
 | 107 | [g1-contact-force-feasibility-audit](107-g1-contact-force-feasibility-audit/README.md) | exp91/106 후보를 MuJoCo `mj_contactForce`로 재생해 friction cone/CoP force audit을 직접 박제 | 🟥 no-fall 후보도 5.2cm에서 friction-limit shallow; visible 후보는 5.4~5.9s fall과 37~40cm slip |
 | 108 | [g1-contact-force-qp-lite-wrapper](108-g1-contact-force-qp-lite-wrapper/README.md) | foot contact-force `(fx, fy, normal)` decision variable을 둔 QP-lite qfrc wrapper로 M19 gate를 재검증 | 🟨 no-fall/contact/slip 유지하며 7.49cm까지 전진, but knee 0.382/hip 0.210으로 exp29 pose gate 실패; push 후보는 fall |
+| 109 | [g1-static-inverse-dynamics-contact-qp](109-g1-static-inverse-dynamics-contact-qp/README.md) | exp108 이후 visible squat target poses를 static inverse-dynamics contact-force QP로 평가 | 🟩 exp29 visible-min과 9cm full visible pose가 static ID-QP plausible; 병목은 target 자체보다 dynamic controller/retrain |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

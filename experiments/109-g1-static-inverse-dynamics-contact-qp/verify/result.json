@@ -1,0 +1,250 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "M19 adds static inverse-dynamics contact QP feasibility before building a dynamic full ID-QP controller or retraining.",
+    "perspectives": {
+      "product": "separates target feasibility from controller rollout failure",
+      "architecture": "uses MuJoCo inverse dynamics and foot contact Jacobians rather than qfrc wrapper scoring",
+      "security": "local simulation only",
+      "qa": "raw JSON includes support margins, base residuals, contact force solution, and torque proxy",
+      "skeptic": "static feasibility does not prove dynamic rollout or browser replay"
+    },
+    "dod": [
+      "evaluate exp108 and exp29 visible target poses",
+      "state whether any visible target is statically plausible under contact-force QP"
+    ]
+  },
+  "web_sources": [
+    {
+      "url": "https://mujoco.readthedocs.io/en/3.2.2/computation/",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://la.disneyresearch.com/wp-content/uploads/PROJECT_Humanoids-mocap_IEEE-RAS-ICHR-2013_PAPER1.pdf",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://junhyeokahn.github.io/data/kim2018_wbdc.pdf",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://arxiv.org/html/2312.16465v3",
+      "accessed": "2026-06-18"
+    }
+  ],
+  "solver": {
+    "mu": 0.8,
+    "normal_max": 500.0,
+    "total_normal_max": 900.0
+  },
+  "poses": [
+    {
+      "spec": {
+        "name": "exp108-best-no-fall",
+        "drop": 0.0749,
+        "knee": 0.382,
+        "hip": 0.21,
+        "ankle": 0.14
+      },
+      "support": {
+        "support_margin": 0.08365529893637667,
+        "com_support_margin": 0.08365529893637667,
+        "com_xy": [
+          0.04888529219963088,
+          8.226090168117387e-05
+        ]
+      },
+      "qp": {
+        "success": false,
+        "status": "Positive directional derivative for linesearch",
+        "force_solution": {
+          "left_fx": 0.0,
+          "left_fy": 0.0,
+          "left_fz": 163.53830151000003,
+          "right_fx": 0.0,
+          "right_fy": 0.0,
+          "right_fz": 163.53830151000003,
+          "total_normal": 327.07660302000005,
+          "max_friction_ratio": 0.0
+        },
+        "base_residual_l2": 94410.2450983677,
+        "base_residual_linf": 94228.44683616131,
+        "tau_linf": 4996.910856091312,
+        "tau_l2": 8742.952510199906,
+        "lower_tau_linf": 4996.910856091312,
+        "qfrc_required_linf": 93901.37023314131,
+        "qfrc_required_base_linf": 93901.37023314131,
+        "qfrc_required_act_linf": 4972.075506431891,
+        "objective": 713064315289.7904
+      },
+      "verdict": "BASE_DYNAMICS_RESIDUAL_HIGH"
+    },
+    {
+      "spec": {
+        "name": "exp29-visible-min",
+        "drop": 0.08,
+        "knee": 0.6,
+        "hip": 0.35,
+        "ankle": 0.25
+      },
+      "support": {
+        "support_margin": 0.07184839254911152,
+        "com_support_margin": 0.07184839254911152,
+        "com_xy": [
+          0.05790324479834007,
+          8.226090168117387e-05
+        ]
+      },
+      "qp": {
+        "success": true,
+        "status": "Optimization terminated successfully",
+        "force_solution": {
+          "left_fx": 1.6260617282706045,
+          "left_fy": -0.0900929344861191,
+          "left_fz": 163.7062055178953,
+          "right_fx": 1.6251599155617305,
+          "right_fy": 0.09302301320281794,
+          "right_fz": 163.53390793262218,
+          "total_normal": 327.24011345051747,
+          "max_friction_ratio": 0.012442526790542573
+        },
+        "base_residual_l2": 6.085925558067337,
+        "base_residual_linf": 5.142108710654512,
+        "tau_linf": 25.356855333134604,
+        "tau_l2": 36.11696839036913,
+        "lower_tau_linf": 25.356855333134604,
+        "qfrc_required_linf": 327.07660302000005,
+        "qfrc_required_base_linf": 327.07660302000005,
+        "qfrc_required_act_linf": 8.241008372821433,
+        "objective": 3511.6676150566495
+      },
+      "verdict": "STATIC_ID_QP_PLAUSIBLE"
+    },
+    {
+      "spec": {
+        "name": "visible-soft-pose",
+        "drop": 0.085,
+        "knee": 0.5,
+        "hip": 0.3,
+        "ankle": 0.22
+      },
+      "support": {
+        "support_margin": 0.06933752226511636,
+        "com_support_margin": 0.06933752226511636,
+        "com_xy": [
+          0.05534113268292721,
+          8.226090168117387e-05
+        ]
+      },
+      "qp": {
+        "success": true,
+        "status": "Optimization terminated successfully",
+        "force_solution": {
+          "left_fx": 0.0,
+          "left_fy": 0.0,
+          "left_fz": 163.53830151000003,
+          "right_fx": 0.0,
+          "right_fy": 0.0,
+          "right_fz": 163.53830151000003,
+          "total_normal": 327.07660302000005,
+          "max_friction_ratio": 0.0
+        },
+        "base_residual_l2": 53374.26133444445,
+        "base_residual_linf": 53267.99824990413,
+        "tau_linf": 3487.918316695251,
+        "tau_l2": 5582.505275290944,
+        "lower_tau_linf": 3487.918316695251,
+        "qfrc_required_linf": 52940.921646884126,
+        "qfrc_required_base_linf": 52940.921646884126,
+        "qfrc_required_act_linf": 3462.056133598912,
+        "objective": 227905254018.35272
+      },
+      "verdict": "BASE_DYNAMICS_RESIDUAL_HIGH"
+    },
+    {
+      "spec": {
+        "name": "visible-full-pose",
+        "drop": 0.09,
+        "knee": 0.64,
+        "hip": 0.38,
+        "ankle": 0.28
+      },
+      "support": {
+        "support_margin": 0.06743510572093545,
+        "com_support_margin": 0.06743510572093545,
+        "com_xy": [
+          0.059852000701064036,
+          8.226090168117387e-05
+        ]
+      },
+      "qp": {
+        "success": true,
+        "status": "Optimization terminated successfully",
+        "force_solution": {
+          "left_fx": 1.3365669147758767,
+          "left_fy": -0.0887459260145139,
+          "left_fz": 163.7032306762101,
+          "right_fx": 1.3355295944894812,
+          "right_fy": 0.09164250319773926,
+          "right_fz": 163.53063427588864,
+          "total_normal": 327.23386495209877,
+          "max_friction_ratio": 0.010232563683570112
+        },
+        "base_residual_l2": 5.04850379764284,
+        "base_residual_linf": 4.280482398928594,
+        "tau_linf": 25.74767405047201,
+        "tau_l2": 36.63285883483145,
+        "lower_tau_linf": 25.74767405047201,
+        "qfrc_required_linf": 327.07660302000005,
+        "qfrc_required_base_linf": 327.07660302000005,
+        "qfrc_required_act_linf": 8.5597046032105,
+        "objective": 2587.9002457257056
+      },
+      "verdict": "STATIC_ID_QP_PLAUSIBLE"
+    }
+  ],
+  "has_static_plausible_visible": true,
+  "best_static": {
+    "spec": {
+      "name": "visible-full-pose",
+      "drop": 0.09,
+      "knee": 0.64,
+      "hip": 0.38,
+      "ankle": 0.28
+    },
+    "support": {
+      "support_margin": 0.06743510572093545,
+      "com_support_margin": 0.06743510572093545,
+      "com_xy": [
+        0.059852000701064036,
+        8.226090168117387e-05
+      ]
+    },
+    "qp": {
+      "success": true,
+      "status": "Optimization terminated successfully",
+      "force_solution": {
+        "left_fx": 1.3365669147758767,
+        "left_fy": -0.0887459260145139,
+        "left_fz": 163.7032306762101,
+        "right_fx": 1.3355295944894812,
+        "right_fy": 0.09164250319773926,
+        "right_fz": 163.53063427588864,
+        "total_normal": 327.23386495209877,
+        "max_friction_ratio": 0.010232563683570112
+      },
+      "base_residual_l2": 5.04850379764284,
+      "base_residual_linf": 4.280482398928594,
+      "tau_linf": 25.74767405047201,
+      "tau_l2": 36.63285883483145,
+      "lower_tau_linf": 25.74767405047201,
+      "qfrc_required_linf": 327.07660302000005,
+      "qfrc_required_base_linf": 327.07660302000005,
+      "qfrc_required_act_linf": 8.5597046032105,
+      "objective": 2587.9002457257056
+    },
+    "verdict": "STATIC_ID_QP_PLAUSIBLE"
+  },
+  "verdict": "STATIC_VISIBLE_PLAUSIBLE",
+  "browser_replay_attempted": false
+}
