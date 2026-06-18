@@ -113,6 +113,7 @@
 | 104 | [g1-contact-aware-reference-action-wrapper](104-g1-contact-aware-reference-action-wrapper/README.md) | G1 squat 가능성을 웹 근거로 확인한 뒤 exp103 policy에 contact-aware action wrapper를 얹으면 stance/slip 병목이 풀리는지 검증 | 🟥 wrapper는 contact ratio를 올려도 fall/slip을 키움; best는 direct exp103 5.7cm로 action-wrapper route 한계 |
 | 105 | [g1-future-reference-observation-tracker](105-g1-future-reference-observation-tracker/README.md) | 현재 reference만 보던 exp103 계열 command를 future-reference observation으로 바꾸면 stance breach 전 추적이 안정화되는지 검증 | 🟥 knee/hip은 근접하지만 drop 2.8cm/contact 0.48/slip 3.09m; future command 단독보다 contact-force planner 필요 |
 | 106 | [g1-friction-cone-wbc-planner](106-g1-friction-cone-wbc-planner/README.md) | exp91 contact-qfrc planner 주변에서 slip/friction proxy를 강화하면 knee/slip tradeoff가 풀리는지 검증 | 🟥 contact 1.00/slip 1.6cm는 달성했지만 drop 5.2cm/knee 0.383/hip 0.204로 visible pose가 사라짐; full QP 또는 retrain 필요 |
+| 107 | [g1-contact-force-feasibility-audit](107-g1-contact-force-feasibility-audit/README.md) | exp91/106 후보를 MuJoCo `mj_contactForce`로 재생해 friction cone/CoP force audit을 직접 박제 | 🟥 no-fall 후보도 5.2cm에서 friction-limit shallow; visible 후보는 5.4~5.9s fall과 37~40cm slip |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
