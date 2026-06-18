@@ -1,0 +1,34 @@
+{
+  "description": "Static visible reference target before dynamics tracking.",
+  "start_height": 0.755,
+  "reference_height": 0.665,
+  "intended_base_drop_m": 0.08999999999999997,
+  "foot_site_z_error_m": 0.008193408284751007,
+  "foot_site_xy_error_m": 0.03799317383243158,
+  "target_knee_delta_rad": 0.640000015258789,
+  "target_hip_pitch_delta_rad": 0.38000003147125244,
+  "foot_sites_start": [
+    [
+      -0.0014175158435599082,
+      0.118506455,
+      0.03330197040558823
+    ],
+    [
+      -0.0014175158435599082,
+      -0.118506455,
+      0.03330197040558823
+    ]
+  ],
+  "foot_sites_reference": [
+    [
+      0.03657565694355529,
+      0.11851536050092269,
+      0.04149537869033924
+    ],
+    [
+      0.03657565694515907,
+      -0.1185153604987369,
+      0.04149537869033351
+    ]
+  ]
+}

@@ -100,6 +100,7 @@
 | 91 | [g1-contact-constrained-pose-qfrc-wrapper](91-g1-contact-constrained-pose-qfrc-wrapper/README.md) | contact-gated knee/hip qfrc assist가 exp90의 knee plateau를 넘기는지 검증 | 🟥 best no-fall 8.1cm/contact 0.92/slip 9.0cm but knee 0.448rad; stronger pose qfrc는 late fall |
 | 92 | [g1-finite-horizon-trajectory-optimizer](92-g1-finite-horizon-trajectory-optimizer/README.md) | 전체 down-recapture-stand plan 후보를 native rollout으로 점수화하면 M19 gate가 닫히는지 검증 | 🟥 plan-9cm-terminal은 drop/hip/contact PASS but knee 0.421rad/slip 8.5cm; knee PASS 후보는 fall |
 | 93 | [g1-predictive-sampling-trajectory-search](93-g1-predictive-sampling-trajectory-search/README.md) | predictive sampling으로 exp92 visible branch 주변 trajectory 변수를 실제 검색하면 M19 gate가 닫히는지 검증 | 🟥 best no-fall은 drop/hip/contact/slip PASS but knee 0.421rad; knee 개선 branch는 fall |
+| 94 | [g1-visible-reference-motion-tracking-probe](94-g1-visible-reference-motion-tracking-probe/README.md) | G1 visible squat reference가 가능한지와 현재 stabilizer가 이를 native에서 추적할 수 있는지 분리 검증 | 🟥 static reference는 9cm/knee 0.64/hip 0.38 가능; best no-fall은 25.5cm drop/contact/slip PASS but knee 0.401rad |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
