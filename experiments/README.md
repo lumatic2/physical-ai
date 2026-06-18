@@ -94,6 +94,7 @@
 | 85 | [g1-phase-split-hip-return-controller](85-g1-phase-split-hip-return-controller/README.md) | hip-forward descent와 terminal stand-up을 phase split하면 exp84 hip/return 병목을 풀 수 있는지 검증 | 🟥 직접 stand target release는 4.96~5.54s fall로 악화; recapture hold phase 필요 |
 | 86 | [g1-three-phase-recapture-stand-controller](86-g1-three-phase-recapture-stand-controller/README.md) | visible descent -> recapture hold -> stand-up 3-phase controller가 8cm visible gate를 recoverable하게 만드는지 검증 | 🟨 recapture로 no-fall/contact/slip/near-stand는 회복했지만 5.07cm에서 포화; depth push는 delayed fall |
 | 87 | [g1-depth-schedule-optimizer](87-g1-depth-schedule-optimizer/README.md) | G1 squat 가능성을 웹 근거로 확인한 뒤 exp86 safety teacher 주변 schedule search로 8cm gate를 닫는지 검증 | 🟨 no-fall 9.47cm + hip PASS까지 전진, but knee/contact/slip/return 미달 |
+| 88 | [g1-knee-contact-return-joint-optimizer](88-g1-knee-contact-return-joint-optimizer/README.md) | exp87 no-fall 8cm branch 주변에서 knee/contact/slip/return을 joint objective로 조이면 M19 gate가 닫히는지 검증 | 🟥 knee/contact 강화 후보는 fall/slip branch로 붕괴; controller family 한계 확인 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
