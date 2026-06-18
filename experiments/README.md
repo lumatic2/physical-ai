@@ -89,6 +89,7 @@
 | 80 | [g1-corridor-curriculum-training](80-g1-corridor-curriculum-training/README.md) | 7.7cm corridor에서 height/knee/hip/support/return curriculum training이 visible gate를 닫는지 검증 | 🟨 11.26cm/0.593rad/0.544rad까지 도달했지만 contact/slip/return 붕괴로 RETURN_PENDING |
 | 81 | [g1-constrained-return-finetune](81-g1-constrained-return-finetune/README.md) | exp80 visible-geometry checkpoint에서 contact/slip/terminal stand를 constrained finetune으로 회복 가능한지 검증 | 🟥 terminal stand는 회복했지만 depth 6.16cm로 후퇴, slip/contact는 계속 붕괴 |
 | 82 | [g1-visible-stance-wbc-guard](82-g1-visible-stance-wbc-guard/README.md) | stance-foot qfrc/WBC guard를 exp29 visible gate에 직접 대입하면 contact/slip과 visible pose를 동시에 닫는지 검증 | 🟨 shallow guard는 slip 1.9cm/contact 1.00을 달성하지만 6.54cm에서 포화; depth-biased는 fall |
+| 83 | [g1-multistep-trajectory-wbc-projection](83-g1-multistep-trajectory-wbc-projection/README.md) | exp80 visible trajectory와 exp82 stance guard를 multi-step horizon cost로 결합하면 visible gate를 닫는지 검증 | 🟨 첫 8cm+ no-fall/contact/slip 조합 달성: 8.27cm/contact 1.00/slip 1.9cm, but knee/hip/return pending |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
