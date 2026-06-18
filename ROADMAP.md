@@ -26,10 +26,11 @@
 | M18 | Skill authoring foundation | "원하는 동작"을 reward/metric/scene으로 번역한다 | behavior spec, task compiler, skill taxonomy | 완료 |
 | M19 | Humanoid skill baseline | G1에서 균형·포즈·전환 skill을 만든다 | visible squat gate + native/browser QA | 완료 |
 | M20 | Acrobatic feasibility gate | 물구나무·덤블링 가능 조건을 분리한다 | feasibility matrix, sim constraints, first hard skill | 완료 |
-| M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | scene/metric 완료 |
-| M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | env 결합 완료 / stabilizer 필요 |
+| M21 | Ball-skill sandbox | 축구/라보나슛 전 공·접촉·목표 task를 만든다 | ball scene, kick reward, command/score metrics | 완료 |
+| M22 | Motion-to-policy loop | 참조동작을 policy 학습 신호로 바꾼다 | reference motion loader, imitation/RL hybrid probe | 완료 |
 | M23 | Robotics Lab gallery | 방문자가 로봇/동작/검증/한계를 바로 이해한다 | robotics.askewly.com lab gallery UI | 완료 |
 | M24 | Digital Twin Architecture Gate | 공개 viewer와 연구 backend twin의 경계를 정한다 | stack comparison + ADR + Unitree DDS/browser gate | 완료 |
+| M25 | G1 ball tap learned controller | scripted ball probe를 learned external-object skill로 올린다 | train/eval gate, native metrics, browser replay candidate | active |
 
 ## 닫힌 증거 요약
 
@@ -46,7 +47,7 @@
 - M19 `g1_squat`는 GR00T Decoupled WBC measured trace로 visible-depth/contact/slip/return/browser gate를 통과했다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
 - reward scale만 반복하지 않는다. exp30/34-41이 weak/ramp/reference-base/soft-WBC=shallow, visible/reference=fall을 보였고, reward/action-origin/hand-written guard는 depth/contact/return gate에서 막혔다.
-- 다음은 M22 side-by-side viewer 또는 M21 ball/kick learned external-object skill이다.
+- 다음은 M25 `G1 ball tap learned controller`다. M21 scripted probes를 학습 가능한 external-object skill gate로 올린다.
 
 ### 다음 목표군 - Public drift audit
 
@@ -68,38 +69,11 @@
 
 ### M19 - Humanoid skill baseline
 
-> 목표: G1에서 Atlas식 동작의 기초가 되는 균형·포즈·전환 skill을 직접 학습한다.
-
-- [x] 첫 skill 후보를 `g1_squat`으로 고정하고 compiled behavior spec에서 시작했다.
-- [x] native scripted baseline과 scratch/recovery/reference PPO는 모두 1.24초 전후 fall로 실패했다.
-- [x] 기존 G1 walking policy를 stabilizer prior로 restore해 native 6초 no-fall을 달성했다.
-- [x] stabilizer 기반 height/reference reward 강화는 no-fall을 유지했지만 min height가 0.7523m -> 0.7501m로만 개선됐다.
-- [x] native target sanity probe에서 squat reference/action target이 height drop은 만들지만 1.22초 전후 fall함을 확인했다.
-- [x] squat skill design gate에서 G1 squat를 controlled lowering/hold/return으로 재정의하고 success metric을 고정했다.
-- [x] staged curriculum scaffold와 stage 0.74 native diagnostic을 만들었다. exp22 source policy는 6초 no-fall이지만 min height 0.7501m로 stage depth는 아직 미달이다.
-- [x] exp28에서 calibrated reference controller로 약한 stage 0.74 numeric gate를 통과했다: no-fall 6.0s, min height 0.7446m, hold 1.32s, foot contact 1.00.
-- [x] exp28 rollout을 50Hz qpos trajectory로 기록해 browser replay artifact `g1-controlled-squat`로 연결했다.
-- [x] 사용자 visual review와 trajectory audit으로 exp28 replay가 visible squat이 아니라 약 1cm micro-dip임을 확인했다.
-- [x] exp29에서 visible squat gate를 다시 정의했다: pelvis drop >=8cm, knee flexion delta >=0.60rad, hip pitch delta >=0.35rad.
-- [x] exp29 static audit상 local G1 lower-body joint ranges는 visible squat target 후보를 담을 수 있다. 단, 동역학/접촉/학습 성공은 아직 미증명이다.
-- [x] exp30에서 stage 0.67 visible-depth target을 기존 controller로 native probe했다. weak blend는 안정적이지만 1.2cm만 내려가고, strong blend는 visible-depth에 들어가지만 2.06초에 fall한다.
-- [x] exp34에서 guarded descent controller를 native probe했다. `strict-low`는 8.7cm visible drop과 no-fall을 만들었지만 contact 0.85, foot slip 1.267m, final height 0.7034m로 return/contact gate를 실패했다.
-- [x] exp35에서 stance-anchor/early-return controller를 native probe했다. visible threshold 직후 return해도 fall했고, learned residual을 끄면 1.24초 fall로 더 나빠졌다.
-- [x] exp36-122에서 controller/selector/WBC/curriculum/reference/native/ONNX adapter/GR00T runtime/trace adapter를 probe했고, exp122 Decoupled WBC measured trace가 11.6cm drop, knee 0.707rad, hip 0.427rad, contact 1.00, slip 0.003m, return 0.0036m, browser replay QA PASS를 달성했다.
-
-완료 기준: ✅ exp29 visible gate를 native measured WBC rollout과 browser replay가 동시에 통과했다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md)-[exp122](experiments/122-g1-decoupled-wbc-squat-trace-gate/README.md), web replay `?exp=g1-decoupled-wbc-squat`.
+완료 기준: ✅ G1 squat를 exp29 visible gate로 재정의한 뒤 exp36-122 controller/WBC/trace probes를 거쳐 exp122 Decoupled WBC measured trace가 native + browser replay gate를 통과했다. 증거: [exp15](experiments/15-g1-skill-baseline/README.md)-[exp122](experiments/122-g1-decoupled-wbc-squat-trace-gate/README.md), web replay `?exp=g1-decoupled-wbc-squat`.
 
 ### M23 - Robotics Lab gallery
 
-- [x] `robotics.askewly.com`을 canonical 도메인으로 고정했다.
-- [x] Vercel project domain에서 legacy `physical-ai-arm.askewly.com`을 제거했다.
-- [x] askewly.com 진입 링크를 `robotics.askewly.com`으로 교체했다.
-- [x] 로봇 선택, 설명, 가능한 조작, 검증/학습 내용을 first-view panel에서 명확히 보이게 다듬었다.
-- [x] public overlay를 `robot + motion + evidence + limit` 구조로 재편했다.
-- [x] G1 lowering probe를 "not a squat"으로 노출하고 M19 재개 조건을 명확히 뒀다.
-- [x] desktop/mobile live QA를 다시 통과했다.
-
-완료 기준: ✅ live gallery가 기술 실험 장부가 아니라 방문자가 이해 가능한 로봇 포트폴리오로 보이고, old label/stale claim audit과 desktop/mobile live QA를 통과했다. 증거: [exp31](experiments/31-robotics-lab-gallery-polish/README.md), [web](experiments/03-digital-twin/web/README.md), deploy `dpl_FjcwuMkkwUhztEvMM9Si3V9ZpzAW`.
+완료 기준: ✅ canonical domain, public overlay, stale-claim audit, desktop/mobile live QA를 닫았다. 증거: [exp31](experiments/31-robotics-lab-gallery-polish/README.md), [web](experiments/03-digital-twin/web/README.md), deploy `dpl_FjcwuMkkwUhztEvMM9Si3V9ZpzAW`.
 
 ### M20 - Acrobatic feasibility gate
 
@@ -132,6 +106,14 @@
 - Evidence: [exp17](experiments/17-motion-to-policy-loop/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp123](experiments/123-g1-reference-vs-rollout-viewer/README.md)
 - Gap: motion tracking reward는 native fall을 해결하지 못했지만, viewer gate가 없어 실패/성공 trace를 비교하기 어려웠다.
 - Status: [x]
+
+<!-- harness:milestone id="M25" status="active" priority="P0" -->
+### M25 - G1 ball tap learned controller
+
+- DoD: M21 scripted ball/contact/crossing probes를 학습용 external-object task로 바꾸고, 최소 1개 learned 또는 trainable-controller 후보가 native eval에서 `contact_frames > 0`, `ball_distance >= 0.6m`, `direction_error < 0.2rad`, `fall=false`를 증거 JSON으로 남긴다.
+- Evidence: target [exp126](experiments/126-g1-ball-tap-learned-controller-gate/README.md), source probes [exp124](experiments/124-g1-ball-kick-contact-probe/README.md), [exp125](experiments/125-g1-crossing-leg-kick-feasibility/README.md)
+- Gap: M21은 scripted feasibility만 닫았다. 아직 정책/학습 루프가 공 접촉과 방향성 reward를 실제 controller 산출물로 통과한 증거가 없다.
+- Status: [ ] 먼저 train/eval harness를 만들고, 짧은 baseline 학습 또는 trainable controller probe로 fail/pass를 박제한다.
 
 ### M24 - Digital Twin Architecture Gate
 
