@@ -87,6 +87,7 @@
 | 78 | [g1-trajectory-schedule-search](78-g1-trajectory-schedule-search/README.md) | MPC-style trajectory schedule search가 8cm/knee/hip visible gate를 닫는지 검증 | 🟨 schedule search도 7.69cm/0.515rad recoverable에서 포화; deeper branch는 late fall |
 | 79 | [g1-short-horizon-lookahead-selector](79-g1-short-horizon-lookahead-selector/README.md) | MuJoCo clone short-horizon lookahead가 7.7cm plateau를 넘어 visible gate를 닫는지 검증 | 🟨 7.75cm/0.517rad recoverable까지 소폭 전진, but visible gate 미달; training 전환 필요 |
 | 80 | [g1-corridor-curriculum-training](80-g1-corridor-curriculum-training/README.md) | 7.7cm corridor에서 height/knee/hip/support/return curriculum training이 visible gate를 닫는지 검증 | 🟨 11.26cm/0.593rad/0.544rad까지 도달했지만 contact/slip/return 붕괴로 RETURN_PENDING |
+| 81 | [g1-constrained-return-finetune](81-g1-constrained-return-finetune/README.md) | exp80 visible-geometry checkpoint에서 contact/slip/terminal stand를 constrained finetune으로 회복 가능한지 검증 | 🟥 terminal stand는 회복했지만 depth 6.16cm로 후퇴, slip/contact는 계속 붕괴 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
