@@ -1,0 +1,150 @@
+{
+  "experiment": "120-g1-gr00t-trace-adapter-visible-gate",
+  "verdict": "TRACE_ADAPTER_READY__RUNTIME_PREFLIGHT_PARTIAL",
+  "m19_closed": false,
+  "checks": {
+    "gr00t_trace_sources_present": true,
+    "wsl_available": true,
+    "wsl_docker_cli_available": true,
+    "wsl_gpu_visible": true,
+    "wsl_git_lfs_healthy": false,
+    "synthetic_web_contract_pass": true,
+    "synthetic_visible_gate_pass": true
+  },
+  "blockers": [
+    "wsl_git_lfs_broken_or_missing"
+  ],
+  "gr00t_trace_contract": {
+    "debug_fields": [
+      "base_trans_target",
+      "base_quat_target",
+      "body_q_target",
+      "base_trans_measured",
+      "base_quat_measured",
+      "body_q_measured"
+    ],
+    "motion_dir_files": [
+      "joint_pos.csv",
+      "body_pos.csv",
+      "body_quat.csv"
+    ],
+    "joint_order": "GR00T/SONIC debug body_q_* is MuJoCo order; ZMQ protocol v1 joint_pos is IsaacLab order."
+  },
+  "wsl_preflight": {
+    "available": true,
+    "raw": {
+      "returncode": 0,
+      "stdout": [
+        "WSL_OK",
+        "Linux localhost 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+        "Python 3.12.3",
+        "git version 2.43.0",
+        "Docker version 29.4.1, build 055a478",
+        "NVIDIA GeForce RTX 5090, 32607 MiB"
+      ],
+      "stderr": [
+        "fatal: 'lfs' appears to be a git command, but we were not",
+        "able to execute it. Maybe git-lfs is broken?"
+      ]
+    },
+    "checks": {
+      "ubuntu_24_04_running": true,
+      "python3_available": true,
+      "git_available": true,
+      "git_lfs_healthy": false,
+      "docker_cli_available": true,
+      "gpu_visible": true
+    }
+  },
+  "contract_run": {
+    "returncode": 0,
+    "stdout": [
+      "{",
+      "  \"verdict\": \"PASS\",",
+      "  \"contract\": \"physical-ai-web-trajectory-v1\",",
+      "  \"frames\": 51,",
+      "  \"fps\": 50.0,",
+      "  \"duration_s\": 1.02,",
+      "  \"nq\": 36,",
+      "  \"scene\": \"g1/scene_g1_policy.xml\",",
+      "  \"shape_valid\": true,",
+      "  \"finite_valid\": true,",
+      "  \"start_height_m\": 0.793,",
+      "  \"min_height_m\": 0.6930000000000001,",
+      "  \"max_height_m\": 0.793,",
+      "  \"end_height_m\": 0.793,",
+      "  \"root_height_drop_m\": 0.09999999999999998,",
+      "  \"errors\": []",
+      "}"
+    ],
+    "stderr": []
+  },
+  "web_contract": {
+    "verdict": "PASS",
+    "contract": "physical-ai-web-trajectory-v1",
+    "frames": 51,
+    "fps": 50.0,
+    "duration_s": 1.02,
+    "nq": 36,
+    "scene": "g1/scene_g1_policy.xml",
+    "shape_valid": true,
+    "finite_valid": true,
+    "start_height_m": 0.793,
+    "min_height_m": 0.6930000000000001,
+    "max_height_m": 0.793,
+    "end_height_m": 0.793,
+    "root_height_drop_m": 0.09999999999999998,
+    "errors": []
+  },
+  "visible_gate": {
+    "verdict": "PASS",
+    "thresholds": {
+      "min_pelvis_drop_m": 0.08,
+      "min_knee_flexion_delta_rad": 0.6,
+      "min_hip_pitch_delta_rad": 0.35,
+      "max_final_height_error_m": 0.015
+    },
+    "checks": {
+      "pelvis_drop_pass": true,
+      "knee_flexion_pass": true,
+      "hip_pitch_pass": true,
+      "return_height_pass": true
+    },
+    "metrics": {
+      "frames": 51,
+      "fps": 50.0,
+      "duration_s": 1.02,
+      "pelvis_drop_m": 0.09999999999999998,
+      "max_knee_flexion_delta_rad": 0.72,
+      "max_hip_pitch_delta_rad": 0.42,
+      "final_height_error_m": 0.0,
+      "start_height_m": 0.793,
+      "min_height_m": 0.6930000000000001,
+      "end_height_m": 0.793
+    }
+  },
+  "artifacts": {
+    "synthetic_debug_trace": "experiments\\120-g1-gr00t-trace-adapter-visible-gate\\verify\\synthetic_gr00t_debug_trace.json",
+    "synthetic_motion_dir": "experiments\\120-g1-gr00t-trace-adapter-visible-gate\\verify\\synthetic_gr00t_motion_dir",
+    "web_trajectory": "experiments\\120-g1-gr00t-trace-adapter-visible-gate\\verify\\synthetic_gr00t_visible_web_trajectory.json",
+    "web_contract_summary": "experiments\\120-g1-gr00t-trace-adapter-visible-gate\\verify\\web_contract_summary.json",
+    "visible_gate_summary": "experiments\\120-g1-gr00t-trace-adapter-visible-gate\\verify\\visible_gate_summary.json"
+  },
+  "sources": [
+    {
+      "url": "https://nvlabs.github.io/GR00T-WholeBodyControl/tutorials/zmq.html",
+      "accessed": "2026-06-18",
+      "claim": "ZMQ streaming supports G1 whole-body joint positions from external sources, with Protocol v1 joint_pos/joint_vel shape [N,29]."
+    },
+    {
+      "url": "https://nvlabs.github.io/GR00T-WholeBodyControl/getting_started/quickstart.html",
+      "accessed": "2026-06-18",
+      "claim": "Online visualization connects to g1_deploy realtime debug on tcp://localhost:5557 topic g1_debug."
+    }
+  ],
+  "next_required_evidence": [
+    "Fix WSL git-lfs, then run python download_from_hf.py and GR00T sim2sim in WSL/Ubuntu.",
+    "Capture realtime g1_debug or CSV logs from g1_deploy and feed measured fields through this adapter.",
+    "Only close M19 if the real controller trace passes native exp29 visible/contact/slip/return gates and browser replay."
+  ]
+}
