@@ -103,6 +103,7 @@
 | 94 | [g1-visible-reference-motion-tracking-probe](94-g1-visible-reference-motion-tracking-probe/README.md) | G1 visible squat reference가 가능한지와 현재 stabilizer가 이를 native에서 추적할 수 있는지 분리 검증 | 🟥 static reference는 9cm/knee 0.64/hip 0.38 가능; best no-fall은 25.5cm drop/contact/slip PASS but knee 0.401rad |
 | 95 | [g1-moves-reference-ingestion-gate](95-g1-moves-reference-ingestion-gate/README.md) | G1 Moves retargeted motion을 local qpos[36]/web trajectory contract로 흡수할 수 있는지 검증 | ✅ PASS ingestion: `J_Dance4_Broadway` 6s window root drop 20.0cm/knee 2.371/hip 1.822, web contract PASS |
 | 96 | [g1-moves-native-reference-tracker-probe](96-g1-moves-native-reference-tracker-probe/README.md) | G1 Moves reference를 native dynamics에서 직접 추적하면 exp29 visible gate가 닫히는지 검증 | 🟥 best `converted-pd-strong`은 drop/knee/hip 충분 but 1.42s fall, contact 0.85, slip 0.330m; learned ONNX/tracker route 필요 |
+| 97 | [g1-moves-onnx-policy-contract-probe](97-g1-moves-onnx-policy-contract-probe/README.md) | G1 Moves public ONNX policy를 learned tracker route로 쓸 수 있는지 계약 검증 | 🟨 ONNX 160/154 -> 29 smoke PASS; local native adapter는 58-d motion command 재구성이 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

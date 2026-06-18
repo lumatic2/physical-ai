@@ -1,0 +1,866 @@
+{
+  "planning_gate": {
+    "team_validation_mode": "manual-pass",
+    "spec_delta": "M19 route moves from raw reference playback to public G1 Moves ONNX policy contract validation.",
+    "perspectives": {
+      "product": "checks whether a public learned tracker can plausibly become the showable squat policy path",
+      "architecture": "keeps external binaries out of git while preserving hashes and shape contracts",
+      "security": "downloads public Hugging Face dataset artifacts only; no credentials or secrets",
+      "qa": "requires tree listing, hashes, ONNX checker, onnxruntime finite inference, and sidecar obs term inference",
+      "skeptic": "a valid ONNX actor is not enough if its motion-command observation cannot be reconstructed in local MuJoCo"
+    },
+    "dod": [
+      "download and hash public G1 Moves policy artifacts",
+      "prove ONNX input/output contracts with onnxruntime smoke",
+      "identify whether native rollout can be attempted without the upstream mjlab observation builder"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://huggingface.co/datasets/exptech/g1-moves",
+      "accessed": "2026-06-18"
+    },
+    {
+      "url": "https://huggingface.co/spaces/exptech/g1-moves",
+      "accessed": "2026-06-18"
+    }
+  ],
+  "clip": "dance/J_Dance4_Broadway",
+  "artifacts": {
+    "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway.onnx": {
+      "kind": "onnx",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy/J_Dance4_Broadway.onnx",
+      "accessed": "2026-06-18",
+      "size_bytes": 2616790,
+      "sha256": "ac0064c9aa1ce6aab01949962fb3b136d306b74d4a667206b061543437bc1f04",
+      "onnx": {
+        "checker_pass": true,
+        "ir_version": 8,
+        "opsets": [
+          {
+            "domain": "",
+            "version": 18
+          }
+        ],
+        "inputs": [
+          {
+            "name": "obs",
+            "shape": [
+              1,
+              160
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "time_step",
+            "shape": [
+              1,
+              1
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "actions",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "joint_pos",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "joint_vel",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_pos_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_quat_w",
+            "shape": [
+              1,
+              14,
+              4
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_lin_vel_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_ang_vel_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "smoke": {
+          "ok": true,
+          "obs_input": "obs",
+          "action_output": "actions",
+          "requires_time_step": true,
+          "deterministic_max_abs_diff": 0.0,
+          "runs": {
+            "zeros": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -1.6931077241897583,
+              "max": 0.6846892833709717,
+              "mean": -0.18805581331253052,
+              "std": 0.5472669005393982,
+              "first8": [
+                0.49956294894218445,
+                0.07563870400190353,
+                -0.167724609375,
+                -0.4252789318561554,
+                0.6846892833709717,
+                0.14051838219165802,
+                -0.5044422149658203,
+                0.04056517779827118
+              ]
+            },
+            "small_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -1.7921816110610962,
+              "max": 1.2934787273406982,
+              "mean": -0.18225254118442535,
+              "std": 0.6361080408096313,
+              "first8": [
+                0.5828677415847778,
+                0.12497725337743759,
+                -0.26030710339546204,
+                -0.13659831881523132,
+                1.2934787273406982,
+                0.19885145127773285,
+                -0.5930638909339905,
+                -0.29984250664711
+              ]
+            },
+            "unit_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -2.0470540523529053,
+              "max": 3.033057451248169,
+              "mean": -0.23405231535434723,
+              "std": 0.9842102527618408,
+              "first8": [
+                1.013413667678833,
+                -0.6546769142150879,
+                -0.5507429242134094,
+                1.0737773180007935,
+                3.033057451248169,
+                -0.13424581289291382,
+                -0.602462887763977,
+                -1.2702969312667847
+              ]
+            }
+          }
+        }
+      },
+      "matched_env_sidecar": "dance/J_Dance4_Broadway/policy/env.yaml",
+      "inferred_actor_term_dims": {
+        "motion_anchor_pos_b": 3,
+        "motion_anchor_ori_b": 6,
+        "base_lin_vel": 3,
+        "base_ang_vel": 3,
+        "joint_pos": 29,
+        "joint_vel": 29,
+        "actions": 29,
+        "command": 58
+      }
+    },
+    "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.onnx": {
+      "kind": "onnx",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.onnx",
+      "accessed": "2026-06-18",
+      "size_bytes": 1004278,
+      "sha256": "a14dedccdfdda44d1234557326e61c9e2a30a8462e782058fa1c890607513fcd",
+      "onnx": {
+        "checker_pass": true,
+        "ir_version": 8,
+        "opsets": [
+          {
+            "domain": "",
+            "version": 17
+          }
+        ],
+        "inputs": [
+          {
+            "name": "obs",
+            "shape": [
+              "batch",
+              160
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "actions",
+            "shape": [
+              "batch",
+              29
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "smoke": {
+          "ok": true,
+          "obs_input": "obs",
+          "action_output": "actions",
+          "requires_time_step": false,
+          "deterministic_max_abs_diff": 0.0,
+          "runs": {
+            "zeros": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -1.920234203338623,
+              "max": 0.9018786549568176,
+              "mean": -0.20107537508010864,
+              "std": 0.6388444304466248,
+              "first8": [
+                0.5602841973304749,
+                0.07373149693012238,
+                -0.13704803586006165,
+                -0.40917089581489563,
+                0.9018786549568176,
+                0.1515798419713974,
+                -0.6640250086784363,
+                0.012770026922225952
+              ]
+            },
+            "small_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -2.067558765411377,
+              "max": 1.488387107849121,
+              "mean": -0.20199376344680786,
+              "std": 0.7255921959877014,
+              "first8": [
+                0.7066700458526611,
+                0.05995101481676102,
+                -0.232851043343544,
+                -0.10262225568294525,
+                1.488387107849121,
+                0.20920197665691376,
+                -0.8146820664405823,
+                -0.3088625371456146
+              ]
+            },
+            "unit_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -2.44006085395813,
+              "max": 3.0830421447753906,
+              "mean": -0.25030654668807983,
+              "std": 1.0482885837554932,
+              "first8": [
+                1.036198377609253,
+                -0.6542924046516418,
+                -0.5631473064422607,
+                1.1498671770095825,
+                3.0830421447753906,
+                -0.05803757905960083,
+                -0.8878703713417053,
+                -1.2951388359069824
+              ]
+            }
+          }
+        }
+      },
+      "matched_env_sidecar": "dance/J_Dance4_Broadway/policy/env.yaml",
+      "inferred_actor_term_dims": {
+        "motion_anchor_pos_b": 3,
+        "motion_anchor_ori_b": 6,
+        "base_lin_vel": 3,
+        "base_ang_vel": 3,
+        "joint_pos": 29,
+        "joint_vel": 29,
+        "actions": 29,
+        "command": 58
+      }
+    },
+    "dance/J_Dance4_Broadway/policy_154/J_Dance4_Broadway_policy.onnx": {
+      "kind": "onnx",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy_154/J_Dance4_Broadway_policy.onnx",
+      "accessed": "2026-06-18",
+      "size_bytes": 2604502,
+      "sha256": "bb88146d33631b46d5b149e9366186e477e4391b36e4c4033f89dc487a2ff727",
+      "onnx": {
+        "checker_pass": true,
+        "ir_version": 8,
+        "opsets": [
+          {
+            "domain": "",
+            "version": 18
+          }
+        ],
+        "inputs": [
+          {
+            "name": "obs",
+            "shape": [
+              1,
+              154
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "time_step",
+            "shape": [
+              1,
+              1
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "actions",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "joint_pos",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "joint_vel",
+            "shape": [
+              1,
+              29
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_pos_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_quat_w",
+            "shape": [
+              1,
+              14,
+              4
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_lin_vel_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          },
+          {
+            "name": "body_ang_vel_w",
+            "shape": [
+              1,
+              14,
+              3
+            ],
+            "type": "tensor(float)"
+          }
+        ],
+        "smoke": {
+          "ok": true,
+          "obs_input": "obs",
+          "action_output": "actions",
+          "requires_time_step": true,
+          "deterministic_max_abs_diff": 0.0,
+          "runs": {
+            "zeros": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -1.384677767753601,
+              "max": 0.5920118093490601,
+              "mean": -0.1318470537662506,
+              "std": 0.4683385193347931,
+              "first8": [
+                0.12591908872127533,
+                0.2814174294471741,
+                -0.014347933232784271,
+                -0.8095599412918091,
+                0.5920118093490601,
+                0.2799212336540222,
+                0.42006152868270874,
+                0.12240885943174362
+              ]
+            },
+            "small_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -1.6368279457092285,
+              "max": 1.0204859972000122,
+              "mean": -0.055422618985176086,
+              "std": 0.5599281787872314,
+              "first8": [
+                0.09298758208751678,
+                0.0859156996011734,
+                0.2709243893623352,
+                -0.7134174108505249,
+                0.8914952874183655,
+                0.328376829624176,
+                0.4492093622684479,
+                0.030835356563329697
+              ]
+            },
+            "unit_ramp": {
+              "shape": [
+                1,
+                29
+              ],
+              "finite": true,
+              "min": -2.895665168762207,
+              "max": 2.6648950576782227,
+              "mean": 0.16771353781223297,
+              "std": 1.0929803848266602,
+              "first8": [
+                0.3963514566421509,
+                -0.5679821968078613,
+                1.099146842956543,
+                0.022748103365302086,
+                1.9081374406814575,
+                0.5246215462684631,
+                -0.03522371128201485,
+                -0.33963558077812195
+              ]
+            }
+          }
+        }
+      },
+      "matched_env_sidecar": "dance/J_Dance4_Broadway/policy_154/env.yaml",
+      "inferred_actor_term_dims": {
+        "motion_anchor_ori_b": 6,
+        "base_ang_vel": 3,
+        "joint_pos": 29,
+        "joint_vel": 29,
+        "actions": 29,
+        "command": 58
+      }
+    },
+    "dance/J_Dance4_Broadway/README.md": {
+      "kind": "text",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/README.md",
+      "accessed": "2026-06-18",
+      "size_bytes": 820,
+      "sha256": "16446f5b2c5b237e9b889e18c76c53e76e44d98a2b873301ac72e9da8b26d5ab",
+      "text_excerpt": "# J_Dance4_Broadway\n\n**Category:** Dance | **Performer:** Jasmine Coro | **Duration:** 27.95s | **Frames:** 1677\n\n## Files\n\n| Stage | Files |\n|-------|-------|\n| `capture/` | BVH, MP4, GIF, 4x FBX |\n| `retarget/` | PKL, CSV, MP4, GIF |\n| `training/` | NPZ, MP4, GIF |\n\n## Motion Stats\n\n| Metric | Value |\n|--------|-------|\n| Joint velocity (mean) | 0.67 rad/s |\n| Joint velocity (max) | 80.37 rad/s |\n| Root displacement | 4.95 m |\n| Root velocity (mean) | 0.18 m/s |\n\n## Formats\n\n- **BVH**: Motion capture with 51-joint humanoid skeleton, 60 FPS\n- **PKL**: Retargeted G1 trajectories \u2014 `root_pos` (1677, 3), `root_rot` (1677, 4), `dof_pos` (1677, 29)\n- **NPZ**: Training data \u2014 `joint_pos/vel` (1676, 29), `body_pos/quat/vel` (1676, 30, 3/4)\n- **FBX**: Blender (`_bl`), Maya (`_mb`), Unreal (`_ue`), Unity (`_un`)\n"
+    },
+    "dance/J_Dance4_Broadway/policy/agent.yaml": {
+      "kind": "text",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy/agent.yaml",
+      "accessed": "2026-06-18",
+      "size_bytes": 942,
+      "sha256": "f35b9bfaf439d2ee662871f654b88885689fbf50a24c9b308517b62cf4becd5c",
+      "text_excerpt": "seed: 42\nnum_steps_per_env: 24\nmax_iterations: 30000\nobs_groups:\n  policy: !!python/tuple\n  - policy\n  critic: !!python/tuple\n  - critic\nsave_interval: 2000\nexperiment_name: g1_tracking\nrun_name: J_Dance4_Broadway\nlogger: tensorboard\nwandb_project: mjlab\nwandb_tags: !!python/tuple []\nresume: false\nload_run: .*\nload_checkpoint: model_.*.pt\nclip_actions: null\nupload_model: true\nclass_name: OnPolicyRunner\nalgorithm:\n  num_learning_epochs: 5\n  num_mini_batches: 4\n  learning_rate: 0.0005\n  schedule: adaptive\n  gamma: 0.99\n  lam: 0.95\n  entropy_coef: 0.005\n  desired_kl: 0.01\n  max_grad_norm: 1.0\n  value_loss_coef: 1.0\n  use_clipped_value_loss: true\n  clip_param: 0.2\n  normalize_advantage_per_mini_batch: false\npolicy:\n  actor_hidden_dims:\n  - 512\n  - 256\n  - 128\n  critic_hidden_dims:\n  - 512\n  - 256\n  - 128\n  activation: elu\n  init_noise_std: 1.0\n  noise_std_type: scalar\n  actor_obs_normalization: true\n  critic_obs_normalization: true\n"
+    },
+    "dance/J_Dance4_Broadway/policy/env.yaml": {
+      "kind": "text",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy/env.yaml",
+      "accessed": "2026-06-18",
+      "size_bytes": 27992,
+      "sha256": "18ecd4d6c8a5b5988b63e51a8726e1c77fdc863e0867468e6fec9fee02f6ab35",
+      "text_excerpt": "decimation: 4\nscene:\n  num_envs: 8192\n  env_spacing: 2.0\n  terrain:\n    init_state:\n      pos: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      rot: !!python/tuple\n      - 1.0\n      - 0.0\n      - 0.0\n      - 0.0\n      lin_vel: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      ang_vel: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      joint_pos:\n        .*: 0.0\n      joint_vel:\n        .*: 0.0\n    spec_fn: !!python/name:mjlab.entity.entity.%3Clambda%3E ''\n    articulation: null\n    lights: !!python/tuple\n    - name: sun\n      body: world\n      mode: fixed\n      target: null\n      type: directional\n      castshadow: true\n      pos: !!python/tuple\n      - 0\n      - 0\n      - 1.5\n      dir: !!python/tuple\n      - 0\n      - 0\n      - -1\n      cutoff: 45.0\n      exponent: 10.0\n    cameras: !!python/tuple []\n    textures: !!python/tuple\n    - name: groundplane\n      type: 2d\n      builtin: checker\n      rgb1: !!python/tuple\n      - 0.2\n      - 0.3\n      - 0.4\n      rgb2: !!python/tuple\n      - 0.1\n      - 0.2\n      - 0.3\n      width: 300\n      height: 300\n      mark: edge\n      markrgb: !!python/tuple\n      - 0.8\n      - 0.8\n      - 0.8\n    materials: !!python/tuple\n",
+      "actor_terms": [
+        "command",
+        "motion_anchor_pos_b",
+        "motion_anchor_ori_b",
+        "base_lin_vel",
+        "base_ang_vel",
+        "joint_pos",
+        "joint_vel",
+        "actions"
+      ]
+    },
+    "dance/J_Dance4_Broadway/policy_154/agent.yaml": {
+      "kind": "text",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy_154/agent.yaml",
+      "accessed": "2026-06-18",
+      "size_bytes": 932,
+      "sha256": "2366fedd3d3a9ded39338bb6b7173c69b60d6ef69dd521c58004a1f4fb290cc6",
+      "text_excerpt": "seed: 42\nnum_steps_per_env: 24\nmax_iterations: 15000\nobs_groups:\n  policy: !!python/tuple\n  - policy\n  critic: !!python/tuple\n  - critic\nsave_interval: 250\nexperiment_name: g1_tracking\nrun_name: training\nlogger: tensorboard\nwandb_project: mjlab\nwandb_tags: !!python/tuple []\nresume: false\nload_run: .*\nload_checkpoint: model_.*.pt\nclip_actions: null\nupload_model: true\nclass_name: OnPolicyRunner\nalgorithm:\n  num_learning_epochs: 5\n  num_mini_batches: 4\n  learning_rate: 0.0005\n  schedule: adaptive\n  gamma: 0.99\n  lam: 0.95\n  entropy_coef: 0.005\n  desired_kl: 0.01\n  max_grad_norm: 1.0\n  value_loss_coef: 1.0\n  use_clipped_value_loss: true\n  clip_param: 0.2\n  normalize_advantage_per_mini_batch: false\npolicy:\n  actor_hidden_dims:\n  - 512\n  - 256\n  - 128\n  critic_hidden_dims:\n  - 512\n  - 256\n  - 128\n  activation: elu\n  init_noise_std: 1.0\n  noise_std_type: scalar\n  actor_obs_normalization: true\n  critic_obs_normalization: true\n"
+    },
+    "dance/J_Dance4_Broadway/policy_154/env.yaml": {
+      "kind": "text",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy_154/env.yaml",
+      "accessed": "2026-06-18",
+      "size_bytes": 27058,
+      "sha256": "44f685cdd4d986a73a0848ac093dc665f054d987604c733cb78df6f14d255941",
+      "text_excerpt": "decimation: 4\nscene:\n  num_envs: 8192\n  env_spacing: 2.0\n  terrain:\n    init_state:\n      pos: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      rot: !!python/tuple\n      - 1.0\n      - 0.0\n      - 0.0\n      - 0.0\n      lin_vel: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      ang_vel: !!python/tuple\n      - 0.0\n      - 0.0\n      - 0.0\n      joint_pos:\n        .*: 0.0\n      joint_vel:\n        .*: 0.0\n    spec_fn: !!python/name:mjlab.entity.entity.%3Clambda%3E ''\n    articulation: null\n    lights: !!python/tuple\n    - name: sun\n      body: world\n      mode: fixed\n      target: null\n      type: directional\n      castshadow: true\n      pos: !!python/tuple\n      - 0\n      - 0\n      - 1.5\n      dir: !!python/tuple\n      - 0\n      - 0\n      - -1\n      cutoff: 45.0\n      exponent: 10.0\n    cameras: !!python/tuple []\n    textures: !!python/tuple\n    - name: groundplane\n      type: 2d\n      builtin: checker\n      rgb1: !!python/tuple\n      - 0.2\n      - 0.3\n      - 0.4\n      rgb2: !!python/tuple\n      - 0.1\n      - 0.2\n      - 0.3\n      width: 300\n      height: 300\n      mark: edge\n      markrgb: !!python/tuple\n      - 0.8\n      - 0.8\n      - 0.8\n    materials: !!python/tuple\n",
+      "actor_terms": [
+        "command",
+        "motion_anchor_ori_b",
+        "base_ang_vel",
+        "joint_pos",
+        "joint_vel",
+        "actions"
+      ]
+    },
+    "dance/J_Dance4_Broadway/policy_154/deployment_metadata_154.json": {
+      "kind": "json",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/policy_154/deployment_metadata_154.json",
+      "accessed": "2026-06-18",
+      "size_bytes": 508,
+      "sha256": "5f774c27762fc3c28e72b1181775011d83e9c0337c62cf232bf72bea20c7ba2d",
+      "json": {
+        "clip": "J_Dance4_Broadway",
+        "category": "dance",
+        "task": "Mjlab-Tracking-Flat-Unitree-G1-No-State-Estimation",
+        "obs_dim": 154,
+        "action_dim": 29,
+        "checkpoint": "model_14999.pt",
+        "run_dir": "/home/mitch/Repositories/mjlab-gui/logs/rsl_rl/g1_tracking/2026-05-25_23-47-39_training",
+        "created_at": "2026-05-26T04:39:49.802341",
+        "compatibility": "Unitree G1 EDU 29-DOF real robot, no state-estimation actor obs",
+        "removed_from_160_obs": [
+          "motion_anchor_pos_b",
+          "base_lin_vel"
+        ]
+      }
+    },
+    "dance/J_Dance4_Broadway/training/J_Dance4_Broadway.npz": {
+      "kind": "npz",
+      "url": "https://huggingface.co/datasets/exptech/g1-moves/resolve/main/dance/J_Dance4_Broadway/training/J_Dance4_Broadway.npz",
+      "accessed": "2026-06-18",
+      "size_bytes": 3005186,
+      "sha256": "423a7bed187c9012d753b1a9325c404f31986ab2f8e30b468bcb2b3e761b6dbc",
+      "npz": {
+        "body_ang_vel_w": {
+          "shape": [
+            1676,
+            30,
+            3
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -39.37075424194336,
+          "max": 43.496116638183594,
+          "mean": -0.012389450334012508
+        },
+        "body_lin_vel_w": {
+          "shape": [
+            1676,
+            30,
+            3
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -5.198850154876709,
+          "max": 10.404382705688477,
+          "mean": 0.0009733897750265896
+        },
+        "body_pos_w": {
+          "shape": [
+            1676,
+            30,
+            3
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -0.6487031579017639,
+          "max": 1.4577772617340088,
+          "mean": 0.2518661320209503
+        },
+        "body_quat_w": {
+          "shape": [
+            1676,
+            30,
+            4
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -0.9725263118743896,
+          "max": 0.9987391829490662,
+          "mean": 0.04740593209862709
+        },
+        "fps": {
+          "shape": [
+            1
+          ],
+          "dtype": "float64",
+          "finite": true,
+          "min": 60.0,
+          "max": 60.0,
+          "mean": 60.0
+        },
+        "joint_pos": {
+          "shape": [
+            1676,
+            29
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -2.5574629306793213,
+          "max": 2.498220920562744,
+          "mean": 0.03264046087861061
+        },
+        "joint_vel": {
+          "shape": [
+            1676,
+            29
+          ],
+          "dtype": "float32",
+          "finite": true,
+          "min": -35.727012634277344,
+          "max": 44.40758514404297,
+          "mean": 0.0008745668455958366
+        }
+      }
+    }
+  },
+  "tree": [
+    {
+      "type": "directory",
+      "path": "dance/J_Dance4_Broadway/capture",
+      "size": 0
+    },
+    {
+      "type": "directory",
+      "path": "dance/J_Dance4_Broadway/policy",
+      "size": 0
+    },
+    {
+      "type": "directory",
+      "path": "dance/J_Dance4_Broadway/policy_154",
+      "size": 0
+    },
+    {
+      "type": "directory",
+      "path": "dance/J_Dance4_Broadway/retarget",
+      "size": 0
+    },
+    {
+      "type": "directory",
+      "path": "dance/J_Dance4_Broadway/training",
+      "size": 0
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/CLAUDE.md",
+      "size": 169
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/README.md",
+      "size": 820
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway.bvh",
+      "size": 1967448
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway.gif",
+      "size": 1814299
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway.mp4",
+      "size": 842862
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway_bl.fbx",
+      "size": 884208
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway_mb.fbx",
+      "size": 884208
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway_ue.fbx",
+      "size": 890160
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/capture/J_Dance4_Broadway_un.fbx",
+      "size": 884208
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway.onnx",
+      "size": 2616790
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.gif",
+      "size": 9033883
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.mp4",
+      "size": 1634799
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.onnx",
+      "size": 1004278
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/J_Dance4_Broadway_policy.pt",
+      "size": 6769351
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/agent.yaml",
+      "size": 942
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/env.yaml",
+      "size": 27992
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy/training_log.csv",
+      "size": 4390080
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy_154/J_Dance4_Broadway_policy.onnx",
+      "size": 2604502
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy_154/J_Dance4_Broadway_policy.pt",
+      "size": 6732295
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy_154/agent.yaml",
+      "size": 932
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy_154/deployment_metadata_154.json",
+      "size": 508
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/policy_154/env.yaml",
+      "size": 27058
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/retarget/J_Dance4_Broadway.csv",
+      "size": 570010
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/retarget/J_Dance4_Broadway.pkl",
+      "size": 483300
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/retarget/J_Dance4_Broadway_retarget.gif",
+      "size": 3781872
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/retarget/J_Dance4_Broadway_retarget.mp4",
+      "size": 5610708
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/training/J_Dance4_Broadway.npz",
+      "size": 3005186
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/training/J_Dance4_Broadway_training.gif",
+      "size": 12831569
+    },
+    {
+      "type": "file",
+      "path": "dance/J_Dance4_Broadway/training/J_Dance4_Broadway_training.mp4",
+      "size": 8040745
+    }
+  ],
+  "checks": {
+    "onnx_candidates_present": true,
+    "all_onnx_shape_smoke_pass": true,
+    "policy_154_metadata_present": true,
+    "training_npz_present": true,
+    "local_native_adapter_ready": false
+  },
+  "adapter_gap": {
+    "reason": "The ONNX actor observes a 58-d generated motion command plus motion-anchor/body-state terms from mjlab, while the local exp05 G1 policy path observes a 103-d locomotion vector. A native rollout requires reconstructing or importing the mjlab motion-command observation builder, not just feeding qpos/qvel.",
+    "required_next": [
+      "derive the 58-d motion command from the training NPZ and local MuJoCo body set, or import upstream mjlab tracking observation code",
+      "map the actor action to local G1 29-DOF ctrl order and action scale",
+      "run native visible gate before browser replay"
+    ]
+  },
+  "verdict": "PASS_ONNX_CONTRACT__NATIVE_ADAPTER_PENDING"
+}
