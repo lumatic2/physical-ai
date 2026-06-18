@@ -125,6 +125,7 @@
 | 116 | [g1-local-scene-tracker-retrain-smoke](116-g1-local-scene-tracker-retrain-smoke/README.md) | upstream parity 실패 후 local scene 기준 short restored PPO tracker retrain을 native gate로 비교 | 🟥 short retrain은 source보다 미세 개선뿐: drop 2.07cm/contact 0.42/slip 3.22m → full-order ID-QP/MPC 또는 장기 tracker training 필요 |
 | 117 | [g1-full-order-idqp-mpc-smoke](117-g1-full-order-idqp-mpc-smoke/README.md) | mass-matrix residual/contact-force/horizon score를 묶은 full-order ID-QP/MPC formulation smoke가 M19 gate에 접근하는지 검증 | 🟥 전 후보 1.40~1.46s fall; collapse 후 geometry만 커짐 → qfrc_applied smoke가 아니라 deployable WBC/장기 tracker 필요 |
 | 118 | [g1-longer-local-tracker-training-gate](118-g1-longer-local-tracker-training-gate/README.md) | local scene restored PPO를 20k-step 수준으로 늘리면 shallow attractor를 벗어나는지 검증 | 🟥 source 대비 drop +0.62cm/contact +0.043/slip -6.9cm이나 drop 2.62cm로 gate 실패 → 짧은 local tracker sweep 반복 중단 |
+| 119 | [g1-deployable-wbc-stack-integration-gate](119-g1-deployable-wbc-stack-integration-gate/README.md) | 웹 조사로 찾은 GR00T/SONIC WBC stack이 로컬 G1 29-DOF/browser gate와 붙을 수 있는지 검증 | 🟨 29-DOF contract + exp33 browser transport PASS, but current Windows/Docker-less host cannot run official sim2sim; M19 not closed |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

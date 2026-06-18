@@ -1,0 +1,232 @@
+{
+  "experiment": "119-g1-deployable-wbc-stack-integration-gate",
+  "accessed_date": "2026-06-18",
+  "verdict": "WBC_STACK_CANDIDATE__LOCAL_INTEGRATION_BLOCKED",
+  "m19_closed": false,
+  "hypothesis_pass": true,
+  "source_presence": {
+    "groot_repo": true,
+    "readme": true,
+    "quickstart_md": true,
+    "decoupled_wbc_md": true,
+    "install_mujoco_sim": true,
+    "run_sim_loop": true,
+    "g1_policy_parameters": true,
+    "g1_supplemental_info": true,
+    "gear_sonic_deploy": true,
+    "download_from_hf": true
+  },
+  "runtime": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "is_linux": false,
+    "bash": "C:\\Users\\yusun\\AppData\\Local\\Microsoft\\WindowsApps\\bash.EXE",
+    "docker": null,
+    "git": "C:\\Program Files\\Git\\cmd\\git.EXE",
+    "git_lfs": {
+      "available": true,
+      "returncode": 0,
+      "stdout_head": [
+        "git-lfs/3.7.1 (GitHub; windows amd64; go 1.25.1; git b84b3384)"
+      ],
+      "stderr_head": []
+    },
+    "docker_version": {
+      "available": false
+    }
+  },
+  "runtime_checks": {
+    "linux_expected_for_direct_docs_path": false,
+    "bash_available": true,
+    "docker_available": false,
+    "git_lfs_available": true
+  },
+  "artifact_checks": {
+    "git_lfs_required_by_docs": true,
+    "download_from_hf_script_present": true,
+    "local_release_checkpoint_found": true
+  },
+  "model_contract": {
+    "checks": {
+      "groot_body_joint_count_29": true,
+      "default_angles_count_29": true,
+      "action_scale_count_29": true,
+      "isaaclab_to_mujoco_is_permutation_29": true,
+      "mujoco_to_isaaclab_is_permutation_29": true,
+      "default_angle_joint_comments_match_groot_order": true,
+      "groot_order_matches_exp33_dds_order": true,
+      "exp33_unassisted_browser_candidate_pass": true
+    },
+    "groot_body_joint_count": 29,
+    "default_angles_count": 29,
+    "action_scale_count": 29,
+    "isaaclab_to_mujoco": [
+      0,
+      3,
+      6,
+      9,
+      13,
+      17,
+      1,
+      4,
+      7,
+      10,
+      14,
+      18,
+      2,
+      5,
+      8,
+      11,
+      15,
+      19,
+      21,
+      23,
+      25,
+      27,
+      12,
+      16,
+      20,
+      22,
+      24,
+      26,
+      28
+    ],
+    "mujoco_to_isaaclab": [
+      0,
+      6,
+      12,
+      1,
+      7,
+      13,
+      2,
+      8,
+      14,
+      3,
+      9,
+      15,
+      22,
+      4,
+      10,
+      16,
+      23,
+      5,
+      11,
+      17,
+      24,
+      18,
+      25,
+      19,
+      26,
+      20,
+      27,
+      21,
+      28
+    ],
+    "groot_body_joints": [
+      "left_hip_pitch_joint",
+      "left_hip_roll_joint",
+      "left_hip_yaw_joint",
+      "left_knee_joint",
+      "left_ankle_pitch_joint",
+      "left_ankle_roll_joint",
+      "right_hip_pitch_joint",
+      "right_hip_roll_joint",
+      "right_hip_yaw_joint",
+      "right_knee_joint",
+      "right_ankle_pitch_joint",
+      "right_ankle_roll_joint",
+      "waist_yaw_joint",
+      "waist_roll_joint",
+      "waist_pitch_joint",
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_shoulder_yaw_joint",
+      "left_elbow_joint",
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_shoulder_yaw_joint",
+      "right_elbow_joint",
+      "right_wrist_roll_joint",
+      "right_wrist_pitch_joint",
+      "right_wrist_yaw_joint"
+    ],
+    "exp33_expected_dds_order": [
+      "left_hip_pitch_joint",
+      "left_hip_roll_joint",
+      "left_hip_yaw_joint",
+      "left_knee_joint",
+      "left_ankle_pitch_joint",
+      "left_ankle_roll_joint",
+      "right_hip_pitch_joint",
+      "right_hip_roll_joint",
+      "right_hip_yaw_joint",
+      "right_knee_joint",
+      "right_ankle_pitch_joint",
+      "right_ankle_roll_joint",
+      "waist_yaw_joint",
+      "waist_roll_joint",
+      "waist_pitch_joint",
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "left_shoulder_yaw_joint",
+      "left_elbow_joint",
+      "left_wrist_roll_joint",
+      "left_wrist_pitch_joint",
+      "left_wrist_yaw_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint",
+      "right_shoulder_yaw_joint",
+      "right_elbow_joint",
+      "right_wrist_roll_joint",
+      "right_wrist_pitch_joint",
+      "right_wrist_yaw_joint"
+    ]
+  },
+  "browser_transport_evidence": {
+    "present": true,
+    "verdict": "PASS",
+    "joint_count": 29,
+    "browser_candidate_verdict": "PASS",
+    "policy_actions_generated": true,
+    "unassisted": true,
+    "source": "experiments\\33-unitree-mujoco-g1-bridge-probe\\verify\\unassisted-controller-candidate\\candidate_gate_summary.json"
+  },
+  "blockers": [
+    "direct_gr00t_runtime_requires_linux_docker_git_lfs_environment"
+  ],
+  "sources": [
+    {
+      "name": "NVlabs/GR00T-WholeBodyControl",
+      "url": "https://github.com/NVlabs/GR00T-WholeBodyControl",
+      "accessed": "2026-06-18",
+      "claim": "Unified G1-capable WBC/SONIC repository with training, deployment, checkpoints, C++ inference, and Git LFS assets."
+    },
+    {
+      "name": "GR00T WBC Quick Start",
+      "url": "https://nvlabs.github.io/GR00T-WholeBodyControl/getting_started/quickstart.html",
+      "accessed": "2026-06-18",
+      "claim": "MuJoCo sim2sim uses install_mujoco_sim.sh, run_sim_loop.py, and gear_sonic_deploy/deploy.sh sim."
+    },
+    {
+      "name": "GR00T Decoupled WBC docs",
+      "url": "https://nvlabs.github.io/GR00T-WholeBodyControl/references/decoupled_wbc.html",
+      "accessed": "2026-06-18",
+      "claim": "Primary G1 support, Ubuntu 22.04 + NVIDIA GPU + Docker/NVIDIA Container Toolkit, run_g1_control_loop.py."
+    },
+    {
+      "name": "unitreerobotics/unitree_mujoco",
+      "url": "https://github.com/unitreerobotics/unitree_mujoco",
+      "accessed": "2026-06-18",
+      "claim": "Unitree MuJoCo bridges Unitree SDK2 control programs with MuJoCo and supports G1 low-level messages."
+    }
+  ],
+  "interpretation": "GR00T/SONIC is a credible deployable G1 WBC candidate and its 29-DOF body joint contract matches the existing Unitree DDS/browser path. This Windows checkout is not sufficient to execute the official sim2sim stack because the documented path assumes Linux/Ubuntu, Docker/GPU tooling, Git LFS assets, and released model artifacts. M19 remains open until a GR00T/SONIC or equivalent controller emits a native visible squat trace and that trace passes the browser replay gate.",
+  "next_required_evidence": [
+    "Run GR00T/SONIC sim2sim on Linux/WSL2 or Ubuntu host with Git LFS, model download, and Docker/GPU path ready.",
+    "Export or stream the 29-DOF G1 MuJoCo/LowState trace into the existing exp33 DDS/browser candidate gate.",
+    "Evaluate the emitted motion against exp29 visible squat thresholds: >=8cm drop, >=0.60rad knee, >=0.35rad hip, contact/slip/return, then browser replay."
+  ]
+}
