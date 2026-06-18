@@ -123,6 +123,7 @@
 | 114 | [g1-squat-capability-gate](114-g1-squat-capability-gate/README.md) | 웹 근거와 최신 native evidence로 G1 squat 가능성/현재 controller 실패를 분리 | 🟨 G1은 원리상 squat/full-body tracking 가능성이 높지만 stock Squat Mode는 no-balance posture이고 현재 controller는 exp29 native gate 실패; upstream tracker scene parity 우선 |
 | 115 | [g1-moves-upstream-scene-parity-audit](115-g1-moves-upstream-scene-parity-audit/README.md) | G1 Moves upstream tracker를 local native에 붙이기 전 exact scene/action/obs parity를 감사 | 🟥 `g1_mode15_square.xml`은 공개 tree/direct probe에서 확보 실패, local scene은 position actuator 기반, exp99/100/101도 실패 → hand adapter sweep 중단 |
 | 116 | [g1-local-scene-tracker-retrain-smoke](116-g1-local-scene-tracker-retrain-smoke/README.md) | upstream parity 실패 후 local scene 기준 short restored PPO tracker retrain을 native gate로 비교 | 🟥 short retrain은 source보다 미세 개선뿐: drop 2.07cm/contact 0.42/slip 3.22m → full-order ID-QP/MPC 또는 장기 tracker training 필요 |
+| 117 | [g1-full-order-idqp-mpc-smoke](117-g1-full-order-idqp-mpc-smoke/README.md) | mass-matrix residual/contact-force/horizon score를 묶은 full-order ID-QP/MPC formulation smoke가 M19 gate에 접근하는지 검증 | 🟥 전 후보 1.40~1.46s fall; collapse 후 geometry만 커짐 → qfrc_applied smoke가 아니라 deployable WBC/장기 tracker 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
