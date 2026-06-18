@@ -107,6 +107,7 @@
 | 98 | [g1-moves-standalone-onnx-native-adapter-probe](98-g1-moves-standalone-onnx-native-adapter-probe/README.md) | README observation map만으로 G1 Moves ONNX actor를 native rollout에 붙일 수 있는지 검증 | 🟥 approximate adapter는 action -14..23rad로 OOD 폭주, 0.30~0.84s fall; upstream `run_policy.py` parity 필요 |
 | 99 | [g1-moves-upstream-policy-adapter-parity-probe](99-g1-moves-upstream-policy-adapter-parity-probe/README.md) | upstream `run_policy.py` adapter 선택을 local model에 적용하면 ONNX native rollout이 안정화되는지 검증 | 🟥 first action은 정상이나 local XML/actuator에서 즉시 QACC/obs 폭주; upstream-compatible model parity 필요 |
 | 100 | [g1-upstream-motor-xml-squat-policy-probe](100-g1-upstream-motor-xml-squat-policy-probe/README.md) | G1이 스쿼트 가능한지 웹 근거 확인 후 public motor XML에서 G1 Moves policy를 검증 | 🟥 G1 squat 가능성은 spec/HuB 근거상 있음; public motor XML 2종 compile PASS지만 policy rollout은 0.08~0.14s fall |
+| 101 | [g1-mjlab-action-observation-contract-probe](101-g1-mjlab-action-observation-contract-probe/README.md) | G1 Moves ONNX 실패가 mjlab anchor/order/action-scale mismatch인지 검증 | 🟥 mjlab scale/order는 폭주를 줄이나 best 0.46s fall+1.07m slip; exact XML 확보 또는 local retrain 필요 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
