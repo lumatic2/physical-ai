@@ -168,6 +168,22 @@ export class MuJoCoDemo {
           console.warn(`telemetry_sidecar frame mismatch: ${frames.length} vs ${this.replayN}`);
         }
       }
+      this.compare = null;
+      if (exp.compare_trajectory) {
+        const compareTraj = await (await fetch("./" + exp.compare_trajectory)).json();
+        const compareQpos = Array.isArray(compareTraj.qpos) ? compareTraj.qpos : [];
+        if (compareQpos.length > 0 && compareQpos[0].length === this.model.nq) {
+          this.compare = {
+            label: exp.compare_label || 'Reference',
+            rolloutLabel: exp.rollout_label || 'Rollout',
+            qpos: compareQpos,
+            fps: compareTraj.fps || this.replayFps,
+            source: exp.compare_trajectory,
+          };
+        } else {
+          console.warn(`compare_trajectory invalid for nq=${this.model.nq}: ${exp.compare_trajectory}`);
+        }
+      }
       this.replayStartMS = null;
       this.seedFrame(0);
       this.streamFrame = null;
@@ -205,7 +221,7 @@ export class MuJoCoDemo {
 
   addProjectOverlay() {
     const groups = [
-      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'g1-decoupled-wbc-squat', 'unitree-g1-headless', 'unitree-g1-elastic-stand', 'g1-stand']],
+      ['humanoids', 'Humanoids', ['g1-walk', 'g1-rough-walk', 'g1-controlled-squat', 'g1-decoupled-wbc-squat', 'g1-squat-reference-vs-wbc', 'unitree-g1-headless', 'unitree-g1-elastic-stand', 'g1-stand']],
       ['quadrupeds', 'Quadrupeds', ['barkour-walk', 'go1-walk', 'go1-rough-walk', 'spot-walk', 'spot-rough-walk', 'spot-stand']],
       ['arms', 'Arms / hands', ['so100-stack', 'panda-sweep', 'shadow-hand']],
       ['checks', 'Harness checks', ['dummy-arm', 'humanoid-settle']],
@@ -258,6 +274,18 @@ export class MuJoCoDemo {
         actions: ['Replay squat', 'Inspect posture', 'Compare micro-dip'],
         evidence: ['11.6cm pelvis drop', 'knee 0.707rad', 'hip 0.427rad', 'contact 1.00', 'foot slip 0.003m', 'browser QA'],
         limit: 'This is a kinematic browser replay of a measured simulation trace, not real robot telemetry.',
+      },
+      'g1-squat-reference-vs-wbc': {
+        name: 'G1 Reference vs Rollout',
+        kind: 'Motion comparison',
+        model: 'Floating-base 29-DOF MuJoCo model',
+        source: 'M22 compiled reference + measured WBC rollout',
+        mode: 'Comparison replay',
+        status: 'Viewer gate',
+        description: 'A browser comparison between the M22 squat reference trajectory and the measured WBC rollout that passed the visible squat gate.',
+        actions: ['Scrub rollout frame', 'Compare height error', 'Compare lower-body joint RMS'],
+        evidence: ['reference qpos contract', 'WBC rollout', 'qaCompare PASS'],
+        limit: 'This compares a reference target against a measured simulation trace. It is not a learned policy success claim.',
       },
       'unitree-g1-headless': {
         name: 'Unitree G1 Backend Bridge',
@@ -492,6 +520,15 @@ export class MuJoCoDemo {
               <span data-telemetry="tick"></span>
               <span data-telemetry="height"></span>
               <span data-telemetry="jointVel"></span>
+            </div>
+          </div>
+          <div class="robot-card__section robot-card__compare-section">
+            <div class="robot-card__label">Reference vs rollout</div>
+            <div class="compare-readout" aria-live="polite">
+              <span data-compare="frame"></span>
+              <span data-compare="height"></span>
+              <span data-compare="joints"></span>
+              <span data-compare="labels"></span>
             </div>
           </div>
         </div>
@@ -796,12 +833,20 @@ export class MuJoCoDemo {
       .project-panel.has-telemetry .robot-card__telemetry-section {
         display: block;
       }
-      .telemetry-readout {
+      .robot-card__compare-section {
+        display: none;
+      }
+      .project-panel.has-compare .robot-card__compare-section {
+        display: block;
+      }
+      .telemetry-readout,
+      .compare-readout {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 6px;
       }
-      .telemetry-readout span {
+      .telemetry-readout span,
+      .compare-readout span {
         min-height: 25px;
         padding: 6px 7px;
         border-radius: 6px;
@@ -862,9 +907,19 @@ export class MuJoCoDemo {
       height: panel.querySelector('[data-telemetry="height"]'),
       jointVel: panel.querySelector('[data-telemetry="jointVel"]'),
     };
+    this.compareEls = {
+      frame: panel.querySelector('[data-compare="frame"]'),
+      height: panel.querySelector('[data-compare="height"]'),
+      joints: panel.querySelector('[data-compare="joints"]'),
+      labels: panel.querySelector('[data-compare="labels"]'),
+    };
     if (this.telemetry || this.streamStats?.enabled) {
       panel.classList.add('has-telemetry');
       this.updateTelemetryPanel(0);
+    }
+    if (this.compare) {
+      panel.classList.add('has-compare');
+      this.updateComparePanel(0);
     }
     const metaFor = (key) => experimentCopy[key] || {
       name: key,
@@ -1311,8 +1366,63 @@ export class MuJoCoDemo {
     for (let i = 0; i < this.model.nq; i++) { this.data.qpos[i] = q[i]; }
     this.mujoco.mj_forward(this.model, this.data);
     this.updateTelemetryPanel(f);
+    this.updateComparePanel(f);
     this.render(0);
     return { frame: f, nframes: this.replayN, nq: this.model.nq, telemetry: this.telemetrySummary(f) };
+  }
+
+  compareSummary(frame) {
+    if (!this.compare || !this.replayQpos) return null;
+    const rolloutFrame = Math.max(0, Math.min(this.replayN - 1, frame));
+    const refFrame = Math.max(0, Math.min(this.compare.qpos.length - 1, rolloutFrame));
+    const rollout = this.replayQpos[rolloutFrame];
+    const reference = this.compare.qpos[refFrame];
+    let jointSq = 0;
+    let jointCount = 0;
+    for (let i = 7; i < Math.min(22, rollout.length, reference.length); i++) {
+      const d = rollout[i] - reference[i];
+      jointSq += d * d;
+      jointCount += 1;
+    }
+    return {
+      frame: rolloutFrame,
+      referenceFrame: refFrame,
+      frames: Math.min(this.replayN, this.compare.qpos.length),
+      rolloutLabel: this.compare.rolloutLabel,
+      referenceLabel: this.compare.label,
+      rolloutHeight: rollout[2],
+      referenceHeight: reference[2],
+      heightError: Math.abs(rollout[2] - reference[2]),
+      jointRmsError: jointCount ? Math.sqrt(jointSq / jointCount) : 0,
+    };
+  }
+
+  updateComparePanel(frame) {
+    if (!this.compareEls || !this.compare) return;
+    const summary = this.compareSummary(frame);
+    if (!summary) return;
+    this.compareEls.frame.textContent = `frame ${summary.frame}/${this.replayN - 1}`;
+    this.compareEls.height.textContent = `height err ${summary.heightError.toFixed(3)}m`;
+    this.compareEls.joints.textContent = `joint RMS ${summary.jointRmsError.toFixed(3)}rad`;
+    this.compareEls.labels.textContent = `${summary.referenceLabel} vs ${summary.rolloutLabel}`;
+  }
+
+  qaCompare(fracs = [0, 0.25, 0.5, 0.75, 1]) {
+    if (!this.compare || !this.replayQpos) return { error: 'no compare trajectory' };
+    const samples = fracs.map((frac) => {
+      const f = Math.max(0, Math.min(this.replayN - 1, Math.round(frac * (this.replayN - 1))));
+      return this.compareSummary(f);
+    });
+    const maxHeightError = samples.reduce((m, s) => Math.max(m, s.heightError), 0);
+    const maxJointRmsError = samples.reduce((m, s) => Math.max(m, s.jointRmsError), 0);
+    return {
+      frames: Math.min(this.replayN, this.compare.qpos.length),
+      nq: this.model.nq,
+      samples,
+      maxHeightError,
+      maxJointRmsError,
+      pass: maxHeightError <= 0.20 && maxJointRmsError <= 0.35,
+    };
   }
 
   telemetrySummary(frame) {
@@ -1500,6 +1610,7 @@ export class MuJoCoDemo {
         for (let i = 0; i < q.length; i++) { this.data.qpos[i] = q[i]; }
         this.mujoco.mj_forward(this.model, this.data);
         this.updateTelemetryPanel(frame);
+        this.updateComparePanel(frame);
       }
     } else if (!this.params["replay"] && !this.params["paused"]) {
       let timestep = this.model.opt.timestep;

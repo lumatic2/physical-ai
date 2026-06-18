@@ -64,12 +64,7 @@
 
 ### M18 - Skill authoring foundation
 
-- [x] `experiments/14-skill-authoring/README.md`에서 skill taxonomy를 정의했다.
-- [x] `behavior_spec.schema.json`으로 embodiment, objective, target, constraints, metrics를 표준화했다.
-- [x] `g1_pose_hold`, `g1_squat`, `g1_front_kick`, `g1_ball_tap` spec과 `compile_behavior.py`를 만들었다.
-- [x] 성공/실패 metric을 command sweep처럼 raw JSON으로 남기는 평가 형식을 정했다.
-
-완료 기준: ✅ 새 skill을 자연어 목표가 아니라 versioned spec에서 시작한다. 증거: [exp14](experiments/14-skill-authoring/README.md).
+완료 기준: ✅ skill taxonomy, behavior spec schema, 4개 G1 skill spec, compiler, raw metric contract를 닫았다. 증거: [exp14](experiments/14-skill-authoring/README.md).
 
 ### M19 - Humanoid skill baseline
 
@@ -108,32 +103,35 @@
 
 ### M20 - Acrobatic feasibility gate
 
-- [x] handstand, cartwheel, flip/tumble, rabona를 난이도와 필요 기술로 분해했다.
-- [x] 현 G1 모델의 손 접촉, 관절 한계, actuator 성능, scene 요구사항을 정적 검사했다.
-- [x] 바로 학습할 후보는 `squat_or_pose_hold`와 `front_kick`으로 좁혔다.
-- [x] handstand는 hand-floor contact pair 부재로 보류, tumble/cartwheel은 reference motion 루프 전에는 보류로 판정했다.
-
 완료 기준: ✅ 고난도 skill의 병목을 기술적으로 분리했다. 증거: [exp13](experiments/13-acrobatic-feasibility/README.md).
 
+<!-- harness:milestone id="M21" status="active" priority="P0" evidence="experiments/124-g1-ball-kick-contact-probe/verify/g1-ball-kick-contact-probe.json" -->
 ### M21 - Ball-skill sandbox
 
 - [x] G1 + ball scene을 만들고 공 위치/속도/goal metric을 읽었다.
 - [x] `ball_tap` skill spec과 scene requirement를 M18에서 정의했다.
 - [x] 공 이동거리와 방향 오차 metric을 native MuJoCo smoke로 검증했다.
-- [ ] 발-공 접촉과 낙상 여부를 실제 kick policy에서 평가한다.
+- [x] 발-공 접촉과 낙상 여부를 kick probe에서 평가했다.
 - [ ] 라보나슛은 바로 목표로 삼지 않고 crossing-leg kick feasibility까지 본다.
 
-완료 기준: 🟨 scene/metric gate는 완료. learned external-object skill은 M19 balance/depth 이후 진행한다. 증거: [exp16](experiments/16-ball-skill-sandbox/README.md).
+- DoD: ✅ foot-ball contact, ball movement, direction error, and fall/no-fall are evaluated in a kick probe.
+- Evidence: [exp16](experiments/16-ball-skill-sandbox/README.md), [exp124](experiments/124-g1-ball-kick-contact-probe/README.md)
+- Gap: learned controller와 crossing-leg kick feasibility는 아직 남았다.
+- Status: contact probe PASS; crossing-leg feasibility next
 
+<!-- harness:milestone id="M22" status="completed" priority="P0" evidence="experiments/123-g1-reference-vs-rollout-viewer/verify/browser-reference-vs-rollout.json" -->
 ### M22 - Motion-to-policy loop
 
 - [x] 키프레임 reference trajectory 포맷을 정했다.
 - [x] G1 squat reference를 50Hz fixed-rate trajectory로 compile했다.
 - [x] tracking/height/smoothness/fall reward term 계약을 만들었다.
 - [x] motion tracking reward를 실제 G1 squat env에 결합했다.
-- [ ] 브라우저에서 reference vs policy rollout을 나란히 확인하는 viewer를 만든다.
+- [x] 브라우저에서 reference vs measured rollout을 나란히 확인하는 compare viewer를 만들었다.
 
-완료 기준: 🟨 reference format/probe와 reward-env 결합은 열렸다. 다만 stabilizer prior 없이 motion tracking만으로는 native fall을 해결하지 못했다. 증거: [exp17](experiments/17-motion-to-policy-loop/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md).
+- DoD: reference motion과 measured rollout을 같은 browser qpos contract로 비교하고 QA evidence를 남긴다.
+- Evidence: [exp17](experiments/17-motion-to-policy-loop/README.md), [exp20](experiments/20-g1-squat-reference-tracking/README.md), [exp123](experiments/123-g1-reference-vs-rollout-viewer/README.md)
+- Gap: motion tracking reward는 native fall을 해결하지 못했지만, viewer gate가 없어 실패/성공 trace를 비교하기 어려웠다.
+- Status: [x]
 
 ### M24 - Digital Twin Architecture Gate
 

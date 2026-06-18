@@ -1,0 +1,71 @@
+{
+  "verdict": "PASS",
+  "url": "http://127.0.0.1:8132/?exp=g1-squat-reference-vs-wbc",
+  "title": "G1 Reference vs Rollout",
+  "compare": {
+    "frames": 300,
+    "nq": 36,
+    "samples": [
+      {
+        "frame": 0,
+        "referenceFrame": 0,
+        "frames": 300,
+        "rolloutLabel": "Measured WBC rollout",
+        "referenceLabel": "M22 reference",
+        "rolloutHeight": 0.7437936369965037,
+        "referenceHeight": 0.755,
+        "heightError": 0.011206363003496311,
+        "jointRmsError": 0.05533374726903213
+      },
+      {
+        "frame": 75,
+        "referenceFrame": 75,
+        "frames": 300,
+        "rolloutLabel": "Measured WBC rollout",
+        "referenceLabel": "M22 reference",
+        "rolloutHeight": 0.628816755709525,
+        "referenceHeight": 0.62,
+        "heightError": 0.008816755709525004,
+        "jointRmsError": 0.29573939013528866
+      },
+      {
+        "frame": 150,
+        "referenceFrame": 150,
+        "frames": 300,
+        "rolloutLabel": "Measured WBC rollout",
+        "referenceLabel": "M22 reference",
+        "rolloutHeight": 0.6508384545258818,
+        "referenceHeight": 0.665,
+        "heightError": 0.014161545474118187,
+        "jointRmsError": 0.2667978390576369
+      },
+      {
+        "frame": 224,
+        "referenceFrame": 224,
+        "frames": 300,
+        "rolloutLabel": "Measured WBC rollout",
+        "referenceLabel": "M22 reference",
+        "rolloutHeight": 0.7472079577465485,
+        "referenceHeight": 0.755,
+        "heightError": 0.0077920422534515366,
+        "jointRmsError": 0.04997061709981196
+      },
+      {
+        "frame": 299,
+        "referenceFrame": 299,
+        "frames": 300,
+        "rolloutLabel": "Measured WBC rollout",
+        "referenceLabel": "M22 reference",
+        "rolloutHeight": 0.7474109158306229,
+        "referenceHeight": 0.755,
+        "heightError": 0.007589084169377092,
+        "jointRmsError": 0.04979937880653738
+      }
+    ],
+    "maxHeightError": 0.014161545474118187,
+    "maxJointRmsError": 0.29573939013528866,
+    "pass": true
+  },
+  "console_errors": [],
+  "screenshot": "experiments/123-g1-reference-vs-rollout-viewer/verify/browser-reference-vs-rollout.png"
+}

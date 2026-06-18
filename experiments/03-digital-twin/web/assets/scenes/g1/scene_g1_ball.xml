@@ -32,6 +32,11 @@
     <framelinvel objtype="site" objname="soccer_ball_site" name="soccer_ball_linvel"/>
   </sensor>
 
+  <contact>
+    <pair name="left_foot_ball" geom1="left_foot" geom2="soccer_ball_geom" condim="3" friction="0.8 0.02"/>
+    <pair name="right_foot_ball" geom1="right_foot" geom2="soccer_ball_geom" condim="3" friction="0.8 0.02"/>
+  </contact>
+
   <keyframe>
     <key name="knees_bent_ball"
       qpos="

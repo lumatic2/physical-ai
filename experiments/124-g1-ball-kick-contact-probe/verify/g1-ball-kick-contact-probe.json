@@ -1,0 +1,59 @@
+{
+  "schema_version": "0.1",
+  "scene": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_ball.xml",
+  "source_spec": "experiments/14-skill-authoring/verify/g1_ball_tap.compiled.json",
+  "method": "kinematic right-foot kick replay with MuJoCo contact and ball dynamics",
+  "thresholds": {
+    "min_contact_frames": 1,
+    "min_ball_distance_m": 0.6,
+    "max_direction_error_rad": 0.2,
+    "min_base_height_m": 0.58
+  },
+  "baseline": {
+    "mode": "baseline_no_kick",
+    "contact_frames": 0,
+    "first_contact_time_s": null,
+    "max_contact_force": 0.0,
+    "ball_initial_pos": [
+      0.35,
+      -0.08,
+      0.06
+    ],
+    "ball_final_pos": [
+      0.35,
+      -0.08,
+      0.059632818157539826
+    ],
+    "ball_distance_m": 0.0,
+    "ball_direction_error_rad": null,
+    "min_base_height_m": 0.7549858899344252,
+    "fell": false,
+    "pass": false
+  },
+  "kick": {
+    "mode": "right_foot_kinematic_kick",
+    "contact_frames": 50,
+    "first_contact_time_s": 0.396,
+    "max_contact_force": 10.471841419834158,
+    "ball_initial_pos": [
+      0.35,
+      -0.08,
+      0.06
+    ],
+    "ball_final_pos": [
+      1.6405779005870214,
+      0.11289380628608052,
+      0.05963281815753982
+    ],
+    "ball_distance_m": 1.3049135365943352,
+    "ball_direction_error_rad": 0.14836484533438388,
+    "min_base_height_m": 0.7549833023636124,
+    "fell": false,
+    "pass": true
+  },
+  "verdict": "PASS",
+  "limitations": [
+    "This validates scene/contact/reward observability, not a learned balance controller.",
+    "The robot base is kept on the scripted reference pose while the ball remains dynamic."
+  ]
+}

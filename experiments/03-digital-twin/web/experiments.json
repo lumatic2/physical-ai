@@ -172,7 +172,7 @@
         "offset": [
           2.2,
           1.5,
-          2.0
+          2
         ],
         "fovDist": 1
       }
@@ -202,7 +202,7 @@
         "offset": [
           2.2,
           1.5,
-          2.0
+          2
         ],
         "fovDist": 1
       }
@@ -233,7 +233,7 @@
         "offset": [
           2.2,
           1.5,
-          2.0
+          2
         ],
         "fovDist": 1
       }
@@ -264,7 +264,7 @@
         "offset": [
           2.2,
           1.5,
-          2.0
+          2
         ],
         "fovDist": 1
       }
@@ -383,34 +383,34 @@
           "nv": 35,
           "default_pose": [
             -0.312,
-            0.0,
-            0.0,
+            0,
+            0,
             0.669,
             -0.363,
-            0.0,
+            0,
             -0.312,
-            0.0,
-            0.0,
+            0,
+            0,
             0.669,
             -0.363,
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             0.073,
             0.2,
             0.2,
-            0.0,
+            0,
             0.6,
-            0.0,
-            0.0,
-            0.0,
+            0,
+            0,
+            0,
             0.2,
             -0.2,
-            0.0,
+            0,
             0.6,
-            0.0,
-            0.0,
-            0.0
+            0,
+            0,
+            0
           ]
         }
       }
@@ -1281,6 +1281,39 @@
             -1.8
           ]
         }
+      }
+    },
+    "g1-squat-reference-vs-wbc": {
+      "title": "Unitree G1 — reference vs measured WBC squat comparison",
+      "scene": "g1/scene_g1_policy.xml",
+      "trajectory": "g1_decoupled_wbc_squat_trajectory.json",
+      "compare_trajectory": "g1_squat_reference_trajectory.json",
+      "compare_label": "M22 reference",
+      "rollout_label": "Measured WBC rollout",
+      "ee_body": "pelvis",
+      "render_out": "media/g1_reference_vs_wbc.mp4",
+      "camera": {
+        "lookat": [
+          0,
+          0,
+          0.65
+        ],
+        "distance": 3.8,
+        "azimuth": 130,
+        "elevation": -12
+      },
+      "web": {
+        "target": [
+          0,
+          0,
+          0.65
+        ],
+        "offset": [
+          2.2,
+          1.5,
+          2
+        ],
+        "fovDist": 1
       }
     }
   }
