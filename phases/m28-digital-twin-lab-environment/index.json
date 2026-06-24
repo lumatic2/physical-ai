@@ -3,7 +3,13 @@
   "phase": "m28-digital-twin-lab-environment",
   "mode": "product",
   "steps": [
-    { "step": 0, "name": "environment-preset-contract", "status": "pending" },
+    {
+      "step": 0,
+      "name": "environment-preset-contract",
+      "status": "completed",
+      "summary": "Added flat-lab, instrumented-lab, and rough-terrain environment preset contract, React environment selector, window.demo.qaEnvironmentSummary(), and qa/environment_check.mjs. Verified build, flat-lab, instrumented-lab, and existing workbench QA without changing MuJoCo physics/runtime behavior.",
+      "completed_at": "2026-06-24T20:38:00+09:00"
+    },
     { "step": 1, "name": "laboratory-scene-visuals", "status": "pending" },
     { "step": 2, "name": "grounding-physics-controls", "status": "pending" },
     { "step": 3, "name": "physics-preset-evidence", "status": "pending" }
