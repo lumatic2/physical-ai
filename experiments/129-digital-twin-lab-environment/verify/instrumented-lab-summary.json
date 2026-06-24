@@ -1,0 +1,97 @@
+{
+  "preset": "instrumented-lab",
+  "label": "Instrumented lab",
+  "claimLevel": "visual+contract",
+  "visual": {
+    "mood": "measurement bay",
+    "background": "dark lab wall",
+    "lighting": "inspection key plus rim",
+    "markers": [
+      "floor grid",
+      "origin axes",
+      "height bands",
+      "contact readouts"
+    ]
+  },
+  "scene": {
+    "mode": "current-experiment-scene",
+    "reloadRequired": false,
+    "mutation": "none",
+    "activeScene": "g1/scene_g1_policy.xml"
+  },
+  "floor": {
+    "profile": "instrumented flat floor",
+    "terrain": "flat",
+    "material": "current MJCF material"
+  },
+  "contactProfile": {
+    "intent": "measurement-first contact summary",
+    "friction": "scene-default",
+    "condim": "scene-default",
+    "solver": "scene-default"
+  },
+  "groundingMode": "assisted-fixture",
+  "grounding": {
+    "defaultMode": "assisted-fixture",
+    "allowedModes": [
+      "replay-locked",
+      "assisted-fixture",
+      "physics-contact",
+      "controller-backed"
+    ],
+    "assistStrength": "reported-only"
+  },
+  "groundingControl": {
+    "requestedMode": "assisted-fixture",
+    "defaultMode": "assisted-fixture",
+    "appliedMode": "assisted-fixture",
+    "source": "experiment-default",
+    "allowedModes": [
+      "replay-locked",
+      "assisted-fixture",
+      "physics-contact",
+      "controller-backed"
+    ],
+    "behaviorMutation": false,
+    "label": "Assisted fixture",
+    "shortLabel": "assisted",
+    "claimLevel": "assisted-sim-fixture",
+    "evidenceRequired": "support/fixture source plus stability gate; not unassisted success",
+    "warning": "Assisted fixture evidence must not be presented as unassisted standing or real telemetry."
+  },
+  "physicsProfile": {
+    "state": "unchanged",
+    "knobs": [
+      "groundingMode",
+      "assistStrength",
+      "contactFrames"
+    ],
+    "runtimeChanges": false
+  },
+  "changedRuntime": false,
+  "visualLayer": {
+    "preset": "instrumented-lab",
+    "visualOnly": true,
+    "objects": [
+      "Lab floor grid",
+      "Lab origin axes",
+      "Lab height bands",
+      "Contact readout rails"
+    ],
+    "collision": "none-threejs-only",
+    "background": "#101820",
+    "fog": {
+      "near": 10,
+      "far": 22
+    }
+  },
+  "availablePresets": [
+    "flat-lab",
+    "instrumented-lab",
+    "rough-terrain"
+  ],
+  "pass": true,
+  "consoleErrors": 0,
+  "requestedPreset": "instrumented-lab",
+  "requestedGrounding": null
+}

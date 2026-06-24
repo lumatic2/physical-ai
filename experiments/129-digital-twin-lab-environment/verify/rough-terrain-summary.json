@@ -1,0 +1,91 @@
+{
+  "preset": "rough-terrain",
+  "label": "Rough terrain",
+  "claimLevel": "scene-contract-pending",
+  "visual": {
+    "mood": "terrain test lane",
+    "background": "industrial neutral",
+    "lighting": "high contrast test rig",
+    "markers": [
+      "floor grid",
+      "curb lane",
+      "terrain boundary"
+    ]
+  },
+  "scene": {
+    "mode": "scene-variant-required",
+    "reloadRequired": true,
+    "mutation": "deferred-to-step2",
+    "activeScene": "g1/scene_g1_policy.xml"
+  },
+  "floor": {
+    "profile": "rough/curb terrain",
+    "terrain": "rough",
+    "material": "rough MJCF variant"
+  },
+  "contactProfile": {
+    "intent": "terrain perturbation",
+    "friction": "variant-defined",
+    "condim": "variant-defined",
+    "solver": "variant-defined"
+  },
+  "groundingMode": "physics-contact",
+  "grounding": {
+    "defaultMode": "physics-contact",
+    "allowedModes": [
+      "physics-contact",
+      "controller-backed"
+    ],
+    "assistStrength": "none-by-default"
+  },
+  "groundingControl": {
+    "requestedMode": "physics-contact",
+    "defaultMode": "physics-contact",
+    "appliedMode": "physics-contact",
+    "source": "experiment-default",
+    "allowedModes": [
+      "physics-contact",
+      "controller-backed"
+    ],
+    "behaviorMutation": false,
+    "label": "Physics contact",
+    "shortLabel": "physics",
+    "claimLevel": "free-contact-check",
+    "evidenceRequired": "fall/contact/slip metrics under free MuJoCo stepping",
+    "warning": "Free contact mode needs stability evidence before being called successful."
+  },
+  "physicsProfile": {
+    "state": "requires-scene-reload",
+    "knobs": [
+      "terrainVariant",
+      "contactProfile",
+      "groundingMode"
+    ],
+    "runtimeChanges": false
+  },
+  "changedRuntime": false,
+  "visualLayer": {
+    "preset": "rough-terrain",
+    "visualOnly": true,
+    "objects": [
+      "Lab floor grid",
+      "Lab origin axes",
+      "Terrain test lane"
+    ],
+    "collision": "none-threejs-only",
+    "background": "#202520",
+    "fog": {
+      "near": 14,
+      "far": 28
+    }
+  },
+  "availablePresets": [
+    "flat-lab",
+    "instrumented-lab",
+    "rough-terrain"
+  ],
+  "pass": true,
+  "consoleErrors": 0,
+  "requestedPreset": "rough-terrain",
+  "requestedGrounding": null
+}

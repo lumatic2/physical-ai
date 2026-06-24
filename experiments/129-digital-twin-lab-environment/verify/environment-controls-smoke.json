@@ -1,0 +1,65 @@
+{
+  "milestone": "M28",
+  "experiment": "unitree-g1-elastic-stand",
+  "generatedAt": "2026-06-25T00:00:00+09:00",
+  "presets": [
+    "flat-lab",
+    "instrumented-lab",
+    "rough-terrain"
+  ],
+  "pass": true,
+  "summaryFiles": {
+    "flat-lab": "verify/flat-lab-summary.json",
+    "instrumented-lab": "verify/instrumented-lab-summary.json",
+    "rough-terrain": "verify/rough-terrain-summary.json"
+  },
+  "screenshots": {
+    "flat-lab": "verify/flat-lab.png",
+    "instrumented-lab": "verify/instrumented-lab.png",
+    "rough-terrain": "verify/rough-terrain.png"
+  },
+  "checks": {
+    "environmentSummary": true,
+    "visualLayerRecorded": true,
+    "contactSummaryRecorded": true,
+    "groundingSummaryRecorded": true,
+    "runtimeMutationExplicit": true,
+    "roughTerrainStillRequiresSceneReload": true
+  },
+  "groundingClaims": {
+    "flat-lab": {
+      "mode": "assisted-fixture",
+      "claimLevel": "assisted-sim-fixture",
+      "evidenceRequired": "support/fixture source plus stability gate; not unassisted success",
+      "warning": "Assisted fixture evidence must not be presented as unassisted standing or real telemetry."
+    },
+    "instrumented-lab": {
+      "mode": "assisted-fixture",
+      "claimLevel": "assisted-sim-fixture",
+      "evidenceRequired": "support/fixture source plus stability gate; not unassisted success",
+      "warning": "Assisted fixture evidence must not be presented as unassisted standing or real telemetry."
+    },
+    "rough-terrain": {
+      "mode": "physics-contact",
+      "claimLevel": "free-contact-check",
+      "evidenceRequired": "fall/contact/slip metrics under free MuJoCo stepping",
+      "warning": "Free contact mode needs stability evidence before being called successful."
+    }
+  },
+  "sceneBaselines": {
+    "g1/scene_g1_policy.xml": {
+      "floor": "plane floor with current MJCF groundplane material",
+      "contact": "scene default floor contact/friction/condim"
+    },
+    "g1/scene_g1_rough.xml": {
+      "floor": "plane floor friction=0.6 condim=3 plus curb boxes friction=0.8 condim=3",
+      "contact": "rough/curb contact-bearing MJCF variant; not loaded by Step 3 for unitree-g1-elastic-stand"
+    }
+  },
+  "limits": [
+    "flat-lab and instrumented-lab are visual/contract presets over the current active MJCF scene.",
+    "rough-terrain records the rough/contact intent and marks scene reload as required for contact-bearing terrain evidence.",
+    "grounding controls in M28 Step 2/3 record claims and evidence requirements; they do not mutate MuJoCo solver/contact behavior.",
+    "assisted-fixture evidence must not be described as unassisted controller success or real robot telemetry."
+  ]
+}
