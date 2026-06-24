@@ -17,7 +17,13 @@
       "summary": "Added a Three.js-only Lab Visual Layer driven by the environment preset contract. Presets now apply background, fog, lighting, grid, axes, height bands, contact rails, or terrain lane markers while reporting visualOnly/collision=none-threejs-only in qaEnvironmentSummary. Verified build, flat/instrumented/rough environment checks, desktop visual check, and mobile visual check without changing MJCF contact geometry.",
       "completed_at": "2026-06-24T21:42:00+09:00"
     },
-    { "step": 2, "name": "grounding-physics-controls", "status": "pending" },
+    {
+      "step": 2,
+      "name": "grounding-physics-controls",
+      "status": "completed",
+      "summary": "Added grounding mode controls and QA recording without mutating MuJoCo physics. The environment summary now distinguishes replay-locked, assisted-fixture, physics-contact, and controller-backed claims, preserves raw requested aliases, records applied mode/evidence requirement/warnings, and validates --grounding=assisted plus --grounding=physics in environment_check.mjs. Workbench regression passed for assisted stand and reference-vs-WBC compare.",
+      "completed_at": "2026-06-25T00:00:00+09:00"
+    },
     { "step": 3, "name": "physics-preset-evidence", "status": "pending" }
   ]
 }
