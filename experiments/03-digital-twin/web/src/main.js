@@ -4,6 +4,7 @@ import { GUI              } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls    } from 'three/addons/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, drawTendonsAndFlex, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
+import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, normalizeEnvironmentPresetId, summarizeEnvironmentPreset } from './environmentPresets.js';
 import   load_mujoco        from 'https://cdn.jsdelivr.net/npm/mujoco-js@0.0.7/dist/mujoco_wasm.js';
 
 // Load the MuJoCo Module
@@ -117,7 +118,9 @@ export class MuJoCoDemo {
     // Each experiment = (scene MJCF, recorded trajectory, camera) — same registry the
     // desktop smoke/render/record read. Default stays SO-100 so the live site is unchanged.
     const registry = await (await fetch("./experiments.json")).json();
-    const expName = new URLSearchParams(location.search).get("exp") || registry.default;
+    const params = new URLSearchParams(location.search);
+    const expName = params.get("exp") || registry.default;
+    this.environmentPresetId = normalizeEnvironmentPresetId(params.get("env") || DEFAULT_ENVIRONMENT_PRESET);
     const exp = registry.experiments[expName] || registry.experiments[registry.default];
     this.registry = registry;
     this.expName = registry.experiments[expName] ? expName : registry.default;
@@ -217,6 +220,20 @@ export class MuJoCoDemo {
 
     this.addControlHints();
     this.addProjectOverlay();
+    this.dispatchEnvironmentChange();
+  }
+
+  setEnvironmentPreset(id) {
+    const nextId = normalizeEnvironmentPresetId(id);
+    this.environmentPresetId = nextId;
+    this.dispatchEnvironmentChange();
+    return this.qaEnvironmentSummary();
+  }
+
+  dispatchEnvironmentChange() {
+    window.dispatchEvent(new CustomEvent('robotics-lab-environment-change', {
+      detail: this.qaEnvironmentSummary(),
+    }));
   }
 
   addProjectOverlay() {
@@ -1093,6 +1110,7 @@ export class MuJoCoDemo {
       title: exp.title || this.expName,
       runtime,
       stateContract,
+      environment: this.qaEnvironmentSummary(),
       evidenceLanes: lanes,
       gate,
       status: meta?.status || null,
@@ -1121,6 +1139,23 @@ export class MuJoCoDemo {
 
   qaWorkbenchSummary() {
     return this.workbenchSummary();
+  }
+
+  qaEnvironmentSummary() {
+    const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
+      scene: this.exp?.scene || this.params?.scene || null,
+    });
+    summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
+    summary.pass = Boolean(
+      summary.preset &&
+      summary.availablePresets.includes(summary.preset) &&
+      summary.scene.activeScene &&
+      summary.floor.profile &&
+      summary.contactProfile.intent &&
+      summary.groundingMode &&
+      summary.physicsProfile.state
+    );
+    return summary;
   }
 
   // Always-on control hint (bottom-left). Discoverability for the interactive controls — the

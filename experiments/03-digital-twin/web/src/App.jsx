@@ -12,6 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ENVIRONMENT_PRESETS } from "./environmentPresets.js";
 
 import "./index.css";
 import "./main.js";
@@ -27,10 +28,12 @@ function readDemoState() {
   const demo = window.demo;
   if (!demo) return null;
   const summary = demo.qaWorkbenchSummary?.() || {};
+  const environment = demo.qaEnvironmentSummary?.() || summary.environment || {};
   return {
     expName: demo.expName,
     meta: demo.currentMeta || {},
     summary,
+    environment,
     stream: demo.qaStreamStatus?.() || null,
   };
 }
@@ -55,9 +58,11 @@ function App() {
     const refresh = () => setState(readDemoState());
     refresh();
     window.addEventListener("robotics-lab-ready", refresh);
+    window.addEventListener("robotics-lab-environment-change", refresh);
     const timer = window.setInterval(refresh, 500);
     return () => {
       window.removeEventListener("robotics-lab-ready", refresh);
+      window.removeEventListener("robotics-lab-environment-change", refresh);
       window.clearInterval(timer);
     };
   }, []);
@@ -65,8 +70,16 @@ function App() {
   const experiments = registry?.experiments || {};
   const meta = state?.meta || {};
   const summary = state?.summary || {};
+  const environment = state?.environment || summary.environment || {};
   const lanes = summary.evidenceLanes || [];
   const contract = summary.stateContract || {};
+  const presets = Object.values(ENVIRONMENT_PRESETS);
+
+  function selectEnvironmentPreset(id) {
+    const result = window.demo?.setEnvironmentPreset?.(id);
+    setState(readDemoState());
+    return result;
+  }
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[1200] font-sans text-foreground">
@@ -96,6 +109,48 @@ function App() {
               <Metric icon={Boxes} label="Frames" value={contract.frames ? String(contract.frames) : "live"} />
               <Metric icon={FlaskConical} label="Gate" value={summary.gate || "pending"} />
             </div>
+
+            <Separator />
+
+            <section className="flex flex-col gap-2">
+              <div className="flex items-center justify-between gap-2">
+                <h2 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                  Environment
+                </h2>
+                <Badge variant="outline">{environment.claimLevel || "contract"}</Badge>
+              </div>
+              <div className="grid grid-cols-3 gap-1.5">
+                {presets.map((preset) => (
+                  <Button
+                    key={preset.id}
+                    type="button"
+                    variant={preset.id === environment.preset ? "secondary" : "outline"}
+                    className="h-auto min-h-10 px-2 py-2 text-xs"
+                    onClick={() => selectEnvironmentPreset(preset.id)}
+                  >
+                    <span className="truncate">{preset.label}</span>
+                  </Button>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
+                  <div className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
+                    Grounding
+                  </div>
+                  <div className="truncate font-medium text-foreground">
+                    {environment.groundingMode || "loading"}
+                  </div>
+                </div>
+                <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
+                  <div className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
+                    Contact
+                  </div>
+                  <div className="truncate font-medium text-foreground">
+                    {environment.contactProfile?.intent || "scene-default"}
+                  </div>
+                </div>
+              </div>
+            </section>
 
             <Separator />
 
