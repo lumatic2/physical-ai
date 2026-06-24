@@ -79,6 +79,11 @@ export class MuJoCoDemo {
     targetObject.position.set(0, 1, 0);
     this.scene.add( this.spotlight );
 
+    this.labVisualLayer = new THREE.Group();
+    this.labVisualLayer.name = "Lab Visual Layer";
+    this.scene.add(this.labVisualLayer);
+    this.appliedEnvironmentVisual = null;
+
     this.renderer = new THREE.WebGLRenderer( { antialias: true } );
     this.renderer.setPixelRatio(1.0);////window.devicePixelRatio );
     this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -220,12 +225,14 @@ export class MuJoCoDemo {
 
     this.addControlHints();
     this.addProjectOverlay();
+    this.applyEnvironmentVisuals();
     this.dispatchEnvironmentChange();
   }
 
   setEnvironmentPreset(id) {
     const nextId = normalizeEnvironmentPresetId(id);
     this.environmentPresetId = nextId;
+    this.applyEnvironmentVisuals();
     this.dispatchEnvironmentChange();
     return this.qaEnvironmentSummary();
   }
@@ -234,6 +241,152 @@ export class MuJoCoDemo {
     window.dispatchEvent(new CustomEvent('robotics-lab-environment-change', {
       detail: this.qaEnvironmentSummary(),
     }));
+  }
+
+  clearEnvironmentVisuals() {
+    if (!this.labVisualLayer) return;
+    while (this.labVisualLayer.children.length > 0) {
+      const child = this.labVisualLayer.children[0];
+      this.labVisualLayer.remove(child);
+      child.traverse?.((object) => {
+        object.geometry?.dispose?.();
+        if (Array.isArray(object.material)) {
+          object.material.forEach((material) => material.dispose?.());
+        } else {
+          object.material?.dispose?.();
+        }
+      });
+    }
+  }
+
+  applyEnvironmentVisuals() {
+    if (!this.scene || !this.labVisualLayer) return;
+    const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
+      scene: this.exp?.scene || this.params?.scene || null,
+    });
+    this.clearEnvironmentVisuals();
+
+    const styles = {
+      "flat-lab": {
+        background: 0x25313a,
+        fogNear: 16,
+        fogFar: 30,
+        ambient: 0.46,
+        spot: 26,
+        gridColor: 0x9ca3af,
+        accent: 0x38bdf8,
+        marker: 0xffffff,
+      },
+      "instrumented-lab": {
+        background: 0x101820,
+        fogNear: 10,
+        fogFar: 22,
+        ambient: 0.34,
+        spot: 34,
+        gridColor: 0x22d3ee,
+        accent: 0xf59e0b,
+        marker: 0x67e8f9,
+      },
+      "rough-terrain": {
+        background: 0x202520,
+        fogNear: 14,
+        fogFar: 28,
+        ambient: 0.40,
+        spot: 30,
+        gridColor: 0xa3e635,
+        accent: 0xf97316,
+        marker: 0xd9f99d,
+      },
+    };
+    const style = styles[summary.preset] || styles["flat-lab"];
+
+    const background = new THREE.Color(style.background);
+    this.scene.background = background;
+    this.scene.fog = new THREE.Fog(background, style.fogNear, style.fogFar);
+    this.ambientLight.intensity = style.ambient * Math.PI;
+    this.spotlight.intensity = style.spot * Math.PI;
+
+    const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
+    grid.name = "Lab floor grid";
+    grid.position.y = 0.002;
+    grid.material.transparent = true;
+    grid.material.opacity = summary.preset === "instrumented-lab" ? 0.30 : 0.18;
+    this.labVisualLayer.add(grid);
+
+    const axes = new THREE.AxesHelper(0.65);
+    axes.name = "Lab origin axes";
+    axes.position.set(0, 0.025, 0);
+    this.labVisualLayer.add(axes);
+
+    if (summary.visual.markers.includes("height bands")) {
+      this.labVisualLayer.add(this.createHeightBands(style.marker));
+    }
+    if (summary.visual.markers.includes("curb lane")) {
+      this.labVisualLayer.add(this.createTerrainLane(style.accent));
+    }
+    if (summary.visual.markers.includes("contact readouts")) {
+      this.labVisualLayer.add(this.createContactReadoutRails(style.accent));
+    }
+
+    this.appliedEnvironmentVisual = {
+      preset: summary.preset,
+      visualOnly: true,
+      objects: this.labVisualLayer.children.map((child) => child.name || child.type),
+      collision: "none-threejs-only",
+      background: `#${style.background.toString(16).padStart(6, "0")}`,
+      fog: { near: style.fogNear, far: style.fogFar },
+    };
+  }
+
+  createHeightBands(color) {
+    const group = new THREE.Group();
+    group.name = "Lab height bands";
+    const material = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.52 });
+    for (const height of [0.4, 0.8, 1.2]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-1.1, height, -1.1),
+        new THREE.Vector3(1.1, height, -1.1),
+        new THREE.Vector3(1.1, height, 1.1),
+        new THREE.Vector3(-1.1, height, 1.1),
+        new THREE.Vector3(-1.1, height, -1.1),
+      ]);
+      const line = new THREE.Line(geometry, material.clone());
+      line.name = `Height band ${height.toFixed(1)}m`;
+      group.add(line);
+    }
+    return group;
+  }
+
+  createTerrainLane(color) {
+    const group = new THREE.Group();
+    group.name = "Terrain test lane";
+    const material = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.62 });
+    for (const x of [-0.55, 0.55]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(x, 0.035, -2.3),
+        new THREE.Vector3(x, 0.035, 2.3),
+      ]);
+      const line = new THREE.Line(geometry, material.clone());
+      line.name = "Terrain lane edge";
+      group.add(line);
+    }
+    return group;
+  }
+
+  createContactReadoutRails(color) {
+    const group = new THREE.Group();
+    group.name = "Contact readout rails";
+    const material = new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.48 });
+    for (const z of [-0.42, 0, 0.42]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-0.9, 0.03, z),
+        new THREE.Vector3(0.9, 0.03, z),
+      ]);
+      const line = new THREE.Line(geometry, material.clone());
+      line.name = "Contact readout rail";
+      group.add(line);
+    }
+    return group;
   }
 
   addProjectOverlay() {
@@ -1145,6 +1298,7 @@ export class MuJoCoDemo {
     const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
       scene: this.exp?.scene || this.params?.scene || null,
     });
+    summary.visualLayer = this.appliedEnvironmentVisual || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
     summary.pass = Boolean(
       summary.preset &&
@@ -1153,7 +1307,9 @@ export class MuJoCoDemo {
       summary.floor.profile &&
       summary.contactProfile.intent &&
       summary.groundingMode &&
-      summary.physicsProfile.state
+      summary.physicsProfile.state &&
+      summary.visualLayer?.visualOnly === true &&
+      summary.visualLayer?.collision === "none-threejs-only"
     );
     return summary;
   }

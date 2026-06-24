@@ -91,6 +91,10 @@ async function main() {
     summary.contactProfile?.intent &&
     summary.groundingMode &&
     summary.physicsProfile?.state &&
+    summary.visualLayer?.visualOnly === true &&
+    summary.visualLayer?.collision === 'none-threejs-only' &&
+    Array.isArray(summary.visualLayer?.objects) &&
+    summary.visualLayer.objects.length > 0 &&
     consoleErrors.length === 0
   );
 
