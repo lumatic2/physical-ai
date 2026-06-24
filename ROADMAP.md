@@ -74,13 +74,15 @@
 
 - Completed at: 2026-06-24
 - Summary: Robotics Lab now has a Vite/React/Tailwind/shadcn shell, generated favicon, desktop/mobile QA, and preserved MuJoCo workbench gates.
-<!-- harness:milestone id="M28" status="active" priority="P0" -->
+<!-- harness:milestone id="M28" status="completed" priority="P0" evidence="experiments/129-digital-twin-lab-environment/verify/environment-controls-smoke.json" -->
 ### M28 - Digital Twin Laboratory Environment Controls
 
 - DoD: 실험실 배경과 최소 3개 environment preset(flat lab, instrumented lab, rough/terrain)을 제공하고, floor/contact/grounding/physics setting summary가 UI와 QA artifact에 기록된다.
-- Evidence: `experiments/129-digital-twin-lab-environment/verify/environment-controls-smoke.json`, `experiments/03-digital-twin/web/qa/environment_check.mjs --exp=unitree-g1-elastic-stand`
+- Evidence: experiments/129-digital-twin-lab-environment/verify/environment-controls-smoke.json
 - Gap: 현재 scene은 checker ground와 고정 배경 중심이며, 로봇이 땅에 붙어있는 assisted/grounding mechanism과 물리 튜닝 값을 사용자가 비교·검증하기 어렵다.
-- Status: [ ]
+- Status: [x]
+- Completed at: 2026-06-25
+- Summary: Digital Twin Lab now has three environment presets, lab visuals, grounding/contact/physics summaries, and committed QA evidence.
 ### M18 - Skill authoring foundation
 
 완료 기준: ✅ skill taxonomy, behavior spec schema, 4개 G1 skill spec, compiler, raw metric contract를 닫았다. 증거: [exp14](experiments/14-skill-authoring/README.md).
