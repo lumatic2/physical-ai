@@ -10,7 +10,13 @@
       "summary": "Added flat-lab, instrumented-lab, and rough-terrain environment preset contract, React environment selector, window.demo.qaEnvironmentSummary(), and qa/environment_check.mjs. Verified build, flat-lab, instrumented-lab, and existing workbench QA without changing MuJoCo physics/runtime behavior.",
       "completed_at": "2026-06-24T20:38:00+09:00"
     },
-    { "step": 1, "name": "laboratory-scene-visuals", "status": "pending" },
+    {
+      "step": 1,
+      "name": "laboratory-scene-visuals",
+      "status": "completed",
+      "summary": "Added a Three.js-only Lab Visual Layer driven by the environment preset contract. Presets now apply background, fog, lighting, grid, axes, height bands, contact rails, or terrain lane markers while reporting visualOnly/collision=none-threejs-only in qaEnvironmentSummary. Verified build, flat/instrumented/rough environment checks, desktop visual check, and mobile visual check without changing MJCF contact geometry.",
+      "completed_at": "2026-06-24T21:42:00+09:00"
+    },
     { "step": 2, "name": "grounding-physics-controls", "status": "pending" },
     { "step": 3, "name": "physics-preset-evidence", "status": "pending" }
   ]
