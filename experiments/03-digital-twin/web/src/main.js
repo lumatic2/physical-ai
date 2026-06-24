@@ -501,6 +501,27 @@ export class MuJoCoDemo {
               <strong class="robot-card__source"></strong>
             </div>
           </div>
+          <div class="robot-card__section twin-workbench">
+            <div class="robot-card__label">Twin workbench</div>
+            <div class="twin-workbench__grid">
+              <div>
+                <span>Runtime</span>
+                <strong data-workbench="runtime"></strong>
+              </div>
+              <div>
+                <span>State</span>
+                <strong data-workbench="state"></strong>
+              </div>
+              <div>
+                <span>Evidence</span>
+                <strong data-workbench="evidence"></strong>
+              </div>
+              <div>
+                <span>Gate</span>
+                <strong data-workbench="gate"></strong>
+              </div>
+            </div>
+          </div>
           <div class="robot-card__section">
             <div class="robot-card__label">Available motions</div>
             <div class="robot-card__chips robot-card__actions"></div>
@@ -827,6 +848,35 @@ export class MuJoCoDemo {
         border-color: rgba(134,239,172,0.20);
         background: rgba(22,101,52,0.16);
       }
+      .twin-workbench__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+      }
+      .twin-workbench__grid div {
+        min-height: 54px;
+        padding: 8px;
+        border-radius: 7px;
+        border: 1px solid rgba(125,211,252,0.16);
+        background: rgba(8,47,73,0.20);
+      }
+      .twin-workbench__grid span {
+        display: block;
+        margin-bottom: 5px;
+        color: rgba(248,250,252,0.50);
+        font-size: 10px;
+        line-height: 1.1;
+        font-weight: 780;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .twin-workbench__grid strong {
+        display: block;
+        color: rgba(248,250,252,0.88);
+        font-size: 11px;
+        line-height: 1.25;
+        font-weight: 690;
+      }
       .robot-card__telemetry-section {
         display: none;
       }
@@ -901,6 +951,12 @@ export class MuJoCoDemo {
     const actions = panel.querySelector('.robot-card__actions');
     const evidence = panel.querySelector('.robot-card__evidence');
     const limit = panel.querySelector('.robot-card__limit');
+    this.workbenchEls = {
+      runtime: panel.querySelector('[data-workbench="runtime"]'),
+      state: panel.querySelector('[data-workbench="state"]'),
+      evidence: panel.querySelector('[data-workbench="evidence"]'),
+      gate: panel.querySelector('[data-workbench="gate"]'),
+    };
     this.telemetryEls = {
       frame: panel.querySelector('[data-telemetry="frame"]'),
       tick: panel.querySelector('[data-telemetry="tick"]'),
@@ -960,6 +1016,7 @@ export class MuJoCoDemo {
     }
 
     const currentMeta = metaFor(this.expName);
+    this.currentMeta = currentMeta;
     pickerName.textContent = currentMeta.name;
     pickerKind.textContent = currentMeta.kind;
     mode.textContent = currentMeta.mode;
@@ -968,6 +1025,7 @@ export class MuJoCoDemo {
     model.textContent = currentMeta.model;
     source.textContent = currentMeta.source;
     limit.textContent = currentMeta.limit;
+    this.updateWorkbenchPanel(currentMeta);
     for (const action of currentMeta.actions) {
       const chip = document.createElement('span');
       chip.className = 'robot-card__chip';
@@ -997,6 +1055,70 @@ export class MuJoCoDemo {
       button.setAttribute('aria-expanded', String(!collapsed));
     });
     this.container.appendChild(panel);
+  }
+
+  workbenchSummary(meta = null) {
+    meta = meta || this.currentMeta || null;
+    const exp = this.exp || {};
+    const lanes = [];
+    const runtime = this.policy
+      ? 'browser ONNX policy'
+      : (this.streamStats?.enabled ? 'DDS/WebSocket stream' : 'trajectory replay');
+    if (this.policy) lanes.push('closed-loop policy');
+    if (this.replayQpos) lanes.push('qpos replay');
+    if (this.telemetry || exp.telemetry_sidecar) lanes.push('telemetry sidecar');
+    if (this.compare || exp.compare_trajectory) lanes.push('reference compare');
+    if (this.streamStats?.enabled) lanes.push('live stream');
+    if (exp.teleop) lanes.push('teleop');
+
+    const frameCount = this.replayN || null;
+    const fps = this.replayFps || (exp.policy?.ctrl_dt ? Math.round(1 / exp.policy.ctrl_dt) : null);
+    const stateContract = {
+      format: this.streamStats?.enabled ? 'physical-ai-stream-frame-v0' : 'physical-ai-web-trajectory-v1',
+      scene: exp.scene || null,
+      nq: this.model?.nq ?? null,
+      nu: this.model?.nu ?? null,
+      frames: frameCount,
+      fps,
+      telemetry: Boolean(this.telemetry || exp.telemetry_sidecar),
+      comparison: Boolean(this.compare || exp.compare_trajectory),
+    };
+    const gate = this.compare
+      ? 'qaCompare'
+      : (this.streamStats?.enabled ? 'qaStreamStatus' : (this.policy ? 'qaStep' : 'qaSeek'));
+    const summary = {
+      experiment: this.expName,
+      title: exp.title || this.expName,
+      runtime,
+      stateContract,
+      evidenceLanes: lanes,
+      gate,
+      status: meta?.status || null,
+      limit: meta?.limit || null,
+    };
+    summary.pass = Boolean(
+      summary.experiment &&
+      summary.runtime &&
+      summary.stateContract.scene &&
+      summary.stateContract.nq > 0 &&
+      summary.evidenceLanes.length > 0 &&
+      summary.gate
+    );
+    return summary;
+  }
+
+  updateWorkbenchPanel(meta) {
+    if (!this.workbenchEls) return;
+    const summary = this.workbenchSummary(meta);
+    this.workbenchEls.runtime.textContent = summary.runtime;
+    this.workbenchEls.state.textContent = `qpos[${summary.stateContract.nq}]` +
+      (summary.stateContract.frames ? ` · ${summary.stateContract.frames} frames` : '');
+    this.workbenchEls.evidence.textContent = summary.evidenceLanes.join(' · ');
+    this.workbenchEls.gate.textContent = summary.gate;
+  }
+
+  qaWorkbenchSummary() {
+    return this.workbenchSummary();
   }
 
   // Always-on control hint (bottom-left). Discoverability for the interactive controls — the

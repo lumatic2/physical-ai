@@ -1,0 +1,24 @@
+{
+  "experiment": "g1-squat-reference-vs-wbc",
+  "title": "Unitree G1 — reference vs measured WBC squat comparison",
+  "runtime": "trajectory replay",
+  "stateContract": {
+    "format": "physical-ai-web-trajectory-v1",
+    "scene": "g1/scene_g1_policy.xml",
+    "nq": 36,
+    "nu": 29,
+    "frames": 300,
+    "fps": 50,
+    "telemetry": false,
+    "comparison": true
+  },
+  "evidenceLanes": [
+    "qpos replay",
+    "reference compare"
+  ],
+  "gate": "qaCompare",
+  "status": "Viewer gate",
+  "limit": "This compares a reference target against a measured simulation trace. It is not a learned policy success claim.",
+  "pass": true,
+  "consoleErrors": 0
+}

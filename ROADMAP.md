@@ -42,12 +42,12 @@
 
 ## 현재 목표군 - Atlas식 skill lab
 
-현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**의 baseline을 닫았다.
+현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**의 baseline과 simulated controller-backed backend twin gate를 닫았다.
 
 - M19 `g1_squat`는 GR00T Decoupled WBC measured trace로 visible-depth/contact/slip/return/browser gate를 통과했다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
 - reward scale만 반복하지 않는다. exp30/34-41이 weak/ramp/reference-base/soft-WBC=shallow, visible/reference=fall을 보였고, reward/action-origin/hand-written guard는 depth/contact/return gate에서 막혔다.
-- M25는 trainable-controller gate로 닫혔다. 다음 구현 전에는 새 horizon/DoD/evidence path를 먼저 정한다.
+- M25는 trainable-controller gate로 닫혔다. 다음 구현은 M26에서 backend evidence를 공개 viewer 안에서 조작 가능한 workbench로 끌어올리는 것이다.
 
 ### 다음 목표군 - Public drift audit
 
@@ -63,6 +63,16 @@
 | L3 동적 전신 | jump, handstand prep, cartwheel prep | 고난도 동작의 전 단계 |
 | L4 고난도 | handstand, flip/tumble, rabona kick | 장기 목표. 바로 시작하지 않는다 |
 
+<!-- harness:milestone id="M26" status="completed" priority="P0" evidence="experiments/127-digital-twin-workbench-foundation/verify/unitree-g1-elastic-stand-workbench-summary.json" -->
+### M26 - Digital Twin Workbench Foundation
+
+- DoD: visitor-facing web twin이 각 scene의 runtime mode, state contract, telemetry/stream/replay evidence, current limit을 한 화면에서 구분하고, QA hook이 선택된 실험의 workbench summary를 검증한다.
+- Evidence: experiments/127-digital-twin-workbench-foundation/verify/unitree-g1-elastic-stand-workbench-summary.json
+- Gap: M24/M25는 backend DDS/controller evidence를 닫았지만, public viewer는 아직 "무엇이 twin evidence이고 무엇이 replay/policy/assisted fixture인지"를 조작 가능한 workbench로 충분히 드러내지 못한다.
+- Status: [x]
+
+- Completed at: 2026-06-24
+- Summary: Digital Twin Workbench panel and QA summary expose runtime mode, qpos contract, telemetry evidence, and gate status.
 ### M18 - Skill authoring foundation
 
 완료 기준: ✅ skill taxonomy, behavior spec schema, 4개 G1 skill spec, compiler, raw metric contract를 닫았다. 증거: [exp14](experiments/14-skill-authoring/README.md).

@@ -1,0 +1,15 @@
+{
+  "project": "physical-ai",
+  "phase": "m26-digital-twin-workbench",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "workbench-evidence-panel",
+      "status": "completed",
+      "started_at": "2026-06-24T19:28:09+09:00",
+      "completed_at": "2026-06-24T19:36:00+09:00",
+      "summary": "Added Digital Twin Workbench UI/QA summary to web viewer, created qa/workbench_check.mjs, and verified unitree-g1-elastic-stand with telemetry sidecar qpos[36] contract plus existing visual replay QA. Tracked evidence is in experiments/127-digital-twin-workbench-foundation/verify/."
+    }
+  ]
+}
