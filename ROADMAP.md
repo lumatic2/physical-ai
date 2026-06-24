@@ -74,7 +74,7 @@
 
 - Completed at: 2026-06-24
 - Summary: Robotics Lab now has a Vite/React/Tailwind/shadcn shell, generated favicon, desktop/mobile QA, and preserved MuJoCo workbench gates.
-<!-- harness:milestone id="M28" status="pending" priority="P0" -->
+<!-- harness:milestone id="M28" status="active" priority="P0" -->
 ### M28 - Digital Twin Laboratory Environment Controls
 
 - DoD: 실험실 배경과 최소 3개 environment preset(flat lab, instrumented lab, rough/terrain)을 제공하고, floor/contact/grounding/physics setting summary가 UI와 QA artifact에 기록된다.
