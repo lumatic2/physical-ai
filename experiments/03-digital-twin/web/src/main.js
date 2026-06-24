@@ -4,7 +4,7 @@ import { GUI              } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls    } from 'three/addons/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, drawTendonsAndFlex, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
-import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, normalizeEnvironmentPresetId, summarizeEnvironmentPreset } from './environmentPresets.js';
+import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, GROUNDING_MODES, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeGroundingMode, summarizeEnvironmentPreset } from './environmentPresets.js';
 import   load_mujoco        from 'https://cdn.jsdelivr.net/npm/mujoco-js@0.0.7/dist/mujoco_wasm.js';
 
 // Load the MuJoCo Module
@@ -130,6 +130,12 @@ export class MuJoCoDemo {
     this.registry = registry;
     this.expName = registry.experiments[expName] ? expName : registry.default;
     this.exp = exp;
+    this.requestedGroundingMode = params.get("grounding") || null;
+    this.groundingMode = normalizeGroundingMode(
+      this.requestedGroundingMode || inferGroundingModeFromExperiment(exp),
+      ENVIRONMENT_PRESETS[this.environmentPresetId].grounding.allowedModes,
+      ENVIRONMENT_PRESETS[this.environmentPresetId].grounding.defaultMode,
+    );
 
     const startScene = exp.scene;
     this.params.scene = startScene;
@@ -232,7 +238,20 @@ export class MuJoCoDemo {
   setEnvironmentPreset(id) {
     const nextId = normalizeEnvironmentPresetId(id);
     this.environmentPresetId = nextId;
+    this.groundingMode = normalizeGroundingMode(
+      this.groundingMode,
+      ENVIRONMENT_PRESETS[nextId].grounding.allowedModes,
+      ENVIRONMENT_PRESETS[nextId].grounding.defaultMode,
+    );
     this.applyEnvironmentVisuals();
+    this.dispatchEnvironmentChange();
+    return this.qaEnvironmentSummary();
+  }
+
+  setGroundingMode(id) {
+    const preset = ENVIRONMENT_PRESETS[this.environmentPresetId];
+    this.requestedGroundingMode = id;
+    this.groundingMode = normalizeGroundingMode(id, preset.grounding.allowedModes, preset.grounding.defaultMode);
     this.dispatchEnvironmentChange();
     return this.qaEnvironmentSummary();
   }
@@ -263,6 +282,9 @@ export class MuJoCoDemo {
     if (!this.scene || !this.labVisualLayer) return;
     const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
       scene: this.exp?.scene || this.params?.scene || null,
+      groundingMode: this.groundingMode,
+      requestedGroundingMode: this.requestedGroundingMode,
+      defaultGroundingMode: inferGroundingModeFromExperiment(this.exp || {}),
     });
     this.clearEnvironmentVisuals();
 
@@ -1297,6 +1319,9 @@ export class MuJoCoDemo {
   qaEnvironmentSummary() {
     const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
       scene: this.exp?.scene || this.params?.scene || null,
+      groundingMode: this.groundingMode,
+      requestedGroundingMode: this.requestedGroundingMode,
+      defaultGroundingMode: inferGroundingModeFromExperiment(this.exp || {}),
     });
     summary.visualLayer = this.appliedEnvironmentVisual || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
@@ -1309,7 +1334,9 @@ export class MuJoCoDemo {
       summary.groundingMode &&
       summary.physicsProfile.state &&
       summary.visualLayer?.visualOnly === true &&
-      summary.visualLayer?.collision === "none-threejs-only"
+      summary.visualLayer?.collision === "none-threejs-only" &&
+      GROUNDING_MODES[summary.groundingMode] &&
+      summary.groundingControl?.behaviorMutation === false
     );
     return summary;
   }

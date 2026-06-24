@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ENVIRONMENT_PRESETS } from "./environmentPresets.js";
+import { ENVIRONMENT_PRESETS, GROUNDING_MODES } from "./environmentPresets.js";
 
 import "./index.css";
 import "./main.js";
@@ -74,9 +74,18 @@ function App() {
   const lanes = summary.evidenceLanes || [];
   const contract = summary.stateContract || {};
   const presets = Object.values(ENVIRONMENT_PRESETS);
+  const groundingModes = (environment.groundingControl?.allowedModes || environment.grounding?.allowedModes || [])
+    .map((id) => GROUNDING_MODES[id])
+    .filter(Boolean);
 
   function selectEnvironmentPreset(id) {
     const result = window.demo?.setEnvironmentPreset?.(id);
+    setState(readDemoState());
+    return result;
+  }
+
+  function selectGroundingMode(id) {
+    const result = window.demo?.setGroundingMode?.(id);
     setState(readDemoState());
     return result;
   }
@@ -138,7 +147,7 @@ function App() {
                     Grounding
                   </div>
                   <div className="truncate font-medium text-foreground">
-                    {environment.groundingMode || "loading"}
+                    {environment.groundingControl?.shortLabel || environment.groundingMode || "loading"}
                   </div>
                 </div>
                 <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
@@ -149,6 +158,26 @@ function App() {
                     {environment.contactProfile?.intent || "scene-default"}
                   </div>
                 </div>
+              </div>
+              <div className="grid grid-cols-2 gap-1.5">
+                {groundingModes.map((mode) => (
+                  <Button
+                    key={mode.id}
+                    type="button"
+                    variant={mode.id === environment.groundingMode ? "secondary" : "outline"}
+                    className="h-auto min-h-9 px-2 py-1.5 text-xs"
+                    onClick={() => selectGroundingMode(mode.id)}
+                  >
+                    <span className="truncate">{mode.shortLabel}</span>
+                  </Button>
+                ))}
+              </div>
+              <div className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground">
+                <span className="font-medium text-foreground">
+                  {environment.groundingControl?.claimLevel || "claim pending"}
+                </span>
+                {" · "}
+                {environment.groundingControl?.evidenceRequired || "Evidence summary pending."}
               </div>
             </section>
 

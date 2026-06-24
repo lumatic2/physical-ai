@@ -1,7 +1,7 @@
 // Verifies the Digital Twin environment preset contract.
 //
 // Usage:
-//   node qa/environment_check.mjs --exp=unitree-g1-elastic-stand --preset=flat-lab
+//   node qa/environment_check.mjs --exp=unitree-g1-elastic-stand --preset=flat-lab --grounding=replay
 
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
@@ -16,9 +16,25 @@ const args = process.argv.slice(2);
 const live = args.includes('--live');
 const exp = (args.find((a) => a.startsWith('--exp=')) || '--exp=unitree-g1-elastic-stand').split('=')[1];
 const preset = (args.find((a) => a.startsWith('--preset=')) || '--preset=flat-lab').split('=')[1];
+const grounding = (args.find((a) => a.startsWith('--grounding=')) || '').split('=')[1] || null;
+const groundingAliases = {
+  replay: 'replay-locked',
+  locked: 'replay-locked',
+  assisted: 'assisted-fixture',
+  fixture: 'assisted-fixture',
+  physics: 'physics-contact',
+  contact: 'physics-contact',
+  controller: 'controller-backed',
+  policy: 'controller-backed',
+};
+const expectedGrounding = grounding ? (groundingAliases[grounding] || grounding) : null;
 const PORT = 8132;
 const BASE = live ? 'https://robotics.askewly.com' : `http://127.0.0.1:${PORT}`;
-const URL = `${BASE}/?exp=${encodeURIComponent(exp)}&env=${encodeURIComponent(preset)}`;
+const url = new URL(`${BASE}/`);
+url.searchParams.set('exp', exp);
+url.searchParams.set('env', preset);
+if (grounding) url.searchParams.set('grounding', grounding);
+const targetUrl = url.toString();
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -74,7 +90,7 @@ async function main() {
   });
   page.on('pageerror', (error) => consoleErrors.push(String(error)));
 
-  await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+  await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.waitForFunction(() => window.demo && window.demo.model && window.demo.qaEnvironmentSummary, null, {
     timeout: 120000,
     polling: 500,
@@ -83,13 +99,20 @@ async function main() {
   const summary = await page.evaluate(() => window.demo.qaEnvironmentSummary());
   summary.consoleErrors = consoleErrors.length;
   summary.requestedPreset = preset;
+  summary.requestedGrounding = grounding;
   summary.pass = Boolean(
     summary.pass &&
     summary.preset === preset &&
+    (!grounding || summary.groundingControl?.requestedMode === grounding) &&
+    (!expectedGrounding || summary.groundingMode === expectedGrounding) &&
     summary.scene?.activeScene &&
     summary.floor?.profile &&
     summary.contactProfile?.intent &&
     summary.groundingMode &&
+    summary.groundingControl?.appliedMode === summary.groundingMode &&
+    summary.groundingControl?.behaviorMutation === false &&
+    summary.groundingControl?.evidenceRequired &&
+    summary.groundingControl?.warning &&
     summary.physicsProfile?.state &&
     summary.visualLayer?.visualOnly === true &&
     summary.visualLayer?.collision === 'none-threejs-only' &&
