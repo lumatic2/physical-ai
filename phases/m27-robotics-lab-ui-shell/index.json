@@ -1,0 +1,11 @@
+{
+  "project": "physical-ai",
+  "phase": "m27-robotics-lab-ui-shell",
+  "mode": "product",
+  "steps": [
+    { "step": 0, "name": "vite-react-shadcn-scaffold", "status": "pending" },
+    { "step": 1, "name": "workbench-components", "status": "pending" },
+    { "step": 2, "name": "imagegen-favicon", "status": "pending" },
+    { "step": 3, "name": "responsive-visual-qa", "status": "pending" }
+  ]
+}

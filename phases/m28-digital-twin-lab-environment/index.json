@@ -1,0 +1,11 @@
+{
+  "project": "physical-ai",
+  "phase": "m28-digital-twin-lab-environment",
+  "mode": "product",
+  "steps": [
+    { "step": 0, "name": "environment-preset-contract", "status": "pending" },
+    { "step": 1, "name": "laboratory-scene-visuals", "status": "pending" },
+    { "step": 2, "name": "grounding-physics-controls", "status": "pending" },
+    { "step": 3, "name": "physics-preset-evidence", "status": "pending" }
+  ]
+}

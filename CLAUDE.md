@@ -3,14 +3,20 @@
 > 한 줄 설명. (갈래: learning)
 
 ## 기술 스택
--
+- Current public twin: MuJoCo WASM + Three.js + vanilla ES modules under `experiments/03-digital-twin/web`.
+- Planned Robotics Lab v2 shell: Vite + React + Tailwind CSS + shadcn/ui, while preserving the existing MuJoCo canvas/runtime and QA contracts.
+- Visual asset workflow: project-bound raster favicon/app icon assets are generated with the `imagegen` skill, then saved under `experiments/03-digital-twin/web/assets/`.
 
 ## 프로젝트 구조
 -
 
 ## 개발 명령어
 ```bash
-#
+# Current static MuJoCo viewer
+cd experiments/03-digital-twin/web
+python serve_coi.py 8132
+node qa/visual_check.mjs --exp=unitree-g1-elastic-stand --steps=1 --chunk=1
+node qa/workbench_check.mjs --exp=unitree-g1-elastic-stand
 ```
 
 ## 작업 방식

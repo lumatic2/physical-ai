@@ -42,12 +42,13 @@
 
 ## 현재 목표군 - Atlas식 skill lab
 
-현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**의 baseline과 simulated controller-backed backend twin gate를 닫았다.
+현재는 public gallery 정리를 끝내고, G1 humanoid에서 **보이는 자세 전환 skill**의 baseline과 simulated controller-backed backend twin gate를 닫았다. 다음 horizon은 Robotics Lab v2로, 공개 UI의 완성도와 디지털 트윈 환경 조작성을 같이 끌어올린다.
 
 - M19 `g1_squat`는 GR00T Decoupled WBC measured trace로 visible-depth/contact/slip/return/browser gate를 통과했다.
 - 성공은 "낮아진 숫자"가 아니라 exp29 visible gate와 native/browser replay가 같이 통과하는 것이다.
 - reward scale만 반복하지 않는다. exp30/34-41이 weak/ramp/reference-base/soft-WBC=shallow, visible/reference=fall을 보였고, reward/action-origin/hand-written guard는 depth/contact/return gate에서 막혔다.
 - M25는 trainable-controller gate로 닫혔다. 다음 구현은 M26에서 backend evidence를 공개 viewer 안에서 조작 가능한 workbench로 끌어올리는 것이다.
+- M27-M28은 shadcn/Tailwind UI shell, favicon, 실험실 환경, environment preset, grounding/physics controls를 분리해서 진행한다.
 
 ### 다음 목표군 - Public drift audit
 
@@ -73,6 +74,22 @@
 
 - Completed at: 2026-06-24
 - Summary: Digital Twin Workbench panel and QA summary expose runtime mode, qpos contract, telemetry evidence, and gate status.
+
+<!-- harness:milestone id="M27" status="active" priority="P0" -->
+### M27 - Robotics Lab shadcn UI Shell
+
+- DoD: Vite/React/Tailwind/shadcn 기반 app shell이 기존 MuJoCo canvas/runtime을 보존하면서 robot picker, workbench evidence, QA status, responsive panel 구조를 제공하고 새 imagegen favicon이 로드된다.
+- Evidence: `experiments/128-robotics-lab-ui-shell/verify/ui-shell-smoke.json`, `experiments/03-digital-twin/web/qa/visual_check.mjs --exp=unitree-g1-elastic-stand --mobile`
+- Gap: 현재 UI는 vanilla DOM string/CSS 중심이라 shadcn/Tailwind 컴포넌트 시스템, favicon 브랜딩, 모바일/데스크탑 polish를 안정적으로 확장하기 어렵다.
+- Status: [ ]
+
+<!-- harness:milestone id="M28" status="pending" priority="P0" -->
+### M28 - Digital Twin Laboratory Environment Controls
+
+- DoD: 실험실 배경과 최소 3개 environment preset(flat lab, instrumented lab, rough/terrain)을 제공하고, floor/contact/grounding/physics setting summary가 UI와 QA artifact에 기록된다.
+- Evidence: `experiments/129-digital-twin-lab-environment/verify/environment-controls-smoke.json`, `experiments/03-digital-twin/web/qa/environment_check.mjs --exp=unitree-g1-elastic-stand`
+- Gap: 현재 scene은 checker ground와 고정 배경 중심이며, 로봇이 땅에 붙어있는 assisted/grounding mechanism과 물리 튜닝 값을 사용자가 비교·검증하기 어렵다.
+- Status: [ ]
 ### M18 - Skill authoring foundation
 
 완료 기준: ✅ skill taxonomy, behavior spec schema, 4개 G1 skill spec, compiler, raw metric contract를 닫았다. 증거: [exp14](experiments/14-skill-authoring/README.md).

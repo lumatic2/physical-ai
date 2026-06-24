@@ -3,6 +3,14 @@
     {
       "dir": "m26-digital-twin-workbench",
       "status": "completed"
+    },
+    {
+      "dir": "m27-robotics-lab-ui-shell",
+      "status": "pending"
+    },
+    {
+      "dir": "m28-digital-twin-lab-environment",
+      "status": "pending"
     }
   ]
 }
