@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "assets": [
+    {
+      "path": "/assets/favicon.png",
+      "status": 200,
+      "bytes": 90090,
+      "width": 256,
+      "height": 256,
+      "pass": true
+    },
+    {
+      "path": "/assets/robotics-lab-icon-512.png",
+      "status": 200,
+      "bytes": 333310,
+      "width": 512,
+      "height": 512,
+      "pass": true
+    }
+  ]
+}
