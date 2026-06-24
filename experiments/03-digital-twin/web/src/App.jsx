@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[1200] font-sans text-foreground">
-      <div className="pointer-events-auto absolute left-3 top-3 flex w-[min(430px,calc(100vw-1.5rem))] flex-col gap-3 md:left-4 md:top-4">
+      <div className="pointer-events-auto absolute left-3 top-3 flex max-h-[48vh] w-[min(430px,calc(100vw-1.5rem))] flex-col gap-3 overflow-auto md:left-4 md:top-4 md:max-h-[calc(100vh-2rem)]">
         <Card className="border-border/70 bg-background/88 shadow-2xl backdrop-blur-xl">
           <CardHeader className="gap-2 pb-3">
             <div className="flex items-start justify-between gap-3">
@@ -99,14 +99,14 @@ function App() {
 
             <Separator />
 
-            <section className="flex flex-col gap-2">
+            <section className="hidden flex-col gap-2 md:flex">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   Robot selection
                 </h2>
                 <Badge variant="outline">{meta.kind || "registered"}</Badge>
               </div>
-              <div className="max-h-[34vh] overflow-auto pr-1">
+              <div className="max-h-[12vh] overflow-auto pr-1 md:max-h-[34vh]">
                 {GROUPS.map(([label, keys]) => (
                   <div key={label} className="flex flex-col gap-1 pb-2">
                     <div className="px-1 pt-1 text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
@@ -134,12 +134,30 @@ function App() {
 
             <Separator />
 
-            <section className="flex flex-col gap-3">
+            <section className="flex flex-col gap-2 md:hidden">
+              <div className="min-w-0">
+                <div className="truncate text-sm font-medium text-foreground">
+                  {meta.name || summary.title || state?.expName || "Selected twin"}
+                </div>
+                <div className="truncate text-xs text-muted-foreground">
+                  {meta.status || summary.gate || "Workbench ready"}
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {lanes.slice(0, 2).map((lane) => (
+                  <Badge key={lane} variant="outline">
+                    {lane}
+                  </Badge>
+                ))}
+              </div>
+            </section>
+
+            <section className="hidden flex-col gap-3 md:flex">
               <div>
                 <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   Workbench evidence
                 </div>
-                <p className="mt-1 text-sm leading-5 text-foreground">
+                <p className="mt-1 line-clamp-3 text-sm leading-5 text-foreground md:line-clamp-none">
                   {meta.description || summary.title || "Loading selected experiment."}
                 </p>
               </div>

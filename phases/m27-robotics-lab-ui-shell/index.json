@@ -27,6 +27,13 @@
       "completed_at": "2026-06-24T20:20:00+09:00",
       "summary": "Generated a no-text Robotics Lab icon with built-in imagegen, saved original and derived workspace assets under experiments/03-digital-twin/web/assets/, replaced assets/favicon.png with a 256px PNG, added qa/favicon_check.mjs, and verified favicon/app icon dimensions with tracked evidence at experiments/128-robotics-lab-ui-shell/verify/favicon-check-summary.json."
     },
-    { "step": 3, "name": "responsive-visual-qa", "status": "pending" }
+    {
+      "step": 3,
+      "name": "responsive-visual-qa",
+      "status": "completed",
+      "started_at": "2026-06-24T20:22:00+09:00",
+      "completed_at": "2026-06-24T20:32:00+09:00",
+      "summary": "Updated web README for Vite/shadcn shell, compacted mobile overlay after screenshot review, ran build + desktop/mobile visual QA + workbench comparison + favicon check, and recorded M27 evidence in experiments/128-robotics-lab-ui-shell/verify/ui-shell-smoke.json."
+    }
   ]
 }

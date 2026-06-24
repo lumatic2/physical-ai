@@ -1,7 +1,7 @@
 # 디지털 트윈 — 브라우저 임베디먼트 갤러리 (MuJoCo WASM)
 
 로봇 MJCF를 **브라우저에서 실제 물리째** 돌리는 인터랙티브 트윈. DeepMind 공식 MuJoCo WASM
-바인딩(`mujoco-js`) + three.js. 빌드·node_modules 불필요 — deps는 jsDelivr CDN, ES module 직접 로드(순수 정적).
+바인딩(`mujoco-js`) + three.js 런타임 위에 Vite/React/shadcn/Tailwind UI shell을 얹었다.
 하나의 config-driven 하네스(`experiments.json` + `assets/scenes/manifest.json`)로 **13개 씬**을 굴린다.
 
 **라이브: https://robotics.askewly.com** (상단 패널에서 선택하거나 `?exp=<name>` 으로 직접 전환)
@@ -34,18 +34,22 @@
 ## 로컬 실행
 
 ```bash
-python serve_coi.py 8132    # COOP/COEP 헤더 필요 (WASM). deps는 CDN이라 install 불필요
-# http://127.0.0.1:8132/index.html
+npm install
+npm run dev                  # Vite dev server + COOP/COEP headers
+# http://127.0.0.1:8132/
+
+npm run build                # production bundle smoke
+node qa/visual_check.mjs --exp=unitree-g1-elastic-stand --steps=1 --chunk=1
+node qa/workbench_check.mjs --exp=unitree-g1-elastic-stand
 ```
 
 > 일반 정적 서버(`python -m http.server`)로는 안 됨 — MuJoCo WASM이 cross-origin isolation
-> (COOP `same-origin` + COEP `require-corp`)을 요구한다. `serve_coi.py`가 그 헤더를 붙인다.
-> three/mujoco-js는 jsDelivr CDN에서 로드되므로 인터넷 필요(install·node_modules 없음).
-> `package.json`은 버전 고정 기록용(CDN URL의 버전과 일치).
+> (COOP `same-origin` + COEP `require-corp`)을 요구한다. Vite config가 dev/preview headers를 붙인다.
+> `serve_coi.py`는 legacy static fallback이며, shadcn/React shell 검증은 Vite dev server를 사용한다.
 
 ## 배포 (Vercel)
 
-순수 정적 — 빌드 없음. [`vercel.json`](vercel.json)이 COOP/COEP 헤더만 설정. `web/`를 루트로 올리면 끝.
+Vite build 산출물을 배포한다. [`vercel.json`](vercel.json)이 COOP/COEP 헤더를 유지한다.
 (이 레포는 REST API 직접 업로드로 배포: [`deploy_vercel.py`](deploy_vercel.py), `VERCEL_TOKEN` env 필요.)
 
 > **데이터 단일 소스**: `experiments.json`·궤적 JSON의 canonical 사본은 `03/` 루트(파이썬 툴링이 읽고 씀). `web/`는 파생 — 직접 편집하지 말고 `03/`에서 고친 뒤 `python ../sync_web.py`로 미러. `deploy_vercel.py`가 업로드 전 자동 sync하므로 프로덕션은 항상 최신.
@@ -54,8 +58,9 @@ python serve_coi.py 8132    # COOP/COEP 헤더 필요 (WASM). deps는 CDN이라 
 
 베이스: [zalo/mujoco_wasm](https://github.com/zalo/mujoco_wasm) (ISC). 주요 delta:
 1. `src/mujocoUtils.js` — 씬 파일 목록을 `manifest.json` fetch로(하드코딩 제거), 바이너리 확장자 대소문자 무관 로드.
-2. `src/main.js` — `experiments.json` 레지스트리로 씬·카메라 선택, **정책 closed-loop**(onnxruntime-web obs builder + gait phase clock / qpos error history) vs 궤적 replay 2모드, 반응형 카메라.
-3. `index.html` — 모바일 컨트롤 패널 축소 CSS.
+2. `src/main.js` — `experiments.json` 레지스트리로 씬·카메라 선택, **정책 closed-loop**(onnxruntime-web obs builder + gait phase clock / qpos error history) vs 궤적 replay 2모드, 반응형 카메라, QA hooks.
+3. `src/App.jsx` — React/shadcn UI shell. Robot picker, workbench evidence, state contract, current limit을 표시한다.
+4. `index.html` — Vite app entry + favicon.
 
 추가: `assets/scenes/<model>/`(Menagerie 모델 + 우리 scene xml), `gen_scene_manifest.py`(manifest 생성), `decimate_meshes.py`(웹 전송 예산), `qa/`(자동 시각 QA). 학습 정책은 [exp 04](../../04-go1-rl-walk/README.md)·[05](../../05-g1-rl-walk/README.md)·[06](../../06-spot-rl-walk/README.md)에서 ONNX로 뽑아 번들.
 

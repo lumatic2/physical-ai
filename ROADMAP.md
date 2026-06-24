@@ -64,25 +64,16 @@
 | L3 동적 전신 | jump, handstand prep, cartwheel prep | 고난도 동작의 전 단계 |
 | L4 고난도 | handstand, flip/tumble, rabona kick | 장기 목표. 바로 시작하지 않는다 |
 
-<!-- harness:milestone id="M26" status="completed" priority="P0" evidence="experiments/127-digital-twin-workbench-foundation/verify/unitree-g1-elastic-stand-workbench-summary.json" -->
-### M26 - Digital Twin Workbench Foundation
-
-- DoD: visitor-facing web twin이 각 scene의 runtime mode, state contract, telemetry/stream/replay evidence, current limit을 한 화면에서 구분하고, QA hook이 선택된 실험의 workbench summary를 검증한다.
-- Evidence: experiments/127-digital-twin-workbench-foundation/verify/unitree-g1-elastic-stand-workbench-summary.json
-- Gap: M24/M25는 backend DDS/controller evidence를 닫았지만, public viewer는 아직 "무엇이 twin evidence이고 무엇이 replay/policy/assisted fixture인지"를 조작 가능한 workbench로 충분히 드러내지 못한다.
-- Status: [x]
-
-- Completed at: 2026-06-24
-- Summary: Digital Twin Workbench panel and QA summary expose runtime mode, qpos contract, telemetry evidence, and gate status.
-
-<!-- harness:milestone id="M27" status="active" priority="P0" -->
+<!-- harness:milestone id="M27" status="completed" priority="P0" evidence="experiments/128-robotics-lab-ui-shell/verify/ui-shell-smoke.json" -->
 ### M27 - Robotics Lab shadcn UI Shell
 
 - DoD: Vite/React/Tailwind/shadcn 기반 app shell이 기존 MuJoCo canvas/runtime을 보존하면서 robot picker, workbench evidence, QA status, responsive panel 구조를 제공하고 새 imagegen favicon이 로드된다.
-- Evidence: `experiments/128-robotics-lab-ui-shell/verify/ui-shell-smoke.json`, `experiments/03-digital-twin/web/qa/visual_check.mjs --exp=unitree-g1-elastic-stand --mobile`
+- Evidence: experiments/128-robotics-lab-ui-shell/verify/ui-shell-smoke.json
 - Gap: 현재 UI는 vanilla DOM string/CSS 중심이라 shadcn/Tailwind 컴포넌트 시스템, favicon 브랜딩, 모바일/데스크탑 polish를 안정적으로 확장하기 어렵다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-06-24
+- Summary: Robotics Lab now has a Vite/React/Tailwind/shadcn shell, generated favicon, desktop/mobile QA, and preserved MuJoCo workbench gates.
 <!-- harness:milestone id="M28" status="pending" priority="P0" -->
 ### M28 - Digital Twin Laboratory Environment Controls
 

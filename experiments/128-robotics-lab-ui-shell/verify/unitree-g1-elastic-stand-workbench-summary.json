@@ -1,0 +1,24 @@
+{
+  "experiment": "unitree-g1-elastic-stand",
+  "title": "Unitree G1 — assisted elastic-band backend stand replay",
+  "runtime": "trajectory replay",
+  "stateContract": {
+    "format": "physical-ai-web-trajectory-v1",
+    "scene": "g1/scene_g1_policy.xml",
+    "nq": 36,
+    "nu": 29,
+    "frames": 100,
+    "fps": 50,
+    "telemetry": true,
+    "comparison": false
+  },
+  "evidenceLanes": [
+    "qpos replay",
+    "telemetry sidecar"
+  ],
+  "gate": "qaSeek",
+  "status": "Stable fixture",
+  "limit": "This is an assisted digital-twin fixture, not proof of an unassisted humanoid standing controller.",
+  "pass": true,
+  "consoleErrors": 0
+}

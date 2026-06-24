@@ -1,0 +1,50 @@
+{
+  "pass": true,
+  "date": "2026-06-24",
+  "milestone": "M27",
+  "checks": [
+    {
+      "name": "vite-build",
+      "command": "npm run build",
+      "pass": true,
+      "note": "Build succeeds; large chunk warning is expected because MuJoCo/Three runtime remains in the main bundle."
+    },
+    {
+      "name": "desktop-visual",
+      "command": "node qa/visual_check.mjs --exp=unitree-g1-elastic-stand --steps=1 --chunk=1",
+      "pass": true,
+      "evidence": "qa/out/unitree-g1-elastic-stand_100.png"
+    },
+    {
+      "name": "mobile-visual",
+      "command": "node qa/visual_check.mjs --exp=unitree-g1-elastic-stand --mobile --steps=1 --chunk=1",
+      "pass": true,
+      "evidence": "qa/out/unitree-g1-elastic-stand_100.png"
+    },
+    {
+      "name": "unitree-workbench",
+      "command": "node qa/workbench_check.mjs --exp=unitree-g1-elastic-stand",
+      "pass": true,
+      "evidence": "experiments/128-robotics-lab-ui-shell/verify/unitree-g1-elastic-stand-workbench-summary.json"
+    },
+    {
+      "name": "reference-compare-workbench",
+      "command": "node qa/workbench_check.mjs --exp=g1-squat-reference-vs-wbc",
+      "pass": true,
+      "evidence": "experiments/128-robotics-lab-ui-shell/verify/g1-squat-reference-vs-wbc-workbench-summary.json"
+    },
+    {
+      "name": "favicon",
+      "command": "node qa/favicon_check.mjs",
+      "pass": true,
+      "evidence": "experiments/128-robotics-lab-ui-shell/verify/favicon-check-summary.json"
+    }
+  ],
+  "runtime_preserved": {
+    "exp": "unitree-g1-elastic-stand",
+    "nq": 36,
+    "frames": 100,
+    "telemetry_sidecar": true,
+    "console_errors": 0
+  }
+}
