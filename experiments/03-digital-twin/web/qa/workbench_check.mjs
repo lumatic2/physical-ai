@@ -35,11 +35,24 @@ async function waitForServer(url, tries = 50) {
 }
 
 let serverProc = null;
+function spawnDevServer() {
+  if (process.platform === 'win32') {
+    return spawn('cmd.exe', ['/d', '/s', '/c', `npm run dev -- --host 127.0.0.1 --port ${PORT}`], {
+      cwd: WEB_DIR,
+      stdio: 'ignore',
+    });
+  }
+  const npmCmd = 'npm';
+  return spawn(npmCmd, ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(PORT)], {
+    cwd: WEB_DIR,
+    stdio: 'ignore',
+  });
+}
 
 async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   if (!live) {
-    serverProc = spawn('python', ['serve_coi.py', String(PORT)], { cwd: WEB_DIR, stdio: 'ignore' });
+    serverProc = spawnDevServer();
     await waitForServer(`${BASE}/index.html`);
   }
 

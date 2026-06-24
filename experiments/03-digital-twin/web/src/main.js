@@ -1054,6 +1054,8 @@ export class MuJoCoDemo {
       button.textContent = collapsed ? '+' : '-';
       button.setAttribute('aria-expanded', String(!collapsed));
     });
+    panel.hidden = true;
+    panel.dataset.legacyProjectPanel = 'true';
     this.container.appendChild(panel);
   }
 
@@ -1836,3 +1838,4 @@ export class MuJoCoDemo {
 let demo = new MuJoCoDemo();
 await demo.init();
 window.demo = demo;   // expose for QA/debugging (read demo.data.qpos[0] for walk progress)
+window.dispatchEvent(new CustomEvent('robotics-lab-ready', { detail: { demo } }));
