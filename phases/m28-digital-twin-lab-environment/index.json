@@ -24,6 +24,12 @@
       "summary": "Added grounding mode controls and QA recording without mutating MuJoCo physics. The environment summary now distinguishes replay-locked, assisted-fixture, physics-contact, and controller-backed claims, preserves raw requested aliases, records applied mode/evidence requirement/warnings, and validates --grounding=assisted plus --grounding=physics in environment_check.mjs. Workbench regression passed for assisted stand and reference-vs-WBC compare.",
       "completed_at": "2026-06-25T00:00:00+09:00"
     },
-    { "step": 3, "name": "physics-preset-evidence", "status": "pending" }
+    {
+      "step": 3,
+      "name": "physics-preset-evidence",
+      "status": "completed",
+      "summary": "Generated M28 evidence under experiments/129-digital-twin-lab-environment with three preset summaries, screenshots, README, and verify/environment-controls-smoke.json. The smoke passes while explicitly recording that rough-terrain still requires scene reload for contact-bearing evidence and that grounding controls do not mutate MuJoCo solver/contact behavior.",
+      "completed_at": "2026-06-25T00:00:00+09:00"
+    }
   ]
 }
