@@ -50,9 +50,13 @@
 - M25는 trainable-controller gate로 닫혔다. 다음 구현은 M26에서 backend evidence를 공개 viewer 안에서 조작 가능한 workbench로 끌어올리는 것이다.
 - M27-M28은 shadcn/Tailwind UI shell, favicon, 실험실 환경, environment preset, grounding/physics controls를 분리해서 진행한다.
 
-### 다음 목표군 - Public drift audit
+<!-- harness:milestone id="M29" status="active" priority="P0" evidence="experiments/130-public-drift-audit/verify/public-drift-audit.json" -->
+### M29 - Public drift audit
 
-2026-06-22 예약 글 공개 후 README/askewly/vault/live demo 메시지 drift를 점검한다.
+- DoD: README, askewly project/blog pages, vault notes, and live Robotics Lab QA are checked for claim drift after M27/M28.
+- Evidence: experiments/130-public-drift-audit/verify/public-drift-audit.json
+- Gap: M27/M28 changed public UI and environment claims, so external copy must preserve assisted fixture, controller-backed sim, and not-real-robot-telemetry boundaries.
+- Status: [ ]
 
 ### Skill ladder
 
