@@ -453,6 +453,15 @@ export class MuJoCoDemo {
     if (summary.visual.markers.includes("contact readouts")) {
       this.labVisualLayer.add(this.createContactReadoutRails(style.accent));
     }
+    if (summary.preset === "flat-lab") {
+      this.labVisualLayer.add(this.createCalibrationBay(style));
+    }
+    if (summary.preset === "instrumented-lab") {
+      this.labVisualLayer.add(this.createMeasurementBay(style));
+    }
+    if (summary.preset === "rough-terrain") {
+      this.labVisualLayer.add(this.createRoughTerrainRig(style));
+    }
 
     this.appliedEnvironmentVisual = {
       preset: summary.preset,
@@ -535,6 +544,47 @@ export class MuJoCoDemo {
     return group;
   }
 
+  createCalibrationBay(style) {
+    const group = new THREE.Group();
+    group.name = "Calibration bay fixtures";
+
+    const seamMaterial = new THREE.LineBasicMaterial({ color: style.marker, transparent: true, opacity: 0.24 });
+    for (const x of [-2, -1, 1, 2]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(x, 0.021, -2.4),
+        new THREE.Vector3(x, 0.021, 2.4),
+      ]);
+      const seam = new THREE.Line(geometry, seamMaterial.clone());
+      seam.name = "Calibration floor seam";
+      group.add(seam);
+    }
+
+    const postMaterial = new THREE.MeshStandardMaterial({
+      color: style.accent,
+      roughness: 0.54,
+      metalness: 0.18,
+      transparent: true,
+      opacity: 0.62,
+    });
+    for (const [x, z] of [[-1.45, -1.35], [1.45, -1.35], [-1.45, 1.35], [1.45, 1.35]]) {
+      const post = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.42, 12), postMaterial.clone());
+      post.name = "Calibration marker post";
+      post.position.set(x, 0.21, z);
+      group.add(post);
+    }
+
+    const stripeMaterial = new THREE.MeshBasicMaterial({ color: style.accent, transparent: true, opacity: 0.42 });
+    for (const z of [-1.55, 1.55]) {
+      const stripe = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 0.035), stripeMaterial.clone());
+      stripe.name = "Calibration safety stripe";
+      stripe.rotation.x = -Math.PI / 2;
+      stripe.position.set(0, 0.024, z);
+      group.add(stripe);
+    }
+
+    return group;
+  }
+
   createHeightBands(color) {
     const group = new THREE.Group();
     group.name = "Lab height bands";
@@ -554,6 +604,65 @@ export class MuJoCoDemo {
     return group;
   }
 
+  createMeasurementBay(style) {
+    const group = new THREE.Group();
+    group.name = "Instrumented measurement bay";
+
+    const frameMaterial = new THREE.MeshStandardMaterial({
+      color: style.marker,
+      roughness: 0.35,
+      metalness: 0.42,
+      transparent: true,
+      opacity: 0.54,
+    });
+    const addBar = (name, position, scale) => {
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(scale[0], scale[1], scale[2]), frameMaterial.clone());
+      bar.name = name;
+      bar.position.set(position[0], position[1], position[2]);
+      group.add(bar);
+      return bar;
+    };
+    addBar("Measurement gantry left upright", [-1.35, 0.78, -1.05], [0.035, 1.55, 0.035]);
+    addBar("Measurement gantry right upright", [1.35, 0.78, -1.05], [0.035, 1.55, 0.035]);
+    addBar("Measurement gantry top beam", [0, 1.55, -1.05], [2.75, 0.035, 0.035]);
+
+    const sensorMaterial = new THREE.MeshStandardMaterial({
+      color: style.accent,
+      roughness: 0.46,
+      metalness: 0.22,
+      emissive: style.accent,
+      emissiveIntensity: 0.12,
+    });
+    for (const [index, x] of [-1.2, 0, 1.2].entries()) {
+      const sensor = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.10, 0.08), sensorMaterial.clone());
+      sensor.name = `Overhead tracking sensor ${index + 1}`;
+      sensor.position.set(x, 1.46, -0.98);
+      group.add(sensor);
+    }
+
+    const monitorMaterial = new THREE.MeshBasicMaterial({ color: style.accent, transparent: true, opacity: 0.72, side: THREE.DoubleSide });
+    for (const [index, z] of [-0.65, 0.05, 0.75].entries()) {
+      const monitor = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.24), monitorMaterial.clone());
+      monitor.name = `Telemetry monitor ${index + 1}`;
+      monitor.position.set(-2.18, 1.15, z);
+      monitor.rotation.y = Math.PI / 2;
+      group.add(monitor);
+    }
+
+    const cableMaterial = new THREE.LineBasicMaterial({ color: style.marker, transparent: true, opacity: 0.34 });
+    for (const z of [-0.65, 0.05, 0.75]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-2.18, 0.78, z),
+        new THREE.Vector3(-1.55, 0.78, z),
+      ]);
+      const cable = new THREE.Line(geometry, cableMaterial.clone());
+      cable.name = "Instrument cable run";
+      group.add(cable);
+    }
+
+    return group;
+  }
+
   createTerrainLane(color) {
     const group = new THREE.Group();
     group.name = "Terrain test lane";
@@ -567,6 +676,65 @@ export class MuJoCoDemo {
       line.name = "Terrain lane edge";
       group.add(line);
     }
+    return group;
+  }
+
+  createRoughTerrainRig(style) {
+    const group = new THREE.Group();
+    group.name = "Rough terrain test fixtures";
+
+    const curbMaterial = new THREE.MeshStandardMaterial({
+      color: style.panel,
+      roughness: 0.86,
+      metalness: 0.02,
+      transparent: true,
+      opacity: 0.78,
+    });
+    for (const [index, z] of [-1.25, -0.55, 0.15, 0.85].entries()) {
+      const curb = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.10, 0.18), curbMaterial.clone());
+      curb.name = `Visual curb block ${index + 1}`;
+      curb.position.set(index % 2 === 0 ? -0.18 : 0.18, 0.055, z);
+      group.add(curb);
+    }
+
+    const barrierMaterial = new THREE.MeshStandardMaterial({
+      color: style.accent,
+      roughness: 0.62,
+      metalness: 0.10,
+      transparent: true,
+      opacity: 0.58,
+    });
+    for (const x of [-0.86, 0.86]) {
+      const barrier = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.30, 3.2), barrierMaterial.clone());
+      barrier.name = "Terrain side barrier";
+      barrier.position.set(x, 0.15, -0.15);
+      group.add(barrier);
+    }
+
+    const hazardMaterial = new THREE.MeshBasicMaterial({ color: style.accent, transparent: true, opacity: 0.64, side: THREE.DoubleSide });
+    for (const [index, z] of [-1.7, 1.35].entries()) {
+      const stripe = new THREE.Mesh(new THREE.PlaneGeometry(1.45, 0.06), hazardMaterial.clone());
+      stripe.name = `Terrain hazard stripe ${index + 1}`;
+      stripe.rotation.x = -Math.PI / 2;
+      stripe.rotation.z = index === 0 ? 0.18 : -0.18;
+      stripe.position.set(0, 0.032, z);
+      group.add(stripe);
+    }
+
+    const boundaryMaterial = new THREE.LineBasicMaterial({ color: style.marker, transparent: true, opacity: 0.46 });
+    for (const y of [0.18, 0.34]) {
+      const geometry = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(-0.86, y, -1.75),
+        new THREE.Vector3(0.86, y, -1.75),
+        new THREE.Vector3(0.86, y, 1.45),
+        new THREE.Vector3(-0.86, y, 1.45),
+        new THREE.Vector3(-0.86, y, -1.75),
+      ]);
+      const line = new THREE.Line(geometry, boundaryMaterial.clone());
+      line.name = "Terrain lane volume guide";
+      group.add(line);
+    }
+
     return group;
   }
 
