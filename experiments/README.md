@@ -133,6 +133,10 @@
 | 124 | [g1-ball-kick-contact-probe](124-g1-ball-kick-contact-probe/README.md) | M21 ball scene에서 실제 foot-ball contact, 공 이동, 방향 오차, 낙상 여부를 probe로 검증 | ✅ contact_frames 50, ball 1.305m, direction error 0.148rad, fall false |
 | 125 | [g1-crossing-leg-kick-feasibility](125-g1-crossing-leg-kick-feasibility/README.md) | M21 라보나 전 단계로 right-foot crossing-leg ball contact 가능성을 probe로 검증 | ✅ back_cross PASS: y 0.153m, contact 79, foot-foot 0, ball 2.242m, error 0.083rad |
 | 126 | [g1-ball-tap-learned-controller-gate](126-g1-ball-tap-learned-controller-gate/README.md) | M25 scripted ball tap을 trainable-controller native eval gate로 승격 | ✅ random-search controller PASS: contact 110, ball 5.583m, error 0.034rad, fall false |
+| 127 | [digital-twin-workbench-foundation](127-digital-twin-workbench-foundation/README.md) | M26 backend/controller evidence를 공개 MuJoCo twin workbench summary로 노출 | ✅ workbench summary PASS: telemetry sidecar + reference comparison gates |
+| 128 | [robotics-lab-ui-shell](128-robotics-lab-ui-shell/README.md) | M27 Vite/React/Tailwind/shadcn shell이 MuJoCo runtime과 QA를 보존하는지 검증 | ✅ ui-shell smoke PASS: desktop/mobile/workbench/favicon checks |
+| 129 | [digital-twin-lab-environment](129-digital-twin-lab-environment/README.md) | M28 environment preset과 grounding/physics summary를 UI/QA에 노출 | ✅ environment controls smoke PASS: flat/instrumented/rough presets |
+| 130 | [public-drift-audit](130-public-drift-audit/README.md) | M27/M28 이후 README/askewly/vault/live demo claim drift를 감사 | ✅ audit PASS_WITH_ACTION_ITEMS: live deploy stale + project copy stale, no real-telemetry overclaim |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

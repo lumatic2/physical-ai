@@ -1,0 +1,119 @@
+{
+  "id": "public-drift-audit-2026-06-26",
+  "milestone": "M29",
+  "checkedAt": "2026-06-26T02:12:36+09:00",
+  "verdict": "PASS_WITH_ACTION_ITEMS",
+  "summary": "Public drift exists mainly because robotics.askewly.com is serving the legacy static viewer while local M27/M28 evidence expects the Vite/React workbench and environment QA hooks. Askewly project copy is also stale about G1 squat status. No audited surface overclaims assisted fixture evidence as real robot telemetry.",
+  "sources": {
+    "localRepo": [
+      "README.md",
+      "docs/PRD.md",
+      "docs/ARCHITECTURE.md",
+      "experiments/03-digital-twin/web/README.md",
+      "experiments/128-robotics-lab-ui-shell/README.md",
+      "experiments/129-digital-twin-lab-environment/README.md"
+    ],
+    "publicUrls": [
+      "https://robotics.askewly.com/?exp=unitree-g1-elastic-stand",
+      "https://askewly.com/projects/physical-ai-arm",
+      "https://askewly.com/blog/robot-walk-qa-after-demo"
+    ],
+    "askewlySource": [
+      "C:/Users/yusun/projects/Askwely-company/web/src/lib/projects.ts",
+      "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/robot-walk-qa-after-demo.mdx",
+      "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx"
+    ],
+    "vault": [
+      "m4:~/vault/00-System/VAULT_INDEX.md",
+      "m4:~/vault/10-Resources/synthesis/2026-06-15-browser-robot-policy-runtime.md",
+      "m4:~/vault/10-Resources/10.10-Research/physical-ai/so100-digital-twin-stack-2026-06-12.md",
+      "m4:~/vault/40-Logs/2026-06-25.md"
+    ]
+  },
+  "liveRoboticsLab": {
+    "status": "drift",
+    "htmlEntrypoint": {
+      "title": "Robotics Lab - askewly",
+      "moduleScripts": [
+        "./src/main.js"
+      ],
+      "hasReactRoot": false,
+      "hasLegacyAppbody": true
+    },
+    "qaHooks": {
+      "qaWorkbenchSummary": false,
+      "qaEnvironmentSummary": false,
+      "setEnvironmentPreset": false
+    },
+    "visibleTextFindings": [
+      "Panel preserves assisted fixture boundary: not proof of an unassisted humanoid standing controller.",
+      "Panel still says G1 squat research is paused until visible-depth and no-fall gates both pass, which is stale after M19.",
+      "No visible M27/M28 environment controls were detected in the live text probe."
+    ],
+    "qaCommands": [
+      {
+        "command": "node qa/visual_check.mjs --live --exp=unitree-g1-elastic-stand --steps=1 --chunk=1",
+        "result": "PASS",
+        "details": "qpos[36], 100 frames, telemetry sidecar, consoleErrors=0"
+      },
+      {
+        "command": "node qa/workbench_check.mjs --live --exp=unitree-g1-elastic-stand",
+        "result": "TIMEOUT",
+        "details": "Timed out after 120s on live deploy; hook probe confirms qaWorkbenchSummary is absent."
+      },
+      {
+        "command": "node qa/environment_check.mjs --live --exp=unitree-g1-elastic-stand --preset=instrumented-lab --grounding=assisted",
+        "result": "TIMEOUT",
+        "details": "Timed out after 120s on live deploy; hook probe confirms qaEnvironmentSummary and setEnvironmentPreset are absent."
+      }
+    ]
+  },
+  "askewlyProjectPage": {
+    "status": "stale",
+    "publicUrl": "https://askewly.com/projects/physical-ai-arm",
+    "currentClaim": "G1 squat is still a micro-dip probe.",
+    "expectedClaim": "G1 squat has simulated WBC/browser replay evidence, while real robot telemetry remains future work.",
+    "risk": "A reviewer will think M19 is still pre-completion even though the repo closed M19 with simulated evidence."
+  },
+  "askewlyBlogRobotWalkQa": {
+    "status": "ok",
+    "publicUrl": "https://askewly.com/blog/robot-walk-qa-after-demo",
+    "finding": "The article frames robot walking QA generally and does not claim this project has current real-hardware logs."
+  },
+  "askewlyG1SquatBlog": {
+    "status": "ok",
+    "sourcePath": "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx",
+    "finding": "The post explicitly says the result is measured MuJoCo WBC trace and browser replay, not real Unitree G1 hardware telemetry."
+  },
+  "githubReadme": {
+    "status": "mostly_ok_stale",
+    "finding": "No real-robot telemetry overclaim found. Top-level wording still emphasizes gallery/policy platform more than M27/M28 workbench/environment controls."
+  },
+  "vault": {
+    "status": "stale_historical",
+    "access": "ssh m4 succeeded and VAULT_INDEX.md exists.",
+    "finding": "The physical-ai notes found are mostly M6/M12 era synthesis plus a 2026-06-25 daily log mentioning M28. No current public-facing M27/M28 synthesis was found."
+  },
+  "recommendedNextActions": [
+    {
+      "priority": "P0",
+      "action": "Deploy or verify the M27/M28 Vite/React Robotics Lab bundle to robotics.askewly.com.",
+      "verification": "node qa/workbench_check.mjs --live --exp=unitree-g1-elastic-stand && node qa/environment_check.mjs --live --exp=unitree-g1-elastic-stand --preset=instrumented-lab --grounding=assisted"
+    },
+    {
+      "priority": "P0",
+      "action": "Update Askewly project page copy from micro-dip status to simulated WBC/browser replay status with no-real-telemetry boundary.",
+      "verification": "Fetch https://askewly.com/projects/physical-ai-arm and grep for the updated G1 squat claim."
+    },
+    {
+      "priority": "P1",
+      "action": "Refresh vault physical-ai synthesis after live deployment is confirmed.",
+      "verification": "ssh m4 grep in the physical-ai vault folder shows current M27/M28 and M19 boundaries."
+    },
+    {
+      "priority": "P1",
+      "action": "Update top-level README framing from gallery/platform toward workbench/environment controls after live deploy.",
+      "verification": "README mentions workbench/environment controls without implying real robot telemetry."
+    }
+  ]
+}
