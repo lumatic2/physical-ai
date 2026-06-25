@@ -22,7 +22,7 @@ subprocess.run([npm_cmd, "run", "build"], cwd=ROOT, check=True)
 
 # Upload the Vite build output plus runtime files fetched by src/main.js at runtime.
 # Do not upload source modules; production must serve dist/index.html and hashed bundles.
-INCLUDE_EXT = {".html", ".js", ".css", ".json", ".xml", ".stl", ".obj", ".png", ".onnx", ".woff2", ".ico"}
+INCLUDE_EXT = {".html", ".js", ".css", ".json", ".xml", ".stl", ".obj", ".gltf", ".bin", ".png", ".onnx", ".woff2", ".ico"}
 RUNTIME_DIRS = {"assets"}
 RUNTIME_ROOT_FILES = {
     "experiments.json",
