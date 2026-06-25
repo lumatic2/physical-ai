@@ -1,0 +1,51 @@
+{
+  "milestone": "M31",
+  "title": "Physical Rough Terrain Scene - static audit",
+  "generated_at": "2026-06-25T19:53:33.008Z",
+  "claim_boundary": "Static audit only: proves bundled rough experiments point to MJCF scenes with box curb geoms. Browser model/runtime checks happen in Step 1.",
+  "results": [
+    {
+      "experiment": "g1-rough-walk",
+      "registry_scene": "g1/scene_g1_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    },
+    {
+      "experiment": "go1-rough-walk",
+      "registry_scene": "go1/scene_go1_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/go1/scene_go1_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    },
+    {
+      "experiment": "spot-rough-walk",
+      "registry_scene": "spot/scene_spot_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/spot/scene_spot_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    }
+  ],
+  "pass": true
+}
