@@ -84,6 +84,14 @@ export class MuJoCoDemo {
     this.labVisualLayer.name = "Lab Visual Layer";
     this.scene.add(this.labVisualLayer);
     this.appliedEnvironmentVisual = null;
+    this.labAssetLayerStatus = {
+      path: "assets/lab/lab_shell.gltf",
+      loaded: false,
+      loading: false,
+      objectCount: 0,
+      error: null,
+    };
+    this.labAssetLoadToken = 0;
 
     this.renderer = new THREE.WebGLRenderer( { antialias: true } );
     this.renderer.setPixelRatio(1.0);////window.devicePixelRatio );
@@ -438,6 +446,7 @@ export class MuJoCoDemo {
     this.spotlight.intensity = style.spot * Math.PI;
 
     this.labVisualLayer.add(this.createLabBackdrop(style));
+    this.loadAssetLabShell(style);
 
     const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
     grid.name = "Lab floor grid";
@@ -478,6 +487,65 @@ export class MuJoCoDemo {
       background: `#${style.background.toString(16).padStart(6, "0")}`,
       fog: { near: style.fogNear, far: style.fogFar },
     };
+  }
+
+  async loadAssetLabShell(style) {
+    const token = ++this.labAssetLoadToken;
+    const path = "assets/lab/lab_shell.gltf";
+    this.labAssetLayerStatus = {
+      path,
+      loaded: false,
+      loading: true,
+      objectCount: 0,
+      error: null,
+    };
+    try {
+      if (!this.labAssetLoader) {
+        const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+        this.labAssetLoader = new GLTFLoader();
+      }
+      const gltf = await this.labAssetLoader.loadAsync(path);
+      if (token !== this.labAssetLoadToken || !this.labVisualLayer) return;
+      const assetRoot = gltf.scene;
+      assetRoot.name = "Asset backed lab shell";
+      assetRoot.traverse((object) => {
+        if (!object.isMesh) return;
+        object.name = object.name || "Asset shell mesh";
+        object.castShadow = false;
+        object.receiveShadow = false;
+        if (object.material) {
+          object.material.transparent = true;
+          object.material.depthWrite = false;
+          object.material.opacity = Math.min(object.material.opacity ?? 1, 0.72);
+          if (object.material.color) {
+            object.material.color.lerp(new THREE.Color(style.panel), 0.18);
+          }
+        }
+      });
+      assetRoot.position.set(0, 0, 0);
+      assetRoot.scale.setScalar(1);
+      this.labVisualLayer.add(assetRoot);
+      const objectCount = assetRoot.children.length || 1;
+      this.labAssetLayerStatus = {
+        path,
+        loaded: true,
+        loading: false,
+        objectCount,
+        error: null,
+      };
+      this.dispatchEnvironmentChange();
+    } catch (error) {
+      if (token !== this.labAssetLoadToken) return;
+      this.labAssetLayerStatus = {
+        path,
+        loaded: false,
+        loading: false,
+        objectCount: 0,
+        error: String(error?.message || error),
+      };
+      console.warn("lab shell asset load failed", error);
+      this.dispatchEnvironmentChange();
+    }
   }
 
   createLabBackdrop(style) {
@@ -1691,6 +1759,7 @@ export class MuJoCoDemo {
       summary.changedRuntime = true;
     }
     summary.visualLayer = this.appliedEnvironmentVisual || null;
+    summary.assetLayer = this.labAssetLayerStatus || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
     summary.pass = Boolean(
       summary.preset &&
