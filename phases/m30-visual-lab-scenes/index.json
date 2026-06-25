@@ -13,7 +13,9 @@
     {
       "step": 1,
       "name": "visual-scene-evidence",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Created experiments/131-visual-lab-scenes README and verify/visual-lab-scenes-smoke.json. Evidence aggregates g1-walk workbench plus flat/instrumented/rough environment summaries, confirms distinct preset object sets, required scene objects, visualOnly=true, collision=none-threejs-only, changedRuntime=false, and records the M31 boundary for physical terrain.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     }
   ]
 }

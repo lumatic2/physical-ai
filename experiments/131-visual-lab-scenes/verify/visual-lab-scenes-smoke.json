@@ -1,0 +1,78 @@
+{
+  "milestone": "M30",
+  "title": "Visual Lab Scenes",
+  "generated_at": "2026-06-25T19:44:45.929Z",
+  "scope": "Procedural Three.js visual-only lab scenes for flat, instrumented, and rough terrain presets.",
+  "claim_boundary": "This evidence proves visible environment composition only. MuJoCo collision/contact/solver behavior remains unchanged; physical rough terrain is M31.",
+  "checks": {
+    "workbench_pass": true,
+    "distinct_preset_object_sets": true,
+    "required_scene_objects_present": true,
+    "visual_only_contract": true
+  },
+  "presets": {
+    "flat-lab": {
+      "pass": true,
+      "active_scene": "g1/scene_g1_policy.xml",
+      "claim_level": "visual+contract",
+      "visual_only": true,
+      "collision": "none-threejs-only",
+      "changed_runtime": false,
+      "objects": [
+        "Selectable lab backdrop",
+        "Lab floor grid",
+        "Lab origin axes",
+        "Calibration bay fixtures"
+      ]
+    },
+    "instrumented-lab": {
+      "pass": true,
+      "active_scene": "g1/scene_g1_policy.xml",
+      "claim_level": "visual+contract",
+      "visual_only": true,
+      "collision": "none-threejs-only",
+      "changed_runtime": false,
+      "objects": [
+        "Selectable lab backdrop",
+        "Lab floor grid",
+        "Lab origin axes",
+        "Lab height bands",
+        "Contact readout rails",
+        "Instrumented measurement bay"
+      ]
+    },
+    "rough-terrain": {
+      "pass": true,
+      "active_scene": "g1/scene_g1_rough.xml",
+      "claim_level": "scene-contract-pending",
+      "visual_only": true,
+      "collision": "none-threejs-only",
+      "changed_runtime": false,
+      "objects": [
+        "Selectable lab backdrop",
+        "Lab floor grid",
+        "Lab origin axes",
+        "Terrain test lane",
+        "Rough terrain test fixtures"
+      ]
+    }
+  },
+  "commands": [
+    "npm run build",
+    "node qa/workbench_check.mjs --exp=g1-walk",
+    "node qa/environment_check.mjs --exp=g1-walk --preset=flat-lab",
+    "node qa/environment_check.mjs --exp=g1-walk --preset=instrumented-lab",
+    "node qa/environment_check.mjs --exp=g1-rough-walk --preset=rough-terrain",
+    "Playwright local render smoke: preset switching, guiCount=0, no bottom hint, visualOnly=true, navCount=1"
+  ],
+  "artifacts": {
+    "screenshot_temp": "C:/Users/yusun/AppData/Local/Temp/robotics-m30-rough-terrain.png",
+    "source_summaries": [
+      "experiments/03-digital-twin/web/qa/out/g1-walk_workbench_summary.json",
+      "experiments/03-digital-twin/web/qa/out/g1-walk_flat-lab_environment_summary.json",
+      "experiments/03-digital-twin/web/qa/out/g1-walk_instrumented-lab_environment_summary.json",
+      "experiments/03-digital-twin/web/qa/out/g1-rough-walk_rough-terrain_environment_summary.json"
+    ]
+  },
+  "pass": true
+}
