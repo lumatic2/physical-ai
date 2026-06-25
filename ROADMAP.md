@@ -31,14 +31,16 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="M32" status="active" priority="P1" evidence="experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json" -->
+<!-- harness:milestone id="M32" status="completed" priority="P1" evidence="experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json" -->
 ### M32 - Asset-backed Lab Shell
 
 - DoD: lightweight GLB/glTF lab shell 또는 generated static asset을 lazy-load하고, bundle/performance/visual QA를 통과한다.
-- Evidence: `experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json`
+- Evidence: experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json
 - Gap: procedural primitives만으로는 실제 실험실 디테일과 브랜드 품질에 한계가 있다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-06-26
+- Summary: Robotics Lab now lazy-loads a local lightweight glTF lab shell asset into the visual layer with asset QA and chunk evidence.
 ## Next Candidates
 
 ## Guardrails
