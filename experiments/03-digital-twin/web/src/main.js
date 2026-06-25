@@ -230,7 +230,9 @@ export class MuJoCoDemo {
     }
 
     this.addControlHints();
-    this.addProjectOverlay();
+    if (!document.getElementById('ui-root')) {
+      this.addProjectOverlay();
+    }
     this.applyEnvironmentVisuals();
     this.dispatchEnvironmentChange();
   }
@@ -290,34 +292,43 @@ export class MuJoCoDemo {
 
     const styles = {
       "flat-lab": {
-        background: 0x25313a,
+        background: 0x1f2933,
         fogNear: 16,
         fogFar: 30,
         ambient: 0.46,
         spot: 26,
-        gridColor: 0x9ca3af,
-        accent: 0x38bdf8,
+        floor: 0x2c353d,
+        gridColor: 0xb8c0c8,
+        accent: 0x4fb3ff,
         marker: 0xffffff,
+        wall: 0x202832,
+        panel: 0x3b4650,
       },
       "instrumented-lab": {
-        background: 0x101820,
+        background: 0x0f171d,
         fogNear: 10,
         fogFar: 22,
         ambient: 0.34,
         spot: 34,
+        floor: 0x111c24,
         gridColor: 0x22d3ee,
         accent: 0xf59e0b,
         marker: 0x67e8f9,
+        wall: 0x101820,
+        panel: 0x164e63,
       },
       "rough-terrain": {
-        background: 0x202520,
+        background: 0x1f241f,
         fogNear: 14,
         fogFar: 28,
         ambient: 0.40,
         spot: 30,
+        floor: 0x24291f,
         gridColor: 0xa3e635,
         accent: 0xf97316,
         marker: 0xd9f99d,
+        wall: 0x20251d,
+        panel: 0x4d3d22,
       },
     };
     const style = styles[summary.preset] || styles["flat-lab"];
@@ -328,11 +339,13 @@ export class MuJoCoDemo {
     this.ambientLight.intensity = style.ambient * Math.PI;
     this.spotlight.intensity = style.spot * Math.PI;
 
+    this.labVisualLayer.add(this.createLabBackdrop(style));
+
     const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
     grid.name = "Lab floor grid";
-    grid.position.y = 0.002;
+    grid.position.y = 0.012;
     grid.material.transparent = true;
-    grid.material.opacity = summary.preset === "instrumented-lab" ? 0.30 : 0.18;
+    grid.material.opacity = summary.preset === "instrumented-lab" ? 0.38 : 0.26;
     this.labVisualLayer.add(grid);
 
     const axes = new THREE.AxesHelper(0.65);
@@ -358,6 +371,77 @@ export class MuJoCoDemo {
       background: `#${style.background.toString(16).padStart(6, "0")}`,
       fog: { near: style.fogNear, far: style.fogFar },
     };
+  }
+
+  createLabBackdrop(style) {
+    const group = new THREE.Group();
+    group.name = "Selectable lab backdrop";
+
+    const floorMaterial = new THREE.MeshStandardMaterial({
+      color: style.floor,
+      roughness: 0.78,
+      metalness: 0.02,
+      transparent: true,
+      opacity: 0.72,
+      depthWrite: false,
+    });
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), floorMaterial);
+    floor.name = "Matte visual floor overlay";
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = 0.006;
+    group.add(floor);
+
+    const wallMaterial = new THREE.MeshStandardMaterial({
+      color: style.wall,
+      roughness: 0.9,
+      metalness: 0.0,
+      transparent: true,
+      opacity: 0.82,
+      side: THREE.DoubleSide,
+    });
+    const backWall = new THREE.Mesh(new THREE.PlaneGeometry(8, 2.4), wallMaterial);
+    backWall.name = "Back lab wall";
+    backWall.position.set(-2.3, 1.2, -3.0);
+    backWall.rotation.y = Math.PI / 10;
+    group.add(backWall);
+
+    const sideWall = new THREE.Mesh(new THREE.PlaneGeometry(5, 2.0), wallMaterial.clone());
+    sideWall.name = "Side lab wall";
+    sideWall.position.set(-3.6, 1.0, -0.3);
+    sideWall.rotation.y = Math.PI / 2;
+    group.add(sideWall);
+
+    const panelMaterial = new THREE.MeshBasicMaterial({
+      color: style.panel,
+      transparent: true,
+      opacity: 0.42,
+      side: THREE.DoubleSide,
+    });
+    for (const [index, x] of [-1.8, -0.9, 0].entries()) {
+      const panel = new THREE.Mesh(new THREE.PlaneGeometry(0.55, 0.95), panelMaterial.clone());
+      panel.name = `Lab wall panel ${index + 1}`;
+      panel.position.set(x, 1.25, -2.985);
+      panel.rotation.y = Math.PI / 10;
+      group.add(panel);
+    }
+
+    const railMaterial = new THREE.LineBasicMaterial({
+      color: style.accent,
+      transparent: true,
+      opacity: 0.50,
+    });
+    const railGeometry = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(-3.4, 0.03, -1.2),
+      new THREE.Vector3(3.4, 0.03, -1.2),
+      new THREE.Vector3(3.4, 0.03, 1.2),
+      new THREE.Vector3(-3.4, 0.03, 1.2),
+      new THREE.Vector3(-3.4, 0.03, -1.2),
+    ]);
+    const rail = new THREE.Line(railGeometry, railMaterial);
+    rail.name = "Experiment boundary rail";
+    group.add(rail);
+
+    return group;
   }
 
   createHeightBands(color) {
