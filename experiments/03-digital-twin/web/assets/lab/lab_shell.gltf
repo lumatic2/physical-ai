@@ -1,0 +1,173 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "physical-ai M32 procedural asset generator"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Asset backed lab shell",
+      "mesh": 0
+    }
+  ],
+  "meshes": [
+    {
+      "name": "askewly_lab_shell_mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "extras": {
+            "name": "asset_back_wall",
+            "firstIndex": 0,
+            "indexCount": 36
+          }
+        },
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "extras": {
+            "name": "asset_side_wall",
+            "firstIndex": 36,
+            "indexCount": 36
+          }
+        },
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "extras": {
+            "name": "asset_ceiling_rail",
+            "firstIndex": 72,
+            "indexCount": 36
+          }
+        },
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "extras": {
+            "name": "asset_sensor_pod_left",
+            "firstIndex": 108,
+            "indexCount": 36
+          }
+        },
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 0,
+          "extras": {
+            "name": "asset_sensor_pod_right",
+            "firstIndex": 144,
+            "indexCount": 36
+          }
+        },
+        {
+          "attributes": {
+            "POSITION": 0
+          },
+          "indices": 1,
+          "material": 1,
+          "extras": {
+            "name": "asset_floor_plinth",
+            "firstIndex": 180,
+            "indexCount": 36
+          }
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "name": "lab_shell_wall",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.18,
+          0.22,
+          0.25,
+          0.62
+        ],
+        "metallicFactor": 0.05,
+        "roughnessFactor": 0.82
+      },
+      "alphaMode": "BLEND"
+    },
+    {
+      "name": "lab_shell_floor_plinth",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.12,
+          0.15,
+          0.16,
+          0.42
+        ],
+        "metallicFactor": 0.02,
+        "roughnessFactor": 0.9
+      },
+      "alphaMode": "BLEND"
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "lab_shell.bin",
+      "byteLength": 1008
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 576,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 576,
+      "byteLength": 432,
+      "target": 34963
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 48,
+      "type": "VEC3",
+      "min": [
+        -5.449999999999999,
+        0,
+        -3.19
+      ],
+      "max": [
+        2.1,
+        2.1,
+        1.7
+      ]
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5123,
+      "count": 216,
+      "type": "SCALAR"
+    }
+  ]
+}

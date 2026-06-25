@@ -1,0 +1,14 @@
+{
+  "asset": "lab_shell.gltf",
+  "buffer": "lab_shell.bin",
+  "generator": "procedural-local-node",
+  "purpose": "visual-only lab shell loaded by GLTFLoader into Lab Visual Layer",
+  "collision": "none-threejs-only",
+  "object_count": 6,
+  "files": {
+    "gltf_bytes": 3271,
+    "bin_bytes": 1008
+  },
+  "total_bytes": 4279,
+  "pass": true
+}
