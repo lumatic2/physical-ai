@@ -19,6 +19,7 @@
 5. Robotics Lab v2 UI: shadcn/ui + Tailwind 기반 app shell로 robot picker, evidence/workbench panels, environment controls, QA status를 재구성한다.
 6. Favicon/app icon: imagegen으로 생성한 project-bound icon을 `assets/favicon.png`와 필요한 sibling formats로 반영한다.
 7. Environment workbench: 실험실 배경, floor/terrain/environment preset, grounding/contact/physics knobs를 visitor-facing control로 노출한다.
+8. Environment realism ladder: visual-only lab scenes, physical rough terrain scene, asset-backed lab shell을 별도 milestone으로 분리해 claim level을 단계적으로 올린다.
 
 ## 범위
 
@@ -33,3 +34,6 @@
 - 기존 replay/policy visual QA가 깨지지 않는다.
 - M27: shadcn/Tailwind app shell에서 기존 MuJoCo scenes가 desktop/mobile Playwright QA를 통과하고 새 favicon이 로드된다.
 - M28: 최소 3개 environment preset과 grounding/physics setting summary가 visible UI + QA artifact로 검증된다.
+- M30: preset별 visual composition이 색/라인 차이를 넘어 공간 차이로 보이고, visual-only QA contract를 유지한다.
+- M31: rough terrain claim은 실제 contact-bearing scene variant와 QA evidence가 있을 때만 공개한다.
+- M32: GLB/glTF 또는 generated asset 기반 lab shell은 lazy-load/performance QA를 통과한 뒤 공개한다.

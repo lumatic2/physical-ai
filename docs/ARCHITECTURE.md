@@ -25,6 +25,8 @@
    - Stream mode applies WebSocket `physical-ai-stream-frame-v0`.
 4. Workbench layer: selected experiment metadata, state contract, evidence lanes, and current limit are exposed in DOM and `window.demo.qaWorkbenchSummary()`.
 5. Environment layer: environment preset, lab visual treatment, floor/terrain material, grounding assist/contact/friction/solver setting summary are exposed to UI and QA. If a control changes physics behavior, it must also record the selected values in a QA-readable summary.
+6. Visual scene layer: preset-specific Three.js primitives provide public-facing lab spaces without mutating MuJoCo collision, solver, or policy behavior.
+7. Asset scene layer: future GLB/glTF lab assets are lazy-loaded into the visual layer only after bundle/performance QA.
 
 ## Contracts
 
@@ -39,3 +41,4 @@
 - Assisted fixture evidence must not be described as real robot telemetry or unassisted controller proof.
 - Real robot secrets, DDS network settings, or hardware-only assumptions must not be baked into public static assets.
 - Do not combine React/shadcn migration and physics/contact algorithm changes in one step. First preserve current QA, then expose environment controls, then tune physics.
+- Visual lab realism (M30) must stay Three.js-only and `visualOnly=true`; physical terrain claims start at M31.

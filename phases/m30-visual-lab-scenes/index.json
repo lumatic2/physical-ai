@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m30-visual-lab-scenes",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "procedural-lab-scene-composition",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "visual-scene-evidence",
+      "status": "pending"
+    }
+  ]
+}

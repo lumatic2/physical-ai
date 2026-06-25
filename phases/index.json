@@ -10,6 +10,10 @@
     },
     {
       "dir": "m28-digital-twin-lab-environment",
+      "status": "completed"
+    },
+    {
+      "dir": "m30-visual-lab-scenes",
       "status": "pending"
     }
   ]
