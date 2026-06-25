@@ -1,0 +1,56 @@
+{
+  "milestone": "M32",
+  "title": "Asset-backed Lab Shell",
+  "generated_at": "2026-06-25T20:02:51.191Z",
+  "scope": "A local lightweight glTF lab shell asset is lazy-loaded into the visual layer and reported in QA summary.",
+  "claim_boundary": "This is an asset-backed visual shell, not photorealistic reconstruction and not MuJoCo collision geometry.",
+  "checks": {
+    "asset_manifest_pass": true,
+    "asset_budget": true,
+    "asset_qa_pass": true,
+    "lazy_loader_chunk_present": true,
+    "visual_only_contract": true
+  },
+  "asset_manifest": {
+    "asset": "lab_shell.gltf",
+    "buffer": "lab_shell.bin",
+    "generator": "procedural-local-node",
+    "purpose": "visual-only lab shell loaded by GLTFLoader into Lab Visual Layer",
+    "collision": "none-threejs-only",
+    "object_count": 6,
+    "files": {
+      "gltf_bytes": 3271,
+      "bin_bytes": 1008
+    },
+    "total_bytes": 4279,
+    "pass": true
+  },
+  "qa_summary": {
+    "experiment": "g1-walk",
+    "preset": "flat-lab",
+    "assetLayer": {
+      "path": "assets/lab/lab_shell.gltf",
+      "loaded": true,
+      "loading": false,
+      "objectCount": 1,
+      "error": null
+    },
+    "visualCollision": "none-threejs-only",
+    "pass": true
+  },
+  "dist_chunks": {
+    "index": {
+      "name": "index-KO1hBB7B.js",
+      "bytes": 382065
+    },
+    "gltf_loader": {
+      "name": "GLTFLoader-D6IPLV_U.js",
+      "bytes": 44317
+    }
+  },
+  "commands": [
+    "npm run build",
+    "node qa/asset_shell_check.mjs --exp=g1-walk --preset=flat-lab"
+  ],
+  "pass": true
+}

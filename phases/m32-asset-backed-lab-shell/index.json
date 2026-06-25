@@ -20,7 +20,9 @@
     {
       "step": 2,
       "name": "asset-shell-evidence",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Created experiments/133-asset-backed-lab-shell README and verify/asset-lab-shell-smoke.json. Evidence records asset manifest pass, 4.3KB local glTF/bin budget, asset shell QA pass, visual-only contract, and Vite chunk split with GLTFLoader in a separate chunk.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     }
   ]
 }
