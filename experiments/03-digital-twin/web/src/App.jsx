@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { Activity, Bot, Boxes, ChevronRight, FlaskConical } from "lucide-react";
+import { Bot, ChevronRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,14 +22,14 @@ const ROBOTS = [
     id: "unitree-g1",
     name: "Unitree G1 휴머노이드",
     kind: "휴머노이드",
-    description: "29자유도 전신 로봇입니다. 보행, 자세 전환, 백엔드 trace 검증을 한 로봇 안에서 비교합니다.",
+    description: "29자유도 전신 로봇입니다. 보행, 자세 전환, 시뮬레이터에서 만든 동작 기록을 한 로봇 안에서 비교합니다.",
     experiments: [
-      { key: "unitree-g1-elastic-stand", name: "보조 fixture 직립", description: "Unitree MuJoCo elastic-band 지원 trace를 브라우저에서 재생합니다." },
-      { key: "g1-decoupled-wbc-squat", name: "WBC 스쿼트 재생", description: "측정된 Decoupled WBC squat trace를 자세 깊이 gate와 함께 봅니다." },
-      { key: "g1-squat-reference-vs-wbc", name: "기준 동작 vs 측정 rollout", description: "컴파일된 squat reference와 측정 WBC rollout을 비교합니다." },
+      { key: "unitree-g1-elastic-stand", name: "보조 장치 직립", description: "탄성 밴드로 넘어짐을 보조한 G1 직립 동작을 브라우저에서 재생합니다." },
+      { key: "g1-decoupled-wbc-squat", name: "WBC 스쿼트 재생", description: "시뮬레이터에서 측정한 G1 스쿼트 동작을 자세 변화와 함께 봅니다." },
+      { key: "g1-squat-reference-vs-wbc", name: "기준 동작 vs 측정 동작", description: "의도한 스쿼트 기준 동작과 실제 시뮬레이션 동작이 얼마나 다른지 비교합니다." },
       { key: "g1-walk", name: "학습 보행 정책", description: "브라우저에서 닫힌루프 joystick 보행 정책을 실행합니다." },
       { key: "g1-rough-walk", name: "거친 지형 보행", description: "낮은 curb terrain에서 보행 정책의 강건성을 확인합니다." },
-      { key: "unitree-g1-headless", name: "백엔드 bridge trace", description: "공식 Unitree MuJoCo headless trace를 viewer 계약으로 연결합니다." },
+      { key: "unitree-g1-headless", name: "시뮬레이터 연결 점검", description: "공식 Unitree MuJoCo에서 만든 동작 기록이 이 화면에 제대로 연결되는지 확인합니다." },
       { key: "g1-controlled-squat", name: "얕은 lowering probe", description: "실패 사례에 가까운 micro-dip probe입니다. squat 성공으로 표시하지 않습니다." },
       { key: "g1-stand", name: "모델 직립 settle", description: "G1 모델 로드와 물리 settle 상태를 확인합니다." },
     ],
@@ -41,17 +41,17 @@ const ROBOTS = [
     description: "12개 actuator를 가진 4족 로봇입니다. 평지 보행과 rough terrain 보행을 비교합니다.",
     experiments: [
       { key: "go1-walk", name: "평지 보행 정책", description: "학습된 Go1 joystick 보행 정책을 실행합니다." },
-      { key: "go1-rough-walk", name: "거친 지형 보행", description: "curb terrain에서 command robustness를 확인합니다." },
+      { key: "go1-rough-walk", name: "거친 지형 보행", description: "낮은 턱이 있는 지형에서 보행 명령을 버티는지 확인합니다." },
     ],
   },
   {
     id: "spot",
     name: "Boston Dynamics Spot",
     kind: "4족 보행",
-    description: "Spot 형상 모델입니다. 보행 정책, rough terrain, settle baseline을 나눠 봅니다.",
+    description: "Spot 형상 모델입니다. 보행 정책, 거친 지형, 기본 자세 확인을 나눠 봅니다.",
     experiments: [
       { key: "spot-walk", name: "평지 보행 정책", description: "Spot closed-loop 보행 정책을 실행합니다." },
-      { key: "spot-rough-walk", name: "거친 지형 보행", description: "curb terrain에서 command sweep evidence를 확인합니다." },
+      { key: "spot-rough-walk", name: "거친 지형 보행", description: "낮은 턱이 있는 지형에서 여러 보행 명령을 확인합니다." },
       { key: "spot-stand", name: "모델 직립 settle", description: "Spot 모델 로드와 settle baseline입니다." },
     ],
   },
@@ -107,6 +107,15 @@ const GROUNDING_LABELS = {
   "assisted-fixture": "보조 fixture",
   "physics-contact": "물리 접촉",
   "controller-backed": "controller 근거",
+};
+
+const EVIDENCE_LABELS = {
+  "closed-loop policy": "학습 정책 실행",
+  "qpos replay": "시뮬레이션 동작 재생",
+  "telemetry sidecar": "상태 기록 포함",
+  "reference compare": "기준 동작과 비교",
+  "live stream": "실시간 스트림",
+  teleop: "직접 조작 가능",
 };
 
 function findRobotForExperiment(expName) {
@@ -168,7 +177,6 @@ function App() {
   const summary = state?.summary || {};
   const environment = state?.environment || summary.environment || {};
   const lanes = summary.evidenceLanes || [];
-  const contract = summary.stateContract || {};
   const presets = Object.values(ENVIRONMENT_PRESETS);
   const selectedRobot = findRobotForExperiment(state?.expName);
   const selectedAction = selectedRobot.experiments.find((experiment) => experiment.key === state?.expName);
@@ -205,16 +213,26 @@ function App() {
                   </CardDescription>
                 </div>
               </div>
-              <Badge variant="secondary" className="max-w-32 shrink-0 truncate">
-                {summary.runtime || "loading"}
-              </Badge>
             </div>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="grid grid-cols-3 gap-2">
-              <Metric icon={Activity} label="State" value={contract.nq ? `qpos[${contract.nq}]` : "loading"} />
-              <Metric icon={Boxes} label="Frames" value={contract.frames ? String(contract.frames) : "live"} />
-              <Metric icon={FlaskConical} label="Gate" value={summary.gate || "pending"} />
+            <div className="rounded-lg border border-border bg-card/70 p-3">
+              <div className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
+                지금 보는 것
+              </div>
+              <div className="mt-1 text-sm font-medium text-foreground">
+                {selectedRobot.name}
+              </div>
+              <div className="mt-0.5 text-sm text-muted-foreground">
+                {selectedAction?.name || "행동을 준비하는 중"}
+              </div>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {(lanes.length ? lanes : ["시뮬레이션 준비 중"]).map((lane) => (
+                  <Badge key={lane} variant="outline">
+                    {EVIDENCE_LABELS[lane] || lane}
+                  </Badge>
+                ))}
+              </div>
             </div>
 
             <Separator />
@@ -222,9 +240,9 @@ function App() {
             <section className="flex flex-col gap-2">
               <div className="flex items-center justify-between gap-2">
                 <h2 className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  배경 선택
+                  실험실 배경
                 </h2>
-                <Badge variant="outline">{environment.claimLevel || "contract"}</Badge>
+                <Badge variant="outline">{ENVIRONMENT_LABELS[environment.preset]?.name || "선택 가능"}</Badge>
               </div>
               <div className="grid grid-cols-3 gap-1.5">
                 {presets.map((preset) => (
@@ -244,44 +262,32 @@ function App() {
                   </Button>
                 ))}
               </div>
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
-                  <div className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
-                    Grounding
+              <details className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground">
+                <summary className="cursor-pointer font-medium text-foreground">검증 기준 보기</summary>
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  <div>
+                    <span className="block text-[0.68rem] uppercase tracking-wide">시뮬레이션 방식</span>
+                    <span>{GROUNDING_LABELS[environment.groundingMode] || environment.groundingControl?.shortLabel || "준비 중"}</span>
                   </div>
-                  <div className="truncate font-medium text-foreground">
-                    {GROUNDING_LABELS[environment.groundingMode] || environment.groundingControl?.shortLabel || environment.groundingMode || "loading"}
-                  </div>
-                </div>
-                <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
-                  <div className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
-                    Contact
-                  </div>
-                  <div className="truncate font-medium text-foreground">
-                    {environment.contactProfile?.intent || "scene-default"}
+                  <div>
+                    <span className="block text-[0.68rem] uppercase tracking-wide">접촉 조건</span>
+                    <span>{environment.contactProfile?.intent || "scene 기본값"}</span>
                   </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-1.5">
-                {groundingModes.map((mode) => (
-                  <Button
-                    key={mode.id}
-                    type="button"
-                    variant={mode.id === environment.groundingMode ? "secondary" : "outline"}
-                    className="h-auto min-h-9 px-2 py-1.5 text-xs"
-                    onClick={() => selectGroundingMode(mode.id)}
-                  >
-                    <span className="truncate">{GROUNDING_LABELS[mode.id] || mode.shortLabel}</span>
-                  </Button>
-                ))}
-              </div>
-              <div className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground">
-                <span className="font-medium text-foreground">
-                  {environment.groundingControl?.claimLevel || "claim pending"}
-                </span>
-                {" · "}
-                {environment.groundingControl?.evidenceRequired || "Evidence summary pending."}
-              </div>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {groundingModes.map((mode) => (
+                    <Button
+                      key={mode.id}
+                      type="button"
+                      variant={mode.id === environment.groundingMode ? "secondary" : "outline"}
+                      className="h-auto min-h-8 px-2 py-1 text-xs"
+                      onClick={() => selectGroundingMode(mode.id)}
+                    >
+                      <span className="truncate">{GROUNDING_LABELS[mode.id] || mode.shortLabel}</span>
+                    </Button>
+                  ))}
+                </div>
+              </details>
             </section>
 
             <Separator />
@@ -332,7 +338,6 @@ function App() {
                     <span className="flex min-w-0 flex-col gap-1">
                       <span className="text-sm font-medium leading-tight">{experiment.name}</span>
                       <span className="text-xs leading-tight text-muted-foreground">{experiment.description}</span>
-                      <span className="text-[0.68rem] leading-tight text-muted-foreground">{experiment.key}</span>
                     </span>
                     <ChevronRight aria-hidden="true" className="mt-0.5 shrink-0" data-icon="inline-end" />
                   </Button>
@@ -363,7 +368,7 @@ function App() {
               <div className="flex flex-wrap gap-1.5">
                 {lanes.slice(0, 2).map((lane) => (
                   <Badge key={lane} variant="outline">
-                    {lane}
+                    {EVIDENCE_LABELS[lane] || lane}
                   </Badge>
                 ))}
               </div>
@@ -372,38 +377,26 @@ function App() {
             <section className="hidden flex-col gap-3 md:flex">
               <div>
                 <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                  Workbench evidence
+                  동작 설명
                 </div>
                 <p className="mt-1 line-clamp-3 text-sm leading-5 text-foreground md:line-clamp-none">
-                  {meta.description || summary.title || "Loading selected experiment."}
+                  {selectedAction?.description || meta.description || "선택한 로봇 행동을 준비하는 중입니다."}
                 </p>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {lanes.map((lane) => (
                   <Badge key={lane} variant="outline">
-                    {lane}
+                    {EVIDENCE_LABELS[lane] || lane}
                   </Badge>
                 ))}
               </div>
               <div className="rounded-lg border border-border bg-card/70 p-3 text-xs leading-5 text-muted-foreground">
-                {meta.limit || summary.limit || "No limit summary loaded yet."}
+                {meta.limit || summary.limit || "이 화면은 실제 로봇 영상이 아니라 브라우저에서 실행되는 MuJoCo 디지털 트윈입니다."}
               </div>
             </section>
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
-}
-
-function Metric({ icon: Icon, label, value }) {
-  return (
-    <div className="min-w-0 rounded-lg border border-border bg-card/70 p-2">
-      <div className="mb-1 flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
-        <Icon aria-hidden="true" />
-        <span>{label}</span>
-      </div>
-      <div className="truncate text-sm font-medium text-foreground">{value}</div>
     </div>
   );
 }
