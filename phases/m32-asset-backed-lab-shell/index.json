@@ -13,7 +13,9 @@
     {
       "step": 1,
       "name": "lazy-loaded-lab-shell",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Added dynamic GLTFLoader-based lab shell loading in main.js plus qa/asset_shell_check.mjs. Asset loads from assets/lab/lab_shell.gltf into the Lab Visual Layer without blocking the MuJoCo scene; qaEnvironmentSummary().assetLayer reports loaded/path/objectCount/error. Build split GLTFLoader into its own chunk and asset_shell_check passed for g1-walk flat-lab.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     },
     {
       "step": 2,
