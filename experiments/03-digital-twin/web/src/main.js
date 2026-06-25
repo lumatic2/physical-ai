@@ -126,21 +126,97 @@ export class MuJoCoDemo {
     const params = new URLSearchParams(location.search);
     const expName = params.get("exp") || registry.default;
     this.environmentPresetId = normalizeEnvironmentPresetId(params.get("env") || DEFAULT_ENVIRONMENT_PRESET);
-    const exp = registry.experiments[expName] || registry.experiments[registry.default];
     this.registry = registry;
-    this.expName = registry.experiments[expName] ? expName : registry.default;
-    this.exp = exp;
     this.requestedGroundingMode = params.get("grounding") || null;
+    this.streamUrl = params.get("stream");
+    await this.switchExperiment(expName, { updateUrl: false, initial: true });
+  }
+
+  cleanupExperimentRuntime() {
+    this.isSwitchingExperiment = true;
+    this.params.policyRunning = false;
+    this.policyRunId = (this.policyRunId || 0) + 1;
+    if (this.streamSocket) {
+      try { this.streamSocket.close(); } catch {}
+      this.streamSocket = null;
+    }
+    if (this.gui) {
+      try { this.gui.destroy(); } catch {}
+      this.gui = null;
+    }
+    if (this.controlHintEl) {
+      this.controlHintEl.remove();
+      this.controlHintEl = null;
+    }
+    const root = this.scene.getObjectByName("MuJoCo Root");
+    if (root) {
+      root.traverse((object) => {
+        object.geometry?.dispose?.();
+        if (Array.isArray(object.material)) {
+          object.material.forEach((material) => material.dispose?.());
+        } else {
+          object.material?.dispose?.();
+        }
+      });
+      this.scene.remove(root);
+    }
+    this.policy = null;
+    this.pol = null;
+    this.session = null;
+    this.replayQpos = null;
+    this.replayN = null;
+    this.telemetry = null;
+    this.compare = null;
+    this.teleopCfg = null;
+    this.tele = null;
+    this.streamFrame = null;
+    this.streamStats = null;
+    this.cmdControllers = null;
+  }
+
+  async switchExperiment(expName, options = {}) {
+    const registry = this.registry;
+    if (!registry?.experiments) throw new Error("experiment registry not loaded");
+    const nextName = registry.experiments[expName] ? expName : registry.default;
+    const exp = registry.experiments[nextName];
+    const previousName = this.expName;
+    const switchingScene = !options.initial;
+
+    if (switchingScene) {
+      this.cleanupExperimentRuntime();
+      window.dispatchEvent(new CustomEvent('robotics-lab-experiment-change', {
+        detail: { phase: 'loading', experiment: nextName, previous: previousName },
+      }));
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    }
+
+    if (options.updateUrl !== false) {
+      const next = new URL(window.location.href);
+      next.searchParams.set("exp", nextName);
+      window.history.pushState({ exp: nextName }, "", next.toString());
+    }
+
+    this.expName = nextName;
+    this.exp = exp;
+    this.currentMeta = null;
     this.groundingMode = normalizeGroundingMode(
       this.requestedGroundingMode || inferGroundingModeFromExperiment(exp),
       ENVIRONMENT_PRESETS[this.environmentPresetId].grounding.allowedModes,
       ENVIRONMENT_PRESETS[this.environmentPresetId].grounding.defaultMode,
     );
+    this.params = {
+      scene: exp.scene,
+      paused: false,
+      help: false,
+      ctrlnoiserate: 0.0,
+      ctrlnoisestd: 0.0,
+      keyframeNumber: 0,
+      replay: true,
+      policyRunning: false,
+    };
 
-    const startScene = exp.scene;
-    this.params.scene = startScene;
     [this.model, this.data, this.bodies, this.lights] =
-      await loadSceneFromURL(mujoco, startScene, this);
+      await loadSceneFromURL(mujoco, exp.scene, this);
 
     // Frame the camera from the experiment config (workspace centroid + pull-back offset,
     // scaled on narrow/portrait viewports since three.js fov is vertical).
@@ -226,7 +302,7 @@ export class MuJoCoDemo {
       this.teleopCfg = exp.teleop ? { ee_body: exp.ee_body } : null;
       if (this.teleopCfg) { this.initTeleop(); }
       const streamUrl = new URLSearchParams(location.search).get("stream");
-      if (streamUrl) { this.initTelemetryStream(streamUrl); }
+      if (this.streamUrl || streamUrl) { this.initTelemetryStream(this.streamUrl || streamUrl); }
     }
 
     this.addControlHints();
@@ -235,6 +311,11 @@ export class MuJoCoDemo {
     }
     this.applyEnvironmentVisuals();
     this.dispatchEnvironmentChange();
+    this.isSwitchingExperiment = false;
+    window.dispatchEvent(new CustomEvent('robotics-lab-experiment-change', {
+      detail: { phase: 'ready', experiment: this.expName, previous: previousName },
+    }));
+    return this.qaWorkbenchSummary();
   }
 
   setEnvironmentPreset(id) {
@@ -1449,6 +1530,7 @@ export class MuJoCoDemo {
       lines.push('🤏 Teleop 켠 뒤 ' + (coarse ? '끌기' : '드래그') + ' = 팔 끝 IK 조종');
     }
     hint.innerHTML = lines.join('<br>');
+    this.controlHintEl = hint;
     this.container.appendChild(hint);
   }
 
@@ -1591,7 +1673,8 @@ export class MuJoCoDemo {
 
     this.session = await this.ort.InferenceSession.create(this.pol.onnx);
     this.params.policyRunning = true;
-    this.runPolicyLoop();
+    const runId = this.policyRunId || 0;
+    this.runPolicyLoop(runId);
   }
 
   // Interactive joystick: bind the velocity command [vx, vy, vyaw] to GUI sliders. This is a
@@ -1726,9 +1809,9 @@ export class MuJoCoDemo {
     }
   }
 
-  async runPolicyLoop() {
+  async runPolicyLoop(runId = this.policyRunId || 0) {
     const p = this.pol, nsub = p.n_substeps;
-    while (this.params.policyRunning) {
+    while (this.params.policyRunning && runId === (this.policyRunId || 0)) {
       const t0 = performance.now();
       if (!this.params.paused) {
         await this.computeAndApplyAction();

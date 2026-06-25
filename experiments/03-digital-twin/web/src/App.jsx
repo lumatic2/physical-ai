@@ -143,15 +143,10 @@ function readDemoState() {
   };
 }
 
-function navigateTo(expName) {
-  const next = new URL(window.location.href);
-  next.searchParams.set("exp", expName);
-  window.location.href = next.toString();
-}
-
 function App() {
   const [registry, setRegistry] = React.useState(null);
   const [state, setState] = React.useState(() => readDemoState());
+  const [loadingExperiment, setLoadingExperiment] = React.useState(null);
 
   React.useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -164,10 +159,26 @@ function App() {
     refresh();
     window.addEventListener("robotics-lab-ready", refresh);
     window.addEventListener("robotics-lab-environment-change", refresh);
+    window.addEventListener("robotics-lab-experiment-change", refresh);
+    const handleExperimentChange = (event) => {
+      setLoadingExperiment(event.detail?.phase === "loading" ? event.detail.experiment : null);
+      refresh();
+    };
+    const handlePopState = () => {
+      const expName = new URLSearchParams(window.location.search).get("exp");
+      if (expName && window.demo?.switchExperiment) {
+        void window.demo.switchExperiment(expName, { updateUrl: false });
+      }
+    };
+    window.addEventListener("robotics-lab-experiment-change", handleExperimentChange);
+    window.addEventListener("popstate", handlePopState);
     const timer = window.setInterval(refresh, 500);
     return () => {
       window.removeEventListener("robotics-lab-ready", refresh);
       window.removeEventListener("robotics-lab-environment-change", refresh);
+      window.removeEventListener("robotics-lab-experiment-change", refresh);
+      window.removeEventListener("robotics-lab-experiment-change", handleExperimentChange);
+      window.removeEventListener("popstate", handlePopState);
       window.clearInterval(timer);
     };
   }, []);
@@ -194,6 +205,21 @@ function App() {
     const result = window.demo?.setGroundingMode?.(id);
     setState(readDemoState());
     return result;
+  }
+
+  function navigateTo(expName) {
+    if (expName === state?.expName || loadingExperiment) return;
+    if (window.demo?.switchExperiment) {
+      setLoadingExperiment(expName);
+      void window.demo.switchExperiment(expName).catch((error) => {
+        console.error("experiment switch failed", error);
+        setLoadingExperiment(null);
+      });
+      return;
+    }
+    const next = new URL(window.location.href);
+    next.searchParams.set("exp", expName);
+    window.location.href = next.toString();
   }
 
   return (
@@ -224,7 +250,7 @@ function App() {
                 {selectedRobot.name}
               </div>
               <div className="mt-0.5 text-sm text-muted-foreground">
-                {selectedAction?.name || "행동을 준비하는 중"}
+                {loadingExperiment ? "새 행동을 불러오는 중" : (selectedAction?.name || "행동을 준비하는 중")}
               </div>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {(lanes.length ? lanes : ["시뮬레이션 준비 중"]).map((lane) => (
@@ -309,6 +335,7 @@ function App() {
                       type="button"
                       variant={robot.id === selectedRobot.id ? "secondary" : "outline"}
                       className="h-auto min-h-16 items-start justify-start px-2 py-2 text-left whitespace-normal"
+                      disabled={Boolean(loadingExperiment)}
                       onClick={() => navigateTo(firstAvailable.key)}
                     >
                       <span className="min-w-0">
@@ -333,11 +360,14 @@ function App() {
                     type="button"
                     variant={experiment.key === state?.expName ? "secondary" : "ghost"}
                     className="h-auto justify-between gap-3 px-2 py-2 text-left whitespace-normal"
+                    disabled={Boolean(loadingExperiment)}
                     onClick={() => navigateTo(experiment.key)}
                   >
                     <span className="flex min-w-0 flex-col gap-1">
                       <span className="text-sm font-medium leading-tight">{experiment.name}</span>
-                      <span className="text-xs leading-tight text-muted-foreground">{experiment.description}</span>
+                      <span className="text-xs leading-tight text-muted-foreground">
+                        {loadingExperiment === experiment.key ? "전체 페이지를 새로 열지 않고 scene만 교체합니다." : experiment.description}
+                      </span>
                     </span>
                     <ChevronRight aria-hidden="true" className="mt-0.5 shrink-0" data-icon="inline-end" />
                   </Button>
