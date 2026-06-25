@@ -6,7 +6,9 @@
     {
       "step": 0,
       "name": "lab-shell-asset-contract",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Generated local visual-only lab shell asset under experiments/03-digital-twin/web/assets/lab: lab_shell.gltf + lab_shell.bin + lab_shell_manifest.json. Manifest passes with object_count=6 and total_bytes=4279, collision=none-threejs-only, no external CDN dependency.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     },
     {
       "step": 1,
