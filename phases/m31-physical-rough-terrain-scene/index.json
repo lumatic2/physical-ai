@@ -13,7 +13,9 @@
     {
       "step": 1,
       "name": "rough-preset-scene-routing",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Added rough terrain scene routing and QA. Rough experiments now default to rough-terrain when no env override exists, rough preset selection routes the selected robot to its rough action in-app, qaEnvironmentSummary records contact-bearing terrain geoms from the active MuJoCo model, and qa/terrain_scene_check.mjs passed for g1/go1/spot rough scenes. Playwright click smoke confirmed g1-walk -> rough preset -> g1-rough-walk with navCount=1 and curb_1..3.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     },
     {
       "step": 2,
