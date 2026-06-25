@@ -1,0 +1,34 @@
+{
+  "id": "public-drift-remediation-2026-06-26",
+  "sourceAudit": "experiments/130-public-drift-audit/verify/public-drift-audit.json",
+  "checkedAt": "2026-06-26T02:31:00+09:00",
+  "verdict": "PASS",
+  "roboticsAskewly": {
+    "deploymentId": "dpl_7CXXo23RRcHEf9hgyjHP2v9aKFov",
+    "url": "https://robotics.askewly.com",
+    "entryCheck": "PASS: live HTML references Vite /assets/index-* bundle and ui-root",
+    "qa": [
+      {
+        "command": "node qa/workbench_check.mjs --live --exp=unitree-g1-elastic-stand",
+        "result": "PASS"
+      },
+      {
+        "command": "node qa/environment_check.mjs --live --exp=unitree-g1-elastic-stand --preset=instrumented-lab --grounding=assisted",
+        "result": "PASS"
+      },
+      {
+        "command": "node qa/visual_check.mjs --live --exp=unitree-g1-elastic-stand --steps=1 --chunk=1",
+        "result": "PASS"
+      }
+    ]
+  },
+  "askewlyProjectPage": {
+    "deployment": "Cloudflare Workers askewly-company version 806858fd-5ebb-44f4-b44a-dd4e3a60d08c",
+    "url": "https://askewly.com/projects/physical-ai-arm",
+    "copyCheck": "PASS: live page mentions Robotics Lab workbench, measured MuJoCo WBC trace, browser replay QA, and separates real Unitree G1 telemetry/hardware success as future work."
+  },
+  "remaining": [
+    "Optional: refresh vault physical-ai synthesis after this deploy.",
+    "Optional: update top-level physical-ai README framing toward workbench/environment controls."
+  ]
+}
