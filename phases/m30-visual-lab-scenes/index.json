@@ -6,7 +6,9 @@
     {
       "step": 0,
       "name": "procedural-lab-scene-composition",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Added preset-specific Three.js visual-only scene compositions under Lab Visual Layer: flat-lab now has calibration seams/posts/stripes, instrumented-lab has gantry sensors/monitors/cables, and rough-terrain has visual curb blocks/barriers/hazard stripes. Verified npm build, g1-walk workbench, flat/instrumented/rough environment checks, and Playwright render smoke with guiCount=0, no bottom hint, distinct object sets, visualOnly=true, collision=none-threejs-only.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     },
     {
       "step": 1,
