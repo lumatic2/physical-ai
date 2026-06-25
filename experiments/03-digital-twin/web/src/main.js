@@ -31,6 +31,7 @@ export class MuJoCoDemo {
     this.tmpVec  = new THREE.Vector3();
     this.tmpQuat = new THREE.Quaternion();
     this.updateGUICallbacks = [];
+    this.showDebugControls = new URLSearchParams(window.location.search).get("debug") === "1";
 
     this.container = document.createElement( 'div' );
     document.body.appendChild( this.container );
@@ -172,6 +173,7 @@ export class MuJoCoDemo {
     this.streamFrame = null;
     this.streamStats = null;
     this.cmdControllers = null;
+    this.replayToggle = null;
   }
 
   async switchExperiment(expName, options = {}) {
@@ -238,9 +240,13 @@ export class MuJoCoDemo {
     this.policy = exp.policy || null;
     if (this.policy) {
       await this.initPolicy();
-      this.gui = new GUI();
-      setupGUI(this);
-      this.addCommandGUI();
+      if (this.showDebugControls) {
+        this.gui = new GUI();
+        setupGUI(this);
+        this.addCommandGUI();
+      } else {
+        this.bindCommandKeys(this.pol.cmdRange || { vx: [-1.0, 1.5], vy: [-0.8, 0.8], vyaw: [-1.5, 1.5] });
+      }
     } else {
       // (B) replay: NOTE the 'home' keyframe may pad free-joints to the origin, so we
       // seed from trajectory frame 0.
@@ -291,21 +297,25 @@ export class MuJoCoDemo {
         maxHeight: null,
       };
 
-      this.gui = new GUI();
-      setupGUI(this);
-      // Replay toggle — default on. Off hands control back to physics + drag.
-      this.replayToggle = this.gui.add(this.params, 'replay').name('▶ Replay (grab to take over)').onChange((v) => {
-        this.replayStartMS = null;
-        if (!v) { this.seedFrame(0); }
-      });
+      if (this.showDebugControls) {
+        this.gui = new GUI();
+        setupGUI(this);
+        // Replay toggle — default on. Off hands control back to physics + drag.
+        this.replayToggle = this.gui.add(this.params, 'replay').name('▶ Replay (grab to take over)').onChange((v) => {
+          this.replayStartMS = null;
+          if (!v) { this.seedFrame(0); }
+        });
+      }
       // (C) EE teleop for fixed-base arms (experiments.json `teleop: true`).
       this.teleopCfg = exp.teleop ? { ee_body: exp.ee_body } : null;
-      if (this.teleopCfg) { this.initTeleop(); }
+      if (this.teleopCfg && this.showDebugControls) { this.initTeleop(); }
       const streamUrl = new URLSearchParams(location.search).get("stream");
       if (this.streamUrl || streamUrl) { this.initTelemetryStream(this.streamUrl || streamUrl); }
     }
 
-    this.addControlHints();
+    if (this.showDebugControls) {
+      this.addControlHints();
+    }
     if (!document.getElementById('ui-root')) {
       this.addProjectOverlay();
     }
@@ -1706,7 +1716,7 @@ export class MuJoCoDemo {
       c[0] = held.has('w') ? r.vx[1]   : held.has('s') ? r.vx[0]   : 0;
       c[1] = held.has('a') ? r.vy[1]   : held.has('d') ? r.vy[0]   : 0;
       c[2] = held.has('q') ? r.vyaw[1] : held.has('e') ? r.vyaw[0] : 0;
-      for (const ctl of this.cmdControllers) { ctl.updateDisplay(); }
+      for (const ctl of this.cmdControllers || []) { ctl.updateDisplay(); }
     };
     // Ignore keystrokes while a GUI text field has focus, so typing a value isn't hijacked.
     const typing = (e) => e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
@@ -2107,7 +2117,7 @@ export class MuJoCoDemo {
       const grabbed = this.dragStateManager.physicsObject;
       if (grabbed && grabbed.bodyID) {
         this.params.replay = false;
-        this.replayToggle.updateDisplay();
+        this.replayToggle?.updateDisplay?.();
         for (let i = 0; i < this.model.nu; i++) { this.data.ctrl[i] = this.data.qpos[i]; }
       } else {
         // Kinematic playback: advance the playhead in real time and loop. The trajectory
