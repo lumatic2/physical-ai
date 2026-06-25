@@ -130,7 +130,8 @@ export class MuJoCoDemo {
 
     // Harness: pick the experiment from experiments.json (default, or ?exp= override).
     // Each experiment = (scene MJCF, recorded trajectory, camera) — same registry the
-    // desktop smoke/render/record read. Default stays SO-100 so the live site is unchanged.
+    // desktop smoke/render/record read. The public default is a stable standing humanoid;
+    // policy locomotion starts when the visitor selects a walking action.
     const registry = await (await fetch("./experiments.json")).json();
     const params = new URLSearchParams(location.search);
     const expName = params.get("exp") || registry.default;
@@ -159,6 +160,10 @@ export class MuJoCoDemo {
     if (this.controlHintEl) {
       this.controlHintEl.remove();
       this.controlHintEl = null;
+    }
+    if (this.unbindCommandKeys) {
+      this.unbindCommandKeys();
+      this.unbindCommandKeys = null;
     }
     const root = this.scene.getObjectByName("MuJoCo Root");
     if (root) {
@@ -1807,7 +1812,7 @@ export class MuJoCoDemo {
       ? '👆 로봇 끌기 = 밀기 · 한 손가락 = 회전 · 두 손가락 = 줌'
       : '🖱 로봇 드래그 = 밀기 · 빈곳 드래그 = 회전 · 휠 = 줌'];
     if (this.policy) {
-      lines.unshift(coarse ? '🕹 슬라이더로 조종 (vx/vy/vyaw)' : '⌨ WASD 이동 · Q/E 회전 · Space 일시정지');
+      lines.unshift(coarse ? '슬라이더로 조종 (vx/vy/vyaw)' : '방향키/WASD 이동 · Q/E 회전 · Space 일시정지');
     }
     if (this.teleopCfg) {
       lines.push('🤏 Teleop 켠 뒤 ' + (coarse ? '끌기' : '드래그') + ' = 팔 끝 IK 조종');
@@ -1925,7 +1930,7 @@ export class MuJoCoDemo {
     this.pol = {
       onnx: './assets/scenes/' + sceneDir + '/' + p.onnx,
       obs_dim: p.obs_dim, act_dim: p.act_dim, action_scale: p.action_scale,
-      n_substeps: p.n_substeps, command: p.command,
+      n_substeps: p.n_substeps, command: [0, 0, 0],
       gy: ix.gyro_adr, lv: ix.local_linvel_adr, imu: ix.imu_site_id,
       qj: p.qpos_joint_start, vj: p.qvel_joint_start, dp: ix.default_pose,
       lastAct: new Float32Array(p.act_dim),
@@ -1966,7 +1971,7 @@ export class MuJoCoDemo {
   addCommandGUI() {
     const c = this.pol.command;
     const r = this.pol.cmdRange || { vx: [-1.0, 1.5], vy: [-0.8, 0.8], vyaw: [-1.5, 1.5] };
-    const f = this.gui.addFolder('Command (drag or WASD/QE to steer)');
+    const f = this.gui.addFolder('Command (drag, arrows, or WASD/QE to steer)');
     this.cmdControllers = [
       f.add(c, '0', r.vx[0], r.vx[1], 0.05).name('vx  forward'),
       f.add(c, '1', r.vy[0], r.vy[1], 0.05).name('vy  strafe'),
@@ -1976,33 +1981,55 @@ export class MuJoCoDemo {
     this.bindCommandKeys(r);
   }
 
-  // Keyboard steering: hold W/S → +/- vx, A/D → +/- vy (left/right), Q/E → +/- vyaw (turn
-  // left/right). A held key sets that command axis to the range edge; releasing it returns the
-  // axis to 0. Keys are tracked in a set so axes combine (W+A = forward-left). The command is
-  // part of the policy obs (joystick-conditioned), so this drives the live robot exactly like
-  // the sliders — sliders are refreshed via updateDisplay so the GUI mirrors the keys.
+  // Keyboard steering: hold Up/Down or W/S for +/- vx, Left/Right or A/D for lateral
+  // command, Q/E for yaw. The command is part of the policy obs, so this drives the live
+  // robot exactly like the sliders.
   bindCommandKeys(r) {
+    if (this.unbindCommandKeys) {
+      this.unbindCommandKeys();
+      this.unbindCommandKeys = null;
+    }
     const c = this.pol.command;
     const held = new Set();
-    const keys = new Set(['w', 'a', 's', 'd', 'q', 'e']);
+    const keyMap = {
+      arrowup: 'forward',
+      w: 'forward',
+      arrowdown: 'back',
+      s: 'back',
+      arrowleft: 'left',
+      a: 'left',
+      arrowright: 'right',
+      d: 'right',
+      q: 'turnLeft',
+      e: 'turnRight',
+    };
     const apply = () => {
-      c[0] = held.has('w') ? r.vx[1]   : held.has('s') ? r.vx[0]   : 0;
-      c[1] = held.has('a') ? r.vy[1]   : held.has('d') ? r.vy[0]   : 0;
-      c[2] = held.has('q') ? r.vyaw[1] : held.has('e') ? r.vyaw[0] : 0;
+      c[0] = held.has('forward') ? r.vx[1]   : held.has('back') ? r.vx[0]   : 0;
+      c[1] = held.has('left')    ? r.vy[1]   : held.has('right') ? r.vy[0]  : 0;
+      c[2] = held.has('turnLeft') ? r.vyaw[1] : held.has('turnRight') ? r.vyaw[0] : 0;
       for (const ctl of this.cmdControllers || []) { ctl.updateDisplay(); }
     };
     // Ignore keystrokes while a GUI text field has focus, so typing a value isn't hijacked.
     const typing = (e) => e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
-    window.addEventListener('keydown', (e) => {
+    const onKeyDown = (e) => {
       const k = e.key.toLowerCase();
-      if (!keys.has(k) || typing(e)) { return; }
-      held.add(k); apply(); e.preventDefault();
-    });
-    window.addEventListener('keyup', (e) => {
+      const command = keyMap[k];
+      if (!command || typing(e)) { return; }
+      held.add(command); apply(); e.preventDefault();
+    };
+    const onKeyUp = (e) => {
       const k = e.key.toLowerCase();
-      if (!keys.has(k)) { return; }
-      held.delete(k); apply(); e.preventDefault();
-    });
+      const command = keyMap[k];
+      if (!command) { return; }
+      held.delete(command); apply(); e.preventDefault();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keyup', onKeyUp);
+    this.unbindCommandKeys = () => {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+      held.clear();
+    };
   }
 
   // Build the policy obs by walking the experiment's obs_layout (named slots), so a new

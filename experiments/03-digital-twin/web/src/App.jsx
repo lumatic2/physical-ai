@@ -24,6 +24,7 @@ const ROBOTS = [
     kind: "휴머노이드",
     description: "29자유도 전신 로봇입니다. 학습된 보행 정책과 G1 자세 전환 동작을 비교합니다.",
     experiments: [
+      { key: "g1-stand", name: "휴머노이드 정지", description: "G1 휴머노이드가 물리 시뮬레이션에서 가만히 서 있는 기본 상태입니다." },
       { key: "g1-walk", name: "휴머노이드 걷기", description: "학습된 G1 보행 정책을 브라우저에서 실행합니다." },
       { key: "g1-rough-walk", name: "거친 지형 걷기", description: "낮은 턱이 있는 지형에서 G1 보행 정책을 확인합니다." },
       { key: "g1-decoupled-wbc-squat", name: "WBC 스쿼트 재생", description: "시뮬레이터에서 측정한 G1 스쿼트 동작을 자세 변화와 함께 봅니다." },
