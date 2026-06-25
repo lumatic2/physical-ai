@@ -31,14 +31,16 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="M30" status="active" priority="P0" evidence="experiments/131-visual-lab-scenes/verify/visual-lab-scenes-smoke.json" -->
+<!-- harness:milestone id="M30" status="completed" priority="P0" evidence="experiments/131-visual-lab-scenes/verify/visual-lab-scenes-smoke.json" -->
 ### M30 - Visual Lab Scenes
 
 - DoD: `flat-lab`, `instrumented-lab`, `rough-terrain`가 각각 다른 Three.js visual composition을 가진다. flat은 정돈된 calibration bay, instrumented는 센서/계측 장비가 보이는 measurement bay, rough는 curb/step/test lane 공간으로 보이며 MuJoCo physics는 바꾸지 않는다.
-- Evidence: `experiments/131-visual-lab-scenes/verify/visual-lab-scenes-smoke.json`
+- Evidence: experiments/131-visual-lab-scenes/verify/visual-lab-scenes-smoke.json
 - Gap: M28의 environment preset은 사용자 눈에는 색/라인 차이로만 보인다. 공개 viewer는 디지털 트윈 공간이라는 첫인상을 줘야 한다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-06-26
+- Summary: Visual lab scenes now have distinct procedural Three.js compositions while preserving visual-only/no-collision QA contracts.
 ## Next Candidates
 
 <!-- harness:milestone id="M31" status="pending" priority="P0" evidence="experiments/132-physical-rough-terrain-scene/verify/rough-terrain-scene-smoke.json" -->
