@@ -1,0 +1,22 @@
+{
+  "project": "physical-ai",
+  "phase": "m32-asset-backed-lab-shell",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "lab-shell-asset-contract",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "lazy-loaded-lab-shell",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "asset-shell-evidence",
+      "status": "pending"
+    }
+  ]
+}

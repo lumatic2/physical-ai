@@ -21,8 +21,8 @@
 | M28 | Digital Twin Laboratory Environment Controls | 3개 environment preset + grounding/contact summary | `experiments/129-digital-twin-lab-environment` | 완료 |
 | M29 | Public drift audit | 공개 claim drift 점검 | `experiments/130-public-drift-audit` | 완료/백로그 |
 | M30 | Visual Lab Scenes | preset이 색만 바뀌는 수준을 넘어 공간으로 보인다 | `experiments/131-visual-lab-scenes` | 완료 |
-| M31 | Physical Rough Terrain Scene | rough preset이 실제 contact-bearing scene variant로 연결된다 | `experiments/132-physical-rough-terrain-scene` | active |
-| M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | pending |
+| M31 | Physical Rough Terrain Scene | rough preset이 실제 contact-bearing scene variant로 연결된다 | `experiments/132-physical-rough-terrain-scene` | 완료 |
+| M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | active |
 
 ## Current Horizon
 
@@ -31,23 +31,15 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="M31" status="active" priority="P0" evidence="experiments/132-physical-rough-terrain-scene/verify/rough-terrain-scene-smoke.json" -->
-### M31 - Physical Rough Terrain Scene
-
-- DoD: rough terrain preset이 실제 MJCF scene variant 또는 compatible terrain geometry로 연결되고, `g1-rough-walk`/4족 rough policies에서 contact-bearing QA가 통과한다.
-- Evidence: `experiments/132-physical-rough-terrain-scene/verify/rough-terrain-scene-smoke.json`
-- Gap: M30은 visual-only다. 실제 terrain claim은 collision/contact-bearing scene 증거가 있어야 한다.
-- Status: [ ]
-
-## Next Candidates
-
-<!-- harness:milestone id="M32" status="pending" priority="P1" evidence="experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json" -->
+<!-- harness:milestone id="M32" status="active" priority="P1" evidence="experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json" -->
 ### M32 - Asset-backed Lab Shell
 
 - DoD: lightweight GLB/glTF lab shell 또는 generated static asset을 lazy-load하고, bundle/performance/visual QA를 통과한다.
 - Evidence: `experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json`
 - Gap: procedural primitives만으로는 실제 실험실 디테일과 브랜드 품질에 한계가 있다.
 - Status: [ ]
+
+## Next Candidates
 
 ## Guardrails
 

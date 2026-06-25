@@ -18,6 +18,10 @@
     },
     {
       "dir": "m31-physical-rough-terrain-scene",
+      "status": "completed"
+    },
+    {
+      "dir": "m32-asset-backed-lab-shell",
       "status": "pending"
     }
   ]
