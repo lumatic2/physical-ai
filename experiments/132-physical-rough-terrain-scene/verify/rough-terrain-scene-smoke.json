@@ -1,0 +1,108 @@
+{
+  "milestone": "M31",
+  "title": "Physical Rough Terrain Scene",
+  "generated_at": "2026-06-25T19:57:35.238Z",
+  "scope": "Rough terrain preset is backed by bundled MJCF rough scene variants for G1, Go1, and Spot.",
+  "claim_boundary": "This proves contact-bearing curb geometry exists in the active browser MuJoCo model. It does not prove broad terrain generalization beyond bundled curb scenes.",
+  "checks": {
+    "static_mjcf_audit": true,
+    "browser_model_terrain_geoms": true,
+    "contact_bearing_claim_level": true,
+    "no_console_errors": true
+  },
+  "static_audit": [
+    {
+      "experiment": "g1-rough-walk",
+      "registry_scene": "g1/scene_g1_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/g1/scene_g1_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    },
+    {
+      "experiment": "go1-rough-walk",
+      "registry_scene": "go1/scene_go1_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/go1/scene_go1_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    },
+    {
+      "experiment": "spot-rough-walk",
+      "registry_scene": "spot/scene_spot_rough.xml",
+      "scene_path": "experiments/03-digital-twin/web/assets/scenes/spot/scene_spot_rough.xml",
+      "registry_matches_scene": true,
+      "curb_geom_count": 3,
+      "curb_geoms": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "has_floor_plane": true,
+      "pass": true
+    }
+  ],
+  "browser_terrain_checks": [
+    {
+      "experiment": "g1-rough-walk",
+      "activeScene": "g1/scene_g1_rough.xml",
+      "terrainGeomNames": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "changedRuntime": true,
+      "pass": true
+    },
+    {
+      "experiment": "go1-rough-walk",
+      "activeScene": "go1/scene_go1_rough.xml",
+      "terrainGeomNames": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "changedRuntime": true,
+      "pass": true
+    },
+    {
+      "experiment": "spot-rough-walk",
+      "activeScene": "spot/scene_spot_rough.xml",
+      "terrainGeomNames": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "changedRuntime": true,
+      "pass": true
+    }
+  ],
+  "commands": [
+    "npm run build",
+    "node qa/terrain_scene_check.mjs --exp=g1-rough-walk --preset=rough-terrain",
+    "node qa/terrain_scene_check.mjs --exp=go1-rough-walk --preset=rough-terrain",
+    "node qa/terrain_scene_check.mjs --exp=spot-rough-walk --preset=rough-terrain",
+    "Playwright click smoke: /?exp=g1-walk -> rough terrain preset -> g1-rough-walk, navCount=1"
+  ],
+  "artifacts": {
+    "route_screenshot_temp": "C:/Users/yusun/AppData/Local/Temp/robotics-m31-rough-route.png",
+    "source_summaries": [
+      "experiments/03-digital-twin/web/qa/out/g1-rough-walk_rough-terrain_terrain_scene_summary.json",
+      "experiments/03-digital-twin/web/qa/out/go1-rough-walk_rough-terrain_terrain_scene_summary.json",
+      "experiments/03-digital-twin/web/qa/out/spot-rough-walk_rough-terrain_terrain_scene_summary.json"
+    ]
+  },
+  "pass": true
+}

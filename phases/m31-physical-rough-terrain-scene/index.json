@@ -20,7 +20,9 @@
     {
       "step": 2,
       "name": "rough-terrain-evidence",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Created experiments/132-physical-rough-terrain-scene README and verify/rough-terrain-scene-smoke.json. Integrated evidence combines static MJCF audit, browser MuJoCo model terrain geom checks for g1/go1/spot rough scenes, and the in-app rough preset routing smoke. The claim is limited to bundled curb scenes, not broad terrain generalization.",
+      "completed_at": "2026-06-26T00:00:00+09:00"
     }
   ]
 }
