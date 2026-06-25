@@ -22,16 +22,12 @@ const ROBOTS = [
     id: "unitree-g1",
     name: "Unitree G1 휴머노이드",
     kind: "휴머노이드",
-    description: "29자유도 전신 로봇입니다. 보행, 자세 전환, 시뮬레이터에서 만든 동작 기록을 한 로봇 안에서 비교합니다.",
+    description: "29자유도 전신 로봇입니다. 학습된 보행 정책과 G1 자세 전환 동작을 비교합니다.",
     experiments: [
-      { key: "unitree-g1-elastic-stand", name: "보조 장치 직립", description: "탄성 밴드로 넘어짐을 보조한 G1 직립 동작을 브라우저에서 재생합니다." },
+      { key: "g1-walk", name: "휴머노이드 걷기", description: "학습된 G1 보행 정책을 브라우저에서 실행합니다." },
+      { key: "g1-rough-walk", name: "거친 지형 걷기", description: "낮은 턱이 있는 지형에서 G1 보행 정책을 확인합니다." },
       { key: "g1-decoupled-wbc-squat", name: "WBC 스쿼트 재생", description: "시뮬레이터에서 측정한 G1 스쿼트 동작을 자세 변화와 함께 봅니다." },
       { key: "g1-squat-reference-vs-wbc", name: "기준 동작 vs 측정 동작", description: "의도한 스쿼트 기준 동작과 실제 시뮬레이션 동작이 얼마나 다른지 비교합니다." },
-      { key: "g1-walk", name: "학습 보행 정책", description: "브라우저에서 닫힌루프 joystick 보행 정책을 실행합니다." },
-      { key: "g1-rough-walk", name: "거친 지형 보행", description: "낮은 curb terrain에서 보행 정책의 강건성을 확인합니다." },
-      { key: "unitree-g1-headless", name: "시뮬레이터 연결 점검", description: "공식 Unitree MuJoCo에서 만든 동작 기록이 이 화면에 제대로 연결되는지 확인합니다." },
-      { key: "g1-controlled-squat", name: "얕은 lowering probe", description: "실패 사례에 가까운 micro-dip probe입니다. squat 성공으로 표시하지 않습니다." },
-      { key: "g1-stand", name: "모델 직립 settle", description: "G1 모델 로드와 물리 settle 상태를 확인합니다." },
     ],
   },
   {
@@ -40,8 +36,8 @@ const ROBOTS = [
     kind: "4족 보행",
     description: "12개 actuator를 가진 4족 로봇입니다. 평지 보행과 rough terrain 보행을 비교합니다.",
     experiments: [
-      { key: "go1-walk", name: "평지 보행 정책", description: "학습된 Go1 joystick 보행 정책을 실행합니다." },
-      { key: "go1-rough-walk", name: "거친 지형 보행", description: "낮은 턱이 있는 지형에서 보행 명령을 버티는지 확인합니다." },
+      { key: "go1-walk", name: "평지 걷기", description: "학습된 Go1 보행 정책을 실행합니다." },
+      { key: "go1-rough-walk", name: "거친 지형 걷기", description: "낮은 턱이 있는 지형에서 Go1 보행 정책을 확인합니다." },
     ],
   },
   {
@@ -50,9 +46,8 @@ const ROBOTS = [
     kind: "4족 보행",
     description: "Spot 형상 모델입니다. 보행 정책, 거친 지형, 기본 자세 확인을 나눠 봅니다.",
     experiments: [
-      { key: "spot-walk", name: "평지 보행 정책", description: "Spot closed-loop 보행 정책을 실행합니다." },
-      { key: "spot-rough-walk", name: "거친 지형 보행", description: "낮은 턱이 있는 지형에서 여러 보행 명령을 확인합니다." },
-      { key: "spot-stand", name: "모델 직립 settle", description: "Spot 모델 로드와 settle baseline입니다." },
+      { key: "spot-walk", name: "평지 걷기", description: "학습된 Spot 보행 정책을 실행합니다." },
+      { key: "spot-rough-walk", name: "거친 지형 걷기", description: "낮은 턱이 있는 지형에서 Spot 보행 정책을 확인합니다." },
     ],
   },
   {
@@ -61,28 +56,18 @@ const ROBOTS = [
     kind: "소형 4족",
     description: "history observation을 쓰는 Barkour 보행 정책 ingestion 결과입니다.",
     experiments: [
-      { key: "barkour-walk", name: "학습 보행 정책", description: "추가 policy를 학습부터 browser QA까지 흡수한 사례입니다." },
+      { key: "barkour-walk", name: "Barkour 걷기", description: "Barkour 보행 정책을 브라우저에서 실행합니다." },
     ],
   },
   {
     id: "arms-hands",
     name: "로봇 팔과 손",
     kind: "조작 계열",
-    description: "고정 베이스 arm, dexterous hand, 저가형 SO-100 조작 replay를 모아 둔 그룹입니다.",
+    description: "팔과 손으로 물체 조작 또는 관절 동작을 보여주는 디지털 트윈입니다.",
     experiments: [
-      { key: "so100-stack", name: "SO-100 블록 스택", description: "저가형 arm의 scripted pick-and-place replay입니다." },
-      { key: "panda-sweep", name: "Franka Panda 관절 sweep", description: "7-DOF arm의 control baseline입니다." },
-      { key: "shadow-hand", name: "Shadow Hand finger curl", description: "손가락 굴곡 replay와 joint visualization입니다." },
-    ],
-  },
-  {
-    id: "checks",
-    name: "검증용 fixture",
-    kind: "하네스 점검",
-    description: "새 scene과 일반 humanoid loader가 깨지지 않는지 확인하는 회귀 테스트입니다.",
-    experiments: [
-      { key: "dummy-arm", name: "Dummy 2-link arm", description: "새 scene registry 추가를 검증하는 최소 arm입니다." },
-      { key: "humanoid-settle", name: "Generic humanoid settle", description: "G1이 아닌 일반 humanoid scene loader 점검입니다." },
+      { key: "so100-stack", name: "SO-100 블록 쌓기", description: "SO-100 로봇 팔이 블록을 옮겨 쌓는 동작을 재생합니다." },
+      { key: "panda-sweep", name: "Franka Panda 팔 움직임", description: "7자유도 로봇 팔의 관절 움직임을 보여줍니다." },
+      { key: "shadow-hand", name: "Shadow Hand 손가락 움직임", description: "로봇 손의 손가락 굴곡 동작을 보여줍니다." },
     ],
   },
 ];

@@ -1,5 +1,5 @@
 {
-  "default": "so100-stack",
+  "default": "g1-walk",
   "experiments": {
     "g1-walk": {
       "title": "Unitree G1 — 직접 학습한 joystick 보행 정책 (live closed-loop, 휴머노이드)",
