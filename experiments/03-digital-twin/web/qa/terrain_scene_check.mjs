@@ -90,6 +90,10 @@ async function main() {
     changedRuntime: summary.changedRuntime,
     visualOnly: summary.visualLayer?.visualOnly === true,
     visualCollision: summary.visualLayer?.collision || null,
+    interactionVisible: summary.interactionLayer?.visible === true,
+    interactionMode: summary.interactionLayer?.mode || null,
+    interactionCueCount: summary.interactionLayer?.contactCueCount || 0,
+    interactionSource: summary.interactionLayer?.source || null,
     consoleErrors,
   };
   result.pass = Boolean(
@@ -103,6 +107,9 @@ async function main() {
     result.changedRuntime === true &&
     result.visualOnly &&
     result.visualCollision === 'none-threejs-only' &&
+    result.interactionVisible &&
+    result.interactionMode === 'rough-terrain-contact-cues' &&
+    result.interactionCueCount >= 4 &&
     consoleErrors.length === 0
   );
 

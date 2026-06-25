@@ -83,7 +83,21 @@ export class MuJoCoDemo {
     this.labVisualLayer = new THREE.Group();
     this.labVisualLayer.name = "Lab Visual Layer";
     this.scene.add(this.labVisualLayer);
+    this.interactionVisualLayer = new THREE.Group();
+    this.interactionVisualLayer.name = "Physical Interaction Visual Layer";
+    this.scene.add(this.interactionVisualLayer);
     this.appliedEnvironmentVisual = null;
+    this.interactionLayerStatus = {
+      visible: false,
+      mode: "none",
+      objects: [],
+      contactCueCount: 0,
+      source: null,
+    };
+    this.contactHalo = null;
+    this.terrainContactCues = [];
+    this.robotContactPads = [];
+    this.terrainCurbXs = [];
     this.labAssetLayerStatus = {
       path: "assets/lab/lab_shell.gltf",
       loaded: false,
@@ -386,6 +400,37 @@ export class MuJoCoDemo {
     }
   }
 
+  disposeObject3D(object) {
+    object.traverse?.((node) => {
+      node.geometry?.dispose?.();
+      if (Array.isArray(node.material)) {
+        node.material.forEach((material) => material.dispose?.());
+      } else {
+        node.material?.dispose?.();
+      }
+    });
+  }
+
+  clearInteractionVisuals() {
+    if (!this.interactionVisualLayer) return;
+    while (this.interactionVisualLayer.children.length > 0) {
+      const child = this.interactionVisualLayer.children[0];
+      this.interactionVisualLayer.remove(child);
+      this.disposeObject3D(child);
+    }
+    this.contactHalo = null;
+    this.terrainContactCues = [];
+    this.robotContactPads = [];
+    this.terrainCurbXs = [];
+    this.interactionLayerStatus = {
+      visible: false,
+      mode: "none",
+      objects: [],
+      contactCueCount: 0,
+      source: null,
+    };
+  }
+
   applyEnvironmentVisuals() {
     if (!this.scene || !this.labVisualLayer) return;
     const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
@@ -395,6 +440,7 @@ export class MuJoCoDemo {
       defaultGroundingMode: inferGroundingModeFromExperiment(this.exp || {}),
     });
     this.clearEnvironmentVisuals();
+    this.clearInteractionVisuals();
 
     const styles = {
       "flat-lab": {
@@ -477,6 +523,7 @@ export class MuJoCoDemo {
     }
     if (summary.preset === "rough-terrain") {
       this.labVisualLayer.add(this.createRoughTerrainRig(style));
+      this.createPhysicalInteractionCues(style);
     }
 
     this.appliedEnvironmentVisual = {
@@ -486,6 +533,139 @@ export class MuJoCoDemo {
       collision: "none-threejs-only",
       background: `#${style.background.toString(16).padStart(6, "0")}`,
       fog: { near: style.fogNear, far: style.fogFar },
+    };
+  }
+
+  createPhysicalInteractionCues(style) {
+    if (!this.interactionVisualLayer) return;
+    const terrainGeoms = this.getTerrainGeomNames();
+    if (terrainGeoms.length === 0) return;
+
+    this.terrainCurbXs = terrainGeoms.map((_, index) => 1 + index);
+    const curbMaterial = new THREE.MeshStandardMaterial({
+      color: style.accent,
+      emissive: style.accent,
+      emissiveIntensity: 0.18,
+      roughness: 0.38,
+      metalness: 0.08,
+      transparent: true,
+      opacity: 0.66,
+    });
+    const contactPatchMaterial = new THREE.MeshBasicMaterial({
+      color: style.marker,
+      transparent: true,
+      opacity: 0.20,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+
+    for (const [index, curbX] of this.terrainCurbXs.entries()) {
+      const cue = new THREE.Group();
+      cue.name = `Physical curb contact cue ${index + 1}`;
+      cue.userData.curbX = curbX;
+
+      const lip = new THREE.Mesh(new THREE.BoxGeometry(0.065, 0.035, 2.05), curbMaterial.clone());
+      lip.name = `Active MJCF curb lip ${index + 1}`;
+      lip.position.set(curbX, 0.035 + index * 0.006, 0);
+      cue.add(lip);
+
+      const patch = new THREE.Mesh(new THREE.RingGeometry(0.16, 0.30, 48), contactPatchMaterial.clone());
+      patch.name = `Contact patch target ${index + 1}`;
+      patch.rotation.x = -Math.PI / 2;
+      patch.position.set(curbX, 0.048 + index * 0.006, 0);
+      cue.add(patch);
+
+      this.interactionVisualLayer.add(cue);
+      this.terrainContactCues.push(cue);
+    }
+
+    const haloMaterial = new THREE.MeshBasicMaterial({
+      color: style.marker,
+      transparent: true,
+      opacity: 0.34,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    this.contactHalo = new THREE.Mesh(new THREE.RingGeometry(0.22, 0.42, 64), haloMaterial);
+    this.contactHalo.name = "Robot root contact halo";
+    this.contactHalo.rotation.x = -Math.PI / 2;
+    this.contactHalo.position.set(0, 0.055, 0);
+    this.interactionVisualLayer.add(this.contactHalo);
+
+    const footMaterial = new THREE.MeshBasicMaterial({
+      color: style.accent,
+      transparent: true,
+      opacity: 0.50,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const quadruped = /go1|quadruped|4/i.test(this.expName || this.exp?.title || this.exp?.scene || "");
+    const padOffsets = quadruped
+      ? [[0.22, 0.16], [0.22, -0.16], [-0.22, 0.16], [-0.22, -0.16]]
+      : [[0.10, 0.13], [-0.10, -0.13]];
+    for (const [index, offset] of padOffsets.entries()) {
+      const pad = new THREE.Mesh(new THREE.CircleGeometry(0.115, 36), footMaterial.clone());
+      pad.name = quadruped ? `Foot contact pad ${index + 1}` : `${index === 0 ? "Left" : "Right"} foot contact pad`;
+      pad.rotation.x = -Math.PI / 2;
+      pad.position.set(offset[0], 0.058, offset[1]);
+      pad.userData.offsetX = offset[0];
+      pad.userData.offsetZ = offset[1];
+      this.interactionVisualLayer.add(pad);
+      this.robotContactPads.push(pad);
+    }
+
+    this.interactionLayerStatus = {
+      visible: true,
+      mode: "rough-terrain-contact-cues",
+      objects: this.interactionVisualLayer.children.map((child) => child.name || child.type),
+      contactCueCount: this.interactionVisualLayer.children.length,
+      source: "active rough MJCF terrain geoms plus robot root pose",
+    };
+  }
+
+  updatePhysicalInteractionVisuals(timeMS) {
+    if (!this.contactHalo || this.terrainContactCues.length === 0 || !this.data?.qpos) return;
+    const rootX = Number(this.data.qpos[0] || 0);
+    const rootZ = -Number(this.data.qpos[1] || 0);
+    this.contactHalo.position.set(rootX, 0.055, rootZ);
+
+    const pulse = 0.5 + 0.5 * Math.sin(timeMS * 0.008);
+    const stepPulse = 0.5 + 0.5 * Math.sin(timeMS * 0.014);
+    let nearestDistance = Infinity;
+    for (const cue of this.terrainContactCues) {
+      const curbX = cue.userData.curbX;
+      const distance = Math.abs(rootX - curbX);
+      nearestDistance = Math.min(nearestDistance, distance);
+      const active = distance < 0.42;
+      cue.children.forEach((child) => {
+        if (!child.material) return;
+        if (child.material.emissiveIntensity !== undefined) {
+          child.material.emissiveIntensity = active ? 0.85 + pulse * 0.45 : 0.18;
+        }
+        if (child.material.opacity !== undefined) {
+          child.material.opacity = active ? 0.62 + pulse * 0.20 : 0.22;
+        }
+      });
+      cue.position.z = active ? rootZ * 0.28 : 0;
+    }
+
+    const haloActive = nearestDistance < 0.42;
+    this.contactHalo.scale.setScalar(haloActive ? 1.0 + pulse * 0.18 : 0.84);
+    this.contactHalo.material.opacity = haloActive ? 0.54 + pulse * 0.16 : 0.28;
+    this.robotContactPads.forEach((pad, index) => {
+      const alternating = (index % 2 === 0) ? stepPulse : 1 - stepPulse;
+      pad.position.set(rootX + pad.userData.offsetX, 0.058, rootZ + pad.userData.offsetZ);
+      pad.material.opacity = haloActive ? 0.50 + alternating * 0.28 : 0.30 + alternating * 0.14;
+      pad.scale.setScalar(haloActive ? 1.0 + alternating * 0.12 : 0.88);
+    });
+    this.interactionLayerStatus = {
+      visible: true,
+      mode: "rough-terrain-contact-cues",
+      objects: this.interactionVisualLayer.children.map((child) => child.name || child.type),
+      contactCueCount: this.interactionVisualLayer.children.length,
+      activeCue: haloActive ? "near-curb" : "root-tracking",
+      nearestCurbDistance: Number.isFinite(nearestDistance) ? Number(nearestDistance.toFixed(3)) : null,
+      source: "active rough MJCF terrain geoms plus robot root pose",
     };
   }
 
@@ -1760,6 +1940,7 @@ export class MuJoCoDemo {
     }
     summary.visualLayer = this.appliedEnvironmentVisual || null;
     summary.assetLayer = this.labAssetLayerStatus || null;
+    summary.interactionLayer = this.interactionLayerStatus || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
     summary.pass = Boolean(
       summary.preset &&
@@ -2497,6 +2678,7 @@ export class MuJoCoDemo {
 
     // Draw Tendons and Flex verts
     drawTendonsAndFlex(this.mujocoRoot, this.model, this.data);
+    this.updatePhysicalInteractionVisuals(timeMS);
 
     // Render!
     this.renderer.render( this.scene, this.camera );
