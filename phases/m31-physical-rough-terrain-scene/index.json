@@ -1,0 +1,22 @@
+{
+  "project": "physical-ai",
+  "phase": "m31-physical-rough-terrain-scene",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "rough-scene-compatibility-audit",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "rough-preset-scene-routing",
+      "status": "pending"
+    },
+    {
+      "step": 2,
+      "name": "rough-terrain-evidence",
+      "status": "pending"
+    }
+  ]
+}
