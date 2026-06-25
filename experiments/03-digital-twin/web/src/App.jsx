@@ -181,6 +181,14 @@ function App() {
     .filter(Boolean);
 
   function selectEnvironmentPreset(id) {
+    if (id === "rough-terrain") {
+      const roughAction = selectedRobot.experiments.find((experiment) => /rough/i.test(experiment.key) && experiments[experiment.key]);
+      if (roughAction && roughAction.key !== state?.expName) {
+        window.demo?.setEnvironmentPreset?.(id);
+        navigateTo(roughAction.key);
+        return undefined;
+      }
+    }
     const result = window.demo?.setEnvironmentPreset?.(id);
     setState(readDemoState());
     return result;

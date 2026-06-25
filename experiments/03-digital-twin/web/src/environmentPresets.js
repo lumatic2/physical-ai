@@ -190,6 +190,10 @@ export function inferGroundingModeFromExperiment(exp = {}) {
   return "replay-locked";
 }
 
+export function inferEnvironmentPresetFromExperiment(exp = {}) {
+  return /rough|curb/i.test(exp.scene || "") ? "rough-terrain" : DEFAULT_ENVIRONMENT_PRESET;
+}
+
 export function getGroundingMode(id) {
   return GROUNDING_MODES[normalizeGroundingMode(id)];
 }
@@ -216,6 +220,9 @@ export function summarizeEnvironmentPreset(id, context = {}) {
     scene: {
       ...preset.scene,
       activeScene: context.scene || null,
+      contactBearingTerrain: Boolean(context.contactBearingTerrain),
+      terrainGeomCount: context.terrainGeomCount || 0,
+      terrainGeomNames: context.terrainGeomNames || [],
     },
     floor: preset.floor,
     contactProfile: preset.contactProfile,
