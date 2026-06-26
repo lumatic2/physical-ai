@@ -1,0 +1,265 @@
+{
+  "title": "Randomized Episode Scorecard",
+  "pass": true,
+  "checkedAt": "2026-06-26T08:29:43.799Z",
+  "local": {
+    "pass": true,
+    "live": false,
+    "generatedAt": "2026-06-26T08:23:42.970Z",
+    "profile": {
+      "id": "obstacle-command-noise-v1",
+      "label": "Obstacle command/noise v1",
+      "seed": "episode-obstacle-0001",
+      "experiment": "g1-obstacle-walk",
+      "scenario": "obstacle-lane-v1",
+      "steps": 180,
+      "chunk": 45,
+      "episodeCount": 3,
+      "appliedAxes": [
+        "command",
+        "controlNoise"
+      ],
+      "boundaryAxes": [
+        "friction",
+        "sensorNoise"
+      ],
+      "axes": {
+        "command": {
+          "applied": true,
+          "description": "Policy velocity command vector per episode."
+        },
+        "controlNoise": {
+          "applied": true,
+          "description": "MuJoCo ctrl noise parameters already exposed by the web runtime."
+        },
+        "friction": {
+          "applied": false,
+          "description": "Recorded in scenario contract; runtime friction randomization needs MJCF variants."
+        },
+        "sensorNoise": {
+          "applied": false,
+          "description": "Recorded as boundary only; observation-noise injection is not implemented in this browser policy path."
+        }
+      },
+      "passCriteria": {
+        "maxFallHeightM": 0.2,
+        "minDistanceM": 0.02,
+        "maxAbsYDriftM": 3,
+        "requireFiniteState": true
+      },
+      "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+    },
+    "episodes": [
+      {
+        "id": "seed-0001-forward-clean",
+        "seed": "episode-obstacle-0001-a",
+        "targetUrl": "http://127.0.0.1:8142/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0001-forward-clean",
+        "command": [
+          0.55,
+          0,
+          0
+        ],
+        "ctrlNoiseStd": 0,
+        "ctrlNoiseRate": 0,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.7134382903679801,
+        "dy": -0.06490649036087892,
+        "dyaw": 0.04992662871418226,
+        "distance": 1.7146672060169905,
+        "finalHeight": 0.7499885054539399,
+        "minHeight": 0.7484517348126364,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      },
+      {
+        "id": "seed-0002-forward-low-noise",
+        "seed": "episode-obstacle-0001-b",
+        "targetUrl": "http://127.0.0.1:8142/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0002-forward-low-noise",
+        "command": [
+          0.5,
+          0,
+          0.08
+        ],
+        "ctrlNoiseStd": 0.015,
+        "ctrlNoiseRate": 1,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.5937558778443903,
+        "dy": -0.031224972523261795,
+        "dyaw": 0.09926739362420389,
+        "distance": 1.5940617293795813,
+        "finalHeight": 0.7472443404961273,
+        "minHeight": 0.7472443404961273,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      },
+      {
+        "id": "seed-0003-diagonal-low-noise",
+        "seed": "episode-obstacle-0001-c",
+        "targetUrl": "http://127.0.0.1:8142/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0003-diagonal-low-noise",
+        "command": [
+          0.45,
+          0.18,
+          -0.06
+        ],
+        "ctrlNoiseStd": 0.02,
+        "ctrlNoiseRate": 1.4,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.3578907611869702,
+        "dy": 0.2740829650853809,
+        "dyaw": 0.04205827208594597,
+        "distance": 1.3852757094047825,
+        "finalHeight": 0.7563432954666491,
+        "minHeight": 0.7499483246729725,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      }
+    ],
+    "meanScore": 1,
+    "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+  },
+  "live": {
+    "pass": true,
+    "live": true,
+    "generatedAt": "2026-06-26T08:29:13.263Z",
+    "profile": {
+      "id": "obstacle-command-noise-v1",
+      "label": "Obstacle command/noise v1",
+      "seed": "episode-obstacle-0001",
+      "experiment": "g1-obstacle-walk",
+      "scenario": "obstacle-lane-v1",
+      "steps": 180,
+      "chunk": 45,
+      "episodeCount": 3,
+      "appliedAxes": [
+        "command",
+        "controlNoise"
+      ],
+      "boundaryAxes": [
+        "friction",
+        "sensorNoise"
+      ],
+      "axes": {
+        "command": {
+          "applied": true,
+          "description": "Policy velocity command vector per episode."
+        },
+        "controlNoise": {
+          "applied": true,
+          "description": "MuJoCo ctrl noise parameters already exposed by the web runtime."
+        },
+        "friction": {
+          "applied": false,
+          "description": "Recorded in scenario contract; runtime friction randomization needs MJCF variants."
+        },
+        "sensorNoise": {
+          "applied": false,
+          "description": "Recorded as boundary only; observation-noise injection is not implemented in this browser policy path."
+        }
+      },
+      "passCriteria": {
+        "maxFallHeightM": 0.2,
+        "minDistanceM": 0.02,
+        "maxAbsYDriftM": 3,
+        "requireFiniteState": true
+      },
+      "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+    },
+    "episodes": [
+      {
+        "id": "seed-0001-forward-clean",
+        "seed": "episode-obstacle-0001-a",
+        "targetUrl": "https://robotics.askewly.com/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0001-forward-clean",
+        "command": [
+          0.55,
+          0,
+          0
+        ],
+        "ctrlNoiseStd": 0,
+        "ctrlNoiseRate": 0,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.7134382903679801,
+        "dy": -0.06490649036087892,
+        "dyaw": 0.04992662871418226,
+        "distance": 1.7146672060169905,
+        "finalHeight": 0.7499885054539399,
+        "minHeight": 0.7484517348126364,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      },
+      {
+        "id": "seed-0002-forward-low-noise",
+        "seed": "episode-obstacle-0001-b",
+        "targetUrl": "https://robotics.askewly.com/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0002-forward-low-noise",
+        "command": [
+          0.5,
+          0,
+          0.08
+        ],
+        "ctrlNoiseStd": 0.015,
+        "ctrlNoiseRate": 1,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.5756910110543054,
+        "dy": -0.050363169288588666,
+        "dyaw": 0.08893973454804163,
+        "distance": 1.5764956743163396,
+        "finalHeight": 0.7490326592042028,
+        "minHeight": 0.7474475163352626,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      },
+      {
+        "id": "seed-0003-diagonal-low-noise",
+        "seed": "episode-obstacle-0001-c",
+        "targetUrl": "https://robotics.askewly.com/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&debug=1&episode=seed-0003-diagonal-low-noise",
+        "command": [
+          0.45,
+          0.18,
+          -0.06
+        ],
+        "ctrlNoiseStd": 0.02,
+        "ctrlNoiseRate": 1.4,
+        "steps": 180,
+        "chunk": 45,
+        "dx": 1.309377460107473,
+        "dy": 0.2563958642753442,
+        "dyaw": 0.04183711337459871,
+        "distance": 1.33424441998271,
+        "finalHeight": 0.754549539284651,
+        "minHeight": 0.7501908785656582,
+        "fell": false,
+        "nan": false,
+        "contactCount": null,
+        "consoleErrors": [],
+        "score": 1,
+        "pass": true
+      }
+    ],
+    "meanScore": 1,
+    "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+  }
+}

@@ -32,11 +32,12 @@
 | M39 | Environment Scenario Manifest | 환경 preset을 재현 가능한 scenario contract로 승격한다 | `experiments/140-environment-scenario-manifest` | 완료 |
 | M40 | Multi-Robot Environment Matrix | 여러 로봇이 같은 환경 scenario contract로 비교된다 | `experiments/141-multi-robot-environment-matrix` | 완료 |
 | M41 | Interactive Obstacle Scene | static curb를 넘어 obstacle/contact task scene을 연다 | `experiments/142-interactive-obstacle-scene` | 완료 |
+| M42 | Randomized Episode Scorecard | scenario가 여러 perturbation episode로 평가된다 | `experiments/143-randomized-episode-scorecard` | 완료 |
 
 ## Current Horizon
 
 <!-- harness:goal id="environment-scenario-harness" -->
-목표: 디지털 트윈 환경을 배경 preset이 아니라 scenario/parameter/matrix/obstacle evidence로 재현 가능한 실험 변수로 만든다. (M39-M41 완료)
+목표: 디지털 트윈 환경을 배경 preset이 아니라 scenario/parameter/matrix/obstacle/randomized episode evidence로 재현 가능한 실험 변수로 만든다.
 
 ## Active Milestones
 
@@ -70,6 +71,16 @@
 - Status: [x]
 - Completed at: 2026-06-26
 - Summary: `g1-obstacle-walk`와 `obstacle-lane-v1`이 active MJCF obstacle geoms, UI status, local/live smoke evidence로 검증된다.
+
+<!-- harness:milestone id="M42" status="completed" priority="P1" evidence="experiments/143-randomized-episode-scorecard/verify/randomized-episode-scorecard.json" -->
+### M42 - Randomized Episode Scorecard
+
+- DoD: seed 기반 episode profile이 command/noise perturbation을 실행하고 각 episode의 distance/height/fall/NaN/pass/score를 local/live evidence로 남긴다.
+- Evidence: experiments/143-randomized-episode-scorecard/verify/randomized-episode-scorecard.json
+- Gap: obstacle scene은 열렸지만 아직 같은 scenario 안에서 perturbation episode set과 scorecard가 없다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: `obstacle-command-noise-v1` profile이 3개 command/control-noise episode를 local/live에서 실행하고 scorecard evidence로 검증한다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.

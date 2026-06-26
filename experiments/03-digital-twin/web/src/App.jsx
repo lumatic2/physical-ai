@@ -209,6 +209,7 @@ function App() {
   const physicsReadout = summary.physicsReadout || {};
   const environment = state?.environment || summary.environment || {};
   const scenario = environment.scenario || {};
+  const episodeRandomization = environment.episodeRandomization || {};
   const lanes = summary.evidenceLanes || [];
   const cfrcExt = findReadoutField(physicsReadout, "cfrc_ext");
   const sensorData = findReadoutField(physicsReadout, "sensordata");
@@ -449,6 +450,30 @@ function App() {
                   ))}
                 </div>
               </details>
+              {debugMode && episodeRandomization.id && (
+                <div
+                  className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground"
+                  data-testid="episode-randomization-status"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-foreground">{episodeRandomization.label || "Episode profile"}</span>
+                    <Badge variant="outline">{episodeRandomization.id}</Badge>
+                  </div>
+                  <div className="mt-1 font-mono text-[0.68rem] text-muted-foreground">
+                    {episodeRandomization.seed || "seed n/a"}
+                  </div>
+                  <div className="mt-1 grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="block text-[0.68rem] uppercase tracking-wide">episodes</span>
+                      <span>{episodeRandomization.episodeCount ?? 0}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[0.68rem] uppercase tracking-wide">applied axes</span>
+                      <span>{(episodeRandomization.appliedAxes || []).join(", ") || "none"}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </section>
 
             <Separator />

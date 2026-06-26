@@ -59,6 +59,10 @@
     {
       "dir": "m41-interactive-obstacle-scene",
       "status": "completed"
+    },
+    {
+      "dir": "m42-randomized-episode-scorecard",
+      "status": "completed"
     }
   ]
 }

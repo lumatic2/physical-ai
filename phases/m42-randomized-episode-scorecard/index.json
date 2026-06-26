@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m42-randomized-episode-scorecard",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "episode-profile-contract",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "scorecard-local-live-evidence",
+      "status": "completed"
+    }
+  ]
+}

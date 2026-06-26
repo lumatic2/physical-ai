@@ -299,6 +299,66 @@ export const ENVIRONMENT_SCENARIOS = {
   },
 };
 
+export const EPISODE_RANDOMIZATION_PROFILES = {
+  "obstacle-command-noise-v1": {
+    id: "obstacle-command-noise-v1",
+    label: "Obstacle command/noise v1",
+    seed: "episode-obstacle-0001",
+    experiment: "g1-obstacle-walk",
+    scenario: "obstacle-lane-v1",
+    steps: 180,
+    chunk: 45,
+    axes: {
+      command: {
+        applied: true,
+        description: "Policy velocity command vector per episode.",
+      },
+      controlNoise: {
+        applied: true,
+        description: "MuJoCo ctrl noise parameters already exposed by the web runtime.",
+      },
+      friction: {
+        applied: false,
+        description: "Recorded in scenario contract; runtime friction randomization needs MJCF variants.",
+      },
+      sensorNoise: {
+        applied: false,
+        description: "Recorded as boundary only; observation-noise injection is not implemented in this browser policy path.",
+      },
+    },
+    passCriteria: {
+      maxFallHeightM: 0.2,
+      minDistanceM: 0.02,
+      maxAbsYDriftM: 3.0,
+      requireFiniteState: true,
+    },
+    episodes: [
+      {
+        id: "seed-0001-forward-clean",
+        seed: "episode-obstacle-0001-a",
+        command: [0.55, 0.0, 0.0],
+        ctrlNoiseStd: 0.0,
+        ctrlNoiseRate: 0.0,
+      },
+      {
+        id: "seed-0002-forward-low-noise",
+        seed: "episode-obstacle-0001-b",
+        command: [0.5, 0.0, 0.08],
+        ctrlNoiseStd: 0.015,
+        ctrlNoiseRate: 1.0,
+      },
+      {
+        id: "seed-0003-diagonal-low-noise",
+        seed: "episode-obstacle-0001-c",
+        command: [0.45, 0.18, -0.06],
+        ctrlNoiseStd: 0.02,
+        ctrlNoiseRate: 1.4,
+      },
+    ],
+    claimBoundary: "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof.",
+  },
+};
+
 const DEFAULT_SCENARIO_BY_PRESET = {
   "flat-lab": "flat-lab-v1",
   "instrumented-lab": "instrumented-lab-v1",
@@ -321,6 +381,14 @@ export function normalizeEnvironmentScenarioId(id, presetId = null) {
 
 export function getEnvironmentScenario(id, presetId = null) {
   return ENVIRONMENT_SCENARIOS[normalizeEnvironmentScenarioId(id, presetId)];
+}
+
+export function normalizeEpisodeRandomizationProfileId(id) {
+  return EPISODE_RANDOMIZATION_PROFILES[id] ? id : "obstacle-command-noise-v1";
+}
+
+export function getEpisodeRandomizationProfile(id) {
+  return EPISODE_RANDOMIZATION_PROFILES[normalizeEpisodeRandomizationProfileId(id)];
 }
 
 export function inferEnvironmentScenarioFromExperiment(exp = {}) {
@@ -440,5 +508,30 @@ export function summarizeEnvironmentScenario(id, context = {}) {
       terrainGeomCount >= (scenario.parameters?.expectedTerrainGeomMin || 0) &&
       obstacleGeomCount >= (scenario.parameters?.expectedObstacleGeomMin || 0)
     ),
+  };
+}
+
+export function summarizeEpisodeRandomizationProfile(id) {
+  const profile = getEpisodeRandomizationProfile(id);
+  const appliedAxes = Object.entries(profile.axes)
+    .filter(([, axis]) => axis.applied)
+    .map(([name]) => name);
+  const boundaryAxes = Object.entries(profile.axes)
+    .filter(([, axis]) => !axis.applied)
+    .map(([name]) => name);
+  return {
+    id: profile.id,
+    label: profile.label,
+    seed: profile.seed,
+    experiment: profile.experiment,
+    scenario: profile.scenario,
+    steps: profile.steps,
+    chunk: profile.chunk,
+    episodeCount: profile.episodes.length,
+    appliedAxes,
+    boundaryAxes,
+    axes: profile.axes,
+    passCriteria: profile.passCriteria,
+    claimBoundary: profile.claimBoundary,
   };
 }

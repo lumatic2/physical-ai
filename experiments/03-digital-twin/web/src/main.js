@@ -4,7 +4,7 @@ import { GUI              } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls    } from 'three/addons/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, drawTendonsAndFlex, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
-import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, ENVIRONMENT_SCENARIOS, GROUNDING_MODES, getEnvironmentScenario, inferEnvironmentPresetFromExperiment, inferEnvironmentScenarioFromExperiment, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeEnvironmentScenarioId, normalizeGroundingMode, summarizeEnvironmentPreset, summarizeEnvironmentScenario } from './environmentPresets.js';
+import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, ENVIRONMENT_SCENARIOS, EPISODE_RANDOMIZATION_PROFILES, GROUNDING_MODES, getEnvironmentScenario, inferEnvironmentPresetFromExperiment, inferEnvironmentScenarioFromExperiment, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeEnvironmentScenarioId, normalizeGroundingMode, summarizeEnvironmentPreset, summarizeEnvironmentScenario, summarizeEpisodeRandomizationProfile } from './environmentPresets.js';
 import   load_mujoco        from 'https://cdn.jsdelivr.net/npm/mujoco-js@0.0.7/dist/mujoco_wasm.js';
 
 // Load the MuJoCo Module
@@ -142,6 +142,7 @@ export class MuJoCoDemo {
     this.environmentPresetExplicit = params.has("env");
     this.environmentScenarioExplicit = params.has("scenario");
     this.requestedEnvironmentScenarioId = params.get("scenario") || null;
+    this.episodeRandomizationProfileId = params.get("episodeProfile") || "obstacle-command-noise-v1";
     const inferredScenarioId = normalizeEnvironmentScenarioId(
       this.requestedEnvironmentScenarioId || inferEnvironmentScenarioFromExperiment(registry.experiments?.[expName] || {}),
     );
@@ -1912,6 +1913,8 @@ export class MuJoCoDemo {
     summary.assetLayer = this.labAssetLayerStatus || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
     summary.availableScenarios = Object.keys(ENVIRONMENT_SCENARIOS);
+    summary.availableEpisodeProfiles = Object.keys(EPISODE_RANDOMIZATION_PROFILES);
+    summary.episodeRandomization = summarizeEpisodeRandomizationProfile(this.episodeRandomizationProfileId);
     summary.pass = Boolean(
       summary.preset &&
       summary.availablePresets.includes(summary.preset) &&
@@ -1925,6 +1928,7 @@ export class MuJoCoDemo {
       summary.visualLayer?.visualOnly === true &&
       summary.visualLayer?.collision === "none-threejs-only" &&
       GROUNDING_MODES[summary.groundingMode] &&
+      summary.episodeRandomization?.id &&
       summary.groundingControl?.behaviorMutation === false
     );
     return summary;
