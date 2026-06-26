@@ -1,0 +1,21 @@
+{
+  "project": "physical-ai",
+  "phase": "m36-physics-diagnostics-panel",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "debug-diagnostics-panel",
+      "status": "completed",
+      "summary": "Added a debug-only React physics diagnostics panel backed by qaWorkbenchSummary().physicsReadout; npm build and g1-rough-walk workbench QA PASS.",
+      "completed_at": "2026-06-26T14:30:00+09:00"
+    },
+    {
+      "step": 1,
+      "name": "diagnostics-panel-smoke",
+      "status": "completed",
+      "summary": "Added qa/physics_diagnostics_panel_check.mjs and generated local/live evidence showing the debug diagnostics panel, runtime readout fields, samples, and not-real-telemetry boundary on robotics.askewly.com.",
+      "completed_at": "2026-06-26T15:02:00+09:00"
+    }
+  ]
+}

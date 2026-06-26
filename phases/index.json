@@ -35,6 +35,10 @@
     {
       "dir": "m35-public-evidence-refresh",
       "status": "completed"
+    },
+    {
+      "dir": "m36-physics-diagnostics-panel",
+      "status": "completed"
     }
   ]
 }

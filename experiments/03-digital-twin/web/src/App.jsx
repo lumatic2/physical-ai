@@ -117,6 +117,22 @@ function formatCommandValue(value) {
   return value.toFixed(2).replace(/^-0\.00$/, "0.00");
 }
 
+function findReadoutField(readout, name) {
+  return (readout?.auditedFields || []).find((field) => field.name === name) || null;
+}
+
+function formatReadoutSample(sample) {
+  if (Array.isArray(sample)) {
+    return sample
+      .slice(0, 4)
+      .map((value) => (Number.isFinite(value) ? formatCommandValue(value) : String(value)))
+      .join(", ");
+  }
+  if (Number.isFinite(sample)) return formatCommandValue(sample);
+  if (sample === null || sample === undefined) return "n/a";
+  return String(sample);
+}
+
 function findRobotForExperiment(expName) {
   return ROBOTS.find((robot) => robot.experiments.some((experiment) => experiment.key === expName)) || ROBOTS[0];
 }
@@ -146,6 +162,7 @@ function App() {
   const [registry, setRegistry] = React.useState(null);
   const [state, setState] = React.useState(() => readDemoState());
   const [loadingExperiment, setLoadingExperiment] = React.useState(null);
+  const debugMode = React.useMemo(() => new URLSearchParams(window.location.search).get("debug") === "1", []);
 
   React.useEffect(() => {
     document.documentElement.classList.add("dark");
@@ -188,8 +205,11 @@ function App() {
   const meta = state?.meta || {};
   const summary = state?.summary || {};
   const control = summary.control || {};
+  const physicsReadout = summary.physicsReadout || {};
   const environment = state?.environment || summary.environment || {};
   const lanes = summary.evidenceLanes || [];
+  const cfrcExt = findReadoutField(physicsReadout, "cfrc_ext");
+  const sensorData = findReadoutField(physicsReadout, "sensordata");
   const presets = Object.values(ENVIRONMENT_PRESETS);
   const selectedRobot = findRobotForExperiment(state?.expName);
   const selectedAction = selectedRobot.experiments.find((experiment) => experiment.key === state?.expName);
@@ -296,6 +316,47 @@ function App() {
                   </div>
                   <div className="mt-2 text-[0.68rem] leading-4 text-muted-foreground">
                     방향키/WASD 이동 · Q/E 회전 · 브라우저 policy input
+                  </div>
+                </div>
+              )}
+              {debugMode && physicsReadout.enabled && (
+                <div
+                  className="mt-3 rounded-md border border-amber-400/45 bg-amber-950/18 p-2"
+                  data-testid="physics-diagnostics-panel"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[0.68rem] font-medium uppercase tracking-wide text-amber-100">
+                      Physics diagnostics
+                    </span>
+                    <Badge variant="outline">{physicsReadout.claimLevel || "runtime-readout"}</Badge>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5 text-xs">
+                    <div className="rounded border border-border/70 bg-card/70 px-2 py-1.5">
+                      <div className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">contact count</div>
+                      <div className="font-mono text-foreground">{physicsReadout.contactCount ?? "n/a"}</div>
+                    </div>
+                    <div className="rounded border border-border/70 bg-card/70 px-2 py-1.5">
+                      <div className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">supported fields</div>
+                      <div className="truncate font-mono text-foreground">
+                        {(physicsReadout.supported || []).join(", ") || "none"}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5 text-xs">
+                    <div className="rounded border border-border/70 bg-card/70 px-2 py-1.5">
+                      <div className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">cfrc_ext sample</div>
+                      <div className="truncate font-mono text-foreground">{formatReadoutSample(cfrcExt?.sample)}</div>
+                    </div>
+                    <div className="rounded border border-border/70 bg-card/70 px-2 py-1.5">
+                      <div className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">sensordata sample</div>
+                      <div className="truncate font-mono text-foreground">{formatReadoutSample(sensorData?.sample)}</div>
+                    </div>
+                  </div>
+                  <div className="mt-2 text-[0.68rem] leading-4 text-muted-foreground">
+                    read-only MuJoCo WASM runtime probe · not real robot telemetry
+                    {(physicsReadout.unavailable || []).length > 0
+                      ? ` · unavailable: ${physicsReadout.unavailable.join(", ")}`
+                      : ""}
                   </div>
                 </div>
               )}

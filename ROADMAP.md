@@ -23,49 +23,44 @@
 | M30 | Visual Lab Scenes | preset이 색만 바뀌는 수준을 넘어 공간으로 보인다 | `experiments/131-visual-lab-scenes` | 완료 |
 | M31 | Physical Rough Terrain Scene | rough preset이 실제 contact-bearing scene variant로 연결된다 | `experiments/132-physical-rough-terrain-scene` | 완료 |
 | M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | 완료 |
-| M33 | User-controllable Digital Twin | 입력이 policy command를 바꾸는 것을 UI/QA로 보인다 | `experiments/134-user-controllable-digital-twin` | active |
+| M33 | User-controllable Digital Twin | 입력이 policy command를 바꾸는 것을 UI/QA로 보인다 | `experiments/134-user-controllable-digital-twin` | 완료 |
 | M34 | MuJoCo Contact/Force Readout Probe | contact/force claim을 runtime readout 가능성으로 검증한다 | `experiments/135-mujoco-contact-force-readout` | 완료 |
 | M35 | Public Evidence Story Refresh | 최신 evidence와 claim boundary를 public story로 정리한다 | `experiments/136-public-evidence-refresh` | 완료 |
+| M36 | Physics Diagnostics Panel | runtime readout을 debug UI에서 사람이 읽을 수 있게 한다 | `experiments/137-physics-diagnostics-panel` | 완료 |
 
 ## Current Horizon
 
-<!-- harness:goal id="controllable-physics-evidence-workbench" -->
-목표: Robotics Lab v2를 보기 좋은 scene에서 한 단계 올려, 사용자가 정책 command를 조작하고 MuJoCo runtime state/contact evidence로 그 결과를 읽을 수 있는 workbench로 만든다.
+<!-- harness:goal id="interactive-physics-diagnostics" -->
+목표: command input과 MuJoCo runtime readout을 사람이 읽을 수 있는 debug UI와 timeline evidence로 연결한다.
 
 ## Active Milestones
 
-<!-- harness:milestone id="M33" status="completed" priority="P0" evidence="experiments/134-user-controllable-digital-twin/verify/control-smoke.json" -->
-### M33 - User-controllable Digital Twin
+<!-- harness:milestone id="M36" status="completed" priority="P0" evidence="experiments/137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json" -->
+### M36 - Physics Diagnostics Panel
 
-- DoD: `g1-walk`에서 keyboard command 상태가 visible UI와 QA summary에 드러나고, local/live Playwright가 command down/release 변화를 검증한다.
-- Evidence: experiments/134-user-controllable-digital-twin/verify/control-smoke.json
-- Gap: 방향키 command 조작은 구현됐지만 첫 방문자가 "내 입력이 policy command를 바꾼다"를 UI와 evidence로 즉시 확인하기 어렵다.
+- DoD: `?debug=1`에서 contact count, supported fields, readout sample, claim boundary가 visible UI와 QA summary/evidence로 검증된다.
+- Evidence: experiments/137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json
+- Gap: M34 readout은 QA JSON에만 있고 visitor/debugger가 브라우저에서 물리 상태를 읽을 수 없다.
 - Status: [x]
-
 - Completed at: 2026-06-26
-- Summary: Policy command UI and local/live keyboard control smoke PASS for g1-walk.
+- Summary: Debug physics diagnostics panel shows contact count, runtime fields, samples, and not-real-telemetry boundary; local/live smoke PASS.
 ## Next Candidates
 
-<!-- harness:milestone id="M34" status="completed" priority="P1" evidence="experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json" -->
-### M34 - MuJoCo Contact/Force Readout Probe
+<!-- harness:milestone id="M37" status="pending" priority="P1" evidence="experiments/138-command-contact-timeline/verify/command-contact-timeline.json" -->
+### M37 - Command-to-Contact Timeline Smoke
 
-- DoD: `mujoco-js` runtime에서 노출 가능한 `ncon`/contact/force/sensor 값을 read-only probe로 확인하고, 가능하면 debug-only QA summary에 연결한다.
-- Evidence: experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json
-- Gap: 물리 상호작용 claim을 visual cue가 아니라 실제 MuJoCo runtime state로 설명하려면 어떤 값이 브라우저에서 읽히는지 먼저 닫아야 한다.
-- Status: [x]
+- DoD: keyboard command 변화와 contact/readout 변화가 같은 smoke evidence timeline에 함께 기록된다.
+- Evidence: experiments/138-command-contact-timeline/verify/command-contact-timeline.json
+- Gap: command input과 physics readout이 각각 검증되지만 같은 시간축에서 연결되지는 않았다.
+- Status: [ ]
 
-- Completed at: 2026-06-26
-- Summary: Browser MuJoCo readout probe found ncon/contact/cfrc_ext/sensordata available for g1 rough scene.
-<!-- harness:milestone id="M35" status="completed" priority="P2" evidence="experiments/136-public-evidence-refresh/verify/public-story-smoke.json" -->
-### M35 - Public Evidence Story Refresh
+<!-- harness:milestone id="M38" status="pending" priority="P2" evidence="experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json" -->
+### M38 - Contact Readout Interpretation Pass
 
-- DoD: README/experiments index/live copy가 M27-M34 evidence와 claim boundary를 반영하고, `robotics.askewly.com` smoke evidence가 남는다.
-- Evidence: experiments/136-public-evidence-refresh/verify/public-story-smoke.json
-- Gap: public story는 여전히 M17 policy gallery 중심이고, M27-M32 및 controllability/contact evidence arc가 5분 리뷰어에게 충분히 연결되지 않았다.
-- Status: [x]
-
-- Completed at: 2026-06-26
-- Summary: README/index refreshed and live workbench/control/readout smoke PASS on robotics.askewly.com.
+- DoD: contact/readout 값이 어떤 claim을 지지하고 어떤 claim은 아직 지지하지 않는지 public copy와 QA evidence에 명시된다.
+- Evidence: experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json
+- Gap: raw runtime field는 보이지만 리뷰어가 그 값을 physical AI claim으로 어떻게 읽어야 하는지 해석 레이어가 부족하다.
+- Status: [ ]
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.
