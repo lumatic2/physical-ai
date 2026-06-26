@@ -1715,6 +1715,7 @@ export class MuJoCoDemo {
       runtime,
       stateContract,
       control: this.controlSummary(),
+      physicsReadout: this.physicsReadoutSummary(),
       environment: this.qaEnvironmentSummary(),
       evidenceLanes: lanes,
       gate,
@@ -1765,6 +1766,71 @@ export class MuJoCoDemo {
       mapping,
       claimLevel: 'policy-command-input',
       note: 'Browser policy command input, not real robot telemetry.',
+    };
+  }
+
+  summarizeRuntimeField(name, value) {
+    const unavailable = {
+      name,
+      supported: false,
+      type: typeof value,
+      length: null,
+      sample: null,
+    };
+    if (value === undefined || value === null) return unavailable;
+    if (typeof value === 'number' || typeof value === 'boolean') {
+      return {
+        name,
+        supported: true,
+        type: typeof value,
+        length: null,
+        sample: value,
+      };
+    }
+    if (ArrayBuffer.isView(value) || Array.isArray(value)) {
+      const length = value.length ?? null;
+      return {
+        name,
+        supported: true,
+        type: value.constructor?.name || typeof value,
+        length,
+        sample: Array.from(value).slice(0, 12),
+      };
+    }
+    if (typeof value === 'object') {
+      const keys = Object.keys(value).slice(0, 12);
+      return {
+        name,
+        supported: true,
+        type: value.constructor?.name || 'object',
+        length: keys.length,
+        sample: keys,
+      };
+    }
+    return {
+      name,
+      supported: true,
+      type: typeof value,
+      length: null,
+      sample: String(value),
+    };
+  }
+
+  physicsReadoutSummary() {
+    const fields = ['ncon', 'contact', 'cfrc_ext', 'sensordata'];
+    const data = this.data || null;
+    const auditedFields = fields.map((name) => this.summarizeRuntimeField(name, data?.[name]));
+    const supported = auditedFields.filter((field) => field.supported).map((field) => field.name);
+    const unavailable = auditedFields.filter((field) => !field.supported).map((field) => field.name);
+    return {
+      enabled: Boolean(data),
+      readOnly: true,
+      claimLevel: supported.length ? 'browser-runtime-readout-probe' : 'unsupported-browser-readout-probe',
+      auditedFields,
+      supported,
+      unavailable,
+      contactCount: typeof data?.ncon === 'number' ? data.ncon : null,
+      note: 'Read-only MuJoCo WASM runtime probe; unsupported fields are not replaced with visual cues.',
     };
   }
 
