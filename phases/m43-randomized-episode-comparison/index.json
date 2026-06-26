@@ -1,0 +1,21 @@
+{
+  "project": "physical-ai",
+  "phase": "m43-randomized-episode-comparison",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "comparison-contract",
+      "status": "completed",
+      "summary": "Added obstacle-command-noise-comparison-v1 profile, qaEnvironmentSummary episodeComparison metadata, and debug UI status panel; npm run build PASS.",
+      "completed_at": "2026-06-26T17:40:00+09:00"
+    },
+    {
+      "step": 1,
+      "name": "comparison-local-live-evidence",
+      "status": "completed",
+      "summary": "Added randomized_episode_comparison.mjs; local/live comparison PASS and aggregate evidence written under experiments/144-randomized-episode-comparison/verify.",
+      "completed_at": "2026-06-26T18:00:00+09:00"
+    }
+  ]
+}

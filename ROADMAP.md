@@ -33,6 +33,7 @@
 | M40 | Multi-Robot Environment Matrix | 여러 로봇이 같은 환경 scenario contract로 비교된다 | `experiments/141-multi-robot-environment-matrix` | 완료 |
 | M41 | Interactive Obstacle Scene | static curb를 넘어 obstacle/contact task scene을 연다 | `experiments/142-interactive-obstacle-scene` | 완료 |
 | M42 | Randomized Episode Scorecard | scenario가 여러 perturbation episode로 평가된다 | `experiments/143-randomized-episode-scorecard` | 완료 |
+| M43 | Randomized Episode Comparison | baseline 대비 perturbation drift를 비교한다 | `experiments/144-randomized-episode-comparison` | 완료 |
 
 ## Current Horizon
 
@@ -81,6 +82,16 @@
 - Status: [x]
 - Completed at: 2026-06-26
 - Summary: `obstacle-command-noise-v1` profile이 3개 command/control-noise episode를 local/live에서 실행하고 scorecard evidence로 검증한다.
+
+<!-- harness:milestone id="M43" status="completed" priority="P1" evidence="experiments/144-randomized-episode-comparison/verify/randomized-episode-comparison.json" -->
+### M43 - Randomized Episode Comparison
+
+- DoD: baseline episode 대비 noisy/diagonal episode의 distance/yaw/height/score drift가 UI debug summary와 local/live evidence에 기록된다.
+- Evidence: experiments/144-randomized-episode-comparison/verify/randomized-episode-comparison.json
+- Gap: M42는 episode별 PASS/score만 보여주며, perturbation이 baseline 대비 무엇을 바꿨는지 비교 레이어가 없다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: `obstacle-command-noise-comparison-v1`이 baseline 대비 noisy/diagonal episode delta를 local/live evidence로 검증한다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.

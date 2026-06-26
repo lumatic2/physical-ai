@@ -1,0 +1,232 @@
+{
+  "pass": true,
+  "live": false,
+  "generatedAt": "2026-06-26T08:52:12.440Z",
+  "profile": {
+    "id": "obstacle-command-noise-v1",
+    "label": "Obstacle command/noise v1",
+    "seed": "episode-obstacle-0001",
+    "experiment": "g1-obstacle-walk",
+    "scenario": "obstacle-lane-v1",
+    "steps": 180,
+    "chunk": 45,
+    "episodeCount": 3,
+    "appliedAxes": [
+      "command",
+      "controlNoise"
+    ],
+    "boundaryAxes": [
+      "friction",
+      "sensorNoise"
+    ],
+    "axes": {
+      "command": {
+        "applied": true,
+        "description": "Policy velocity command vector per episode."
+      },
+      "controlNoise": {
+        "applied": true,
+        "description": "MuJoCo ctrl noise parameters already exposed by the web runtime."
+      },
+      "friction": {
+        "applied": false,
+        "description": "Recorded in scenario contract; runtime friction randomization needs MJCF variants."
+      },
+      "sensorNoise": {
+        "applied": false,
+        "description": "Recorded as boundary only; observation-noise injection is not implemented in this browser policy path."
+      }
+    },
+    "passCriteria": {
+      "maxFallHeightM": 0.2,
+      "minDistanceM": 0.02,
+      "maxAbsYDriftM": 3,
+      "requireFiniteState": true
+    },
+    "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+  },
+  "comparisonProfile": {
+    "id": "obstacle-command-noise-comparison-v1",
+    "label": "Obstacle command/noise comparison v1",
+    "randomizationProfile": "obstacle-command-noise-v1",
+    "baselineEpisode": "seed-0001-forward-clean",
+    "episodeCount": 3,
+    "comparisonCount": 2,
+    "comparedMetrics": [
+      "distance",
+      "dy",
+      "dyaw",
+      "minHeight",
+      "score"
+    ],
+    "driftThresholds": {
+      "maxAbsDistanceDeltaM": 1,
+      "maxAbsYDeltaM": 1,
+      "maxAbsYawDeltaRad": 0.8,
+      "maxMinHeightDropM": 0.12,
+      "maxScoreDrop": 0.35
+    },
+    "claimBoundary": "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer."
+  },
+  "baseline": {
+    "id": "seed-0001-forward-clean",
+    "seed": "episode-obstacle-0001-a",
+    "targetUrl": "http://127.0.0.1:8143/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&comparisonProfile=obstacle-command-noise-comparison-v1&debug=1&episode=seed-0001-forward-clean",
+    "command": [
+      0.55,
+      0,
+      0
+    ],
+    "ctrlNoiseStd": 0,
+    "ctrlNoiseRate": 0,
+    "steps": 180,
+    "chunk": 45,
+    "dx": 1.6876555850646988,
+    "dy": -0.06355521968163699,
+    "dyaw": 0.05012514555679339,
+    "distance": 1.6888518702801771,
+    "finalHeight": 0.7503013285362707,
+    "minHeight": 0.7485507594863335,
+    "fell": false,
+    "nan": false,
+    "contactCount": null,
+    "consoleErrors": [],
+    "score": 1,
+    "pass": true
+  },
+  "comparisons": [
+    {
+      "baselineEpisode": "seed-0001-forward-clean",
+      "episode": "seed-0002-forward-low-noise",
+      "command": [
+        0.5,
+        0,
+        0.08
+      ],
+      "ctrlNoiseStd": 0.015,
+      "ctrlNoiseRate": 1,
+      "delta": {
+        "distanceDeltaM": -0.1123561959638375,
+        "yDeltaM": 0.013192050393048327,
+        "yawDeltaRad": 0.03881458899124824,
+        "minHeightDeltaM": -0.0011032431510709095,
+        "scoreDelta": 0
+      },
+      "thresholds": {
+        "maxAbsDistanceDeltaM": 1,
+        "maxAbsYDeltaM": 1,
+        "maxAbsYawDeltaRad": 0.8,
+        "maxMinHeightDropM": 0.12,
+        "maxScoreDrop": 0.35
+      },
+      "pass": true
+    },
+    {
+      "baselineEpisode": "seed-0001-forward-clean",
+      "episode": "seed-0003-diagonal-low-noise",
+      "command": [
+        0.45,
+        0.18,
+        -0.06
+      ],
+      "ctrlNoiseStd": 0.02,
+      "ctrlNoiseRate": 1.4,
+      "delta": {
+        "distanceDeltaM": -0.3546074502974672,
+        "yDeltaM": 0.31995108395698124,
+        "yawDeltaRad": -0.008288032182194684,
+        "minHeightDeltaM": 0.001640119079324709,
+        "scoreDelta": 0
+      },
+      "thresholds": {
+        "maxAbsDistanceDeltaM": 1,
+        "maxAbsYDeltaM": 1,
+        "maxAbsYawDeltaRad": 0.8,
+        "maxMinHeightDropM": 0.12,
+        "maxScoreDrop": 0.35
+      },
+      "pass": true
+    }
+  ],
+  "episodes": [
+    {
+      "id": "seed-0001-forward-clean",
+      "seed": "episode-obstacle-0001-a",
+      "targetUrl": "http://127.0.0.1:8143/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&comparisonProfile=obstacle-command-noise-comparison-v1&debug=1&episode=seed-0001-forward-clean",
+      "command": [
+        0.55,
+        0,
+        0
+      ],
+      "ctrlNoiseStd": 0,
+      "ctrlNoiseRate": 0,
+      "steps": 180,
+      "chunk": 45,
+      "dx": 1.6876555850646988,
+      "dy": -0.06355521968163699,
+      "dyaw": 0.05012514555679339,
+      "distance": 1.6888518702801771,
+      "finalHeight": 0.7503013285362707,
+      "minHeight": 0.7485507594863335,
+      "fell": false,
+      "nan": false,
+      "contactCount": null,
+      "consoleErrors": [],
+      "score": 1,
+      "pass": true
+    },
+    {
+      "id": "seed-0002-forward-low-noise",
+      "seed": "episode-obstacle-0001-b",
+      "targetUrl": "http://127.0.0.1:8143/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&comparisonProfile=obstacle-command-noise-comparison-v1&debug=1&episode=seed-0002-forward-low-noise",
+      "command": [
+        0.5,
+        0,
+        0.08
+      ],
+      "ctrlNoiseStd": 0.015,
+      "ctrlNoiseRate": 1,
+      "steps": 180,
+      "chunk": 45,
+      "dx": 1.5756910110543054,
+      "dy": -0.050363169288588666,
+      "dyaw": 0.08893973454804163,
+      "distance": 1.5764956743163396,
+      "finalHeight": 0.7490326592042028,
+      "minHeight": 0.7474475163352626,
+      "fell": false,
+      "nan": false,
+      "contactCount": null,
+      "consoleErrors": [],
+      "score": 1,
+      "pass": true
+    },
+    {
+      "id": "seed-0003-diagonal-low-noise",
+      "seed": "episode-obstacle-0001-c",
+      "targetUrl": "http://127.0.0.1:8143/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&episodeProfile=obstacle-command-noise-v1&comparisonProfile=obstacle-command-noise-comparison-v1&debug=1&episode=seed-0003-diagonal-low-noise",
+      "command": [
+        0.45,
+        0.18,
+        -0.06
+      ],
+      "ctrlNoiseStd": 0.02,
+      "ctrlNoiseRate": 1.4,
+      "steps": 180,
+      "chunk": 45,
+      "dx": 1.309377460107473,
+      "dy": 0.2563958642753442,
+      "dyaw": 0.04183711337459871,
+      "distance": 1.33424441998271,
+      "finalHeight": 0.754549539284651,
+      "minHeight": 0.7501908785656582,
+      "fell": false,
+      "nan": false,
+      "contactCount": null,
+      "consoleErrors": [],
+      "score": 1,
+      "pass": true
+    }
+  ],
+  "claimBoundary": "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer."
+}

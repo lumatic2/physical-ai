@@ -359,6 +359,24 @@ export const EPISODE_RANDOMIZATION_PROFILES = {
   },
 };
 
+export const EPISODE_COMPARISON_PROFILES = {
+  "obstacle-command-noise-comparison-v1": {
+    id: "obstacle-command-noise-comparison-v1",
+    label: "Obstacle command/noise comparison v1",
+    randomizationProfile: "obstacle-command-noise-v1",
+    baselineEpisode: "seed-0001-forward-clean",
+    comparedMetrics: ["distance", "dy", "dyaw", "minHeight", "score"],
+    driftThresholds: {
+      maxAbsDistanceDeltaM: 1.0,
+      maxAbsYDeltaM: 1.0,
+      maxAbsYawDeltaRad: 0.8,
+      maxMinHeightDropM: 0.12,
+      maxScoreDrop: 0.35,
+    },
+    claimBoundary: "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer.",
+  },
+};
+
 const DEFAULT_SCENARIO_BY_PRESET = {
   "flat-lab": "flat-lab-v1",
   "instrumented-lab": "instrumented-lab-v1",
@@ -389,6 +407,14 @@ export function normalizeEpisodeRandomizationProfileId(id) {
 
 export function getEpisodeRandomizationProfile(id) {
   return EPISODE_RANDOMIZATION_PROFILES[normalizeEpisodeRandomizationProfileId(id)];
+}
+
+export function normalizeEpisodeComparisonProfileId(id) {
+  return EPISODE_COMPARISON_PROFILES[id] ? id : "obstacle-command-noise-comparison-v1";
+}
+
+export function getEpisodeComparisonProfile(id) {
+  return EPISODE_COMPARISON_PROFILES[normalizeEpisodeComparisonProfileId(id)];
 }
 
 export function inferEnvironmentScenarioFromExperiment(exp = {}) {
@@ -532,6 +558,22 @@ export function summarizeEpisodeRandomizationProfile(id) {
     boundaryAxes,
     axes: profile.axes,
     passCriteria: profile.passCriteria,
+    claimBoundary: profile.claimBoundary,
+  };
+}
+
+export function summarizeEpisodeComparisonProfile(id) {
+  const profile = getEpisodeComparisonProfile(id);
+  const randomization = getEpisodeRandomizationProfile(profile.randomizationProfile);
+  return {
+    id: profile.id,
+    label: profile.label,
+    randomizationProfile: profile.randomizationProfile,
+    baselineEpisode: profile.baselineEpisode,
+    episodeCount: randomization.episodes.length,
+    comparisonCount: Math.max(0, randomization.episodes.length - 1),
+    comparedMetrics: profile.comparedMetrics,
+    driftThresholds: profile.driftThresholds,
     claimBoundary: profile.claimBoundary,
   };
 }

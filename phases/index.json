@@ -63,6 +63,10 @@
     {
       "dir": "m42-randomized-episode-scorecard",
       "status": "completed"
+    },
+    {
+      "dir": "m43-randomized-episode-comparison",
+      "status": "completed"
     }
   ]
 }

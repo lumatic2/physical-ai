@@ -210,6 +210,7 @@ function App() {
   const environment = state?.environment || summary.environment || {};
   const scenario = environment.scenario || {};
   const episodeRandomization = environment.episodeRandomization || {};
+  const episodeComparison = environment.episodeComparison || {};
   const lanes = summary.evidenceLanes || [];
   const cfrcExt = findReadoutField(physicsReadout, "cfrc_ext");
   const sensorData = findReadoutField(physicsReadout, "sensordata");
@@ -471,6 +472,30 @@ function App() {
                       <span className="block text-[0.68rem] uppercase tracking-wide">applied axes</span>
                       <span>{(episodeRandomization.appliedAxes || []).join(", ") || "none"}</span>
                     </div>
+                  </div>
+                </div>
+              )}
+              {debugMode && episodeComparison.id && (
+                <div
+                  className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground"
+                  data-testid="episode-comparison-status"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-foreground">{episodeComparison.label || "Episode comparison"}</span>
+                    <Badge variant="outline">{episodeComparison.id}</Badge>
+                  </div>
+                  <div className="mt-1 grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="block text-[0.68rem] uppercase tracking-wide">baseline</span>
+                      <span className="font-mono text-[0.68rem]">{episodeComparison.baselineEpisode || "n/a"}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[0.68rem] uppercase tracking-wide">comparisons</span>
+                      <span>{episodeComparison.comparisonCount ?? 0}</span>
+                    </div>
+                  </div>
+                  <div className="mt-1 text-[0.68rem] leading-4">
+                    {(episodeComparison.comparedMetrics || []).join(", ") || "metrics pending"}
                   </div>
                 </div>
               )}
