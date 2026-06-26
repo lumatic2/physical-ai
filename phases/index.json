@@ -30,11 +30,11 @@
     },
     {
       "dir": "m34-mujoco-contact-force-readout",
-      "status": "pending"
+      "status": "completed"
     },
     {
       "dir": "m35-public-evidence-refresh",
-      "status": "pending"
+      "status": "completed"
     }
   ]
 }

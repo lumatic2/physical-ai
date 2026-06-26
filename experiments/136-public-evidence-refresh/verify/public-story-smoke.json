@@ -1,0 +1,50 @@
+{
+  "milestone": "M35",
+  "pass": true,
+  "generatedAt": "2026-06-26T05:02:00.000Z",
+  "deployment": {
+    "state": "READY",
+    "deploymentUrl": "https://physical-ai-so100-twin-54xh43i6r-yusongs-projects-c6e6da7f.vercel.app",
+    "customAlias": "https://robotics.askewly.com"
+  },
+  "documents": {
+    "readmeUpdated": true,
+    "experimentsIndexUpdated": true,
+    "claimAudit": "experiments/136-public-evidence-refresh/verify/claim-audit.md"
+  },
+  "evidence": {
+    "m33ControlSmoke": "experiments/134-user-controllable-digital-twin/verify/control-smoke.json",
+    "m34ReadoutProbe": "experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json"
+  },
+  "verification": {
+    "build": {
+      "command": "npm run build",
+      "pass": true
+    },
+    "localWorkbench": {
+      "command": "node qa/workbench_check.mjs --exp=g1-walk",
+      "pass": true
+    },
+    "liveWorkbench": {
+      "command": "node qa/workbench_check.mjs --exp=g1-walk --live",
+      "url": "https://robotics.askewly.com/?exp=g1-walk",
+      "pass": true
+    },
+    "liveControlSmoke": {
+      "command": "node qa/control_smoke.mjs --exp=g1-walk --live",
+      "pass": true
+    },
+    "liveContactReadoutProbe": {
+      "command": "node qa/contact_readout_probe.mjs --exp=g1-rough-walk --preset=rough-terrain --live",
+      "url": "https://robotics.askewly.com/?exp=g1-rough-walk&env=rough-terrain",
+      "pass": true,
+      "supportedFields": [
+        "ncon",
+        "contact",
+        "cfrc_ext",
+        "sensordata"
+      ]
+    }
+  },
+  "claimBoundary": "Public story now claims browser policy command input and read-only MuJoCo WASM runtime readout only; it does not claim real robot telemetry or a new physics engine."
+}

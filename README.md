@@ -13,7 +13,7 @@
 **무엇을 만들었나** —
 1. **[vla-eval](experiments/01-vla-local-eval/README.md)** — 컨슈머 GPU에서 **1커맨드로 VLA 정책을 평가**하는 도구 (Windows/WSL2·Blackwell sm_120·세그폴트/의존성 해법 내장).
 2. **[action-repr-bench](experiments/02-action-repr-bench/README.md)** — 두 동작표현을 같은 LIBERO 벤치마크로 **head-to-head 실측**.
-3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 3D 임베디먼트 갤러리**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드로 보행 command를 바꾸고, 마우스로 팔 EE를 텔레옵하고, command/rough terrain QA로 “걷는다”를 검증한다. → **라이브: [robotics.askewly.com](https://robotics.askewly.com)**
+3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 Robotics Lab workbench**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드 입력이 policy command vector를 바꾸는 것을 UI/QA로 검증하고, rough scene의 MuJoCo runtime readout(`ncon`, `contact`, `cfrc_ext`, `sensordata`)을 read-only probe로 박제한다. → **라이브: [robotics.askewly.com](https://robotics.askewly.com)**
 
 ---
 
@@ -53,7 +53,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 
 ## 만든 것 ③ digital-twin — 브라우저 임베디먼트 갤러리 + 직접 학습한 보행 정책
 
-**[robotics.askewly.com](https://robotics.askewly.com)** — 하드웨어 없이 sim→real 직전까지. MuJoCo를 WASM으로 브라우저에 띄워 로봇 갤러리를 인터랙티브 3D로 돌린다(`?exp=` 로 전환).
+**[robotics.askewly.com](https://robotics.askewly.com)** — 하드웨어 없이 sim→real 직전까지. MuJoCo를 WASM으로 브라우저에 띄워 로봇 갤러리를 인터랙티브 3D로 돌리고, runtime mode · state contract · command input · environment/contact evidence를 workbench summary로 노출한다(`?exp=` 로 전환).
 
 | `?exp=` | 임베디먼트 | 구동 방식 |
 |---|---|---|
@@ -69,9 +69,9 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 
 **직접 학습한 정책이 브라우저에서 몸을 제어한다** — MuJoCo Playground에서 PPO로 보행 정책을 학습(RTX5090, ~7~47분)하고 ONNX로 뽑은 뒤, 브라우저에서 `obs→onnx→ctrl→mj_step@50Hz` closed-loop로 돌린다. 학습 sim과 **obs 바이트 단위 parity**(golden fixture 단언)로 sim2sim 충실도를 보장 → [exp 04 (Go1)](experiments/04-go1-rl-walk/README.md) · [exp 05 (G1 휴머노이드)](experiments/05-g1-rl-walk/) · [exp 06 (Spot)](experiments/06-spot-rl-walk/README.md) · [exp 10 (Barkour)](experiments/10-barkour-rl-walk/README.md). 새 policy 추가는 [운영 체크리스트](experiments/03-digital-twin/POLICY_ADDITION.md)와 bundle checker로 검증한다.
 
-**관전 데모가 아니라 조작 가능한 플랫폼** — 키보드 WASD/QE가 보행 정책 command에 직접 연결되고, SO-100·Panda는 마우스 드래그로 end-effector를 추종한다. M10에서 `experiments.json` 단일 소스화, manifest 자동 생성, watertight 메시 가드, `add_scene.sh`를 묶어 새 씬 추가 마찰을 코드화했다.
+**관전 데모가 아니라 조작 가능한 플랫폼** — 키보드 WASD/QE와 방향키가 보행 정책 command에 직접 연결되고, SO-100·Panda는 마우스 드래그로 end-effector를 추종한다. M33에서는 `g1-walk`의 command down/release와 visible UI를 로컬+라이브 Playwright smoke로 검증했다 → [M33 evidence](experiments/134-user-controllable-digital-twin/verify/control-smoke.json). M10에서 `experiments.json` 단일 소스화, manifest 자동 생성, watertight 메시 가드, `add_scene.sh`를 묶어 새 씬 추가 마찰을 코드화했다.
 
-**“걷는다” 다음의 질문까지 측정** — M12에서 `command_sweep.mjs`를 추가해 Go1·Spot의 forward, strafe, turn, diagonal을 로컬+라이브에서 자동 측정했다. M17에서는 Go1·Spot·G1·Barkour 6개 sweep report를 같은 표로 합쳐 failures=0을 확인했고, Go1 forward 안정성, Spot rough drift, Barkour command convention 같은 차이를 드러냈다. → [exp 07](experiments/07-command-terrain-robustness/README.md) · [exp 12 비교표](experiments/12-policy-gallery-comparison/verify/policy-gallery-report.md)
+**“걷는다” 다음의 질문까지 측정** — M12에서 `command_sweep.mjs`를 추가해 Go1·Spot의 forward, strafe, turn, diagonal을 로컬+라이브에서 자동 측정했다. M17에서는 Go1·Spot·G1·Barkour 6개 sweep report를 같은 표로 합쳐 failures=0을 확인했고, Go1 forward 안정성, Spot rough drift, Barkour command convention 같은 차이를 드러냈다. M31-M34에서는 rough scene을 contact-bearing MJCF variant로 연결하고, 브라우저 MuJoCo runtime에서 `ncon`, `contact`, `cfrc_ext`, `sensordata`가 읽히는지 probe했다. 이는 실제 로봇 telemetry가 아니라 **브라우저 시뮬레이터 상태 readout**이다. → [exp 07](experiments/07-command-terrain-robustness/README.md) · [exp 12 비교표](experiments/12-policy-gallery-comparison/verify/policy-gallery-report.md) · [M34 evidence](experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json)
 
 ---
 
@@ -110,8 +110,11 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | **M15** 새 정책 흡수 | ✅ | [exp 10](experiments/10-barkour-rl-walk/README.md) — Barkour 학습→ONNX→native/web/live QA |
 | **M16** 정책 추가 루틴 | ✅ | [POLICY_ADDITION.md](experiments/03-digital-twin/POLICY_ADDITION.md) + [checker](experiments/03-digital-twin/check_policy_bundle.py) |
 | **M17** 비교 가능한 policy gallery | ✅ | [exp 12](experiments/12-policy-gallery-comparison/README.md) — 6개 command sweep report 통합 비교 |
+| **M27-M32** Robotics Lab v2 | ✅ | React/Tailwind/shadcn shell, environment controls, visual/physical rough scene, asset-backed lab shell |
+| **M33** 조작 가능한 command evidence | ✅ | [exp 134 evidence](experiments/134-user-controllable-digital-twin/verify/control-smoke.json) — `g1-walk` local/live keyboard command smoke |
+| **M34** MuJoCo runtime readout | ✅ | [exp 135 evidence](experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json) — `ncon`/`contact`/`cfrc_ext`/`sensordata` browser probe |
 
-상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0008)
+상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0012)
 
 ## 구조
 

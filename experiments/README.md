@@ -137,6 +137,11 @@
 | 128 | [robotics-lab-ui-shell](128-robotics-lab-ui-shell/README.md) | M27 Vite/React/Tailwind/shadcn shell이 MuJoCo runtime과 QA를 보존하는지 검증 | ✅ ui-shell smoke PASS: desktop/mobile/workbench/favicon checks |
 | 129 | [digital-twin-lab-environment](129-digital-twin-lab-environment/README.md) | M28 environment preset과 grounding/physics summary를 UI/QA에 노출 | ✅ environment controls smoke PASS: flat/instrumented/rough presets |
 | 130 | [public-drift-audit](130-public-drift-audit/README.md) | M27/M28 이후 README/askewly/vault/live demo claim drift를 감사 | ✅ audit PASS_WITH_ACTION_ITEMS: live deploy stale + project copy stale, no real-telemetry overclaim |
+| 131 | [visual-lab-scenes](131-visual-lab-scenes/README.md) | environment preset이 색/라벨이 아니라 공간 차이로 보이는지 검증 | ✅ visual-only lab scenes smoke PASS |
+| 132 | [physical-rough-terrain-scene](132-physical-rough-terrain-scene/README.md) | rough preset이 실제 contact-bearing scene variant와 연결되는지 검증 | ✅ active rough MJCF scene + terrain QA PASS |
+| 133 | [asset-backed-lab-shell](133-asset-backed-lab-shell/README.md) | lightweight glTF lab shell을 lazy-load해 visual layer에 붙일 수 있는지 검증 | ✅ asset shell smoke PASS |
+| 134 | [user-controllable-digital-twin](134-user-controllable-digital-twin/verify/control-smoke.json) | keyboard input이 policy command vector와 visible UI로 연결되는지 검증 | ✅ local/live `g1-walk` command down/release smoke PASS |
+| 135 | [mujoco-contact-force-readout](135-mujoco-contact-force-readout/verify/contact-readout-probe.json) | browser MuJoCo runtime에서 contact/force/sensor readout 접근 가능성을 probe | ✅ `ncon`, `contact`, `cfrc_ext`, `sensordata` read-only probe PASS |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

@@ -1,0 +1,168 @@
+{
+  "milestone": "M34",
+  "experiment": "g1-rough-walk",
+  "requestedPreset": "rough-terrain",
+  "claimBoundary": "read-only MuJoCo WASM runtime probe, not visual contact cue",
+  "local": {
+    "url": "http://127.0.0.1:8132/?exp=g1-rough-walk&env=rough-terrain",
+    "pass": true,
+    "experiment": "g1-rough-walk",
+    "requestedPreset": "rough-terrain",
+    "runtime": "browser ONNX policy",
+    "activeScene": "g1/scene_g1_rough.xml",
+    "environmentClaimLevel": "contact-bearing-scene",
+    "physicsReadout": {
+      "enabled": true,
+      "readOnly": true,
+      "claimLevel": "browser-runtime-readout-probe",
+      "auditedFields": [
+        {
+          "name": "ncon",
+          "supported": true,
+          "type": "number",
+          "length": null,
+          "sample": 8
+        },
+        {
+          "name": "contact",
+          "supported": true,
+          "type": "MjContactVec",
+          "length": 0,
+          "sample": []
+        },
+        {
+          "name": "cfrc_ext",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 186,
+          "sample": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "sensordata",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 68,
+          "sample": [
+            0.06736765096742958,
+            -0.007127307139757411,
+            0.9977027618965806,
+            -0.000644858054683158,
+            0.011097130983084891,
+            0.007870849298975377,
+            0.072438001172031,
+            0.04579321874045505,
+            0.029097795199700988,
+            -0.19725975641754925,
+            -0.3193296211176993,
+            9.769884567008367
+          ]
+        }
+      ],
+      "supported": [
+        "ncon",
+        "contact",
+        "cfrc_ext",
+        "sensordata"
+      ],
+      "unavailable": [],
+      "contactCount": 8,
+      "note": "Read-only MuJoCo WASM runtime probe; unsupported fields are not replaced with visual cues."
+    },
+    "consoleErrors": []
+  },
+  "live": {
+    "url": "https://robotics.askewly.com/?exp=g1-rough-walk&env=rough-terrain",
+    "pass": true,
+    "experiment": "g1-rough-walk",
+    "requestedPreset": "rough-terrain",
+    "runtime": "browser ONNX policy",
+    "activeScene": "g1/scene_g1_rough.xml",
+    "environmentClaimLevel": "contact-bearing-scene",
+    "physicsReadout": {
+      "enabled": true,
+      "readOnly": true,
+      "claimLevel": "browser-runtime-readout-probe",
+      "auditedFields": [
+        {
+          "name": "ncon",
+          "supported": true,
+          "type": "number",
+          "length": null,
+          "sample": 8
+        },
+        {
+          "name": "contact",
+          "supported": true,
+          "type": "MjContactVec",
+          "length": 0,
+          "sample": []
+        },
+        {
+          "name": "cfrc_ext",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 186,
+          "sample": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "sensordata",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 68,
+          "sample": [
+            0.06736765096742958,
+            -0.007127307139757411,
+            0.9977027618965806,
+            -0.000644858054683158,
+            0.011097130983084891,
+            0.007870849298975377,
+            0.072438001172031,
+            0.04579321874045505,
+            0.029097795199700988,
+            -0.19725975641754925,
+            -0.3193296211176993,
+            9.769884567008367
+          ]
+        }
+      ],
+      "supported": [
+        "ncon",
+        "contact",
+        "cfrc_ext",
+        "sensordata"
+      ],
+      "unavailable": [],
+      "contactCount": 8,
+      "note": "Read-only MuJoCo WASM runtime probe; unsupported fields are not replaced with visual cues."
+    },
+    "consoleErrors": []
+  },
+  "pass": true,
+  "generatedAt": "2026-06-26T04:49:05.491Z"
+}

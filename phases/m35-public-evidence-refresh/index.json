@@ -6,12 +6,16 @@
     {
       "step": 0,
       "name": "claim-audit",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Audited root README and experiments index for M27-M34 drift; recorded missing command/readout evidence and claim boundaries in experiments/136-public-evidence-refresh/verify/claim-audit.md.",
+      "completed_at": "2026-06-26T13:50:00+09:00"
     },
     {
       "step": 1,
       "name": "public-copy-refresh",
-      "status": "pending"
+      "status": "completed",
+      "summary": "Updated root README and experiments index for M33/M34 evidence, redeployed robotics.askewly.com, and recorded public-story smoke with local/live workbench, command, and contact readout checks PASS.",
+      "completed_at": "2026-06-26T14:02:00+09:00"
     }
   ]
 }

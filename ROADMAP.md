@@ -24,8 +24,8 @@
 | M31 | Physical Rough Terrain Scene | rough preset이 실제 contact-bearing scene variant로 연결된다 | `experiments/132-physical-rough-terrain-scene` | 완료 |
 | M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | 완료 |
 | M33 | User-controllable Digital Twin | 입력이 policy command를 바꾸는 것을 UI/QA로 보인다 | `experiments/134-user-controllable-digital-twin` | active |
-| M34 | MuJoCo Contact/Force Readout Probe | contact/force claim을 runtime readout 가능성으로 검증한다 | `experiments/135-mujoco-contact-force-readout` | pending |
-| M35 | Public Evidence Story Refresh | 최신 evidence와 claim boundary를 public story로 정리한다 | `experiments/136-public-evidence-refresh` | pending |
+| M34 | MuJoCo Contact/Force Readout Probe | contact/force claim을 runtime readout 가능성으로 검증한다 | `experiments/135-mujoco-contact-force-readout` | 완료 |
+| M35 | Public Evidence Story Refresh | 최신 evidence와 claim boundary를 public story로 정리한다 | `experiments/136-public-evidence-refresh` | 완료 |
 
 ## Current Horizon
 
@@ -46,22 +46,26 @@
 - Summary: Policy command UI and local/live keyboard control smoke PASS for g1-walk.
 ## Next Candidates
 
-<!-- harness:milestone id="M34" status="pending" priority="P1" evidence="experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json" -->
+<!-- harness:milestone id="M34" status="completed" priority="P1" evidence="experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json" -->
 ### M34 - MuJoCo Contact/Force Readout Probe
 
 - DoD: `mujoco-js` runtime에서 노출 가능한 `ncon`/contact/force/sensor 값을 read-only probe로 확인하고, 가능하면 debug-only QA summary에 연결한다.
 - Evidence: experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json
 - Gap: 물리 상호작용 claim을 visual cue가 아니라 실제 MuJoCo runtime state로 설명하려면 어떤 값이 브라우저에서 읽히는지 먼저 닫아야 한다.
-- Status: [ ]
+- Status: [x]
 
-<!-- harness:milestone id="M35" status="pending" priority="P2" evidence="experiments/136-public-evidence-refresh/verify/public-story-smoke.json" -->
+- Completed at: 2026-06-26
+- Summary: Browser MuJoCo readout probe found ncon/contact/cfrc_ext/sensordata available for g1 rough scene.
+<!-- harness:milestone id="M35" status="completed" priority="P2" evidence="experiments/136-public-evidence-refresh/verify/public-story-smoke.json" -->
 ### M35 - Public Evidence Story Refresh
 
 - DoD: README/experiments index/live copy가 M27-M34 evidence와 claim boundary를 반영하고, `robotics.askewly.com` smoke evidence가 남는다.
 - Evidence: experiments/136-public-evidence-refresh/verify/public-story-smoke.json
 - Gap: public story는 여전히 M17 policy gallery 중심이고, M27-M32 및 controllability/contact evidence arc가 5분 리뷰어에게 충분히 연결되지 않았다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-06-26
+- Summary: README/index refreshed and live workbench/control/readout smoke PASS on robotics.askewly.com.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.
