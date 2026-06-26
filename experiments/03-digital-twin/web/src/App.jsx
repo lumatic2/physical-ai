@@ -104,6 +104,19 @@ const EVIDENCE_LABELS = {
   teleop: "직접 조작 가능",
 };
 
+const CONTROL_SOURCE_LABELS = {
+  initial: "대기",
+  keyboard: "키보드",
+  released: "입력 해제",
+  slider: "슬라이더",
+  unavailable: "없음",
+};
+
+function formatCommandValue(value) {
+  if (!Number.isFinite(value)) return "0.00";
+  return value.toFixed(2).replace(/^-0\.00$/, "0.00");
+}
+
 function findRobotForExperiment(expName) {
   return ROBOTS.find((robot) => robot.experiments.some((experiment) => experiment.key === expName)) || ROBOTS[0];
 }
@@ -144,6 +157,7 @@ function App() {
     const refresh = () => setState(readDemoState());
     refresh();
     window.addEventListener("robotics-lab-ready", refresh);
+    window.addEventListener("robotics-lab-control-change", refresh);
     window.addEventListener("robotics-lab-environment-change", refresh);
     window.addEventListener("robotics-lab-experiment-change", refresh);
     const handleExperimentChange = (event) => {
@@ -161,6 +175,7 @@ function App() {
     const timer = window.setInterval(refresh, 500);
     return () => {
       window.removeEventListener("robotics-lab-ready", refresh);
+      window.removeEventListener("robotics-lab-control-change", refresh);
       window.removeEventListener("robotics-lab-environment-change", refresh);
       window.removeEventListener("robotics-lab-experiment-change", refresh);
       window.removeEventListener("robotics-lab-experiment-change", handleExperimentChange);
@@ -172,6 +187,7 @@ function App() {
   const experiments = registry?.experiments || {};
   const meta = state?.meta || {};
   const summary = state?.summary || {};
+  const control = summary.control || {};
   const environment = state?.environment || summary.environment || {};
   const lanes = summary.evidenceLanes || [];
   const presets = Object.values(ENVIRONMENT_PRESETS);
@@ -253,6 +269,36 @@ function App() {
                   </Badge>
                 ))}
               </div>
+              {control.enabled && (
+                <div
+                  className="mt-3 rounded-md border border-border/80 bg-background/60 p-2"
+                  data-testid="policy-command-status"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[0.68rem] font-medium uppercase tracking-wide text-muted-foreground">
+                      Policy command
+                    </span>
+                    <Badge variant="outline">
+                      {CONTROL_SOURCE_LABELS[control.inputSource] || control.inputSource || "대기"}
+                    </Badge>
+                  </div>
+                  <div className="mt-2 grid grid-cols-3 gap-1.5 text-center">
+                    {[
+                      ["vx", control.command?.[0]],
+                      ["vy", control.command?.[1]],
+                      ["yaw", control.command?.[2]],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded border border-border/70 bg-card/70 px-1.5 py-1">
+                        <div className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">{label}</div>
+                        <div className="font-mono text-xs text-foreground">{formatCommandValue(value)}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-2 text-[0.68rem] leading-4 text-muted-foreground">
+                    방향키/WASD 이동 · Q/E 회전 · 브라우저 policy input
+                  </div>
+                </div>
+              )}
             </div>
 
             <Separator />

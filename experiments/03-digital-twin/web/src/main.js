@@ -92,6 +92,9 @@ export class MuJoCoDemo {
       error: null,
     };
     this.labAssetLoadToken = 0;
+    this.commandHeld = new Set();
+    this.commandRange = null;
+    this.lastCommandInputSource = 'initial';
 
     this.renderer = new THREE.WebGLRenderer( { antialias: true } );
     this.renderer.setPixelRatio(1.0);////window.devicePixelRatio );
@@ -179,6 +182,9 @@ export class MuJoCoDemo {
     }
     this.policy = null;
     this.pol = null;
+    this.commandHeld = new Set();
+    this.commandRange = null;
+    this.lastCommandInputSource = 'initial';
     this.session = null;
     this.replayQpos = null;
     this.replayN = null;
@@ -1708,6 +1714,7 @@ export class MuJoCoDemo {
       title: exp.title || this.expName,
       runtime,
       stateContract,
+      control: this.controlSummary(),
       environment: this.qaEnvironmentSummary(),
       evidenceLanes: lanes,
       gate,
@@ -1723,6 +1730,51 @@ export class MuJoCoDemo {
       summary.gate
     );
     return summary;
+  }
+
+  controlSummary() {
+    const mapping = {
+      ArrowUp: 'vx + forward',
+      W: 'vx + forward',
+      ArrowDown: 'vx - backward',
+      S: 'vx - backward',
+      ArrowLeft: 'vy + left',
+      A: 'vy + left',
+      ArrowRight: 'vy - right',
+      D: 'vy - right',
+      Q: 'vyaw + turn left',
+      E: 'vyaw - turn right',
+    };
+    if (!this.policy || !this.pol) {
+      return {
+        enabled: false,
+        command: null,
+        range: null,
+        inputSource: 'unavailable',
+        heldCommands: [],
+        mapping,
+        claimLevel: 'not-policy-mode',
+      };
+    }
+    return {
+      enabled: true,
+      command: Array.from(this.pol.command || [0, 0, 0]),
+      range: this.commandRange || this.pol.cmdRange || null,
+      inputSource: this.lastCommandInputSource || 'initial',
+      heldCommands: Array.from(this.commandHeld || []),
+      mapping,
+      claimLevel: 'policy-command-input',
+      note: 'Browser policy command input, not real robot telemetry.',
+    };
+  }
+
+  dispatchControlChange() {
+    window.dispatchEvent(new CustomEvent('robotics-lab-control-change', {
+      detail: {
+        experiment: this.expName,
+        control: this.controlSummary(),
+      },
+    }));
   }
 
   updateWorkbenchPanel(meta) {
@@ -1971,12 +2023,20 @@ export class MuJoCoDemo {
   addCommandGUI() {
     const c = this.pol.command;
     const r = this.pol.cmdRange || { vx: [-1.0, 1.5], vy: [-0.8, 0.8], vyaw: [-1.5, 1.5] };
+    this.commandRange = r;
     const f = this.gui.addFolder('Command (drag, arrows, or WASD/QE to steer)');
     this.cmdControllers = [
       f.add(c, '0', r.vx[0], r.vx[1], 0.05).name('vx  forward'),
       f.add(c, '1', r.vy[0], r.vy[1], 0.05).name('vy  strafe'),
       f.add(c, '2', r.vyaw[0], r.vyaw[1], 0.05).name('vyaw  turn'),
     ];
+    for (const ctl of this.cmdControllers) {
+      ctl.onChange(() => {
+        this.lastCommandInputSource = 'slider';
+        this.commandHeld.clear();
+        this.dispatchControlChange();
+      });
+    }
     f.open();
     this.bindCommandKeys(r);
   }
@@ -1991,6 +2051,7 @@ export class MuJoCoDemo {
     }
     const c = this.pol.command;
     const held = new Set();
+    this.commandHeld = held;
     const keyMap = {
       arrowup: 'forward',
       w: 'forward',
@@ -2008,6 +2069,7 @@ export class MuJoCoDemo {
       c[1] = held.has('left')    ? r.vy[1]   : held.has('right') ? r.vy[0]  : 0;
       c[2] = held.has('turnLeft') ? r.vyaw[1] : held.has('turnRight') ? r.vyaw[0] : 0;
       for (const ctl of this.cmdControllers || []) { ctl.updateDisplay(); }
+      this.dispatchControlChange();
     };
     // Ignore keystrokes while a GUI text field has focus, so typing a value isn't hijacked.
     const typing = (e) => e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName);
@@ -2015,6 +2077,7 @@ export class MuJoCoDemo {
       const k = e.key.toLowerCase();
       const command = keyMap[k];
       if (!command || typing(e)) { return; }
+      this.lastCommandInputSource = 'keyboard';
       held.add(command); apply(); e.preventDefault();
     };
     const onKeyUp = (e) => {
@@ -2022,6 +2085,10 @@ export class MuJoCoDemo {
       const command = keyMap[k];
       if (!command) { return; }
       held.delete(command); apply(); e.preventDefault();
+      if (held.size === 0) {
+        this.lastCommandInputSource = 'released';
+        this.dispatchControlChange();
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
@@ -2029,6 +2096,7 @@ export class MuJoCoDemo {
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
       held.clear();
+      this.lastCommandInputSource = 'initial';
     };
   }
 
