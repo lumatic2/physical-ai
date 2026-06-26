@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m44-g1-contactbody-flicker-fix",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "collision-and-visual-contract",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "local-live-regression-evidence",
+      "status": "completed"
+    }
+  ]
+}

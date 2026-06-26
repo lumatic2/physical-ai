@@ -1,0 +1,53 @@
+{
+  "pass": true,
+  "live": false,
+  "targetUrl": "http://127.0.0.1:8144/?exp=g1-obstacle-walk&scenario=obstacle-lane-v1&debug=1",
+  "consoleErrors": [],
+  "activeScene": "g1/scene_g1_obstacle.xml",
+  "requiredGeoms": [
+    {
+      "index": 9,
+      "name": "pelvis_floor_collision",
+      "bodyId": 1,
+      "contype": 1,
+      "conaffinity": 1,
+      "group": 3
+    },
+    {
+      "index": 46,
+      "name": "torso_floor_collision",
+      "bodyId": 16,
+      "contype": 1,
+      "conaffinity": 1,
+      "group": 3
+    },
+    {
+      "index": 47,
+      "name": "head_floor_collision",
+      "bodyId": 16,
+      "contype": 1,
+      "conaffinity": 1,
+      "group": 3
+    }
+  ],
+  "requiredContactEligible": true,
+  "footGeomNames": [
+    "left_foot",
+    "right_foot"
+  ],
+  "visualObjects": [
+    "Selectable lab backdrop",
+    "Lab floor grid",
+    "Lab origin axes",
+    "Terrain test lane",
+    "Rough terrain test fixtures"
+  ],
+  "visualFloorOverlayPresent": false,
+  "postFallProbe": {
+    "contactCount": 5,
+    "rootZ": 0.11451475280168442,
+    "finiteRootZ": true
+  },
+  "environmentPass": true,
+  "claimBoundary": "Browser MuJoCo collision/rendering contract check; not a real robot collision validation."
+}

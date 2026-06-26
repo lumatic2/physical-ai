@@ -174,6 +174,78 @@
       "rough-curb-v1",
       "obstacle-lane-v1"
     ],
+    "availableEpisodeProfiles": [
+      "obstacle-command-noise-v1"
+    ],
+    "availableComparisonProfiles": [
+      "obstacle-command-noise-comparison-v1"
+    ],
+    "episodeRandomization": {
+      "id": "obstacle-command-noise-v1",
+      "label": "Obstacle command/noise v1",
+      "seed": "episode-obstacle-0001",
+      "experiment": "g1-obstacle-walk",
+      "scenario": "obstacle-lane-v1",
+      "steps": 180,
+      "chunk": 45,
+      "episodeCount": 3,
+      "appliedAxes": [
+        "command",
+        "controlNoise"
+      ],
+      "boundaryAxes": [
+        "friction",
+        "sensorNoise"
+      ],
+      "axes": {
+        "command": {
+          "applied": true,
+          "description": "Policy velocity command vector per episode."
+        },
+        "controlNoise": {
+          "applied": true,
+          "description": "MuJoCo ctrl noise parameters already exposed by the web runtime."
+        },
+        "friction": {
+          "applied": false,
+          "description": "Recorded in scenario contract; runtime friction randomization needs MJCF variants."
+        },
+        "sensorNoise": {
+          "applied": false,
+          "description": "Recorded as boundary only; observation-noise injection is not implemented in this browser policy path."
+        }
+      },
+      "passCriteria": {
+        "maxFallHeightM": 0.2,
+        "minDistanceM": 0.02,
+        "maxAbsYDriftM": 3,
+        "requireFiniteState": true
+      },
+      "claimBoundary": "Seeded browser episode scorecard for command/control-noise perturbations; not a training-time domain-randomization or sim-to-real proof."
+    },
+    "episodeComparison": {
+      "id": "obstacle-command-noise-comparison-v1",
+      "label": "Obstacle command/noise comparison v1",
+      "randomizationProfile": "obstacle-command-noise-v1",
+      "baselineEpisode": "seed-0001-forward-clean",
+      "episodeCount": 3,
+      "comparisonCount": 2,
+      "comparedMetrics": [
+        "distance",
+        "dy",
+        "dyaw",
+        "minHeight",
+        "score"
+      ],
+      "driftThresholds": {
+        "maxAbsDistanceDeltaM": 1,
+        "maxAbsYDeltaM": 1,
+        "maxAbsYawDeltaRad": 0.8,
+        "maxMinHeightDropM": 0.12,
+        "maxScoreDrop": 0.35
+      },
+      "claimBoundary": "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer."
+    },
     "pass": true
   }
 }

@@ -34,6 +34,7 @@
 | M41 | Interactive Obstacle Scene | static curb를 넘어 obstacle/contact task scene을 연다 | `experiments/142-interactive-obstacle-scene` | 완료 |
 | M42 | Randomized Episode Scorecard | scenario가 여러 perturbation episode로 평가된다 | `experiments/143-randomized-episode-scorecard` | 완료 |
 | M43 | Randomized Episode Comparison | baseline 대비 perturbation drift를 비교한다 | `experiments/144-randomized-episode-comparison` | 완료 |
+| M44 | G1 Contact Body & Flicker Fix | G1 넘어짐 충돌과 visual floor flicker를 바로잡는다 | `experiments/145-g1-contactbody-flicker-fix` | 완료 |
 
 ## Current Horizon
 
@@ -92,6 +93,16 @@
 - Status: [x]
 - Completed at: 2026-06-26
 - Summary: `obstacle-command-noise-comparison-v1`이 baseline 대비 noisy/diagonal episode delta를 local/live evidence로 검증한다.
+
+<!-- harness:milestone id="M44" status="completed" priority="P0" evidence="experiments/145-g1-contactbody-flicker-fix/verify/g1-contactbody-flicker-fix.json" -->
+### M44 - G1 Contact Body & Flicker Fix
+
+- DoD: G1 pelvis/torso/head가 floor-contact eligible collision geom을 갖고, visual-only floor overlay z-fighting source가 제거되며 local/live QA evidence가 남는다.
+- Evidence: experiments/145-g1-contactbody-flicker-fix/verify/g1-contactbody-flicker-fix.json
+- Gap: G1이 넘어질 때 발 이외 상체가 바닥 아래로 통과하고, MuJoCo floor와 Three.js floor overlay가 겹쳐 background flicker가 발생한다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: G1 pelvis/torso/head floor-contact collision geoms를 추가하고 duplicate visual floor overlay를 제거했다. local/live QA에서 non-foot contact eligibility, overlay absence, post-fall contact probe가 PASS다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.

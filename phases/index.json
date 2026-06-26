@@ -67,6 +67,10 @@
     {
       "dir": "m43-randomized-episode-comparison",
       "status": "completed"
+    },
+    {
+      "dir": "m44-g1-contactbody-flicker-fix",
+      "status": "completed"
     }
   ]
 }

@@ -479,9 +479,10 @@ export class MuJoCoDemo {
 
     const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
     grid.name = "Lab floor grid";
-    grid.position.y = 0.012;
+    grid.position.y = 0.045;
     grid.material.transparent = true;
     grid.material.opacity = summary.preset === "instrumented-lab" ? 0.38 : 0.26;
+    grid.renderOrder = 1;
     this.labVisualLayer.add(grid);
 
     const axes = new THREE.AxesHelper(0.65);
@@ -580,20 +581,6 @@ export class MuJoCoDemo {
   createLabBackdrop(style) {
     const group = new THREE.Group();
     group.name = "Selectable lab backdrop";
-
-    const floorMaterial = new THREE.MeshStandardMaterial({
-      color: style.floor,
-      roughness: 0.78,
-      metalness: 0.02,
-      transparent: true,
-      opacity: 0.72,
-      depthWrite: false,
-    });
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), floorMaterial);
-    floor.name = "Matte visual floor overlay";
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = 0.006;
-    group.add(floor);
 
     const wallMaterial = new THREE.MeshStandardMaterial({
       color: style.wall,
