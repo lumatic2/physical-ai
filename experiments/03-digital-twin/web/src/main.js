@@ -5,6 +5,7 @@ import { OrbitControls    } from 'three/addons/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, drawTendonsAndFlex, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
 import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, ENVIRONMENT_SCENARIOS, EPISODE_COMPARISON_PROFILES, EPISODE_RANDOMIZATION_PROFILES, GROUNDING_MODES, getEnvironmentScenario, inferEnvironmentPresetFromExperiment, inferEnvironmentScenarioFromExperiment, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeEnvironmentScenarioId, normalizeGroundingMode, summarizeEnvironmentPreset, summarizeEnvironmentScenario, summarizeEpisodeComparisonProfile, summarizeEpisodeRandomizationProfile } from './environmentPresets.js';
+import { summarizeRealRobotCollisionReadiness } from './realRobotCollision.js';
 import   load_mujoco        from 'https://cdn.jsdelivr.net/npm/mujoco-js@0.0.7/dist/mujoco_wasm.js';
 
 // Load the MuJoCo Module
@@ -1905,6 +1906,15 @@ export class MuJoCoDemo {
     summary.availableComparisonProfiles = Object.keys(EPISODE_COMPARISON_PROFILES);
     summary.episodeRandomization = summarizeEpisodeRandomizationProfile(this.episodeRandomizationProfileId);
     summary.episodeComparison = summarizeEpisodeComparisonProfile(this.episodeComparisonProfileId);
+    summary.realRobotCollision = summarizeRealRobotCollisionReadiness({
+      experimentName: this.expName,
+      scene: this.exp?.scene || this.params?.scene || null,
+      title: this.exp?.title || null,
+      modelGeoms: this.getModelGeomSummaries(),
+      telemetryBridgePresent: false,
+      actuationGatePresent: false,
+      estopEvidencePresent: false,
+    });
     summary.pass = Boolean(
       summary.preset &&
       summary.availablePresets.includes(summary.preset) &&
@@ -1920,21 +1930,34 @@ export class MuJoCoDemo {
       GROUNDING_MODES[summary.groundingMode] &&
       summary.episodeRandomization?.id &&
       summary.episodeComparison?.id &&
+      summary.realRobotCollision?.pass &&
       summary.groundingControl?.behaviorMutation === false
     );
     return summary;
   }
 
-  getTerrainGeomNames() {
+  getModelGeomSummaries() {
     if (!this.model?.name_geomadr || !this.model?.names) return [];
     const textDecoder = new TextDecoder("utf-8");
     const nullChar = textDecoder.decode(new ArrayBuffer(1));
-    const names = [];
+    const geoms = [];
     for (let i = 0; i < this.model.ngeom; i++) {
-      const name = textDecoder.decode(this.model.names.subarray(this.model.name_geomadr[i])).split(nullChar)[0];
-      if (/^(curb_|step_|terrain_)/i.test(name)) names.push(name);
+      geoms.push({
+        index: i,
+        name: textDecoder.decode(this.model.names.subarray(this.model.name_geomadr[i])).split(nullChar)[0],
+        bodyId: this.model.geom_bodyid?.[i] ?? null,
+        contype: this.model.geom_contype?.[i] ?? null,
+        conaffinity: this.model.geom_conaffinity?.[i] ?? null,
+        group: this.model.geom_group?.[i] ?? null,
+      });
     }
-    return names;
+    return geoms;
+  }
+
+  getTerrainGeomNames() {
+    return this.getModelGeomSummaries()
+      .map((geom) => geom.name)
+      .filter((name) => /^(curb_|step_|terrain_)/i.test(name));
   }
 
   // Always-on control hint (bottom-left). Discoverability for the interactive controls — the

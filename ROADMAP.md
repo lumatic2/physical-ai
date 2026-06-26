@@ -35,6 +35,7 @@
 | M42 | Randomized Episode Scorecard | scenario가 여러 perturbation episode로 평가된다 | `experiments/143-randomized-episode-scorecard` | 완료 |
 | M43 | Randomized Episode Comparison | baseline 대비 perturbation drift를 비교한다 | `experiments/144-randomized-episode-comparison` | 완료 |
 | M44 | G1 Contact Body & Flicker Fix | G1 넘어짐 충돌과 visual floor flicker를 바로잡는다 | `experiments/145-g1-contactbody-flicker-fix` | 완료 |
+| M45 | Real Robot Collision Contract | 실제 로봇 충돌 readiness를 sensor/stop-gate contract로 분리한다 | `experiments/146-real-robot-collision-contract` | 완료 |
 
 ## Current Horizon
 
@@ -103,6 +104,16 @@
 - Status: [x]
 - Completed at: 2026-06-26
 - Summary: G1 pelvis/torso/head floor-contact collision geoms를 추가하고 duplicate visual floor overlay를 제거했다. local/live QA에서 non-foot contact eligibility, overlay absence, post-fall contact probe가 PASS다.
+
+<!-- harness:milestone id="M45" status="completed" priority="P0" evidence="experiments/146-real-robot-collision-contract/verify/real-robot-collision-contract.json" -->
+### M45 - Real Robot Collision Contract
+
+- DoD: G1 sim collision envelope가 실제 로봇 body zone, required telemetry, actuator stop gate, e-stop evidence requirement로 매핑되고 local/live QA evidence가 남는다.
+- Evidence: experiments/146-real-robot-collision-contract/verify/real-robot-collision-contract.json
+- Gap: M44는 MuJoCo body collision을 고쳤지만, 실제 로봇 충돌 처리에 필요한 sensor/actuation/e-stop readiness contract가 없다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: G1 pelvis/torso/head/feet collision readiness를 real-robot body zone, required telemetry, actuator stop gate, e-stop requirement, stop criteria로 매핑했다. local/live QA에서 sim envelope coverage와 hardware-unarmed gate가 PASS다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.

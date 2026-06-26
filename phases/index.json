@@ -71,6 +71,10 @@
     {
       "dir": "m44-g1-contactbody-flicker-fix",
       "status": "completed"
+    },
+    {
+      "dir": "m45-real-robot-collision-contract",
+      "status": "completed"
     }
   ]
 }

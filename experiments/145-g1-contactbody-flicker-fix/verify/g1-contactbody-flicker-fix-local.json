@@ -44,8 +44,8 @@
   ],
   "visualFloorOverlayPresent": false,
   "postFallProbe": {
-    "contactCount": 5,
-    "rootZ": 0.11451475280168442,
+    "contactCount": 4,
+    "rootZ": 0.11465226836438197,
     "finiteRootZ": true
   },
   "environmentPass": true,

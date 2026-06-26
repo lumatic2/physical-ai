@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m45-real-robot-collision-contract",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "real-robot-collision-readiness-contract",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "local-live-contract-evidence",
+      "status": "completed"
+    }
+  ]
+}
