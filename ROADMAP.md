@@ -27,6 +27,8 @@
 | M34 | MuJoCo Contact/Force Readout Probe | contact/force claim을 runtime readout 가능성으로 검증한다 | `experiments/135-mujoco-contact-force-readout` | 완료 |
 | M35 | Public Evidence Story Refresh | 최신 evidence와 claim boundary를 public story로 정리한다 | `experiments/136-public-evidence-refresh` | 완료 |
 | M36 | Physics Diagnostics Panel | runtime readout을 debug UI에서 사람이 읽을 수 있게 한다 | `experiments/137-physics-diagnostics-panel` | 완료 |
+| M37 | Command-to-Contact Timeline Smoke | command와 runtime readout을 같은 시간축 evidence로 묶는다 | `experiments/138-command-contact-timeline` | 완료 |
+| M38 | Contact Readout Interpretation Pass | runtime readout claim의 지지/비지지 범위를 공개 문구로 분리한다 | `experiments/139-contact-readout-interpretation` | 완료 |
 
 ## Current Horizon
 
@@ -35,32 +37,16 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="M36" status="completed" priority="P0" evidence="experiments/137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json" -->
-### M36 - Physics Diagnostics Panel
-
-- DoD: `?debug=1`에서 contact count, supported fields, readout sample, claim boundary가 visible UI와 QA summary/evidence로 검증된다.
-- Evidence: experiments/137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json
-- Gap: M34 readout은 QA JSON에만 있고 visitor/debugger가 브라우저에서 물리 상태를 읽을 수 없다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: Debug physics diagnostics panel shows contact count, runtime fields, samples, and not-real-telemetry boundary; local/live smoke PASS.
-## Next Candidates
-
-<!-- harness:milestone id="M37" status="pending" priority="P1" evidence="experiments/138-command-contact-timeline/verify/command-contact-timeline.json" -->
-### M37 - Command-to-Contact Timeline Smoke
-
-- DoD: keyboard command 변화와 contact/readout 변화가 같은 smoke evidence timeline에 함께 기록된다.
-- Evidence: experiments/138-command-contact-timeline/verify/command-contact-timeline.json
-- Gap: command input과 physics readout이 각각 검증되지만 같은 시간축에서 연결되지는 않았다.
-- Status: [ ]
-
-<!-- harness:milestone id="M38" status="pending" priority="P2" evidence="experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json" -->
+<!-- harness:milestone id="M38" status="completed" priority="P2" evidence="experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json" -->
 ### M38 - Contact Readout Interpretation Pass
 
 - DoD: contact/readout 값이 어떤 claim을 지지하고 어떤 claim은 아직 지지하지 않는지 public copy와 QA evidence에 명시된다.
 - Evidence: experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json
 - Gap: raw runtime field는 보이지만 리뷰어가 그 값을 physical AI claim으로 어떻게 읽어야 하는지 해석 레이어가 부족하다.
-- Status: [ ]
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: Runtime readout interpretation is explicit in UI, public copy, and JSON/Markdown evidence; local/live boundary smoke PASS.
+## Next Candidates
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.

@@ -1,0 +1,201 @@
+{
+  "milestone": "M38",
+  "experiment": "g1-rough-walk",
+  "requestedPreset": "rough-terrain",
+  "timelineEvidence": "experiments/138-command-contact-timeline/verify/command-contact-timeline.json",
+  "claimBoundary": "runtime readout supports browser simulator-state visibility, not calibrated force, causality, or real robot telemetry",
+  "supportedClaims": [
+    "Browser MuJoCo runtime exposes ncon/contact/cfrc_ext/sensordata readout fields.",
+    "Keyboard command changes and runtime readout snapshots can be recorded in one same-run timeline.",
+    "The evidence supports a simulator-state readout claim for the browser workbench."
+  ],
+  "unsupportedClaims": [
+    "It does not prove calibrated contact force accuracy.",
+    "It does not prove causal attribution from command input to every readout delta.",
+    "It is not real robot telemetry."
+  ],
+  "local": {
+    "url": "http://127.0.0.1:8132/?exp=g1-rough-walk&env=rough-terrain&debug=1",
+    "pass": true,
+    "uiVisible": true,
+    "uiText": "PHYSICS DIAGNOSTICS\nbrowser-runtime-readout-probe\nCONTACT COUNT\n8\nSUPPORTED FIELDS\nncon, contact, cfrc_ext, sensordata\nCFRC_EXT SAMPLE\n0.00, 0.00, 0.00, 0.00\nSENSORDATA SAMPLE\n0.07, 0.00, 1.00, 0.00\nread-only MuJoCo WASM runtime probe · not real robot telemetry\nSupports: browser MuJoCo runtime state is readable during the same command run.\nDoes not support: calibrated contact forces, causal attribution, or real robot telemetry.",
+    "runtime": "browser ONNX policy",
+    "physicsReadout": {
+      "enabled": true,
+      "readOnly": true,
+      "claimLevel": "browser-runtime-readout-probe",
+      "auditedFields": [
+        {
+          "name": "ncon",
+          "supported": true,
+          "type": "number",
+          "length": null,
+          "sample": 8
+        },
+        {
+          "name": "contact",
+          "supported": true,
+          "type": "MjContactVec",
+          "length": 0,
+          "sample": []
+        },
+        {
+          "name": "cfrc_ext",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 186,
+          "sample": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "sensordata",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 68,
+          "sample": [
+            0.058781307570653335,
+            -0.013333820337560118,
+            0.9981818306879209,
+            -0.00911991943636918,
+            0.03657706891765645,
+            -0.006798609256895675,
+            0.0498379870564315,
+            0.05607704150059531,
+            0.010331637794651821,
+            -0.4837573993033847,
+            0.5638896219377421,
+            9.770601956047235
+          ]
+        }
+      ],
+      "supported": [
+        "ncon",
+        "contact",
+        "cfrc_ext",
+        "sensordata"
+      ],
+      "unavailable": [],
+      "contactCount": 8,
+      "note": "Read-only MuJoCo WASM runtime probe; unsupported fields are not replaced with visual cues."
+    },
+    "sourceTimelinePass": true,
+    "readmeHasBoundary": true,
+    "indexHasM139": true,
+    "supportedClaims": [
+      "Browser MuJoCo runtime exposes ncon/contact/cfrc_ext/sensordata readout fields.",
+      "Keyboard command changes and runtime readout snapshots can be recorded in one same-run timeline.",
+      "The evidence supports a simulator-state readout claim for the browser workbench."
+    ],
+    "unsupportedClaims": [
+      "It does not prove calibrated contact force accuracy.",
+      "It does not prove causal attribution from command input to every readout delta.",
+      "It is not real robot telemetry."
+    ],
+    "consoleErrors": []
+  },
+  "live": {
+    "url": "https://robotics.askewly.com/?exp=g1-rough-walk&env=rough-terrain&debug=1",
+    "pass": true,
+    "uiVisible": true,
+    "uiText": "PHYSICS DIAGNOSTICS\nbrowser-runtime-readout-probe\nCONTACT COUNT\n8\nSUPPORTED FIELDS\nncon, contact, cfrc_ext, sensordata\nCFRC_EXT SAMPLE\n0.00, 0.00, 0.00, 0.00\nSENSORDATA SAMPLE\n0.07, -0.01, 1.00, 0.00\nread-only MuJoCo WASM runtime probe · not real robot telemetry\nSupports: browser MuJoCo runtime state is readable during the same command run.\nDoes not support: calibrated contact forces, causal attribution, or real robot telemetry.",
+    "runtime": "browser ONNX policy",
+    "physicsReadout": {
+      "enabled": true,
+      "readOnly": true,
+      "claimLevel": "browser-runtime-readout-probe",
+      "auditedFields": [
+        {
+          "name": "ncon",
+          "supported": true,
+          "type": "number",
+          "length": null,
+          "sample": 8
+        },
+        {
+          "name": "contact",
+          "supported": true,
+          "type": "MjContactVec",
+          "length": 0,
+          "sample": []
+        },
+        {
+          "name": "cfrc_ext",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 186,
+          "sample": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "name": "sensordata",
+          "supported": true,
+          "type": "Float64Array",
+          "length": 68,
+          "sample": [
+            0.06319009102697906,
+            -0.009970295028613683,
+            0.9979517050504214,
+            -0.0043118414232186965,
+            0.020209233232689427,
+            -0.007704250859332491,
+            0.051724660220613075,
+            0.05207439414095316,
+            0.00931546952790067,
+            -1.0577741625642192,
+            1.1477816146060622,
+            9.048345266448644
+          ]
+        }
+      ],
+      "supported": [
+        "ncon",
+        "contact",
+        "cfrc_ext",
+        "sensordata"
+      ],
+      "unavailable": [],
+      "contactCount": 8,
+      "note": "Read-only MuJoCo WASM runtime probe; unsupported fields are not replaced with visual cues."
+    },
+    "sourceTimelinePass": true,
+    "readmeHasBoundary": true,
+    "indexHasM139": true,
+    "supportedClaims": [
+      "Browser MuJoCo runtime exposes ncon/contact/cfrc_ext/sensordata readout fields.",
+      "Keyboard command changes and runtime readout snapshots can be recorded in one same-run timeline.",
+      "The evidence supports a simulator-state readout claim for the browser workbench."
+    ],
+    "unsupportedClaims": [
+      "It does not prove calibrated contact force accuracy.",
+      "It does not prove causal attribution from command input to every readout delta.",
+      "It is not real robot telemetry."
+    ],
+    "consoleErrors": []
+  },
+  "pass": true,
+  "generatedAt": "2026-06-26T06:15:54.234Z"
+}

@@ -358,6 +358,14 @@ function App() {
                       ? ` · unavailable: ${physicsReadout.unavailable.join(", ")}`
                       : ""}
                   </div>
+                  <div className="mt-2 rounded border border-border/70 bg-background/55 p-2 text-[0.68rem] leading-4 text-muted-foreground">
+                    <div>
+                      Supports: browser MuJoCo runtime state is readable during the same command run.
+                    </div>
+                    <div>
+                      Does not support: calibrated contact forces, causal attribution, or real robot telemetry.
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

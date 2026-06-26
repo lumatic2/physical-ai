@@ -39,6 +39,14 @@
     {
       "dir": "m36-physics-diagnostics-panel",
       "status": "completed"
+    },
+    {
+      "dir": "m37-command-contact-timeline",
+      "status": "completed"
+    },
+    {
+      "dir": "m38-contact-readout-interpretation",
+      "status": "completed"
     }
   ]
 }

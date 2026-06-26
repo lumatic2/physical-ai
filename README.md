@@ -13,7 +13,7 @@
 **무엇을 만들었나** —
 1. **[vla-eval](experiments/01-vla-local-eval/README.md)** — 컨슈머 GPU에서 **1커맨드로 VLA 정책을 평가**하는 도구 (Windows/WSL2·Blackwell sm_120·세그폴트/의존성 해법 내장).
 2. **[action-repr-bench](experiments/02-action-repr-bench/README.md)** — 두 동작표현을 같은 LIBERO 벤치마크로 **head-to-head 실측**.
-3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 Robotics Lab workbench**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드 입력이 policy command vector를 바꾸는 것을 UI/QA로 검증하고, rough scene의 MuJoCo runtime readout(`ncon`, `contact`, `cfrc_ext`, `sensordata`)을 read-only probe로 박제한다. → **라이브: [robotics.askewly.com](https://robotics.askewly.com)**
+3. **[browser robot policy platform](experiments/03-digital-twin/web/README.md)** — 하드웨어 없이 브라우저에서 도는 **인터랙티브 Robotics Lab workbench**. 직접 RL로 학습한 Go1 · G1 · Spot · Barkour 보행 정책을 onnxruntime-web으로 실시간 closed-loop 구동하고, 같은 command sweep 프로토콜로 비교한다. 키보드 입력이 policy command vector를 바꾸는 것을 UI/QA로 검증하고, rough scene의 MuJoCo runtime readout(`ncon`, `contact`, `cfrc_ext`, `sensordata`)을 read-only probe와 timeline evidence로 박제한다. 이 readout은 “브라우저 MuJoCo runtime state를 같은 run에서 읽을 수 있다”를 지지하지만, calibrated contact force·인과 추론·실물 로봇 telemetry를 지지하지 않는다. → **라이브: [robotics.askewly.com](https://robotics.askewly.com)**
 
 ---
 
@@ -71,7 +71,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 
 **관전 데모가 아니라 조작 가능한 플랫폼** — 키보드 WASD/QE와 방향키가 보행 정책 command에 직접 연결되고, SO-100·Panda는 마우스 드래그로 end-effector를 추종한다. M33에서는 `g1-walk`의 command down/release와 visible UI를 로컬+라이브 Playwright smoke로 검증했다 → [M33 evidence](experiments/134-user-controllable-digital-twin/verify/control-smoke.json). M10에서 `experiments.json` 단일 소스화, manifest 자동 생성, watertight 메시 가드, `add_scene.sh`를 묶어 새 씬 추가 마찰을 코드화했다.
 
-**“걷는다” 다음의 질문까지 측정** — M12에서 `command_sweep.mjs`를 추가해 Go1·Spot의 forward, strafe, turn, diagonal을 로컬+라이브에서 자동 측정했다. M17에서는 Go1·Spot·G1·Barkour 6개 sweep report를 같은 표로 합쳐 failures=0을 확인했고, Go1 forward 안정성, Spot rough drift, Barkour command convention 같은 차이를 드러냈다. M31-M34에서는 rough scene을 contact-bearing MJCF variant로 연결하고, 브라우저 MuJoCo runtime에서 `ncon`, `contact`, `cfrc_ext`, `sensordata`가 읽히는지 probe했다. 이는 실제 로봇 telemetry가 아니라 **브라우저 시뮬레이터 상태 readout**이다. → [exp 07](experiments/07-command-terrain-robustness/README.md) · [exp 12 비교표](experiments/12-policy-gallery-comparison/verify/policy-gallery-report.md) · [M34 evidence](experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json)
+**“걷는다” 다음의 질문까지 측정** — M12에서 `command_sweep.mjs`를 추가해 Go1·Spot의 forward, strafe, turn, diagonal을 로컬+라이브에서 자동 측정했다. M17에서는 Go1·Spot·G1·Barkour 6개 sweep report를 같은 표로 합쳐 failures=0을 확인했고, Go1 forward 안정성, Spot rough drift, Barkour command convention 같은 차이를 드러냈다. M31-M38에서는 rough scene을 contact-bearing MJCF variant로 연결하고, 브라우저 MuJoCo runtime에서 `ncon`, `contact`, `cfrc_ext`, `sensordata`가 읽히는지 probe한 뒤 command/readout timeline과 해석 경계를 추가했다. 이는 실제 로봇 telemetry가 아니라 **브라우저 시뮬레이터 상태 readout**이며, force calibration이나 인과 증명으로 과장하지 않는다. → [exp 07](experiments/07-command-terrain-robustness/README.md) · [exp 12 비교표](experiments/12-policy-gallery-comparison/verify/policy-gallery-report.md) · [M37 evidence](experiments/138-command-contact-timeline/verify/command-contact-timeline.json)
 
 ---
 
@@ -112,7 +112,7 @@ PYTHONPATH=~/LIBERO MUJOCO_GL=egl \
 | **M17** 비교 가능한 policy gallery | ✅ | [exp 12](experiments/12-policy-gallery-comparison/README.md) — 6개 command sweep report 통합 비교 |
 | **M27-M32** Robotics Lab v2 | ✅ | React/Tailwind/shadcn shell, environment controls, visual/physical rough scene, asset-backed lab shell |
 | **M33** 조작 가능한 command evidence | ✅ | [exp 134 evidence](experiments/134-user-controllable-digital-twin/verify/control-smoke.json) — `g1-walk` local/live keyboard command smoke |
-| **M34** MuJoCo runtime readout | ✅ | [exp 135 evidence](experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json) — `ncon`/`contact`/`cfrc_ext`/`sensordata` browser probe |
+| **M34-M38** MuJoCo runtime readout | ✅ | [exp 135](experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json) · [exp 138](experiments/138-command-contact-timeline/verify/command-contact-timeline.json) · [exp 139](experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json) — browser runtime readout, same-run timeline, and claim boundary |
 
 상세 이력·의사결정: [ROADMAP.md](ROADMAP.md) · [docs/adr/](docs/adr/) (0001~0012)
 

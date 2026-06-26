@@ -1,0 +1,560 @@
+{
+  "milestone": "M37",
+  "experiment": "g1-rough-walk",
+  "requestedPreset": "rough-terrain",
+  "claimBoundary": "same-run browser command/readout timeline, not causal proof or real robot telemetry",
+  "local": {
+    "url": "http://127.0.0.1:8132/?exp=g1-rough-walk&env=rough-terrain&debug=1",
+    "pass": true,
+    "experiment": "g1-rough-walk",
+    "requestedPreset": "rough-terrain",
+    "claimBoundary": "same-run browser command/readout timeline, not causal proof or real robot telemetry",
+    "timeline": [
+      {
+        "label": "baseline",
+        "t": 0.06000000000000004,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "initial",
+        "heldCommands": [],
+        "contactCount": 8,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.06736765096742958,
+          -0.007127307139757411,
+          0.9977027618965806,
+          -0.000644858054683158,
+          0.011097130983084891,
+          0.007870849298975377
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "command-held",
+        "t": 0.12000000000000009,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 6,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.052929966544312125,
+          -0.011412782240472904,
+          0.9985330074880601,
+          0.00963342261129121,
+          -0.022492542760377817,
+          0.0658415666828121
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "after-24-steps-command-held",
+        "t": 0.6000000000000004,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.05073431292607074,
+          -0.046614548396781565,
+          0.9976237333632766,
+          0.557997086268193,
+          -0.09438941038086338,
+          -0.015210518211128655
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 24,
+          "x": 0.18321908540360238,
+          "y": -0.07507622794837157,
+          "yaw": 0.004971987094234008,
+          "height": 0.7476355788460755,
+          "fell": false,
+          "nan": false,
+          "command": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "label": "after-48-steps-command-held",
+        "t": 1.0800000000000007,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.060085912866525315,
+          0.04104916788791448,
+          0.9973488100412541,
+          0.7546320300798963,
+          -0.024738291762048358,
+          0.15821733432602783
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 24,
+          "x": 0.5274035781617639,
+          "y": -0.08046204818207037,
+          "yaw": 0.011662452751621316,
+          "height": 0.7524561052539676,
+          "fell": false,
+          "nan": false,
+          "command": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "label": "released",
+        "t": 1.0800000000000007,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "released",
+        "heldCommands": [],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.060085912866525315,
+          0.04104916788791448,
+          0.9973488100412541,
+          0.7546320300798963,
+          -0.024738291762048358,
+          0.15821733432602783
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "after-release-12-steps",
+        "t": 1.320000000000001,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "released",
+        "heldCommands": [],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.07867004417137456,
+          -0.022176277997688787,
+          0.9966540206331602,
+          0.5840171405430724,
+          -0.1479405144018796,
+          -0.07148235578014636
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 12,
+          "x": 0.6898257921614747,
+          "y": -0.11138317546283814,
+          "yaw": 0.025882152863513037,
+          "height": 0.73572446156243,
+          "fell": false,
+          "nan": false,
+          "command": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "deltas": {
+      "baselineToHeldSensorMaxAbs": 0.5586419443228762,
+      "heldToLaterSensorMaxAbs": 0.19663494381170332,
+      "baselineToHeldCfrcMaxAbs": 0
+    },
+    "consoleErrors": []
+  },
+  "live": {
+    "url": "https://robotics.askewly.com/?exp=g1-rough-walk&env=rough-terrain&debug=1",
+    "pass": true,
+    "experiment": "g1-rough-walk",
+    "requestedPreset": "rough-terrain",
+    "claimBoundary": "same-run browser command/readout timeline, not causal proof or real robot telemetry",
+    "timeline": [
+      {
+        "label": "baseline",
+        "t": 0.06000000000000004,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "initial",
+        "heldCommands": [],
+        "contactCount": 8,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.06736765096742958,
+          -0.007127307139757411,
+          0.9977027618965806,
+          -0.000644858054683158,
+          0.011097130983084891,
+          0.007870849298975377
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "command-held",
+        "t": 0.10000000000000007,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 6,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.06089107732301078,
+          -0.011102675553811796,
+          0.998082665563324,
+          -0.06757941154881059,
+          -0.014708984289769541,
+          0.01946119690835782
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "after-24-steps-command-held",
+        "t": 0.6000000000000004,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.05073431292607074,
+          -0.046614548396781565,
+          0.9976237333632766,
+          0.557997086268193,
+          -0.09438941038086338,
+          -0.015210518211128655
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 24,
+          "x": 0.18321908540360238,
+          "y": -0.07507622794837157,
+          "yaw": 0.004971987094234008,
+          "height": 0.7476355788460755,
+          "fell": false,
+          "nan": false,
+          "command": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "label": "after-48-steps-command-held",
+        "t": 1.0800000000000007,
+        "command": [
+          1,
+          0,
+          0
+        ],
+        "inputSource": "keyboard",
+        "heldCommands": [
+          "forward"
+        ],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.060085912866525315,
+          0.04104916788791448,
+          0.9973488100412541,
+          0.7546320300798963,
+          -0.024738291762048358,
+          0.15821733432602783
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 24,
+          "x": 0.5274035781617639,
+          "y": -0.08046204818207037,
+          "yaw": 0.011662452751621316,
+          "height": 0.7524561052539676,
+          "fell": false,
+          "nan": false,
+          "command": [
+            1,
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "label": "released",
+        "t": 1.0800000000000007,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "released",
+        "heldCommands": [],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          -0.060085912866525315,
+          0.04104916788791448,
+          0.9973488100412541,
+          0.7546320300798963,
+          -0.024738291762048358,
+          0.15821733432602783
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": null
+      },
+      {
+        "label": "after-release-12-steps",
+        "t": 1.320000000000001,
+        "command": [
+          0,
+          0,
+          0
+        ],
+        "inputSource": "released",
+        "heldCommands": [],
+        "contactCount": 4,
+        "supported": [
+          "ncon",
+          "contact",
+          "cfrc_ext",
+          "sensordata"
+        ],
+        "cfrcExtSample": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "sensorDataSample": [
+          0.07867004417137456,
+          -0.022176277997688787,
+          0.9966540206331602,
+          0.5840171405430724,
+          -0.1479405144018796,
+          -0.07148235578014636
+        ],
+        "environmentClaimLevel": "contact-bearing-scene",
+        "stepResult": {
+          "steps": 12,
+          "x": 0.6898257921614747,
+          "y": -0.11138317546283814,
+          "yaw": 0.025882152863513037,
+          "height": 0.73572446156243,
+          "fell": false,
+          "nan": false,
+          "command": [
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    ],
+    "deltas": {
+      "baselineToHeldSensorMaxAbs": 0.5586419443228762,
+      "heldToLaterSensorMaxAbs": 0.19663494381170332,
+      "baselineToHeldCfrcMaxAbs": 0
+    },
+    "consoleErrors": []
+  },
+  "pass": true,
+  "generatedAt": "2026-06-26T06:07:38.073Z"
+}

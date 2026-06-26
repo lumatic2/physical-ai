@@ -142,6 +142,10 @@
 | 133 | [asset-backed-lab-shell](133-asset-backed-lab-shell/README.md) | lightweight glTF lab shell을 lazy-load해 visual layer에 붙일 수 있는지 검증 | ✅ asset shell smoke PASS |
 | 134 | [user-controllable-digital-twin](134-user-controllable-digital-twin/verify/control-smoke.json) | keyboard input이 policy command vector와 visible UI로 연결되는지 검증 | ✅ local/live `g1-walk` command down/release smoke PASS |
 | 135 | [mujoco-contact-force-readout](135-mujoco-contact-force-readout/verify/contact-readout-probe.json) | browser MuJoCo runtime에서 contact/force/sensor readout 접근 가능성을 probe | ✅ `ncon`, `contact`, `cfrc_ext`, `sensordata` read-only probe PASS |
+| 136 | [public-evidence-refresh](136-public-evidence-refresh/verify/public-story-smoke.json) | M27-M34 evidence와 claim boundary를 public story에 반영 | ✅ README/index/live copy smoke PASS |
+| 137 | [physics-diagnostics-panel](137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json) | `?debug=1`에서 runtime readout을 사람이 읽을 수 있는 패널로 노출 | ✅ local/live diagnostics panel smoke PASS |
+| 138 | [command-contact-timeline](138-command-contact-timeline/verify/command-contact-timeline.json) | keyboard command와 MuJoCo runtime readout을 같은 timeline evidence로 기록 | ✅ local/live same-run command/readout timeline PASS |
+| 139 | [contact-readout-interpretation](139-contact-readout-interpretation/verify/contact-readout-interpretation.json) | readout이 지지하는 claim과 지지하지 않는 claim을 공개 문구와 QA evidence로 분리 | ✅ interpretation boundary smoke PASS |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

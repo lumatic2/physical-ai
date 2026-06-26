@@ -1,0 +1,21 @@
+{
+  "project": "physical-ai",
+  "phase": "m37-command-contact-timeline",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "timeline-smoke-script",
+      "status": "completed",
+      "summary": "Added qa/command_contact_timeline.mjs to record baseline, command-held, stepped, released, and after-release snapshots with command vectors, contact counts, sensor samples, and bounded claim text.",
+      "completed_at": "2026-06-26T15:20:00+09:00"
+    },
+    {
+      "step": 1,
+      "name": "local-live-timeline-evidence",
+      "status": "completed",
+      "summary": "Generated M37 local/live evidence at experiments/138-command-contact-timeline/verify/command-contact-timeline.json; timeline records zero command, ArrowUp command, qaStep snapshots, release, contact counts, sensor samples, and explicit non-causal/non-telemetry boundary.",
+      "completed_at": "2026-06-26T15:27:00+09:00"
+    }
+  ]
+}
