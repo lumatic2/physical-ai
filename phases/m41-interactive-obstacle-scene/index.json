@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m41-interactive-obstacle-scene",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "obstacle-scene-contract",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "obstacle-scene-smoke",
+      "status": "completed"
+    }
+  ]
+}

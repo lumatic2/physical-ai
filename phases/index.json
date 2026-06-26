@@ -47,6 +47,18 @@
     {
       "dir": "m38-contact-readout-interpretation",
       "status": "completed"
+    },
+    {
+      "dir": "m39-environment-scenario-manifest",
+      "status": "completed"
+    },
+    {
+      "dir": "m40-multi-robot-environment-matrix",
+      "status": "completed"
+    },
+    {
+      "dir": "m41-interactive-obstacle-scene",
+      "status": "completed"
     }
   ]
 }

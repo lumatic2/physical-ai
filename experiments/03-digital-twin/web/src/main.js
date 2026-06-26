@@ -4,7 +4,7 @@ import { GUI              } from 'three/addons/libs/lil-gui.module.min.js';
 import { OrbitControls    } from 'three/addons/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, drawTendonsAndFlex, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
-import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, GROUNDING_MODES, inferEnvironmentPresetFromExperiment, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeGroundingMode, summarizeEnvironmentPreset } from './environmentPresets.js';
+import { DEFAULT_ENVIRONMENT_PRESET, ENVIRONMENT_PRESETS, ENVIRONMENT_SCENARIOS, GROUNDING_MODES, getEnvironmentScenario, inferEnvironmentPresetFromExperiment, inferEnvironmentScenarioFromExperiment, inferGroundingModeFromExperiment, normalizeEnvironmentPresetId, normalizeEnvironmentScenarioId, normalizeGroundingMode, summarizeEnvironmentPreset, summarizeEnvironmentScenario } from './environmentPresets.js';
 import   load_mujoco        from 'https://cdn.jsdelivr.net/npm/mujoco-js@0.0.7/dist/mujoco_wasm.js';
 
 // Load the MuJoCo Module
@@ -140,9 +140,16 @@ export class MuJoCoDemo {
     const expName = params.get("exp") || registry.default;
     this.registry = registry;
     this.environmentPresetExplicit = params.has("env");
-    this.environmentPresetId = normalizeEnvironmentPresetId(
-      params.get("env") || inferEnvironmentPresetFromExperiment(registry.experiments?.[expName] || {}),
+    this.environmentScenarioExplicit = params.has("scenario");
+    this.requestedEnvironmentScenarioId = params.get("scenario") || null;
+    const inferredScenarioId = normalizeEnvironmentScenarioId(
+      this.requestedEnvironmentScenarioId || inferEnvironmentScenarioFromExperiment(registry.experiments?.[expName] || {}),
     );
+    const inferredScenario = getEnvironmentScenario(inferredScenarioId);
+    this.environmentPresetId = normalizeEnvironmentPresetId(
+      params.get("env") || inferredScenario.preset || inferEnvironmentPresetFromExperiment(registry.experiments?.[expName] || {}),
+    );
+    this.environmentScenarioId = normalizeEnvironmentScenarioId(inferredScenarioId, this.environmentPresetId);
     this.requestedGroundingMode = params.get("grounding") || null;
     this.streamUrl = params.get("stream");
     await this.switchExperiment(expName, { updateUrl: false, initial: true });
@@ -223,8 +230,12 @@ export class MuJoCoDemo {
     this.expName = nextName;
     this.exp = exp;
     this.currentMeta = null;
-    if (!this.environmentPresetExplicit) {
-      this.environmentPresetId = normalizeEnvironmentPresetId(inferEnvironmentPresetFromExperiment(exp));
+    if (!this.environmentScenarioExplicit) {
+      this.environmentScenarioId = normalizeEnvironmentScenarioId(inferEnvironmentScenarioFromExperiment(exp));
+    }
+    const scenario = getEnvironmentScenario(this.environmentScenarioId, this.environmentPresetId);
+    if (this.environmentScenarioExplicit || !this.environmentPresetExplicit) {
+      this.environmentPresetId = normalizeEnvironmentPresetId(scenario.preset || inferEnvironmentPresetFromExperiment(exp));
     }
     this.groundingMode = normalizeGroundingMode(
       this.requestedGroundingMode || inferGroundingModeFromExperiment(exp),
@@ -357,6 +368,11 @@ export class MuJoCoDemo {
     const nextId = normalizeEnvironmentPresetId(id);
     this.environmentPresetExplicit = true;
     this.environmentPresetId = nextId;
+    if (!this.environmentScenarioExplicit || getEnvironmentScenario(this.environmentScenarioId).preset !== nextId) {
+      this.environmentScenarioId = normalizeEnvironmentScenarioId(null, nextId);
+      this.requestedEnvironmentScenarioId = null;
+      this.environmentScenarioExplicit = false;
+    }
     this.groundingMode = normalizeGroundingMode(
       this.groundingMode,
       ENVIRONMENT_PRESETS[nextId].grounding.allowedModes,
@@ -1859,7 +1875,8 @@ export class MuJoCoDemo {
 
   qaEnvironmentSummary() {
     const terrainGeoms = this.getTerrainGeomNames();
-    const contactBearingTerrain = terrainGeoms.length > 0 && /rough|curb/i.test(this.exp?.scene || this.params?.scene || "");
+    const obstacleGeoms = this.getObstacleGeomNames();
+    const contactBearingTerrain = terrainGeoms.length > 0 && /rough|curb|obstacle/i.test(this.exp?.scene || this.params?.scene || "");
     const summary = summarizeEnvironmentPreset(this.environmentPresetId, {
       scene: this.exp?.scene || this.params?.scene || null,
       groundingMode: this.groundingMode,
@@ -1869,6 +1886,16 @@ export class MuJoCoDemo {
       terrainGeomCount: terrainGeoms.length,
       terrainGeomNames: terrainGeoms,
     });
+    const scenario = summarizeEnvironmentScenario(this.environmentScenarioId, {
+      preset: this.environmentPresetId,
+      scene: this.exp?.scene || this.params?.scene || null,
+      contactBearingTerrain,
+      terrainGeomCount: terrainGeoms.length,
+      terrainGeomNames: terrainGeoms,
+      obstacleGeomCount: obstacleGeoms.length,
+      obstacleGeomNames: obstacleGeoms,
+    });
+    summary.scenario = scenario;
     if (summary.preset === "rough-terrain" && contactBearingTerrain) {
       summary.claimLevel = "contact-bearing-scene";
       summary.scene.mode = "active-rough-scene-variant";
@@ -1884,9 +1911,12 @@ export class MuJoCoDemo {
     summary.visualLayer = this.appliedEnvironmentVisual || null;
     summary.assetLayer = this.labAssetLayerStatus || null;
     summary.availablePresets = Object.keys(ENVIRONMENT_PRESETS);
+    summary.availableScenarios = Object.keys(ENVIRONMENT_SCENARIOS);
     summary.pass = Boolean(
       summary.preset &&
       summary.availablePresets.includes(summary.preset) &&
+      summary.scenario?.pass &&
+      summary.scenario?.preset === summary.preset &&
       summary.scene.activeScene &&
       summary.floor.profile &&
       summary.contactProfile.intent &&
@@ -2105,6 +2135,18 @@ export class MuJoCoDemo {
     }
     f.open();
     this.bindCommandKeys(r);
+  }
+
+  getObstacleGeomNames() {
+    if (!this.model?.name_geomadr || !this.model?.names) return [];
+    const textDecoder = new TextDecoder("utf-8");
+    const nullChar = textDecoder.decode(new ArrayBuffer(1));
+    const names = [];
+    for (let i = 0; i < this.model.ngeom; i++) {
+      const name = textDecoder.decode(this.model.names.subarray(this.model.name_geomadr[i])).split(nullChar)[0];
+      if (/^(obstacle_|barrier_|gate_|block_)/i.test(name)) names.push(name);
+    }
+    return names;
   }
 
   // Keyboard steering: hold Up/Down or W/S for +/- vx, Left/Right or A/D for lateral

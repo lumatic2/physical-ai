@@ -1,4 +1,5 @@
 export const DEFAULT_ENVIRONMENT_PRESET = "flat-lab";
+export const DEFAULT_ENVIRONMENT_SCENARIO_ID = "flat-lab-v1";
 
 export const GROUNDING_MODES = {
   "replay-locked": {
@@ -164,12 +165,170 @@ export const ENVIRONMENT_PRESETS = {
   },
 };
 
+export const ENVIRONMENT_SCENARIOS = {
+  "flat-lab-v1": {
+    id: "flat-lab-v1",
+    label: "Flat lab v1",
+    seed: "env-flat-0001",
+    preset: "flat-lab",
+    terrain: {
+      kind: "flat-plane",
+      heightM: 0,
+      laneLengthM: 4,
+    },
+    friction: {
+      floor: "scene-default",
+      curb: null,
+      obstacle: null,
+    },
+    lighting: {
+      profile: "neutral-key-ambient",
+      intensity: "preset-default",
+    },
+    obstacle: {
+      enabled: false,
+      type: "none",
+      count: 0,
+    },
+    parameters: {
+      replayStartFrame: 0,
+      expectedTerrainGeomMin: 0,
+      expectedObstacleGeomMin: 0,
+    },
+    matrixTags: ["baseline", "flat"],
+    claimBoundary: "Flat reference lab contract only; not a terrain robustness proof.",
+  },
+  "instrumented-lab-v1": {
+    id: "instrumented-lab-v1",
+    label: "Instrumented lab v1",
+    seed: "env-instrumented-0001",
+    preset: "instrumented-lab",
+    terrain: {
+      kind: "flat-measurement-plane",
+      heightM: 0,
+      laneLengthM: 4,
+    },
+    friction: {
+      floor: "scene-default",
+      curb: null,
+      obstacle: null,
+    },
+    lighting: {
+      profile: "inspection-key-rim",
+      intensity: "measurement-bay",
+    },
+    obstacle: {
+      enabled: false,
+      type: "none",
+      count: 0,
+    },
+    parameters: {
+      replayStartFrame: 0,
+      expectedTerrainGeomMin: 0,
+      expectedObstacleGeomMin: 0,
+    },
+    matrixTags: ["instrumented", "flat"],
+    claimBoundary: "Measurement overlay contract only; does not change physics by itself.",
+  },
+  "rough-curb-v1": {
+    id: "rough-curb-v1",
+    label: "Rough curb v1",
+    seed: "env-rough-curb-0001",
+    preset: "rough-terrain",
+    terrain: {
+      kind: "curb-lane",
+      curbHeightsM: [0.01, 0.02, 0.03],
+      curbPositionsM: [1.0, 2.0, 3.0],
+      laneLengthM: 4,
+    },
+    friction: {
+      floor: 0.65,
+      curb: 0.8,
+      obstacle: null,
+    },
+    lighting: {
+      profile: "high-contrast-terrain-rig",
+      intensity: "terrain-test",
+    },
+    obstacle: {
+      enabled: false,
+      type: "none",
+      count: 0,
+    },
+    parameters: {
+      replayStartFrame: 0,
+      expectedTerrainGeomMin: 3,
+      expectedObstacleGeomMin: 0,
+    },
+    matrixTags: ["rough", "curb", "contact-bearing"],
+    claimBoundary: "Curb-lane scenario evidence only; not broad outdoor mobility.",
+  },
+  "obstacle-lane-v1": {
+    id: "obstacle-lane-v1",
+    label: "Obstacle lane v1",
+    seed: "env-obstacle-lane-0001",
+    preset: "rough-terrain",
+    terrain: {
+      kind: "offset-obstacle-lane",
+      curbHeightsM: [0.015, 0.025],
+      laneLengthM: 4,
+    },
+    friction: {
+      floor: 0.65,
+      curb: 0.8,
+      obstacle: 0.85,
+    },
+    lighting: {
+      profile: "high-contrast-obstacle-rig",
+      intensity: "terrain-test",
+    },
+    obstacle: {
+      enabled: true,
+      type: "offset-box-lane",
+      count: 3,
+      clearanceM: 0.28,
+      heightsM: [0.035, 0.045, 0.04],
+    },
+    parameters: {
+      replayStartFrame: 0,
+      expectedTerrainGeomMin: 2,
+      expectedObstacleGeomMin: 3,
+    },
+    matrixTags: ["rough", "obstacle", "contact-bearing"],
+    claimBoundary: "Obstacle-lane smoke evidence only; not autonomous obstacle avoidance.",
+  },
+};
+
+const DEFAULT_SCENARIO_BY_PRESET = {
+  "flat-lab": "flat-lab-v1",
+  "instrumented-lab": "instrumented-lab-v1",
+  "rough-terrain": "rough-curb-v1",
+};
+
 export function normalizeEnvironmentPresetId(id) {
   return ENVIRONMENT_PRESETS[id] ? id : DEFAULT_ENVIRONMENT_PRESET;
 }
 
 export function getEnvironmentPreset(id) {
   return ENVIRONMENT_PRESETS[normalizeEnvironmentPresetId(id)];
+}
+
+export function normalizeEnvironmentScenarioId(id, presetId = null) {
+  if (ENVIRONMENT_SCENARIOS[id]) return id;
+  const preset = normalizeEnvironmentPresetId(presetId);
+  return DEFAULT_SCENARIO_BY_PRESET[preset] || DEFAULT_ENVIRONMENT_SCENARIO_ID;
+}
+
+export function getEnvironmentScenario(id, presetId = null) {
+  return ENVIRONMENT_SCENARIOS[normalizeEnvironmentScenarioId(id, presetId)];
+}
+
+export function inferEnvironmentScenarioFromExperiment(exp = {}) {
+  const scene = exp.scene || "";
+  const title = exp.title || "";
+  if (/obstacle/i.test(`${scene} ${title}`)) return "obstacle-lane-v1";
+  if (/rough|curb/i.test(scene)) return "rough-curb-v1";
+  return DEFAULT_ENVIRONMENT_SCENARIO_ID;
 }
 
 export function normalizeGroundingMode(id, allowedModes = null, fallback = "replay-locked") {
@@ -243,5 +402,43 @@ export function summarizeEnvironmentPreset(id, context = {}) {
     },
     physicsProfile: preset.physicsProfile,
     changedRuntime: Boolean(preset.physicsProfile.runtimeChanges || grounding.behaviorMutation),
+  };
+}
+
+export function summarizeEnvironmentScenario(id, context = {}) {
+  const scenario = getEnvironmentScenario(id, context.preset);
+  const obstacleGeomCount = context.obstacleGeomCount || 0;
+  const terrainGeomCount = context.terrainGeomCount || 0;
+  return {
+    id: scenario.id,
+    label: scenario.label,
+    seed: scenario.seed,
+    preset: scenario.preset,
+    terrain: scenario.terrain,
+    friction: scenario.friction,
+    lighting: scenario.lighting,
+    obstacle: {
+      ...scenario.obstacle,
+      sceneGeomCount: obstacleGeomCount,
+      sceneGeomNames: context.obstacleGeomNames || [],
+    },
+    parameters: scenario.parameters,
+    matrixTags: scenario.matrixTags,
+    claimBoundary: scenario.claimBoundary,
+    scene: context.scene || null,
+    terrainGeomCount,
+    terrainGeomNames: context.terrainGeomNames || [],
+    contactBearingTerrain: Boolean(context.contactBearingTerrain),
+    pass: Boolean(
+      scenario.id &&
+      scenario.seed &&
+      scenario.terrain?.kind &&
+      scenario.friction &&
+      scenario.lighting?.profile &&
+      scenario.obstacle &&
+      scenario.claimBoundary &&
+      terrainGeomCount >= (scenario.parameters?.expectedTerrainGeomMin || 0) &&
+      obstacleGeomCount >= (scenario.parameters?.expectedObstacleGeomMin || 0)
+    ),
   };
 }

@@ -1,0 +1,177 @@
+{
+  "pass": true,
+  "live": true,
+  "targetUrl": "https://robotics.askewly.com/?exp=g1-rough-walk&scenario=rough-curb-v1&debug=1",
+  "requested": {
+    "exp": "g1-rough-walk",
+    "scenario": "rough-curb-v1"
+  },
+  "consoleErrors": [],
+  "statusText": "Rough curb v1\nrough-curb-v1\nenv-rough-curb-0001\nTERRAIN\ncurb-lane\nOBSTACLE\nnone",
+  "summary": {
+    "preset": "rough-terrain",
+    "label": "Rough terrain",
+    "claimLevel": "contact-bearing-scene",
+    "visual": {
+      "mood": "terrain test lane",
+      "background": "industrial neutral",
+      "lighting": "high contrast test rig",
+      "markers": [
+        "floor grid",
+        "curb lane",
+        "terrain boundary"
+      ]
+    },
+    "scene": {
+      "mode": "active-rough-scene-variant",
+      "reloadRequired": false,
+      "mutation": "active-scene",
+      "activeScene": "g1/scene_g1_rough.xml",
+      "contactBearingTerrain": true,
+      "terrainGeomCount": 3,
+      "terrainGeomNames": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ]
+    },
+    "floor": {
+      "profile": "rough/curb terrain",
+      "terrain": "rough",
+      "material": "rough MJCF variant"
+    },
+    "contactProfile": {
+      "intent": "terrain perturbation",
+      "friction": "variant-defined",
+      "condim": "variant-defined",
+      "solver": "variant-defined"
+    },
+    "groundingMode": "controller-backed",
+    "grounding": {
+      "defaultMode": "physics-contact",
+      "allowedModes": [
+        "physics-contact",
+        "controller-backed"
+      ],
+      "assistStrength": "none-by-default"
+    },
+    "groundingControl": {
+      "requestedMode": "controller-backed",
+      "defaultMode": "controller-backed",
+      "appliedMode": "controller-backed",
+      "source": "experiment-default",
+      "allowedModes": [
+        "physics-contact",
+        "controller-backed"
+      ],
+      "behaviorMutation": false,
+      "label": "Controller backed",
+      "shortLabel": "controller",
+      "claimLevel": "controller-backed-sim",
+      "evidenceRequired": "policy/LowCmd/controller gate with height/contact stability",
+      "warning": "Controller-backed means simulated controller evidence unless real telemetry is separately supplied."
+    },
+    "physicsProfile": {
+      "state": "active-contact-bearing-scene",
+      "knobs": [
+        "terrainVariant",
+        "contactProfile",
+        "groundingMode"
+      ],
+      "runtimeChanges": true
+    },
+    "changedRuntime": true,
+    "scenario": {
+      "id": "rough-curb-v1",
+      "label": "Rough curb v1",
+      "seed": "env-rough-curb-0001",
+      "preset": "rough-terrain",
+      "terrain": {
+        "kind": "curb-lane",
+        "curbHeightsM": [
+          0.01,
+          0.02,
+          0.03
+        ],
+        "curbPositionsM": [
+          1,
+          2,
+          3
+        ],
+        "laneLengthM": 4
+      },
+      "friction": {
+        "floor": 0.65,
+        "curb": 0.8,
+        "obstacle": null
+      },
+      "lighting": {
+        "profile": "high-contrast-terrain-rig",
+        "intensity": "terrain-test"
+      },
+      "obstacle": {
+        "enabled": false,
+        "type": "none",
+        "count": 0,
+        "sceneGeomCount": 0,
+        "sceneGeomNames": []
+      },
+      "parameters": {
+        "replayStartFrame": 0,
+        "expectedTerrainGeomMin": 3,
+        "expectedObstacleGeomMin": 0
+      },
+      "matrixTags": [
+        "rough",
+        "curb",
+        "contact-bearing"
+      ],
+      "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+      "scene": "g1/scene_g1_rough.xml",
+      "terrainGeomCount": 3,
+      "terrainGeomNames": [
+        "curb_1",
+        "curb_2",
+        "curb_3"
+      ],
+      "contactBearingTerrain": true,
+      "pass": true
+    },
+    "visualLayer": {
+      "preset": "rough-terrain",
+      "visualOnly": true,
+      "objects": [
+        "Selectable lab backdrop",
+        "Lab floor grid",
+        "Lab origin axes",
+        "Terrain test lane",
+        "Rough terrain test fixtures"
+      ],
+      "collision": "none-threejs-only",
+      "background": "#1f241f",
+      "fog": {
+        "near": 14,
+        "far": 28
+      }
+    },
+    "assetLayer": {
+      "path": "assets/lab/lab_shell.gltf",
+      "loaded": true,
+      "loading": false,
+      "objectCount": 1,
+      "error": null
+    },
+    "availablePresets": [
+      "flat-lab",
+      "instrumented-lab",
+      "rough-terrain"
+    ],
+    "availableScenarios": [
+      "flat-lab-v1",
+      "instrumented-lab-v1",
+      "rough-curb-v1",
+      "obstacle-lane-v1"
+    ],
+    "pass": true
+  }
+}

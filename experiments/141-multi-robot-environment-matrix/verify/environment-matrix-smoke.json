@@ -1,0 +1,513 @@
+{
+  "title": "Multi-Robot Environment Matrix",
+  "pass": true,
+  "checkedAt": "2026-06-26T07:10:43.297Z",
+  "local": {
+    "pass": true,
+    "live": false,
+    "checkedAt": "2026-06-26T07:05:31.541Z",
+    "rows": [
+      {
+        "robot": "G1",
+        "exp": "g1-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=g1-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "g1/scene_g1_policy.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "G1",
+        "exp": "g1-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=g1-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "g1/scene_g1_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Go1",
+        "exp": "go1-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=go1-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "go1/scene_go1_flat.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Go1",
+        "exp": "go1-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=go1-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "go1/scene_go1_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Spot",
+        "exp": "spot-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=spot-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "spot/scene_spot_policy.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Spot",
+        "exp": "spot-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "http://127.0.0.1:8140/?exp=spot-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "spot/scene_spot_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      }
+    ],
+    "consoleErrors": []
+  },
+  "live": {
+    "pass": true,
+    "live": true,
+    "checkedAt": "2026-06-26T07:10:27.850Z",
+    "rows": [
+      {
+        "robot": "G1",
+        "exp": "g1-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=g1-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "g1/scene_g1_policy.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "G1",
+        "exp": "g1-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=g1-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "g1/scene_g1_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Go1",
+        "exp": "go1-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=go1-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "go1/scene_go1_flat.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Go1",
+        "exp": "go1-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=go1-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "go1/scene_go1_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Spot",
+        "exp": "spot-walk",
+        "scenario": "flat-lab-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=spot-walk&scenario=flat-lab-v1&debug=1",
+        "pass": true,
+        "preset": "flat-lab",
+        "activeScene": "spot/scene_spot_policy.xml",
+        "claimBoundary": "Flat reference lab contract only; not a terrain robustness proof.",
+        "terrain": {
+          "kind": "flat-plane",
+          "heightM": 0,
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "unchanged",
+          "knobs": [
+            "groundingMode",
+            "contactProfile"
+          ],
+          "runtimeChanges": false
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      },
+      {
+        "robot": "Spot",
+        "exp": "spot-rough-walk",
+        "scenario": "rough-curb-v1",
+        "targetUrl": "https://robotics.askewly.com/?exp=spot-rough-walk&scenario=rough-curb-v1&debug=1",
+        "pass": true,
+        "preset": "rough-terrain",
+        "activeScene": "spot/scene_spot_rough.xml",
+        "claimBoundary": "Curb-lane scenario evidence only; not broad outdoor mobility.",
+        "terrain": {
+          "kind": "curb-lane",
+          "curbHeightsM": [
+            0.01,
+            0.02,
+            0.03
+          ],
+          "curbPositionsM": [
+            1,
+            2,
+            3
+          ],
+          "laneLengthM": 4
+        },
+        "obstacle": {
+          "enabled": false,
+          "type": "none",
+          "count": 0,
+          "sceneGeomCount": 0,
+          "sceneGeomNames": []
+        },
+        "physicsProfile": {
+          "state": "active-contact-bearing-scene",
+          "knobs": [
+            "terrainVariant",
+            "contactProfile",
+            "groundingMode"
+          ],
+          "runtimeChanges": true
+        },
+        "availableScenarios": [
+          "flat-lab-v1",
+          "instrumented-lab-v1",
+          "rough-curb-v1",
+          "obstacle-lane-v1"
+        ]
+      }
+    ],
+    "consoleErrors": []
+  }
+}

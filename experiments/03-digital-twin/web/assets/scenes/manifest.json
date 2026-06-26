@@ -52,6 +52,7 @@
 "g1/g1_mjx_feetonly.xml",
 "g1/scene.xml",
 "g1/scene_g1_ball.xml",
+"g1/scene_g1_obstacle.xml",
 "g1/scene_g1_policy.xml",
 "g1/scene_g1_rough.xml",
 "go1/assets/calf.stl",

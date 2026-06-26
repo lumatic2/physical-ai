@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m39-environment-scenario-manifest",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "scenario-contract",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "scenario-qa-evidence",
+      "status": "completed"
+    }
+  ]
+}

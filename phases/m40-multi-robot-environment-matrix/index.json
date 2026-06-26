@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m40-multi-robot-environment-matrix",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "matrix-smoke-script",
+      "status": "completed"
+    },
+    {
+      "step": 1,
+      "name": "matrix-local-live-evidence",
+      "status": "completed"
+    }
+  ]
+}

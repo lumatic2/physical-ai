@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { ENVIRONMENT_PRESETS, GROUNDING_MODES } from "./environmentPresets.js";
+import { ENVIRONMENT_PRESETS, ENVIRONMENT_SCENARIOS, GROUNDING_MODES } from "./environmentPresets.js";
 
 import "./index.css";
 import "./main.js";
@@ -27,6 +27,7 @@ const ROBOTS = [
       { key: "g1-stand", name: "휴머노이드 정지", description: "G1 휴머노이드가 물리 시뮬레이션에서 가만히 서 있는 기본 상태입니다." },
       { key: "g1-walk", name: "휴머노이드 걷기", description: "학습된 G1 보행 정책을 브라우저에서 실행합니다." },
       { key: "g1-rough-walk", name: "거친 지형 걷기", description: "낮은 턱이 있는 지형에서 G1 보행 정책을 확인합니다." },
+      { key: "g1-obstacle-walk", name: "장애물 레인 걷기", description: "offset obstacle lane에서 G1 보행 정책의 contact scene을 확인합니다." },
       { key: "g1-decoupled-wbc-squat", name: "WBC 스쿼트 재생", description: "시뮬레이터에서 측정한 G1 스쿼트 동작을 자세 변화와 함께 봅니다." },
       { key: "g1-squat-reference-vs-wbc", name: "기준 동작 vs 측정 동작", description: "의도한 스쿼트 기준 동작과 실제 시뮬레이션 동작이 얼마나 다른지 비교합니다." },
     ],
@@ -207,6 +208,7 @@ function App() {
   const control = summary.control || {};
   const physicsReadout = summary.physicsReadout || {};
   const environment = state?.environment || summary.environment || {};
+  const scenario = environment.scenario || {};
   const lanes = summary.evidenceLanes || [];
   const cfrcExt = findReadoutField(physicsReadout, "cfrc_ext");
   const sensorData = findReadoutField(physicsReadout, "sensordata");
@@ -396,6 +398,30 @@ function App() {
                     </span>
                   </Button>
                 ))}
+              </div>
+              <div
+                className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground"
+                data-testid="environment-scenario-status"
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-medium text-foreground">
+                    {ENVIRONMENT_SCENARIOS[scenario.id]?.label || scenario.label || "Scenario 준비 중"}
+                  </span>
+                  <Badge variant="outline">{scenario.id || "scenario n/a"}</Badge>
+                </div>
+                <div className="mt-1 font-mono text-[0.68rem] text-muted-foreground">
+                  {scenario.seed || "seed n/a"}
+                </div>
+                <div className="mt-1 grid grid-cols-2 gap-2">
+                  <div>
+                    <span className="block text-[0.68rem] uppercase tracking-wide">terrain</span>
+                    <span>{scenario.terrain?.kind || "pending"}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[0.68rem] uppercase tracking-wide">obstacle</span>
+                    <span>{scenario.obstacle?.enabled ? `${scenario.obstacle.type} x${scenario.obstacle.count}` : "none"}</span>
+                  </div>
+                </div>
               </div>
               <details className="rounded-lg border border-border bg-card/70 p-2 text-xs leading-5 text-muted-foreground">
                 <summary className="cursor-pointer font-medium text-foreground">검증 기준 보기</summary>

@@ -29,24 +29,47 @@
 | M36 | Physics Diagnostics Panel | runtime readout을 debug UI에서 사람이 읽을 수 있게 한다 | `experiments/137-physics-diagnostics-panel` | 완료 |
 | M37 | Command-to-Contact Timeline Smoke | command와 runtime readout을 같은 시간축 evidence로 묶는다 | `experiments/138-command-contact-timeline` | 완료 |
 | M38 | Contact Readout Interpretation Pass | runtime readout claim의 지지/비지지 범위를 공개 문구로 분리한다 | `experiments/139-contact-readout-interpretation` | 완료 |
+| M39 | Environment Scenario Manifest | 환경 preset을 재현 가능한 scenario contract로 승격한다 | `experiments/140-environment-scenario-manifest` | 완료 |
+| M40 | Multi-Robot Environment Matrix | 여러 로봇이 같은 환경 scenario contract로 비교된다 | `experiments/141-multi-robot-environment-matrix` | 완료 |
+| M41 | Interactive Obstacle Scene | static curb를 넘어 obstacle/contact task scene을 연다 | `experiments/142-interactive-obstacle-scene` | 완료 |
 
 ## Current Horizon
 
-<!-- harness:goal id="interactive-physics-diagnostics" -->
-목표: command input과 MuJoCo runtime readout을 사람이 읽을 수 있는 debug UI와 timeline evidence로 연결한다.
+<!-- harness:goal id="environment-scenario-harness" -->
+목표: 디지털 트윈 환경을 배경 preset이 아니라 scenario/parameter/matrix/obstacle evidence로 재현 가능한 실험 변수로 만든다. (M39-M41 완료)
 
 ## Active Milestones
 
-<!-- harness:milestone id="M38" status="completed" priority="P2" evidence="experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json" -->
-### M38 - Contact Readout Interpretation Pass
+<!-- harness:milestone id="M39" status="completed" priority="P0" evidence="experiments/140-environment-scenario-manifest/verify/environment-scenario-manifest.json" -->
+### M39 - Environment Scenario Manifest
 
-- DoD: contact/readout 값이 어떤 claim을 지지하고 어떤 claim은 아직 지지하지 않는지 public copy와 QA evidence에 명시된다.
-- Evidence: experiments/139-contact-readout-interpretation/verify/contact-readout-interpretation.json
-- Gap: raw runtime field는 보이지만 리뷰어가 그 값을 physical AI claim으로 어떻게 읽어야 하는지 해석 레이어가 부족하다.
+- DoD: `envScenario` id/seed/terrain/friction/lighting/obstacle parameters가 UI summary와 QA evidence에 노출된다.
+- Evidence: experiments/140-environment-scenario-manifest/verify/environment-scenario-manifest.json
+- Gap: 현재 환경은 preset 중심이라 friction, curb, lighting, obstacle 같은 실험 변수가 독립 contract로 남지 않는다.
 - Status: [x]
 - Completed at: 2026-06-26
-- Summary: Runtime readout interpretation is explicit in UI, public copy, and JSON/Markdown evidence; local/live boundary smoke PASS.
+- Summary: Scenario manifest/URL/UI/QA evidence가 `rough-curb-v1` contract를 local/live로 검증한다.
 ## Next Candidates
+
+<!-- harness:milestone id="M40" status="completed" priority="P1" evidence="experiments/141-multi-robot-environment-matrix/verify/environment-matrix-smoke.json" -->
+### M40 - Multi-Robot Environment Matrix
+
+- DoD: G1/Go1/Spot의 flat/rough scenario summary가 같은 matrix evidence에 기록되고 각 row가 pass/fail/claim boundary를 가진다.
+- Evidence: experiments/141-multi-robot-environment-matrix/verify/environment-matrix-smoke.json
+- Gap: rough 환경 evidence가 G1 중심으로 강해졌지만 여러 로봇이 같은 환경 contract로 비교되지는 않는다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: G1/Go1/Spot x flat/rough 6-row matrix가 local/live에서 scenario shape와 claim boundary를 검증한다.
+
+<!-- harness:milestone id="M41" status="completed" priority="P2" evidence="experiments/142-interactive-obstacle-scene/verify/obstacle-scene-smoke.json" -->
+### M41 - Interactive Obstacle Scene
+
+- DoD: obstacle scenario가 active MJCF scene/visual marker/QA summary로 노출되고, static curb와 다른 obstacle contract가 검증된다.
+- Evidence: experiments/142-interactive-obstacle-scene/verify/obstacle-scene-smoke.json
+- Gap: 현재 rough terrain은 static curb lane이며, task-like obstacle/contact world가 없다.
+- Status: [x]
+- Completed at: 2026-06-26
+- Summary: `g1-obstacle-walk`와 `obstacle-lane-v1`이 active MJCF obstacle geoms, UI status, local/live smoke evidence로 검증된다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.
