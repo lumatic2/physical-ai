@@ -27,6 +27,8 @@
 5. Environment layer: environment preset, lab visual treatment, floor/terrain material, grounding assist/contact/friction/solver setting summary are exposed to UI and QA. If a control changes physics behavior, it must also record the selected values in a QA-readable summary.
 6. Visual scene layer: preset-specific Three.js primitives provide public-facing lab spaces without mutating MuJoCo collision, solver, or policy behavior.
 7. Asset scene layer: future GLB/glTF lab assets are lazy-loaded into the visual layer only after bundle/performance QA.
+8. Control evidence layer: policy command input, last input source, command vector, and key down/release transitions are surfaced in UI and QA without changing policy contracts.
+9. Physics readout layer: contact/force/sensor probes are read-only diagnostics over MuJoCo WASM state. Unsupported fields must be reported as unavailable rather than replaced by decorative overlays.
 
 ## Contracts
 
@@ -34,6 +36,8 @@
 - Telemetry sidecar: frame-aligned telemetry for replay experiments.
 - Stream frame: browser-compatible qpos frame plus telemetry payload.
 - QA summary: JSON object with experiment id, runtime mode, state contract, evidence lanes, current limit, and `pass`.
+- Control summary: JSON object with current policy command vector, input mapping, last input source, and reset/release behavior.
+- Physics readout summary: JSON object with supported MuJoCo readout fields, sampled values when available, unavailable fields, and claim level.
 
 ## 금지사항
 
@@ -42,3 +46,5 @@
 - Real robot secrets, DDS network settings, or hardware-only assumptions must not be baked into public static assets.
 - Do not combine React/shadcn migration and physics/contact algorithm changes in one step. First preserve current QA, then expose environment controls, then tune physics.
 - Visual lab realism (M30) must stay Three.js-only and `visualOnly=true`; physical terrain claims start at M31.
+- Do not implement a new physics engine for M33-M35. MuJoCo WASM remains the runtime truth layer.
+- Do not reintroduce fake contact cue overlays as evidence. If a value cannot be read from runtime state, mark it unsupported.

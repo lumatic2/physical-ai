@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m35-public-evidence-refresh",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "claim-audit",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "public-copy-refresh",
+      "status": "pending"
+    }
+  ]
+}

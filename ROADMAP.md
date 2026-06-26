@@ -22,26 +22,45 @@
 | M29 | Public drift audit | 공개 claim drift 점검 | `experiments/130-public-drift-audit` | 완료/백로그 |
 | M30 | Visual Lab Scenes | preset이 색만 바뀌는 수준을 넘어 공간으로 보인다 | `experiments/131-visual-lab-scenes` | 완료 |
 | M31 | Physical Rough Terrain Scene | rough preset이 실제 contact-bearing scene variant로 연결된다 | `experiments/132-physical-rough-terrain-scene` | 완료 |
-| M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | active |
+| M32 | Asset-backed Lab Shell | GLB/glTF asset 기반 실험실 shell을 넣을 수 있다 | `experiments/133-asset-backed-lab-shell` | 완료 |
+| M33 | User-controllable Digital Twin | 입력이 policy command를 바꾸는 것을 UI/QA로 보인다 | `experiments/134-user-controllable-digital-twin` | active |
+| M34 | MuJoCo Contact/Force Readout Probe | contact/force claim을 runtime readout 가능성으로 검증한다 | `experiments/135-mujoco-contact-force-readout` | pending |
+| M35 | Public Evidence Story Refresh | 최신 evidence와 claim boundary를 public story로 정리한다 | `experiments/136-public-evidence-refresh` | pending |
 
 ## Current Horizon
 
-<!-- harness:goal id="robotics-lab-environment-realism" -->
-목표: Robotics Lab v2의 environment preset을 "색/라벨"이 아니라 시각 공간, 물리 terrain, asset pipeline으로 단계별 강화한다.
+<!-- harness:goal id="controllable-physics-evidence-workbench" -->
+목표: Robotics Lab v2를 보기 좋은 scene에서 한 단계 올려, 사용자가 정책 command를 조작하고 MuJoCo runtime state/contact evidence로 그 결과를 읽을 수 있는 workbench로 만든다.
 
 ## Active Milestones
 
-<!-- harness:milestone id="M32" status="completed" priority="P1" evidence="experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json" -->
-### M32 - Asset-backed Lab Shell
+<!-- harness:milestone id="M33" status="completed" priority="P0" evidence="experiments/134-user-controllable-digital-twin/verify/control-smoke.json" -->
+### M33 - User-controllable Digital Twin
 
-- DoD: lightweight GLB/glTF lab shell 또는 generated static asset을 lazy-load하고, bundle/performance/visual QA를 통과한다.
-- Evidence: experiments/133-asset-backed-lab-shell/verify/asset-lab-shell-smoke.json
-- Gap: procedural primitives만으로는 실제 실험실 디테일과 브랜드 품질에 한계가 있다.
+- DoD: `g1-walk`에서 keyboard command 상태가 visible UI와 QA summary에 드러나고, local/live Playwright가 command down/release 변화를 검증한다.
+- Evidence: experiments/134-user-controllable-digital-twin/verify/control-smoke.json
+- Gap: 방향키 command 조작은 구현됐지만 첫 방문자가 "내 입력이 policy command를 바꾼다"를 UI와 evidence로 즉시 확인하기 어렵다.
 - Status: [x]
 
 - Completed at: 2026-06-26
-- Summary: Robotics Lab now lazy-loads a local lightweight glTF lab shell asset into the visual layer with asset QA and chunk evidence.
+- Summary: Policy command UI and local/live keyboard control smoke PASS for g1-walk.
 ## Next Candidates
+
+<!-- harness:milestone id="M34" status="pending" priority="P1" evidence="experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json" -->
+### M34 - MuJoCo Contact/Force Readout Probe
+
+- DoD: `mujoco-js` runtime에서 노출 가능한 `ncon`/contact/force/sensor 값을 read-only probe로 확인하고, 가능하면 debug-only QA summary에 연결한다.
+- Evidence: experiments/135-mujoco-contact-force-readout/verify/contact-readout-probe.json
+- Gap: 물리 상호작용 claim을 visual cue가 아니라 실제 MuJoCo runtime state로 설명하려면 어떤 값이 브라우저에서 읽히는지 먼저 닫아야 한다.
+- Status: [ ]
+
+<!-- harness:milestone id="M35" status="pending" priority="P2" evidence="experiments/136-public-evidence-refresh/verify/public-story-smoke.json" -->
+### M35 - Public Evidence Story Refresh
+
+- DoD: README/experiments index/live copy가 M27-M34 evidence와 claim boundary를 반영하고, `robotics.askewly.com` smoke evidence가 남는다.
+- Evidence: experiments/136-public-evidence-refresh/verify/public-story-smoke.json
+- Gap: public story는 여전히 M17 policy gallery 중심이고, M27-M32 및 controllability/contact evidence arc가 5분 리뷰어에게 충분히 연결되지 않았다.
+- Status: [ ]
 
 ## Guardrails
 

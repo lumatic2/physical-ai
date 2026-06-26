@@ -1,0 +1,409 @@
+{
+  "milestone": "M33",
+  "experiment": "g1-walk",
+  "claimBoundary": "browser policy command input, not real robot telemetry",
+  "local": {
+    "url": "http://127.0.0.1:8132/?exp=g1-walk",
+    "pass": true,
+    "initial": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "initial",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowUp": {
+      "enabled": true,
+      "command": [
+        1,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "keyboard",
+      "heldCommands": [
+        "forward"
+      ],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterRelease": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "released",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowLeft": {
+      "enabled": true,
+      "command": [
+        0,
+        0.8,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "keyboard",
+      "heldCommands": [
+        "left"
+      ],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowLeftRelease": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "released",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "uiVisible": true,
+    "uiText": "POLICY COMMAND\n대기\nVX\n0.00\nVY\n0.00\nYAW\n0.00\n방향키/WASD 이동 · Q/E 회전 · 브라우저 policy input",
+    "consoleErrors": []
+  },
+  "live": {
+    "url": "https://robotics.askewly.com/?exp=g1-walk",
+    "pass": true,
+    "initial": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "initial",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowUp": {
+      "enabled": true,
+      "command": [
+        1,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "keyboard",
+      "heldCommands": [
+        "forward"
+      ],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterRelease": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "released",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowLeft": {
+      "enabled": true,
+      "command": [
+        0,
+        0.8,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "keyboard",
+      "heldCommands": [
+        "left"
+      ],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "afterArrowLeftRelease": {
+      "enabled": true,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "range": {
+        "vx": [
+          -1,
+          1
+        ],
+        "vy": [
+          -0.8,
+          0.8
+        ],
+        "vyaw": [
+          -1,
+          1
+        ]
+      },
+      "inputSource": "released",
+      "heldCommands": [],
+      "mapping": {
+        "ArrowUp": "vx + forward",
+        "W": "vx + forward",
+        "ArrowDown": "vx - backward",
+        "S": "vx - backward",
+        "ArrowLeft": "vy + left",
+        "A": "vy + left",
+        "ArrowRight": "vy - right",
+        "D": "vy - right",
+        "Q": "vyaw + turn left",
+        "E": "vyaw - turn right"
+      },
+      "claimLevel": "policy-command-input",
+      "note": "Browser policy command input, not real robot telemetry."
+    },
+    "uiVisible": true,
+    "uiText": "POLICY COMMAND\n대기\nVX\n0.00\nVY\n0.00\nYAW\n0.00\n방향키/WASD 이동 · Q/E 회전 · 브라우저 policy input",
+    "consoleErrors": []
+  },
+  "pass": true,
+  "generatedAt": "2026-06-26T04:35:51.327Z"
+}

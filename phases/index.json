@@ -23,6 +23,18 @@
     {
       "dir": "m32-asset-backed-lab-shell",
       "status": "completed"
+    },
+    {
+      "dir": "m33-user-controllable-digital-twin",
+      "status": "completed"
+    },
+    {
+      "dir": "m34-mujoco-contact-force-readout",
+      "status": "pending"
+    },
+    {
+      "dir": "m35-public-evidence-refresh",
+      "status": "pending"
     }
   ]
 }

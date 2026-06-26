@@ -1,0 +1,21 @@
+{
+  "project": "physical-ai",
+  "phase": "m33-user-controllable-digital-twin",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "command-state-ui",
+      "status": "completed",
+      "summary": "Added read-only policy command summary to qaWorkbenchSummary().control and a compact React command status panel for policy experiments; build and g1-walk workbench QA PASS.",
+      "completed_at": "2026-06-26T13:00:00+09:00"
+    },
+    {
+      "step": 1,
+      "name": "keyboard-command-smoke",
+      "status": "completed",
+      "summary": "Added qa/control_smoke.mjs and generated M33 evidence with local and live g1-walk keyboard down/release command transitions plus visible UI checks; deployed READY to robotics.askewly.com and all M33 acceptance checks PASS.",
+      "completed_at": "2026-06-26T13:36:00+09:00"
+    }
+  ]
+}

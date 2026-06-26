@@ -1,0 +1,17 @@
+{
+  "project": "physical-ai",
+  "phase": "m34-mujoco-contact-force-readout",
+  "mode": "product",
+  "steps": [
+    {
+      "step": 0,
+      "name": "runtime-field-audit",
+      "status": "pending"
+    },
+    {
+      "step": 1,
+      "name": "debug-summary-integration",
+      "status": "pending"
+    }
+  ]
+}

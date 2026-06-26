@@ -20,6 +20,9 @@
 6. Favicon/app icon: imagegen으로 생성한 project-bound icon을 `assets/favicon.png`와 필요한 sibling formats로 반영한다.
 7. Environment workbench: 실험실 배경, floor/terrain/environment preset, grounding/contact/physics knobs를 visitor-facing control로 노출한다.
 8. Environment realism ladder: visual-only lab scenes, physical rough terrain scene, asset-backed lab shell을 별도 milestone으로 분리해 claim level을 단계적으로 올린다.
+9. Controllable policy workbench: keyboard command 입력이 policy command vector와 runtime QA summary에 visible하게 연결된다.
+10. Physics evidence readout: contact/force/sensor 값은 visual cue가 아니라 MuJoCo runtime에서 읽히는 값만 공개 claim으로 사용한다.
+11. Public evidence refresh: README/live copy가 최신 Robotics Lab evidence와 claim boundary를 5분 안에 이해 가능한 흐름으로 갱신된다.
 
 ## 범위
 
@@ -37,3 +40,6 @@
 - M30: preset별 visual composition이 색/라인 차이를 넘어 공간 차이로 보이고, visual-only QA contract를 유지한다.
 - M31: rough terrain claim은 실제 contact-bearing scene variant와 QA evidence가 있을 때만 공개한다.
 - M32: GLB/glTF 또는 generated asset 기반 lab shell은 lazy-load/performance QA를 통과한 뒤 공개한다.
+- M33: `g1-walk` keyboard command가 visible UI, QA summary, local/live Playwright evidence로 검증된다.
+- M34: contact/force readout은 browser runtime에서 실제 노출 가능한 MuJoCo state만 probe하고, 실패 시 unsupported evidence로 명시한다.
+- M35: public README/live story는 M27-M34 evidence를 반영하되 real robot telemetry나 unassisted controller proof로 과장하지 않는다.
