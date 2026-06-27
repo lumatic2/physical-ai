@@ -1,5 +1,5 @@
 # stage_height=0.74
-# timesteps=50000 train_min=5.26 source=C:\Users\yusun\projects\physical-ai\experiments\22-g1-squat-depth-finetune\verify\train\params.pkl
+# timesteps=50000 train_min=5.26 source=C:\Users\<user>\projects\physical-ai\experiments\22-g1-squat-depth-finetune\verify\train\params.pkl
 0	138.9437713623047
 40960	140.8375244140625
 81920	142.59524536132812

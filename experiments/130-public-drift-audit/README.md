@@ -19,7 +19,7 @@ If M27/M28 are complete locally but not consistently reflected publicly, then a 
 - Local source: `README.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`, `experiments/03-digital-twin/web/README.md`.
 - Public Robotics Lab: `https://robotics.askewly.com/?exp=unitree-g1-elastic-stand`.
 - Askewly public pages: `https://askewly.com/projects/physical-ai-arm`, `https://askewly.com/blog/robot-walk-qa-after-demo`.
-- Askewly source copy: `C:/Users/yusun/projects/Askwely-company/web/src/lib/projects.ts` and physical-ai blog MDX files.
+- Askewly source copy: `C:/Users/<user>/projects/Askwely-company/web/src/lib/projects.ts` and physical-ai blog MDX files.
 - Vault check: `ssh m4` after confirming `~/vault/00-System/VAULT_INDEX.md` exists.
 
 ### 시나리오

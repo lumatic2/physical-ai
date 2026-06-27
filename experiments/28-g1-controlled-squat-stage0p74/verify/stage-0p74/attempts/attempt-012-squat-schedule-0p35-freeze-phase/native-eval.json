@@ -3,7 +3,7 @@
   "controller_blend": 0.35,
   "freeze_phase": true,
   "blend_schedule": "squat",
-  "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
   "seconds": 6.0,
   "fell_at": 3.76,
   "upright_s": 3.76,

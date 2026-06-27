@@ -15,7 +15,7 @@ from mujoco_playground._src import mjx_env
 REPO = Path(__file__).resolve().parents[2]
 SCENE_DIR = REPO / "experiments/03-digital-twin/web/assets/scenes/barkour"
 ASSETS_DST = SCENE_DIR / "assets"
-RUN = Path("/home/yusun/playground-go1/runs/barkour")
+RUN = Path("/home/<user>/playground-go1/runs/barkour")
 
 
 def main():

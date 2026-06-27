@@ -1,6 +1,6 @@
 {
   "stage_height": 0.74,
-  "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/28-g1-controlled-squat-stage0p74/verify/stage-0p74/attempts/attempt-003-pose-prior-10k/train/params.pkl",
+  "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/28-g1-controlled-squat-stage0p74/verify/stage-0p74/attempts/attempt-003-pose-prior-10k/train/params.pkl",
   "seconds": 6.0,
   "fell_at": null,
   "upright_s": 6.0,

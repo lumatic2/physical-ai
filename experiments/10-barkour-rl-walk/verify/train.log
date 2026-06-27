@@ -96,4 +96,4 @@ E0615 21:52:42.684882    3202 cuda_timer.cc:87] Delay kernel timed out: measured
 91750400: reward=36.486
 103219200: reward=38.249
 TRAIN DONE in 6.5 min
-saved -> /home/yusun/playground-go1/runs/barkour/params.pkl
+saved -> /home/<user>/playground-go1/runs/barkour/params.pkl

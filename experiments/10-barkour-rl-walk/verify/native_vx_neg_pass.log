@@ -8,12 +8,12 @@ S4 PASS
 wrote native_rollout.mp4 200 frames
 Exception ignored in: <function Renderer.__del__ at 0x7c3848796660>
 Traceback (most recent call last):
-  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 343, in __del__
-  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 329, in close
-  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
+  File "/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 343, in __del__
+  File "/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/mujoco/rendering/classic/renderer.py", line 329, in close
+  File "/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
 TypeError: 'NoneType' object is not callable
 Exception ignored in: <function GLContext.__del__ at 0x7c384b5336a0>
 Traceback (most recent call last):
-  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 41, in __del__
-  File "/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
+  File "/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 41, in __del__
+  File "/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/mujoco/glfw/__init__.py", line 35, in free
 TypeError: 'NoneType' object is not callable

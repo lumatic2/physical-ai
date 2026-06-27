@@ -6,7 +6,7 @@ GR00T/SONIC C++ deployment path가 TensorRT 없이 막히더라도, GR00T Decoup
 
 ## 2. Method
 
-- WSL-native `/home/yusun/gr00t-wbc-native`에서 GR00T WBC model assets를 다운로드하고, Decoupled WBC G1 MuJoCo loop를 headless로 실행했다.
+- WSL-native `/home/<user>/gr00t-wbc-native`에서 GR00T WBC model assets를 다운로드하고, Decoupled WBC G1 MuJoCo loop를 headless로 실행했다.
 - `GR00T-WholeBodyControl-Balance.onnx`에 pelvis height command schedule을 넣고 `low_0p70`, `low_0p68`, `low_0p66`, `low_0p64` 네 변형을 50Hz로 기록했다.
 - 첫 1초 settle 구간은 제외하고 6초 measured qpos trace를 평가했다.
 - PASS 기준은 exp29 visible squat gate와 stance gate를 합쳤다: pelvis drop >=0.08m, knee flexion delta >=0.60rad, hip pitch delta >=0.35rad, final height error <=0.015m, bilateral foot contact ratio >=0.95, max foot slip <=0.05m.

@@ -16,7 +16,7 @@ from mujoco_playground.config import locomotion_params
 
 
 ENV = "BarkourJoystick"
-OUT = sys.argv[1] if len(sys.argv) > 1 else "/home/yusun/playground-go1/runs/barkour"
+OUT = sys.argv[1] if len(sys.argv) > 1 else "/home/<user>/playground-go1/runs/barkour"
 os.makedirs(OUT, exist_ok=True)
 
 env = registry.load(ENV, config_overrides={"impl": "jax"})

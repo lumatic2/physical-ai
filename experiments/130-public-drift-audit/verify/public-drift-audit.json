@@ -19,9 +19,9 @@
       "https://askewly.com/blog/robot-walk-qa-after-demo"
     ],
     "askewlySource": [
-      "C:/Users/yusun/projects/Askwely-company/web/src/lib/projects.ts",
-      "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/robot-walk-qa-after-demo.mdx",
-      "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx"
+      "C:/Users/<user>/projects/Askwely-company/web/src/lib/projects.ts",
+      "C:/Users/<user>/projects/Askwely-company/web/src/content/blog/robot-walk-qa-after-demo.mdx",
+      "C:/Users/<user>/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx"
     ],
     "vault": [
       "m4:~/vault/00-System/VAULT_INDEX.md",
@@ -82,7 +82,7 @@
   },
   "askewlyG1SquatBlog": {
     "status": "ok",
-    "sourcePath": "C:/Users/yusun/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx",
+    "sourcePath": "C:/Users/<user>/projects/Askwely-company/web/src/content/blog/g1-squat-122-failures.mdx",
     "finding": "The post explicitly says the result is measured MuJoCo WBC trace and browser replay, not real Unitree G1 hardware telemetry."
   },
   "githubReadme": {

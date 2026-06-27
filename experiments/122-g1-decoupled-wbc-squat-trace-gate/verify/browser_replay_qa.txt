@@ -17,5 +17,5 @@
   },
   "consoleErrors": 0
 }
-[qa] screenshots in C:\Users\yusun\projects\physical-ai\experiments\03-digital-twin\web\qa\out
+[qa] screenshots in C:\Users\<user>\projects\physical-ai\experiments\03-digital-twin\web\qa\out
 [qa] PASS ✅

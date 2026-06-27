@@ -8,11 +8,11 @@
     ]
   },
   "stage_height": 0.74,
-  "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
   "variants": [
     {
       "variant": "policy_only",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -365,7 +365,7 @@
     },
     {
       "variant": "blend_0p15",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -718,7 +718,7 @@
     },
     {
       "variant": "blend_0p18",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -1071,7 +1071,7 @@
     },
     {
       "variant": "blend_0p20",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -1424,7 +1424,7 @@
     },
     {
       "variant": "blend_0p22",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -1777,7 +1777,7 @@
     },
     {
       "variant": "blend_0p25",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -2130,7 +2130,7 @@
     },
     {
       "variant": "guard_0p20_floor_0p05",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -2483,7 +2483,7 @@
     },
     {
       "variant": "guard_0p22_floor_0p08",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,
@@ -2836,7 +2836,7 @@
     },
     {
       "variant": "guard_0p25_floor_0p10",
-      "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+      "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
       "seconds": 6.0,
       "stage_height": 0.74,
       "fell_at": null,

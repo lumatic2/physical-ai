@@ -34,7 +34,7 @@ planning_gate:
 
 ### 셋업
 - Runner: `experiments/28-g1-controlled-squat-stage0p74/run_controlled_squat.py`
-- Python: `/home/yusun/playground-go1/.venv/bin/python` in WSL
+- Python: `/home/<user>/playground-go1/.venv/bin/python` in WSL
 - Source params: `experiments/22-g1-squat-depth-finetune/verify/train/params.pkl`
 - Target stage: `0.67m`
 - Reference scale: `1.0`

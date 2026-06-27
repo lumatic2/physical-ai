@@ -26,7 +26,7 @@ from mujoco_playground.config import locomotion_params
 EXP_DIR = Path(__file__).resolve().parent
 ROOT = EXP_DIR.parents[1]
 VERIFY = EXP_DIR / "verify"
-DEFAULT_SOURCE = Path("/home/yusun/playground-go1/runs/g1flat/params.pkl")
+DEFAULT_SOURCE = Path("/home/<user>/playground-go1/runs/g1flat/params.pkl")
 EXP20_RUNNER = ROOT / "experiments/20-g1-squat-reference-tracking/run_reference.py"
 EXP20_ENV = ROOT / "experiments/20-g1-squat-reference-tracking/g1_squat_reference_env.py"
 

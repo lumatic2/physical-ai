@@ -69,5 +69,5 @@ E0615 04:03:20.367020    3219 cuda_timer.cc:87] Delay kernel timed out: measured
 103219200: reward=30.637
 E0615 04:07:54.585340    3193 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
 TRAIN DONE in 6.5 min
-saved -> /home/yusun/playground-go1/runs/spotflat/params.pkl
+saved -> /home/<user>/playground-go1/runs/spotflat/params.pkl
 EXIT=0

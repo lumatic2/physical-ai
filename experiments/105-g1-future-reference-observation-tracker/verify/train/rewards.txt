@@ -1,4 +1,4 @@
-# timesteps=20000 train_min=4.57 seed=105 source=C:\Users\yusun\projects\physical-ai\experiments\103-g1-explicit-reference-command-tracker\verify\target-0p090-slip-0p08\train\params.pkl
+# timesteps=20000 train_min=4.57 seed=105 source=C:\Users\<user>\projects\physical-ai\experiments\103-g1-explicit-reference-command-tracker\verify\target-0p090-slip-0p08\train\params.pkl
 0	69.80088806152344
 20480	71.32456970214844
 40960	71.02880096435547

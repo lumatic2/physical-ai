@@ -1,6 +1,6 @@
 {
   "compatibility": {
-    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
+    "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
     "source_exists": true,
     "source_policy_shapes": {
       "hidden_0": {
@@ -113,7 +113,7 @@
         83.34011840820312
       ]
     ],
-    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
+    "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/21-g1-stabilizer-init-probe/verify/train/params.pkl",
     "params_path": "verify/train/params.pkl",
     "rewards_path": "verify/train/rewards.txt"
   },

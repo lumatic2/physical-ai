@@ -1,6 +1,6 @@
 E0616 00:14:39.656434    3074 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
 E0616 00:14:39.670462    2286 cuda_executor.cc:1743] Could not get kernel mode driver version: ( INVALID_ARGUMENT: Version does not match the format X.Y.Z )
-/home/yusun/playground-go1/.venv/lib/python3.12/site-packages/jax/_src/abstract_arrays.py:193: RuntimeWarning: overflow encountered in cast
+/home/<user>/playground-go1/.venv/lib/python3.12/site-packages/jax/_src/abstract_arrays.py:193: RuntimeWarning: overflow encountered in cast
   return literals.TypedNdArray(np.asarray(x, dtype), weak_type=False)
 E0616 00:14:46.822970    3095 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
 E0616 00:14:53.760854    3096 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.

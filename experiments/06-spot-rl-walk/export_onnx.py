@@ -15,7 +15,7 @@ from brax.training.acme import running_statistics
 from mujoco_playground import registry
 from mujoco_playground.config import locomotion_params
 
-RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/yusun/playground-go1/runs/spotflat"
+RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/<user>/playground-go1/runs/spotflat"
 SPEC_OUT = sys.argv[2] if len(sys.argv) > 2 else os.path.join(RUN, "obs_spec.json")
 ENV = "SpotFlatTerrainJoystick"
 OBS = 81

@@ -1,4 +1,4 @@
-# timesteps=200000 train_min=5.23 source=/home/yusun/playground-go1/runs/g1flat/params.pkl
+# timesteps=200000 train_min=5.23 source=/home/<user>/playground-go1/runs/g1flat/params.pkl
 0	66.08513641357422
 102400	66.1246109008789
 204800	66.12367248535156

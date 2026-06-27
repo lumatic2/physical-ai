@@ -4,7 +4,7 @@
   "freeze_phase": true,
   "blend_schedule": "squat",
   "reference_scale": 0.75,
-  "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
   "seconds": 6.0,
   "fell_at": null,
   "upright_s": 6.0,

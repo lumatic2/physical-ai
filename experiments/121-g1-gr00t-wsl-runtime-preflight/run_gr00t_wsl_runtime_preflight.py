@@ -12,9 +12,9 @@ ROOT = Path(__file__).resolve().parents[2]
 EXP_DIR = Path(__file__).resolve().parent
 VERIFY_DIR = EXP_DIR / "verify"
 
-WSL_REPO = "/home/yusun/gr00t-wbc-native"
-WSL_SAMPLE_DIR = "/home/yusun/gr00t_sample_download_probe"
-WIN_GROOT = "/mnt/c/Users/yusun/projects/physical-ai/tmp/gr00t-wbc"
+WSL_REPO = "/home/<user>/gr00t-wbc-native"
+WSL_SAMPLE_DIR = "/home/<user>/gr00t_sample_download_probe"
+WIN_GROOT = "/mnt/c/Users/<user>/projects/physical-ai/tmp/gr00t-wbc"
 
 
 def run_wsl(script: str, timeout_s: float = 60.0) -> dict[str, Any]:

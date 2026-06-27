@@ -1,6 +1,6 @@
 {
   "compatibility": {
-    "source_params": "/home/yusun/playground-go1/runs/g1flat/params.pkl",
+    "source_params": "/home/<user>/playground-go1/runs/g1flat/params.pkl",
     "source_exists": true,
     "obs_size": {
       "privileged_state": [
@@ -118,7 +118,7 @@
         66.12367248535156
       ]
     ],
-    "source_params": "/home/yusun/playground-go1/runs/g1flat/params.pkl",
+    "source_params": "/home/<user>/playground-go1/runs/g1flat/params.pkl",
     "params_path": "verify/train/params.pkl",
     "rewards_path": "verify/train/rewards.txt"
   },

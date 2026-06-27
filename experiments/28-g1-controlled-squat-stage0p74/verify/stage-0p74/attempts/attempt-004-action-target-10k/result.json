@@ -10,10 +10,10 @@
   },
   "attempt": "attempt-004-action-target-10k",
   "stage_height": 0.74,
-  "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
   "compatibility": {
     "stage_height": 0.74,
-    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
     "source_exists": true,
     "obs_size": {
       "privileged_state": [
@@ -58,13 +58,13 @@
         278.0643310546875
       ]
     ],
-    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
     "params_path": "verify/stage-0p74/attempts/attempt-004-action-target-10k/train/params.pkl",
     "rewards_path": "verify/stage-0p74/attempts/attempt-004-action-target-10k/train/rewards.txt"
   },
   "native": {
     "stage_height": 0.74,
-    "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/28-g1-controlled-squat-stage0p74/verify/stage-0p74/attempts/attempt-004-action-target-10k/train/params.pkl",
+    "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/28-g1-controlled-squat-stage0p74/verify/stage-0p74/attempts/attempt-004-action-target-10k/train/params.pkl",
     "seconds": 6.0,
     "fell_at": null,
     "upright_s": 6.0,

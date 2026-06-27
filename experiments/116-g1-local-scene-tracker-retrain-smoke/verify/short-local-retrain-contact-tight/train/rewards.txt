@@ -1,4 +1,4 @@
-# timesteps=512 train_min=4.70 seed=1161 source=C:\Users\yusun\projects\physical-ai\experiments\105-g1-future-reference-observation-tracker\verify\train\params.pkl
+# timesteps=512 train_min=4.70 seed=1161 source=C:\Users\<user>\projects\physical-ai\experiments\105-g1-future-reference-observation-tracker\verify\train\params.pkl
 0	63.30340576171875
 20480	66.43898010253906
 40960	71.07427978515625

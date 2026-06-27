@@ -2,7 +2,7 @@
 # reference_gain=0.35
 # ramp_s=3.0
 # residual_scale=1.0
-# timesteps=20000 train_min=4.72 seed=10 source=C:\Users\yusun\projects\physical-ai\experiments\22-g1-squat-depth-finetune\verify\train\params.pkl
+# timesteps=20000 train_min=4.72 seed=10 source=C:\Users\<user>\projects\physical-ai\experiments\22-g1-squat-depth-finetune\verify\train\params.pkl
 0	139.92037963867188
 20480	140.7952880859375
 40960	141.7858123779297

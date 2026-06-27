@@ -14,7 +14,7 @@ from brax.training.acme import running_statistics
 from mujoco_playground import registry
 from mujoco_playground.config import locomotion_params
 
-RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/yusun/playground-go1/runs/g1flat"
+RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/<user>/playground-go1/runs/g1flat"
 ENV = "G1JoystickFlatTerrain"
 
 # --- derive obs/act sizes + default_pose from the env (no hardcoded dims) ---

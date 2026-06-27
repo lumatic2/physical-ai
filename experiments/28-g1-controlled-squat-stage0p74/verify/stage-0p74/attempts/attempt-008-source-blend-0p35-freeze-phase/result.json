@@ -12,12 +12,12 @@
   "stage_height": 0.74,
   "controller_blend": 0.35,
   "freeze_phase": true,
-  "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+  "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
   "compatibility": {
     "stage_height": 0.74,
     "controller_blend": 0.35,
     "freeze_phase": true,
-    "source_params": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "source_params": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
     "source_exists": true,
     "obs_size": {
       "privileged_state": [
@@ -49,7 +49,7 @@
     "stage_height": 0.74,
     "controller_blend": 0.35,
     "freeze_phase": true,
-    "params_path": "/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
+    "params_path": "/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl",
     "seconds": 6.0,
     "fell_at": 2.16,
     "upright_s": 2.16,

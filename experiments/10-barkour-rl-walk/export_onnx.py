@@ -19,7 +19,7 @@ from mujoco_playground import registry
 from mujoco_playground.config import locomotion_params
 
 
-RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/yusun/playground-go1/runs/barkour"
+RUN = sys.argv[1] if len(sys.argv) > 1 else "/home/<user>/playground-go1/runs/barkour"
 ENV = "BarkourJoystick"
 OBS_DIM = 465
 ACT_DIM = 12

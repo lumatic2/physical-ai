@@ -1,5 +1,5 @@
 # target_drop=0.09 support_floor=-0.005 slip_limit=0.08
-# timesteps=20000 train_min=3.98 seed=103 source=C:\Users\yusun\projects\physical-ai\experiments\80-g1-corridor-curriculum-training\verify\target-0p078-slip-0p08\train\params.pkl
+# timesteps=20000 train_min=3.98 seed=103 source=C:\Users\<user>\projects\physical-ai\experiments\80-g1-corridor-curriculum-training\verify\target-0p078-slip-0p08\train\params.pkl
 0	98.45655822753906
 20480	97.48439025878906
 40960	98.71780395507812

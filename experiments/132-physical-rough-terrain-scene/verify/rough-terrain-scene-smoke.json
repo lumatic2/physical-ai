@@ -97,7 +97,7 @@
     "Playwright click smoke: /?exp=g1-walk -> rough terrain preset -> g1-rough-walk, navCount=1"
   ],
   "artifacts": {
-    "route_screenshot_temp": "C:/Users/yusun/AppData/Local/Temp/robotics-m31-rough-route.png",
+    "route_screenshot_temp": "C:/Users/<user>/AppData/Local/Temp/robotics-m31-rough-route.png",
     "source_summaries": [
       "experiments/03-digital-twin/web/qa/out/g1-rough-walk_rough-terrain_terrain_scene_summary.json",
       "experiments/03-digital-twin/web/qa/out/go1-rough-walk_rough-terrain_terrain_scene_summary.json",

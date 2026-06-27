@@ -14,7 +14,7 @@
 ## 2. 방법 (Method)
 
 ### 셋업
-- source params: `/home/yusun/playground-go1/runs/g1flat/params.pkl`.
+- source params: `/home/<user>/playground-go1/runs/g1flat/params.pkl`.
 - 기반 env: exp20 `G1SquatReference`.
 - 차이: network shape를 G1 walking default `(512, 256, 128)`로 맞추고 `restore_params`를 사용한다.
 

@@ -2,7 +2,7 @@
 
 - Overall verdict: CONTACT_CONTROLLER_DEPTH_NEEDS_CONTACT
 - Stage height: 0.74
-- Source params: `/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl`
+- Source params: `/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl`
 
 | Variant | Verdict | Min height | Fell at | Hold <= stage | Final height | Foot contact | Mean blend |
 |---|---|---:|---:|---:|---:|---:|---:|

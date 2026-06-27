@@ -1,5 +1,5 @@
 stage_height=0.74
-params=/mnt/c/Users/yusun/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl
+params=/mnt/c/Users/<user>/projects/physical-ai/experiments/22-g1-squat-depth-finetune/verify/train/params.pkl
 fell_at=None
 upright_s=6.0
 min_height=0.7500645592076753

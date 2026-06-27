@@ -1,15 +1,15 @@
 connection handler failed
 Traceback (most recent call last):
-  File "C:\Users\yusun\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\server.py", line 376, in conn_handler
+  File "C:\Users\<user>\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\server.py", line 376, in conn_handler
     await self.handler(connection)
-  File "C:\Users\yusun\projects\physical-ai\experiments\33-unitree-mujoco-g1-bridge-probe\stream_dds_to_websocket.py", line 151, in handler
+  File "C:\Users\<user>\projects\physical-ai\experiments\33-unitree-mujoco-g1-bridge-probe\stream_dds_to_websocket.py", line 151, in handler
     await websocket.send(json.dumps(frame, separators=(",", ":")))
-  File "C:\Users\yusun\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\connection.py", line 478, in send
+  File "C:\Users\<user>\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\connection.py", line 478, in send
     async with self.send_context():
                ^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\yusun\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 210, in __aenter__
+  File "C:\Users\<user>\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 210, in __aenter__
     return await anext(self.gen)
            ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\yusun\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\connection.py", line 965, in send_context
+  File "C:\Users\<user>\AppData\Local\Programs\Python\Python312\Lib\site-packages\websockets\asyncio\connection.py", line 965, in send_context
     raise self.protocol.close_exc from original_exc
 websockets.exceptions.ConnectionClosedOK: received 1000 (OK); then sent 1000 (OK)

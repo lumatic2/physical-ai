@@ -16,8 +16,8 @@ WEB_CONTRACT_CHECK = (
     ROOT / "experiments" / "33-unitree-mujoco-g1-bridge-probe" / "check_web_trajectory_contract.py"
 )
 
-WSL_REPO = "/home/yusun/gr00t-wbc-native"
-WSL_VERIFY = "/mnt/c/Users/yusun/projects/physical-ai/experiments/122-g1-decoupled-wbc-squat-trace-gate/verify"
+WSL_REPO = "/home/<user>/gr00t-wbc-native"
+WSL_VERIFY = "/mnt/c/Users/<user>/projects/physical-ai/experiments/122-g1-decoupled-wbc-squat-trace-gate/verify"
 
 FPS = 50.0
 VISIBLE_GATE = {

@@ -20,13 +20,13 @@
   ],
   "commands": {
     "git_lfs": "git lfs version && git lfs env | sed -n '1,20p'",
-    "gr00t_check_environment": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python check_environment.py",
-    "run_sim_help": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python gear_sonic/scripts/run_sim_loop.py --help | sed -n '1,80p'",
-    "import_smoke": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport mujoco, torch, zmq, gear_sonic\nimport gear_sonic.scripts.run_sim_loop as run_sim_loop\nprint(\"IMPORT_SMOKE_PASS\")\nprint(\"mujoco\", mujoco.__version__)\nprint(\"torch\", torch.__version__)\nprint(\"cuda_available\", torch.cuda.is_available())\nprint(\"zmq\", zmq.__version__)\nprint(\"run_sim_loop_module\", run_sim_loop.__name__)\nPY",
-    "sample_download_listing": "find /home/yusun/gr00t_sample_download_probe -type f | sort | sed -n '1,80p'",
-    "native_repo_assets": "cd /home/yusun/gr00t-wbc-native && find . -type f \\( -name '*.onnx' -o -name '*.pkl' \\) | sed 's#^./##' | sort | sed -n '1,80p'",
-    "run_sim_loop_timeout_smoke": "cd /home/yusun/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport subprocess\ncmd = [\n    'timeout', '8s', 'python', 'gear_sonic/scripts/run_sim_loop.py',\n    '--no-enable-onscreen', '--no-enable-offscreen', '--sim-sync-mode', '--mp-start-method', 'fork',\n]\ncompleted = subprocess.run(cmd, text=True, capture_output=True, check=False)\nprint(f'RUN_SIM_RC:{completed.returncode}')\nprint('STDOUT_HEAD')\nprint('\\n'.join(completed.stdout.splitlines()[:80]))\nprint('STDERR_HEAD')\nprint('\\n'.join(completed.stderr.splitlines()[:80]))\nPY",
-    "windows_mount_install_failure_probe": "cd /mnt/c/Users/yusun/projects/physical-ai/tmp/gr00t-wbc && tr -d '\\r' < install_scripts/install_mujoco_sim.sh > /tmp/install_mujoco_sim_lf_probe.sh && bash /tmp/install_mujoco_sim_lf_probe.sh"
+    "gr00t_check_environment": "cd /home/<user>/gr00t-wbc-native && source .venv_sim/bin/activate && python check_environment.py",
+    "run_sim_help": "cd /home/<user>/gr00t-wbc-native && source .venv_sim/bin/activate && python gear_sonic/scripts/run_sim_loop.py --help | sed -n '1,80p'",
+    "import_smoke": "cd /home/<user>/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport mujoco, torch, zmq, gear_sonic\nimport gear_sonic.scripts.run_sim_loop as run_sim_loop\nprint(\"IMPORT_SMOKE_PASS\")\nprint(\"mujoco\", mujoco.__version__)\nprint(\"torch\", torch.__version__)\nprint(\"cuda_available\", torch.cuda.is_available())\nprint(\"zmq\", zmq.__version__)\nprint(\"run_sim_loop_module\", run_sim_loop.__name__)\nPY",
+    "sample_download_listing": "find /home/<user>/gr00t_sample_download_probe -type f | sort | sed -n '1,80p'",
+    "native_repo_assets": "cd /home/<user>/gr00t-wbc-native && find . -type f \\( -name '*.onnx' -o -name '*.pkl' \\) | sed 's#^./##' | sort | sed -n '1,80p'",
+    "run_sim_loop_timeout_smoke": "cd /home/<user>/gr00t-wbc-native && source .venv_sim/bin/activate && python - <<'PY'\nimport subprocess\ncmd = [\n    'timeout', '8s', 'python', 'gear_sonic/scripts/run_sim_loop.py',\n    '--no-enable-onscreen', '--no-enable-offscreen', '--sim-sync-mode', '--mp-start-method', 'fork',\n]\ncompleted = subprocess.run(cmd, text=True, capture_output=True, check=False)\nprint(f'RUN_SIM_RC:{completed.returncode}')\nprint('STDOUT_HEAD')\nprint('\\n'.join(completed.stdout.splitlines()[:80]))\nprint('STDERR_HEAD')\nprint('\\n'.join(completed.stderr.splitlines()[:80]))\nPY",
+    "windows_mount_install_failure_probe": "cd /mnt/c/Users/<user>/projects/physical-ai/tmp/gr00t-wbc && tr -d '\\r' < install_scripts/install_mujoco_sim.sh > /tmp/install_mujoco_sim_lf_probe.sh && bash /tmp/install_mujoco_sim_lf_probe.sh"
   },
   "results": {
     "git_lfs": {
@@ -37,12 +37,12 @@
         "git version 2.43.0",
         "",
         "Endpoint=https://github.com/lumatic2/physical-ai.git/info/lfs (auth=none)",
-        "LocalWorkingDir=/mnt/c/Users/yusun/projects/physical-ai",
-        "LocalGitDir=/mnt/c/Users/yusun/projects/physical-ai/.git",
-        "LocalGitStorageDir=/mnt/c/Users/yusun/projects/physical-ai/.git",
-        "LocalMediaDir=/mnt/c/Users/yusun/projects/physical-ai/.git/lfs/objects",
+        "LocalWorkingDir=/mnt/c/Users/<user>/projects/physical-ai",
+        "LocalGitDir=/mnt/c/Users/<user>/projects/physical-ai/.git",
+        "LocalGitStorageDir=/mnt/c/Users/<user>/projects/physical-ai/.git",
+        "LocalMediaDir=/mnt/c/Users/<user>/projects/physical-ai/.git/lfs/objects",
         "LocalReferenceDirs=",
-        "TempDir=/mnt/c/Users/yusun/projects/physical-ai/.git/lfs/tmp",
+        "TempDir=/mnt/c/Users/<user>/projects/physical-ai/.git/lfs/tmp",
         "ConcurrentTransfers=8",
         "TusTransfers=false",
         "BasicTransfersOnly=false",
@@ -61,7 +61,7 @@
       "stdout": [
         "GR00T-WholeBodyControl Environment Check",
         "Platform: Linux x86_64",
-        "Python:   /home/yusun/gr00t-wbc-native/.venv_sim/bin/python",
+        "Python:   /home/<user>/gr00t-wbc-native/.venv_sim/bin/python",
         "",
         "Basic:",
         "  [X] Python version: 3.10.20 (training requires 3.11.x \u2014 Isaac Lab requirement)",
@@ -187,20 +187,20 @@
     "sample_download_listing": {
       "returncode": 0,
       "stdout": [
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/.gitignore",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/CACHEDIR.TAG",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl",
-        "/home/yusun/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl"
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/.gitignore",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/CACHEDIR.TAG",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/.cache/huggingface/download/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl.metadata",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001.pkl",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/robot_filtered/210531/walk_forward_amateur_001__A001_M.pkl",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001.pkl",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/smpl_filtered/walk_forward_amateur_001__A001_M.pkl",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001.pkl",
+        "/home/<user>/gr00t_sample_download_probe/sample_data/soma_filtered/210531/walk_forward_amateur_001__A001_M.pkl"
       ],
       "stderr": []
     },
@@ -248,13 +248,13 @@
         "[OK] Architecture: x86_64",
         "[OK] uv uv 0.11.21 (x86_64-unknown-linux-gnu)",
         "[INFO] Installing uv-managed Python 3.10 (includes development headers) \u2026",
-        "[OK] Using Python: /home/yusun/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
+        "[OK] Using Python: /home/<user>/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
         "[INFO] Removing old .venv_sim (if present) \u2026",
         "[INFO] Creating .venv_sim with uv-managed Python 3.10 \u2026"
       ],
       "stderr": [
         "Python 3.10 is already installed",
-        "Using CPython 3.10.20 interpreter at: /home/yusun/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
+        "Using CPython 3.10.20 interpreter at: /home/<user>/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/bin/python3.10",
         "Creating virtual environment at: .venv_sim",
         "error: Failed to create virtual environment",
         "  Caused by: failed to create directory `.venv_sim`: Permission denied (os error 13)"
