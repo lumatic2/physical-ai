@@ -127,4 +127,4 @@
 
 ## Archive Pointer
 
-완료 이력은 `BACKLOG.md` 참조.
+완료 이력은 `docs/BACKLOG.md` 참조.
