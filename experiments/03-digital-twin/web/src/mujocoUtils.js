@@ -517,12 +517,14 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
     mujocoRoot.cylinders = new THREE.InstancedMesh(
         new THREE.CylinderGeometry(1, 1, 1),
         tendonMat, 1023);
+    mujocoRoot.cylinders.count = 0;
     mujocoRoot.cylinders.receiveShadow = true;
     mujocoRoot.cylinders.castShadow    = true;
     mujocoRoot.add(mujocoRoot.cylinders);
     mujocoRoot.spheres = new THREE.InstancedMesh(
         new THREE.SphereGeometry(1, 10, 10),
         tendonMat, 1023);
+    mujocoRoot.spheres.count = 0;
     mujocoRoot.spheres.receiveShadow = true;
     mujocoRoot.spheres.castShadow    = true;
     mujocoRoot.add(mujocoRoot.spheres);
@@ -709,4 +711,3 @@ export function toMujocoPos(target) { return target.set(target.x, -target.z, tar
 export function standardNormal() {
   return Math.sqrt(-2.0 * Math.log( Math.random())) *
          Math.cos ( 2.0 * Math.PI * Math.random()); }
-

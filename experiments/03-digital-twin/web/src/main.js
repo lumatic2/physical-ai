@@ -59,6 +59,18 @@ export class MuJoCoDemo {
 
     this.scene.background = new THREE.Color(0.15, 0.25, 0.35);
     this.scene.fog = new THREE.Fog(this.scene.background, 15, 25.5 );
+    const initialParams = new URLSearchParams(window.location.search);
+    this.performanceMode = initialParams.get("perf") || "balanced";
+    this.renderFrameIntervalMS = 0;
+    this.lastRenderedFrameMS = -Infinity;
+    this.renderStats = {
+      mode: this.performanceMode,
+      targetFps: "display",
+      renderedFrames: 0,
+      skippedFrames: 0,
+      shadows: "quality-only",
+      emptyTendonFlexDrawSkipped: true,
+    };
 
     this.ambientLight = new THREE.AmbientLight( 0xffffff, 0.1 * 3.14 );
     this.ambientLight.name = 'AmbientLight';
@@ -68,7 +80,7 @@ export class MuJoCoDemo {
     this.spotlight.angle = 1.11;
     this.spotlight.distance = 10000;
     this.spotlight.penumbra = 0.5;
-    this.spotlight.castShadow = true; // default false
+    this.spotlight.castShadow = this.performanceMode === "quality"; // default false
     this.spotlight.intensity = this.spotlight.intensity * 3.14 * 10.0;
     this.spotlight.shadow.mapSize.width = 1024; // default
     this.spotlight.shadow.mapSize.height = 1024; // default
@@ -100,7 +112,7 @@ export class MuJoCoDemo {
     this.renderer = new THREE.WebGLRenderer( { antialias: true } );
     this.renderer.setPixelRatio(1.0);////window.devicePixelRatio );
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.enabled = this.performanceMode === "quality";
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
     THREE.ColorManagement.enabled = false;
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
@@ -277,6 +289,16 @@ export class MuJoCoDemo {
     //      learned neural net drives the sim in real time in the browser.
     //  (B) trajectory   -> kinematic replay (set qpos + mj_forward), matches desktop mp4.
     this.policy = exp.policy || null;
+    this.renderFrameIntervalMS = this.policy && this.performanceMode !== "quality" ? 1000 / 30 : 0;
+    this.lastRenderedFrameMS = -Infinity;
+    this.renderStats = {
+      ...this.renderStats,
+      mode: this.performanceMode,
+      targetFps: this.renderFrameIntervalMS > 0 ? 30 : "display",
+      renderedFrames: 0,
+      skippedFrames: 0,
+      shadows: this.renderer.shadowMap.enabled ? "enabled" : "disabled",
+    };
     if (this.policy) {
       await this.initPolicy();
       if (this.showDebugControls) {
@@ -475,16 +497,35 @@ export class MuJoCoDemo {
     this.ambientLight.intensity = style.ambient * Math.PI;
     this.spotlight.intensity = style.spot * Math.PI;
 
-    this.labVisualLayer.add(this.createLabBackdrop(style));
-    this.loadAssetLabShell(style);
+    const terrainGeoms = this.getTerrainGeomNames();
+    const sceneName = this.exp?.scene || this.params?.scene || "";
+    const hasPhysicalTerrain = terrainGeoms.length > 0 && /rough|curb|obstacle/i.test(sceneName);
 
-    const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
-    grid.name = "Lab floor grid";
-    grid.position.y = 0.045;
-    grid.material.transparent = true;
-    grid.material.opacity = summary.preset === "instrumented-lab" ? 0.38 : 0.26;
-    grid.renderOrder = 1;
-    this.labVisualLayer.add(grid);
+    this.labVisualLayer.add(this.createLabBackdrop(style));
+    if (hasPhysicalTerrain) {
+      this.labAssetLoadToken += 1;
+      this.labAssetLayerStatus = {
+        path: "assets/lab/lab_shell.gltf",
+        loaded: false,
+        loading: false,
+        objectCount: 0,
+        error: null,
+        suppressed: true,
+        reason: "physical-terrain-overlay",
+      };
+    } else {
+      this.loadAssetLabShell(style);
+    }
+
+    if (!hasPhysicalTerrain) {
+      const grid = new THREE.GridHelper(8, 32, style.gridColor, style.gridColor);
+      grid.name = "Lab floor grid";
+      grid.position.y = 0.045;
+      grid.material.transparent = true;
+      grid.material.opacity = summary.preset === "instrumented-lab" ? 0.38 : 0.26;
+      grid.renderOrder = 1;
+      this.labVisualLayer.add(grid);
+    }
 
     const axes = new THREE.AxesHelper(0.65);
     axes.name = "Lab origin axes";
@@ -494,7 +535,7 @@ export class MuJoCoDemo {
     if (summary.visual.markers.includes("height bands")) {
       this.labVisualLayer.add(this.createHeightBands(style.marker));
     }
-    if (summary.visual.markers.includes("curb lane")) {
+    if (!hasPhysicalTerrain && summary.visual.markers.includes("curb lane")) {
       this.labVisualLayer.add(this.createTerrainLane(style.accent));
     }
     if (summary.visual.markers.includes("contact readouts")) {
@@ -506,7 +547,7 @@ export class MuJoCoDemo {
     if (summary.preset === "instrumented-lab") {
       this.labVisualLayer.add(this.createMeasurementBay(style));
     }
-    if (summary.preset === "rough-terrain") {
+    if (!hasPhysicalTerrain && summary.preset === "rough-terrain") {
       this.labVisualLayer.add(this.createRoughTerrainRig(style));
     }
 
@@ -515,6 +556,7 @@ export class MuJoCoDemo {
       visualOnly: true,
       objects: this.labVisualLayer.children.map((child) => child.name || child.type),
       collision: "none-threejs-only",
+      physicalTerrainOverlaySuppressed: hasPhysicalTerrain,
       background: `#${style.background.toString(16).padStart(6, "0")}`,
       fog: { near: style.fogNear, far: style.fogFar },
     };
@@ -1906,6 +1948,10 @@ export class MuJoCoDemo {
     summary.availableComparisonProfiles = Object.keys(EPISODE_COMPARISON_PROFILES);
     summary.episodeRandomization = summarizeEpisodeRandomizationProfile(this.episodeRandomizationProfileId);
     summary.episodeComparison = summarizeEpisodeComparisonProfile(this.episodeComparisonProfileId);
+    summary.renderPerformance = {
+      ...this.renderStats,
+      frameIntervalMS: this.renderFrameIntervalMS,
+    };
     summary.realRobotCollision = summarizeRealRobotCollisionReadiness({
       experimentName: this.expName,
       scene: this.exp?.scene || this.params?.scene || null,
@@ -2588,6 +2634,13 @@ export class MuJoCoDemo {
   }
 
   render(timeMS) {
+    if (this.renderFrameIntervalMS > 0 && timeMS - this.lastRenderedFrameMS < this.renderFrameIntervalMS) {
+      this.renderStats.skippedFrames += 1;
+      return;
+    }
+    this.lastRenderedFrameMS = timeMS;
+    this.renderStats.renderedFrames += 1;
+
     // Follow the walking robot: the free-joint root pose is qpos[0..2] (MuJoCo Z-up ->
     // three.js Y-up swizzle: x, z, -y). Shift target + camera by the same delta so the
     // camera rigidly tracks the robot while the user can still orbit around it.
@@ -2716,8 +2769,10 @@ export class MuJoCoDemo {
       }
     }
 
-    // Draw Tendons and Flex verts
-    drawTendonsAndFlex(this.mujocoRoot, this.model, this.data);
+    // Draw Tendons and Flex verts only for models that actually expose them.
+    if ((this.model.ntendon || 0) > 0 || (this.model.nflex || 0) > 0) {
+      drawTendonsAndFlex(this.mujocoRoot, this.model, this.data);
+    }
 
     // Render!
     this.renderer.render( this.scene, this.camera );

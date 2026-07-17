@@ -144,12 +144,10 @@
       "visualOnly": true,
       "objects": [
         "Selectable lab backdrop",
-        "Lab floor grid",
-        "Lab origin axes",
-        "Terrain test lane",
-        "Rough terrain test fixtures"
+        "Lab origin axes"
       ],
       "collision": "none-threejs-only",
+      "physicalTerrainOverlaySuppressed": true,
       "background": "#1f241f",
       "fog": {
         "near": 14,
@@ -158,10 +156,12 @@
     },
     "assetLayer": {
       "path": "assets/lab/lab_shell.gltf",
-      "loaded": true,
+      "loaded": false,
       "loading": false,
-      "objectCount": 1,
-      "error": null
+      "objectCount": 0,
+      "error": null,
+      "suppressed": true,
+      "reason": "physical-terrain-overlay"
     },
     "availablePresets": [
       "flat-lab",
@@ -245,6 +245,136 @@
         "maxScoreDrop": 0.35
       },
       "claimBoundary": "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer."
+    },
+    "realRobotCollision": {
+      "id": "unitree-g1-v1",
+      "robot": "Unitree G1",
+      "applies": true,
+      "source": "Browser MuJoCo G1 collision envelope mapped to a real-robot safety contract.",
+      "bodyZones": [
+        {
+          "id": "pelvis",
+          "simGeoms": [
+            "pelvis_floor_collision"
+          ],
+          "realEnvelope": "capsule around pelvis shell",
+          "protectiveAction": "stop locomotion and enter damping/hold state before body scrape continues",
+          "geoms": [
+            {
+              "index": 9,
+              "name": "pelvis_floor_collision",
+              "bodyId": 1,
+              "contype": 1,
+              "conaffinity": 1,
+              "group": 3
+            }
+          ],
+          "present": true,
+          "contactEligible": true
+        },
+        {
+          "id": "torso",
+          "simGeoms": [
+            "torso_floor_collision"
+          ],
+          "realEnvelope": "capsule along torso trunk",
+          "protectiveAction": "disable gait command and require operator inspection",
+          "geoms": [
+            {
+              "index": 46,
+              "name": "torso_floor_collision",
+              "bodyId": 16,
+              "contype": 1,
+              "conaffinity": 1,
+              "group": 3
+            }
+          ],
+          "present": true,
+          "contactEligible": true
+        },
+        {
+          "id": "head",
+          "simGeoms": [
+            "head_floor_collision"
+          ],
+          "realEnvelope": "sphere around head/sensor pod",
+          "protectiveAction": "hard stop; sensor pod contact is not recoverable in autonomous mode",
+          "geoms": [
+            {
+              "index": 47,
+              "name": "head_floor_collision",
+              "bodyId": 16,
+              "contype": 1,
+              "conaffinity": 1,
+              "group": 3
+            }
+          ],
+          "present": true,
+          "contactEligible": true
+        },
+        {
+          "id": "feet",
+          "simGeoms": [
+            "left_foot",
+            "right_foot"
+          ],
+          "realEnvelope": "sole contact patches",
+          "plannedContact": true,
+          "protectiveAction": "allowed planned ground contact; monitor slip and impulse only",
+          "geoms": [
+            {
+              "index": 23,
+              "name": "left_foot",
+              "bodyId": 7,
+              "contype": 0,
+              "conaffinity": 0,
+              "group": 3
+            },
+            {
+              "index": 37,
+              "name": "right_foot",
+              "bodyId": 13,
+              "contype": 0,
+              "conaffinity": 0,
+              "group": 3
+            }
+          ],
+          "present": true,
+          "contactEligible": true
+        }
+      ],
+      "requiredTelemetry": [
+        "imu.orientation",
+        "imu.angular_velocity",
+        "base.linear_acceleration",
+        "joint.position",
+        "joint.velocity",
+        "joint.torque_or_current",
+        "actuator.enabled_state",
+        "operator.estop_state"
+      ],
+      "requiredActuationGate": [
+        "zero_velocity_command",
+        "torque_disable_or_damping_mode",
+        "hardware_estop_or_power_cut",
+        "operator_reset_after_contact"
+      ],
+      "stopCriteria": {
+        "maxBaseTiltRad": 0.75,
+        "maxBaseAccelerationMps2": 18,
+        "maxJointTorqueRatio": 0.85,
+        "maxUncommandedBaseDropM": 0.12,
+        "requireManualReset": true
+      },
+      "simEnvelopeCoveragePass": true,
+      "telemetryBridgePresent": false,
+      "actuationGatePresent": false,
+      "estopEvidencePresent": false,
+      "hardwareReady": false,
+      "realRobotCollisionArmed": false,
+      "state": "sim-envelope-ready-hardware-bridge-missing",
+      "pass": true,
+      "claimBoundary": "Real-robot collision readiness contract only. It is not armed without a hardware telemetry bridge, actuator disable path, and operator e-stop evidence."
     },
     "pass": true
   }
