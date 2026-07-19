@@ -37,14 +37,11 @@
   ],
   "visualObjects": [
     "Selectable lab backdrop",
-    "Lab floor grid",
-    "Lab origin axes",
-    "Terrain test lane",
-    "Rough terrain test fixtures"
+    "Lab origin axes"
   ],
   "visualFloorOverlayPresent": false,
   "postFallProbe": {
-    "contactCount": 4,
+    "contactCount": 5,
     "rootZ": 0.11465226836438197,
     "finiteRootZ": true
   },

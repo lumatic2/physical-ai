@@ -246,6 +246,15 @@
       },
       "claimBoundary": "Compares browser episode outcomes against a deterministic baseline; it is not a proof of general robustness or real-world transfer."
     },
+    "renderPerformance": {
+      "mode": "balanced",
+      "targetFps": 30,
+      "renderedFrames": 25,
+      "skippedFrames": 0,
+      "shadows": "disabled",
+      "emptyTendonFlexDrawSkipped": true,
+      "frameIntervalMS": 33.333333333333336
+    },
     "realRobotCollision": {
       "id": "unitree-g1-v1",
       "robot": "Unitree G1",
