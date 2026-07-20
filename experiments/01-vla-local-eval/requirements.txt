@@ -6,6 +6,9 @@ tokenizers==0.19.1
 timm==0.9.10
 accelerate==1.13.*       # from_pretrained(low_cpu_mem_usage=True) 가 요구 (없으면 ImportError)
 tensorflow-cpu==2.21.*    # 서버 전처리용. GPU tf 는 robosuite EGL 컨텍스트와 in-process 충돌(세그폴트)
+numpy>=2,<2.3             # LeRobot 0.6 dataset contract; torch unconstrained install may pull 2.4+
+packaging>=24.2,<26       # LeRobot 0.6 core contract
+cmake>=3.29,<4.2          # LeRobot 0.6 core contract
 robosuite==1.4.1
 mujoco==3.9.*
 bddl                      # LIBERO 의존 (상류 미핀)
@@ -27,4 +30,17 @@ uvicorn
 json-numpy
 requests
 Pillow
-huggingface_hub
+huggingface_hub>=0.36,<1  # transformers 4.40 remote-code contract; LeRobot dataset path works via reviewed no-deps source
+
+# LAB1 LeRobot v3 episode writer runtime. LeRobot source itself is installed
+# with --no-deps from references/huggingface-lerobot so transformers 4.40.1
+# remains pinned for OpenVLA.
+datasets>=4.7,<5
+pandas>=2,<3
+pyarrow>=21,<30
+av>=15,<16
+jsonlines>=4,<5
+opencv-python-headless>=4.9,<4.14
+einops>=0.8,<0.9
+draccus==0.10.0
+gymnasium>=1.1.1,<2

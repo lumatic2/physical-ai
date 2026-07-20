@@ -1,0 +1,88 @@
+{
+  "schema_version": "physical-ai-provenance-v1",
+  "episode": {
+    "format": "lerobot-v3",
+    "repo_id": "physical-ai/libero-openvla-bounded",
+    "revision": "114a88f135eee21493da4863ecf411d1206b351a",
+    "index": 0
+  },
+  "producer": {
+    "environment": {
+      "name": "libero",
+      "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+    },
+    "policy": {
+      "name": "openvla",
+      "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"
+    }
+  },
+  "camera_roles": {
+    "observation.images.image": {
+      "role": "main",
+      "source_key": "agentview_image",
+      "model_input": true
+    },
+    "observation.images.image2": {
+      "role": "wrist",
+      "source_key": "robot0_eye_in_hand_image",
+      "model_input": false
+    }
+  },
+  "claims": {
+    "recording_mode": "recorded",
+    "world": "simulation"
+  },
+  "action_events": [
+    {
+      "frame_index": 0,
+      "timestamp_seconds": 0.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.1071428656578064,
+        -0.0026785731315612793,
+        -0.0007794112898409367,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 1683.652749,
+      "executed_action_sha256": "1de9d6f5f079f7abbaf2f4690f1eec840372ec9f1d8951b52655f2a7da8b8b97"
+    },
+    {
+      "frame_index": 1,
+      "timestamp_seconds": 0.1,
+      "raw_policy_action": [
+        0.3732089698314667,
+        0.2337605208158493,
+        0.23927520215511322,
+        4.831982005271129e-05,
+        0.0677310898900032,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 211.379714,
+      "executed_action_sha256": "2957f8d4fa34a5a20e8e0a157404cf73b7669372f99255dd3bd0f8fb188fa3c4"
+    },
+    {
+      "frame_index": 2,
+      "timestamp_seconds": 0.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.1071428656578064,
+        -0.0026785731315612793,
+        -0.0007794112898409367,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 202.955826,
+      "executed_action_sha256": "1de9d6f5f079f7abbaf2f4690f1eec840372ec9f1d8951b52655f2a7da8b8b97"
+    }
+  ],
+  "outcome": {
+    "success": false,
+    "termination": "timeout",
+    "reward": 0.0,
+    "error_code": null
+  }
+}

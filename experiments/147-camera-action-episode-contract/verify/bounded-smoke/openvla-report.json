@@ -1,0 +1,45 @@
+{
+  "pass": true,
+  "producer_kind": "openvla-libero",
+  "producer_claim_ready": true,
+  "expected_frames": 3,
+  "observed_frames": {
+    "info": 3,
+    "sidecar_actions": 3
+  },
+  "camera_keys": [
+    "observation.images.image",
+    "observation.images.image2"
+  ],
+  "state_shape": [
+    8
+  ],
+  "action_shape": [
+    7
+  ],
+  "profile_valid": true,
+  "rrd": {
+    "verified": true,
+    "entities": {
+      "/observation.images.image": true,
+      "/observation.images.image2": true,
+      "/state": true,
+      "/action": true
+    },
+    "timelines": {
+      "frame_index": true,
+      "timestamp": true
+    },
+    "artifact": "physical-ai_libero-openvla-bounded_episode_0.rrd"
+  },
+  "hashes": {
+    "dataset_tree_sha256": "678ae0b077bda0722435c4d774f29761355fd0ca3fd9823940a8b2ddbd776774",
+    "info_sha256": "919f887cb71f5393752a70e83a15e30bc7a63e7abfa045147891075359b9abb9",
+    "sidecar_sha256": "45516a453747540fc8f3bc51e76e41c1f1b59c50a2513f50bc41f5917898e1ea",
+    "rrd_sha256": "92c3bf36aa324754278e25aca6707a0eb1b135d15bfdf2c5d175355de893ceeb"
+  },
+  "dataset_files": 8,
+  "baseline_checked": false,
+  "errors": [],
+  "claim_boundary": "recorded simulation; not live inference or real telemetry"
+}

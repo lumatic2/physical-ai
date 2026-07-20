@@ -54,7 +54,7 @@ def crop_and_resize(image, crop_scale, batch_size):  # openvla_utils:81-124
     return image[0] if expanded else image
 
 
-def load(policy, suite, ckpt):
+def load(policy, suite, ckpt, ckpt_revision):
     """정책 어댑터 로딩. 2번째 정책(π0/ACT)은 여기 분기를 추가하고 predict() 계약만 맞추면 된다."""
     global processor, vla, TASK_SUITE
     if policy != "openvla":
@@ -63,14 +63,26 @@ def load(policy, suite, ckpt):
     if not ckpt:
         ckpt = f"openvla/openvla-7b-finetuned-{suite.replace('_', '-')}"
     print(f"[server] loading {ckpt} (sdpa)")
-    processor = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True)
+    revision_kwargs = {"revision": ckpt_revision} if ckpt_revision else {}
+    processor = AutoProcessor.from_pretrained(ckpt, trust_remote_code=True, **revision_kwargs)
     vla = AutoModelForVision2Seq.from_pretrained(
-        ckpt, attn_implementation="sdpa", torch_dtype=torch.bfloat16, low_cpu_mem_usage=True, trust_remote_code=True,
+        ckpt,
+        attn_implementation="sdpa",
+        torch_dtype=torch.bfloat16,
+        low_cpu_mem_usage=True,
+        trust_remote_code=True,
+        **revision_kwargs,
     ).to(DEV)
     if TASK_SUITE not in getattr(vla, "norm_stats", {}):
         from huggingface_hub import hf_hub_download
 
-        with open(hf_hub_download(repo_id=ckpt, filename="dataset_statistics.json")) as f:
+        with open(
+            hf_hub_download(
+                repo_id=ckpt,
+                filename="dataset_statistics.json",
+                revision=ckpt_revision,
+            )
+        ) as f:
             vla.norm_stats = json.load(f)
     assert TASK_SUITE in vla.norm_stats, f"{TASK_SUITE} not in {list(vla.norm_stats.keys())}"
     print(f"[server] norm_stats keys: {list(vla.norm_stats.keys())}")
@@ -105,7 +117,8 @@ if __name__ == "__main__":
     ap.add_argument("--policy", default="openvla", choices=["openvla"])
     ap.add_argument("--suite", default="libero_spatial")
     ap.add_argument("--ckpt", default="", help="비우면 openvla/openvla-7b-finetuned-<suite>")
+    ap.add_argument("--ckpt-revision", help="Hugging Face model commit SHA")
     ap.add_argument("--port", type=int, default=8000)
     a = ap.parse_args()
-    load(a.policy, a.suite, a.ckpt)
+    load(a.policy, a.suite, a.ckpt, a.ckpt_revision)
     uvicorn.run(app, host="0.0.0.0", port=a.port)

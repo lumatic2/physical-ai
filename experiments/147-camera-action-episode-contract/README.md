@@ -30,6 +30,15 @@ python mock_writer_smoke.py --root <empty-dataset-root> --output <report.json>
 
 실제 client recording은 `--record-root`와 pinned `--dataset-revision`, `--environment-revision`, `--policy-revision` 세 값을 모두 요구한다. record flag가 없으면 기존 평가 동작을 유지한다. current OpenVLA checkpoint는 main camera만 소비하므로 wrist camera는 저장하되 provenance에 `model_input=false`로 기록한다.
 
+## Bounded Rerun evidence
+
+`verify_bounded_evidence.py`는 canonical dataset tree, sidecar와 RRD를 SHA-256으로 묶고 official `rerun rrd verify/stats`에서 두 camera, state, action과 frame/timestamp timeline을 확인한다. `producer_kind=synthetic-smoke`는 writer/viewer 호환 증거일 뿐 OpenVLA 실행 증거가 아니며, 실제 rollout만 `producer_claim_ready=true`가 될 수 있다.
+
+```powershell
+python test_verify_bounded_evidence.py
+python verify_bounded_evidence.py --dataset-root <root> --sidecar <sidecar.json> --rrd <episode.rrd> --rerun-cli <rerun.exe> --expected-frames <n> --producer-kind openvla-libero --output <report.json>
+```
+
 ## Probe 명령
 
 ```powershell
@@ -38,4 +47,4 @@ python probe_official_viewers.py --dataset-root <root> --rrd <episode.rrd> --out
 python probe_foxglove_channels.py --output <report.json>
 ```
 
-공개 dataset replay는 local VLA inference 성공 증거가 아니다. 실제 producer evidence는 addendum 승인 후 bounded LIBERO rollout에서 생성한다.
+공개 dataset replay는 local VLA inference 성공 증거가 아니다. 실제 producer evidence는 [bounded OpenVLA + LIBERO evidence](verify/bounded-smoke/README.md)에 별도로 고정돼 있다.

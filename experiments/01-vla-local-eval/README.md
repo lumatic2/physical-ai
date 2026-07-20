@@ -15,7 +15,7 @@
 ## 요구사항
 
 - NVIDIA GPU (Blackwell 기준 — 다른 아키텍처면 `setup.sh` 의 cu128 인덱스만 조정)
-- WSL2 Ubuntu-24.04 (또는 동급 Linux), Python 3.10+, EGL 가능한 드라이버
+- WSL2 Ubuntu-24.04 (또는 동급 Linux), Python 3.12+, EGL 가능한 드라이버
 - 디스크 ~30GB (OpenVLA 7B 체크포인트 + LIBERO)
 
 ## 설치 (1커맨드)

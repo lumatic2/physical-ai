@@ -60,6 +60,8 @@ def main() -> int:
     ap.add_argument("--suite", default="libero_spatial")
     ap.add_argument("--tasks", type=int, default=2)
     ap.add_argument("--trials", type=int, default=5)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--max-policy-steps", type=int)
     ap.add_argument("--port", type=int, default=8000)
     ap.add_argument("--record-root", type=pathlib.Path)
     ap.add_argument("--record-repo-id", default="physical-ai/libero-openvla")
@@ -75,6 +77,10 @@ def main() -> int:
 
     url = f"http://127.0.0.1:{args.port}/act"
     max_steps = MAX_STEPS.get(args.suite, 300)  # 미등록 스위트는 보수적 기본
+    if args.max_policy_steps is not None:
+        if args.max_policy_steps < 1:
+            ap.error("--max-policy-steps must be at least 1")
+        max_steps = min(max_steps, args.max_policy_steps)
     suite = benchmark.get_benchmark_dict()[args.suite]()
     n_tasks = min(args.tasks, suite.n_tasks)
 
@@ -87,7 +93,7 @@ def main() -> int:
         init_states = suite.get_task_init_states(task_id)
         bddl = os.path.join(get_libero_path("bddl_files"), task.problem_folder, task.bddl_file)
         env = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=256, camera_widths=256)
-        env.seed(0)
+        env.seed(args.seed)
         task_desc = task.language
         task_succ = 0
         for ep in range(args.trials):
@@ -171,6 +177,7 @@ def main() -> int:
     out = {
         "checkpoint": f"openvla/openvla-7b-finetuned-{args.suite.replace('_', '-')}", "task_suite": args.suite,
         "attn_implementation": "sdpa", "architecture": "REST server/client split",
+        "seed": args.seed, "max_policy_steps": max_steps,
         "num_tasks": n_tasks, "trials_per_task": args.trials,
         "total_episodes": total_ep, "total_successes": total_succ,
         "success_rate": round(total_succ / max(total_ep, 1), 3),
