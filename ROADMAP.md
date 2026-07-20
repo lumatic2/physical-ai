@@ -38,7 +38,7 @@
 | M45 | Real Robot Collision Contract | 실제 로봇 충돌 readiness를 sensor/stop-gate contract로 분리한다 | `experiments/146-real-robot-collision-contract` | 완료 |
 | LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | 완료 |
 | LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | 완료 |
-| LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/149-public-robot-arm-laboratory` | pending |
+| LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/149-public-robot-arm-laboratory` | active |
 
 ## Current Horizon
 
@@ -70,9 +70,7 @@
 
 - Completed at: 2026-07-21
 - Summary: Direct VLA와 VLM→scripted skill의 실제 PASS·FAIL source·assistance trace를 검증했다.
-## Next Candidates
-
-<!-- harness:milestone id="LAB3" status="pending" priority="P2" -->
+<!-- harness:milestone id="LAB3" status="active" priority="P2" -->
 ### LAB3 — 공개 로봇팔 피지컬 AI 실험실
 
 - DoD: 공개 사이트에서 main/wrist camera, instruction, source-tagged timeline을 재생·scrub하고 PASS/FAIL raw evidence로 추적하며 local/live QA가 claim boundary를 검증한다.
@@ -80,6 +78,8 @@
 - Gap: canonical episode가 생겨도 공개 UI와 reviewer evidence path가 없으면 피지컬 AI 제품으로 외부 증명되지 않는다.
 - Scale: changesets>=4; surfaces: asset sync, React UI, replay timeline, live deploy; capability: 5분 안에 관측→판단→행동→결과를 이해한다.
 - Status: [ ]
+
+## Next Candidates
 
 ## Guardrails
 
