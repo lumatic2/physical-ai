@@ -12,3 +12,4 @@
 | 8 | [20260721-lab2-direct-vla-causal-emitter](20260721-lab2-direct-vla-causal-emitter/README.md) | 2026-07-21 | 실제 OpenVLA input→action→outcome 인과 event | 5/5 | completed |
 | 9 | [20260721-lab2-vlm-bounded-skill-lane](20260721-lab2-vlm-bounded-skill-lane/README.md) | 2026-07-21 | local VLM 관측·skill 선택과 assisted LIBERO 실행 | 5/5 | completed |
 | 10 | [20260721-lab2-two-lane-comparison-evidence](20260721-lab2-two-lane-comparison-evidence/README.md) | 2026-07-21 | direct VLA와 VLM→skill 실제 PASS/FAIL 통합 비교 | 5/5 | completed |
+| 11 | [20260721-lab3-public-evidence-bundle](20260721-lab3-public-evidence-bundle/README.md) | 2026-07-21 | LAB1/LAB2 정본의 content-hashed 공개 replay bundle | 6/6 | completed |

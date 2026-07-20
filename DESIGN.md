@@ -15,6 +15,21 @@ The new arm laboratory view should make the physical-AI loop legible without req
 - Evidence drawer: policy/environment revision, seed, trace schema, PASS/FAIL outcome and raw artifact links.
 - Mode badges: `recorded evidence` vs `live/local inference`, `simulation` vs `real telemetry`.
 
+### Public Evidence Contract
+
+- `assets/arm-lab/registry.json` is a deterministic public derivative of the LAB1 episode and LAB2 causal trace; it never replaces those canonical artifacts.
+- PASS and FAIL expose the same cameras, instruction, state/action trace and event lanes.
+- Main camera is labelled `model input`; wrist camera is labelled `observer only` because that is the recorded producer contract.
+- Every public artifact carries a byte size and SHA-256 digest. Local paths, token-like values, unknown event sources and ambiguous live/real claims fail before build.
+
+### Askewly Design Adaptation
+
+- Surface: an application workbench whose first task is inspecting recorded physical-AI evidence, not a decorative dashboard.
+- Focal region: synchronized camera evidence. Instruction and current event support it; trace graphs and raw provenance form the verification layer.
+- Hierarchy uses the existing project tokens, surface luminance and spacing before borders or shadows. Accent colour remains a small state signal.
+- Interaction must include keyboard playback, explicit PASS/FAIL text, responsive DOM order and reduced-motion-safe states.
+- Avoid nested card grids, ornamental metrics, colour-only outcomes, emoji icons, left-accent cards and free-form chain-of-thought.
+
 ## Environment Milestones
 
 1. Visual Lab Scenes: procedural Three.js objects make each preset visually distinct while keeping MuJoCo physics unchanged.
