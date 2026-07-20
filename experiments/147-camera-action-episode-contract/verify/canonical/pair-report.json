@@ -1,0 +1,154 @@
+{
+  "pass": true,
+  "contract": {
+    "rollout": {
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "environment_seed": 0,
+      "max_policy_steps": 220
+    },
+    "pass_init_state_index": 0,
+    "fail_init_state_index": 1,
+    "producer": {
+      "environment": {
+        "name": "libero",
+        "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+      },
+      "policy": {
+        "name": "openvla",
+        "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"
+      }
+    },
+    "dataset_revision": "777701b02c69240f48ffb451963b761560bcd4e4"
+  },
+  "outcomes": {
+    "pass": {
+      "success": true,
+      "termination": "success",
+      "reward": 1.0,
+      "error_code": null
+    },
+    "fail": {
+      "success": false,
+      "termination": "timeout",
+      "reward": 0.0,
+      "error_code": null
+    }
+  },
+  "frames": {
+    "pass": 78,
+    "fail": 220
+  },
+  "hashes": {
+    "pass": {
+      "dataset_tree_sha256": "fa32a6cc199cab3c77267b193f7bfac8cad20e4b0a2d25e54808d4dc786d705d",
+      "info_sha256": "cd2043039dcfcd37a31b9b62b357986da8cca348e24d77e3db138a0ff5fea46f",
+      "sidecar_sha256": "20b81c46d667116f5c11553665fe42745f32294d53440f4108fe53d115533a3f",
+      "rrd_sha256": "672371ecb1b9cf7326a95047be4d81b2dc34e8724b3dd02cbb16b7866b8b908d"
+    },
+    "fail": {
+      "dataset_tree_sha256": "dd84f5e677a24ffa1746c70acaa6afa943817104eb00cf90fa4c6a013dda4d90",
+      "info_sha256": "9716e7bd0ef2821c46f4d2fce7b5da82fe32d5c9b4746ac2b05c9e912d75fec9",
+      "sidecar_sha256": "ccea75623f62ab987a8f1337e84174f6bc1aa70d3f5f5db33b79e2646b69cc72",
+      "rrd_sha256": "c492c610d53708bdf756b5a4e96480125423870be00b9eb64d36721161bae049"
+    }
+  },
+  "individual_gates": {
+    "pass": true,
+    "fail": true
+  },
+  "claim_boundary": "recorded OpenVLA inference in LIBERO simulation; not real or live telemetry",
+  "errors": [],
+  "episodes": {
+    "pass": {
+      "pass": true,
+      "producer_kind": "openvla-libero",
+      "producer_claim_ready": true,
+      "expected_frames": 78,
+      "observed_frames": {
+        "info": 78,
+        "sidecar_actions": 78
+      },
+      "camera_keys": [
+        "observation.images.image",
+        "observation.images.image2"
+      ],
+      "state_shape": [
+        8
+      ],
+      "action_shape": [
+        7
+      ],
+      "profile_valid": true,
+      "rrd": {
+        "verified": true,
+        "entities": {
+          "/observation.images.image": true,
+          "/observation.images.image2": true,
+          "/state": true,
+          "/action": true
+        },
+        "timelines": {
+          "frame_index": true,
+          "timestamp": true
+        },
+        "artifact": "physical-ai_libero-openvla-task5-candidate-0_episode_0.rrd"
+      },
+      "hashes": {
+        "dataset_tree_sha256": "fa32a6cc199cab3c77267b193f7bfac8cad20e4b0a2d25e54808d4dc786d705d",
+        "info_sha256": "cd2043039dcfcd37a31b9b62b357986da8cca348e24d77e3db138a0ff5fea46f",
+        "sidecar_sha256": "20b81c46d667116f5c11553665fe42745f32294d53440f4108fe53d115533a3f",
+        "rrd_sha256": "672371ecb1b9cf7326a95047be4d81b2dc34e8724b3dd02cbb16b7866b8b908d"
+      },
+      "dataset_files": 8,
+      "baseline_checked": false,
+      "errors": [],
+      "claim_boundary": "recorded simulation; not live inference or real telemetry"
+    },
+    "fail": {
+      "pass": true,
+      "producer_kind": "openvla-libero",
+      "producer_claim_ready": true,
+      "expected_frames": 220,
+      "observed_frames": {
+        "info": 220,
+        "sidecar_actions": 220
+      },
+      "camera_keys": [
+        "observation.images.image",
+        "observation.images.image2"
+      ],
+      "state_shape": [
+        8
+      ],
+      "action_shape": [
+        7
+      ],
+      "profile_valid": true,
+      "rrd": {
+        "verified": true,
+        "entities": {
+          "/observation.images.image": true,
+          "/observation.images.image2": true,
+          "/state": true,
+          "/action": true
+        },
+        "timelines": {
+          "frame_index": true,
+          "timestamp": true
+        },
+        "artifact": "physical-ai_libero-openvla-task5-candidate-1_episode_0.rrd"
+      },
+      "hashes": {
+        "dataset_tree_sha256": "dd84f5e677a24ffa1746c70acaa6afa943817104eb00cf90fa4c6a013dda4d90",
+        "info_sha256": "9716e7bd0ef2821c46f4d2fce7b5da82fe32d5c9b4746ac2b05c9e912d75fec9",
+        "sidecar_sha256": "ccea75623f62ab987a8f1337e84174f6bc1aa70d3f5f5db33b79e2646b69cc72",
+        "rrd_sha256": "c492c610d53708bdf756b5a4e96480125423870be00b9eb64d36721161bae049"
+      },
+      "dataset_files": 8,
+      "baseline_checked": false,
+      "errors": [],
+      "claim_boundary": "recorded simulation; not live inference or real telemetry"
+    }
+  }
+}

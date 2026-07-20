@@ -48,3 +48,7 @@ python probe_foxglove_channels.py --output <report.json>
 ```
 
 공개 dataset replay는 local VLA inference 성공 증거가 아니다. 실제 producer evidence는 [bounded OpenVLA + LIBERO evidence](verify/bounded-smoke/README.md)에 별도로 고정돼 있다.
+
+## Canonical PASS/FAIL pair
+
+동일 LIBERO Spatial task 5, seed 0, OpenVLA/LIBERO revision에서 초기 상태만 바꾼 실제 성공·실패 episode를 [canonical pair evidence](verify/canonical/README.md)로 고정했다. PASS는 78프레임에서 성공했고 FAIL은 220프레임 전체를 실행한 뒤 timeout으로 종료됐다. 두 episode 모두 official LeRobot loader와 Rerun 검증을 통과한다.

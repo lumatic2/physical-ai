@@ -82,7 +82,19 @@ class LiberoWriterTests(unittest.TestCase):
             instruction="pick up the mug",
             request_latency_ms=12.5,
         )
-        sidecar_path = self.writer.save_episode(success=True, termination="success", reward=1.0)
+        rollout = {
+            "suite": "libero_spatial",
+            "task_id": 0,
+            "init_state_index": 0,
+            "environment_seed": 0,
+            "max_policy_steps": 220,
+        }
+        sidecar_path = self.writer.save_episode(
+            success=True,
+            termination="success",
+            reward=1.0,
+            rollout_context=rollout,
+        )
         sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
         self.assertEqual(len(self.fake.saved_episodes), 1)
         self.assertFalse(self.fake.parallel_encoding)
@@ -94,6 +106,7 @@ class LiberoWriterTests(unittest.TestCase):
             "task",
         })
         self.assertNotIn("action", sidecar)
+        self.assertEqual(sidecar["rollout"], rollout)
         self.assertTrue(validate_profile(self.writer._profile_info(), sidecar, require_provenance=True)["valid"])
 
     def test_rejects_missing_wrist_camera(self):

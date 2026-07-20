@@ -43,7 +43,9 @@ def main() -> int:
                     help="HF 체크포인트 (비우면 openvla/openvla-7b-finetuned-<suite>)")
     ap.add_argument("--ckpt-revision", help="Hugging Face model commit SHA")
     ap.add_argument("--tasks", type=int, default=2, help="스위트 내 태스크 수")
+    ap.add_argument("--task-offset", type=int, default=0, help="LIBERO task 시작 index")
     ap.add_argument("--trials", type=int, default=5, help="태스크당 rollout 수")
+    ap.add_argument("--trial-offset", type=int, default=0, help="LIBERO init-state 시작 index")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--max-policy-steps", type=int)
     ap.add_argument("--record-root", type=pathlib.Path)
@@ -67,8 +69,12 @@ def main() -> int:
         args.suite,
         "--tasks",
         str(args.tasks),
+        "--task-offset",
+        str(args.task_offset),
         "--trials",
         str(args.trials),
+        "--trial-offset",
+        str(args.trial_offset),
         "--seed",
         str(args.seed),
         "--port",

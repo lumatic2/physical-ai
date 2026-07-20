@@ -266,8 +266,9 @@ class LeRobotEpisodeWriter:
         termination: str,
         reward: float,
         error_code: str | None,
+        rollout_context: dict[str, Any] | None,
     ) -> dict[str, Any]:
-        return {
+        sidecar = {
             "schema_version": "physical-ai-provenance-v1",
             "episode": {
                 "format": "lerobot-v3",
@@ -300,6 +301,9 @@ class LeRobotEpisodeWriter:
                 "error_code": error_code,
             },
         }
+        if rollout_context is not None:
+            sidecar["rollout"] = rollout_context
+        return sidecar
 
     def save_episode(
         self,
@@ -308,6 +312,7 @@ class LeRobotEpisodeWriter:
         termination: str,
         reward: float,
         error_code: str | None = None,
+        rollout_context: dict[str, Any] | None = None,
     ) -> Path:
         if self.frame_count == 0:
             raise ValueError("cannot save an empty LeRobot episode")
@@ -322,6 +327,7 @@ class LeRobotEpisodeWriter:
             termination=termination,
             reward=reward,
             error_code=error_code,
+            rollout_context=rollout_context,
         )
         report = validate_profile(self._profile_info(), sidecar, require_provenance=True)
         if not report["valid"]:

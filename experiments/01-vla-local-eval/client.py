@@ -59,7 +59,9 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--suite", default="libero_spatial")
     ap.add_argument("--tasks", type=int, default=2)
+    ap.add_argument("--task-offset", type=int, default=0)
     ap.add_argument("--trials", type=int, default=5)
+    ap.add_argument("--trial-offset", type=int, default=0)
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--max-policy-steps", type=int)
     ap.add_argument("--port", type=int, default=8000)
@@ -81,22 +83,35 @@ def main() -> int:
         if args.max_policy_steps < 1:
             ap.error("--max-policy-steps must be at least 1")
         max_steps = min(max_steps, args.max_policy_steps)
+    if args.trial_offset < 0:
+        ap.error("--trial-offset must be non-negative")
     suite = benchmark.get_benchmark_dict()[args.suite]()
-    n_tasks = min(args.tasks, suite.n_tasks)
+    if args.task_offset < 0 or args.task_offset + args.tasks > suite.n_tasks:
+        ap.error(
+            f"suite has {suite.n_tasks} tasks; requested offset {args.task_offset} + {args.tasks} tasks"
+        )
+    task_ids = range(args.task_offset, args.task_offset + args.tasks)
+    n_tasks = len(task_ids)
 
     per_task, total_ep, total_succ = [], 0, 0
     episode_writer = None
     record_failure = False
     t_start = time.time()
-    for task_id in range(n_tasks):
+    for task_id in task_ids:
         task = suite.get_task(task_id)
         init_states = suite.get_task_init_states(task_id)
+        if args.trial_offset + args.trials > len(init_states):
+            ap.error(
+                f"task {task_id} has {len(init_states)} init states; "
+                f"requested offset {args.trial_offset} + {args.trials} trials"
+            )
         bddl = os.path.join(get_libero_path("bddl_files"), task.problem_folder, task.bddl_file)
         env = OffScreenRenderEnv(bddl_file_name=bddl, camera_heights=256, camera_widths=256)
         env.seed(args.seed)
         task_desc = task.language
         task_succ = 0
-        for ep in range(args.trials):
+        for trial_index in range(args.trials):
+            ep = args.trial_offset + trial_index
             env.reset()
             obs = env.set_init_state(init_states[ep])
             t, done = 0, False
@@ -160,6 +175,13 @@ def main() -> int:
                     termination=termination,
                     reward=last_reward,
                     error_code=episode_error,
+                    rollout_context={
+                        "suite": args.suite,
+                        "task_id": task_id,
+                        "init_state_index": ep,
+                        "environment_seed": args.seed,
+                        "max_policy_steps": max_steps,
+                    },
                 )
                 print(f"[client] recorded {recorded_frames} frames → {sidecar_path}", flush=True)
             total_ep += 1
@@ -177,7 +199,8 @@ def main() -> int:
     out = {
         "checkpoint": f"openvla/openvla-7b-finetuned-{args.suite.replace('_', '-')}", "task_suite": args.suite,
         "attn_implementation": "sdpa", "architecture": "REST server/client split",
-        "seed": args.seed, "max_policy_steps": max_steps,
+        "seed": args.seed, "task_offset": args.task_offset,
+        "trial_offset": args.trial_offset, "max_policy_steps": max_steps,
         "num_tasks": n_tasks, "trials_per_task": args.trials,
         "total_episodes": total_ep, "total_successes": total_succ,
         "success_rate": round(total_succ / max(total_ep, 1), 3),

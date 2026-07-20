@@ -7,3 +7,4 @@
 | 3 | [20260721-lab1-canonical-contract-profile](20260721-lab1-canonical-contract-profile/README.md) | 2026-07-21 | LeRobot v3 canonical episode와 provenance sidecar profile 고정 | 5/5 | completed |
 | 4 | [20260721-lab1-libero-lerobot-writer](20260721-lab1-libero-lerobot-writer/README.md) | 2026-07-21 | LIBERO observation/action을 official LeRobot writer로 저장 | 5/5 | completed |
 | 5 | [20260721-lab1-bounded-official-viewer-smoke](20260721-lab1-bounded-official-viewer-smoke/README.md) | 2026-07-21 | 고정 OpenVLA/LIBERO episode와 official Rerun smoke | 5/5 | completed |
+| 6 | [20260721-lab1-canonical-pass-fail-pair](20260721-lab1-canonical-pass-fail-pair/README.md) | 2026-07-21 | 동일 task/policy의 canonical PASS·FAIL episode pair | 5/5 | completed |

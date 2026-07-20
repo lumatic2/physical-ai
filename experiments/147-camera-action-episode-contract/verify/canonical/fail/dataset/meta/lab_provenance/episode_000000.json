@@ -1,0 +1,3350 @@
+{
+  "schema_version": "physical-ai-provenance-v1",
+  "episode": {
+    "format": "lerobot-v3",
+    "repo_id": "physical-ai/libero-openvla-task5-candidate-1",
+    "revision": "777701b02c69240f48ffb451963b761560bcd4e4",
+    "index": 0
+  },
+  "producer": {
+    "environment": {
+      "name": "libero",
+      "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+    },
+    "policy": {
+      "name": "openvla",
+      "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"
+    }
+  },
+  "camera_roles": {
+    "observation.images.image": {
+      "role": "main",
+      "source_key": "agentview_image",
+      "model_input": true
+    },
+    "observation.images.image2": {
+      "role": "wrist",
+      "source_key": "robot0_eye_in_hand_image",
+      "model_input": false
+    }
+  },
+  "claims": {
+    "recording_mode": "recorded",
+    "world": "simulation"
+  },
+  "action_events": [
+    {
+      "frame_index": 0,
+      "timestamp_seconds": 0.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.2819958031177521,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 225.454352,
+      "executed_action_sha256": "876cbede5209615be070294b513ed411ff486deb56339f32afb32c05816472ef"
+    },
+    {
+      "frame_index": 1,
+      "timestamp_seconds": 0.1,
+      "raw_policy_action": [
+        0.30061012506484985,
+        0.6256722807884216,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.407728,
+      "executed_action_sha256": "b063a43336a9086b3f48e97ed3c4f97fb60aaf938b88f221318d5a8079d7822f"
+    },
+    {
+      "frame_index": 2,
+      "timestamp_seconds": 0.2,
+      "raw_policy_action": [
+        0.2148115038871765,
+        0.33626052737236023,
+        0.1366281509399414,
+        4.831982005271129e-05,
+        0.013579830527305603,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 212.880129,
+      "executed_action_sha256": "c1d00a0d0cf5b18c55200fae4fdecc5faebef172cb4269862909c9356c7ad4ad"
+    },
+    {
+      "frame_index": 3,
+      "timestamp_seconds": 0.3,
+      "raw_policy_action": [
+        0.3072100281715393,
+        0.5412605404853821,
+        0.14396008849143982,
+        4.831982005271129e-05,
+        0.021100837737321854,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 218.181204,
+      "executed_action_sha256": "4ee1fcf8d49c06623fb06e002d8d65d0fd7765432610cb647a962f46aeec8fbe"
+    },
+    {
+      "frame_index": 4,
+      "timestamp_seconds": 0.4,
+      "raw_policy_action": [
+        0.46560752391815186,
+        0.710084080696106,
+        0.1366281509399414,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 215.965826,
+      "executed_action_sha256": "08d46cbf502bf5b968de90554492dbaa06b73ba1450db79da4121078b50f4c02"
+    },
+    {
+      "frame_index": 5,
+      "timestamp_seconds": 0.5,
+      "raw_policy_action": [
+        0.4788073003292084,
+        0.6799370050430298,
+        0.06330882012844086,
+        -0.004090335685759783,
+        0.043663863092660904,
+        0.002714283764362335,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 213.422314,
+      "executed_action_sha256": "e24c3fc8e357d03ff4f341a9efdffa10c0507b3a6262723ed3c61d0e32d8f43d"
+    },
+    {
+      "frame_index": 6,
+      "timestamp_seconds": 0.6,
+      "raw_policy_action": [
+        0.46560752391815186,
+        0.7462605237960815,
+        -0.0026785731315612793,
+        0.007497899699956179,
+        0.051184870302677155,
+        0.0298907533288002,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.491793,
+      "executed_action_sha256": "176246a61aceca3772cd4672a40d71114567576be1404ebab72f3da6060a5b88"
+    },
+    {
+      "frame_index": 7,
+      "timestamp_seconds": 0.7,
+      "raw_policy_action": [
+        0.412808358669281,
+        0.7462605237960815,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 199.061318,
+      "executed_action_sha256": "971e334633c91aac8557c6be6e66d0865a0c9163b4fdf50d8b91d679e485e00a"
+    },
+    {
+      "frame_index": 8,
+      "timestamp_seconds": 0.8,
+      "raw_policy_action": [
+        0.26761066913604736,
+        0.8125840425491333,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        -0.016504202038049698,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.188937,
+      "executed_action_sha256": "b3be84b068b4ecf99699b72de139559dc271811b5bb35db4e173ab32ad360eb1"
+    },
+    {
+      "frame_index": 9,
+      "timestamp_seconds": 0.9,
+      "raw_policy_action": [
+        0.5250065922737122,
+        0.710084080696106,
+        -0.09066176414489746,
+        -0.02478361316025257,
+        0.012075629085302353,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 203.748529,
+      "executed_action_sha256": "ab9aa1aa9ab5dc0f77de69a70241a0cd898b7027569d5e1186d3b96868ca3c95"
+    },
+    {
+      "frame_index": 10,
+      "timestamp_seconds": 1.0,
+      "raw_policy_action": [
+        0.5118067860603333,
+        0.685966432094574,
+        -0.3619432747364044,
+        0.020741596817970276,
+        4.201572301099077e-05,
+        -0.028344539925456047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 222.797956,
+      "executed_action_sha256": "ac08f96fc90583d659f4023efecb0bee146c14d2a07b4382ad9047c41cae9dd7"
+    },
+    {
+      "frame_index": 11,
+      "timestamp_seconds": 1.1,
+      "raw_policy_action": [
+        0.6900039315223694,
+        0.6678781509399414,
+        -0.22263655066490173,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 212.14165,
+      "executed_action_sha256": "b1f4e3328d091d0905f44798694786008ffe2a6d1e2787ad007a46465d3082c0"
+    },
+    {
+      "frame_index": 12,
+      "timestamp_seconds": 1.2,
+      "raw_policy_action": [
+        0.5448062419891357,
+        0.5472899079322815,
+        -0.4499264657497406,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.05552101135253906,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.327483,
+      "executed_action_sha256": "ac92b2af1a0b7d8b3ec5bf9bae40af3cf97f4cfffa7a3b430545455e52c5a1d5"
+    },
+    {
+      "frame_index": 13,
+      "timestamp_seconds": 1.3,
+      "raw_policy_action": [
+        0.39300867915153503,
+        0.42670169472694397,
+        -0.5525735020637512,
+        4.831982005271129e-05,
+        -0.028537815436720848,
+        -0.019285716116428375,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.028889,
+      "executed_action_sha256": "47b181bb72f3956d73afdd7bda08545757cd5bcc355fbc38d7b82ab38859d5e4"
+    },
+    {
+      "frame_index": 14,
+      "timestamp_seconds": 1.4,
+      "raw_policy_action": [
+        0.39300867915153503,
+        0.42670169472694397,
+        -0.5525735020637512,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.027050422504544258,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.031964,
+      "executed_action_sha256": "a8da6053b212251792b241fc3689c2b1e243192d0a22e56eba5ea95460301aea"
+    },
+    {
+      "frame_index": 15,
+      "timestamp_seconds": 1.5,
+      "raw_policy_action": [
+        0.39300867915153503,
+        0.42670169472694397,
+        -0.6405567526817322,
+        4.831982005271129e-05,
+        -0.024025211110711098,
+        -0.08140335977077484,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.189131,
+      "executed_action_sha256": "cc13f7ca3d486dab7b293535cb4d8bfc7ad8bc4b0930bc1616f4ac67d3e75d6c"
+    },
+    {
+      "frame_index": 16,
+      "timestamp_seconds": 1.6,
+      "raw_policy_action": [
+        0.39300867915153503,
+        0.42670169472694397,
+        -0.6405567526817322,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.08140335977077484,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.301587,
+      "executed_action_sha256": "ce148d2e7fc9554dc8a092a54f31d7870820e0cc6f9c705bbc180fe065dbd92f"
+    },
+    {
+      "frame_index": 17,
+      "timestamp_seconds": 1.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.32420170307159424,
+        -0.7578676342964172,
+        4.831982005271129e-05,
+        -0.0014621858717873693,
+        -0.05681512877345085,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 208.136352,
+      "executed_action_sha256": "27fa091ef08ebbfc53d9beabea76e48f22a0d71abcbab18e26b45bfe2b3176d4"
+    },
+    {
+      "frame_index": 18,
+      "timestamp_seconds": 1.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        0.0447457991540432,
+        -0.028537815436720848,
+        -0.08140335977077484,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 199.461167,
+      "executed_action_sha256": "40be28f71a401aca3a346a60c2d8ac36eeff025e9bd6c1bc7865bf69fb1d6130"
+    },
+    {
+      "frame_index": 19,
+      "timestamp_seconds": 1.9,
+      "raw_policy_action": [
+        -0.12838304042816162,
+        0.01670168712735176,
+        -0.9338340163230896,
+        0.00832563079893589,
+        -0.05110083892941475,
+        -0.1564621925354004,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.959436,
+      "executed_action_sha256": "b1fa4996383d879c0755cc366c9b301bcd06fb4e65b26de605d8d257f3a74e90"
+    },
+    {
+      "frame_index": 20,
+      "timestamp_seconds": 2.0,
+      "raw_policy_action": [
+        -0.39897873997688293,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        0.0025315131060779095,
+        -0.040571428835392,
+        -0.09175630658864975,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.523361,
+      "executed_action_sha256": "be4f69b2d40e9f9246c63b7137226c05bc97baef6ed7bd5323cfa8675fe91295"
+    },
+    {
+      "frame_index": 21,
+      "timestamp_seconds": 2.1,
+      "raw_policy_action": [
+        -0.45837777853012085,
+        0.022731099277734756,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.0315462201833725,
+        -0.18363866209983826,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 203.725009,
+      "executed_action_sha256": "fe84ff96c9ee78f0d80e10cf949d32618813445dc16e9c5adf990b3c82f2b9b5"
+    },
+    {
+      "frame_index": 22,
+      "timestamp_seconds": 2.2,
+      "raw_policy_action": [
+        -0.5111769437789917,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        0.00832563079893589,
+        -0.0315462201833725,
+        -0.06716807186603546,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 205.215405,
+      "executed_action_sha256": "b91c32cfb38bebcdec8eb4c52ea496dec92130996b5d2724780fa9c47a08869d"
+    },
+    {
+      "frame_index": 23,
+      "timestamp_seconds": 2.3,
+      "raw_policy_action": [
+        0.604205310344696,
+        0.028760511428117752,
+        0.5472163558006287,
+        -0.05127101019024849,
+        4.201572301099077e-05,
+        -0.12799160182476044,
+        0.0
+      ],
+      "request_latency_ms": 205.459021,
+      "executed_action_sha256": "e766e8018726e6ffba3545de860e2f97363b020ee524c34dd1fe4e33ae0aefd7"
+    },
+    {
+      "frame_index": 24,
+      "timestamp_seconds": 2.4,
+      "raw_policy_action": [
+        0.617405116558075,
+        -0.0013865478103980422,
+        0.6718592643737793,
+        -0.06617017090320587,
+        4.201572301099077e-05,
+        -0.1202268898487091,
+        0.0
+      ],
+      "request_latency_ms": 195.902953,
+      "executed_action_sha256": "a4f8a4dec312fac601c35eeef7adb68642e9c1c342d72bfa6701f5cfdb6ba8c2"
+    },
+    {
+      "frame_index": 25,
+      "timestamp_seconds": 2.5,
+      "raw_policy_action": [
+        0.6702042818069458,
+        -0.0013865478103980422,
+        0.6718592643737793,
+        -0.055409662425518036,
+        4.201572301099077e-05,
+        -0.13446219265460968,
+        0.0
+      ],
+      "request_latency_ms": 194.74426,
+      "executed_action_sha256": "e0eba4d62a1d04650b375a9d245cf041f49dd00e32028e99151591536e34ec04"
+    },
+    {
+      "frame_index": 26,
+      "timestamp_seconds": 2.6,
+      "raw_policy_action": [
+        0.6702042818069458,
+        -0.0013865478103980422,
+        0.6791911721229553,
+        -0.02643907628953457,
+        0.043663863092660904,
+        -0.07881512492895126,
+        0.0
+      ],
+      "request_latency_ms": 199.071119,
+      "executed_action_sha256": "40baba87c089a8f612ea32487d4a04182b477bb7386f60a68625b6ea69c8c9fb"
+    },
+    {
+      "frame_index": 27,
+      "timestamp_seconds": 2.7,
+      "raw_policy_action": [
+        0.6702042818069458,
+        -0.0013865478103980422,
+        0.43723738193511963,
+        -0.021472688764333725,
+        0.0316302515566349,
+        -0.11116807162761688,
+        0.0
+      ],
+      "request_latency_ms": 197.623563,
+      "executed_action_sha256": "4b22e5de0f04f560170f597c38718868a7d3a75a86aba8636c5da8f187bfbd43"
+    },
+    {
+      "frame_index": 28,
+      "timestamp_seconds": 2.8,
+      "raw_policy_action": [
+        0.49860697984695435,
+        -0.0013865478103980422,
+        0.7671743631362915,
+        4.831982005271129e-05,
+        0.021100837737321854,
+        -0.11893277615308762,
+        0.0
+      ],
+      "request_latency_ms": 197.966229,
+      "executed_action_sha256": "462a0e03b9317f7cdfe43097d10ae288cbab959beada0a9d16d3c0c0afc7fae3"
+    },
+    {
+      "frame_index": 29,
+      "timestamp_seconds": 2.9,
+      "raw_policy_action": [
+        0.7692026495933533,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.0982268899679184,
+        0.0
+      ],
+      "request_latency_ms": 195.849797,
+      "executed_action_sha256": "b4460234d6f424bb01772d2c7c34b93c261c64e4a065c75657ca25a1d0021f2f"
+    },
+    {
+      "frame_index": 30,
+      "timestamp_seconds": 3.0,
+      "raw_policy_action": [
+        0.7692026495933533,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.0982268899679184,
+        0.0
+      ],
+      "request_latency_ms": 198.311748,
+      "executed_action_sha256": "b4460234d6f424bb01772d2c7c34b93c261c64e4a065c75657ca25a1d0021f2f"
+    },
+    {
+      "frame_index": 31,
+      "timestamp_seconds": 3.1,
+      "raw_policy_action": [
+        0.7692026495933533,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.0969327762722969,
+        0.0
+      ],
+      "request_latency_ms": 209.082749,
+      "executed_action_sha256": "8fcba03756f5ec8e428e21bf29cc2023e3dfe73c6db70466a50824fb8f7c7658"
+    },
+    {
+      "frame_index": 32,
+      "timestamp_seconds": 3.2,
+      "raw_policy_action": [
+        0.80880206823349,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.09046218544244766,
+        0.0
+      ],
+      "request_latency_ms": 194.871427,
+      "executed_action_sha256": "b2c661a766e85107d0e9a6ee53026a884ce9f4bcd8dc17a3c54c3e92af3a4050"
+    },
+    {
+      "frame_index": 33,
+      "timestamp_seconds": 3.3,
+      "raw_policy_action": [
+        0.6834040284156799,
+        -0.0013865478103980422,
+        0.1366281509399414,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.10340335965156555,
+        0.0
+      ],
+      "request_latency_ms": 197.794714,
+      "executed_action_sha256": "d24cb6ee84f7dab44fa59ed5dc8636f0fbd480c4d34eb8ff79a58ef0c9f3d5bb"
+    },
+    {
+      "frame_index": 34,
+      "timestamp_seconds": 3.4,
+      "raw_policy_action": [
+        0.8682010769844055,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.05940336361527443,
+        0.0
+      ],
+      "request_latency_ms": 212.212781,
+      "executed_action_sha256": "e1a4350d667205c8dec61a0071a768812ee68c451f2bdc6f5a9b64e8d2ab1690"
+    },
+    {
+      "frame_index": 35,
+      "timestamp_seconds": 3.5,
+      "raw_policy_action": [
+        0.874800980091095,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.0399915985763073,
+        0.0
+      ],
+      "request_latency_ms": 202.759494,
+      "executed_action_sha256": "f465a27de64c85b983160748c4d85e279e11d40c7901737e08ac5ab7139fa017"
+    },
+    {
+      "frame_index": 36,
+      "timestamp_seconds": 3.6,
+      "raw_policy_action": [
+        0.80880206823349,
+        -0.0013865478103980422,
+        -0.4499264657497406,
+        0.04888445511460304,
+        4.201572301099077e-05,
+        -0.07363865524530411,
+        0.0
+      ],
+      "request_latency_ms": 198.300784,
+      "executed_action_sha256": "e1b14c73ff3bb4a31c8f524124dedcf27c5c5ca81dafffc35d6dbd83cc72de49"
+    },
+    {
+      "frame_index": 37,
+      "timestamp_seconds": 3.7,
+      "raw_policy_action": [
+        0.7692026495933533,
+        -0.0013865478103980422,
+        0.4152415990829468,
+        -0.014023109339177608,
+        4.201572301099077e-05,
+        -0.07363865524530411,
+        0.0
+      ],
+      "request_latency_ms": 200.740383,
+      "executed_action_sha256": "02311daf56702581f3bb5e0f8786157ed1e4c61adb01378a45b7bb2a9bd6b3c4"
+    },
+    {
+      "frame_index": 38,
+      "timestamp_seconds": 3.8,
+      "raw_policy_action": [
+        0.7230033874511719,
+        -0.0013865478103980422,
+        -0.6918802261352539,
+        0.05136764794588089,
+        -0.0375630259513855,
+        -0.0852857157588005,
+        0.0
+      ],
+      "request_latency_ms": 195.07979,
+      "executed_action_sha256": "27e26b811a78efc10f62317ae7b7e6142a3fbd895f83ba019ba0502088c76eeb"
+    },
+    {
+      "frame_index": 39,
+      "timestamp_seconds": 3.9,
+      "raw_policy_action": [
+        0.9342000484466553,
+        -0.0013865478103980422,
+        -0.1566491574048996,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 196.411582,
+      "executed_action_sha256": "8c52db8bec322e36282741063367ef89b5b69b973ef8c0e4a54534af157fb93d"
+    },
+    {
+      "frame_index": 40,
+      "timestamp_seconds": 4.0,
+      "raw_policy_action": [
+        0.6372047662734985,
+        0.13126051425933838,
+        -0.7358718514442444,
+        4.831982005271129e-05,
+        -0.1578991562128067,
+        -0.052932776510715485,
+        0.0
+      ],
+      "request_latency_ms": 195.8152,
+      "executed_action_sha256": "88cc7acbcd69c04d65a0aa321b84eb6a5412e0b06e1e1af1bbd94dda6282c7d8"
+    },
+    {
+      "frame_index": 41,
+      "timestamp_seconds": 4.1,
+      "raw_policy_action": [
+        0.9342000484466553,
+        0.20964287221431732,
+        -0.054002102464437485,
+        4.831982005271129e-05,
+        0.028621846809983253,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 211.251693,
+      "executed_action_sha256": "ec65023916f4552e126276ac4dc10082fbe902e24e5b06f4358b408a9a88cd71"
+    },
+    {
+      "frame_index": 42,
+      "timestamp_seconds": 4.2,
+      "raw_policy_action": [
+        0.9342000484466553,
+        0.20964287221431732,
+        -0.2959558963775635,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 206.747794,
+      "executed_action_sha256": "69b2a54c16613349dce79eb392828959879a6125ac5b0b76fd4836783755644d"
+    },
+    {
+      "frame_index": 43,
+      "timestamp_seconds": 4.3,
+      "raw_policy_action": [
+        0.3534092903137207,
+        0.16743698716163635,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.0435798317193985,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 203.690277,
+      "executed_action_sha256": "78804ea9f88df60a16dda8a300f9f98968ce4565c66744d54bd51b65f968bc2b"
+    },
+    {
+      "frame_index": 44,
+      "timestamp_seconds": 4.4,
+      "raw_policy_action": [
+        0.9342000484466553,
+        0.20964287221431732,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 198.205138,
+      "executed_action_sha256": "2f87b80d61bc8e0d61563ba25fdf821a763ed37a6d781491bc3646ae6cc3bb06"
+    },
+    {
+      "frame_index": 45,
+      "timestamp_seconds": 4.5,
+      "raw_policy_action": [
+        0.31380993127822876,
+        0.08302521705627441,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 197.043947,
+      "executed_action_sha256": "6b3d2caec0ad8ebc1884a44d7b7de2b939737404801470ab4b9f09e4d78e8173"
+    },
+    {
+      "frame_index": 46,
+      "timestamp_seconds": 4.6,
+      "raw_policy_action": [
+        0.3864087760448456,
+        0.08302521705627441,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 199.192522,
+      "executed_action_sha256": "3b202056b06d99b5ae82256e60c347fa395f79c2b3d31b2a2f8d89b574d6e51f"
+    },
+    {
+      "frame_index": 47,
+      "timestamp_seconds": 4.7,
+      "raw_policy_action": [
+        0.3204098343849182,
+        0.12523110210895538,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.029638657346367836,
+        0.0
+      ],
+      "request_latency_ms": 214.469675,
+      "executed_action_sha256": "d2acac3d8a981e932e0586ee0216bc7b4f4dc049f67cc09c3c03e877de5293e5"
+    },
+    {
+      "frame_index": 48,
+      "timestamp_seconds": 4.8,
+      "raw_policy_action": [
+        0.3402095139026642,
+        0.15537816286087036,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 205.266745,
+      "executed_action_sha256": "6b3e06831fb0da318a56631e7f177307c4d462fcea570e1347df278ace35af2a"
+    },
+    {
+      "frame_index": 49,
+      "timestamp_seconds": 4.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.08302521705627441,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.027033613994717598,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 194.451375,
+      "executed_action_sha256": "70d1538b82c1136014feaae4fb14f74fba8a037ae9b7555cedb5740877902384"
+    },
+    {
+      "frame_index": 50,
+      "timestamp_seconds": 5.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.0950840413570404,
+        -0.8971743583679199,
+        4.831982005271129e-05,
+        -0.1248067170381546,
+        -0.006344539579004049,
+        0.0
+      ],
+      "request_latency_ms": 196.658455,
+      "executed_action_sha256": "2a3f605838bd25c3d07723a235daa188f376b4b5f7d77812d217e90f7b3135b0"
+    },
+    {
+      "frame_index": 51,
+      "timestamp_seconds": 5.1,
+      "raw_policy_action": [
+        -0.24058124423027039,
+        -0.0013865478103980422,
+        -0.8971743583679199,
+        4.831982005271129e-05,
+        -0.1729411780834198,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 196.935594,
+      "executed_action_sha256": "a731fc696b3e42d760b215210f85d281d69ace9b604e5348ce30d766cbbfd788"
+    },
+    {
+      "frame_index": 52,
+      "timestamp_seconds": 5.2,
+      "raw_policy_action": [
+        -0.7421732544898987,
+        0.07096639275550842,
+        -0.8751785755157471,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.014361342415213585,
+        0.0
+      ],
+      "request_latency_ms": 207.86323,
+      "executed_action_sha256": "01e7bc268789f1d3f2be8cadf1032a1f303d139d8e9405403d3c6dc8c9c96f3a"
+    },
+    {
+      "frame_index": 53,
+      "timestamp_seconds": 5.3,
+      "raw_policy_action": [
+        -0.7421732544898987,
+        0.07096639275550842,
+        -0.8751785755157471,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.014361342415213585,
+        0.0
+      ],
+      "request_latency_ms": 203.862062,
+      "executed_action_sha256": "01e7bc268789f1d3f2be8cadf1032a1f303d139d8e9405403d3c6dc8c9c96f3a"
+    },
+    {
+      "frame_index": 54,
+      "timestamp_seconds": 5.4,
+      "raw_policy_action": [
+        -0.7421732544898987,
+        0.07096639275550842,
+        -0.8458508253097534,
+        4.831982005271129e-05,
+        -0.0917142853140831,
+        -0.008932774886488914,
+        0.0
+      ],
+      "request_latency_ms": 196.713622,
+      "executed_action_sha256": "2ec91804df85e3a1476f671dccacf000eab30c598cc975944dc5145038a01293"
+    },
+    {
+      "frame_index": 55,
+      "timestamp_seconds": 5.5,
+      "raw_policy_action": [
+        -0.7421732544898987,
+        0.07096639275550842,
+        -0.8751785755157471,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.014361342415213585,
+        0.0
+      ],
+      "request_latency_ms": 191.445409,
+      "executed_action_sha256": "01e7bc268789f1d3f2be8cadf1032a1f303d139d8e9405403d3c6dc8c9c96f3a"
+    },
+    {
+      "frame_index": 56,
+      "timestamp_seconds": 5.6,
+      "raw_policy_action": [
+        -0.42537829279899597,
+        -0.0013865478103980422,
+        -0.8165231347084045,
+        4.831982005271129e-05,
+        -0.08118487149477005,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 190.993278,
+      "executed_action_sha256": "eee19dfaa0d33c1102252ec63d7fc07539e92ec085881cfc3caa04b25358cd8f"
+    },
+    {
+      "frame_index": 57,
+      "timestamp_seconds": 5.7,
+      "raw_policy_action": [
+        -0.41217851638793945,
+        -0.0013865478103980422,
+        -0.7358718514442444,
+        -0.029750000685453415,
+        4.201572301099077e-05,
+        0.08553781360387802,
+        0.0
+      ],
+      "request_latency_ms": 192.149872,
+      "executed_action_sha256": "025f666c62d71182a39bec13ea521980c49147ed675245dc9172fb7a0f49aa53"
+    },
+    {
+      "frame_index": 58,
+      "timestamp_seconds": 5.8,
+      "raw_policy_action": [
+        -0.42537829279899597,
+        -0.0013865478103980422,
+        -0.7578676342964172,
+        4.831982005271129e-05,
+        -0.0315462201833725,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 201.894453,
+      "executed_action_sha256": "69c7e63008c6dc7e3707eade9dd8cfaf9abcd85f12a5c7b0bf0d3cac34759af0"
+    },
+    {
+      "frame_index": 59,
+      "timestamp_seconds": 5.9,
+      "raw_policy_action": [
+        -0.30658018589019775,
+        -0.0013865478103980422,
+        -0.6478886604309082,
+        -0.029750000685453415,
+        -0.046588234603405,
+        -0.03610924631357193,
+        0.0
+      ],
+      "request_latency_ms": 199.782399,
+      "executed_action_sha256": "b6f4509b207fadd29afbd43e548c171386c6d1f1ce9e8d2f367063df6da6a770"
+    },
+    {
+      "frame_index": 60,
+      "timestamp_seconds": 6.0,
+      "raw_policy_action": [
+        -0.3131800889968872,
+        -0.0013865478103980422,
+        -0.4939180612564087,
+        -0.038855042308568954,
+        0.055697474628686905,
+        0.09330251812934875,
+        0.0
+      ],
+      "request_latency_ms": 200.748095,
+      "executed_action_sha256": "7a6c1bcfa937cf2a010f20bbc43116d8dfa22cdf54318532f47796614ed51675"
+    },
+    {
+      "frame_index": 61,
+      "timestamp_seconds": 6.1,
+      "raw_policy_action": [
+        -0.22738145291805267,
+        0.17346639931201935,
+        -0.09066176414489746,
+        -0.057065125554800034,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 188.050271,
+      "executed_action_sha256": "783df950649bee02a79ad431b38c09854a074cc0587504807172d0857ab42bff"
+    },
+    {
+      "frame_index": 62,
+      "timestamp_seconds": 6.2,
+      "raw_policy_action": [
+        -0.3131800889968872,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        -0.03305042162537575,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 190.281408,
+      "executed_action_sha256": "35ec020dcb1d0772c17c9144ffc63f3d2ac90ba51e78199f205047e304dd02ae"
+    },
+    {
+      "frame_index": 63,
+      "timestamp_seconds": 6.3,
+      "raw_policy_action": [
+        -0.3131800889968872,
+        -0.0013865478103980422,
+        -0.5232458114624023,
+        -0.02643907628953457,
+        4.201572301099077e-05,
+        0.12565545737743378,
+        0.0
+      ],
+      "request_latency_ms": 197.97725,
+      "executed_action_sha256": "4e6610b9601979e51913969d6e2d8da8a3635bdd5d92590b538efe2a23327fdf"
+    },
+    {
+      "frame_index": 64,
+      "timestamp_seconds": 6.4,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.0613340362906456,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.07234454154968262,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 192.577437,
+      "executed_action_sha256": "46096a11a1ada36182f48367e1e8f034cbec6683232dd762ac98e5994ae7b7cf"
+    },
+    {
+      "frame_index": 65,
+      "timestamp_seconds": 6.5,
+      "raw_policy_action": [
+        -0.3131800889968872,
+        -0.0013865478103980422,
+        -0.4939180612564087,
+        -0.038855042308568954,
+        4.201572301099077e-05,
+        0.10236134380102158,
+        0.0
+      ],
+      "request_latency_ms": 198.060719,
+      "executed_action_sha256": "1c450e7c01f7c915e292300d5a8090e6d7135c430e5286c06654094e4055e3cc"
+    },
+    {
+      "frame_index": 66,
+      "timestamp_seconds": 6.6,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.09066176414489746,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.03610924631357193,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.157839,
+      "executed_action_sha256": "fe9096364b21df0c97dc69626071d191a8d7d60bc0d6f43618e516df1ee9ad09"
+    },
+    {
+      "frame_index": 67,
+      "timestamp_seconds": 6.7,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        0.11920168995857239,
+        -0.0613340362906456,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.007890754379332066,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.212479,
+      "executed_action_sha256": "facff6c6eb860798eaebd5af4dbb38eac7a94bcb7d2ddf86da44e51724190eea"
+    },
+    {
+      "frame_index": 68,
+      "timestamp_seconds": 6.8,
+      "raw_policy_action": [
+        -0.3131800889968872,
+        -0.0013865478103980422,
+        -0.4939180612564087,
+        -0.038855042308568954,
+        4.201572301099077e-05,
+        0.10236134380102158,
+        0.0
+      ],
+      "request_latency_ms": 197.380181,
+      "executed_action_sha256": "1c450e7c01f7c915e292300d5a8090e6d7135c430e5286c06654094e4055e3cc"
+    },
+    {
+      "frame_index": 69,
+      "timestamp_seconds": 6.9,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.029750000685453415,
+        -0.028537815436720848,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 196.52283,
+      "executed_action_sha256": "23fe775be190e765e3e376e46d1a2a2cc5d495643cfb782fd2c5fd3d4705394b"
+    },
+    {
+      "frame_index": 70,
+      "timestamp_seconds": 7.0,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.09066176414489746,
+        -0.0024348734878003597,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.11235,
+      "executed_action_sha256": "d67af51c5bf56b324b7550315a9b22cf75d1424d506746abbacb17638fb0cc5e"
+    },
+    {
+      "frame_index": 71,
+      "timestamp_seconds": 7.1,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.0613340362906456,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.03610924631357193,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.686772,
+      "executed_action_sha256": "0a1456d98c1dfb8c0f13e687e465299f7dfcaa2ccc32efd44049d014155735a1"
+    },
+    {
+      "frame_index": 72,
+      "timestamp_seconds": 7.2,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.029750000685453415,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 202.178868,
+      "executed_action_sha256": "96bbf3bcfba418aa6605ddfcb6982d27612456dd3b63a363d647155d4fb54a9d"
+    },
+    {
+      "frame_index": 73,
+      "timestamp_seconds": 7.3,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.029750000685453415,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 203.910189,
+      "executed_action_sha256": "96bbf3bcfba418aa6605ddfcb6982d27612456dd3b63a363d647155d4fb54a9d"
+    },
+    {
+      "frame_index": 74,
+      "timestamp_seconds": 7.4,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.0
+      ],
+      "request_latency_ms": 195.257789,
+      "executed_action_sha256": "44868e210e6962d6182fb918dac59a824239902c7bdf28801c4dd61484c99f5c"
+    },
+    {
+      "frame_index": 75,
+      "timestamp_seconds": 7.5,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.029750000685453415,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 191.945449,
+      "executed_action_sha256": "96bbf3bcfba418aa6605ddfcb6982d27612456dd3b63a363d647155d4fb54a9d"
+    },
+    {
+      "frame_index": 76,
+      "timestamp_seconds": 7.6,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 191.572472,
+      "executed_action_sha256": "5ad6c9c92b5d81c5c412c1328ea28407a2aba343ae996b8a70b7f5cffdf9142b"
+    },
+    {
+      "frame_index": 77,
+      "timestamp_seconds": 7.7,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.0613340362906456,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.03610924631357193,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.730286,
+      "executed_action_sha256": "0a1456d98c1dfb8c0f13e687e465299f7dfcaa2ccc32efd44049d014155735a1"
+    },
+    {
+      "frame_index": 78,
+      "timestamp_seconds": 7.8,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 200.89337,
+      "executed_action_sha256": "5ad6c9c92b5d81c5c412c1328ea28407a2aba343ae996b8a70b7f5cffdf9142b"
+    },
+    {
+      "frame_index": 79,
+      "timestamp_seconds": 7.9,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        4.831982005271129e-05,
+        -0.06313445419073105,
+        -0.03222689405083656,
+        0.0
+      ],
+      "request_latency_ms": 208.401009,
+      "executed_action_sha256": "73566acabadc4e0cb2e676464c3fca5916f1b32b56ae3fd1f193ca94e9ed30f1"
+    },
+    {
+      "frame_index": 80,
+      "timestamp_seconds": 8.0,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.4425945281982422,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.09563865512609482,
+        0.0
+      ],
+      "request_latency_ms": 195.894283,
+      "executed_action_sha256": "f6706bb28f78b4bd32bebac8c94f67532a129075ecd977dd12b0960e51196cee"
+    },
+    {
+      "frame_index": 81,
+      "timestamp_seconds": 8.1,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 204.045221,
+      "executed_action_sha256": "9a4096bf3fe2393537cb9328c1430e11edd251b902ef5a0310cdd1e7637ecd0c"
+    },
+    {
+      "frame_index": 82,
+      "timestamp_seconds": 8.2,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 197.234746,
+      "executed_action_sha256": "9a4096bf3fe2393537cb9328c1430e11edd251b902ef5a0310cdd1e7637ecd0c"
+    },
+    {
+      "frame_index": 83,
+      "timestamp_seconds": 8.3,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        -0.07215966284275055,
+        -0.014109245501458645,
+        0.0
+      ],
+      "request_latency_ms": 197.399882,
+      "executed_action_sha256": "d9e587f5cecf11c9a34921238235a77fbf382c0c64a0db69c915667feff24917"
+    },
+    {
+      "frame_index": 84,
+      "timestamp_seconds": 8.4,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 197.637795,
+      "executed_action_sha256": "9a4096bf3fe2393537cb9328c1430e11edd251b902ef5a0310cdd1e7637ecd0c"
+    },
+    {
+      "frame_index": 85,
+      "timestamp_seconds": 8.5,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        -0.1187899112701416,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 197.815973,
+      "executed_action_sha256": "c338e9ccfcd5067a7ad7b85a841529936ab5af1a30fccaca31e1e353048d7827"
+    },
+    {
+      "frame_index": 86,
+      "timestamp_seconds": 8.6,
+      "raw_policy_action": [
+        -0.24718114733695984,
+        -0.0013865478103980422,
+        -0.17131303250789642,
+        -0.03554411605000496,
+        -0.016504202038049698,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 194.926473,
+      "executed_action_sha256": "63850c052f4db73a4d86b4cb609e2a27329b1850db0b9a8e0ae78166c1fafbb5"
+    },
+    {
+      "frame_index": 87,
+      "timestamp_seconds": 8.7,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.47925421595573425,
+        -0.009884453378617764,
+        -0.07215966284275055,
+        -0.014109245501458645,
+        0.0
+      ],
+      "request_latency_ms": 196.428585,
+      "executed_action_sha256": "d9e587f5cecf11c9a34921238235a77fbf382c0c64a0db69c915667feff24917"
+    },
+    {
+      "frame_index": 88,
+      "timestamp_seconds": 8.8,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.2666281461715698,
+        -0.047960083931684494,
+        0.049680668860673904,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 198.500431,
+      "executed_action_sha256": "7d7c01a13da9b0f8e69f5c479322b3b54760bb4212bf6b137892ab15e9d4b58f"
+    },
+    {
+      "frame_index": 89,
+      "timestamp_seconds": 8.9,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.2666281461715698,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 193.689844,
+      "executed_action_sha256": "2f8a7d7712b0106330ffd33af4396042f29dafd7027b76f6994140617bb7265e"
+    },
+    {
+      "frame_index": 90,
+      "timestamp_seconds": 9.0,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.2666281461715698,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 190.203711,
+      "executed_action_sha256": "2f8a7d7712b0106330ffd33af4396042f29dafd7027b76f6994140617bb7265e"
+    },
+    {
+      "frame_index": 91,
+      "timestamp_seconds": 9.1,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.2666281461715698,
+        -0.047960083931684494,
+        0.049680668860673904,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 191.091611,
+      "executed_action_sha256": "7d7c01a13da9b0f8e69f5c479322b3b54760bb4212bf6b137892ab15e9d4b58f"
+    },
+    {
+      "frame_index": 92,
+      "timestamp_seconds": 9.2,
+      "raw_policy_action": [
+        -0.18778209388256073,
+        -0.0013865478103980422,
+        -0.06866596639156342,
+        4.831982005271129e-05,
+        -0.0917142853140831,
+        -0.028344539925456047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.713721,
+      "executed_action_sha256": "00d9cc11dc0b07905a3cbde5d69bfde83a63cf33ae7e046754623ba7fdeea389"
+    },
+    {
+      "frame_index": 93,
+      "timestamp_seconds": 9.3,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.0613340362906456,
+        -0.047132354229688644,
+        -0.010487395338714123,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.360296,
+      "executed_action_sha256": "449c18b094a2198c27fea797adff2a7f40ef979c77ee3250cc85b2a48892c2ef"
+    },
+    {
+      "frame_index": 94,
+      "timestamp_seconds": 9.4,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.22996848821640015,
+        -0.047960083931684494,
+        0.0797647014260292,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 197.361491,
+      "executed_action_sha256": "76bd5656a8cd1910646dbf44961b1934abd9f67bc6c091d37f35415dca271598"
+    },
+    {
+      "frame_index": 95,
+      "timestamp_seconds": 9.5,
+      "raw_policy_action": [
+        -0.20098188519477844,
+        -0.0013865478103980422,
+        -0.22996848821640015,
+        -0.047960083931684494,
+        0.1248907521367073,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 190.381173,
+      "executed_action_sha256": "e52ebf152904a1435af8eee16da2ddd82f391bb8a221dc11aecf9dd5a7c16b78"
+    },
+    {
+      "frame_index": 96,
+      "timestamp_seconds": 9.6,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.5178886651992798,
+        4.831982005271129e-05,
+        -0.06915125995874405,
+        -0.07881512492895126,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 191.86326,
+      "executed_action_sha256": "9e122a95a195ccb5598973696723a4eb0a4cf73792040ce0a0c36024736dfb59"
+    },
+    {
+      "frame_index": 97,
+      "timestamp_seconds": 9.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.45190125703811646,
+        4.831982005271129e-05,
+        -0.06915125995874405,
+        -0.07881512492895126,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.233386,
+      "executed_action_sha256": "4418f106ecef64098a0ffd3097c1f8e05cf5e0e4e7fac768aad6303eca88f49f"
+    },
+    {
+      "frame_index": 98,
+      "timestamp_seconds": 9.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.45190125703811646,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.1215210109949112,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.435505,
+      "executed_action_sha256": "7e66fab6dc731c8e8df9bba46cc7f9eefd6a9e23361ed89d238c6586d154191e"
+    },
+    {
+      "frame_index": 99,
+      "timestamp_seconds": 9.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.5178886651992798,
+        4.831982005271129e-05,
+        0.042159661650657654,
+        -0.0632857158780098,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.887351,
+      "executed_action_sha256": "24c491b1b31f95a333c5105c36fc15fa1cdf41f48269099d6ae8864edad023cb"
+    },
+    {
+      "frame_index": 100,
+      "timestamp_seconds": 10.0,
+      "raw_policy_action": [
+        0.010214759968221188,
+        0.1011134535074234,
+        0.004653359763324261,
+        4.831982005271129e-05,
+        0.016588233411312103,
+        -0.09175630658864975,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.090678,
+      "executed_action_sha256": "da2fe27f7d7db8470e4df16bf60c9f8e89305a803528f32e3b5ade0e7e7ad5f4"
+    },
+    {
+      "frame_index": 101,
+      "timestamp_seconds": 10.1,
+      "raw_policy_action": [
+        0.3732089698314667,
+        0.1071428656578064,
+        0.4152415990829468,
+        -0.0785861387848854,
+        0.057201676070690155,
+        -0.18363866209983826,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 192.410928,
+      "executed_action_sha256": "06be185d4d471ecba82dc5e41a160441dd8057405e5354e75edc2bf5cbbe026b"
+    },
+    {
+      "frame_index": 102,
+      "timestamp_seconds": 10.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.5178886651992798,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.1215210109949112,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.200113,
+      "executed_action_sha256": "ace0efbd362b42bce10b10ae9afd430c442c4be685a7c81dc3ee1538f0f42bd5"
+    },
+    {
+      "frame_index": 103,
+      "timestamp_seconds": 10.3,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.5618802309036255,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.07363865524530411,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.197922,
+      "executed_action_sha256": "93b59b1210588be386c644362768ab1e885a4c9a69315be734b18248498b4447"
+    },
+    {
+      "frame_index": 104,
+      "timestamp_seconds": 10.4,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.24256302416324615,
+        0.503224790096283,
+        0.05385084077715874,
+        0.1278991550207138,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.241373,
+      "executed_action_sha256": "5680727b180c3684b32c5e83f0bd3d95d6cec142848f60fd1bd9897103f2cd9b"
+    },
+    {
+      "frame_index": 105,
+      "timestamp_seconds": 10.5,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.24256302416324615,
+        0.49589285254478455,
+        0.06957773119211197,
+        0.049680668860673904,
+        -0.09305042028427124,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 191.876505,
+      "executed_action_sha256": "e7e5b8aedca23945696ad2893e3bad1e4419116c792b1f317e723fe739d1c94c"
+    },
+    {
+      "frame_index": 106,
+      "timestamp_seconds": 10.6,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.26065126061439514,
+        0.334590345621109,
+        0.054678574204444885,
+        0.1339159607887268,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.503681,
+      "executed_action_sha256": "3a39a35c8d15c05b7fee3b1373792e4efb2e4a69b365fdce43f05f79abeb7aa7"
+    },
+    {
+      "frame_index": 107,
+      "timestamp_seconds": 10.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.26065126061439514,
+        0.334590345621109,
+        0.08447689563035965,
+        4.201572301099077e-05,
+        -0.12799160182476044,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.715698,
+      "executed_action_sha256": "29e774f112732323945e183bc5cd8ac650016f828e8da6540174b11f50dc048b"
+    },
+    {
+      "frame_index": 108,
+      "timestamp_seconds": 10.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.44456931948661804,
+        0.06626680493354797,
+        0.1278991550207138,
+        -0.10469748079776764,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.561249,
+      "executed_action_sha256": "ae72fa3ce7eb69d445007ee47a2b52d3792d19ef5ce3047f0f84dde05d8aedc2"
+    },
+    {
+      "frame_index": 109,
+      "timestamp_seconds": 10.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.44456931948661804,
+        0.022397059947252274,
+        -0.0315462201833725,
+        -0.11375630646944046,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.879699,
+      "executed_action_sha256": "3aa4973c625d5bb1b150eb4c0c3375827174bcf27e89832c6716b37fc6d4a23c"
+    },
+    {
+      "frame_index": 110,
+      "timestamp_seconds": 11.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.44456931948661804,
+        0.05385084077715874,
+        0.1278991550207138,
+        -0.1085798367857933,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.345246,
+      "executed_action_sha256": "789020fb14dc52b527db0c276e4e95ac2c2c3d0035387dc18eda1f2a6e039aa6"
+    },
+    {
+      "frame_index": 111,
+      "timestamp_seconds": 11.1,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.21844537556171417,
+        -0.7945272922515869,
+        0.03315756469964981,
+        -0.2060336023569107,
+        -0.042579833418130875,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.567608,
+      "executed_action_sha256": "57200bf2e5397cf95a6fc425148645d947312193f087ecda8597c1b7ac42d92b"
+    },
+    {
+      "frame_index": 112,
+      "timestamp_seconds": 11.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1943277269601822,
+        0.45190125703811646,
+        0.05136764794588089,
+        0.1278991550207138,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.764243,
+      "executed_action_sha256": "e01c670d9e7600198ae142eb166d8373fd7b2ec8efa8dbbdc69b9e113f4b2349"
+    },
+    {
+      "frame_index": 113,
+      "timestamp_seconds": 11.3,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        0.048176467418670654,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.298753,
+      "executed_action_sha256": "a92d39b77dec8a0806d07fc675efc89e201fa886e50068ccbc18990323ae78a5"
+    },
+    {
+      "frame_index": 114,
+      "timestamp_seconds": 11.4,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1943277269601822,
+        0.31259453296661377,
+        0.054678574204444885,
+        0.1278991550207138,
+        -0.12410924583673477,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 188.977832,
+      "executed_action_sha256": "17d26f7adcccf12bdf3d6f0cf7e278a3a654ad080438a8cdc94190ef66650c59"
+    },
+    {
+      "frame_index": 115,
+      "timestamp_seconds": 11.5,
+      "raw_policy_action": [
+        0.1422126591205597,
+        -0.21844537556171417,
+        0.3859138488769531,
+        0.054678574204444885,
+        0.1278991550207138,
+        -0.07363865524530411,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.165995,
+      "executed_action_sha256": "fb9c407a57f0153d8cee7a8d90bcffbbcaa6aa3876c6b38b9efa13a40e553dfc"
+    },
+    {
+      "frame_index": 116,
+      "timestamp_seconds": 11.6,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1943277269601822,
+        0.31259453296661377,
+        0.054678574204444885,
+        0.1399327665567398,
+        -0.10599159449338913,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.125663,
+      "executed_action_sha256": "e971c157542e44c6483541c51403d8daa053aa127c1490e0e4f3e34b9087790f"
+    },
+    {
+      "frame_index": 117,
+      "timestamp_seconds": 11.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.2686029374599457,
+        0.054678574204444885,
+        0.1278991550207138,
+        -0.10599159449338913,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.530251,
+      "executed_action_sha256": "eca929cd979eb4988989f98a02060c6b38e9aebbfc6ed0f81ce3154d882dc982"
+    },
+    {
+      "frame_index": 118,
+      "timestamp_seconds": 11.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.2686029374599457,
+        0.054678574204444885,
+        -0.1037478968501091,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.06747,
+      "executed_action_sha256": "57356d5d51cf7a1a37df2fad0d681d089bff2a2d73345b75cf86e488bcf81c0e"
+    },
+    {
+      "frame_index": 119,
+      "timestamp_seconds": 11.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.23050419986248016,
+        0.40057772397994995,
+        0.07537185400724411,
+        0.1278991550207138,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.383835,
+      "executed_action_sha256": "2078fda293310bd404c08c8b1fb5b8b80a2eeeadb4e2107c45a5e9da2ef2d4c2"
+    },
+    {
+      "frame_index": 120,
+      "timestamp_seconds": 12.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.23050419986248016,
+        -0.669884443283081,
+        4.831982005271129e-05,
+        -0.2060336023569107,
+        -0.03869748115539551,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.63127,
+      "executed_action_sha256": "20e841b021e408431f0f5b3c94359fbed3531775ac520aa988e0f8cc1b6de196"
+    },
+    {
+      "frame_index": 121,
+      "timestamp_seconds": 12.1,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.23050419986248016,
+        0.2686029374599457,
+        0.07868277281522751,
+        -0.008983193896710873,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 205.114203,
+      "executed_action_sha256": "f9c5b232abc6892fd5bf18ad01032dff272aeea7092be17f9abaeb873b6786da"
+    },
+    {
+      "frame_index": 122,
+      "timestamp_seconds": 12.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        -0.008983193896710873,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.124861,
+      "executed_action_sha256": "a5478bcf927bac8beff2f1765193de12d4d5f6d2db8882eb9e80481df933e984"
+    },
+    {
+      "frame_index": 123,
+      "timestamp_seconds": 12.3,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.23050419986248016,
+        0.2686029374599457,
+        0.06212815269827843,
+        0.08728571236133575,
+        -0.10340335965156555,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 203.743525,
+      "executed_action_sha256": "8927cda796d910323d8eacf951bc9ce68e502d0b4c9582c687af4a1ed73bd1ff"
+    },
+    {
+      "frame_index": 124,
+      "timestamp_seconds": 12.4,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        -0.0014621858717873693,
+        -0.016697481274604797,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.482235,
+      "executed_action_sha256": "3d713080da7e38b0bdb25406122ec0ea700614b9b1e82ead26fc797a3b18d8c7"
+    },
+    {
+      "frame_index": 125,
+      "timestamp_seconds": 12.5,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.1366281509399414,
+        4.831982005271129e-05,
+        0.1158655434846878,
+        -0.016697481274604797,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 224.148723,
+      "executed_action_sha256": "2ad85f8d4bf8af80aaad1d56741cf1ded8af53c2296c2c5b826d0dc246ab214d"
+    },
+    {
+      "frame_index": 126,
+      "timestamp_seconds": 12.6,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.2686029374599457,
+        0.05385084077715874,
+        0.1399327665567398,
+        -0.11634454131126404,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.912997,
+      "executed_action_sha256": "1fb4fe072e688d7202e4ff240c1271f39f995330c41083487406bfaddd5c7dd2"
+    },
+    {
+      "frame_index": 127,
+      "timestamp_seconds": 12.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.2686029374599457,
+        0.05385084077715874,
+        0.1579831838607788,
+        -0.10081512480974197,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.689503,
+      "executed_action_sha256": "b4b04f0a210d5112e07d5fb781362eabd830f5ca83a4de0ff421caaf7472c508"
+    },
+    {
+      "frame_index": 128,
+      "timestamp_seconds": 12.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.1822689026594162,
+        0.2686029374599457,
+        0.05385084077715874,
+        -0.15037815272808075,
+        -0.07881512492895126,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 188.486094,
+      "executed_action_sha256": "fae5bcef82520ee3d92e0643256105bd3f657ff6b85ce60c0c9d6d6302711cba"
+    },
+    {
+      "frame_index": 129,
+      "timestamp_seconds": 12.9,
+      "raw_policy_action": [
+        -0.10858334600925446,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        -0.2060336023569107,
+        -0.07752101123332977,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 192.795154,
+      "executed_action_sha256": "63e2e7bce3d730764c0a93f761f38ac9a156d4ffd0af068e1440a35eb5cf5efb"
+    },
+    {
+      "frame_index": 130,
+      "timestamp_seconds": 13.0,
+      "raw_policy_action": [
+        -0.2537810504436493,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.0616302527487278,
+        -0.1215210109949112,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 199.187739,
+      "executed_action_sha256": "70eab886a01470a3f3a09af2a80ba47e4a9c5eb5daed7fffa9f9cfbb3928ddba"
+    },
+    {
+      "frame_index": 131,
+      "timestamp_seconds": 13.1,
+      "raw_policy_action": [
+        -0.10858334600925446,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        -0.06915125995874405,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 205.483183,
+      "executed_action_sha256": "e4ce86b3d2a4c84ec498dfb6c72598f439baabef7e2f86041157a3abbc88825f"
+    },
+    {
+      "frame_index": 132,
+      "timestamp_seconds": 13.2,
+      "raw_policy_action": [
+        -0.22738145291805267,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.14736974239349365,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.878187,
+      "executed_action_sha256": "4cb4468f9fc3c2c910f1efb7c34f30dca16abe47726b29f066613141d85d4913"
+    },
+    {
+      "frame_index": 133,
+      "timestamp_seconds": 13.3,
+      "raw_policy_action": [
+        -0.22738145291805267,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.14736974239349365,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.162612,
+      "executed_action_sha256": "4cb4468f9fc3c2c910f1efb7c34f30dca16abe47726b29f066613141d85d4913"
+    },
+    {
+      "frame_index": 134,
+      "timestamp_seconds": 13.4,
+      "raw_policy_action": [
+        -0.22738145291805267,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.14736974239349365,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.033183,
+      "executed_action_sha256": "4cb4468f9fc3c2c910f1efb7c34f30dca16abe47726b29f066613141d85d4913"
+    },
+    {
+      "frame_index": 135,
+      "timestamp_seconds": 13.5,
+      "raw_policy_action": [
+        -0.22738145291805267,
+        -0.0013865478103980422,
+        -0.9338340163230896,
+        4.831982005271129e-05,
+        -0.12631091475486755,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.842778,
+      "executed_action_sha256": "d2c29df7efce84f65c03b82bc4d35258cb86ffb980d491acea121dd7fe4571a2"
+    },
+    {
+      "frame_index": 136,
+      "timestamp_seconds": 13.6,
+      "raw_policy_action": [
+        -0.5441763997077942,
+        -0.0013865478103980422,
+        -0.8458508253097534,
+        4.831982005271129e-05,
+        -0.0435798317193985,
+        -0.07622689008712769,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 205.239629,
+      "executed_action_sha256": "a670c2a0f1324271e8f148945631572c95a0e723e18944a794228783c4dbecd1"
+    },
+    {
+      "frame_index": 137,
+      "timestamp_seconds": 13.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        0.08427730947732925,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.434109,
+      "executed_action_sha256": "b174942ace98779e953aa19c0be4e5d6fbde3497ee63ae2a1092be60e1bfa235"
+    },
+    {
+      "frame_index": 138,
+      "timestamp_seconds": 13.8,
+      "raw_policy_action": [
+        -0.0557841882109642,
+        0.022731099277734756,
+        -0.38393908739089966,
+        4.831982005271129e-05,
+        -0.2060336023569107,
+        -0.13575629889965057,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 202.243662,
+      "executed_action_sha256": "189d05bb009b68345f213b4e1da2e969a4f17faa52d599cf3289df3aefa1aa47"
+    },
+    {
+      "frame_index": 139,
+      "timestamp_seconds": 13.9,
+      "raw_policy_action": [
+        -0.0557841882109642,
+        0.05890757218003273,
+        -0.4939180612564087,
+        4.831982005271129e-05,
+        -0.2060336023569107,
+        -0.05552101135253906,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.092121,
+      "executed_action_sha256": "afe62436fbf48346fba7c2da5cf41b54098f483c170897661d72de07930caf5d"
+    },
+    {
+      "frame_index": 140,
+      "timestamp_seconds": 14.0,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        0.25393906235694885,
+        0.010808824561536312,
+        0.007563023827970028,
+        -0.08399159461259842,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.877008,
+      "executed_action_sha256": "9ea035717a281ddc28d4e070a48ae246a8d25e9331a6b6bd0063a52be86ae373"
+    },
+    {
+      "frame_index": 141,
+      "timestamp_seconds": 14.1,
+      "raw_policy_action": [
+        -0.18778209388256073,
+        0.028760511428117752,
+        -0.18597689270973206,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 205.678392,
+      "executed_action_sha256": "f52ad77cc0274c5b0d071c3c18971ba1afa65a3e2628788386e412316041321d"
+    },
+    {
+      "frame_index": 142,
+      "timestamp_seconds": 14.2,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        -0.010487395338714123,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 216.456446,
+      "executed_action_sha256": "e13de49853cbb9fdd345a1e6c3a4522f71aa1c92d27a5de28b7f32b0cec9988a"
+    },
+    {
+      "frame_index": 143,
+      "timestamp_seconds": 14.3,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.010487395338714123,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 202.053349,
+      "executed_action_sha256": "f1ca330312d32bd51a86041d0abe869394c7461ac57ad10a440ba2bf4e7214ff"
+    },
+    {
+      "frame_index": 144,
+      "timestamp_seconds": 14.4,
+      "raw_policy_action": [
+        -0.15478260815143585,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.03305042162537575,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.998496,
+      "executed_action_sha256": "a8ae0b38ed0c1d169fc9780830e09dcc6d53a4f70f54f54c234f6fe2b1993505"
+    },
+    {
+      "frame_index": 145,
+      "timestamp_seconds": 14.5,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 202.039548,
+      "executed_action_sha256": "581b593682274bdaec7d4b5c9e7bc83ad65e82fb3a52af2fa1f92145f699a24b"
+    },
+    {
+      "frame_index": 146,
+      "timestamp_seconds": 14.6,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.36927521228790283,
+        4.831982005271129e-05,
+        -0.03906722739338875,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 199.915689,
+      "executed_action_sha256": "745a7a3a5945bbafa2c506f3d67fb443c935d7af9423d920df7da15addaaacd0"
+    },
+    {
+      "frame_index": 147,
+      "timestamp_seconds": 14.7,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.3619432747364044,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.489645,
+      "executed_action_sha256": "1991f7146e1c932bbd58db80297e56c85e9b4c5190766ca2c690e9e064c4a728"
+    },
+    {
+      "frame_index": 148,
+      "timestamp_seconds": 14.8,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.36927521228790283,
+        4.831982005271129e-05,
+        -0.03906722739338875,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.373238,
+      "executed_action_sha256": "745a7a3a5945bbafa2c506f3d67fb443c935d7af9423d920df7da15addaaacd0"
+    },
+    {
+      "frame_index": 149,
+      "timestamp_seconds": 14.9,
+      "raw_policy_action": [
+        -0.18778209388256073,
+        0.08302521705627441,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 206.995506,
+      "executed_action_sha256": "e09324375624bf3c580989351ab039fada0b21916d6e1a9637a56e7ce71a623a"
+    },
+    {
+      "frame_index": 150,
+      "timestamp_seconds": 15.0,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.2592962086200714,
+        4.831982005271129e-05,
+        -0.015000000596046448,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.212325,
+      "executed_action_sha256": "77667a3bda0f42bbbb8577bc6475828bf5e699be972dcf8cc989ee22b27f33c5"
+    },
+    {
+      "frame_index": 151,
+      "timestamp_seconds": 15.1,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.015000000596046448,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.013448,
+      "executed_action_sha256": "7d67e76e793c3ce8e0a4f5b66e503877f7eebf6ea970fbcd45f1094e7749f3f7"
+    },
+    {
+      "frame_index": 152,
+      "timestamp_seconds": 15.2,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.015000000596046448,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 195.97716,
+      "executed_action_sha256": "6b343674c6880f39546c3c4ab0ff56ac13a88d7c48a83879f2c708395ce93d8e"
+    },
+    {
+      "frame_index": 153,
+      "timestamp_seconds": 15.3,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.015000000596046448,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 220.529893,
+      "executed_action_sha256": "6b343674c6880f39546c3c4ab0ff56ac13a88d7c48a83879f2c708395ce93d8e"
+    },
+    {
+      "frame_index": 154,
+      "timestamp_seconds": 15.4,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.2519643008708954,
+        4.831982005271129e-05,
+        -0.015000000596046448,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 203.529015,
+      "executed_action_sha256": "6b343674c6880f39546c3c4ab0ff56ac13a88d7c48a83879f2c708395ce93d8e"
+    },
+    {
+      "frame_index": 155,
+      "timestamp_seconds": 15.5,
+      "raw_policy_action": [
+        -0.1481827199459076,
+        -0.0013865478103980422,
+        -0.33261555433273315,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 201.160713,
+      "executed_action_sha256": "d3755cfe71287486894a05bb81706f209f54cfe6dcc3c17a15a7f4f23025f943"
+    },
+    {
+      "frame_index": 156,
+      "timestamp_seconds": 15.6,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        0.039151258766651154,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 198.635444,
+      "executed_action_sha256": "ad086204a2e8d429d905c1ed190c22767d25d25374bef2b89581d431f556f277"
+    },
+    {
+      "frame_index": 157,
+      "timestamp_seconds": 15.7,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.013445371761918068,
+        0.19528360664844513,
+        4.831982005271129e-05,
+        0.09931932389736176,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.197109,
+      "executed_action_sha256": "b95b2d560b47417fb4638ffba95b0c00df6bfdad46d3e261ea9f57fcbc420cfe"
+    },
+    {
+      "frame_index": 158,
+      "timestamp_seconds": 15.8,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.08302521705627441,
+        0.35658612847328186,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.03481512889266014,
+        0.0
+      ],
+      "request_latency_ms": 199.211503,
+      "executed_action_sha256": "f42b3112074048dc3fa147dc916102efd1b175a63af69e4a612c8d6fdfd09313"
+    },
+    {
+      "frame_index": 159,
+      "timestamp_seconds": 15.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.05890757218003273,
+        0.1806197464466095,
+        -0.011539915576577187,
+        4.201572301099077e-05,
+        -0.020579833537340164,
+        0.0
+      ],
+      "request_latency_ms": 192.309941,
+      "executed_action_sha256": "da54e2eef06c38410e6178d71b9065c127317a527abd80dce21788dea82b04b0"
+    },
+    {
+      "frame_index": 160,
+      "timestamp_seconds": 16.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.05890757218003273,
+        0.1806197464466095,
+        -0.011539915576577187,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.645446,
+      "executed_action_sha256": "f9da033abe5c4251f324ea5e09f54ebe77bcd2b569d073870adeac02578c610d"
+    },
+    {
+      "frame_index": 161,
+      "timestamp_seconds": 16.1,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.05890757218003273,
+        0.24660713970661163,
+        -0.011539915576577187,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.728615,
+      "executed_action_sha256": "954bd0657278303397adcd59787cf5487b2c00ebb849e2eb1f6829cefa20343c"
+    },
+    {
+      "frame_index": 162,
+      "timestamp_seconds": 16.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        0.05890757218003273,
+        0.24660713970661163,
+        -0.011539915576577187,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 206.830836,
+      "executed_action_sha256": "bd312d5af64cdd96a7ae57a3f3898ce26ce6bc8bcc64803e847ccfc733465b25"
+    },
+    {
+      "frame_index": 163,
+      "timestamp_seconds": 16.3,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.25393906235694885,
+        4.831982005271129e-05,
+        0.0316302515566349,
+        -0.05552101135253906,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.037043,
+      "executed_action_sha256": "cc169262d2ae444a922149cfdf7ff0e252ab60f6a17c502d24db76d6272e1dd4"
+    },
+    {
+      "frame_index": 164,
+      "timestamp_seconds": 16.4,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.25393906235694885,
+        4.831982005271129e-05,
+        0.0316302515566349,
+        -0.05552101135253906,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.125705,
+      "executed_action_sha256": "cc169262d2ae444a922149cfdf7ff0e252ab60f6a17c502d24db76d6272e1dd4"
+    },
+    {
+      "frame_index": 165,
+      "timestamp_seconds": 16.5,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        0.1071428656578064,
+        -0.0026785731315612793,
+        -0.05044327676296234,
+        4.201572301099077e-05,
+        0.026008401066064835,
+        0.0
+      ],
+      "request_latency_ms": 193.902731,
+      "executed_action_sha256": "dba1d857ae1f2ce40a5281ab78536ef12b31d80f474731d04263139662dd86bf"
+    },
+    {
+      "frame_index": 166,
+      "timestamp_seconds": 16.6,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        0.1071428656578064,
+        -0.0026785731315612793,
+        -0.05044327676296234,
+        4.201572301099077e-05,
+        0.026008401066064835,
+        0.0
+      ],
+      "request_latency_ms": 197.477412,
+      "executed_action_sha256": "dba1d857ae1f2ce40a5281ab78536ef12b31d80f474731d04263139662dd86bf"
+    },
+    {
+      "frame_index": 167,
+      "timestamp_seconds": 16.7,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        0.1071428656578064,
+        0.24660713970661163,
+        4.831982005271129e-05,
+        0.1339159607887268,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 202.56789,
+      "executed_action_sha256": "8bc5a822ebb2c9e1c455628407ad6a689b9b97d69d644b7e83d2ff44af111635"
+    },
+    {
+      "frame_index": 168,
+      "timestamp_seconds": 16.8,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        0.1071428656578064,
+        0.24660713970661163,
+        4.831982005271129e-05,
+        0.1339159607887268,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.785583,
+      "executed_action_sha256": "8bc5a822ebb2c9e1c455628407ad6a689b9b97d69d644b7e83d2ff44af111635"
+    },
+    {
+      "frame_index": 169,
+      "timestamp_seconds": 16.9,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 188.57921,
+      "executed_action_sha256": "387fb0872e6356950e9547c007af8df51160b969a4f63063cd0b77deffd17e07"
+    },
+    {
+      "frame_index": 170,
+      "timestamp_seconds": 17.0,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.09263655543327332,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.934256,
+      "executed_action_sha256": "db2214d3c19fb67036fbf3011a0f3d459dee8fd33be5372e7347717aee9884f2"
+    },
+    {
+      "frame_index": 171,
+      "timestamp_seconds": 17.1,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.09263655543327332,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.113807,
+      "executed_action_sha256": "db2214d3c19fb67036fbf3011a0f3d459dee8fd33be5372e7347717aee9884f2"
+    },
+    {
+      "frame_index": 172,
+      "timestamp_seconds": 17.2,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.2832668125629425,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.973512,
+      "executed_action_sha256": "784c53cbdef75a75d4af5efa99de359f87577125d82327500997396406933536"
+    },
+    {
+      "frame_index": 173,
+      "timestamp_seconds": 17.3,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.2832668125629425,
+        4.831982005271129e-05,
+        -0.008983193896710873,
+        -0.10210924595594406,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.973423,
+      "executed_action_sha256": "ef5cc4ff08f76b2bbeba4fae952bcb71510dbff4712ef13fff2d6f2fdf9bb5f9"
+    },
+    {
+      "frame_index": 174,
+      "timestamp_seconds": 17.4,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.733347,
+      "executed_action_sha256": "9289c4107ae9f6836d4c6ed11e5251473b160b553282a168d595cdf1b079e322"
+    },
+    {
+      "frame_index": 175,
+      "timestamp_seconds": 17.5,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 190.789192,
+      "executed_action_sha256": "9289c4107ae9f6836d4c6ed11e5251473b160b553282a168d595cdf1b079e322"
+    },
+    {
+      "frame_index": 176,
+      "timestamp_seconds": 17.6,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.2832668125629425,
+        4.831982005271129e-05,
+        0.1339159607887268,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 187.874779,
+      "executed_action_sha256": "f800dc5fd9ee18dfc216ae45aed5eb74ff0a9e2e01b8d3a792e7cda1b44e2f15"
+    },
+    {
+      "frame_index": 177,
+      "timestamp_seconds": 17.7,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.002714283764362335,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.728796,
+      "executed_action_sha256": "d69f8955b0fbfdace2a0669ffbde844710a28f896c80d962019ced5e0e5996e9"
+    },
+    {
+      "frame_index": 178,
+      "timestamp_seconds": 17.8,
+      "raw_policy_action": [
+        -0.1613825112581253,
+        -0.0013865478103980422,
+        -0.559905469417572,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.971124,
+      "executed_action_sha256": "e48cbbc5768f4bf67680dc22fdcbfe5393192d4c631c0dc640154330afb84360"
+    },
+    {
+      "frame_index": 179,
+      "timestamp_seconds": 17.9,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        0.042159661650657654,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.982291,
+      "executed_action_sha256": "04a76c4ca072dc4fbb5d64f3040adfb12944ae7f811e5ce686918cfcf6b14e79"
+    },
+    {
+      "frame_index": 180,
+      "timestamp_seconds": 18.0,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        0.042159661650657654,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 211.617607,
+      "executed_action_sha256": "04a76c4ca072dc4fbb5d64f3040adfb12944ae7f811e5ce686918cfcf6b14e79"
+    },
+    {
+      "frame_index": 181,
+      "timestamp_seconds": 18.1,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.002714283764362335,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.625833,
+      "executed_action_sha256": "b47378fc79a380b3daa273ae7d5bd9773cde5de044d7ced1a77f6b6ad444b822"
+    },
+    {
+      "frame_index": 182,
+      "timestamp_seconds": 18.2,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        0.046672265976667404,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.82308,
+      "executed_action_sha256": "5f4e08c45687f7451fd068a89cf9ef382694ba3c945c2e9d7f82ce7991449b08"
+    },
+    {
+      "frame_index": 183,
+      "timestamp_seconds": 18.3,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.03478992357850075,
+        0.004653359763324261,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 198.243464,
+      "executed_action_sha256": "b17130d3449901f900b26895bb169ae9b1ff65e114474ba87ddd7c89d8878131"
+    },
+    {
+      "frame_index": 184,
+      "timestamp_seconds": 18.4,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.474307,
+      "executed_action_sha256": "803d35927ef367230dc6ccf8a5112470bd73bbf44b0011ee7a6213e0890e4c15"
+    },
+    {
+      "frame_index": 185,
+      "timestamp_seconds": 18.5,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 193.914641,
+      "executed_action_sha256": "803d35927ef367230dc6ccf8a5112470bd73bbf44b0011ee7a6213e0890e4c15"
+    },
+    {
+      "frame_index": 186,
+      "timestamp_seconds": 18.6,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        -0.0013865478103980422,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.03222689405083656,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.353967,
+      "executed_action_sha256": "9753f3fa7648738d5a50e188a099ec14ded6f5dac85f8db3ecc7c662cf2888ee"
+    },
+    {
+      "frame_index": 187,
+      "timestamp_seconds": 18.7,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.01012,
+      "executed_action_sha256": "803d35927ef367230dc6ccf8a5112470bd73bbf44b0011ee7a6213e0890e4c15"
+    },
+    {
+      "frame_index": 188,
+      "timestamp_seconds": 18.8,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.3032878041267395,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 189.607694,
+      "executed_action_sha256": "803d35927ef367230dc6ccf8a5112470bd73bbf44b0011ee7a6213e0890e4c15"
+    },
+    {
+      "frame_index": 189,
+      "timestamp_seconds": 18.9,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.2959558963775635,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 191.581165,
+      "executed_action_sha256": "59fdb2598adeb56da4833ad050cbb5359581e917701fc4c0c5f6b12339a9240c"
+    },
+    {
+      "frame_index": 190,
+      "timestamp_seconds": 19.0,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.024674370884895325,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.607108,
+      "executed_action_sha256": "6daf7b841c497f303bbab24ee663e5680fef2ed6223fab4dbd78332b7ac07662"
+    },
+    {
+      "frame_index": 191,
+      "timestamp_seconds": 19.1,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.01067227590829134,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        0.042159661650657654,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 196.162286,
+      "executed_action_sha256": "e928110c1283d86b5d6fa5b2246131cb2efe80d53920dcf44b4eee9d4a0c4ca9"
+    },
+    {
+      "frame_index": 192,
+      "timestamp_seconds": 19.2,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.01067227590829134,
+        -0.11998949944972992,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 194.204493,
+      "executed_action_sha256": "2b1a851a4bd92f0bbaaeeecd5b51e855a6f871428d28c1d0f7dc91b2b94ea46b"
+    },
+    {
+      "frame_index": 193,
+      "timestamp_seconds": 19.3,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.04081933572888374,
+        -0.2959558963775635,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 204.969823,
+      "executed_action_sha256": "59fdb2598adeb56da4833ad050cbb5359581e917701fc4c0c5f6b12339a9240c"
+    },
+    {
+      "frame_index": 194,
+      "timestamp_seconds": 19.4,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.01067227590829134,
+        -0.024674370884895325,
+        -0.04216596484184265,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 196.326955,
+      "executed_action_sha256": "60e1d0ce6db09435f08494a3921b2def1f6ef99e31947513b22b0fbf61dcb56e"
+    },
+    {
+      "frame_index": 195,
+      "timestamp_seconds": 19.5,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.03478992357850075,
+        -0.09066176414489746,
+        4.831982005271129e-05,
+        0.028621846809983253,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 199.176428,
+      "executed_action_sha256": "e6c22283a0d5d1ff42733d1b02dcb5ac61753ca88dcdab1e3d4a4adcacebc37a"
+    },
+    {
+      "frame_index": 196,
+      "timestamp_seconds": 19.6,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.01067227590829134,
+        0.02664915844798088,
+        4.831982005271129e-05,
+        0.042159661650657654,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 201.129648,
+      "executed_action_sha256": "e928110c1283d86b5d6fa5b2246131cb2efe80d53920dcf44b4eee9d4a0c4ca9"
+    },
+    {
+      "frame_index": 197,
+      "timestamp_seconds": 19.7,
+      "raw_policy_action": [
+        -0.17458230257034302,
+        0.01067227590829134,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 201.568283,
+      "executed_action_sha256": "2ddcdc6caa3962dea3f46b14566f6ea2958d2843e3e459429ade1c5b32511ed0"
+    },
+    {
+      "frame_index": 198,
+      "timestamp_seconds": 19.8,
+      "raw_policy_action": [
+        0.0036148650106042624,
+        0.1071428656578064,
+        0.2686029374599457,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 199.86624,
+      "executed_action_sha256": "705ce81ce617a1b117bbd8d62e50591b0871943d86a8c79334390f3f3e343a75"
+    },
+    {
+      "frame_index": 199,
+      "timestamp_seconds": 19.9,
+      "raw_policy_action": [
+        0.0036148650106042624,
+        0.1071428656578064,
+        0.2686029374599457,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.564925,
+      "executed_action_sha256": "705ce81ce617a1b117bbd8d62e50591b0871943d86a8c79334390f3f3e343a75"
+    },
+    {
+      "frame_index": 200,
+      "timestamp_seconds": 20.0,
+      "raw_policy_action": [
+        0.0036148650106042624,
+        0.1071428656578064,
+        0.2686029374599457,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.177345,
+      "executed_action_sha256": "705ce81ce617a1b117bbd8d62e50591b0871943d86a8c79334390f3f3e343a75"
+    },
+    {
+      "frame_index": 201,
+      "timestamp_seconds": 20.1,
+      "raw_policy_action": [
+        0.0036148650106042624,
+        0.1071428656578064,
+        0.2686029374599457,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 190.607291,
+      "executed_action_sha256": "705ce81ce617a1b117bbd8d62e50591b0871943d86a8c79334390f3f3e343a75"
+    },
+    {
+      "frame_index": 202,
+      "timestamp_seconds": 20.2,
+      "raw_policy_action": [
+        -0.11518324166536331,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        -0.004470589105039835,
+        -0.016697481274604797,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 187.204085,
+      "executed_action_sha256": "7513f8e8d75bae6c631c1350d9157356f7bf6171aaeb8bc1ccf608274bad44ca"
+    },
+    {
+      "frame_index": 203,
+      "timestamp_seconds": 20.3,
+      "raw_policy_action": [
+        0.0036148650106042624,
+        0.1071428656578064,
+        0.2686029374599457,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.021873950958251953,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 190.00204,
+      "executed_action_sha256": "705ce81ce617a1b117bbd8d62e50591b0871943d86a8c79334390f3f3e343a75"
+    },
+    {
+      "frame_index": 204,
+      "timestamp_seconds": 20.4,
+      "raw_policy_action": [
+        0.01681465469300747,
+        0.1071428656578064,
+        0.30526259541511536,
+        -0.057065125554800034,
+        4.201572301099077e-05,
+        -0.06199159845709801,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.056479,
+      "executed_action_sha256": "2aac9f6d87889e4322f852a1579fba513d48016fc46bdcb0b6c641a8549eec4f"
+    },
+    {
+      "frame_index": 205,
+      "timestamp_seconds": 20.5,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        -0.0013865478103980422,
+        -0.01001050602644682,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.0
+      ],
+      "request_latency_ms": 215.916833,
+      "executed_action_sha256": "c28177944d0ee7cede386de19409b4ee2165466a8ba7c5e198ce259ecb752e2f"
+    },
+    {
+      "frame_index": 206,
+      "timestamp_seconds": 20.6,
+      "raw_policy_action": [
+        0.01681465469300747,
+        0.1071428656578064,
+        0.30526259541511536,
+        -0.057065125554800034,
+        4.201572301099077e-05,
+        -0.06199159845709801,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 200.042831,
+      "executed_action_sha256": "2aac9f6d87889e4322f852a1579fba513d48016fc46bdcb0b6c641a8549eec4f"
+    },
+    {
+      "frame_index": 207,
+      "timestamp_seconds": 20.7,
+      "raw_policy_action": [
+        -0.2075817734003067,
+        0.1071428656578064,
+        -0.0026785731315612793,
+        -0.02643907628953457,
+        -0.005974791012704372,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 192.197777,
+      "executed_action_sha256": "3feccb521acd6b8237c3b4627d2a3945485318cad2f240e598dee3cba6e90108"
+    },
+    {
+      "frame_index": 208,
+      "timestamp_seconds": 20.8,
+      "raw_policy_action": [
+        -0.1019834578037262,
+        -0.0013865478103980422,
+        -0.27396008372306824,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.625201,
+      "executed_action_sha256": "4201d12b58fd65eb79366d948fcc3dd02cd76bec8f74b6a5d08086b7470f5e96"
+    },
+    {
+      "frame_index": 209,
+      "timestamp_seconds": 20.9,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.242053,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 210,
+      "timestamp_seconds": 21.0,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.590203,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 211,
+      "timestamp_seconds": 21.1,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 194.034371,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 212,
+      "timestamp_seconds": 21.2,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.926336,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 213,
+      "timestamp_seconds": 21.3,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 192.483538,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 214,
+      "timestamp_seconds": 21.4,
+      "raw_policy_action": [
+        -0.14158281683921814,
+        0.15537816286087036,
+        -0.0026785731315612793,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 195.78611,
+      "executed_action_sha256": "bf6eb1745bf8fedc717a5f6db9df2edb76d1c95aa1cde67743170b6b7d14e16c"
+    },
+    {
+      "frame_index": 215,
+      "timestamp_seconds": 21.5,
+      "raw_policy_action": [
+        -0.002985029947012663,
+        -0.0013865478103980422,
+        0.129296213388443,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 197.464104,
+      "executed_action_sha256": "f7e83e39594218c471f2bb49bfc6291489d5599e509b59f0f92ffa7fd5e68342"
+    },
+    {
+      "frame_index": 216,
+      "timestamp_seconds": 21.6,
+      "raw_policy_action": [
+        -0.0557841882109642,
+        0.19155463576316833,
+        0.30526259541511536,
+        4.831982005271129e-05,
+        -0.06915125995874405,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 254.504912,
+      "executed_action_sha256": "cadc674090c250cbdd5131f68d54dc93e8253ada5b5e1440e0edb7552ed38319"
+    },
+    {
+      "frame_index": 217,
+      "timestamp_seconds": 21.7,
+      "raw_policy_action": [
+        -0.2999803125858307,
+        -0.0013865478103980422,
+        -0.6845483183860779,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 221.631899,
+      "executed_action_sha256": "a23e56d355e0b197ff8164242d2e23241bd3536591d301f783ce4eaeca1f9b3d"
+    },
+    {
+      "frame_index": 218,
+      "timestamp_seconds": 21.8,
+      "raw_policy_action": [
+        -0.2999803125858307,
+        -0.0013865478103980422,
+        -0.6845483183860779,
+        4.831982005271129e-05,
+        4.201572301099077e-05,
+        0.00012604848598130047,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.467981,
+      "executed_action_sha256": "a23e56d355e0b197ff8164242d2e23241bd3536591d301f783ce4eaeca1f9b3d"
+    },
+    {
+      "frame_index": 219,
+      "timestamp_seconds": 21.9,
+      "raw_policy_action": [
+        -0.0557841882109642,
+        0.19155463576316833,
+        0.26127099990844727,
+        -0.028094537556171417,
+        -0.07215966284275055,
+        -0.010226892307400703,
+        0.9960784316062927
+      ],
+      "request_latency_ms": 207.483336,
+      "executed_action_sha256": "7d4819030450c36a6bcec3ab9cecf4d3846936b1f8346fcc81623f7b61384922"
+    }
+  ],
+  "outcome": {
+    "success": false,
+    "termination": "timeout",
+    "reward": 0.0,
+    "error_code": null
+  },
+  "rollout": {
+    "suite": "libero_spatial",
+    "task_id": 5,
+    "init_state_index": 1,
+    "environment_seed": 0,
+    "max_policy_steps": 220
+  }
+}
