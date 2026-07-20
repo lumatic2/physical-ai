@@ -1,7 +1,7 @@
 # HORIZON — 보고 판단하고 움직이는 로봇팔 실험실
 
 > 생성: 2026-07-20 · ROADMAP marker: `harness:goal id="see-understand-act-robot-lab"` · 상태: active
-> 위계: Objective(`OBJECTIVE.md`) → **Horizon**(이 문서) → Milestone(`plans/2026-07-20-lab*-*.md`) → Step.
+> 위계: Objective(`OBJECTIVE.md`) → **Horizon**(이 문서) → Milestone(`plans/2026-07-21-lab*-*.md`) → Step.
 > 진행 상태의 정본은 `ROADMAP.md` marker다.
 
 ## 목표
@@ -20,13 +20,13 @@
 
 | milestone | 제목 (왜 milestone 규모인가) | plan doc | 승인 | 리서치 입력 |
 |---|---|---|---|---|
-| **LAB1** | 카메라-행동 episode 계약 — producer/schema/canonical evidence의 독립 step과 통합 검증 | `plans/2026-07-20-lab1-camera-action-episode-contract.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
-| **LAB2** | 출처가 보이는 VLM/VLA 판단·행동 기록 — semantic/VLA/controller lane과 인과 검증 | `plans/2026-07-20-lab2-observable-decision-action-trace.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
-| **LAB3** | 공개 로봇팔 실험실 — dual-camera UI, timeline replay, local/live evidence 통합 | `plans/2026-07-20-lab3-public-robot-arm-laboratory.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
+| **LAB1** | LeRobot episode 증거 — canonical profile/writer/PASS·FAIL/Rerun의 독립 step과 통합 검증 | `plans/2026-07-21-lab1-lerobot-episode-evidence.md` | Horizon 일괄승인 2026-07-21 | 기존 architecture/GitHub research + `experiments/147-camera-action-episode-contract/verify/official-viewer-reuse/README.md` |
+| **LAB2** | 관찰 가능한 판단·행동 인과 기록 — direct VLA와 VLM→skill lane의 사실 기반 비교 | `plans/2026-07-21-lab2-observable-causal-trace.md` | Horizon 일괄승인 2026-07-21 | LAB1 canonical episode + 기존 architecture/GitHub research |
+| **LAB3** | 공개 관찰형 로봇팔 실험실 — 공식 viewer interaction 선택 이식과 local/live evidence 통합 | `plans/2026-07-21-lab3-public-observable-arm-lab.md` | Horizon 일괄승인 2026-07-21 | official viewer reuse evidence + LAB2 causal trace |
 
 ## 닫는 기준
 
-- canonical PASS와 FAIL episode가 main/wrist camera, state, instruction, action, latency, outcome을 같은 versioned trace로 보존한다. — 관측: LAB1 validator와 `experiments/147-camera-action-episode-contract/verify/`.
+- canonical PASS와 FAIL episode가 main/wrist camera, state, instruction, action, latency, outcome을 LeRobot v3 episode와 provenance sidecar로 보존한다. — 관측: LAB1 profile validator, 공식 Rerun export와 `experiments/147-camera-action-episode-contract/verify/`.
 - 공개 trace의 모든 event가 `sensor|vlm|vla|controller|environment` source를 갖고 보조 설명과 실제 action의 인과 경계를 구분한다. — 관측: LAB2 provenance validator와 negative fixture.
 - 공개 브라우저에서 main scene, wrist model-input view, instruction, decision/action/result timeline을 scrub할 수 있고 raw evidence로 내려갈 수 있다. — 관측: LAB3 local/live Playwright smoke와 `qaArmLabSummary()`.
 - `recorded evidence`를 live inference로, simulation을 real telemetry로 표시하는 fixture가 QA에서 실패한다. — 관측: claim-boundary negative smoke.
@@ -46,4 +46,5 @@
 
 - 위(Objective): `OBJECTIVE.md`
 - 설계 결정: `docs/adr/0013-observable-vision-language-action-lab.md`
-- 아래(Milestone PLANs): `plans/2026-07-20-lab1-camera-action-episode-contract.md`, `plans/2026-07-20-lab2-observable-decision-action-trace.md`, `plans/2026-07-20-lab3-public-robot-arm-laboratory.md`
+- 아래(Milestone PLANs, Horizon 일괄승인 2026-07-21): `plans/2026-07-21-lab1-lerobot-episode-evidence.md`, `plans/2026-07-21-lab2-observable-causal-trace.md`, `plans/2026-07-21-lab3-public-observable-arm-lab.md`
+- 이전 승인 이력: `plans/2026-07-20-lab1-camera-action-episode-contract.md`, `plans/2026-07-20-lab2-observable-decision-action-trace.md`, `plans/2026-07-20-lab3-public-robot-arm-laboratory.md`
