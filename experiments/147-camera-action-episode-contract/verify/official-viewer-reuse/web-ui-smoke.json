@@ -1,0 +1,28 @@
+{
+  "source_repo": {
+    "url": "https://github.com/huggingface/lerobot-dataset-visualizer",
+    "source_commit": "5bae289b5336",
+    "accessed": "2026-07-21"
+  },
+  "deployed_space": {
+    "url": "https://huggingface.co/spaces/lerobot/visualize_dataset?path=%2Flerobot%2Flibero%2Fepisode_0",
+    "accessed": "2026-07-21",
+    "result": "pass",
+    "video_elements": 2,
+    "instruction_elements": 1,
+    "seek_sliders": 1,
+    "pause_buttons": 1,
+    "state_graph": true,
+    "action_graph": true,
+    "episode_navigation": true,
+    "screenshot": "lerobot-dataset-visualizer.png"
+  },
+  "local_source_run": {
+    "url": "http://127.0.0.1:3017/lerobot/libero/episode_0",
+    "result": "fail",
+    "error": "Cannot read properties of undefined (reading 'length')",
+    "error_component": "Recharts CategoricalChartWrapper.displayDefaultTooltip",
+    "screenshot": "lerobot-dataset-visualizer-local-failure.png",
+    "interpretation": "the interaction and component design are reusable, but the whole app is not a zero-maintenance vendored dependency"
+  }
+}

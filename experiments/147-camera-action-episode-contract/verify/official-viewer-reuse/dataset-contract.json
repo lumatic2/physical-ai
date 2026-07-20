@@ -1,0 +1,56 @@
+{
+  "source": {
+    "repo_id": "lerobot/libero",
+    "url": "https://huggingface.co/datasets/lerobot/libero",
+    "accessed": "2026-07-21",
+    "codebase_version": "v3.0",
+    "fps": 10.0
+  },
+  "contract": {
+    "reusable": true,
+    "camera_keys": [
+      "observation.images.image",
+      "observation.images.image2"
+    ],
+    "camera_count": 2,
+    "required_features": [
+      "observation.state",
+      "action",
+      "timestamp"
+    ],
+    "missing_features": [],
+    "rejection_reasons": []
+  },
+  "sample": {
+    "episode_index": 0,
+    "episode_frames": 214,
+    "camera_shapes_chw": {
+      "observation.images.image": [
+        3,
+        256,
+        256
+      ],
+      "observation.images.image2": [
+        3,
+        256,
+        256
+      ]
+    },
+    "state_shape": [
+      8
+    ],
+    "action_shape": [
+      7
+    ],
+    "timestamp_seconds": 0.0,
+    "instruction": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+    "video_backend": "pyav"
+  },
+  "rerun_artifact": {
+    "path": "C:\\Users\\yusun\\projects\\physical-ai\\tmp\\lab1-viewer-probe\\rrd\\lerobot_libero_episode_0.rrd",
+    "exists": true,
+    "size_bytes": 37102266,
+    "sha256": "DD789149E6C98918E2026A753C659DA1AEBF5FB362F812F62DACABB3FB43E1F8"
+  },
+  "reusable": true
+}

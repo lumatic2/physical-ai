@@ -1,0 +1,27 @@
+{
+  "command": "lerobot-dataset-viz --repo-id lerobot/libero --episode-index 0 --save 1 --display-mode rerun",
+  "result": "pass_with_pyav_fallback",
+  "rrd_verified": true,
+  "rrd_size_bytes": 37102266,
+  "rrd_sha256": "DD789149E6C98918E2026A753C659DA1AEBF5FB362F812F62DACABB3FB43E1F8",
+  "entities": {
+    "/action": 14,
+    "/observation.images.image": 26,
+    "/observation.images.image2": 26,
+    "/state": 14
+  },
+  "timelines": ["frame_index", "log_tick", "log_time", "timestamp"],
+  "viewer_surface": {
+    "two_camera_panels": true,
+    "action_graph": true,
+    "state_graph": true,
+    "scrubber": true,
+    "screenshot": "rerun-viewer.png"
+  },
+  "windows_friction": {
+    "initial_backend": "torchcodec",
+    "initial_result": "failed_to_load_torchcodec_shared_libraries",
+    "recovery": "remove torchcodec from the isolated probe environment and use LeRobot's PyAV fallback",
+    "product_requirement": "the adapter must select PyAV explicitly on this Windows environment"
+  }
+}

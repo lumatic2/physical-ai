@@ -146,6 +146,7 @@
 | 137 | [physics-diagnostics-panel](137-physics-diagnostics-panel/verify/physics-diagnostics-panel-smoke.json) | `?debug=1`에서 runtime readout을 사람이 읽을 수 있는 패널로 노출 | ✅ local/live diagnostics panel smoke PASS |
 | 138 | [command-contact-timeline](138-command-contact-timeline/verify/command-contact-timeline.json) | keyboard command와 MuJoCo runtime readout을 같은 timeline evidence로 기록 | ✅ local/live same-run command/readout timeline PASS |
 | 139 | [contact-readout-interpretation](139-contact-readout-interpretation/verify/contact-readout-interpretation.json) | readout이 지지하는 claim과 지지하지 않는 claim을 공개 문구와 QA evidence로 분리 | ✅ interpretation boundary smoke PASS |
+| 147 | [camera-action-episode-contract](147-camera-action-episode-contract/README.md) | LeRobot episode와 공식 viewer가 LAB1의 dual-camera/action 관찰 계약을 얼마나 재사용 가능한지 검증 | ✅ official reuse probe PASS; LAB1 producer addendum 승인 대기 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

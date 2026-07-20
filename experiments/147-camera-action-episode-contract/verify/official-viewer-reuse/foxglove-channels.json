@@ -1,0 +1,59 @@
+{
+  "url": "ws://127.0.0.1:8765",
+  "subprotocol": "foxglove.sdk.v1",
+  "server_info": {
+    "op": "serverInfo",
+    "name": "lerobot/libero/episode_0",
+    "capabilities": [
+      "playbackControl",
+      "time"
+    ],
+    "metadata": {
+      "fg-library": "foxglove-sdk-python/0.25.3"
+    },
+    "sessionId": "1784561677325",
+    "dataStartTime": {
+      "sec": 0,
+      "nsec": 0
+    },
+    "dataEndTime": {
+      "sec": 21,
+      "nsec": 299999237
+    }
+  },
+  "channels": [
+    {
+      "id": 4,
+      "topic": "/action/state",
+      "encoding": "json",
+      "schema_name": "lerobot.Scalars"
+    },
+    {
+      "id": 1,
+      "topic": "/observation/images/image",
+      "encoding": "protobuf",
+      "schema_name": "foxglove.RawImage"
+    },
+    {
+      "id": 2,
+      "topic": "/observation/images/image2",
+      "encoding": "protobuf",
+      "schema_name": "foxglove.RawImage"
+    },
+    {
+      "id": 3,
+      "topic": "/observation/state",
+      "encoding": "json",
+      "schema_name": "lerobot.Scalars"
+    }
+  ],
+  "required_topics": [
+    "/action/state",
+    "/observation/images/image",
+    "/observation/images/image2",
+    "/observation/state"
+  ],
+  "missing_topics": [],
+  "missing_capabilities": [],
+  "reusable": true
+}
