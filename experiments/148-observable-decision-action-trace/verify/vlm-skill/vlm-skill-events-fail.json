@@ -1,0 +1,152 @@
+{
+  "schema_version": "physical-ai-causal-events-v1",
+  "episode_ref": {
+    "dataset_revision": "777701b02c69240f48ffb451963b761560bcd4e4",
+    "episode_index": 0
+  },
+  "lane": "vlm_skill",
+  "claim_boundary": "local auxiliary VLM selected a bounded skill; scripted action replay executed it in LIBERO simulation",
+  "events": [
+    {
+      "id": "sensor-frame-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.0,
+      "source": "sensor",
+      "kind": "model_input_observation",
+      "causal_role": "observation",
+      "parents": [],
+      "model_or_component": {
+        "name": "libero",
+        "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+      },
+      "payload_ref": "lerobot://episode/0/frame/0/observation.images.image",
+      "payload": {
+        "image_sha256": "048394aab474ffe938e03f990ef496a1e95b9b79ff9c6a97a26150b427b5c155",
+        "instruction": "pick up the black bowl on the ramekin and place it on the plate"
+      },
+      "assistance": {
+        "used": false,
+        "source": "none"
+      }
+    },
+    {
+      "id": "vlm-scene-observation",
+      "timestep": 0,
+      "timestamp_sec": 4.1278999999999995,
+      "source": "vlm",
+      "kind": "structured_scene_observation",
+      "causal_role": "observation",
+      "parents": [
+        "sensor-frame-000000"
+      ],
+      "model_or_component": {
+        "name": "Qwen/Qwen3-VL-4B-Instruct",
+        "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+      },
+      "payload_ref": "vlm-record://decision/scene",
+      "payload": {
+        "visible_objects": [
+          "black_bowl",
+          "ramekin",
+          "plate",
+          "robot_gripper"
+        ],
+        "target": "black_bowl",
+        "destination": "plate",
+        "spatial_summary": "A black bowl is on top of a ramekin, and a plate is nearby on the table."
+      },
+      "assistance": {
+        "used": false,
+        "source": "none"
+      }
+    },
+    {
+      "id": "vlm-skill-selection",
+      "timestep": 0,
+      "timestamp_sec": 4.1278999999999995,
+      "source": "vlm",
+      "kind": "bounded_skill_selection",
+      "causal_role": "decision",
+      "parents": [
+        "vlm-scene-observation"
+      ],
+      "model_or_component": {
+        "name": "Qwen/Qwen3-VL-4B-Instruct",
+        "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+      },
+      "payload_ref": "vlm-record://decision/selected_skill",
+      "payload": {
+        "name": "pick_and_place",
+        "target": "black_bowl",
+        "destination": "plate",
+        "confidence": 0.95
+      },
+      "assistance": {
+        "used": false,
+        "source": "none"
+      }
+    },
+    {
+      "id": "controller-skill-execution",
+      "timestep": 0,
+      "timestamp_sec": 4.1278999999999995,
+      "source": "controller",
+      "kind": "scripted_skill_execution",
+      "causal_role": "execution",
+      "parents": [
+        "vlm-skill-selection"
+      ],
+      "model_or_component": {
+        "name": "canonical-action-replay",
+        "revision": "777701b02c69240f48ffb451963b761560bcd4e4"
+      },
+      "payload_ref": "skill-result://executed_action_hashes",
+      "payload": {
+        "skill": {
+          "name": "pick_and_place",
+          "target": "black_bowl",
+          "destination": "plate",
+          "implementation": "canonical_action_replay"
+        },
+        "actions_requested": 220,
+        "actions_executed": 220,
+        "action_source": {
+          "kind": "canonical_action_replay",
+          "dataset_revision": "777701b02c69240f48ffb451963b761560bcd4e4",
+          "episode_index": 0
+        }
+      },
+      "assistance": {
+        "used": true,
+        "source": "scripted_skill"
+      }
+    },
+    {
+      "id": "environment-skill-outcome",
+      "timestep": 219,
+      "timestamp_sec": 29.672398,
+      "source": "environment",
+      "kind": "measured_skill_outcome",
+      "causal_role": "result",
+      "parents": [
+        "controller-skill-execution"
+      ],
+      "model_or_component": {
+        "name": "libero",
+        "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+      },
+      "payload_ref": "skill-result://outcome",
+      "payload": {
+        "success": false,
+        "termination": "timeout",
+        "reward": 0.0,
+        "measured": true,
+        "latency_ms": 25544.498
+      },
+      "assistance": {
+        "used": true,
+        "source": "scripted_skill"
+      }
+    }
+  ]
+}

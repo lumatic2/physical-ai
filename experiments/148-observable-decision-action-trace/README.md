@@ -25,3 +25,7 @@ python direct_vla.py --dataset-root <lerobot-root> --sidecar <episode-sidecar.js
 ## Local VLM → bounded skill
 
 `vlm_runner.py`는 pinned local Qwen3-VL checkpoint가 main-camera frame과 instruction에서 scene/skill JSON만 생성하게 한다. `skill_executor.py`는 allowlist에 등록된 binding만 받아 same-task LIBERO에서 canonical action sequence를 scripted skill로 재실행한다. 이 lane은 direct VLA와 별도이며, controller와 outcome event에 `assistance.source=scripted_skill`을 표시한다.
+
+## Two-lane evidence
+
+[통합 비교 evidence](verify/two-lane/README.md)는 direct OpenVLA와 auxiliary Qwen3-VL→scripted skill의 실제 PASS/FAIL 네 trace를 같은 schema로 검증한다. source relabel, assistance 누락, hidden reasoning과 outcome drift는 통합 gate가 거부한다.

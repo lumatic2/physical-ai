@@ -65,9 +65,9 @@
       "milestone_id": "LAB2",
       "status": "active",
       "plan_path": "plans/2026-07-21-lab2-observable-causal-trace.md",
-      "changeset_path": "changesets/20260721-lab2-vlm-bounded-skill-lane",
-      "next_step": "step-4",
-      "current_step": "step-4",
+      "changeset_path": "changesets/20260721-lab2-two-lane-comparison-evidence",
+      "next_step": null,
+      "current_step": null,
       "steps": [
         {
           "id": "step-1",
@@ -87,7 +87,7 @@
         {
           "id": "step-4",
           "label": "step-4 — two-lane-comparison-evidence",
-          "status": "pending"
+          "status": "completed"
         }
       ],
       "execution_mode": "continuous",

@@ -11,3 +11,4 @@
 | 7 | [20260721-lab2-provenance-event-contract](20260721-lab2-provenance-event-contract/README.md) | 2026-07-21 | 판단·행동 event의 출처·인과·assistance 계약 | 5/5 | completed |
 | 8 | [20260721-lab2-direct-vla-causal-emitter](20260721-lab2-direct-vla-causal-emitter/README.md) | 2026-07-21 | 실제 OpenVLA input→action→outcome 인과 event | 5/5 | completed |
 | 9 | [20260721-lab2-vlm-bounded-skill-lane](20260721-lab2-vlm-bounded-skill-lane/README.md) | 2026-07-21 | local VLM 관측·skill 선택과 assisted LIBERO 실행 | 5/5 | completed |
+| 10 | [20260721-lab2-two-lane-comparison-evidence](20260721-lab2-two-lane-comparison-evidence/README.md) | 2026-07-21 | direct VLA와 VLM→skill 실제 PASS/FAIL 통합 비교 | 5/5 | completed |

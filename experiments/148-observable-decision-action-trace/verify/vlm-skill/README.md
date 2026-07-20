@@ -17,6 +17,7 @@ Qwen3-VL-4B-Instruct를 로컬 RTX 5090에서 exact revision으로 실행해, LA
 - 60번째 frame: gripper가 ramekin/bowl 근처에 있다는 변화된 관측, 같은 skill, confidence 0.90, 4,103.460 ms.
 - executor: allowlist binding을 `canonical_action_replay`로 해석하고 same task 5/init-state 0에서 78 actions를 실제 LIBERO environment에 실행했다.
 - measured result: success, reward 1.0, 78/78 actions, 10,961.653 ms.
+- canonical FAIL init-state에서도 같은 local VLM decision을 검증한 뒤 220/220 scripted actions를 실행했고 timeout, reward 0.0을 측정했다.
 - assistance: controller와 environment result 모두 `scripted_skill`로 표시한다. VLM이 저수준 action을 생성했다는 주장이 아니다.
 - VLM skill event stream SHA-256: `b9d63ab3a4c8625050ba68e473cd01be9d67aeab8f4b28360d7b82a88159bde4`.
 
@@ -25,7 +26,9 @@ Qwen3-VL-4B-Instruct를 로컬 RTX 5090에서 exact revision으로 실행해, LA
 - `model-gate.json`: 후보·revision·license·memory 기술 게이트.
 - `frames/`: LAB1 canonical video에서 추출한 고정 main-camera frame.
 - `vlm-decision-start.json`, `vlm-decision-mid.json`: raw output, parsed decision, latency, prompt/image hash.
+- `vlm-decision-fail.json`: canonical FAIL 초기 frame의 structured output.
 - `skill-result.json`: allowlisted executor의 실제 action source와 measured LIBERO outcome.
+- `skill-result-fail.json`: 220-action timeout measured outcome.
 - `vlm-skill-events.json`, `vlm-skill-report.json`: source/parent/assistance가 검증된 5-event chain.
 
 ## 재현
