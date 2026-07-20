@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
+import argparse
 import json
+import os
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
 
-BASE_URL = "http://127.0.0.1:8132/arm-lab.html"
-OUT_DIR = Path(__file__).resolve().parent / "out" / "arm-lab"
+DEFAULT_URL = "http://127.0.0.1:8132/arm-lab.html"
+WEB_ROOT = Path(__file__).resolve().parents[1]
+OUT_DIR = WEB_ROOT / "verify" / "arm-lab"
 
 
 def assert_synchronized(summary: dict) -> None:
@@ -29,12 +32,14 @@ def wait_summary(page):
     return page.evaluate("window.qaArmLabSummary()")
 
 
-def run_desktop(browser):
+def run_desktop(browser, base_url, prefix):
     page = browser.new_page(viewport={"width": 1440, "height": 1080})
     console_errors: list[str] = []
     page.on("console", lambda message: console_errors.append(message.text) if message.type == "error" else None)
     page.on("pageerror", lambda error: console_errors.append(str(error)))
-    page.goto(BASE_URL, wait_until="networkidle")
+    failed_responses: list[str] = []
+    page.on("response", lambda response: failed_responses.append(f"{response.status} {response.url}") if response.status >= 400 else None)
+    page.goto(base_url, wait_until="networkidle")
     page.get_by_role("heading", name="로봇이 보고, 움직이고, 결과를 만든 기록").wait_for()
     summary = wait_summary(page)
     assert summary["episode"] == "pass", summary
@@ -67,7 +72,7 @@ def run_desktop(browser):
     assert drawer.get_by_text("SIMULATION", exact=True).is_visible()
     assert drawer.locator(".arm-artifact-link").count() == 4
     assert drawer.get_by_text("Qwen/Qwen3-VL-4B-Instruct", exact=True).first.is_visible()
-    page.screenshot(path=OUT_DIR / "drawer-dark.png", full_page=True)
+    page.screenshot(path=OUT_DIR / f"{prefix}-drawer-dark.png", full_page=True)
     page.keyboard.press("Escape")
     drawer.wait_for(state="hidden")
 
@@ -100,41 +105,48 @@ def run_desktop(browser):
     page.locator('[data-testid="main-camera"] video').dispatch_event("timeupdate")
     page.wait_for_function("() => window.qaArmLabSummary().syncDelta <= 0.08")
 
-    page.screenshot(path=OUT_DIR / "desktop-dark.png", full_page=True)
+    page.screenshot(path=OUT_DIR / f"{prefix}-desktop-dark.png", full_page=True)
     page.get_by_role("button", name="라이트 모드로 전환").click()
     page.wait_for_function("() => window.qaArmLabSummary().theme === 'light'")
     light_background = page.evaluate("getComputedStyle(document.body).backgroundColor")
     assert light_background != "rgb(0, 0, 0)", light_background
-    page.screenshot(path=OUT_DIR / "desktop-light.png", full_page=True)
+    page.screenshot(path=OUT_DIR / f"{prefix}-desktop-light.png", full_page=True)
     assert not console_errors, console_errors
+    assert not failed_responses, failed_responses
     page.close()
-    return {"summary": keyboard_summary, "negativeDesyncRejected": negative_probe_passed, "consoleErrors": console_errors}
+    return {"summary": keyboard_summary, "negativeDesyncRejected": negative_probe_passed, "consoleErrors": console_errors, "failedResponses": failed_responses}
 
 
-def run_mobile(browser):
+def run_mobile(browser, base_url, prefix):
     page = browser.new_page(viewport={"width": 390, "height": 844}, device_scale_factor=1)
-    page.goto(BASE_URL, wait_until="networkidle")
+    page.goto(base_url, wait_until="networkidle")
     summary = wait_summary(page)
     assert_synchronized(summary)
     overflow = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
     assert overflow <= 0, {"horizontalOverflow": overflow}
     assert page.get_by_test_id("main-camera").bounding_box()["y"] < page.get_by_test_id("wrist-camera").bounding_box()["y"]
-    page.screenshot(path=OUT_DIR / "mobile-dark.png", full_page=True)
+    page.screenshot(path=OUT_DIR / f"{prefix}-mobile-dark.png", full_page=True)
     page.close()
     return {"horizontalOverflow": overflow, "sourceOrderStable": True}
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", default=os.environ.get("ARM_LAB_URL", DEFAULT_URL))
+    parser.add_argument("--prefix", default=None)
+    args = parser.parse_args()
+    prefix = args.prefix or ("local" if "127.0.0.1" in args.url or "localhost" in args.url else "live")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
         report = {
-            "desktop": run_desktop(browser),
-            "mobile": run_mobile(browser),
+            "url": args.url,
+            "desktop": run_desktop(browser, args.url, prefix),
+            "mobile": run_mobile(browser, args.url, prefix),
         }
         browser.close()
     report["pass"] = True
-    (OUT_DIR / "player-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    (OUT_DIR / f"{prefix}-player-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

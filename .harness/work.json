@@ -121,7 +121,7 @@
       "milestone_id": "LAB3",
       "status": "active",
       "plan_path": "plans/2026-07-21-lab3-public-observable-arm-lab.md",
-      "changeset_path": "changesets/20260721-lab3-causal-timeline-evidence-drawer",
+      "changeset_path": "changesets/20260721-lab3-public-reviewer-gate",
       "next_step": "step-4",
       "current_step": "step-4",
       "steps": [

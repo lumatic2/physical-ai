@@ -6,6 +6,22 @@
 
 **라이브: https://robotics.askewly.com** (상단 패널에서 선택하거나 `?exp=<name>` 으로 직접 전환)
 
+## 관찰형 로봇팔 실험실 (LAB3)
+
+- Local: `npm run dev` 후 `http://127.0.0.1:8132/arm-lab.html`
+- Public route: `https://robotics.askewly.com/arm-lab`
+- 증거 경계: LAB1/LAB2의 실제 OpenVLA·Qwen3-VL/LIBERO 기록을 정적으로 재생한다. 실시간 추론이나 실제 로봇 telemetry가 아니다.
+- 사용법: PASS/FAIL과 Direct VLA/VLM→bounded skill을 선택하고, 공통 scrubber로 두 camera·state/action·causal event를 같은 frame에서 확인한다. `증거 원문 열기`는 source, parent, assistance, revision과 content hash를 보여준다.
+
+검증:
+
+```powershell
+python gen_arm_lab_manifest.py --verify-only
+node qa/arm_lab_claim_check.mjs
+python C:\Users\yusun\.codex\skills\webapp-testing\scripts\with_server.py --server "npm run dev -- --host 127.0.0.1 --port 8132" --port 8132 -- python qa/arm_lab_player_check.py
+python qa/arm_lab_player_check.py --url https://robotics.askewly.com/arm-lab --prefix live
+```
+
 | `?exp=` | 임베디먼트 | 구동 |
 |---|---|---|
 | `go1-walk` | Unitree Go1 (4족) | verified joystick locomotion policy live closed-loop (onnxruntime-web) + 조이스틱 조향 |
