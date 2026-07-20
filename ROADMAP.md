@@ -37,7 +37,7 @@
 | M44 | G1 Contact Body & Flicker Fix | G1 넘어짐 충돌과 visual floor flicker를 바로잡는다 | `experiments/145-g1-contactbody-flicker-fix` | 완료 |
 | M45 | Real Robot Collision Contract | 실제 로봇 충돌 readiness를 sensor/stop-gate contract로 분리한다 | `experiments/146-real-robot-collision-contract` | 완료 |
 | LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | 완료 |
-| LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | pending |
+| LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | active |
 | LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/149-public-robot-arm-laboratory` | pending |
 
 ## Current Horizon
@@ -58,9 +58,8 @@
 
 - Completed at: 2026-07-21
 - Summary: 동일 과제의 실제 OpenVLA PASS·FAIL episode가 LeRobot·Rerun 검증을 통과했다.
-## Next Candidates
 
-<!-- harness:milestone id="LAB2" status="pending" priority="P1" -->
+<!-- harness:milestone id="LAB2" status="active" priority="P1" -->
 ### LAB2 — 출처가 보이는 VLM/VLA 판단·행동 기록
 
 - DoD: 계층형 VLM→skill과 direct VLA action episode가 동일 trace contract에서 실행되고 모든 event의 source·causal role·outcome이 검증되며 hidden-reasoning fixture가 거부된다.
@@ -68,6 +67,8 @@
 - Gap: action은 실행되지만 VLM 관측, VLA action, controller 결과의 출처와 인과 경계가 보이지 않는다.
 - Scale: changesets>=4; surfaces: VLM adapter, skill executor, VLA trace, provenance gate; capability: 판단과 행동의 실제 출처를 비교한다.
 - Status: [ ]
+
+## Next Candidates
 
 <!-- harness:milestone id="LAB3" status="pending" priority="P2" -->
 ### LAB3 — 공개 로봇팔 피지컬 AI 실험실
