@@ -8,3 +8,4 @@
 | 4 | [20260721-lab1-libero-lerobot-writer](20260721-lab1-libero-lerobot-writer/README.md) | 2026-07-21 | LIBERO observation/action을 official LeRobot writer로 저장 | 5/5 | completed |
 | 5 | [20260721-lab1-bounded-official-viewer-smoke](20260721-lab1-bounded-official-viewer-smoke/README.md) | 2026-07-21 | 고정 OpenVLA/LIBERO episode와 official Rerun smoke | 5/5 | completed |
 | 6 | [20260721-lab1-canonical-pass-fail-pair](20260721-lab1-canonical-pass-fail-pair/README.md) | 2026-07-21 | 동일 task/policy의 canonical PASS·FAIL episode pair | 5/5 | completed |
+| 7 | [20260721-lab2-provenance-event-contract](20260721-lab2-provenance-event-contract/README.md) | 2026-07-21 | 판단·행동 event의 출처·인과·assistance 계약 | 5/5 | completed |

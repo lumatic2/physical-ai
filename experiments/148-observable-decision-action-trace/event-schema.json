@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotics.askewly.com/schemas/physical-ai-causal-events-v1.json",
+  "title": "Physical AI observable causal event stream",
+  "type": "object",
+  "required": ["schema_version", "episode_ref", "lane", "claim_boundary", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "physical-ai-causal-events-v1"},
+    "episode_ref": {
+      "type": "object",
+      "required": ["dataset_revision", "episode_index"],
+      "additionalProperties": false,
+      "properties": {
+        "dataset_revision": {"type": "string", "minLength": 7},
+        "episode_index": {"type": "integer", "minimum": 0}
+      }
+    },
+    "lane": {"enum": ["direct_vla", "vlm_skill"]},
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "timestep", "timestamp_sec", "source", "kind", "causal_role", "parents", "model_or_component", "payload_ref", "payload", "assistance"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "timestep": {"type": "integer", "minimum": 0},
+          "timestamp_sec": {"type": "number", "minimum": 0},
+          "source": {"enum": ["sensor", "vlm", "vla", "controller", "environment"]},
+          "kind": {"type": "string", "minLength": 1},
+          "causal_role": {"enum": ["observation", "decision", "proposal", "execution", "result"]},
+          "parents": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "model_or_component": {
+            "type": "object",
+            "required": ["name", "revision"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {"type": "string", "minLength": 1},
+              "revision": {"type": "string", "minLength": 1}
+            }
+          },
+          "payload_ref": {"type": "string", "minLength": 1},
+          "payload": {"type": "object"},
+          "assistance": {
+            "type": "object",
+            "required": ["used", "source"],
+            "additionalProperties": false,
+            "properties": {
+              "used": {"type": "boolean"},
+              "source": {"enum": ["none", "simulator_ground_truth", "scripted_skill"]}
+            }
+          }
+        }
+      }
+    }
+  }
+}

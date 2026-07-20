@@ -1,0 +1,63 @@
+{
+  "schema_version": "physical-ai-causal-events-v1",
+  "episode_ref": {
+    "dataset_revision": "777701b02c69240f48ffb451963b761560bcd4e4",
+    "episode_index": 0
+  },
+  "lane": "direct_vla",
+  "claim_boundary": "recorded OpenVLA inference in LIBERO simulation; not hidden reasoning or real telemetry",
+  "events": [
+    {
+      "id": "sensor-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.0,
+      "source": "sensor",
+      "kind": "camera_observation",
+      "causal_role": "observation",
+      "parents": [],
+      "model_or_component": {"name": "libero", "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"},
+      "payload_ref": "lerobot://episode/0/frame/0/observation.images.image",
+      "payload": {"camera_role": "main", "model_input": true},
+      "assistance": {"used": false, "source": "none"}
+    },
+    {
+      "id": "vla-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.0125,
+      "source": "vla",
+      "kind": "action_proposal",
+      "causal_role": "proposal",
+      "parents": ["sensor-000000"],
+      "model_or_component": {"name": "openvla", "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"},
+      "payload_ref": "lab-provenance://episode/0/action_events/0/raw_policy_action",
+      "payload": {"latency_ms": 12.5},
+      "assistance": {"used": false, "source": "none"}
+    },
+    {
+      "id": "controller-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.013,
+      "source": "controller",
+      "kind": "action_acceptance",
+      "causal_role": "execution",
+      "parents": ["vla-000000"],
+      "model_or_component": {"name": "libero-env-step", "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"},
+      "payload_ref": "lerobot://episode/0/frame/0/action",
+      "payload": {"accepted": true},
+      "assistance": {"used": false, "source": "none"}
+    },
+    {
+      "id": "environment-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.05,
+      "source": "environment",
+      "kind": "step_result",
+      "causal_role": "result",
+      "parents": ["controller-000000"],
+      "model_or_component": {"name": "libero", "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"},
+      "payload_ref": "lab-provenance://episode/0/outcome",
+      "payload": {"reward": 0.0, "success": false},
+      "assistance": {"used": false, "source": "none"}
+    }
+  ]
+}

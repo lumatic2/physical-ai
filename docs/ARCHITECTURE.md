@@ -52,7 +52,9 @@ The first Horizon does not require an always-on inference backend. Local WSL2/GP
 - Physics readout summary: JSON object with supported MuJoCo readout fields, sampled values when available, unavailable fields, and claim level.
 - Observable arm episode: LeRobot v3 episode with synchronized main/wrist camera, 8D state, executed 7D action, timestamp and task mapping.
 - Arm provenance sidecar: pinned dataset/environment/policy revisions, camera source and model-input flag, raw-to-executed action linkage, latency, reward, termination/success and recorded-simulation claim boundary. It must not duplicate canonical frame fields.
-- Decision event: `{timestep, source, kind, payload, model_or_component}` where `source` is one of `sensor|vlm|vla|controller|environment`; hidden chain-of-thought is not a supported field.
+- Decision event stream: LAB1 episode를 `episode_ref`로 가리키는 `physical-ai-causal-events-v1` 문서다. 각 event는 `{id, timestep, timestamp_sec, source, kind, causal_role, parents, model_or_component, payload_ref, payload, assistance}`를 가지며 `source`는 `sensor|vlm|vla|controller|environment` 중 하나다.
+- Causality rule: `parents`에 앞서 기록된 event id가 없으면 observation 외의 decision/proposal/execution/result를 인과 event로 인정하지 않는다. 시간상 인접함은 인과 근거가 아니다.
+- Assistance rule: simulator ground truth나 scripted skill을 사용하면 `assistance.used=true`와 실제 source를 기록한다. hidden chain-of-thought와 internal reasoning은 지원하지 않는 필드다.
 
 ## 금지사항
 

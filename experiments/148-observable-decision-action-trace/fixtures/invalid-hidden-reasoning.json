@@ -1,0 +1,21 @@
+{
+  "schema_version": "physical-ai-causal-events-v1",
+  "episode_ref": {"dataset_revision": "777701b02c69240f48ffb451963b761560bcd4e4", "episode_index": 0},
+  "lane": "direct_vla",
+  "claim_boundary": "invalid fixture",
+  "events": [
+    {
+      "id": "vla-000000",
+      "timestep": 0,
+      "timestamp_sec": 0.0,
+      "source": "vla",
+      "kind": "action_proposal",
+      "causal_role": "proposal",
+      "parents": [],
+      "model_or_component": {"name": "openvla", "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"},
+      "payload_ref": "fixture://invalid",
+      "payload": {"chain_of_thought": "invented internal reasoning"},
+      "assistance": {"used": false, "source": "none"}
+    }
+  ]
+}

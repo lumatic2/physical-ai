@@ -51,5 +51,5 @@
 - M34: contact/force readout은 browser runtime에서 실제 노출 가능한 MuJoCo state만 probe하고, 실패 시 unsupported evidence로 명시한다.
 - M35: public README/live story는 M27-M34 evidence를 반영하되 real robot telemetry나 unassisted controller proof로 과장하지 않는다.
 - LAB1: canonical PASS/FAIL LeRobot v3 episode가 main/wrist camera, state, instruction, executed action, timing을 보존하고 provenance sidecar가 revision·latency·outcome·claim boundary를 중복 없이 연결한다.
-- LAB2: structured VLM/skill event와 direct VLA action event가 source-tagged timeline에서 구분되고, 숨은 reasoning을 증거처럼 표시하지 않는다.
+- LAB2: structured VLM/skill event와 direct VLA action event가 source-tagged timeline에서 구분되고, 모든 event가 parent·causal role·component revision·assistance를 보존하며 숨은 reasoning을 증거처럼 표시하지 않는다.
 - LAB3: 공개 브라우저가 dual-camera episode와 decision/action/result timeline을 재생하고 local/live QA가 raw evidence linkage를 검증한다.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_work_id": "see-understand-act-robot-lab-lab1",
+  "active_work_id": "see-understand-act-robot-lab-lab2",
   "works": {
     "see-understand-act-robot-lab-lab1": {
       "work_id": "see-understand-act-robot-lab-lab1",
@@ -58,6 +58,61 @@
       "updated_at": "2026-07-21",
       "notes": "LAB1 final report and ROADMAP completion recorded.",
       "completion_summary": "동일 OpenVLA·LIBERO 과제의 실제 PASS 78프레임과 FAIL 220프레임 episode를 LeRobot·Rerun 증거로 고정했다."
+    },
+    "see-understand-act-robot-lab-lab2": {
+      "work_id": "see-understand-act-robot-lab-lab2",
+      "horizon_id": "see-understand-act-robot-lab",
+      "milestone_id": "LAB2",
+      "status": "active",
+      "plan_path": "plans/2026-07-21-lab2-observable-causal-trace.md",
+      "changeset_path": "changesets/20260721-lab2-provenance-event-contract",
+      "next_step": "step-2",
+      "current_step": "step-2",
+      "steps": [
+        {
+          "id": "step-1",
+          "label": "step-1 — provenance-event-contract",
+          "status": "completed"
+        },
+        {
+          "id": "step-2",
+          "label": "step-2 — direct-vla-causal-emitter",
+          "status": "pending"
+        },
+        {
+          "id": "step-3",
+          "label": "step-3 — vlm-bounded-skill-lane",
+          "status": "pending"
+        },
+        {
+          "id": "step-4",
+          "label": "step-4 — two-lane-comparison-evidence",
+          "status": "pending"
+        }
+      ],
+      "execution_mode": "continuous",
+      "approval": {
+        "approved_by": "user",
+        "approved_at": "2026-07-21",
+        "plan_sha256": "3fd050f3070dc7db669624092b61d962e1ab041abab3748503425dac9289264f"
+      },
+      "allowed_stop_reasons": [
+        "completed",
+        "blocked",
+        "decision_required",
+        "risk_gate",
+        "secret_required",
+        "external_authority_required",
+        "user_stopped"
+      ],
+      "stop_reason": null,
+      "stop_detail": {},
+      "session_ids": [
+        "codex:physical-ai-lab2-20260721"
+      ],
+      "owner_session_uuid": null,
+      "updated_at": "2026-07-21",
+      "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation."
     }
   }
 }
