@@ -1,14 +1,14 @@
 # ROADMAP
 
 > 이 레포의 마일스톤과 다음 증거 생산 계획. 포트폴리오 모드: 완료 기준은 "남이 5분 보고 납득한다"이다.
-> 마지막 업데이트: 2026-06-26
+> 마지막 업데이트: 2026-07-20
 > line budget: <=150
 
 ## 왜 이 레포
 
 피지컬 AI 기초 지식을 실행 가능한 포트폴리오로 입증한다.
 
-한 문장: "문헌과 이론을 읽었고 -> 직접 실험으로 검증했고 -> 브라우저에서 조작 가능한 로봇 정책 플랫폼을 만들었고 -> 이제 디지털 트윈 환경에서 로봇 skill과 scene evidence를 설계·학습·검증한다."
+한 문장: "문헌과 정책 비교에서 출발해 -> 직접 실행과 디지털 트윈 evidence를 만들었고 -> 이제 카메라·센서·언어 지시가 행동으로 바뀌는 전 과정을 관찰 가능한 로봇팔 실험실로 통합한다."
 
 노출면: GitHub README, askewly 블로그, `~/vault/`, live demo `robotics.askewly.com`.
 
@@ -36,90 +36,54 @@
 | M43 | Randomized Episode Comparison | baseline 대비 perturbation drift를 비교한다 | `experiments/144-randomized-episode-comparison` | 완료 |
 | M44 | G1 Contact Body & Flicker Fix | G1 넘어짐 충돌과 visual floor flicker를 바로잡는다 | `experiments/145-g1-contactbody-flicker-fix` | 완료 |
 | M45 | Real Robot Collision Contract | 실제 로봇 충돌 readiness를 sensor/stop-gate contract로 분리한다 | `experiments/146-real-robot-collision-contract` | 완료 |
+| LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | active |
+| LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | pending |
+| LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/149-public-robot-arm-laboratory` | pending |
 
 ## Current Horizon
 
-<!-- harness:goal id="environment-scenario-harness" -->
-목표: 디지털 트윈 환경을 배경 preset이 아니라 scenario/parameter/matrix/obstacle/randomized episode evidence로 재현 가능한 실험 변수로 만든다.
+<!-- harness:goal id="see-understand-act-robot-lab" -->
+목표: 카메라·센서·언어 지시가 로봇 행동으로 변환되는 과정을 관찰·재생·검증 가능한 피지컬 AI 실험실로 만든다. (상세 → `plans/horizons/see-understand-act-robot-lab.md`)
 
 ## Active Milestones
 
-<!-- harness:milestone id="M39" status="completed" priority="P0" evidence="experiments/140-environment-scenario-manifest/verify/environment-scenario-manifest.json" -->
-### M39 - Environment Scenario Manifest
+<!-- harness:milestone id="LAB1" status="active" priority="P0" -->
+### LAB1 — 카메라-행동 episode 계약
 
-- DoD: `envScenario` id/seed/terrain/friction/lighting/obstacle parameters가 UI summary와 QA evidence에 노출된다.
-- Evidence: experiments/140-environment-scenario-manifest/verify/environment-scenario-manifest.json
-- Gap: 현재 환경은 preset 중심이라 friction, curb, lighting, obstacle 같은 실험 변수가 독립 contract로 남지 않는다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: Scenario manifest/URL/UI/QA evidence가 `rough-curb-v1` contract를 local/live로 검증한다.
+- DoD: 동일 과제의 PASS/FAIL episode가 main/wrist camera, raw state, instruction, raw/controller action, latency, termination/success를 versioned trace로 보존하고 clean rerun validator를 통과한다.
+- Evidence: `experiments/147-camera-action-episode-contract/verify/`
+- Gap: 기존 LIBERO evaluator는 agentview와 action을 실행하지만 사람이 재생·감사할 episode evidence를 남기지 않는다.
+- Scale: changesets>=3; surfaces: LIBERO producer, trace schema, canonical evidence; capability: 한 VLA episode를 camera부터 outcome까지 재현한다.
+- Status: [ ]
+
 ## Next Candidates
 
-<!-- harness:milestone id="M40" status="completed" priority="P1" evidence="experiments/141-multi-robot-environment-matrix/verify/environment-matrix-smoke.json" -->
-### M40 - Multi-Robot Environment Matrix
+<!-- harness:milestone id="LAB2" status="pending" priority="P1" -->
+### LAB2 — 출처가 보이는 VLM/VLA 판단·행동 기록
 
-- DoD: G1/Go1/Spot의 flat/rough scenario summary가 같은 matrix evidence에 기록되고 각 row가 pass/fail/claim boundary를 가진다.
-- Evidence: experiments/141-multi-robot-environment-matrix/verify/environment-matrix-smoke.json
-- Gap: rough 환경 evidence가 G1 중심으로 강해졌지만 여러 로봇이 같은 환경 contract로 비교되지는 않는다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: G1/Go1/Spot x flat/rough 6-row matrix가 local/live에서 scenario shape와 claim boundary를 검증한다.
+- DoD: 계층형 VLM→skill과 direct VLA action episode가 동일 trace contract에서 실행되고 모든 event의 source·causal role·outcome이 검증되며 hidden-reasoning fixture가 거부된다.
+- Evidence: `experiments/148-observable-decision-action-trace/verify/`
+- Gap: action은 실행되지만 VLM 관측, VLA action, controller 결과의 출처와 인과 경계가 보이지 않는다.
+- Scale: changesets>=4; surfaces: VLM adapter, skill executor, VLA trace, provenance gate; capability: 판단과 행동의 실제 출처를 비교한다.
+- Status: [ ]
 
-<!-- harness:milestone id="M41" status="completed" priority="P2" evidence="experiments/142-interactive-obstacle-scene/verify/obstacle-scene-smoke.json" -->
-### M41 - Interactive Obstacle Scene
+<!-- harness:milestone id="LAB3" status="pending" priority="P2" -->
+### LAB3 — 공개 로봇팔 피지컬 AI 실험실
 
-- DoD: obstacle scenario가 active MJCF scene/visual marker/QA summary로 노출되고, static curb와 다른 obstacle contract가 검증된다.
-- Evidence: experiments/142-interactive-obstacle-scene/verify/obstacle-scene-smoke.json
-- Gap: 현재 rough terrain은 static curb lane이며, task-like obstacle/contact world가 없다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: `g1-obstacle-walk`와 `obstacle-lane-v1`이 active MJCF obstacle geoms, UI status, local/live smoke evidence로 검증된다.
+- DoD: 공개 사이트에서 main/wrist camera, instruction, source-tagged timeline을 재생·scrub하고 PASS/FAIL raw evidence로 추적하며 local/live QA가 claim boundary를 검증한다.
+- Evidence: `experiments/149-public-robot-arm-laboratory/verify/`
+- Gap: canonical episode가 생겨도 공개 UI와 reviewer evidence path가 없으면 피지컬 AI 제품으로 외부 증명되지 않는다.
+- Scale: changesets>=4; surfaces: asset sync, React UI, replay timeline, live deploy; capability: 5분 안에 관측→판단→행동→결과를 이해한다.
+- Status: [ ]
 
-<!-- harness:milestone id="M42" status="completed" priority="P1" evidence="experiments/143-randomized-episode-scorecard/verify/randomized-episode-scorecard.json" -->
-### M42 - Randomized Episode Scorecard
-
-- DoD: seed 기반 episode profile이 command/noise perturbation을 실행하고 각 episode의 distance/height/fall/NaN/pass/score를 local/live evidence로 남긴다.
-- Evidence: experiments/143-randomized-episode-scorecard/verify/randomized-episode-scorecard.json
-- Gap: obstacle scene은 열렸지만 아직 같은 scenario 안에서 perturbation episode set과 scorecard가 없다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: `obstacle-command-noise-v1` profile이 3개 command/control-noise episode를 local/live에서 실행하고 scorecard evidence로 검증한다.
-
-<!-- harness:milestone id="M43" status="completed" priority="P1" evidence="experiments/144-randomized-episode-comparison/verify/randomized-episode-comparison.json" -->
-### M43 - Randomized Episode Comparison
-
-- DoD: baseline episode 대비 noisy/diagonal episode의 distance/yaw/height/score drift가 UI debug summary와 local/live evidence에 기록된다.
-- Evidence: experiments/144-randomized-episode-comparison/verify/randomized-episode-comparison.json
-- Gap: M42는 episode별 PASS/score만 보여주며, perturbation이 baseline 대비 무엇을 바꿨는지 비교 레이어가 없다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: `obstacle-command-noise-comparison-v1`이 baseline 대비 noisy/diagonal episode delta를 local/live evidence로 검증한다.
-
-<!-- harness:milestone id="M44" status="completed" priority="P0" evidence="experiments/145-g1-contactbody-flicker-fix/verify/g1-contactbody-flicker-fix.json" -->
-### M44 - G1 Contact Body & Flicker Fix
-
-- DoD: G1 pelvis/torso/head가 floor-contact eligible collision geom을 갖고, visual-only floor overlay z-fighting source가 제거되며 local/live QA evidence가 남는다.
-- Evidence: experiments/145-g1-contactbody-flicker-fix/verify/g1-contactbody-flicker-fix.json
-- Gap: G1이 넘어질 때 발 이외 상체가 바닥 아래로 통과하고, MuJoCo floor와 Three.js floor overlay가 겹쳐 background flicker가 발생한다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: G1 pelvis/torso/head floor-contact collision geoms를 추가하고 duplicate visual floor overlay를 제거했다. local/live QA에서 non-foot contact eligibility, overlay absence, post-fall contact probe가 PASS다.
-
-<!-- harness:milestone id="M45" status="completed" priority="P0" evidence="experiments/146-real-robot-collision-contract/verify/real-robot-collision-contract.json" -->
-### M45 - Real Robot Collision Contract
-
-- DoD: G1 sim collision envelope가 실제 로봇 body zone, required telemetry, actuator stop gate, e-stop evidence requirement로 매핑되고 local/live QA evidence가 남는다.
-- Evidence: experiments/146-real-robot-collision-contract/verify/real-robot-collision-contract.json
-- Gap: M44는 MuJoCo body collision을 고쳤지만, 실제 로봇 충돌 처리에 필요한 sensor/actuation/e-stop readiness contract가 없다.
-- Status: [x]
-- Completed at: 2026-06-26
-- Summary: G1 pelvis/torso/head/feet collision readiness를 real-robot body zone, required telemetry, actuator stop gate, e-stop requirement, stop criteria로 매핑했다. local/live QA에서 sim envelope coverage와 hardware-unarmed gate가 PASS다.
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.
 - M30 visual-only 변경은 collision/contact/solver를 바꾸지 않고 `qaEnvironmentSummary().visualLayer.visualOnly === true`를 유지한다.
 - M31부터만 physics/contact-bearing claim을 연다.
 - Web mirror JSON은 derived다. canonical experiment edit은 `experiments/03-digital-twin/experiments.json`에서 시작하고 `sync_web.py`로 동기화한다.
+- VLM 설명을 VLA의 숨은 생각으로 표시하지 않는다. 모든 event는 실제 source와 component를 가진다.
+- recorded episode를 live inference로, simulation을 real telemetry로 표시하지 않는다.
 
 ## 대기 항목
 

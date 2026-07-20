@@ -1,4 +1,4 @@
-# Architecture - Digital Twin Workbench
+# Architecture - Observable Physical AI Laboratory
 
 ## 현재 스택
 
@@ -6,6 +6,7 @@
 - Runtime registry: `experiments/03-digital-twin/experiments.json` canonical, `web/experiments.json` derived mirror.
 - Evidence artifacts: `experiments/*/verify/*.json`, web QA outputs under `experiments/03-digital-twin/web/qa/out/`.
 - Backend bridge evidence: Unitree MuJoCo/DDS/LowCmd probes in `experiments/33-unitree-mujoco-g1-bridge-probe`.
+- VLA episode producer baseline: LIBERO rollout client/server in `experiments/01-vla-local-eval`, with `agentview_image + instruction -> 7D action -> env.step()`.
 
 ## Planned Robotics Lab v2 stack
 
@@ -30,6 +31,17 @@
 8. Control evidence layer: policy command input, last input source, command vector, and key down/release transitions are surfaced in UI and QA without changing policy contracts.
 9. Physics readout layer: contact/force/sensor probes are read-only diagnostics over MuJoCo WASM state. Unsupported fields must be reported as unavailable rather than replaced by decorative overlays.
 
+## 보고 판단하고 움직이는 로봇팔 실험실 layers
+
+1. **Environment source:** LIBERO/robosuite/MuJoCo emits main camera, wrist camera, proprioception, reward and success.
+2. **Policy source:** a LeRobot-compatible VLA consumes declared image/state/instruction fields and emits raw action or action chunks.
+3. **Optional semantic source:** a local open-weight VLM emits schema-validated scene/skill JSON. It is a separate causal lane, never presented as the VLA's hidden reasoning.
+4. **Controller source:** environment/controller transforms the selected skill or raw VLA action into the command passed to `env.step()`.
+5. **Episode trace:** a versioned manifest aligns camera media, robot state, policy action, latency and outcome by timestep and records every event source.
+6. **Public replay:** the static Vercel app loads a canonical trace and replays it deterministically. Local inference and recorded evidence use different visible modes.
+
+The first Horizon does not require an always-on inference backend. Local WSL2/GPU runs produce canonical evidence; the browser is the inspectable consumer.
+
 ## Contracts
 
 - Replay trajectory: `fps`, `nq`, `scene`, `qpos[frame][nq]`.
@@ -38,6 +50,8 @@
 - QA summary: JSON object with experiment id, runtime mode, state contract, evidence lanes, current limit, and `pass`.
 - Control summary: JSON object with current policy command vector, input mapping, last input source, and reset/release behavior.
 - Physics readout summary: JSON object with supported MuJoCo readout fields, sampled values when available, unavailable fields, and claim level.
+- Observable arm episode: versioned manifest with environment/policy revisions, seed, instruction, synchronized camera asset references, raw/normalized state, raw/controller action, latency, reward, termination and success.
+- Decision event: `{timestep, source, kind, payload, model_or_component}` where `source` is one of `sensor|vlm|vla|controller|environment`; hidden chain-of-thought is not a supported field.
 
 ## 금지사항
 
@@ -48,3 +62,6 @@
 - Visual lab realism (M30) must stay Three.js-only and `visualOnly=true`; physical terrain claims start at M31.
 - Do not implement a new physics engine for M33-M35. MuJoCo WASM remains the runtime truth layer.
 - Do not reintroduce fake contact cue overlays as evidence. If a value cannot be read from runtime state, mark it unsupported.
+- Do not label an auxiliary VLM description as the VLA's internal thought. Show source and causal role explicitly.
+- Do not label recorded episode replay as live inference, or a simulation-only arm as a real-robot digital twin.
+- Do not add a persistent GPU backend before recorded evidence, trace validation and the public replay contract pass.

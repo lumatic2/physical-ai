@@ -1,14 +1,15 @@
-# PRD - Physical AI Digital Twin Workbench
+# PRD - Observable Physical AI Laboratory
 
 ## 목적
 
-`robotics.askewly.com`을 단순 갤러리가 아니라, 로봇 asset, physics runtime, learned policy, replay trace, telemetry stream, evidence gate를 구분해서 보여주는 디지털 트윈 workbench로 발전시킨다.
+`robotics.askewly.com`을 단순 로봇 갤러리가 아니라, 카메라·센서·언어 지시가 로봇 행동으로 변환되는 과정을 사람이 관찰하고 검증할 수 있는 피지컬 AI 실험실로 발전시킨다. 기존 디지털 트윈 workbench는 그 안의 physics/controller evidence lane으로 유지한다.
 
 ## 사용자
 
 - 채용/포트폴리오 리뷰어: 5분 안에 무엇이 실제 검증됐고 무엇이 한계인지 이해해야 한다.
 - 연구자/개발자: scene, controller, qpos contract, telemetry sidecar, QA evidence의 연결을 확인해야 한다.
 - 미래의 실물 bring-up 작업자: real robot telemetry가 들어왔을 때 기존 sim evidence와 같은 gate로 비교해야 한다.
+- 피지컬 AI 학습자: VLM의 장면 이해, VLA의 action 생성, controller 실행의 차이를 한 episode에서 이해해야 한다.
 
 ## 핵심 기능
 
@@ -23,12 +24,18 @@
 9. Controllable policy workbench: keyboard command 입력이 policy command vector와 runtime QA summary에 visible하게 연결된다.
 10. Physics evidence readout: contact/force/sensor 값은 visual cue가 아니라 MuJoCo runtime에서 읽히는 값만 공개 claim으로 사용한다.
 11. Public evidence refresh: README/live copy가 최신 Robotics Lab evidence와 claim boundary를 5분 안에 이해 가능한 흐름으로 갱신된다.
+12. Dual-camera episode: main camera와 wrist camera, robot state, instruction, action, reward/success를 같은 timestep 계약으로 기록한다.
+13. Observable decision trace: `sensor`, `vlm`, `vla`, `controller`, `environment` event를 출처와 함께 구분하고 숨은 사고 과정을 사후 생성하지 않는다.
+14. Arm laboratory view: main scene, wrist camera, instruction, structured decision record, action/result timeline을 한 화면에서 재생한다.
+15. Evidence mode labels: `recorded evidence`, `live/local inference`, `simulation`, `real telemetry`를 눈에 보이는 badge와 QA summary로 구분한다.
 
 ## 범위
 
 - 포함: 기존 MuJoCo WASM viewer, experiments registry, telemetry sidecar, stream QA, comparison QA를 workbench UI/QA로 묶는다.
 - 포함: React/Vite/Tailwind/shadcn shell migration, favicon/app icon asset pass, laboratory visual environment, environment preset controls, grounding/contact/physics tuning controls.
+- 포함: LIBERO/robosuite 기반 로봇 팔 episode producer, main/wrist camera trace, LeRobot-compatible VLM/VLA policy evidence, deterministic public replay.
 - 제외: real robot DDS capture, Isaac/Gazebo backend migration, full neural RL training, secret/API 기반 외부 서비스.
+- 제외: 첫 Horizon의 신규 foundation model 학습, 상시 GPU inference backend, 공개 UI에서 생성한 가짜 chain-of-thought, 실물 동기화 없는 real digital twin 주장.
 
 ## 성공 기준
 
@@ -43,3 +50,6 @@
 - M33: `g1-walk` keyboard command가 visible UI, QA summary, local/live Playwright evidence로 검증된다.
 - M34: contact/force readout은 browser runtime에서 실제 노출 가능한 MuJoCo state만 probe하고, 실패 시 unsupported evidence로 명시한다.
 - M35: public README/live story는 M27-M34 evidence를 반영하되 real robot telemetry나 unassisted controller proof로 과장하지 않는다.
+- LAB1: canonical PASS/FAIL episode가 main/wrist camera, state, instruction, action, timing, outcome을 versioned trace로 보존한다.
+- LAB2: structured VLM/skill event와 direct VLA action event가 source-tagged timeline에서 구분되고, 숨은 reasoning을 증거처럼 표시하지 않는다.
+- LAB3: 공개 브라우저가 dual-camera episode와 decision/action/result timeline을 재생하고 local/live QA가 raw evidence linkage를 검증한다.

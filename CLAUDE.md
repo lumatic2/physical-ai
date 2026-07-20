@@ -1,10 +1,11 @@
 # physical-ai
 
-> 한 줄 설명. (갈래: learning)
+> 카메라·센서·언어 지시가 로봇 행동으로 변환되는 과정을 실행·관찰·검증하는 피지컬 AI 실험실. (갈래: learning + product)
 
 ## 기술 스택
 - Current public twin: MuJoCo WASM + Three.js + vanilla ES modules under `experiments/03-digital-twin/web`.
 - Planned Robotics Lab v2 shell: Vite + React + Tailwind CSS + shadcn/ui, while preserving the existing MuJoCo canvas/runtime and QA contracts.
+- Observable arm lab producer: Python/WSL2 + LIBERO/robosuite/MuJoCo + LeRobot-compatible VLM/VLA policies; canonical episodes are exported as versioned traces for deterministic browser replay.
 - Visual asset workflow: project-bound raster favicon/app icon assets are generated with the `imagegen` skill, then saved under `experiments/03-digital-twin/web/assets/`.
 
 ## 프로젝트 구조
