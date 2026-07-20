@@ -6,7 +6,7 @@
       "work_id": "see-understand-act-robot-lab-lab1",
       "horizon_id": "see-understand-act-robot-lab",
       "milestone_id": "LAB1",
-      "status": "active",
+      "status": "completed",
       "plan_path": "plans/2026-07-21-lab1-lerobot-episode-evidence.md",
       "changeset_path": "changesets/20260721-lab1-canonical-pass-fail-pair",
       "next_step": null,
@@ -56,7 +56,8 @@
       ],
       "owner_session_uuid": "codex:physical-ai-wsl-resume-20260721",
       "updated_at": "2026-07-21",
-      "notes": "LAB1 implementation steps completed; milestone completion report and ROADMAP close are pending."
+      "notes": "LAB1 final report and ROADMAP completion recorded.",
+      "completion_summary": "동일 OpenVLA·LIBERO 과제의 실제 PASS 78프레임과 FAIL 220프레임 episode를 LeRobot·Rerun 증거로 고정했다."
     }
   }
 }

@@ -1,7 +1,7 @@
 # ROADMAP
 
 > 이 레포의 마일스톤과 다음 증거 생산 계획. 포트폴리오 모드: 완료 기준은 "남이 5분 보고 납득한다"이다.
-> 마지막 업데이트: 2026-07-20
+> 마지막 업데이트: 2026-07-21
 > line budget: <=150
 
 ## 왜 이 레포
@@ -36,7 +36,7 @@
 | M43 | Randomized Episode Comparison | baseline 대비 perturbation drift를 비교한다 | `experiments/144-randomized-episode-comparison` | 완료 |
 | M44 | G1 Contact Body & Flicker Fix | G1 넘어짐 충돌과 visual floor flicker를 바로잡는다 | `experiments/145-g1-contactbody-flicker-fix` | 완료 |
 | M45 | Real Robot Collision Contract | 실제 로봇 충돌 readiness를 sensor/stop-gate contract로 분리한다 | `experiments/146-real-robot-collision-contract` | 완료 |
-| LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | active |
+| LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | 완료 |
 | LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | pending |
 | LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/149-public-robot-arm-laboratory` | pending |
 
@@ -47,15 +47,17 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="LAB1" status="active" priority="P0" -->
+<!-- harness:milestone id="LAB1" status="completed" priority="P0" evidence="archive/reports/2026-07-21-lab1-lerobot-episode-evidence.md" -->
 ### LAB1 — 카메라-행동 episode 계약
 
 - DoD: 동일 과제의 PASS/FAIL episode가 main/wrist camera, raw state, instruction, raw/controller action, latency, termination/success를 versioned trace로 보존하고 clean rerun validator를 통과한다.
-- Evidence: `experiments/147-camera-action-episode-contract/verify/`
+- Evidence: `archive/reports/2026-07-21-lab1-lerobot-episode-evidence.md`; changesets `20260721-lab1-canonical-contract-profile`, `20260721-lab1-libero-lerobot-writer`, `20260721-lab1-bounded-official-viewer-smoke`, `20260721-lab1-canonical-pass-fail-pair`
 - Gap: 기존 LIBERO evaluator는 agentview와 action을 실행하지만 사람이 재생·감사할 episode evidence를 남기지 않는다.
 - Scale: changesets>=3; surfaces: LIBERO producer, trace schema, canonical evidence; capability: 한 VLA episode를 camera부터 outcome까지 재현한다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-07-21
+- Summary: 동일 과제의 실제 OpenVLA PASS·FAIL episode가 LeRobot·Rerun 검증을 통과했다.
 ## Next Candidates
 
 <!-- harness:milestone id="LAB2" status="pending" priority="P1" -->
