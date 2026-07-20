@@ -65,9 +65,9 @@
       "milestone_id": "LAB2",
       "status": "active",
       "plan_path": "plans/2026-07-21-lab2-observable-causal-trace.md",
-      "changeset_path": "changesets/20260721-lab2-direct-vla-causal-emitter",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-lab2-vlm-bounded-skill-lane",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -82,7 +82,7 @@
         {
           "id": "step-3",
           "label": "step-3 — vlm-bounded-skill-lane",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",

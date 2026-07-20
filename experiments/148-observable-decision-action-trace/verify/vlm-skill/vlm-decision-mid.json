@@ -1,0 +1,44 @@
+{
+  "schema_version": "physical-ai-vlm-decision-v1",
+  "model": {
+    "name": "Qwen/Qwen3-VL-4B-Instruct",
+    "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17",
+    "license": "apache-2.0"
+  },
+  "input": {
+    "image_sha256": "8296fe30af626b20b7194b104bb2ae4b0cef19ac0b596db34319985c8cf59209",
+    "instruction": "pick up the black bowl on the ramekin and place it on the plate",
+    "prompt_sha256": "26b5d4af1e9a49e88a909fb4d3db4e0aec8a240ca40422468a3cbb3b46141449"
+  },
+  "generation": {
+    "raw_output": "{\n  \"scene\": {\n    \"visible_objects\": [\n      \"black_bowl\",\n      \"ramekin\",\n      \"plate\",\n      \"robot_gripper\"\n    ],\n    \"target\": \"black_bowl\",\n    \"destination\": \"plate\",\n    \"spatial_summary\": \"A robot gripper is positioned near a ramekin with a black bowl on top, and a plate is nearby.\"\n  },\n  \"selected_skill\": {\n    \"name\": \"pick_and_place\",\n    \"target\": \"black_bowl\",\n    \"destination\": \"plate\"\n  },\n  \"confidence\": 0.9\n}",
+    "latency_ms": 4103.46,
+    "peak_gpu_memory_bytes": 8970172928,
+    "do_sample": false,
+    "max_new_tokens": 256
+  },
+  "decision": {
+    "scene": {
+      "visible_objects": [
+        "black_bowl",
+        "ramekin",
+        "plate",
+        "robot_gripper"
+      ],
+      "target": "black_bowl",
+      "destination": "plate",
+      "spatial_summary": "A robot gripper is positioned near a ramekin with a black bowl on top, and a plate is nearby."
+    },
+    "selected_skill": {
+      "name": "pick_and_place",
+      "target": "black_bowl",
+      "destination": "plate"
+    },
+    "confidence": 0.9
+  },
+  "validation": {
+    "valid": true,
+    "errors": []
+  },
+  "claim_boundary": "local auxiliary VLM scene/skill output; not OpenVLA hidden reasoning or robot action"
+}

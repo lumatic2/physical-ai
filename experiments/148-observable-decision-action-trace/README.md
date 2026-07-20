@@ -21,3 +21,7 @@ python event_schema.py fixtures/invalid-hidden-reasoning.json
 ```powershell
 python direct_vla.py --dataset-root <lerobot-root> --sidecar <episode-sidecar.json> --output <events.json> --report <report.json>
 ```
+
+## Local VLM → bounded skill
+
+`vlm_runner.py`는 pinned local Qwen3-VL checkpoint가 main-camera frame과 instruction에서 scene/skill JSON만 생성하게 한다. `skill_executor.py`는 allowlist에 등록된 binding만 받아 same-task LIBERO에서 canonical action sequence를 scripted skill로 재실행한다. 이 lane은 direct VLA와 별도이며, controller와 outcome event에 `assistance.source=scripted_skill`을 표시한다.
