@@ -34,9 +34,9 @@ def _feature_shape(features: dict[str, Any], key: str) -> list[int] | None:
     if not isinstance(value, dict):
         return None
     shape = value.get("shape")
-    if not isinstance(shape, list) or not all(isinstance(item, int) for item in shape):
+    if not isinstance(shape, (list, tuple)) or not all(isinstance(item, int) for item in shape):
         return None
-    return shape
+    return list(shape)
 
 
 def _camera_keys(features: dict[str, Any]) -> list[str]:

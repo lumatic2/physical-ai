@@ -19,6 +19,17 @@ python episode_profile.py --info fixtures/lerobot-libero-info.json --provenance 
 
 LeRobot episode는 camera/state/action/timestamp/task mapping의 정본이다. sidecar는 pinned revision, camera role, latency, outcome과 claim boundary만 소유하며 canonical field를 복제하면 validator가 거부한다.
 
+## LIBERO writer
+
+`libero_writer.py`는 [LeRobotDataset current source](https://github.com/huggingface/lerobot/blob/main/src/lerobot/datasets/lerobot_dataset.py)의 `create → add_frame → save_episode → finalize` 흐름과 [multi-camera feature contract](https://github.com/huggingface/lerobot/blob/main/src/lerobot/utils/feature_utils.py)를 사용한다(접근일 2026-07-21).
+
+```powershell
+python test_libero_writer.py
+python mock_writer_smoke.py --root <empty-dataset-root> --output <report.json>
+```
+
+실제 client recording은 `--record-root`와 pinned `--dataset-revision`, `--environment-revision`, `--policy-revision` 세 값을 모두 요구한다. record flag가 없으면 기존 평가 동작을 유지한다. current OpenVLA checkpoint는 main camera만 소비하므로 wrist camera는 저장하되 provenance에 `model_input=false`로 기록한다.
+
 ## Probe 명령
 
 ```powershell

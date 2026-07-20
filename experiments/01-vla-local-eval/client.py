@@ -11,6 +11,7 @@ import argparse
 import json
 import os
 import pathlib
+import sys
 import time
 
 os.environ.setdefault("MUJOCO_GL", "egl")
@@ -36,6 +37,11 @@ NUM_STEPS_WAIT = 10
 HERE = pathlib.Path(__file__).resolve().parent
 VERIFY = HERE / "verify"
 VERIFY.mkdir(exist_ok=True)
+LAB1_DIR = HERE.parent / "147-camera-action-episode-contract"
+if str(LAB1_DIR) not in sys.path:
+    sys.path.insert(0, str(LAB1_DIR))
+
+from libero_writer import LeRobotEpisodeWriter
 
 
 def normalize_gripper_action(action):  # robot_utils:75-92 (binarize=True)
@@ -55,7 +61,17 @@ def main() -> int:
     ap.add_argument("--tasks", type=int, default=2)
     ap.add_argument("--trials", type=int, default=5)
     ap.add_argument("--port", type=int, default=8000)
+    ap.add_argument("--record-root", type=pathlib.Path)
+    ap.add_argument("--record-repo-id", default="physical-ai/libero-openvla")
+    ap.add_argument("--record-fps", type=int, default=10)
+    ap.add_argument("--dataset-revision")
+    ap.add_argument("--environment-revision")
+    ap.add_argument("--policy-revision")
     args = ap.parse_args()
+
+    revision_args = (args.dataset_revision, args.environment_revision, args.policy_revision)
+    if args.record_root and not all(revision_args):
+        ap.error("--record-root requires dataset, environment, and policy revision hashes")
 
     url = f"http://127.0.0.1:{args.port}/act"
     max_steps = MAX_STEPS.get(args.suite, 300)  # 미등록 스위트는 보수적 기본
@@ -63,6 +79,8 @@ def main() -> int:
     n_tasks = min(args.tasks, suite.n_tasks)
 
     per_task, total_ep, total_succ = [], 0, 0
+    episode_writer = None
+    record_failure = False
     t_start = time.time()
     for task_id in range(n_tasks):
         task = suite.get_task(task_id)
@@ -76,6 +94,9 @@ def main() -> int:
             env.reset()
             obs = env.set_init_state(init_states[ep])
             t, done = 0, False
+            recorded_frames = 0
+            last_reward = 0.0
+            episode_error = None
             while t < max_steps + NUM_STEPS_WAIT:
                 try:
                     if t < NUM_STEPS_WAIT:
@@ -83,22 +104,58 @@ def main() -> int:
                         t += 1
                         continue
                     raw = obs["agentview_image"]  # 256x256x3 uint8 (전처리는 서버)
+                    pre_step_obs = obs
+                    request_started = time.perf_counter()
                     resp = requests.post(
                         url,
                         data=json_numpy.dumps({"image": raw, "instruction": task_desc}),
                         headers={"Content-Type": "application/json"},
                         timeout=30,
                     )
-                    action = np.array(json_numpy.loads(resp.text), dtype=np.float64)  # 디코드 + writable copy
+                    resp.raise_for_status()
+                    request_latency_ms = (time.perf_counter() - request_started) * 1000.0
+                    raw_policy_action = np.array(json_numpy.loads(resp.text), dtype=np.float64)
+                    action = raw_policy_action.copy()  # 후처리는 writable copy에만 적용
                     action = normalize_gripper_action(action)
                     action = invert_gripper_action(action)
-                    obs, _, done, _ = env.step(action.tolist())
+                    obs, reward, done, _ = env.step(action.tolist())
+                    last_reward = float(reward)
+                    if args.record_root:
+                        if episode_writer is None:
+                            episode_writer = LeRobotEpisodeWriter.create(
+                                root=args.record_root,
+                                repo_id=args.record_repo_id,
+                                fps=args.record_fps,
+                                image_shape=tuple(raw.shape),
+                                dataset_revision=args.dataset_revision,
+                                environment_revision=args.environment_revision,
+                                policy_revision=args.policy_revision,
+                            )
+                        episode_writer.add_executed_step(
+                            observation=pre_step_obs,
+                            raw_policy_action=raw_policy_action,
+                            executed_action=action,
+                            instruction=task_desc,
+                            request_latency_ms=request_latency_ms,
+                        )
+                        recorded_frames += 1
                     if done:
                         break
                     t += 1
                 except Exception as e:  # noqa: BLE001
                     print(f"[client] task{task_id} ep{ep} exception: {e}", flush=True)
+                    episode_error = type(e).__name__
+                    record_failure = record_failure or bool(args.record_root)
                     break
+            if episode_writer is not None and recorded_frames:
+                termination = "success" if done else "error" if episode_error else "timeout"
+                sidecar_path = episode_writer.save_episode(
+                    success=bool(done),
+                    termination=termination,
+                    reward=last_reward,
+                    error_code=episode_error,
+                )
+                print(f"[client] recorded {recorded_frames} frames → {sidecar_path}", flush=True)
             total_ep += 1
             if done:
                 task_succ += 1
@@ -108,6 +165,9 @@ def main() -> int:
         per_task.append({"task_id": task_id, "task": task.name, "episodes": args.trials, "successes": task_succ})
         print(f"[client] task{task_id} '{task.name}': {task_succ}/{args.trials}", flush=True)
 
+    if episode_writer is not None:
+        episode_writer.close()
+
     out = {
         "checkpoint": f"openvla/openvla-7b-finetuned-{args.suite.replace('_', '-')}", "task_suite": args.suite,
         "attn_implementation": "sdpa", "architecture": "REST server/client split",
@@ -115,10 +175,16 @@ def main() -> int:
         "total_episodes": total_ep, "total_successes": total_succ,
         "success_rate": round(total_succ / max(total_ep, 1), 3),
         "elapsed_s": round(time.time() - t_start, 1), "per_task": per_task,
+        "recording": {
+            "enabled": bool(args.record_root),
+            "artifact_location": "local-only" if args.record_root else None,
+            "repo_id": args.record_repo_id if args.record_root else None,
+            "failed": record_failure,
+        },
     }
     print("[client] RESULT", json.dumps(out, ensure_ascii=False), flush=True)
     (VERIFY / "eval.json").write_text(json.dumps(out, ensure_ascii=False, indent=2))
-    return 0
+    return 1 if record_failure else 0
 
 
 if __name__ == "__main__":

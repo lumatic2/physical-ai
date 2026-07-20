@@ -8,9 +8,9 @@
       "milestone_id": "LAB1",
       "status": "active",
       "plan_path": "plans/2026-07-21-lab1-lerobot-episode-evidence.md",
-      "changeset_path": "changesets/20260721-lab1-libero-lerobot-writer",
-      "next_step": "step-2",
-      "current_step": "step-2",
+      "changeset_path": "changesets/20260721-lab1-bounded-official-viewer-smoke",
+      "next_step": "step-3",
+      "current_step": "step-3",
       "steps": [
         {
           "id": "step-1",
@@ -20,7 +20,7 @@
         {
           "id": "step-2",
           "label": "step-2 — libero-lerobot-writer",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-3",
