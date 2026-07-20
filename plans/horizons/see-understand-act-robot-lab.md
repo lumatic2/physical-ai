@@ -20,9 +20,9 @@
 
 | milestone | 제목 (왜 milestone 규모인가) | plan doc | 승인 | 리서치 입력 |
 |---|---|---|---|---|
-| **LAB1** | 카메라-행동 episode 계약 — producer/schema/canonical evidence의 독립 step과 통합 검증 | `plans/2026-07-20-lab1-camera-action-episode-contract.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md` |
-| **LAB2** | 출처가 보이는 VLM/VLA 판단·행동 기록 — semantic/VLA/controller lane과 인과 검증 | `plans/2026-07-20-lab2-observable-decision-action-trace.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md` |
-| **LAB3** | 공개 로봇팔 실험실 — dual-camera UI, timeline replay, local/live evidence 통합 | `plans/2026-07-20-lab3-public-robot-arm-laboratory.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md` |
+| **LAB1** | 카메라-행동 episode 계약 — producer/schema/canonical evidence의 독립 step과 통합 검증 | `plans/2026-07-20-lab1-camera-action-episode-contract.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
+| **LAB2** | 출처가 보이는 VLM/VLA 판단·행동 기록 — semantic/VLA/controller lane과 인과 검증 | `plans/2026-07-20-lab2-observable-decision-action-trace.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
+| **LAB3** | 공개 로봇팔 실험실 — dual-camera UI, timeline replay, local/live evidence 통합 | `plans/2026-07-20-lab3-public-robot-arm-laboratory.md` | 일괄승인 2026-07-20 | `research/2026-07-20-see-understand-act-robot-lab-architecture.md`, `research/2026-07-20-see-understand-act-robot-lab-github-systems.md` |
 
 ## 닫는 기준
 
