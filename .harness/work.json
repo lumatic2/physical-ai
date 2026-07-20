@@ -161,14 +161,17 @@
         "external_authority_required",
         "user_stopped"
       ],
-      "stop_reason": null,
-      "stop_detail": {},
+      "stop_reason": "external_authority_required",
+      "stop_detail": {
+        "gate": "human_visual_verification",
+        "detail": "Askewly Design reviewer gate requires the user to inspect the open Chrome tab and explicitly approve before production deploy."
+      },
       "session_ids": [
         "codex:physical-ai-lab3-20260721"
       ],
       "owner_session_uuid": null,
       "updated_at": "2026-07-21",
-      "notes": "LAB3 step-3 causal timeline and evidence drawer completed; public reviewer gate is next."
+      "notes": "LAB3 step-4 local gate PASS; Chrome handoff is open and production deploy waits for explicit human visual approval."
     }
   }
 }
