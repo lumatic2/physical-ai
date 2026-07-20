@@ -13,3 +13,11 @@ python event_schema.py fixtures/invalid-hidden-reasoning.json
 ```
 
 첫 명령과 valid fixture는 exit 0이어야 한다. hidden reasoning fixture는 exit 1이어야 한다.
+
+## Direct VLA emitter
+
+`direct_vla.py`는 LAB1 LeRobot action Parquet과 provenance sidecar를 읽어 main-camera model input, OpenVLA raw action, controller acceptance/executed action, episode outcome을 parent chain으로 파생한다. wrist camera는 관찰용으로 남기고 model input으로 표시하지 않는다.
+
+```powershell
+python direct_vla.py --dataset-root <lerobot-root> --sidecar <episode-sidecar.json> --output <events.json> --report <report.json>
+```

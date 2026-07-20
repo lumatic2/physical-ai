@@ -53,8 +53,12 @@ def main() -> int:
     ap.add_argument("--record-fps", type=int, default=10)
     ap.add_argument("--dataset-revision")
     ap.add_argument("--environment-revision")
+    ap.add_argument("--direct-vla-event-dir", type=pathlib.Path)
     ap.add_argument("--port", type=int, default=8000)
     args = ap.parse_args()
+
+    if args.direct_vla_event_dir and not args.record_root:
+        ap.error("--direct-vla-event-dir requires --record-root")
 
     server_cmd = [PY, "-u", str(HERE / "server.py"), "--policy", args.policy, "--suite", args.suite, "--port", str(args.port)]
     if args.ckpt:
@@ -105,6 +109,8 @@ def main() -> int:
             "--policy-revision",
             args.ckpt_revision,
         ]
+        if args.direct_vla_event_dir:
+            client_cmd += ["--direct-vla-event-dir", str(args.direct_vla_event_dir)]
 
     server_log_path = VERIFY / "server.log"
     server_log = server_log_path.open("w")

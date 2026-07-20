@@ -71,11 +71,14 @@ def main() -> int:
     ap.add_argument("--dataset-revision")
     ap.add_argument("--environment-revision")
     ap.add_argument("--policy-revision")
+    ap.add_argument("--direct-vla-event-dir", type=pathlib.Path)
     args = ap.parse_args()
 
     revision_args = (args.dataset_revision, args.environment_revision, args.policy_revision)
     if args.record_root and not all(revision_args):
         ap.error("--record-root requires dataset, environment, and policy revision hashes")
+    if args.direct_vla_event_dir and not args.record_root:
+        ap.error("--direct-vla-event-dir requires --record-root")
 
     url = f"http://127.0.0.1:{args.port}/act"
     max_steps = MAX_STEPS.get(args.suite, 300)  # 미등록 스위트는 보수적 기본
@@ -184,6 +187,15 @@ def main() -> int:
                     },
                 )
                 print(f"[client] recorded {recorded_frames} frames → {sidecar_path}", flush=True)
+                if args.direct_vla_event_dir:
+                    lab2_dir = HERE.parent / "148-observable-decision-action-trace"
+                    if str(lab2_dir) not in sys.path:
+                        sys.path.insert(0, str(lab2_dir))
+                    from direct_vla import emit_direct_vla_trace
+
+                    event_path = args.direct_vla_event_dir / f"{sidecar_path.stem}.json"
+                    event_report = emit_direct_vla_trace(args.record_root, sidecar_path, event_path)
+                    print(f"[client] direct VLA events {event_report['events']} → {event_path}", flush=True)
             total_ep += 1
             if done:
                 task_succ += 1
