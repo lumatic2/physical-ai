@@ -37,7 +37,7 @@
 2. **Policy source:** a LeRobot-compatible VLA consumes declared image/state/instruction fields and emits raw action or action chunks.
 3. **Optional semantic source:** a local open-weight VLM emits schema-validated scene/skill JSON. It is a separate causal lane, never presented as the VLA's hidden reasoning.
 4. **Controller source:** environment/controller transforms the selected skill or raw VLA action into the command passed to `env.step()`.
-5. **Episode trace:** a versioned manifest aligns camera media, robot state, policy action, latency and outcome by timestep and records every event source.
+5. **Episode trace:** a LeRobot v3 episode aligns camera media, robot state, executed action, timestamp and task mapping. A separate LAB provenance sidecar records pinned revisions, camera roles, latency, outcome and claim boundary without duplicating canonical frame data.
 6. **Public replay:** the static Vercel app loads a canonical trace and replays it deterministically. Local inference and recorded evidence use different visible modes.
 
 The first Horizon does not require an always-on inference backend. Local WSL2/GPU runs produce canonical evidence; the browser is the inspectable consumer.
@@ -50,7 +50,8 @@ The first Horizon does not require an always-on inference backend. Local WSL2/GP
 - QA summary: JSON object with experiment id, runtime mode, state contract, evidence lanes, current limit, and `pass`.
 - Control summary: JSON object with current policy command vector, input mapping, last input source, and reset/release behavior.
 - Physics readout summary: JSON object with supported MuJoCo readout fields, sampled values when available, unavailable fields, and claim level.
-- Observable arm episode: versioned manifest with environment/policy revisions, seed, instruction, synchronized camera asset references, raw/normalized state, raw/controller action, latency, reward, termination and success.
+- Observable arm episode: LeRobot v3 episode with synchronized main/wrist camera, 8D state, executed 7D action, timestamp and task mapping.
+- Arm provenance sidecar: pinned dataset/environment/policy revisions, camera source and model-input flag, raw-to-executed action linkage, latency, reward, termination/success and recorded-simulation claim boundary. It must not duplicate canonical frame fields.
 - Decision event: `{timestep, source, kind, payload, model_or_component}` where `source` is one of `sensor|vlm|vla|controller|environment`; hidden chain-of-thought is not a supported field.
 
 ## 금지사항

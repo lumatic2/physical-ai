@@ -33,7 +33,7 @@
 
 - 포함: 기존 MuJoCo WASM viewer, experiments registry, telemetry sidecar, stream QA, comparison QA를 workbench UI/QA로 묶는다.
 - 포함: React/Vite/Tailwind/shadcn shell migration, favicon/app icon asset pass, laboratory visual environment, environment preset controls, grounding/contact/physics tuning controls.
-- 포함: LIBERO/robosuite 기반 로봇 팔 episode producer, main/wrist camera trace, LeRobot-compatible VLM/VLA policy evidence, deterministic public replay.
+- 포함: LIBERO/robosuite 기반 로봇 팔 episode producer, LeRobot v3 main/wrist camera episode, provenance sidecar, local VLM/VLA policy evidence, deterministic public replay.
 - 제외: real robot DDS capture, Isaac/Gazebo backend migration, full neural RL training, secret/API 기반 외부 서비스.
 - 제외: 첫 Horizon의 신규 foundation model 학습, 상시 GPU inference backend, 공개 UI에서 생성한 가짜 chain-of-thought, 실물 동기화 없는 real digital twin 주장.
 
@@ -50,6 +50,6 @@
 - M33: `g1-walk` keyboard command가 visible UI, QA summary, local/live Playwright evidence로 검증된다.
 - M34: contact/force readout은 browser runtime에서 실제 노출 가능한 MuJoCo state만 probe하고, 실패 시 unsupported evidence로 명시한다.
 - M35: public README/live story는 M27-M34 evidence를 반영하되 real robot telemetry나 unassisted controller proof로 과장하지 않는다.
-- LAB1: canonical PASS/FAIL episode가 main/wrist camera, state, instruction, action, timing, outcome을 versioned trace로 보존한다.
+- LAB1: canonical PASS/FAIL LeRobot v3 episode가 main/wrist camera, state, instruction, executed action, timing을 보존하고 provenance sidecar가 revision·latency·outcome·claim boundary를 중복 없이 연결한다.
 - LAB2: structured VLM/skill event와 direct VLA action event가 source-tagged timeline에서 구분되고, 숨은 reasoning을 증거처럼 표시하지 않는다.
 - LAB3: 공개 브라우저가 dual-camera episode와 decision/action/result timeline을 재생하고 local/live QA가 raw evidence linkage를 검증한다.

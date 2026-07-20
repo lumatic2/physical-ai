@@ -6,7 +6,18 @@ LAB1은 LIBERO rollout의 main/wrist camera, state, language instruction, execut
 
 - 공식 viewer 재사용 probe 완료: [결과와 evidence](verify/official-viewer-reuse/README.md).
 - 결론: LeRobot v3 episode를 canonical format으로, Rerun을 내부 replay 기준선으로 사용한다.
-- 후속 실행안: [LAB1 재사용 addendum](../../plans/2026-07-21-lab1-official-viewer-reuse-addendum.md) — 사용자 승인 대기.
+- 승인된 실행안: [LAB1 LeRobot episode 증거](../../plans/2026-07-21-lab1-lerobot-episode-evidence.md).
+- canonical profile: `episode_profile.py`가 LeRobot metadata와 선택적 LAB provenance sidecar를 검증한다.
+
+## Profile 명령
+
+```powershell
+python test_episode_profile.py
+python episode_profile.py --info fixtures/lerobot-libero-info.json
+python episode_profile.py --info fixtures/lerobot-libero-info.json --provenance fixtures/valid-provenance.json --require-provenance
+```
+
+LeRobot episode는 camera/state/action/timestamp/task mapping의 정본이다. sidecar는 pinned revision, camera role, latency, outcome과 claim boundary만 소유하며 canonical field를 복제하면 validator가 거부한다.
 
 ## Probe 명령
 

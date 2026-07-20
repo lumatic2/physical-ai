@@ -1,0 +1,11 @@
+{
+  "codebase_version": "v3.0",
+  "features": {
+    "observation.images.image": {"dtype": "video", "shape": [256, 256, 3]},
+    "observation.images.image2": {"dtype": "video", "shape": [256, 256, 3]},
+    "observation.state": {"dtype": "float32", "shape": [8]},
+    "timestamp": {"dtype": "float32", "shape": [1]},
+    "task_index": {"dtype": "int64", "shape": [1]}
+  }
+}
+

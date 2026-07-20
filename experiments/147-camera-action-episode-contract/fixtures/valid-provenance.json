@@ -1,0 +1,36 @@
+{
+  "schema_version": "physical-ai-provenance-v1",
+  "episode": {
+    "format": "lerobot-v3",
+    "repo_id": "physical-ai/libero-openvla",
+    "revision": "1111111111111111111111111111111111111111",
+    "index": 0
+  },
+  "producer": {
+    "environment": {
+      "name": "libero",
+      "revision": "2222222222222222222222222222222222222222"
+    },
+    "policy": {
+      "name": "openvla",
+      "revision": "3333333333333333333333333333333333333333"
+    }
+  },
+  "camera_roles": {
+    "observation.images.image": {
+      "role": "main",
+      "source_key": "agentview_image",
+      "model_input": true
+    },
+    "observation.images.image2": {
+      "role": "wrist",
+      "source_key": "robot0_eye_in_hand_image",
+      "model_input": false
+    }
+  },
+  "claims": {
+    "recording_mode": "recorded",
+    "world": "simulation"
+  }
+}
+
