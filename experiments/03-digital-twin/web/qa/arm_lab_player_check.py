@@ -39,6 +39,10 @@ def run_desktop(browser):
     summary = wait_summary(page)
     assert summary["episode"] == "pass", summary
     assert summary["frames"] == 78, summary
+    assert summary["lane"] == "direct_vla", summary
+    assert summary["eventCount"] == 235, summary
+    assert summary["selectedEvent"]["source"] == "controller", summary
+    assert page.evaluate("window.qaArmLabClaimCheck().valid") is True
     assert_synchronized(summary)
 
     slider = page.locator('input[type="range"]')
@@ -47,6 +51,25 @@ def run_desktop(browser):
     summary = page.evaluate("window.qaArmLabSummary()")
     assert summary["frame"] == 30, summary
     assert_synchronized(summary)
+
+    page.get_by_role("button", name="VLM → bounded skill Qwen3-VL 판단 → scripted controller").click()
+    page.wait_for_function("() => window.qaArmLabSummary?.().lane === 'vlm_skill' && window.qaArmLabSummary().eventCount === 5")
+    page.locator(".arm-event").filter(has_text="bounded skill selection").click()
+    page.wait_for_function("() => window.qaArmLabSummary().selectedEvent?.source === 'vlm'")
+    vlm_summary = page.evaluate("window.qaArmLabSummary()")
+    assert vlm_summary["selectedEvent"]["parents"] == ["vlm-scene-observation"], vlm_summary
+    assert vlm_summary["selectedEvent"]["assistance"]["used"] is False, vlm_summary
+
+    page.get_by_role("button", name="증거 원문 열기").click()
+    drawer = page.get_by_role("dialog", name="이 판단은 어디서 왔나")
+    drawer.wait_for()
+    assert drawer.get_by_text("RECORDED EVIDENCE", exact=True).is_visible()
+    assert drawer.get_by_text("SIMULATION", exact=True).is_visible()
+    assert drawer.locator(".arm-artifact-link").count() == 4
+    assert drawer.get_by_text("Qwen/Qwen3-VL-4B-Instruct", exact=True).first.is_visible()
+    page.screenshot(path=OUT_DIR / "drawer-dark.png", full_page=True)
+    page.keyboard.press("Escape")
+    drawer.wait_for(state="hidden")
 
     page.get_by_role("button", name="실패 기록 FAIL").click()
     page.wait_for_function("() => window.qaArmLabSummary?.().episode === 'fail' && window.qaArmLabSummary().frames === 220")
@@ -77,7 +100,12 @@ def run_desktop(browser):
     page.locator('[data-testid="main-camera"] video').dispatch_event("timeupdate")
     page.wait_for_function("() => window.qaArmLabSummary().syncDelta <= 0.08")
 
-    page.screenshot(path=OUT_DIR / "desktop.png", full_page=True)
+    page.screenshot(path=OUT_DIR / "desktop-dark.png", full_page=True)
+    page.get_by_role("button", name="라이트 모드로 전환").click()
+    page.wait_for_function("() => window.qaArmLabSummary().theme === 'light'")
+    light_background = page.evaluate("getComputedStyle(document.body).backgroundColor")
+    assert light_background != "rgb(0, 0, 0)", light_background
+    page.screenshot(path=OUT_DIR / "desktop-light.png", full_page=True)
     assert not console_errors, console_errors
     page.close()
     return {"summary": keyboard_summary, "negativeDesyncRejected": negative_probe_passed, "consoleErrors": console_errors}
@@ -91,7 +119,7 @@ def run_mobile(browser):
     overflow = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
     assert overflow <= 0, {"horizontalOverflow": overflow}
     assert page.get_by_test_id("main-camera").bounding_box()["y"] < page.get_by_test_id("wrist-camera").bounding_box()["y"]
-    page.screenshot(path=OUT_DIR / "mobile.png", full_page=True)
+    page.screenshot(path=OUT_DIR / "mobile-dark.png", full_page=True)
     page.close()
     return {"horizontalOverflow": overflow, "sourceOrderStable": True}
 

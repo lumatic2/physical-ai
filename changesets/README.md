@@ -14,3 +14,4 @@
 | 10 | [20260721-lab2-two-lane-comparison-evidence](20260721-lab2-two-lane-comparison-evidence/README.md) | 2026-07-21 | direct VLA와 VLM→skill 실제 PASS/FAIL 통합 비교 | 5/5 | completed |
 | 11 | [20260721-lab3-public-evidence-bundle](20260721-lab3-public-evidence-bundle/README.md) | 2026-07-21 | LAB1/LAB2 정본의 content-hashed 공개 replay bundle | 6/6 | completed |
 | 12 | [20260721-lab3-synchronized-dual-camera-player](20260721-lab3-synchronized-dual-camera-player/README.md) | 2026-07-21 | dual camera·state/action 공통 playback 시간축 | 5/5 | completed |
+| 13 | [20260721-lab3-causal-timeline-evidence-drawer](20260721-lab3-causal-timeline-evidence-drawer/README.md) | 2026-07-21 | source·parent·assistance 인과 timeline과 raw evidence drawer | 4/4 | completed |

@@ -1,17 +1,24 @@
 import * as React from "react";
 import {
   Activity,
+  BrainCircuit,
   Camera,
   ChevronLeft,
   ChevronRight,
   CircleAlert,
   Database,
+  FileSearch,
+  Moon,
   Pause,
   Play,
+  Sun,
 } from "lucide-react";
 
 import { ResponsiveContentGrid } from "./ResponsiveContentGrid.jsx";
 import { TraceChart } from "./TraceChart.jsx";
+import { EventTimeline, eventSummary } from "./EventTimeline.jsx";
+import { EvidenceDrawer } from "./EvidenceDrawer.jsx";
+import { validatePublicEvidence } from "./claimContract.js";
 
 const REGISTRY_URL = "/assets/arm-lab/registry.json";
 
@@ -59,10 +66,15 @@ function VideoEvidence({ camera, videoRef, onTimeUpdate, onEnded, primary = fals
 export function ArmLab() {
   const [registry, setRegistry] = React.useState(null);
   const [trace, setTrace] = React.useState(null);
+  const [eventDocument, setEventDocument] = React.useState(null);
   const [episodeKey, setEpisodeKey] = React.useState("pass");
+  const [lane, setLane] = React.useState("direct_vla");
+  const [selectedEventId, setSelectedEventId] = React.useState(null);
+  const [evidenceOpen, setEvidenceOpen] = React.useState(false);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [playing, setPlaying] = React.useState(false);
   const [error, setError] = React.useState("");
+  const [theme, setTheme] = React.useState("dark");
   const mainVideo = React.useRef(null);
   const wristVideo = React.useRef(null);
 
@@ -70,6 +82,12 @@ export function ArmLab() {
   const frames = trace?.frames || [];
   const frameIndex = Math.min(Math.max(0, Math.round(currentTime * (episode?.fps || 10))), Math.max(0, frames.length - 1));
   const frame = frames[frameIndex] || null;
+  const events = eventDocument?.events || [];
+  const selectedEvent = events.find((event) => event.id === selectedEventId) || null;
+  const visibleEvents = React.useMemo(() => {
+    if (lane === "vlm_skill") return events;
+    return events.filter((event) => event.timestep === frameIndex);
+  }, [events, frameIndex, lane]);
 
   React.useEffect(() => {
     let alive = true;
@@ -82,6 +100,11 @@ export function ArmLab() {
       .catch((reason) => alive && setError(`공개 증거 registry를 읽지 못했습니다: ${reason.message}`));
     return () => { alive = false; };
   }, []);
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle("arm-light", theme === "light");
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
 
   React.useEffect(() => {
     if (!episode) return undefined;
@@ -99,6 +122,44 @@ export function ArmLab() {
     return () => { alive = false; };
   }, [episode]);
 
+  React.useEffect(() => {
+    if (!episode || !registry) return undefined;
+    let alive = true;
+    const artifact = episode.event_lanes[lane];
+    setEventDocument(null);
+    setSelectedEventId(null);
+    fetch(assetUrl(artifact.path))
+      .then((response) => {
+        if (!response.ok) throw new Error(`events ${response.status}`);
+        return response.json();
+      })
+      .then((value) => {
+        validatePublicEvidence(registry, value);
+        if (alive) setEventDocument(value);
+      })
+      .catch((reason) => alive && setError(`판단·행동 event를 읽지 못했습니다: ${reason.message}`));
+    return () => { alive = false; };
+  }, [episode, lane, registry]);
+
+  React.useEffect(() => {
+    if (!events.length) return;
+    if (lane === "vlm_skill") {
+      if (frameIndex >= frames.length - 1) {
+        const outcome = events.find((event) => event.source === "environment");
+        if (outcome) setSelectedEventId(outcome.id);
+      } else if (!selectedEventId || !events.some((event) => event.id === selectedEventId)) {
+        const decision = events.find((event) => event.causal_role === "decision") || events[0];
+        setSelectedEventId(decision.id);
+      }
+      return;
+    }
+    const current = events.filter((event) => event.timestep === frameIndex);
+    const preferred = current.findLast((event) => event.source === "environment")
+      || current.findLast((event) => event.source === "controller")
+      || current.at(-1);
+    if (preferred && preferred.id !== selectedEventId) setSelectedEventId(preferred.id);
+  }, [events, frameIndex, frames.length, lane, selectedEventId]);
+
   const seek = React.useCallback((nextTime) => {
     const clamped = Math.min(Math.max(0, nextTime), episode?.duration_sec || 0);
     for (const video of [mainVideo.current, wristVideo.current]) {
@@ -114,6 +175,11 @@ export function ArmLab() {
     if (wrist && Math.abs(wrist.currentTime - main.currentTime) > 0.08) wrist.currentTime = main.currentTime;
     setCurrentTime(main.currentTime);
   }, []);
+
+  const selectEvent = React.useCallback((event) => {
+    setSelectedEventId(event.id);
+    seek(event.timestep / (episode?.fps || 10));
+  }, [episode, seek]);
 
   const togglePlayback = React.useCallback(async () => {
     if (!mainVideo.current || !wristVideo.current) return;
@@ -152,7 +218,7 @@ export function ArmLab() {
 
   React.useEffect(() => {
     window.qaArmLabSummary = () => ({
-      pass: Boolean(registry && trace && episode && mainVideo.current && wristVideo.current),
+      pass: Boolean(registry && trace && eventDocument && selectedEvent && episode && mainVideo.current && wristVideo.current),
       schemaVersion: registry?.schema_version || null,
       episode: episodeKey,
       outcome: episode?.outcome || null,
@@ -165,9 +231,27 @@ export function ArmLab() {
       claimBoundary: registry?.claim_boundary || null,
       cameraContract: registry?.camera_contract || null,
       graphCursorFrame: frameIndex,
+      lane,
+      eventCount: events.length,
+      selectedEvent: selectedEvent ? {
+        id: selectedEvent.id,
+        source: selectedEvent.source,
+        kind: selectedEvent.kind,
+        timestep: selectedEvent.timestep,
+        parents: selectedEvent.parents,
+        component: selectedEvent.model_or_component,
+        assistance: selectedEvent.assistance,
+      } : null,
+      eventArtifactSha256: episode?.event_lanes?.[lane]?.sha256 || null,
+      datasetTreeSha256: episode?.canonical_dataset_tree_sha256 || null,
+      theme,
     });
-    return () => { delete window.qaArmLabSummary; };
-  }, [currentTime, episode, episodeKey, frameIndex, frames.length, registry, trace]);
+    window.qaArmLabClaimCheck = () => validatePublicEvidence(registry, eventDocument);
+    return () => {
+      delete window.qaArmLabSummary;
+      delete window.qaArmLabClaimCheck;
+    };
+  }, [currentTime, episode, episodeKey, eventDocument, events.length, frameIndex, frames.length, lane, registry, selectedEvent, theme, trace]);
 
   if (error && !registry) {
     return (
@@ -197,9 +281,19 @@ export function ArmLab() {
           <span className="arm-brand-mark"><Activity aria-hidden="true" size={15} /></span>
           <span>PHYSICAL AI LAB</span>
         </a>
-        <div className="arm-header-badges" aria-label="증거 경계">
-          <span>RECORDED EVIDENCE</span>
-          <span>LIBERO SIMULATION</span>
+        <div className="arm-header-tools">
+          <div className="arm-header-badges" aria-label="증거 경계">
+            <span>RECORDED EVIDENCE</span>
+            <span>LIBERO SIMULATION</span>
+          </div>
+          <button
+            className="arm-theme-toggle"
+            type="button"
+            onClick={() => setTheme((value) => value === "dark" ? "light" : "dark")}
+            aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
+          >
+            {theme === "dark" ? <Sun aria-hidden="true" size={16} /> : <Moon aria-hidden="true" size={16} />}
+          </button>
         </div>
       </header>
 
@@ -246,7 +340,24 @@ export function ArmLab() {
             onEnded={() => setPlaying(false)}
             primary
           />
-          <VideoEvidence camera={episode.cameras.wrist} videoRef={wristVideo} />
+          <div className="arm-evidence-side">
+            <VideoEvidence camera={episode.cameras.wrist} videoRef={wristVideo} />
+            <section className="arm-current-event" aria-labelledby="current-event-title">
+              <div className="arm-current-event-heading">
+                <div>
+                  <p className="arm-eyebrow">CURRENT CAUSAL EVENT</p>
+                  <h2 id="current-event-title">{selectedEvent ? selectedEvent.kind.replaceAll("_", " ") : "event loading"}</h2>
+                </div>
+                <span className={`arm-event-source is-${selectedEvent?.source || "sensor"}`}>{selectedEvent?.source || "—"}</span>
+              </div>
+              <p>{selectedEvent ? eventSummary(selectedEvent) : "기록된 event stream을 검증하는 중입니다."}</p>
+              <dl>
+                <div><dt>component</dt><dd>{selectedEvent?.model_or_component?.name || "—"}</dd></div>
+                <div><dt>parent</dt><dd>{selectedEvent?.parents?.join(", ") || "none"}</dd></div>
+                <div><dt>assistance</dt><dd>{selectedEvent?.assistance?.used ? selectedEvent.assistance.source : "none"}</dd></div>
+              </dl>
+            </section>
+          </div>
         </ResponsiveContentGrid>
 
         <section className="arm-playback" aria-label="공통 재생 제어">
@@ -279,6 +390,34 @@ export function ArmLab() {
           </div>
         </section>
 
+        <section className="arm-causal-panel" aria-labelledby="causal-title">
+          <div className="arm-panel-heading arm-causal-heading">
+            <div>
+              <p className="arm-eyebrow">OBSERVE → DECIDE → ACT → MEASURE</p>
+              <h2 id="causal-title">판단과 행동의 출처</h2>
+            </div>
+            <button className="arm-evidence-button" type="button" onClick={() => setEvidenceOpen(true)}>
+              <FileSearch aria-hidden="true" size={16} /> 증거 원문 열기
+            </button>
+          </div>
+          <div className="arm-lane-switch" role="group" aria-label="판단 행동 lane 선택">
+            <button type="button" className={lane === "direct_vla" ? "is-active" : ""} onClick={() => setLane("direct_vla")} aria-pressed={lane === "direct_vla"}>
+              <BrainCircuit aria-hidden="true" size={17} />
+              <span><strong>Direct VLA</strong><small>카메라+지시 → OpenVLA 7D action</small></span>
+            </button>
+            <button type="button" className={lane === "vlm_skill" ? "is-active" : ""} onClick={() => setLane("vlm_skill")} aria-pressed={lane === "vlm_skill"}>
+              <BrainCircuit aria-hidden="true" size={17} />
+              <span><strong>VLM → bounded skill</strong><small>Qwen3-VL 판단 → scripted controller</small></span>
+            </button>
+          </div>
+          <EventTimeline events={visibleEvents} selectedEvent={selectedEvent} onSelect={selectEvent} />
+          <p className="arm-causal-note">
+            {lane === "direct_vla"
+              ? `현재 frame ${frameIndex}의 실제 sensor·OpenVLA·controller chain입니다.`
+              : "VLM은 skill을 선택했고, 실제 78/220개 행동은 canonical scripted controller가 실행했습니다."}
+          </p>
+        </section>
+
         <section className="arm-trace-panel" aria-labelledby="trace-title">
           <div className="arm-panel-heading">
             <div>
@@ -306,6 +445,15 @@ export function ArmLab() {
 
         {error ? <p className="arm-inline-error" role="status">{error}</p> : null}
       </main>
+      <EvidenceDrawer
+        open={evidenceOpen}
+        onClose={() => setEvidenceOpen(false)}
+        registry={registry}
+        episode={episode}
+        lane={lane}
+        eventDocument={eventDocument}
+        selectedEvent={selectedEvent}
+      />
     </div>
   );
 }
