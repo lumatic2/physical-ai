@@ -1,0 +1,1583 @@
+{
+  "schema_version": "physical-ai-gen4-failure-pattern-index-v1",
+  "pass": true,
+  "rule_version": "gen4-rules-v1",
+  "denominator": 27,
+  "counts": {
+    "no_progress": 6,
+    "unknown": 21
+  },
+  "records_sha256": "b93cad2609f20e00eccffd68697aa8154cdc14cfef57ae6de9c92be117afe42e",
+  "records": [
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/episode-manifest.json",
+            "sha256": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a",
+        "manifest_sha256": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "12bd063e3dc76aaad27f91ae12a35e623a5415f28a750279255dce2b4ae26ddc"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "388be6659667a879c462390c5a8c052c5c80ada01b4238db44f517a203074952"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "04cd021f5f7d2f4165a66f551f89da4bfe199589798dc4afb2c29c40949d66ff"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/episode-manifest.json",
+            "sha256": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/events/episode_000000.json",
+            "sha256": "95557195d0dbf5aa51ac3fa72e3cb6c7f2853458d30523b3ee9038759854bad0"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-00:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/episode-manifest.json",
+            "sha256": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f",
+        "manifest_sha256": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "85273985ca488518160312dc6ed14a2d9c909cc131e6a0200e501d8f1a2505fb"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "5458f08e7957964498ee7f722b3e92df03404d12b8d6c1b40e17580e13c6c36d"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "c59c5dc259c519ceefbf2faaf28f6995ba7046b31c36e9c2e7530aeba8116538"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/episode-manifest.json",
+            "sha256": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/events/episode_000000.json",
+            "sha256": "9b97269d6f2b098c86ece7e1528a794614777846d058372582e0aaa6a14b5df6"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-00:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 240,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.0010615980739229257,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f",
+        "manifest_sha256": "82e1c34918c5bc46ebcbe40ed988ac1de208a127c278f7912b8115bb6105272a",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/episode-manifest.json",
+            "sha256": "82e1c34918c5bc46ebcbe40ed988ac1de208a127c278f7912b8115bb6105272a"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/episode-manifest.json",
+            "sha256": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05",
+        "manifest_sha256": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "f154a329e133ea195790317744e81657b6c13ce349a906fbcba445390cc379c1"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "d042a4e4223a2ae9e75da4df7dc9cd06b2f9b33f87b6edcf56d9bfb5d85af8a2"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "00561ca173b20451ebf72fbd583352134f57f463a94a382e113fd32b0d222340"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/episode-manifest.json",
+            "sha256": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/events/episode_000000.json",
+            "sha256": "91903dc1c512f44e2e746eb3da453059db6720bbb57340528a6eec0c0af71975"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-03:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/episode-manifest.json",
+            "sha256": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7",
+        "manifest_sha256": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "f1cdd82255de5901b8263f0e902fa7229045d276893c9d5ef7d781e90306a45e"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "e935ad744f14e947a11462468567c4a9e375070a5c4b42ab19255e0b82cf0e67"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "b37ebe667d24e51e8e42153bc6b608dfe96ba15d012f19727f949e77790d2a63"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/episode-manifest.json",
+            "sha256": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/events/episode_000000.json",
+            "sha256": "97f115c2ba45f0a8570eccda21e16624b43eb8f54a4ed8447777e19cd19aea4a"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-03:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/episode-manifest.json",
+            "sha256": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9",
+        "manifest_sha256": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "4178343360c0436e3b66e06e94ae5c56346508c9b91f721be79903b7eb43a062"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "b56858023ab947561f207c1f3c4f7a1008b8b7aaa58b71c722c71147e9f5e2c8"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "0711af861b4023d80cafa3063b248a8c79edb67b91b15f190577f8e92af94720"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/episode-manifest.json",
+            "sha256": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/events/episode_000000.json",
+            "sha256": "a417ec3b117eafd379cdf9ed3d7bb1b17563ba88403d184745cf7568b58a95f0"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-03:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 240,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.0014487394206457679,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "6bcb4f843bc47b040798d4b6da727df15d5ffaa3d0b19c44c1c081993b7e7817",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6",
+        "manifest_sha256": "d39791034057172e38d93248c90a2973c7e8dee221fc2717c56932fa0ee02c6d",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "6bcb4f843bc47b040798d4b6da727df15d5ffaa3d0b19c44c1c081993b7e7817",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/episode-manifest.json",
+            "sha256": "d39791034057172e38d93248c90a2973c7e8dee221fc2717c56932fa0ee02c6d"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 240,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.0017232361706072043,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682",
+        "manifest_sha256": "5d5cd73fcfd29c9455bea18c9580e97ef8146ab0f6392b4ddcd0cc5e718ca459",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/episode-manifest.json",
+            "sha256": "5d5cd73fcfd29c9455bea18c9580e97ef8146ab0f6392b4ddcd0cc5e718ca459"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-06:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/episode-manifest.json",
+            "sha256": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce",
+        "manifest_sha256": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "ce0bed19f75e88f6c34bcaaff1849cb1dfe3bf8eb793580d3b9611b73dd69d02"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "3acf8429c72893d26982003c380ba5921f4736867994c2843169366661b9b959"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "03ab8635f26bb21f7fc91f1d3b5fd578fb1c4c258131df686b13aeb90abf293a"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/episode-manifest.json",
+            "sha256": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/events/episode_000000.json",
+            "sha256": "8ba2c75de3ada02ce0a5d1bfe9a02624b49905743897fcb8f8f1ac59391f9d22"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-06:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 240,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.005580672937915156,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "311ac9754b86aa9757c0c4185a8e3aec6c64fb0bbe0e3052658303af4625d67c",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a",
+        "manifest_sha256": "e260077384f19bfd669568a7f7daa580bba65ca7011b38f4c89a675609210252",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "311ac9754b86aa9757c0c4185a8e3aec6c64fb0bbe0e3052658303af4625d67c",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/episode-manifest.json",
+            "sha256": "e260077384f19bfd669568a7f7daa580bba65ca7011b38f4c89a675609210252"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-09:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 240,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.006634112589964789,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "310b9bf6164e46a5bbcf0156823b4eb4dd6e24cad2aaec623654364bbc73ef33",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5",
+        "manifest_sha256": "1eee4040ca7760b389073ab4e7b1d0d4ef167149fdc4dd0873f8f6a2c038fd6f",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "310b9bf6164e46a5bbcf0156823b4eb4dd6e24cad2aaec623654364bbc73ef33",
+            "frame_range": {
+              "start": 240,
+              "end": 299
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/episode-manifest.json",
+            "sha256": "1eee4040ca7760b389073ab4e7b1d0d4ef167149fdc4dd0873f8f6a2c038fd6f"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_goal:task-09:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 299
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/episode-manifest.json",
+            "sha256": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15",
+        "manifest_sha256": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "a87bf136f466ed992bb20491a8e9234684c2d5eef4ac45f8b8e8784551696fea"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "e64ae9e85b5dc055ff814d415b44dfd7cb9ab3834334b01d24ab532e71fcb4b9"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "dcdbbdff955d6519328b206509b48ced55c12c680315802e3dd31a5f0695272e"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/episode-manifest.json",
+            "sha256": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/events/episode_000000.json",
+            "sha256": "07c931256a220c2aa6c7f8367374c993025d7090b79a2e18c67e1524ff210372"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/episode-manifest.json",
+            "sha256": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6",
+        "manifest_sha256": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "9792eda63fd5c385f158d35578246b3fc79c57cea72a7e33728d7c37fc9b331d"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "6770a94ae8e8149996d776298252001d532e1ce3ba2a42ca2b979ac8ecd20b93"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "a3153bcff552c218c4f37e53daf945163bdf67468367f5c49ea5a71b7c8a1166"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/episode-manifest.json",
+            "sha256": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/events/episode_000000.json",
+            "sha256": "4b4c3c8789b981d58c630b334f5812048589e8d8526c66197f65a3bf173ecc1e"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-03:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/episode-manifest.json",
+            "sha256": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843",
+        "manifest_sha256": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "7d3ae228c6fce7ee81ac58fb5da150fc94fdbb3c46525c2cc4c6708f88f7571a"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "c64868db92bd05c1ace204bfa8568572f62eb70c6d0f70196e71101df0069847"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "74b3147bf2508eb644f78258a5d2d86b70320d1a4f304cd658caec2628a36a28"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/episode-manifest.json",
+            "sha256": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/events/episode_000000.json",
+            "sha256": "85d2b7c13a621e55f7a916b4ccb388d5826fbe4766b9a9935a96af794283abc7"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-03:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/episode-manifest.json",
+            "sha256": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d",
+        "manifest_sha256": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "87d19d27c14be4a045079c0bad938f946fc70e9eeff7fac2c7ae6f3779316f7b"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "db0ae3ed33c853f0041f23ff8a2255836b1bddd7189fe8e1476604c0e28b588c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "7182fd8d7f1f5207095c0d9412e0e946a5a385c265b664a84592a3d7f4e09520"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/episode-manifest.json",
+            "sha256": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/events/episode_000000.json",
+            "sha256": "2a03564d9302c86ed3db511fd541e427943a9e79f43b1b59c0bc585d861109d9"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-03:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/episode-manifest.json",
+            "sha256": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971",
+        "manifest_sha256": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "1b6c7ad4d2da4950bf77869040135624083d64971d9f6b35869702691b034852"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "efc5b35102310788e05235093f3411ec4bfbc8859dc4994911cc4605862de08c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "7e9f6aaca94bc99753ea57d211b793d474ed3deab75ca247089973ffe01e1eb9"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/episode-manifest.json",
+            "sha256": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/events/episode_000000.json",
+            "sha256": "7b0637a3f93c1769d7166e1c72a165cdb417ea3ccdb4564ddcc0e414b1e07926"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-06:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/episode-manifest.json",
+            "sha256": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac",
+        "manifest_sha256": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "e02d5ad076669c279d3a83989e3550f1755c37edde24c87693e43a3cfaa7d94c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "8fbc2acab4fe8f66831bd603b25ead208da218ee98639d68ee149bbc8915424c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "1817b9bed1ea9578acf1527c656e25fcab9ee747e94283c433e613cff90cf406"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/episode-manifest.json",
+            "sha256": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/events/episode_000000.json",
+            "sha256": "1b158243693aae2b18ff201244cf346c65e3177a5467683900556d5c633aa7d9"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-06:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/episode-manifest.json",
+            "sha256": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e",
+        "manifest_sha256": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "2e8fdf5416af94adce7d226987fc681d84bd6728853ca878d4147ca0a5efd4e3"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "a6e3b93e5d74e8518f4897fbc966e5f22734c49d30ad49214491189de7881596"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "5b088b13c7c4a43ad67033457d131d38fcf033969442ba43a39693483f4cec3e"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/episode-manifest.json",
+            "sha256": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/events/episode_000000.json",
+            "sha256": "fecc17d5a690b7a6656d69d314d597724a208b04f1d3c6f30bb9959ae2861f61"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-09:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/episode-manifest.json",
+            "sha256": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8",
+        "manifest_sha256": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "ce22e9ab63e162288fc692ac1919ed8e623c0bb44a1e6cbce99cfc6c700b8a1e"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "279456e71b3278d5ddf07484fb1fe598ca3ca6d231f30fde4188ff4a1eceaf6c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "f52d6d6893470e95c17ff65a3de8d2345a7d1d1d38d13e8596b60b1cd9cc8824"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/episode-manifest.json",
+            "sha256": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/events/episode_000000.json",
+            "sha256": "6d1e8b6e83b9f784ebd6960686a0c43897e2fae98ab4e8cab7a01792afc8f070"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_object:task-09:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 279
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/episode-manifest.json",
+            "sha256": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d",
+        "manifest_sha256": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "7275faf05204826f329742c7930af578253f7c52467cfb08805b872eff1969b7"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "82644c470f4a5e7801d18149a79e3d198f77ee7892afc439e99cd8e735ed62b4"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "02ca00c18a9c82286b96fdd943f610b68d83f08620b6fe583cf2faaa5f8fa3ca"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/episode-manifest.json",
+            "sha256": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/events/episode_000000.json",
+            "sha256": "31eaead652e84d30c4dd0044618ee800d8f0eb488dc8b4ff5f9626a4b5e7b843"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/episode-manifest.json",
+            "sha256": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f",
+        "manifest_sha256": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "edf295b0ffd2a45b3b12601b715897fe7e4d288d7229757732087ce615fd3e9c"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "b548c928e5688776af5f28a15840cb06b832a4149b9ba84eeca73d0cb528f569"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "b2e5caef6b540dff092a69c5a52cf23eced84a493f827c5fff882805220d3136"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/episode-manifest.json",
+            "sha256": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/events/episode_000000.json",
+            "sha256": "aca9e2a13d4c187673dfe1675cab72919bc12e60460b9b640ef2d26f4e206034"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-05:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/episode-manifest.json",
+            "sha256": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac",
+        "manifest_sha256": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "21a63cc3b7cb9470cec5a680fa792aaf68d66330f2a5bb5b5a4980c13e434b60"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "95bd112da9b9ad32654fcde0456d5732ebdc49d66e6858567b0d57a8e7e4a104"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "7351f235e7ca08badab120e8680fcf07ffcad7c6f27bd83dd9a91df9d82d0754"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/episode-manifest.json",
+            "sha256": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/events/episode_000000.json",
+            "sha256": "54e7e2ef30374df6a262153847a9f43864ca73bc88e25ba5c3f204c215ab4ad3"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-05:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "no_progress",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 176,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "end_effector_displacement",
+          "operator": "lt",
+          "observed": 0.0038996638525013116,
+          "threshold": 0.01,
+          "unit": "meter",
+          "source": {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7",
+            "frame_range": {
+              "start": 176,
+              "end": 219
+            }
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1",
+        "manifest_sha256": "e0ce251dcbe3e4021493dcc6c1674f07aaa0d56c7eae45e6e19a21eb1594bc57",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7",
+            "frame_range": {
+              "start": 176,
+              "end": 219
+            }
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/episode-manifest.json",
+            "sha256": "e0ce251dcbe3e4021493dcc6c1674f07aaa0d56c7eae45e6e19a21eb1594bc57"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-05:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/episode-manifest.json",
+            "sha256": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5",
+        "manifest_sha256": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "846c56909ccb76727c72b1089a893caf9db1ca879837148b288b7f028e61fc56"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "260620bac5b35216ea3d9e5a884500acf1431dda7f33bed80b3172411c518a9b"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "1899c28b25c716cfd5cf3f1a2af243bc39e5afa50b301c5e4fefef2891c1ecf7"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/episode-manifest.json",
+            "sha256": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/events/episode_000000.json",
+            "sha256": "8b78aa3f9497acadd35a70aa3ef6c430dcb59ce827d43fa7b9d790c323d968a6"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-08:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/episode-manifest.json",
+            "sha256": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d",
+        "manifest_sha256": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "e8e79108e140a578f28f82a16861e7da4c8b7ee206cdaf2ae62b9a552355a24a"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "16eef7ea2e492d0f7452222831e395acfca84872f2151407594d817b0b4b7cee"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "81c02baaee667de12d53f85c3805061afa88dc93f372e7124e2089635f235caf"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/episode-manifest.json",
+            "sha256": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/events/episode_000000.json",
+            "sha256": "61009834c4bc0b55ee044c15f5d5d234302c99f502e1186a47150bf491a2f1ab"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-08:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/episode-manifest.json",
+            "sha256": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56",
+        "manifest_sha256": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "fa623c3adeafea4b1a08dc924bf551f8130edc6a82e8f39cf3604fd949f8f077"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "00cc1e8f18c654fd1cfe78fad350577bb6c1bf18904986e98b231f76788dd7cc"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "a80afb10301bbcbbfe21c38decec19eed9b98a53319dcc1239fe70a02d2caff8"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/episode-manifest.json",
+            "sha256": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/events/episode_000000.json",
+            "sha256": "abae4518f0b2fe9bc7fdb1dddac8108459c716b63b2a9455cadcc84988ac2e0c"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    },
+    {
+      "schema_version": "physical-ai-failure-pattern-record-v1",
+      "run_key": "v1:libero_spatial:task-08:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "outcome": "timeout",
+      "pattern_id": "unknown",
+      "rule_version": "gen4-rules-v1",
+      "frame_range": {
+        "start": 0,
+        "end": 219
+      },
+      "predicates": [
+        {
+          "metric": "declared_pattern_match_count",
+          "operator": "eq",
+          "observed": 0,
+          "threshold": 0,
+          "unit": "count",
+          "source": {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/episode-manifest.json",
+            "sha256": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146"
+          }
+        }
+      ],
+      "evidence": {
+        "episode_ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8",
+        "manifest_sha256": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146",
+        "sources": [
+          {
+            "kind": "trajectory",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/data/chunk-000/file-000.parquet",
+            "sha256": "f0229a5c9e3aeddfad81755f951fcb442fc04bf01ba5baf70b6821b70c6357a0"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+            "sha256": "ec363b0de93f14fb116b1a9bfce504b664b3fc0830d6e47a52a0e12e6e242e9b"
+          },
+          {
+            "kind": "camera",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+            "sha256": "59fe7137ea60dc7c7a0b325cfbda6df12c319537f15ce0fb205ada86beb9f01f"
+          },
+          {
+            "kind": "episode-manifest",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/episode-manifest.json",
+            "sha256": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146"
+          },
+          {
+            "kind": "event-stream",
+            "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/events/episode_000000.json",
+            "sha256": "ea179559f45c11d1abc8efb35f80c500f24b901e3ed60c19eedf628d1cf44536"
+          }
+        ]
+      },
+      "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis.",
+      "unknown_reason": "no-declared-predicate-matched"
+    }
+  ],
+  "inputs": {
+    "features_sha256": "a812b3868b521af6e6d122e5a69d990b9f34b034905307a7f743b6b3c72dcee3",
+    "rules_sha256": "56daaf7c1f4369d668dd587664164c39e47fcc10ccb52401b291470ba7c02377",
+    "record_schema_sha256": "eeccda9a9899ae6e938dee68a0572738a59c55d24371f5559ae1852978680559"
+  },
+  "disabled_patterns": {
+    "grasp_lost": "gripper command/state alone does not establish an object grasp relation",
+    "timeout_near_goal": "canonical features contain no task-specific goal-distance proxy",
+    "wrong_object_interaction": "canonical features contain no object pose, contact, or target-object identity"
+  },
+  "claim_boundary": "Deterministic observable pattern index; unknown is preserved and no pattern is a root cause.",
+  "sources": {
+    "features": {
+      "ref": "experiments/153-observable-failure-patterns/verify/features/failure-features.json",
+      "sha256": "011ab1bcebde384e4d8e4f15cb20a239b21d07e0819ee39d1504bb48f3341106"
+    },
+    "rules": {
+      "ref": "experiments/153-observable-failure-patterns/classification-rules-v1.json",
+      "sha256": "3b0cdb1cf49f98d89b4115efd0d41d11197e68f54c2df425766964199254ce49"
+    },
+    "record_schema": {
+      "ref": "experiments/153-observable-failure-patterns/failure-pattern-schema.json",
+      "sha256": "e54c33b8b24409c2c93e124bc3a7c82a75b272033fc1c1f0f1c4cd79e22a8a3d"
+    }
+  }
+}

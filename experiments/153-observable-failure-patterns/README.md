@@ -14,11 +14,15 @@ Step 1은 8개 pattern ID, typed predicate, frame range와 content-hashed source
 
 Step 2는 actual 27개 timeout episode에서 8D state·7D action·dual camera·controller event를 read-only 추출했다. rejected controller event는 0이며, object relation과 goal distance는 canonical source가 없어 27개 모두 explicit unavailable이다. raw source는 추출 전후 SHA-256가 동일하다.
 
+Step 3은 order-independent 규칙으로 27개를 `no_progress 6`, `unknown 21`로 분류했다. no_progress는 terminal window displacement `<0.01m`의 관측 predicate이며 원인 진단이 아니다. feature/rule 순서를 바꿔도 byte-identical record hash가 나오고 conflict fixture는 multiple로 보존된다.
+
 ```bash
 python experiments/153-observable-failure-patterns/verify_contract.py
 python experiments/153-observable-failure-patterns/test_verify_contract.py
 /home/yusun/.venvs/vla-eval/bin/python experiments/153-observable-failure-patterns/extract_features.py
 /home/yusun/.venvs/vla-eval/bin/python experiments/153-observable-failure-patterns/test_extract_features.py
+python experiments/153-observable-failure-patterns/classify_patterns.py
+python experiments/153-observable-failure-patterns/test_classify_patterns.py
 ```
 
 ## 통찰

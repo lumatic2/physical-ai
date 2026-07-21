@@ -1,0 +1,47 @@
+{
+  "schema_version": "physical-ai-gen4-classification-rules-v1",
+  "rule_version": "gen4-rules-v1",
+  "rules": [
+    {
+      "id": "no-progress-terminal-window",
+      "pattern_id": "no_progress",
+      "enabled": true,
+      "feature": "eef_trajectory.final_window_displacement",
+      "operator": "lt",
+      "threshold": 0.01,
+      "unit": "meter",
+      "source": "trajectory"
+    },
+    {
+      "id": "explicit-controller-rejection",
+      "pattern_id": "controller_rejected",
+      "enabled": true,
+      "feature": "controller_events.rejected_count",
+      "operator": "gt",
+      "threshold": 0,
+      "unit": "count",
+      "source": "event"
+    },
+    {
+      "id": "wrong-object-unavailable",
+      "pattern_id": "wrong_object_interaction",
+      "enabled": false,
+      "unavailable_reason": "canonical features contain no object pose, contact, or target-object identity"
+    },
+    {
+      "id": "grasp-lost-unavailable",
+      "pattern_id": "grasp_lost",
+      "enabled": false,
+      "unavailable_reason": "gripper command/state alone does not establish an object grasp relation"
+    },
+    {
+      "id": "near-goal-unavailable",
+      "pattern_id": "timeout_near_goal",
+      "enabled": false,
+      "unavailable_reason": "canonical features contain no task-specific goal-distance proxy"
+    }
+  ],
+  "conflict_policy": "multiple-with-sorted-components",
+  "fallback": "unknown",
+  "claim_boundary": "Rules classify observable predicates only; they do not diagnose perception, planning, or model reasoning."
+}

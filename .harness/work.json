@@ -363,9 +363,9 @@
       "milestone_id": "GEN4",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen4-observable-failure-patterns.md",
-      "changeset_path": "changesets/20260721-gen4-deterministic-classifier",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-gen4-reviewer-calibration",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -380,7 +380,7 @@
         {
           "id": "step-3",
           "label": "step-3 — deterministic-classifier",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",
