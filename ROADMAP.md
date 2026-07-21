@@ -39,8 +39,8 @@
 | LAB1 | Camera-to-Action Episode Contract | dual-camera/state/instruction/action/outcome을 한 trace로 보존한다 | `experiments/147-camera-action-episode-contract` | 완료 |
 | LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | 완료 |
 | LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/03-digital-twin/web/verify/arm-lab` | 완료 |
-| GEN1 | Fixed Multitask Evaluation Contract | 12 task×5 state×2 policy의 평가 분모를 사전 고정한다 | `experiments/150-multitask-evaluation-contract` | active |
-| GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | pending |
+| GEN1 | Fixed Multitask Evaluation Contract | 12 task×5 state×2 policy의 평가 분모를 사전 고정한다 | `experiments/150-multitask-evaluation-contract` | 완료 |
+| GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | active |
 | GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | pending |
 | GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | pending |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | pending |
@@ -52,15 +52,17 @@
 
 ## Active Milestones
 
-<!-- harness:milestone id="GEN1" status="active" priority="P0" -->
+<!-- harness:milestone id="GEN1" status="completed" priority="P0" evidence="archive/reports/2026-07-21-gen1-multitask-evaluation-contract.md" -->
 ### GEN1 — 고정된 다과제 평가 계약
 - DoD: 12 task×5 initial state×2 policy의 120 cell이 task/state/policy revision과 immutable run key로 사전 고정되고 clean contract gate를 통과한다.
-- Evidence: `plans/2026-07-21-gen1-multitask-evaluation-contract.md`; `experiments/150-multitask-evaluation-contract/verify/canonical/`; changesets `20260721-gen1-suite-task-slice`, `20260721-gen1-initial-state-contract`, `20260721-gen1-policy-compatibility-registry`, `20260721-gen1-multitask-result-contract`, `20260721-gen1-clean-contract-gate`
+- Evidence: archive/reports/2026-07-21-gen1-multitask-evaluation-contract.md
 - Gap: LAB3 한 과제의 evidence만으로는 평가 분모와 cherry-pick 부재를 입증하지 못한다.
 - Scale: changesets>=5; surfaces: task manifest, initial states, policy registry, result schema, clean gate; capability: 실행 전 다과제 paired 평가 계약을 재현한다.
-- Status: [ ]
+- Status: [x]
 
-<!-- harness:milestone id="GEN2" status="pending" priority="P1" -->
+- Completed at: 2026-07-21
+- Summary: 12 task×5 state×2 policy 평가 계약과 clean gate PASS
+<!-- harness:milestone id="GEN2" status="active" priority="P1" -->
 ### GEN2 — OpenVLA 다과제 기준선
 - DoD: GEN1의 OpenVLA 60 cell이 resumable runner로 실행되고 aggregate에서 모든 canonical episode까지 추적된다.
 - Evidence: `plans/2026-07-21-gen2-openvla-multitask-baseline.md`; `experiments/151-openvla-multitask-baseline/verify/`; changesets `20260721-gen2-manifest-driven-runner`, `20260721-gen2-resumable-run-ledger`, `20260721-gen2-canonical-episode-export`, `20260721-gen2-sixty-cell-execution`, `20260721-gen2-baseline-aggregate-gate`
