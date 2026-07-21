@@ -30,7 +30,7 @@
       "type": "object",
       "required": ["policy_id", "cell_count", "ordered_run_keys_sha256"],
       "properties": {
-        "policy_id": {"const": "openvla-libero"},
+        "policy_id": {"enum": ["openvla-libero", "pi05-libero"]},
         "cell_count": {"type": "integer", "minimum": 1},
         "ordered_run_keys_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
       },

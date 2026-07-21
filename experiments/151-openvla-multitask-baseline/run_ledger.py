@@ -3,8 +3,8 @@
 
 from __future__ import annotations
 
-import json
 import hashlib
+import json
 import os
 import re
 import time
@@ -49,7 +49,9 @@ def _require_keys(event: dict[str, Any], keys: tuple[str, ...]) -> None:
         raise LedgerContractError(f"{event.get('event')} missing fields: {', '.join(missing)}")
 
 
-def replay_events(events: list[dict[str, Any]], run_keys: list[str]) -> LedgerState:
+def replay_events(
+    events: list[dict[str, Any]], run_keys: list[str], policy_id: str = "openvla-libero"
+) -> LedgerState:
     state = LedgerState()
     allowed = set(run_keys)
     expected_contract_hash = canonical_hash(run_keys)
@@ -62,7 +64,7 @@ def replay_events(events: list[dict[str, Any]], run_keys: list[str]) -> LedgerSt
                 raise LedgerContractError("ledger_initialized must be the unique first event")
             _require_keys(event, ("contract",))
             contract = event["contract"]
-            if contract.get("policy_id") != "openvla-libero":
+            if contract.get("policy_id") != policy_id:
                 raise LedgerContractError("ledger policy mismatch")
             if contract.get("cell_count") != len(run_keys):
                 raise LedgerContractError("ledger cell count mismatch")
@@ -137,11 +139,12 @@ def replay_events(events: list[dict[str, Any]], run_keys: list[str]) -> LedgerSt
 
 
 class RunLedger:
-    def __init__(self, path: Path, run_keys: list[str]) -> None:
+    def __init__(self, path: Path, run_keys: list[str], *, policy_id: str = "openvla-libero") -> None:
         if len(run_keys) != len(set(run_keys)):
             raise LedgerContractError("run-key contract contains duplicates")
         self.path = path
         self.run_keys = list(run_keys)
+        self.policy_id = policy_id
         self.lock_path = path.with_suffix(path.suffix + ".lock")
 
     @contextmanager
@@ -198,25 +201,25 @@ class RunLedger:
                         "event": "ledger_initialized",
                         "recorded_at": now_utc(),
                         "contract": {
-                            "policy_id": "openvla-libero",
+                            "policy_id": self.policy_id,
                             "cell_count": len(self.run_keys),
                             "ordered_run_keys_sha256": canonical_hash(self.run_keys),
                         },
                     }
                 )
                 events = self._events_unlocked()
-            return replay_events(events, self.run_keys)
+            return replay_events(events, self.run_keys, self.policy_id)
 
     def state(self) -> LedgerState:
         with self._lock():
-            return replay_events(self._events_unlocked(), self.run_keys)
+            return replay_events(self._events_unlocked(), self.run_keys, self.policy_id)
 
     def _append(self, event: dict[str, Any]) -> LedgerState:
         with self._lock():
             events = self._events_unlocked()
-            replay_events(events + [event], self.run_keys)
+            replay_events(events + [event], self.run_keys, self.policy_id)
             self._write_event_unlocked(event)
-            return replay_events(events + [event], self.run_keys)
+            return replay_events(events + [event], self.run_keys, self.policy_id)
 
     def begin_attempt(self, run_key: str, *, recover_active: bool = False) -> dict[str, Any]:
         state = self.state()

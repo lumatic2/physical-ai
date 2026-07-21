@@ -23,3 +23,34 @@ OPENPI_DATA_HOME=/home/yusun/.cache/openpi-gen3 uv run python \
 ```bash
 python experiments/152-paired-vla-comparison/verify_adapter_parity.py
 ```
+
+## Step 3: π₀.₅ 60-cell execution
+
+`execute_pi05.py`는 GEN1의 정확한 π₀.₅ 60개 run key를 순서대로 실행한다. 하나의 OpenPI policy server를 재사용하고, 각 attempt를 append-only ledger에 남긴 뒤 raw LeRobot dataset·provenance sidecar·causal event를 검증한 cell만 sealed result로 승격한다.
+
+```bash
+cd /mnt/c/Users/yusun/projects/physical-ai
+MUJOCO_GL=egl /home/yusun/.venvs/vla-eval/bin/python \
+  experiments/152-paired-vla-comparison/execute_pi05.py \
+  --artifact-root /home/yusun/physical-ai-runs/gen3-pi05 \
+  --ledger /home/yusun/physical-ai-runs/gen3-pi05/run-ledger.jsonl \
+  --client-python /home/yusun/.venvs/vla-eval/bin/python \
+  --server-python /home/yusun/openpi-gen3/.venv/bin/python \
+  --server-root /home/yusun/openpi-gen3 \
+  --libero-root /home/yusun/LIBERO \
+  --openpi-data-home /home/yusun/.cache/openpi-gen3
+```
+
+완료 뒤 canonical index는 원 ledger와 episode tree를 다시 읽어 생성한다.
+
+```bash
+/home/yusun/.venvs/vla-eval/bin/python \
+  experiments/152-paired-vla-comparison/verify_pi05_execution.py \
+  --artifact-root /home/yusun/physical-ai-runs/gen3-pi05 \
+  --ledger /home/yusun/physical-ai-runs/gen3-pi05/run-ledger.jsonl \
+  --assert-clean-processes
+```
+
+검증 경계: infrastructure error attempt는 보존하되 정책 success/timeout 분모에 섞지 않는다. 이 Step은 π₀.₅ 60개 rollout의 실제 실행 증거이며 paired 통계와 정책 우열 해석은 Step 4 이후에만 연다.
+
+실측 결과: 60/60 terminal, 58 success·2 timeout, 7,608 frames, 1,545 policy requests, suite별 20개다. 첫 cell의 환경 설정 실패 2건은 별도 infrastructure attempt로 ledger에 남고 정책 분모에는 포함되지 않는다.

@@ -302,9 +302,9 @@
       "milestone_id": "GEN3",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen3-paired-vla-comparison.md",
-      "changeset_path": "changesets/20260721-gen3-pi05-sixty-cell-execution",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-gen3-paired-statistics",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -319,7 +319,7 @@
         {
           "id": "step-3",
           "label": "step-3 — pi05-sixty-cell-execution",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",

@@ -9,10 +9,8 @@ import unittest
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
-
 from run_baseline import load_runner_contract
 from run_ledger import EVENT_VERSION, LedgerContractError, RunLedger
-
 
 SEALED_SHA = "a" * 64
 
@@ -29,7 +27,9 @@ class RunLedgerTest(unittest.TestCase):
     def test_forced_interruption_resume_skips_completed_and_retries_partial(self) -> None:
         partial = self.ledger.begin_attempt(self.run_keys[0])
         completed = self.ledger.begin_attempt(self.run_keys[1])
-        self.ledger.record_policy_terminal(self.run_keys[1], completed["attempt_id"], "success", "episodes/b", SEALED_SHA)
+        self.ledger.record_policy_terminal(
+            self.run_keys[1], completed["attempt_id"], "success", "episodes/b", SEALED_SHA
+        )
         summary = self.ledger.resume_summary()
         self.assertEqual(summary["completed_skipped"], 1)
         self.assertEqual(summary["active_partial"], [self.run_keys[0]])
@@ -48,7 +48,9 @@ class RunLedgerTest(unittest.TestCase):
         attempt = self.ledger.begin_attempt(self.run_keys[0])
         self.ledger.record_policy_terminal(self.run_keys[0], attempt["attempt_id"], "timeout", "episodes/a", SEALED_SHA)
         with self.assertRaisesRegex(LedgerContractError, "duplicate or non-active"):
-            self.ledger.record_policy_terminal(self.run_keys[0], attempt["attempt_id"], "timeout", "episodes/a", SEALED_SHA)
+            self.ledger.record_policy_terminal(
+                self.run_keys[0], attempt["attempt_id"], "timeout", "episodes/a", SEALED_SHA
+            )
 
     def test_partial_artifact_promotion_is_rejected_on_replay(self) -> None:
         attempt = self.ledger.begin_attempt(self.run_keys[0])
@@ -79,6 +81,19 @@ class RunLedgerTest(unittest.TestCase):
         retry = self.ledger.begin_attempt(self.run_keys[0])
         self.assertEqual(retry["retry_of"], attempt["attempt_id"])
         self.assertEqual(self.ledger.resume_summary()["infrastructure_error_attempts"], 1)
+
+    def test_policy_id_can_be_explicitly_reused_by_gen3(self) -> None:
+        path = Path(self.temp.name) / "pi05-ledger.jsonl"
+        ledger = RunLedger(path, self.run_keys, policy_id="pi05-libero")
+        ledger.initialize()
+        first = json.loads(path.read_text(encoding="utf-8").splitlines()[0])
+        self.assertEqual(first["contract"]["policy_id"], "pi05-libero")
+        schema = json.loads(
+            (Path(__file__).resolve().parent / "schemas/run-ledger-event-v1.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(list(Draft202012Validator(schema).iter_errors(first)), [])
+        with self.assertRaisesRegex(LedgerContractError, "policy mismatch"):
+            RunLedger(path, self.run_keys).state()
 
 
 if __name__ == "__main__":
