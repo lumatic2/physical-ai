@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AlertTriangle, Braces, CircleHelp, Filter, ShieldAlert } from "lucide-react";
+import { AlertTriangle, ArrowUpRight, Braces, CircleHelp, Filter, ShieldAlert } from "lucide-react";
 
 import { ALL_FILTER, SUITE_LABELS, compactHash } from "./generalizationContract.js";
 import {
@@ -57,6 +57,7 @@ function FailureRow({ row }) {
         <span>frame {row.frameRange.start}–{row.frameRange.end}</span>
         <code>{formatPredicate(row.predicates[0])}</code>
         <code>manifest {compactHash(row.manifestSha256)}</code>
+        {row.publicEpisode ? <a href={row.publicEpisode.public_url}>dual-camera replay <ArrowUpRight aria-hidden="true" size={12} /></a> : null}
       </div>
     </li>
   );

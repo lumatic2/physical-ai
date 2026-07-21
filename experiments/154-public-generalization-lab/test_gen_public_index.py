@@ -60,6 +60,15 @@ class PublicIndexTest(unittest.TestCase):
     def test_claim_boundary_is_exact(self) -> None:
         self.assertEqual(self.registry["claim_boundary"], CLAIM_BOUNDARY)
 
+    def test_drilldown_urls_bind_source_policy_and_manifest(self) -> None:
+        links = [cell for cell in self.registry["cells"] if cell["public_episode"]]
+        self.assertEqual(len(links), 2)
+        for cell in links:
+            url = cell["public_episode"]["public_url"]
+            self.assertIn(f"source_cell={cell['cell_id'].replace(':', '%3A')}", url)
+            self.assertIn("policy=openvla-libero", url)
+            self.assertIn(f"manifest={cell['public_episode']['manifest_sha256']}", url)
+
 
 if __name__ == "__main__":
     unittest.main()

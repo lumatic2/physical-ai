@@ -1,0 +1,29 @@
+{
+  "route": "http://127.0.0.1:8132/generalization-lab.html",
+  "registry_sha256": "4ab5b110aee5d490a32964f7c696cc49c990eadbde10d10d5733d3b5d428445d",
+  "verified_at": "2026-07-21",
+  "pass": {
+    "source_cell": "libero_spatial:task-05:state-00",
+    "episode": "pass",
+    "policy": "openvla-libero",
+    "manifest_sha256": "1197f1e4afbb527d7cbc0f4b924cc4cc4f7b15970f54ace175186b83b9585a47",
+    "main_camera_sha256": "a26ae72cee9c9faca7a92f5fce10d97883c81607cf20a81e570da34607a83710",
+    "wrist_camera_sha256": "949032b415d9f521a5855661711be79538b4591388f77cc12b39e34ad0365ceb"
+  },
+  "fail": {
+    "source_cell": "libero_spatial:task-05:state-01",
+    "episode": "fail",
+    "policy": "openvla-libero",
+    "manifest_sha256": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a",
+    "main_camera_sha256": "95bd112da9b9ad32654fcde0456d5732ebdc49d66e6858567b0d57a8e7e4a104",
+    "wrist_camera_sha256": "7351f235e7ca08badab120e8680fcf07ffcad7c6f27bd83dd9a91df9d82d0754"
+  },
+  "negative_probes": {
+    "wrong_episode": "PASS",
+    "stale_manifest": "PASS",
+    "policy_relabel": "PASS",
+    "camera_relabel": "PASS"
+  },
+  "legacy_arm_lab_regression": "PASS",
+  "console_errors": []
+}

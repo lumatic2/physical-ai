@@ -70,6 +70,9 @@
 .gl-selection-panel dd:last-child { grid-column: 1 / -1; }
 .gl-selection-panel code { color: var(--arm-muted); font-size: 0.58rem; }
 .gl-selection-note { grid-column: 1 / -1; margin: 0; color: var(--arm-muted); font-size: 0.66rem; line-height: 1.5; word-break: keep-all; }
+.gl-drilldown-link { display: inline-flex; grid-column: 1 / -1; width: max-content; min-height: 2.35rem; align-items: center; gap: var(--gl-space-1); padding: 0 var(--gl-space-2); border-radius: calc(var(--arm-radius) * 0.55); background: var(--arm-accent); color: var(--arm-canvas); font-size: 0.68rem; font-weight: 680; text-decoration: none; }
+.gl-drilldown-link:hover { filter: brightness(1.08); }
+.gl-drilldown-link:focus-visible { outline: 2px solid var(--arm-text); outline-offset: 2px; }
 .gl-pattern-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: hidden; border-radius: calc(var(--arm-radius) * 0.75); background: var(--arm-surface-raised); }
 .gl-pattern-summary > div { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: var(--gl-space-2); padding: var(--gl-space-3); }
 .gl-pattern-summary > div + div { border-left: 1px solid var(--arm-line-subtle); }
@@ -94,6 +97,9 @@
 .gl-failure-row > p { margin: 0; color: var(--arm-muted); font-size: 0.68rem; line-height: 1.45; }
 .gl-failure-evidence { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--gl-space-1) var(--gl-space-2); color: var(--arm-muted); font-size: 0.6rem; }
 .gl-failure-evidence code { color: var(--arm-text); font-size: 0.59rem; }
+.gl-failure-evidence a { display: inline-flex; align-items: center; gap: 0.2rem; color: var(--arm-accent); font-size: 0.59rem; font-weight: 650; text-decoration: none; }
+.gl-failure-evidence a:hover { text-decoration: underline; }
+.gl-failure-evidence a:focus-visible { outline: 2px solid var(--arm-accent); outline-offset: 2px; }
 .gl-failure-empty { display: flex; min-height: 8rem; align-items: center; justify-content: center; gap: var(--gl-space-2); border-radius: calc(var(--arm-radius) * 0.75); background: var(--arm-surface-raised); color: var(--arm-muted); }
 .gl-failure-empty p { margin: 0; font-size: 0.72rem; }
 .gl-failure-boundary { margin: var(--gl-space-3) 0 0; color: var(--arm-muted); font-size: 0.65rem; line-height: 1.5; word-break: keep-all; }

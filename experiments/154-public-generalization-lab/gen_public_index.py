@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import re
+from urllib.parse import urlencode
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -140,10 +141,18 @@ def public_episode_link(
         raise PublicIndexError(f"LAB3 public episode mismatch: {episode_key}")
     if episode["canonical_dataset_tree_sha256"] != lab1["hashes"][episode_key]["dataset_tree_sha256"]:
         raise PublicIndexError(f"LAB3 dataset hash mismatch: {episode_key}")
+    public_url = "/arm-lab.html?" + urlencode(
+        [
+            ("episode", episode_key),
+            ("source_cell", pair["paired_key"]),
+            ("policy", pair["openvla"]["policy_id"]),
+            ("manifest", pair["openvla"]["manifest_sha256"]),
+        ]
+    )
     return {
         "episode_key": episode_key,
         "episode_id": episode["id"],
-        "public_url": f"/arm-lab.html?episode={episode_key}",
+        "public_url": public_url,
         "run_key": pair["openvla"]["run_key"],
         "manifest_sha256": pair["openvla"]["manifest_sha256"],
         "canonical_dataset_tree_sha256": episode["canonical_dataset_tree_sha256"],

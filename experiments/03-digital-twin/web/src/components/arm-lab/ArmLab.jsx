@@ -19,8 +19,14 @@ import { TraceChart } from "./TraceChart.jsx";
 import { EventTimeline, eventSummary } from "./EventTimeline.jsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.jsx";
 import { validatePublicEvidence } from "./claimContract.js";
+import {
+  episodeFromSearch,
+  hasDrilldownRequest,
+  resolveDrilldown,
+} from "../generalization-lab/drilldownContract.js";
 
 const REGISTRY_URL = "/assets/arm-lab/registry.json";
+const GENERALIZATION_REGISTRY_URL = "/assets/generalization-lab/registry.json";
 
 function assetUrl(path) {
   return `/assets/arm-lab/${path}`;
@@ -67,7 +73,10 @@ export function ArmLab() {
   const [registry, setRegistry] = React.useState(null);
   const [trace, setTrace] = React.useState(null);
   const [eventDocument, setEventDocument] = React.useState(null);
-  const [episodeKey, setEpisodeKey] = React.useState("pass");
+  const [episodeKey, setEpisodeKey] = React.useState(() => episodeFromSearch(window.location.search));
+  const [drilldownRequested, setDrilldownRequested] = React.useState(() => hasDrilldownRequest(window.location.search));
+  const [drilldown, setDrilldown] = React.useState(null);
+  const [drilldownError, setDrilldownError] = React.useState("");
   const [lane, setLane] = React.useState("direct_vla");
   const [selectedEventId, setSelectedEventId] = React.useState(null);
   const [evidenceOpen, setEvidenceOpen] = React.useState(false);
@@ -100,6 +109,20 @@ export function ArmLab() {
       .catch((reason) => alive && setError(`공개 증거 registry를 읽지 못했습니다: ${reason.message}`));
     return () => { alive = false; };
   }, []);
+
+  React.useEffect(() => {
+    if (!registry || !drilldownRequested) return undefined;
+    let alive = true;
+    fetch(GENERALIZATION_REGISTRY_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error(`generalization registry ${response.status}`);
+        return response.json();
+      })
+      .then((value) => resolveDrilldown(window.location.search, value, registry))
+      .then((resolved) => alive && setDrilldown(resolved))
+      .catch((reason) => alive && setDrilldownError(`비교 cell과 replay 증거를 연결하지 못했습니다: ${reason.message}`));
+    return () => { alive = false; };
+  }, [drilldownRequested, registry]);
 
   React.useEffect(() => {
     document.documentElement.classList.toggle("arm-light", theme === "light");
@@ -244,6 +267,16 @@ export function ArmLab() {
       } : null,
       eventArtifactSha256: episode?.event_lanes?.[lane]?.sha256 || null,
       datasetTreeSha256: episode?.canonical_dataset_tree_sha256 || null,
+      drilldownRequested,
+      drilldown: drilldown ? {
+        sourceCellId: drilldown.sourceCellId,
+        policyId: drilldown.policyId,
+        manifestSha256: drilldown.manifestSha256,
+        episodeKey: drilldown.episodeKey,
+        episodeId: drilldown.episodeId,
+        datasetTreeSha256: drilldown.datasetTreeSha256,
+        cameraSha256: drilldown.cameraSha256,
+      } : null,
       theme,
     });
     window.qaArmLabClaimCheck = () => validatePublicEvidence(registry, eventDocument);
@@ -251,22 +284,22 @@ export function ArmLab() {
       delete window.qaArmLabSummary;
       delete window.qaArmLabClaimCheck;
     };
-  }, [currentTime, episode, episodeKey, eventDocument, events.length, frameIndex, frames.length, lane, registry, selectedEvent, theme, trace]);
+  }, [currentTime, drilldown, drilldownRequested, episode, episodeKey, eventDocument, events.length, frameIndex, frames.length, lane, registry, selectedEvent, theme, trace]);
 
-  const fatalError = error && (!registry || !episode || !trace || !eventDocument);
+  const fatalError = drilldownError || (error && (!registry || !episode || !trace || !eventDocument));
 
   if (fatalError) {
     return (
       <main className="arm-state-page">
         <CircleAlert aria-hidden="true" />
         <h1>실험 기록을 열 수 없습니다</h1>
-        <p>{error}</p>
+        <p>{drilldownError || error}</p>
         <button type="button" onClick={() => window.location.reload()}>다시 시도</button>
       </main>
     );
   }
 
-  if (!registry || !episode || !trace) {
+  if (!registry || !episode || !trace || (drilldownRequested && !drilldown)) {
     return (
       <main className="arm-state-page" aria-live="polite">
         <Activity className="arm-loading-icon" aria-hidden="true" />
@@ -312,7 +345,13 @@ export function ArmLab() {
                 key={key}
                 type="button"
                 className={key === episodeKey ? "is-active" : ""}
-                onClick={() => setEpisodeKey(key)}
+                onClick={() => {
+                  setEpisodeKey(key);
+                  setDrilldownRequested(false);
+                  setDrilldown(null);
+                  setDrilldownError("");
+                  window.history.replaceState({}, "", `/arm-lab.html?episode=${key}`);
+                }}
                 aria-pressed={key === episodeKey}
               >
                 <span>{key === "pass" ? "성공 기록" : "실패 기록"}</span>
@@ -321,6 +360,18 @@ export function ArmLab() {
             ))}
           </div>
         </section>
+
+        {drilldown ? (
+          <aside aria-label="일반화 비교에서 연결된 증거" className="arm-traceability">
+            <Database aria-hidden="true" size={17} />
+            <div>
+              <p>GENERALIZATION CELL → LAB3 REPLAY</p>
+              <strong>{drilldown.sourceCellId}</strong>
+              <span>{drilldown.policyId} · manifest {compactHash(drilldown.manifestSha256)} · {drilldown.episodeId}</span>
+            </div>
+            <a href="/generalization-lab.html">비교 실험실로 돌아가기</a>
+          </aside>
+        ) : null}
 
         <section className="arm-instruction" aria-labelledby="instruction-title">
           <div className="arm-section-icon"><Database aria-hidden="true" size={17} /></div>

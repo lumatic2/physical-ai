@@ -36,7 +36,7 @@ export function collectFailureEpisodes(registry) {
         predicates: policy.failure.predicates,
         frameRange: policy.failure.frame_range,
         ruleVersion: policy.failure.rule_version,
-        publicEpisode: policy.public_episode || null,
+        publicEpisode: cell.public_episode?.run_key === policy.run_key ? cell.public_episode : null,
       });
     }
   }

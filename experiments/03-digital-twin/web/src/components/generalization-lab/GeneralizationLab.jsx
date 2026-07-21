@@ -21,6 +21,7 @@ import {
   validateGeneralizationRegistry,
 } from "./generalizationContract.js";
 import { FailureExplorer } from "./FailureExplorer.jsx";
+import { buildDrilldownUrl } from "./drilldownContract.js";
 
 const REGISTRY_URL = "/assets/generalization-lab/registry.json";
 
@@ -152,6 +153,7 @@ function ComparisonTable({ cells, selectedCellId, onSelect }) {
 
 function SelectionEvidence({ cell }) {
   if (!cell) return null;
+  const drilldownUrl = cell.public_episode ? buildDrilldownUrl(cell) : null;
   return (
     <aside aria-labelledby="selected-cell-title" className="gl-selection-panel">
       <div>
@@ -168,7 +170,12 @@ function SelectionEvidence({ cell }) {
           </div>
         ))}
       </dl>
-      <p className="gl-selection-note">이 단계는 aggregate evidence를 선택합니다. 공개 dual-camera replay 연결은 다음 traceability gate에서 활성화됩니다.</p>
+      <p className="gl-selection-note">공개 replay가 있는 cell은 source policy·manifest·camera hash를 검증한 뒤 LAB3 듀얼 카메라 기록으로 이동합니다.</p>
+      {drilldownUrl ? (
+        <a className="gl-drilldown-link" href={drilldownUrl}>
+          이 OpenVLA episode를 듀얼 카메라로 보기 <ArrowUpRight aria-hidden="true" size={14} />
+        </a>
+      ) : null}
     </aside>
   );
 }

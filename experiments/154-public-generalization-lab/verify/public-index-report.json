@@ -1,8 +1,8 @@
 {
   "schema_version": "physical-ai-gen5-public-index-report-v1",
   "pass": true,
-  "registry_bytes": 66218,
-  "registry_sha256": "1bfe68019c6e2baebdd15c446323b4f171fad8839f329b40fec9bd928db12f68",
+  "registry_bytes": 66506,
+  "registry_sha256": "4ab5b110aee5d490a32964f7c696cc49c990eadbde10d10d5733d3b5d428445d",
   "cell_count": 60,
   "episode_count": 120,
   "failure_count": 27,
