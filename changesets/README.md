@@ -23,3 +23,4 @@
 | 19 | [20260721-gen1-clean-contract-gate](20260721-gen1-clean-contract-gate/README.md) | 2026-07-21 | 12×5×2 평가 계약의 통합·변이·clean checkout gate | 5/5 | completed |
 | 20 | [20260721-gen2-manifest-driven-runner](20260721-gen2-manifest-driven-runner/README.md) | 2026-07-21 | GEN1 OpenVLA 60 cell의 exact dry-run과 단일-cell 실행 명령 | 5/5 | completed |
 | 21 | [20260721-gen2-resumable-run-ledger](20260721-gen2-resumable-run-ledger/README.md) | 2026-07-21 | append-only attempt, explicit retry와 sealed artifact 승격 gate | 5/5 | completed |
+| 22 | [20260721-gen2-canonical-episode-export](20260721-gen2-canonical-episode-export/README.md) | 2026-07-21 | LAB1/LAB2 evidence를 GEN2 run key의 sealed episode로 승격 | 5/5 | completed |

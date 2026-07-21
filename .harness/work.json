@@ -241,9 +241,9 @@
       "milestone_id": "GEN2",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen2-openvla-multitask-baseline.md",
-      "changeset_path": "changesets/20260721-gen2-canonical-episode-export",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-gen2-sixty-cell-execution",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -258,7 +258,7 @@
         {
           "id": "step-3",
           "label": "step-3 — canonical-episode-export",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",

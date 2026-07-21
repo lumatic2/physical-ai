@@ -34,6 +34,20 @@ python run_baseline.py --ledger /tmp/openvla-baseline.jsonl --resume
 python verify_run_ledger.py
 ```
 
+## Canonical episode seal
+
+`episode_export.py`는 LAB1 LeRobot dataset/provenance와 LAB2 direct-VLA causal event를 같은 run key에 대조한다. dual camera, 8D state, 7D action, frame timestamp, raw policy action→executed action hash와 outcome이 모두 연결된 뒤에만 manifest를 `.partial`에서 `sealed`로 atomic rename하고 ledger terminal을 기록한다.
+
+```bash
+python episode_export.py \
+  --run-key "$RUN_KEY" --dataset-root "$DATASET_ROOT" \
+  --sidecar "$SIDECAR" --events "$EVENTS" \
+  --artifact-ref "episodes/$CELL_ID" --manifest-output "$MANIFEST" \
+  --ledger "$LEDGER" --attempt-id "$ATTEMPT_ID"
+```
+
+입력 경로는 local-only runtime argument이며 sealed manifest에는 상대 artifact ref와 content hash만 남는다.
+
 ## Sources
 
 - [LIBERO repository at the frozen revision](https://github.com/Lifelong-Robot-Learning/LIBERO/tree/8f1084e3132a39270c3a13ebe37270a43ece2a01) (접근일: 2026-07-21)

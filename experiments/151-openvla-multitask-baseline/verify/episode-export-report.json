@@ -1,0 +1,33 @@
+{
+  "schema_version": "physical-ai-gen2-episode-export-verification-v1",
+  "pass": true,
+  "run_key": "v1:libero_spatial:task-05:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+  "frames": 78,
+  "causal_events": 235,
+  "camera_keys": [
+    "observation.images.image",
+    "observation.images.image2"
+  ],
+  "state_shape": [
+    8
+  ],
+  "action_shape": [
+    7
+  ],
+  "result_status": "success",
+  "sealed_evidence": {
+    "artifact_ref": "episodes/libero-spatial-task-05-state-00",
+    "dataset_tree_sha256": "fa32a6cc199cab3c77267b193f7bfac8cad20e4b0a2d25e54808d4dc786d705d",
+    "dataset_file_count": 8,
+    "info_sha256": "cd2043039dcfcd37a31b9b62b357986da8cca348e24d77e3db138a0ff5fea46f",
+    "sidecar_sha256": "20b81c46d667116f5c11553665fe42745f32294d53440f4108fe53d115533a3f",
+    "events_sha256": "a2afe5bc5ae3a75cd0970082a10141017eef4b98df4973a18ce863cb2cd66c1b",
+    "causal_event_count": 235
+  },
+  "rejected": [
+    "camera-relabel",
+    "missing-action-link",
+    "local-path-leak"
+  ],
+  "claim_boundary": "Reuses one LAB1/LAB2 recorded PASS as an exporter proof; no new rollout was executed."
+}
