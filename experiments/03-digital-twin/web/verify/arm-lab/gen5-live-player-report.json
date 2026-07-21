@@ -1,0 +1,66 @@
+{
+  "url": "https://robotics.askewly.com/arm-lab",
+  "desktop": {
+    "summary": {
+      "pass": true,
+      "schemaVersion": "physical-ai-public-arm-lab-v1",
+      "episode": "fail",
+      "outcome": {
+        "error_code": null,
+        "reward": 0,
+        "success": false,
+        "termination": "timeout"
+      },
+      "frame": 1,
+      "frames": 220,
+      "currentTime": 0.1,
+      "mainTime": 0.1,
+      "wristTime": 0.1,
+      "syncDelta": 0,
+      "claimBoundary": "recorded LIBERO simulation evidence; not live inference, real robot telemetry, or free-form chain-of-thought",
+      "cameraContract": {
+        "model_input": "observation.images.image",
+        "observer_only": [
+          "observation.images.image2"
+        ]
+      },
+      "graphCursorFrame": 1,
+      "lane": "vlm_skill",
+      "eventCount": 5,
+      "selectedEvent": {
+        "id": "vlm-skill-selection",
+        "source": "vlm",
+        "kind": "bounded_skill_selection",
+        "timestep": 0,
+        "parents": [
+          "vlm-scene-observation"
+        ],
+        "component": {
+          "name": "Qwen/Qwen3-VL-4B-Instruct",
+          "revision": "ebb281ec70b05090aa6165b016eac8ec08e71b17"
+        },
+        "assistance": {
+          "source": "none",
+          "used": false
+        }
+      },
+      "eventArtifactSha256": "bf9dd490b94495edeb917b40f22caa90b1d8f4bb1ae477bb1510f81274ea0cbd",
+      "datasetTreeSha256": "dd84f5e677a24ffa1746c70acaa6afa943817104eb00cf90fa4c6a013dda4d90",
+      "drilldownRequested": false,
+      "drilldown": null,
+      "theme": "dark"
+    },
+    "negativeDesyncRejected": true,
+    "consoleErrors": [],
+    "failedResponses": []
+  },
+  "mobile": {
+    "horizontalOverflow": 0,
+    "sourceOrderStable": true
+  },
+  "errorState": {
+    "fatalFetchShowsRecovery": true,
+    "status": 503
+  },
+  "pass": true
+}

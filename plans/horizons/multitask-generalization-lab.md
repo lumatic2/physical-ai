@@ -1,6 +1,6 @@
 # HORIZON — 여러 과제에서 통하는 로봇 판단 실험실
 
-> 생성: 2026-07-21 · ROADMAP marker: `harness:goal id="multitask-generalization-lab"` · 상태: active-approved
+> 생성: 2026-07-21 · ROADMAP marker: `harness:goal id="multitask-generalization-lab"` · 상태: completed
 > 위계: Objective(`OBJECTIVE.md`) → **Horizon**(이 문서) → Milestone(`plans/2026-07-21-gen*-*.md`) → Step.
 
 ## 목표
@@ -55,7 +55,7 @@
 
 ## Objective 임팩트
 
-- close 시 단일 demo에서 다과제 paired evidence로 이동한 정도를 120 episode 완전성, 두 policy denominator, failure evidence coverage와 공개 reviewer path로 재측정한다. 실물 축은 이 Horizon 범위 밖으로 명시한다.
+- 단일 demo를 12개 과제×5개 초기 상태×두 policy의 120 episode 완전성, 60쌍 paired 비교, 27/27 failure coverage와 production reviewer path로 확장했다. Objective의 “이해에서 실증으로”와 “데모에서 실험 플랫폼으로” 축은 공개 재현 가능한 비교까지 이동했으며, 실물 축은 다음 Horizon으로 명시적으로 남겼다.
 
 ## 링크
 

@@ -53,35 +53,35 @@ planning_gate:
 
 ## Step 트리
 
-- [ ] **step-1 — deterministic-public-index**
+- [x] **step-1 — deterministic-public-index**
   - Artifact: aggregate/pattern/episode refs를 content-hashed static registry로 변환하는 allowlist generator.
   - Files: `experiments/154-public-generalization-lab/gen_public_index.py`, public assets/tests, changeset.
   - Dependencies: 없음
   - Verify: 같은 input은 byte-identical registry를 만들고 size/path/token/hash gate를 통과한다.
   - Failure probe: missing denominator, stale episode hash, local path와 unsupported claim이 FAIL한다.
   - Commit: changeset 1 — public generalization bundle.
-- [ ] **step-2 — comparison-overview**
+- [x] **step-2 — comparison-overview**
   - Artifact: suite/task/policy raw count, success와 paired difference를 보이는 responsive overview.
   - Files: React route/components/styles, QA, changeset.
   - Dependencies: step-1
   - Verify: raw numerator/denominator와 interval이 filter 후에도 registry와 일치한다.
   - Failure probe: rounded-only score, hidden exclusions, zero denominator가 UI QA에서 FAIL한다.
   - Commit: changeset 2 — paired comparison overview.
-- [ ] **step-3 — failure-pattern-explorer**
+- [x] **step-3 — failure-pattern-explorer**
   - Artifact: policy/suite/task/pattern/unknown filters와 evidence-backed representative episodes.
   - Files: failure explorer components/QA, changeset.
   - Dependencies: step-2
   - Verify: 모든 filter count가 GEN4 index와 일치하고 label definition/evidence가 visible하다.
   - Failure probe: unknown 숨김, root-cause wording, success-only sampling이 FAIL한다.
   - Commit: changeset 3 — observable failure explorer.
-- [ ] **step-4 — episode-drilldown-linkage**
+- [x] **step-4 — episode-drilldown-linkage**
   - Artifact: selected matrix/pattern cell에서 LAB3 dual-camera causal replay로 내려가는 stable deep link.
   - Files: routing/query adapter, LAB3 integration QA, changeset.
   - Dependencies: step-3
   - Verify: selected policy/task/state와 episode hash가 drill-down summary에서 동일하다.
   - Failure probe: wrong episode, stale hash, camera/policy relabel이 FAIL한다.
   - Commit: changeset 4 — aggregate-to-episode traceability.
-- [ ] **step-5 — public-reviewer-release**
+- [x] **step-5 — public-reviewer-release**
   - Artifact: deployed route, desktop/mobile screenshots, live QA와 5분 reviewer checklist.
   - Files: deployment config, `verify/generalization-lab/`, ROADMAP/final report, changeset.
   - Dependencies: step-1, step-2, step-3, step-4

@@ -1,0 +1,29 @@
+{
+  "schema_version": "physical-ai-gen5-release-check-v1",
+  "base_url": "https://robotics.askewly.com",
+  "prefix": "live",
+  "registry_sha256": "4ab5b110aee5d490a32964f7c696cc49c990eadbde10d10d5733d3b5d428445d",
+  "denominator": {
+    "paired_cells": 60,
+    "policy_episodes": 120,
+    "failures": 27,
+    "unknown": 21
+  },
+  "overview": {
+    "openvla_successes": 35,
+    "pi05_successes": 58,
+    "paired_difference": 23
+  },
+  "drilldown": {
+    "source_cell": "libero_spatial:task-05:state-00",
+    "manifest_sha256": "1197f1e4afbb527d7cbc0f4b924cc4cc4f7b15970f54ace175186b83b9585a47"
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "horizontal_overflow": 0,
+    "failure_filters": 4
+  },
+  "console_errors": [],
+  "failed_responses": [],
+  "pass": true
+}

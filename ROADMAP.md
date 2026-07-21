@@ -43,7 +43,7 @@
 | GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | 완료 |
 | GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | 완료 |
 | GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | 완료 |
-| GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | pending |
+| GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | 완료 |
 
 ## Current Horizon
 
@@ -92,13 +92,16 @@
 
 - Completed at: 2026-07-21
 - Summary: 27/27 non-success: no_progress 6, unknown 21; reviewer evidence agreement 7/7, negative claim gate PASS.
-<!-- harness:milestone id="GEN5" status="pending" priority="P4" -->
+<!-- harness:milestone id="GEN5" status="completed" priority="P4" evidence="archive/reports/2026-07-21-gen5-public-generalization-lab.md" -->
 ### GEN5 — 공개 일반화 비교 실험실
 - DoD: 공개 사이트에서 120 episode의 paired 결과와 실패 양상을 보고 aggregate cell에서 LAB3 canonical episode까지 추적한다.
-- Evidence: `plans/2026-07-21-gen5-public-generalization-lab.md`; `experiments/154-public-generalization-lab/verify/`; changesets `20260721-gen5-deterministic-public-index`, `20260721-gen5-comparison-overview`, `20260721-gen5-failure-pattern-explorer`, `20260721-gen5-episode-drilldown-linkage`, `20260721-gen5-public-reviewer-release`
+- Evidence: `archive/reports/2026-07-21-gen5-public-generalization-lab.md`
 - Gap: local aggregate만으로는 제3자가 분모·차이·실패 evidence를 5분 안에 검토하지 못한다.
 - Scale: changesets>=5; surfaces: public index, comparison UI, failure explorer, drill-down, live release; capability: 다과제 정책 비교를 공개 제품으로 증명한다.
-- Status: [ ]
+- Status: [x]
+
+- Completed at: 2026-07-21
+- Summary: 60 paired cell·120 episode·27 failure를 공개하고 aggregate에서 LAB3 canonical episode까지 추적하는 production reviewer gate PASS.
 
 ## Next Candidates
 
