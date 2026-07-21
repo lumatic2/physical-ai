@@ -1,0 +1,18 @@
+{
+  "schema_version": "physical-ai-gen5-public-index-report-v1",
+  "pass": true,
+  "registry_bytes": 65992,
+  "registry_sha256": "cda4f01adf2481c43c939e4390bf5202ab481bf67d3192bbc338e9b58c229713",
+  "cell_count": 60,
+  "episode_count": 120,
+  "failure_count": 27,
+  "unknown_count": 21,
+  "public_drilldowns": 2,
+  "rejected_contracts": [
+    "missing-denominator",
+    "stale-episode-hash",
+    "local-path-or-token",
+    "unsupported-claim"
+  ],
+  "claim_boundary": "Recorded LIBERO simulator evidence only. Observed results and failure patterns are not a general winner, root-cause diagnosis, live inference, independent-human review, or real-robot performance claim."
+}

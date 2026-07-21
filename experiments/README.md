@@ -149,6 +149,7 @@
 | 147 | [camera-action-episode-contract](147-camera-action-episode-contract/README.md) | LeRobot episode와 공식 viewer가 LAB1의 dual-camera/action 관찰 계약을 얼마나 재사용 가능한지 검증 | ✅ official reuse probe PASS; LAB1 producer addendum 승인 대기 |
 | 152 | [paired-vla-comparison](152-paired-vla-comparison/README.md) | 동일 60 task-state에서 OpenVLA와 π₀.₅-LIBERO의 실행·adapter·paired 결과를 비교 | ✅ 60 pair·exclusion 0; 35/60→58/60, 차이 +23/60, bootstrap 95% [+0.25,+0.5167], fairness pass/pass |
 | 153 | [observable-failure-patterns](153-observable-failure-patterns/README.md) | 27개 non-success episode를 원인 추정 없이 evidence-backed 양상 또는 unknown으로 분류 | ✅ 27/27 coverage: no_progress 6, unknown 21; reviewer evidence agreement 7/7 |
+| 154 | [public-generalization-lab](154-public-generalization-lab/README.md) | 60 paired cell에서 공개 LAB3 episode까지 추적하는 일반화 비교 화면 | 🟨 65,992-byte deterministic registry PASS; overview UI 진행 예정 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)
