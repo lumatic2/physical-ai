@@ -17,3 +17,6 @@ __pycache__/
 CLAUDE.local.md
 
 .playwright-mcp/
+
+# Harness runtime notification state
+.harness/telegram-alert.json

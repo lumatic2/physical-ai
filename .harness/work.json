@@ -171,7 +171,8 @@
       "owner_session_uuid": null,
       "updated_at": "2026-07-21",
       "notes": "LAB3 final report, production deployment and live reviewer gate recorded.",
-      "completion_summary": "공개 로봇팔 실험실을 production에 배포하고 dual-camera·인과 증거·모바일·자산 무결성 live gate를 통과했다."
+      "completion_summary": "공개 로봇팔 실험실을 production에 배포하고 dual-camera·인과 증거·모바일·자산 무결성 live gate를 통과했다.",
+      "notified_at": "2026-07-21T04:27:06.759947+00:00"
     }
   }
 }
