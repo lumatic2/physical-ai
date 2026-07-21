@@ -48,6 +48,25 @@ python episode_export.py \
 
 입력 경로는 local-only runtime argument이며 sealed manifest에는 상대 artifact ref와 content hash만 남는다.
 
+## 60-cell 실행
+
+`execute_baseline.py`는 suite별 server를 한 번만 로드하고 pending cell을 순차 실행한다. 각 attempt는 별도 디렉터리를 사용하며 client 종료로 parquet가 finalize된 뒤 causal event와 sealed manifest를 만든다.
+
+```bash
+export PYTHONPATH="$HOME/LIBERO"
+export MUJOCO_GL=egl
+python execute_baseline.py \
+  --artifact-root "$HOME/physical-ai-runs/gen2-openvla" \
+  --ledger "$HOME/physical-ai-runs/gen2-openvla/run-ledger.jsonl"
+
+python verify_execution.py \
+  --artifact-root "$HOME/physical-ai-runs/gen2-openvla" \
+  --ledger "$HOME/physical-ai-runs/gen2-openvla/run-ledger.jsonl" \
+  --assert-clean-processes
+```
+
+실제 raw LeRobot episode 60개는 local-only artifact root에 보존하고, repo에는 path-scrubbed 60-cell manifest와 append-only ledger snapshot을 추적한다. 현재 실측은 35 success, 25 timeout이며 infrastructure attempt 1건은 분모 밖에 별도 기록됐다.
+
 ## Sources
 
 - [LIBERO repository at the frozen revision](https://github.com/Lifelong-Robot-Learning/LIBERO/tree/8f1084e3132a39270c3a13ebe37270a43ece2a01) (접근일: 2026-07-21)
