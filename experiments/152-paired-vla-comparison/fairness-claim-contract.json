@@ -1,0 +1,38 @@
+{
+  "schema_version": "physical-ai-gen3-fairness-claim-contract-v1",
+  "comparison_id": "gen3-openvla-vs-pi05-libero-fixed-slice",
+  "required_disclosures": [
+    "fixed-denominator",
+    "checkpoint-topology",
+    "model-input-differences",
+    "action-adapter-differences",
+    "retry-and-infrastructure-history",
+    "exclusions",
+    "claim-boundary"
+  ],
+  "allowed_claims": [
+    {
+      "id": "raw-success-counts",
+      "text": "On the frozen 60-pair LIBERO slice, OpenVLA recorded 35 successes and pi0.5 recorded 58 successes.",
+      "evidence": "verify/paired-report.json#/overall"
+    },
+    {
+      "id": "paired-difference",
+      "text": "The observed paired success difference was +23/60 for pi0.5 minus OpenVLA, with a paired bootstrap 95% interval from +0.25 to +0.5166666667.",
+      "evidence": "verify/paired-report.json#/paired_difference"
+    },
+    {
+      "id": "suite-breakdown",
+      "text": "The observed success counts were 13 versus 20 in Spatial, 12 versus 20 in Object, and 10 versus 18 in Goal, each with denominator 20.",
+      "evidence": "verify/paired-report.json#/suites"
+    }
+  ],
+  "forbidden_claim_patterns": [
+    {"id": "general-winner", "pattern": "(?i)(?:(general|overall|universal).{0,16}(winner|best)|(winner|best).{0,16}(general|overall|universal))"},
+    {"id": "same-checkpoint", "pattern": "(?i)(same|identical).{0,12}checkpoint"},
+    {"id": "identical-inputs", "pattern": "(?i)(same|identical).{0,12}(input|observation)"},
+    {"id": "real-robot", "pattern": "(?i)real[- ]robot (performance|result|success)|실물.{0,8}(성능|결과|성공)"},
+    {"id": "hidden-reasoning", "pattern": "(?i)(chain of thought|hidden reasoning)|숨은 생각 과정"}
+  ],
+  "claim_boundary": "Only observed results on the frozen LIBERO slice are allowed; causal model-quality, general-winner, and real-robot claims are outside scope."
+}

@@ -1,0 +1,254 @@
+{
+  "schema_version": "physical-ai-gen3-fairness-report-v1",
+  "pass": true,
+  "spec_verdict": "pass",
+  "quality_verdict": "pass",
+  "denominator": {
+    "planned_pairs": 60,
+    "included_pairs": 60,
+    "excluded_pairs": 0,
+    "unmatched_pairs": 0,
+    "suites": [
+      "libero_spatial",
+      "libero_object",
+      "libero_goal"
+    ],
+    "task_groups": 12
+  },
+  "policies": {
+    "openvla-libero": {
+      "family": "OpenVLA",
+      "checkpoint_topology": "suite-specific",
+      "suite_checkpoints": {
+        "libero_spatial": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-spatial",
+          "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873"
+        },
+        "libero_object": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-object",
+          "revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3"
+        },
+        "libero_goal": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-goal",
+          "revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf"
+        }
+      },
+      "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "model_inputs": [
+        "instruction",
+        "main_camera"
+      ],
+      "raw_output_shape": [
+        7
+      ],
+      "executed_chunk_shape": [
+        1,
+        7
+      ],
+      "replan_steps": 1,
+      "attempts": {
+        "total": 61,
+        "policy_terminal": 60,
+        "infrastructure_error": 1,
+        "explicit_retries": 1
+      }
+    },
+    "pi05-libero": {
+      "family": "pi0.5",
+      "checkpoint_topology": "single-shared-checkpoint",
+      "checkpoint": {
+        "config": "pi05_libero",
+        "uri": "gs://openpi-assets/checkpoints/pi05_libero",
+        "metadata_file": "pi05-checkpoint-metadata.json",
+        "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "object_count": 16,
+        "total_bytes": 12439085481
+      },
+      "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "model_inputs": [
+        "instruction",
+        "main_camera",
+        "robot_state_8d",
+        "wrist_camera"
+      ],
+      "raw_output_shape": [
+        10,
+        32
+      ],
+      "executed_chunk_shape": [
+        10,
+        7
+      ],
+      "replan_steps": 5,
+      "attempts": {
+        "total": 62,
+        "policy_terminal": 60,
+        "infrastructure_error": 2,
+        "explicit_retries": 2
+      }
+    }
+  },
+  "paired_result": {
+    "openvla_successes": 35,
+    "pi05_successes": 58,
+    "difference_successes": 23,
+    "denominator": 60,
+    "difference_rate": 0.38333333333333336,
+    "bootstrap_95": {
+      "method": "paired-nonparametric-bootstrap-percentile-type7",
+      "confidence": 0.95,
+      "seed": 20260721,
+      "resamples": 10000,
+      "lower": 0.25,
+      "upper": 0.5166666666666667
+    },
+    "suite_breakdown": [
+      {
+        "suite": "libero_goal",
+        "denominator": 20,
+        "openvla_successes": 10,
+        "pi05_successes": 18,
+        "difference_successes": 8,
+        "openvla_success_rate": 0.5,
+        "pi05_success_rate": 0.9,
+        "difference_rate": 0.4
+      },
+      {
+        "suite": "libero_object",
+        "denominator": 20,
+        "openvla_successes": 12,
+        "pi05_successes": 20,
+        "difference_successes": 8,
+        "openvla_success_rate": 0.6,
+        "pi05_success_rate": 1.0,
+        "difference_rate": 0.4
+      },
+      {
+        "suite": "libero_spatial",
+        "denominator": 20,
+        "openvla_successes": 13,
+        "pi05_successes": 20,
+        "difference_successes": 7,
+        "openvla_success_rate": 0.65,
+        "pi05_success_rate": 1.0,
+        "difference_rate": 0.35
+      }
+    ],
+    "contingency": {
+      "both_success": 34,
+      "pi05_only_success": 24,
+      "openvla_only_success": 1,
+      "both_non_success": 1
+    }
+  },
+  "disclosures": [
+    {
+      "id": "fixed-denominator",
+      "status": "disclosed"
+    },
+    {
+      "id": "checkpoint-topology",
+      "status": "disclosed"
+    },
+    {
+      "id": "model-input-differences",
+      "status": "disclosed"
+    },
+    {
+      "id": "action-adapter-differences",
+      "status": "disclosed"
+    },
+    {
+      "id": "retry-and-infrastructure-history",
+      "status": "disclosed"
+    },
+    {
+      "id": "exclusions",
+      "status": "disclosed"
+    },
+    {
+      "id": "claim-boundary",
+      "status": "disclosed"
+    }
+  ],
+  "allowed_claims": [
+    {
+      "id": "raw-success-counts",
+      "text": "On the frozen 60-pair LIBERO slice, OpenVLA recorded 35 successes and pi0.5 recorded 58 successes.",
+      "evidence": "verify/paired-report.json#/overall"
+    },
+    {
+      "id": "paired-difference",
+      "text": "The observed paired success difference was +23/60 for pi0.5 minus OpenVLA, with a paired bootstrap 95% interval from +0.25 to +0.5166666667.",
+      "evidence": "verify/paired-report.json#/paired_difference"
+    },
+    {
+      "id": "suite-breakdown",
+      "text": "The observed success counts were 13 versus 20 in Spatial, 12 versus 20 in Object, and 10 versus 18 in Goal, each with denominator 20.",
+      "evidence": "verify/paired-report.json#/suites"
+    }
+  ],
+  "forbidden_claim_patterns": [
+    {
+      "id": "general-winner",
+      "pattern": "(?i)(?:(general|overall|universal).{0,16}(winner|best)|(winner|best).{0,16}(general|overall|universal))"
+    },
+    {
+      "id": "same-checkpoint",
+      "pattern": "(?i)(same|identical).{0,12}checkpoint"
+    },
+    {
+      "id": "identical-inputs",
+      "pattern": "(?i)(same|identical).{0,12}(input|observation)"
+    },
+    {
+      "id": "real-robot",
+      "pattern": "(?i)real[- ]robot (performance|result|success)|실물.{0,8}(성능|결과|성공)"
+    },
+    {
+      "id": "hidden-reasoning",
+      "pattern": "(?i)(chain of thought|hidden reasoning)|숨은 생각 과정"
+    }
+  ],
+  "claim_boundary": "Only observed results on the frozen LIBERO slice are allowed; causal model-quality, general-winner, and real-robot claims are outside scope.",
+  "sources": {
+    "policy_registry": {
+      "ref": "experiments/150-multitask-evaluation-contract/policy-registry.json",
+      "sha256": "79203084064f0ad6442f458eed69fb28a9b60df9a7aac680c5000124aeb7736f"
+    },
+    "adapter_report": {
+      "ref": "experiments/152-paired-vla-comparison/verify/adapter-parity-report.json",
+      "sha256": "1c058d0003eecbfa4343acc58fd15d8b67e7a36b36c04b30195b728f7c4e39b7"
+    },
+    "openvla_manifest": {
+      "ref": "experiments/151-openvla-multitask-baseline/verify/canonical/manifest.json",
+      "sha256": "28d5d15ce003f5e945ad7c5b43dffaa2eb971d822426b0fd376fbc109404753b"
+    },
+    "pi05_manifest": {
+      "ref": "experiments/152-paired-vla-comparison/verify/canonical/pi05-manifest.json",
+      "sha256": "d384edb2a59e8011c0494823605132ef436b12a1dcb70be779feacdee2715ca9"
+    },
+    "paired_report": {
+      "ref": "experiments/152-paired-vla-comparison/verify/paired-report.json",
+      "sha256": "8dc5ce67ead8733633eade5b33469ee2d236d6674247a0c8833799671a1c905e"
+    },
+    "claim_contract": {
+      "ref": "experiments/152-paired-vla-comparison/fairness-claim-contract.json",
+      "sha256": "3e448815a00a343412b4e0d79b8eb8583dce26f1f489dbcdb3b16dd431ffd930"
+    }
+  },
+  "external_sources": [
+    {
+      "url": "https://github.com/openvla/openvla",
+      "accessed": "2026-07-21"
+    },
+    {
+      "url": "https://github.com/Physical-Intelligence/openpi/tree/15a9616a00943ada6c20a0f158e3adb39df2ccac",
+      "accessed": "2026-07-21"
+    },
+    {
+      "url": "https://github.com/Lifelong-Robot-Learning/LIBERO/tree/8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "accessed": "2026-07-21"
+    }
+  ]
+}

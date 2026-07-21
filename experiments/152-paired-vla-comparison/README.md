@@ -73,3 +73,23 @@ python experiments/152-paired-vla-comparison/test_paired_statistics.py
 - suite: Spatial `13→20`, Object `12→20`, Goal `10→18` (각 분모 20)
 
 검증 경계: 이 수치는 사전 고정된 LIBERO 12 task×5 state에서 관측한 paired difference다. 일반적인 policy winner, 모델 구조 효과, 학습 효과, 실물 로봇 성능으로 확장하지 않는다.
+
+## Step 5: fairness and claim gate
+
+`fairness_gate.py`는 수치뿐 아니라 비교에서 달랐던 checkpoint topology, model input, action adapter, retry/infrastructure history를 필수 disclosure로 검증한다.
+
+```bash
+python experiments/152-paired-vla-comparison/fairness_gate.py
+python experiments/152-paired-vla-comparison/test_fairness_gate.py
+```
+
+gate 결과:
+
+- denominator: planned 60, included 60, exclusion 0, unmatched 0
+- OpenVLA: suite별 checkpoint, instruction+main, 1×7 action, attempts `61=60 policy+1 infrastructure`
+- π₀.₅: 단일 checkpoint snapshot, instruction+main+wrist+8D state, 10×7 chunk/5-step replan, attempts `62=60 policy+2 infrastructure`
+- claim: raw counts·paired difference·suite breakdown만 evidence pointer와 함께 허용
+- 금지: general winner, same checkpoint/input, real-robot performance, hidden reasoning
+- verdict: spec `pass`, quality `pass`
+
+최종 비교는 “같은 입력·같은 checkpoint의 모델 순위”가 아니다. 같은 task-state-environment/result denominator에서 서로 다른 공식 adapter를 사용한 두 정책의 관측 결과 비교다.

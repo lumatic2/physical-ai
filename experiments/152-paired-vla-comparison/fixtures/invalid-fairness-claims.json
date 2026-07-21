@@ -1,0 +1,38 @@
+{
+  "schema_version": "physical-ai-gen3-invalid-fairness-fixtures-v1",
+  "cases": [
+    {
+      "id": "general-winner",
+      "kind": "claim",
+      "value": "pi0.5 is the general winner and best VLA.",
+      "expected_error": "forbidden claim"
+    },
+    {
+      "id": "same-checkpoint",
+      "kind": "claim",
+      "value": "Both policies used the same checkpoint.",
+      "expected_error": "forbidden claim"
+    },
+    {
+      "id": "hidden-exclusion",
+      "kind": "mutation",
+      "path": "denominator.included_pairs",
+      "value": 59,
+      "expected_error": "hidden exclusion"
+    },
+    {
+      "id": "hidden-retry",
+      "kind": "mutation",
+      "path": "policies.pi05-libero.attempts.total",
+      "value": 60,
+      "expected_error": "hidden retry"
+    },
+    {
+      "id": "revision-drift",
+      "kind": "mutation",
+      "path": "policies.pi05-libero.checkpoint.snapshot_sha256",
+      "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "expected_error": "provenance drift"
+    }
+  ]
+}

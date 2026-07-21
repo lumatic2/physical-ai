@@ -41,8 +41,8 @@
 | LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/03-digital-twin/web/verify/arm-lab` | 완료 |
 | GEN1 | Fixed Multitask Evaluation Contract | 12 task×5 state×2 policy의 평가 분모를 사전 고정한다 | `experiments/150-multitask-evaluation-contract` | 완료 |
 | GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | 완료 |
-| GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | active |
-| GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | pending |
+| GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | 완료 |
+| GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | active |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | pending |
 
 ## Current Horizon
@@ -72,15 +72,17 @@
 
 - Completed at: 2026-07-21
 - Summary: OpenVLA 60개 actual rollout과 aggregate gate PASS
-<!-- harness:milestone id="GEN3" status="active" priority="P2" -->
+<!-- harness:milestone id="GEN3" status="completed" priority="P2" evidence="archive/reports/2026-07-21-gen3-paired-vla-comparison.md" -->
 ### GEN3 — 두 VLA의 공정 비교
 - DoD: π₀.₅-LIBERO 60 cell과 OpenVLA 기준선이 adapter·checkpoint 차이를 공개한 동일 paired denominator로 비교된다.
-- Evidence: `plans/2026-07-21-gen3-paired-vla-comparison.md`; `experiments/152-paired-vla-comparison/verify/`; changesets `20260721-gen3-pi05-compatibility-probe`, `20260721-gen3-shared-policy-adapter-gate`, `20260721-gen3-pi05-sixty-cell-execution`, `20260721-gen3-paired-statistics`, `20260721-gen3-fairness-and-claim-gate`
+- Evidence: archive/reports/2026-07-21-gen3-paired-vla-comparison.md
 - Gap: 한 정책 기준선만으로는 비교 플랫폼과 policy-family 차이를 입증하지 못한다.
 - Scale: changesets>=5; surfaces: pi05 probe, adapter parity, 60 rollouts, paired stats, fairness gate; capability: 두 VLA를 공정한 paired contract로 비교한다.
-- Status: [ ]
+- Status: [x]
 
-<!-- harness:milestone id="GEN4" status="pending" priority="P3" -->
+- Completed at: 2026-07-21
+- Summary: 두 VLA 60쌍의 실제 실행·paired 통계·공정성 경계를 완료했다.
+<!-- harness:milestone id="GEN4" status="active" priority="P3" -->
 ### GEN4 — 증거 기반 실패 양상
 - DoD: 모든 non-success episode가 frame/event predicate를 가진 관측 가능한 양상 또는 `unknown`으로 완전 집계되고 원인 과장 fixture가 거부된다.
 - Evidence: `plans/2026-07-21-gen4-observable-failure-patterns.md`; `experiments/153-observable-failure-patterns/verify/`; changesets `20260721-gen4-failure-pattern-contract`, `20260721-gen4-trajectory-event-features`, `20260721-gen4-deterministic-classifier`, `20260721-gen4-reviewer-calibration`, `20260721-gen4-failure-coverage-gate`
