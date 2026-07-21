@@ -1,0 +1,106 @@
+{
+  "schema_version": "physical-ai-gen4-failure-coverage-v1",
+  "pass": true,
+  "denominator": {
+    "non_success": 27,
+    "indexed": 27,
+    "omitted": 0
+  },
+  "coverage": {
+    "evidence_backed_or_unknown": 27,
+    "rate": 1.0,
+    "specific_pattern": 6,
+    "specific_pattern_rate": 0.2222222222222222,
+    "unknown": 21,
+    "unknown_rate": 0.7777777777777778
+  },
+  "breakdown": {
+    "total": 27,
+    "by_pattern": {
+      "no_progress": 6,
+      "unknown": 21
+    },
+    "by_policy": {
+      "openvla-libero": {
+        "no_progress": 5,
+        "unknown": 20
+      },
+      "pi05-libero": {
+        "no_progress": 1,
+        "unknown": 1
+      }
+    },
+    "by_suite": {
+      "libero_goal": {
+        "no_progress": 5,
+        "unknown": 7
+      },
+      "libero_object": {
+        "unknown": 8
+      },
+      "libero_spatial": {
+        "no_progress": 1,
+        "unknown": 6
+      }
+    },
+    "by_policy_suite": {
+      "openvla-libero": {
+        "libero_goal": {
+          "no_progress": 4,
+          "unknown": 6
+        },
+        "libero_object": {
+          "unknown": 8
+        },
+        "libero_spatial": {
+          "no_progress": 1,
+          "unknown": 6
+        }
+      },
+      "pi05-libero": {
+        "libero_goal": {
+          "no_progress": 1,
+          "unknown": 1
+        }
+      }
+    }
+  },
+  "source_availability": {
+    "robot_state": 27,
+    "executed_action": 27,
+    "dual_camera": 27,
+    "controller_events": 27,
+    "object_relation": 0,
+    "goal_distance": 0
+  },
+  "reviewer_calibration": {
+    "pass": true,
+    "review_kind": "manual-evidence-review-not-independent-human",
+    "sample_count": 7,
+    "agreement": {
+      "agreed": 7,
+      "disagreed": 0,
+      "rate": 1.0
+    },
+    "report_sha256": "c371c437dc4b82a47f8a6869d703cff03db9cc0f35495663a1918178309ed0d5"
+  },
+  "claims": {
+    "supported": [
+      "All 27 canonical simulator non-success episodes have an evidence-backed observed pattern record or unknown.",
+      "Observed counts are no_progress 6 and unknown 21 under gen4-rules-v1.",
+      "Unknown is 21/27 because the available sources do not justify a more specific declared pattern."
+    ],
+    "not_established": [
+      "A root cause for any episode.",
+      "A perception, planning, or language-understanding diagnosis.",
+      "Independent-human agreement or real-robot performance."
+    ]
+  },
+  "inputs": {
+    "feature_index_sha256": "a812b3868b521af6e6d122e5a69d990b9f34b034905307a7f743b6b3c72dcee3",
+    "pattern_index_sha256": "889615b2bbd632ce941a20798d26bbcbefb94bb5157bd46b484be1c2f017d6c7",
+    "reviewer_report_sha256": "c371c437dc4b82a47f8a6869d703cff03db9cc0f35495663a1918178309ed0d5"
+  },
+  "covered_run_keys_sha256": "83bba02f1250c6ca11297b7e27eaf0983204473585dbc0c6f9688300ede08b7d",
+  "claim_boundary": "Counts describe observed simulator failure patterns only; they do not establish root cause, hidden reasoning, model diagnosis, independent-human agreement, or real-robot performance."
+}

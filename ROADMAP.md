@@ -42,7 +42,7 @@
 | GEN1 | Fixed Multitask Evaluation Contract | 12 task×5 state×2 policy의 평가 분모를 사전 고정한다 | `experiments/150-multitask-evaluation-contract` | 완료 |
 | GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | 완료 |
 | GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | 완료 |
-| GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | active |
+| GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | 완료 |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | pending |
 
 ## Current Horizon
@@ -82,14 +82,16 @@
 
 - Completed at: 2026-07-21
 - Summary: 두 VLA 60쌍의 실제 실행·paired 통계·공정성 경계를 완료했다.
-<!-- harness:milestone id="GEN4" status="active" priority="P3" -->
+<!-- harness:milestone id="GEN4" status="completed" priority="P3" evidence="experiments/153-observable-failure-patterns/verify/failure-coverage-report.json" -->
 ### GEN4 — 증거 기반 실패 양상
 - DoD: 모든 non-success episode가 frame/event predicate를 가진 관측 가능한 양상 또는 `unknown`으로 완전 집계되고 원인 과장 fixture가 거부된다.
-- Evidence: `plans/2026-07-21-gen4-observable-failure-patterns.md`; `experiments/153-observable-failure-patterns/verify/`; changesets `20260721-gen4-failure-pattern-contract`, `20260721-gen4-trajectory-event-features`, `20260721-gen4-deterministic-classifier`, `20260721-gen4-reviewer-calibration`, `20260721-gen4-failure-coverage-gate`
+- Evidence: experiments/153-observable-failure-patterns/verify/failure-coverage-report.json
 - Gap: 성공률만으로는 정책이 어떻게 실패했는지 원 episode에서 검토할 수 없다.
 - Scale: changesets>=5; surfaces: taxonomy, feature extraction, classifier, reviewer sample, coverage gate; capability: 실패 한계를 근거와 함께 설명한다.
-- Status: [ ]
+- Status: [x]
 
+- Completed at: 2026-07-21
+- Summary: 27/27 non-success: no_progress 6, unknown 21; reviewer evidence agreement 7/7, negative claim gate PASS.
 <!-- harness:milestone id="GEN5" status="pending" priority="P4" -->
 ### GEN5 — 공개 일반화 비교 실험실
 - DoD: 공개 사이트에서 120 episode의 paired 결과와 실패 양상을 보고 aggregate cell에서 LAB3 canonical episode까지 추적한다.
