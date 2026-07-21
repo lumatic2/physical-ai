@@ -1,0 +1,156 @@
+{
+  "schema_version": "physical-ai-multitask-benchmark-v1",
+  "frozen_at": "2026-07-21",
+  "environment": {
+    "name": "LIBERO",
+    "repository_url": "https://github.com/Lifelong-Robot-Learning/LIBERO",
+    "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "task_map_path": "libero/libero/benchmark/libero_suite_task_map.py",
+    "task_map_sha256": "dc644c34987f6e0e4dc5320e5168cd2ee170cb8520f6a9344d2cd6d50f2c55fc"
+  },
+  "suite_contract": {
+    "libero_spatial": {"task_ids": [0, 3, 5, 8]},
+    "libero_object": {"task_ids": [0, 3, 6, 9]},
+    "libero_goal": {"task_ids": [0, 3, 6, 9]}
+  },
+  "selection_principles": [
+    "각 suite에서 정확히 4개 task를 사전 고정한다.",
+    "Spatial은 위치 관계, Object는 대상 정체성, Goal은 목표 구성의 변화를 포함한다.",
+    "LAB1 canonical evidence인 libero_spatial task 5를 포함해 기존 증거와 연결한다."
+  ],
+  "tasks": [
+    {
+      "task_key": "libero_spatial/task-00",
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "task_name": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "language_instruction": "pick up the black bowl between the plate and the ramekin and place it on the plate",
+      "problem_folder": "libero_spatial",
+      "bddl_file": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.bddl",
+      "bddl_sha256": "50e94eb43b9b1de3ba89dc92737e85e6fc4bac85cbca99ec9ae89d416231f239",
+      "selection_reason": "between 관계로 공간 기준을 대표한다."
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "task_name": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+      "language_instruction": "pick up the black bowl on the cookie box and place it on the plate",
+      "problem_folder": "libero_spatial",
+      "bddl_file": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate.bddl",
+      "bddl_sha256": "aed9b65fea9cecf7929e5985f9533bf3fcfc5506d266fb4318d6461037155ccf",
+      "selection_reason": "지지물 위 배치를 대표한다."
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "task_name": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+      "language_instruction": "pick up the black bowl on the ramekin and place it on the plate",
+      "problem_folder": "libero_spatial",
+      "bddl_file": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate.bddl",
+      "bddl_sha256": "1c97150dfcc8f60ec1262f507870e39fa7b638abc8f09e561ba92429d8cd31de",
+      "selection_reason": "LAB1 PASS/FAIL canonical episode와 직접 연결한다."
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "task_name": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+      "language_instruction": "pick up the black bowl next to the plate and place it on the plate",
+      "problem_folder": "libero_spatial",
+      "bddl_file": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate.bddl",
+      "bddl_sha256": "75cad79d580c93dc14d7b20ad98f5066a9ad171a21bd725fba6893160d939d0b",
+      "selection_reason": "next-to 관계를 대표한다."
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "suite": "libero_object",
+      "task_id": 0,
+      "task_name": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+      "language_instruction": "pick up the alphabet soup and place it in the basket",
+      "problem_folder": "libero_object",
+      "bddl_file": "pick_up_the_alphabet_soup_and_place_it_in_the_basket.bddl",
+      "bddl_sha256": "99b0b2031a41e7a503cb173f063cf8934751027f99830c50b4110832058fd73b",
+      "selection_reason": "통조림 형태 대상을 대표한다."
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "suite": "libero_object",
+      "task_id": 3,
+      "task_name": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+      "language_instruction": "pick up the bbq sauce and place it in the basket",
+      "problem_folder": "libero_object",
+      "bddl_file": "pick_up_the_bbq_sauce_and_place_it_in_the_basket.bddl",
+      "bddl_sha256": "2376d18f5395d17934e1d047b12800ffd764177afd887b87d7735cf37aa18895",
+      "selection_reason": "병 형태 대상을 대표한다."
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "suite": "libero_object",
+      "task_id": 6,
+      "task_name": "pick_up_the_butter_and_place_it_in_the_basket",
+      "language_instruction": "pick up the butter and place it in the basket",
+      "problem_folder": "libero_object",
+      "bddl_file": "pick_up_the_butter_and_place_it_in_the_basket.bddl",
+      "bddl_sha256": "05c2928eb928c7ad9df31bbc1efae44d4c332265cad97f335ff28b07d44212c9",
+      "selection_reason": "상자 형태 대상을 대표한다."
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "suite": "libero_object",
+      "task_id": 9,
+      "task_name": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+      "language_instruction": "pick up the orange juice and place it in the basket",
+      "problem_folder": "libero_object",
+      "bddl_file": "pick_up_the_orange_juice_and_place_it_in_the_basket.bddl",
+      "bddl_sha256": "158dfe6b72b4b3b03505941d7b134a329cdfe03a66a572cbca8ca2114d0e03e3",
+      "selection_reason": "팩 형태 대상을 대표한다."
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "task_name": "open_the_middle_drawer_of_the_cabinet",
+      "language_instruction": "open the middle drawer of the cabinet",
+      "problem_folder": "libero_goal",
+      "bddl_file": "open_the_middle_drawer_of_the_cabinet.bddl",
+      "bddl_sha256": "a472ba8d20f97d8a8d20b36d1f42d6bf2b76a35e8f29cbad33f4bc404b485dfa",
+      "selection_reason": "단일 관절 조작 목표를 대표한다."
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "task_name": "open_the_top_drawer_and_put_the_bowl_inside",
+      "language_instruction": "open the top drawer and put the bowl inside",
+      "problem_folder": "libero_goal",
+      "bddl_file": "open_the_top_drawer_and_put_the_bowl_inside.bddl",
+      "bddl_sha256": "331974c58b0c7ec65ab2f8a075144d93fae91d5b9db4658844fd7bbf495ff1c4",
+      "selection_reason": "두 단계 drawer 조작 목표를 대표한다."
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "suite": "libero_goal",
+      "task_id": 6,
+      "task_name": "put_the_cream_cheese_in_the_bowl",
+      "language_instruction": "put the cream cheese in the bowl",
+      "problem_folder": "libero_goal",
+      "bddl_file": "put_the_cream_cheese_in_the_bowl.bddl",
+      "bddl_sha256": "478bd5726ad7d9bde05e8f26f6a9984d503dc4a91c27d0565f5f0beea1ed3bb1",
+      "selection_reason": "container 내부 배치 목표를 대표한다."
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "suite": "libero_goal",
+      "task_id": 9,
+      "task_name": "put_the_wine_bottle_on_the_rack",
+      "language_instruction": "put the wine bottle on the rack",
+      "problem_folder": "libero_goal",
+      "bddl_file": "put_the_wine_bottle_on_the_rack.bddl",
+      "bddl_sha256": "bfe7b14240a61700419ec2dd99857177f373aa1ead1f0a991458815a843c5772",
+      "selection_reason": "정밀한 rack 배치 목표를 대표한다."
+    }
+  ],
+  "claim_boundary": "이 manifest는 평가 분모만 고정한다. rollout 성공률, 정책 일반화, 실물 로봇 성능을 입증하지 않는다."
+}

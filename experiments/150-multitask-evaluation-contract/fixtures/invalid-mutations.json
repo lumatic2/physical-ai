@@ -1,0 +1,25 @@
+[
+  {
+    "id": "unknown-task",
+    "operation": "replace",
+    "task_index": 0,
+    "field": "task_name",
+    "value": "pick_up_an_unknown_object",
+    "expected_error": "does not match official catalog"
+  },
+  {
+    "id": "duplicated-task",
+    "operation": "copy-task",
+    "from_task_index": 0,
+    "task_index": 1,
+    "expected_error": "duplicate task_key"
+  },
+  {
+    "id": "suite-relabel",
+    "operation": "replace",
+    "task_index": 4,
+    "field": "suite",
+    "value": "libero_spatial",
+    "expected_error": "suite/task_id does not match official catalog"
+  }
+]

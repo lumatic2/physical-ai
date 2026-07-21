@@ -15,4 +15,5 @@
 | 11 | [20260721-lab3-public-evidence-bundle](20260721-lab3-public-evidence-bundle/README.md) | 2026-07-21 | LAB1/LAB2 정본의 content-hashed 공개 replay bundle | 6/6 | completed |
 | 12 | [20260721-lab3-synchronized-dual-camera-player](20260721-lab3-synchronized-dual-camera-player/README.md) | 2026-07-21 | dual camera·state/action 공통 playback 시간축 | 5/5 | completed |
 | 13 | [20260721-lab3-causal-timeline-evidence-drawer](20260721-lab3-causal-timeline-evidence-drawer/README.md) | 2026-07-21 | source·parent·assistance 인과 timeline과 raw evidence drawer | 4/4 | completed |
-| 14 | [20260721-lab3-public-reviewer-gate](20260721-lab3-public-reviewer-gate/README.md) | 2026-07-21 | human visual gate, production route와 live evidence | 1/4 | active |
+| 14 | [20260721-lab3-public-reviewer-gate](20260721-lab3-public-reviewer-gate/README.md) | 2026-07-21 | human visual gate, production route와 live evidence | 4/4 | completed |
+| 15 | [20260721-gen1-suite-task-slice](20260721-gen1-suite-task-slice/README.md) | 2026-07-21 | LIBERO 3 suite × 4 task의 revision·language·BDDL hash 고정 | 5/5 | completed |

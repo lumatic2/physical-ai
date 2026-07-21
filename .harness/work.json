@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_work_id": "see-understand-act-robot-lab-lab3",
+  "active_work_id": "multitask-generalization-lab-gen1",
   "works": {
     "see-understand-act-robot-lab-lab1": {
       "work_id": "see-understand-act-robot-lab-lab1",
@@ -173,6 +173,66 @@
       "notes": "LAB3 final report, production deployment and live reviewer gate recorded.",
       "completion_summary": "공개 로봇팔 실험실을 production에 배포하고 dual-camera·인과 증거·모바일·자산 무결성 live gate를 통과했다.",
       "notified_at": "2026-07-21T04:27:06.759947+00:00"
+    },
+    "multitask-generalization-lab-gen1": {
+      "work_id": "multitask-generalization-lab-gen1",
+      "horizon_id": "multitask-generalization-lab",
+      "milestone_id": "GEN1",
+      "status": "active",
+      "plan_path": "plans/2026-07-21-gen1-multitask-evaluation-contract.md",
+      "changeset_path": "changesets/20260721-gen1-initial-state-contract",
+      "next_step": "step-2",
+      "current_step": "step-2",
+      "steps": [
+        {
+          "id": "step-1",
+          "label": "step-1 — suite-task-slice",
+          "status": "completed"
+        },
+        {
+          "id": "step-2",
+          "label": "step-2 — initial-state-contract",
+          "status": "pending"
+        },
+        {
+          "id": "step-3",
+          "label": "step-3 — policy-compatibility-registry",
+          "status": "pending"
+        },
+        {
+          "id": "step-4",
+          "label": "step-4 — multitask-result-contract",
+          "status": "pending"
+        },
+        {
+          "id": "step-5",
+          "label": "step-5 — clean-contract-gate",
+          "status": "pending"
+        }
+      ],
+      "execution_mode": "continuous",
+      "approval": {
+        "approved_by": "user",
+        "approved_at": "2026-07-21",
+        "plan_sha256": "41b63c9231d3c2278455021259330b75e85fec78093c005d26add1c198ef160b"
+      },
+      "allowed_stop_reasons": [
+        "completed",
+        "blocked",
+        "decision_required",
+        "risk_gate",
+        "secret_required",
+        "external_authority_required",
+        "user_stopped"
+      ],
+      "stop_reason": null,
+      "stop_detail": {},
+      "session_ids": [
+        "codex:physical-ai-gen1-20260721"
+      ],
+      "owner_session_uuid": null,
+      "updated_at": "2026-07-21",
+      "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation."
     }
   }
 }

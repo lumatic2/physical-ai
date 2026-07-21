@@ -1,0 +1,20 @@
+{
+  "schema_version": "physical-ai-task-slice-verification-v1",
+  "pass": true,
+  "manifest": "benchmark-manifest.json",
+  "manifest_sha256": "cdeaa8c752307f4074cde9322e6bfafce69e1fd6f9015ba8d9f9a5f903567700",
+  "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "task_count": 12,
+  "suite_counts": {
+    "libero_goal": 4,
+    "libero_object": 4,
+    "libero_spatial": 4
+  },
+  "official_source": {
+    "git_head": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "task_map_sha256": "dc644c34987f6e0e4dc5320e5168cd2ee170cb8520f6a9344d2cd6d50f2c55fc",
+    "verified_bddl": 12
+  },
+  "errors": [],
+  "claim_boundary": "Task identities and BDDL bytes are verified; no rollout was executed."
+}
