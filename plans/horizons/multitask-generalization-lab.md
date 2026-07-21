@@ -1,6 +1,6 @@
 # HORIZON — 여러 과제에서 통하는 로봇 판단 실험실
 
-> 생성: 2026-07-21 · ROADMAP marker: `harness:goal id="multitask-generalization-lab"` · 상태: planning
+> 생성: 2026-07-21 · ROADMAP marker: `harness:goal id="multitask-generalization-lab"` · 상태: active-approved
 > 위계: Objective(`OBJECTIVE.md`) → **Horizon**(이 문서) → Milestone(`plans/2026-07-21-gen*-*.md`) → Step.
 
 ## 목표
@@ -25,11 +25,11 @@
 
 | Milestone | 제목 | plan doc | 승인 | 리서치 입력 |
 |---|---|---|---|---|
-| **GEN1** | 고정된 다과제 평가 계약 | `plans/2026-07-21-gen1-multitask-evaluation-contract.md` | pending Horizon approval | `research/2026-07-21-multitask-generalization-lab-policy-evaluation.md` |
-| **GEN2** | OpenVLA 다과제 기준선 | `plans/2026-07-21-gen2-openvla-multitask-baseline.md` | pending Horizon approval | GEN1 + 같은 research |
-| **GEN3** | 두 VLA의 공정 비교 | `plans/2026-07-21-gen3-paired-vla-comparison.md` | pending Horizon approval | GEN1/GEN2 + ADR 0015 |
-| **GEN4** | 증거 기반 실패 양상 | `plans/2026-07-21-gen4-observable-failure-patterns.md` | pending Horizon approval | GEN2/GEN3 canonical episodes |
-| **GEN5** | 공개 일반화 비교 실험실 | `plans/2026-07-21-gen5-public-generalization-lab.md` | pending Horizon approval | GEN1~GEN4 evidence |
+| **GEN1** | 고정된 다과제 평가 계약 | `plans/2026-07-21-gen1-multitask-evaluation-contract.md` | approved | `research/2026-07-21-multitask-generalization-lab-policy-evaluation.md` |
+| **GEN2** | OpenVLA 다과제 기준선 | `plans/2026-07-21-gen2-openvla-multitask-baseline.md` | approved | GEN1 + 같은 research |
+| **GEN3** | 두 VLA의 공정 비교 | `plans/2026-07-21-gen3-paired-vla-comparison.md` | approved | GEN1/GEN2 + ADR 0015 |
+| **GEN4** | 증거 기반 실패 양상 | `plans/2026-07-21-gen4-observable-failure-patterns.md` | approved | GEN2/GEN3 canonical episodes |
+| **GEN5** | 공개 일반화 비교 실험실 | `plans/2026-07-21-gen5-public-generalization-lab.md` | approved | GEN1~GEN4 evidence |
 
 ## 닫는 기준
 

@@ -11,15 +11,15 @@
 2. **여러 과제에서 통하는 로봇 판단 실험실** (`multitask-generalization-lab`)
    - 선택: 2026-07-21 사용자 승인
    - 이유: 단일 성공 데모를 넘어 사전 고정한 여러 과제·초기 상태에서 두 정책을 같은 증거 계약으로 비교하고 실패 양상을 공개한다.
-   - 상태: planning — 3-Horizon 연쇄 1/3
+   - 상태: active-approved — 3-Horizon 연쇄 1/3
 3. **지시를 바꿔 실행하는 로컬 피지컬 AI 실험실** (`live-instruction-execution-lab`)
    - 선택: 2026-07-21 사용자 승인
    - 이유: recorded replay를 넘어 지원 과제의 언어 지시와 정책을 선택해 실제 local GPU inference·행동·관찰 stream을 실행한다.
-   - 상태: queued — 3-Horizon 연쇄 2/3
+   - 상태: queued-approved — 3-Horizon 연쇄 2/3
 4. **시뮬레이션과 실물을 잇는 SO-101 검증** (`sim-real-so101-evidence-loop`)
    - 선택: 2026-07-21 사용자 승인
    - 이유: 동일한 camera/state/action/outcome 계약을 SO-101 leader/follower·dual-camera·실물 정책 평가에 연결한다.
-   - 상태: queued — 3-Horizon 연쇄 3/3; hardware external gate
+   - 상태: queued-approved — 3-Horizon 연쇄 3/3; hardware external gate
 
 ## 승인 연쇄
 

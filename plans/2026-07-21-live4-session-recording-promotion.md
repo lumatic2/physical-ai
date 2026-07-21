@@ -1,6 +1,6 @@
 # PLAN — LIVE4 실행 기록과 replay 승격
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 직접 실행 결과를 재현 가능한 산출물로 확인한다.

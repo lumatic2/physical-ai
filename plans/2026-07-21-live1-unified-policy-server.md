@@ -1,6 +1,6 @@
 # PLAN — LIVE1 통합 policy server 계약
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 정책을 직접 실행하고 전 과정을 관찰한다. (`OBJECTIVE.md`)

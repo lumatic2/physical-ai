@@ -1,6 +1,6 @@
 # PLAN — LIVE5 로컬 실행형 실험실과 공개 증명
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 사람이 지시·정책·행동 전 과정을 관찰하는 피지컬 AI 실험실.

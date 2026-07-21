@@ -1,6 +1,6 @@
 # HORIZON — 시뮬레이션과 실물을 잇는 SO-101 검증
 
-> 생성: 2026-07-21 · 연쇄: 3/3 · 상태: queued-planning · 외부 hardware gate
+> 생성: 2026-07-21 · 연쇄: 3/3 · 상태: queued-approved · 외부 hardware gate
 
 ## 목표
 

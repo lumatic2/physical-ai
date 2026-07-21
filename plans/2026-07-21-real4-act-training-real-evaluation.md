@@ -1,6 +1,6 @@
 # PLAN — REAL4 ACT 학습과 실물 평가
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: consumer hardware에서 정책을 직접 학습·실행·비교한다.

@@ -1,6 +1,6 @@
 # PLAN — GEN3 두 VLA의 공정 비교
 
-Status: approval-ready — Horizon 전체 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 

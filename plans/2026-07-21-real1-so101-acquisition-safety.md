@@ -1,6 +1,6 @@
 # PLAN — REAL1 SO-101 획득·안전 준비
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기; hardware external gate
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행; hardware external gate 유지
 
 ## Objective → Horizon → Milestone
 - Objective: 시뮬레이션 증거를 실물 telemetry와 안전 게이트로 연결한다.

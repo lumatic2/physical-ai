@@ -1,6 +1,6 @@
 # PLAN — REAL2 보정된 dual-camera teleoperation
 
-Status: approval-ready — 3-Horizon 연쇄 실행 승인 대기
+Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 실물 camera/state/action을 동일 증거 계약으로 관찰한다.
