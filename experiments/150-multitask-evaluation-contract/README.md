@@ -41,6 +41,19 @@ python verify_initial_states.py --libero-root "$HOME/LIBERO" --probe-resets \
 - π0.5 source/adapter: [openpi commit](https://github.com/Physical-Intelligence/openpi/tree/15a9616a00943ada6c20a0f158e3adb39df2ccac), [LIBERO policy](https://github.com/Physical-Intelligence/openpi/blob/15a9616a00943ada6c20a0f158e3adb39df2ccac/src/openpi/policies/libero_policy.py), [official evaluator](https://github.com/Physical-Intelligence/openpi/blob/15a9616a00943ada6c20a0f158e3adb39df2ccac/examples/libero/main.py) (접근일: 2026-07-21).
 - π0.5 checkpoint metadata: [public GCS listing](https://storage.googleapis.com/storage/v1/b/openpi-assets/o?prefix=checkpoints/pi05_libero/) (접근일: 2026-07-21).
 
+## 실행·결과 계약
+
+`run-denominator.json`은 suite/task/state/policy artifact/adapter revision을 모두 포함한 120개 immutable run key다. `schemas/multitask-run-v1.json`은 terminal result를 다음처럼 분리한다.
+
+- `success`, `timeout`: canonical episode reference 필수.
+- `error`: 재현 가능한 error report reference 필수.
+- `excluded`: 실행하지 않은 이유 필수.
+
+```powershell
+python verify_result_contract.py --output verify/canonical/result-contract-report.json
+python test_verify_result_contract.py
+```
+
 ## 범위 경계
 
-이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state와 두 policy의 호환성 선언을 고정한다. 실제 rollout 성공률은 아직 주장하지 않는다.
+이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state, 두 policy의 호환성 선언과 120개 실행·결과 identity를 고정한다. 실제 rollout 성공률은 아직 주장하지 않는다.

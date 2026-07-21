@@ -1,0 +1,13 @@
+{
+  "valid_cases": [
+    {"denominator_index": 0, "status": "success", "evidence_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    {"denominator_index": 1, "status": "timeout", "evidence_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+    {"denominator_index": 2, "status": "error", "evidence_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},
+    {"denominator_index": 3, "status": "excluded", "reason": "fixture-only declared incompatibility"}
+  ],
+  "invalid_mutations": [
+    {"id": "duplicate-run-key", "operation": "duplicate-first", "expected_error": "duplicate run_key"},
+    {"id": "missing-complete-denominator", "operation": "claim-complete", "expected_error": "complete result index does not cover denominator"},
+    {"id": "result-without-evidence", "operation": "remove-evidence", "result_index": 0, "expected_error": "episode_ref"}
+  ]
+}

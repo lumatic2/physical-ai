@@ -1,0 +1,22 @@
+{
+  "schema_version": "physical-ai-result-contract-verification-v1",
+  "pass": true,
+  "denominator": "run-denominator.json",
+  "denominator_sha256": "583555548ea46ca9c43a0c1a534c730d192ad45bde94c9cd4dc2ee6ef3c6e94f",
+  "planned_run_count": 120,
+  "unique_run_key_count": 120,
+  "terminal_statuses_tested": [
+    "success",
+    "timeout",
+    "error",
+    "excluded"
+  ],
+  "lossless_round_trip": true,
+  "negative_fixtures_rejected": [
+    "duplicate-run-key",
+    "missing-complete-denominator",
+    "result-without-evidence"
+  ],
+  "errors": [],
+  "claim_boundary": "Run identities and result semantics only; no policy rollout result exists yet."
+}

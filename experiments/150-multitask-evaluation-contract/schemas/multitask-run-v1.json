@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotics.askewly.com/schemas/multitask-run-v1.json",
+  "title": "Physical AI multitask terminal run result v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_key", "suite", "task_key", "state_index", "policy",
+    "environment_revision", "attempt", "status", "timing", "outcome", "evidence"
+  ],
+  "properties": {
+    "schema_version": {"const": "physical-ai-multitask-run-v1"},
+    "run_key": {"type": "string", "pattern": "^v1:[a-z0-9._:@-]+$"},
+    "suite": {"enum": ["libero_spatial", "libero_object", "libero_goal"]},
+    "task_key": {"type": "string", "pattern": "^libero_(spatial|object|goal)/task-[0-9]{2}$"},
+    "state_index": {"type": "integer", "minimum": 0, "maximum": 4},
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy_id", "family", "artifact_revision", "adapter_revision"],
+      "properties": {
+        "policy_id": {"enum": ["openvla-libero", "pi05-libero"]},
+        "family": {"enum": ["OpenVLA", "pi0.5"]},
+        "artifact_revision": {"$ref": "#/$defs/sha256or40"},
+        "adapter_revision": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "environment_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "attempt": {"type": "integer", "minimum": 1},
+    "status": {"enum": ["success", "timeout", "error", "excluded"]},
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["steps", "duration_seconds", "policy_latency_ms"],
+      "properties": {
+        "steps": {"type": "integer", "minimum": 0},
+        "duration_seconds": {"type": "number", "minimum": 0},
+        "policy_latency_ms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["count", "total", "minimum", "maximum"],
+          "properties": {
+            "count": {"type": "integer", "minimum": 0},
+            "total": {"type": "number", "minimum": 0},
+            "minimum": {"type": ["number", "null"], "minimum": 0},
+            "maximum": {"type": ["number", "null"], "minimum": 0}
+          }
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["success", "termination_reason"],
+      "properties": {
+        "success": {"type": "boolean"},
+        "termination_reason": {"enum": ["success", "max_steps", "runtime_error", "manifest_exclusion"]}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "episode_ref": {"$ref": "#/$defs/artifactRef"},
+        "error_ref": {"$ref": "#/$defs/artifactRef"},
+        "exclusion_reason": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "success"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "outcome": {"properties": {"success": {"const": true}, "termination_reason": {"const": "success"}}},
+          "evidence": {"required": ["episode_ref"]}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "timeout"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "outcome": {"properties": {"success": {"const": false}, "termination_reason": {"const": "max_steps"}}},
+          "evidence": {"required": ["episode_ref"]}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "error"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "outcome": {"properties": {"success": {"const": false}, "termination_reason": {"const": "runtime_error"}}},
+          "evidence": {"required": ["error_ref"]}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "excluded"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "timing": {"properties": {"steps": {"const": 0}}},
+          "outcome": {"properties": {"success": {"const": false}, "termination_reason": {"const": "manifest_exclusion"}}},
+          "evidence": {"required": ["exclusion_reason"]}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "sha256or40": {"type": "string", "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"},
+    "artifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["uri", "sha256"],
+      "properties": {
+        "uri": {"type": "string", "pattern": "^experiments/[A-Za-z0-9._/-]+$"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

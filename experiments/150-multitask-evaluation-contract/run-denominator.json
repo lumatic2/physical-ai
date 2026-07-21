@@ -1,0 +1,1574 @@
+{
+  "schema_version": "physical-ai-run-denominator-v1",
+  "generated_at": "2026-07-21",
+  "source_sha256": {
+    "benchmark_manifest": "cdeaa8c752307f4074cde9322e6bfafce69e1fd6f9015ba8d9f9a5f903567700",
+    "initial_states": "2740c37972839c03c658985bbc68a5242000d1bf39c1dc459c5940ea1a7fbb7c",
+    "policy_registry": "79203084064f0ad6442f458eed69fb28a9b60df9a7aac680c5000124aeb7736f"
+  },
+  "run_key_version": "v1",
+  "planned_run_count": 120,
+  "runs": [
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-00:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-05",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-05:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_spatial",
+      "task_key": "libero_spatial/task-08",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_spatial:task-08:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-00:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-06",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-06:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_object",
+      "task_key": "libero_object/task-09",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_object:task-09:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-00:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-00",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-00:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-00:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-03",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-00:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-06",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-06:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-00:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 0,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 1,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-01:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 2,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-02:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 3,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-03:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "openvla-libero",
+        "family": "OpenVLA",
+        "artifact_revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+        "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e"
+    },
+    {
+      "suite": "libero_goal",
+      "task_key": "libero_goal/task-09",
+      "state_index": 4,
+      "policy": {
+        "policy_id": "pi05-libero",
+        "family": "pi0.5",
+        "artifact_revision": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+      },
+      "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "run_key": "v1:libero_goal:task-09:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037"
+    }
+  ],
+  "claim_boundary": "Planned immutable run identities only; no result status is implied."
+}
