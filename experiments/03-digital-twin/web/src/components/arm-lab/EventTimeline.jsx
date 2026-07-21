@@ -49,7 +49,7 @@ export function EventTimeline({ events, selectedEvent, onSelect }) {
             onClick={() => onSelect(event)}
             aria-pressed={selectedEvent?.id === event.id}
           >
-            <span className={`arm-event-source is-${event.source}`}>{SOURCE_LABELS[event.source] || event.source}</span>
+            <span className={`arm-event-source is-${event.source} ${event.source === "environment" ? (event.payload?.success ? "is-pass" : "is-fail") : ""}`.trim()}>{SOURCE_LABELS[event.source] || event.source}</span>
             <strong>{event.kind.replaceAll("_", " ")}</strong>
             <span className="arm-event-summary">{eventSummary(event)}</span>
             <span className="arm-event-meta">

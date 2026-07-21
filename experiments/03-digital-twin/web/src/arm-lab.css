@@ -152,7 +152,8 @@ button { -webkit-tap-highlight-color: transparent; }
 .arm-event.is-selected { border-color: color-mix(in oklch, var(--arm-accent) 50%, transparent); background: var(--arm-surface-raised); }
 .arm-event-source { display: inline-flex; width: fit-content; padding: 0.25rem 0.38rem; border-radius: 0.32rem; background: var(--arm-surface-active); color: var(--arm-muted); font-size: 0.61rem; font-weight: 680; letter-spacing: 0.035em; }
 .arm-event-source.is-vlm, .arm-event-source.is-vla { color: var(--arm-accent); }
-.arm-event-source.is-environment { color: var(--arm-pass); }
+.arm-event-source.is-environment.is-pass { color: var(--arm-pass); }
+.arm-event-source.is-environment.is-fail { color: var(--arm-fail); }
 .arm-event-source.is-controller { color: var(--arm-action); }
 .arm-event strong { font-size: 0.74rem; font-weight: 600; }
 .arm-event-summary { display: -webkit-box; overflow: hidden; color: var(--arm-muted); font-size: 0.7rem; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 3; word-break: keep-all; }
@@ -162,7 +163,7 @@ button { -webkit-tap-highlight-color: transparent; }
 .arm-event-empty { margin: 0; padding: 1rem; color: var(--arm-muted); text-align: center; }
 .arm-causal-note { margin: 0.8rem 0 0; color: var(--arm-muted); font-size: 0.7rem; line-height: 1.5; word-break: keep-all; }
 
-.arm-evidence-dialog { width: min(34rem, calc(100vw - 1.2rem)); max-width: none; height: 100dvh; max-height: none; margin: 0 0 0 auto; padding: 0; border: 0; background: var(--arm-surface); color: var(--arm-text); box-shadow: -1.5rem 0 4rem rgb(0 0 0 / 0.35); }
+.arm-evidence-dialog { width: min(34rem, calc(100vw - 1.2rem)); max-width: none; height: 100dvh; max-height: none; margin: 0 0 0 auto; padding: 0; overflow-y: auto; overscroll-behavior: contain; border: 0; background: var(--arm-surface); color: var(--arm-text); box-shadow: -1.5rem 0 4rem rgb(0 0 0 / 0.35); }
 .arm-evidence-dialog::backdrop { background: rgb(0 0 0 / 0.58); backdrop-filter: blur(3px); }
 .arm-drawer-header { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; border-bottom: 1px solid var(--arm-line); background: color-mix(in oklch, var(--arm-surface) 94%, transparent); backdrop-filter: blur(16px); }
 .arm-drawer-header h2 { margin: 0; font-size: 1.1rem; font-weight: 590; }

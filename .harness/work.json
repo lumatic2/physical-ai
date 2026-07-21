@@ -164,14 +164,15 @@
       "stop_reason": "external_authority_required",
       "stop_detail": {
         "gate": "human_visual_verification",
-        "detail": "Askewly Design reviewer gate requires the user to inspect the open Chrome tab and explicitly approve before production deploy."
+        "detail": "Post-polish local release gate passed. Production deploy and live QA wait for explicit human visual approval."
       },
       "session_ids": [
-        "codex:physical-ai-lab3-20260721"
+        "codex:physical-ai-lab3-20260721",
+        "codex:physical-ai-lab3-polish-20260721"
       ],
       "owner_session_uuid": null,
       "updated_at": "2026-07-21",
-      "notes": "LAB3 step-4 local gate PASS; Chrome handoff is open and production deploy waits for explicit human visual approval."
+      "notes": "Post-polish local gate PASS; production deploy still waits for explicit human visual approval."
     }
   }
 }

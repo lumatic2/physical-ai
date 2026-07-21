@@ -1,5 +1,5 @@
 {
-  "url": "http://127.0.0.1:8132/arm-lab.html",
+  "url": "http://127.0.0.1:8133/arm-lab.html",
   "desktop": {
     "summary": {
       "pass": true,
@@ -55,6 +55,10 @@
   "mobile": {
     "horizontalOverflow": 0,
     "sourceOrderStable": true
+  },
+  "errorState": {
+    "fatalFetchShowsRecovery": true,
+    "status": 503
   },
   "pass": true
 }

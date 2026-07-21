@@ -253,7 +253,9 @@ export function ArmLab() {
     };
   }, [currentTime, episode, episodeKey, eventDocument, events.length, frameIndex, frames.length, lane, registry, selectedEvent, theme, trace]);
 
-  if (error && !registry) {
+  const fatalError = error && (!registry || !episode || !trace || !eventDocument);
+
+  if (fatalError) {
     return (
       <main className="arm-state-page">
         <CircleAlert aria-hidden="true" />
@@ -301,7 +303,7 @@ export function ArmLab() {
         <section className="arm-intro" aria-labelledby="arm-lab-title">
           <div>
             <p className="arm-eyebrow">관찰형 로봇팔 실험실 · LAB3</p>
-            <h1 id="arm-lab-title">로봇이 보고, 움직이고, 결과를 만든 기록</h1>
+            <h1 id="arm-lab-title">로봇이 보고, 판단하고, 움직인 기록</h1>
             <p className="arm-intro-copy">두 카메라와 상태·행동을 한 시간축에서 움직여 보세요. 이것은 실시간 로봇이 아니라 실제 OpenVLA 실행을 기록한 시뮬레이션 증거입니다.</p>
           </div>
           <div className="arm-episode-switch" role="group" aria-label="에피소드 결과 선택">
@@ -348,7 +350,7 @@ export function ArmLab() {
                   <p className="arm-eyebrow">CURRENT CAUSAL EVENT</p>
                   <h2 id="current-event-title">{selectedEvent ? selectedEvent.kind.replaceAll("_", " ") : "event loading"}</h2>
                 </div>
-                <span className={`arm-event-source is-${selectedEvent?.source || "sensor"}`}>{selectedEvent?.source || "—"}</span>
+                <span className={`arm-event-source is-${selectedEvent?.source || "sensor"} ${selectedEvent?.source === "environment" ? (selectedEvent.payload?.success ? "is-pass" : "is-fail") : ""}`.trim()}>{selectedEvent?.source || "—"}</span>
               </div>
               <p>{selectedEvent ? eventSummary(selectedEvent) : "기록된 event stream을 검증하는 중입니다."}</p>
               <dl>

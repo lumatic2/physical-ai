@@ -32,6 +32,7 @@ planning_gate:
 ## Verification
 
 - [x] Local manifest, claim, build, browser desktop light/dark/drawer/mobile PASS.
+- [x] Post-polish fatal fetch recovery, PASS/FAIL semantic badge, drawer scroll QA PASS.
 - [ ] Human visual verification PASS.
 - [ ] Production deploy READY and `/arm-lab` route PASS.
 - [ ] Live Playwright, asset/console/network gate PASS.

@@ -40,7 +40,7 @@ def run_desktop(browser, base_url, prefix):
     failed_responses: list[str] = []
     page.on("response", lambda response: failed_responses.append(f"{response.status} {response.url}") if response.status >= 400 else None)
     page.goto(base_url, wait_until="networkidle")
-    page.get_by_role("heading", name="로봇이 보고, 움직이고, 결과를 만든 기록").wait_for()
+    page.get_by_role("heading", name="로봇이 보고, 판단하고, 움직인 기록").wait_for()
     summary = wait_summary(page)
     assert summary["episode"] == "pass", summary
     assert summary["frames"] == 78, summary
@@ -64,6 +64,7 @@ def run_desktop(browser, base_url, prefix):
     vlm_summary = page.evaluate("window.qaArmLabSummary()")
     assert vlm_summary["selectedEvent"]["parents"] == ["vlm-scene-observation"], vlm_summary
     assert vlm_summary["selectedEvent"]["assistance"]["used"] is False, vlm_summary
+    assert page.locator(".arm-event-source.is-environment.is-pass").count() == 1
 
     page.get_by_role("button", name="증거 원문 열기").click()
     drawer = page.get_by_role("dialog", name="이 판단은 어디서 왔나")
@@ -78,6 +79,7 @@ def run_desktop(browser, base_url, prefix):
 
     page.get_by_role("button", name="실패 기록 FAIL").click()
     page.wait_for_function("() => window.qaArmLabSummary?.().episode === 'fail' && window.qaArmLabSummary().frames === 220")
+    assert page.locator(".arm-event-source.is-environment.is-fail").count() == 1
     fail_summary = page.evaluate("window.qaArmLabSummary()")
     assert fail_summary["outcome"]["success"] is False, fail_summary
     assert fail_summary["outcome"]["termination"] == "timeout", fail_summary
@@ -130,6 +132,18 @@ def run_mobile(browser, base_url, prefix):
     return {"horizontalOverflow": overflow, "sourceOrderStable": True}
 
 
+def run_error_state(browser, base_url):
+    page = browser.new_page(viewport={"width": 900, "height": 700})
+    page.route("**/assets/arm-lab/registry.json", lambda route: route.fulfill(status=503, content_type="application/json", body='{"error":"fixture"}'))
+    page.goto(base_url, wait_until="networkidle")
+    page.get_by_role("heading", name="실험 기록을 열 수 없습니다").wait_for()
+    assert page.get_by_role("button", name="다시 시도").is_visible()
+    message = page.locator(".arm-state-page p").inner_text()
+    assert "registry 503" in message, message
+    page.close()
+    return {"fatalFetchShowsRecovery": True, "status": 503}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", default=os.environ.get("ARM_LAB_URL", DEFAULT_URL))
@@ -143,6 +157,7 @@ def main() -> None:
             "url": args.url,
             "desktop": run_desktop(browser, args.url, prefix),
             "mobile": run_mobile(browser, args.url, prefix),
+            "errorState": run_error_state(browser, args.url),
         }
         browser.close()
     report["pass"] = True
