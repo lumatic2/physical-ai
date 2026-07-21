@@ -1,0 +1,35 @@
+{
+  "schema_version": "physical-ai-gen3-pi05-runtime-lock-v1",
+  "frozen_at": "2026-07-21",
+  "openpi": {
+    "repository_url": "https://github.com/Physical-Intelligence/openpi",
+    "revision": "15a9616a00943ada6c20a0f158e3adb39df2ccac",
+    "libero_submodule_revision": "f78abd68ee283de9f9be3c8f7e2a9ad60246e95c"
+  },
+  "environment": {
+    "name": "LIBERO",
+    "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "runtime": "Ubuntu 24.04 WSL2",
+    "support_boundary": "OpenPI documents Ubuntu 22.04; Ubuntu 24.04 is verified here only by actual probe evidence."
+  },
+  "checkpoint": {
+    "config": "pi05_libero",
+    "uri": "gs://openpi-assets/checkpoints/pi05_libero",
+    "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+    "object_count": 16,
+    "total_bytes": 12439085481,
+    "norm_stats_asset_id": "physical-intelligence/libero"
+  },
+  "supported_suites": ["libero_spatial", "libero_object", "libero_goal"],
+  "input_contract": {
+    "main_camera": "rotate_180_then_resize_with_pad_224",
+    "wrist_camera": "rotate_180_then_resize_with_pad_224",
+    "state_dim": 8,
+    "instruction_key": "prompt"
+  },
+  "output_contract": {
+    "model_shape": [10, 32],
+    "exposed_shape": [10, 7],
+    "replan_steps": 5
+  }
+}

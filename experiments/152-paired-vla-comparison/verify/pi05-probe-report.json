@@ -1,0 +1,67 @@
+{
+  "schema_version": "physical-ai-gen3-pi05-probe-v1",
+  "pass": true,
+  "sample": {
+    "canonical_ref": "gen2:libero_spatial/task-00/state-00/frame-000000",
+    "suite": "libero_spatial",
+    "task_id": 0,
+    "state_index": 0,
+    "input_sha256": "04572027a08ccb330216d671d1305976d0d125f53c8793c228b34de643a2de65",
+    "state_dim": 8,
+    "main_image_shape": [
+      224,
+      224,
+      3
+    ],
+    "wrist_image_shape": [
+      224,
+      224,
+      3
+    ],
+    "prompt": "pick up the black bowl between the plate and the ramekin and place it on the plate"
+  },
+  "policy": {
+    "policy_id": "pi05-libero",
+    "openpi_revision": "15a9616a00943ada6c20a0f158e3adb39df2ccac",
+    "config": "pi05_libero",
+    "checkpoint_uri": "gs://openpi-assets/checkpoints/pi05_libero",
+    "checkpoint_snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+    "materialized_object_count": 16,
+    "materialized_total_bytes": 12439085481
+  },
+  "runtime": {
+    "devices": [
+      {
+        "platform": "gpu",
+        "device_kind": "NVIDIA GeForce RTX 5090",
+        "id": 0
+      }
+    ],
+    "load_seconds": 8.661612,
+    "inference_seconds": 12.871599
+  },
+  "output": {
+    "shape": [
+      10,
+      7
+    ],
+    "finite": true,
+    "sha256": "e7c86eddc82cf1adc06487f68fe150b5bad74962a70c28099ff055369d79473f",
+    "first_action": [
+      0.05286603,
+      0.11694557,
+      0.0274814,
+      0.00172197,
+      0.00513829,
+      -0.00135782,
+      -0.99874474
+    ]
+  },
+  "negative_gates": [
+    "wrong suite checkpoint config rejected",
+    "missing LIBERO norm stats rejected",
+    "action dimension mismatch rejected",
+    "non-finite action rejected"
+  ],
+  "claim_boundary": "One actual π0.5-LIBERO inference compatibility probe; not a rollout success or policy ranking."
+}
