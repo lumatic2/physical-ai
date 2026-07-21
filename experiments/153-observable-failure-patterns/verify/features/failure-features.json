@@ -1,0 +1,3083 @@
+{
+  "schema_version": "physical-ai-gen4-failure-feature-index-v1",
+  "pass": true,
+  "denominator": {
+    "non_success": 27,
+    "by_policy": {
+      "openvla-libero": 25,
+      "pi05-libero": 2
+    }
+  },
+  "availability": {
+    "robot_state": 27,
+    "executed_action": 27,
+    "dual_camera": 27,
+    "controller_events": 27,
+    "object_relation": 0,
+    "goal_distance": 0
+  },
+  "features": [
+    {
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "state_index": 2,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a",
+      "manifest_sha256": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.2151186615228653,
+          -0.010163544677197933,
+          1.1596187353134155
+        ],
+        "end_xyz": [
+          0.11490550637245178,
+          0.013027984648942947,
+          0.9308964014053345
+        ],
+        "net_displacement": 0.40220356096862375,
+        "path_length": 1.1836479137602516,
+        "max_distance_from_start": 0.42635528169577414,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.05336475676224863
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -2.0544975996017456e-06,
+        "final_mean": -0.00012123957276344299,
+        "range": 0.006777985021471977
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.6737510125659822,
+        "max_translation_norm": 1.2980540764121782,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": -1.0,
+        "gripper_sign_transitions": 0
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "388be6659667a879c462390c5a8c052c5c80ada01b4238db44f517a203074952"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "04cd021f5f7d2f4165a66f551f89da4bfe199589798dc4afb2c29c40949d66ff"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "12bd063e3dc76aaad27f91ae12a35e623a5415f28a750279255dce2b4ae26ddc"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/events/episode_000000.json",
+          "sha256": "95557195d0dbf5aa51ac3fa72e3cb6c7f2853458d30523b3ee9038759854bad0"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/episode-manifest.json": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/data/chunk-000/file-000.parquet": "12bd063e3dc76aaad27f91ae12a35e623a5415f28a750279255dce2b4ae26ddc",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/events/episode_000000.json": "95557195d0dbf5aa51ac3fa72e3cb6c7f2853458d30523b3ee9038759854bad0",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "388be6659667a879c462390c5a8c052c5c80ada01b4238db44f517a203074952",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "04cd021f5f7d2f4165a66f551f89da4bfe199589798dc4afb2c29c40949d66ff"
+        },
+        "after": {
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/episode-manifest.json": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/data/chunk-000/file-000.parquet": "12bd063e3dc76aaad27f91ae12a35e623a5415f28a750279255dce2b4ae26ddc",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/events/episode_000000.json": "95557195d0dbf5aa51ac3fa72e3cb6c7f2853458d30523b3ee9038759854bad0",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "388be6659667a879c462390c5a8c052c5c80ada01b4238db44f517a203074952",
+          "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "04cd021f5f7d2f4165a66f551f89da4bfe199589798dc4afb2c29c40949d66ff"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-00:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f",
+      "manifest_sha256": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.2061171531677246,
+          0.01408650353550911,
+          1.1747931241989136
+        ],
+        "end_xyz": [
+          0.0489608533680439,
+          -0.0857371911406517,
+          1.0658689737319946
+        ],
+        "net_displacement": 0.2947779333532294,
+        "path_length": 1.1776441623092604,
+        "max_distance_from_start": 0.35202343059394336,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.030241930171501362
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -5.420297384262085e-07,
+        "final_mean": 1.1373311281204224e-05,
+        "range": 0.004756877198815346
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.39494400574413474,
+        "max_translation_norm": 1.3053272141024688,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": -1.0,
+        "gripper_sign_transitions": 0
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "5458f08e7957964498ee7f722b3e92df03404d12b8d6c1b40e17580e13c6c36d"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "c59c5dc259c519ceefbf2faaf28f6995ba7046b31c36e9c2e7530aeba8116538"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "85273985ca488518160312dc6ed14a2d9c909cc131e6a0200e501d8f1a2505fb"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/events/episode_000000.json",
+          "sha256": "9b97269d6f2b098c86ece7e1528a794614777846d058372582e0aaa6a14b5df6"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/episode-manifest.json": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/data/chunk-000/file-000.parquet": "85273985ca488518160312dc6ed14a2d9c909cc131e6a0200e501d8f1a2505fb",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/events/episode_000000.json": "9b97269d6f2b098c86ece7e1528a794614777846d058372582e0aaa6a14b5df6",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "5458f08e7957964498ee7f722b3e92df03404d12b8d6c1b40e17580e13c6c36d",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "c59c5dc259c519ceefbf2faaf28f6995ba7046b31c36e9c2e7530aeba8116538"
+        },
+        "after": {
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/episode-manifest.json": "c49127c26b8df47bf6eace1c8a737c020802c3fc7589c76444c2b527abe5168a",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/data/chunk-000/file-000.parquet": "85273985ca488518160312dc6ed14a2d9c909cc131e6a0200e501d8f1a2505fb",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/events/episode_000000.json": "9b97269d6f2b098c86ece7e1528a794614777846d058372582e0aaa6a14b5df6",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "5458f08e7957964498ee7f722b3e92df03404d12b8d6c1b40e17580e13c6c36d",
+          "episodes/libero_goal-task-00-state-03/attempt-323040f29c7041f2baac05f49e45ff2f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "c59c5dc259c519ceefbf2faaf28f6995ba7046b31c36e9c2e7530aeba8116538"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-00:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f",
+      "manifest_sha256": "82e1c34918c5bc46ebcbe40ed988ac1de208a127c278f7912b8115bb6105272a",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20910446345806122,
+          -0.0059526339173316956,
+          1.170135259628296
+        ],
+        "end_xyz": [
+          0.05644688755273819,
+          -0.14365041255950928,
+          1.0281908512115479
+        ],
+        "net_displacement": 0.3310987969585989,
+        "path_length": 0.5383732377553264,
+        "max_distance_from_start": 0.33206001633090393,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.0010615980739229257
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 5.271285772323608e-07,
+        "final_mean": 3.2261013984680176e-06,
+        "range": 0.0015985369682312012
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.6776950668796172,
+        "max_translation_norm": 1.1424809824057502,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": -1.0,
+        "gripper_sign_transitions": 0
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "d7336ad9fff5b31f50c7bf82ef997d06fd7988dc20401951eb25db85c31fa909"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "ff127e69ec6ceb70b2042d2940f4277d8ccbadb6982f8da5725cd6e28762fa1a"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/events/episode_000000.json",
+          "sha256": "144e8c37f8569d8200eeed75756eac0b8c38e12b46f8b586fa5406cc5241b893"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/episode-manifest.json": "82e1c34918c5bc46ebcbe40ed988ac1de208a127c278f7912b8115bb6105272a",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/events/episode_000000.json": "144e8c37f8569d8200eeed75756eac0b8c38e12b46f8b586fa5406cc5241b893",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "d7336ad9fff5b31f50c7bf82ef997d06fd7988dc20401951eb25db85c31fa909",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "ff127e69ec6ceb70b2042d2940f4277d8ccbadb6982f8da5725cd6e28762fa1a"
+        },
+        "after": {
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/episode-manifest.json": "82e1c34918c5bc46ebcbe40ed988ac1de208a127c278f7912b8115bb6105272a",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/events/episode_000000.json": "144e8c37f8569d8200eeed75756eac0b8c38e12b46f8b586fa5406cc5241b893",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "d7336ad9fff5b31f50c7bf82ef997d06fd7988dc20401951eb25db85c31fa909",
+          "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "ff127e69ec6ceb70b2042d2940f4277d8ccbadb6982f8da5725cd6e28762fa1a"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-03:state-01:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "state_index": 1,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7",
+      "manifest_sha256": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20047123730182648,
+          0.0048640696331858635,
+          1.175869345664978
+        ],
+        "end_xyz": [
+          -0.002500128000974655,
+          0.03308333456516266,
+          1.096871018409729
+        ],
+        "net_displacement": 0.2150107502899293,
+        "path_length": 1.3748271454219345,
+        "max_distance_from_start": 0.2649847864607427,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.02563714830977763
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 1.0747462511062622e-06,
+        "final_mean": -0.003813713788986206,
+        "range": 0.006022371875587851
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.655304706524067,
+        "max_translation_norm": 1.0808609347620037,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 14
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "e935ad744f14e947a11462468567c4a9e375070a5c4b42ab19255e0b82cf0e67"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "b37ebe667d24e51e8e42153bc6b608dfe96ba15d012f19727f949e77790d2a63"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "f1cdd82255de5901b8263f0e902fa7229045d276893c9d5ef7d781e90306a45e"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/events/episode_000000.json",
+          "sha256": "97f115c2ba45f0a8570eccda21e16624b43eb8f54a4ed8447777e19cd19aea4a"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/episode-manifest.json": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/data/chunk-000/file-000.parquet": "f1cdd82255de5901b8263f0e902fa7229045d276893c9d5ef7d781e90306a45e",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/events/episode_000000.json": "97f115c2ba45f0a8570eccda21e16624b43eb8f54a4ed8447777e19cd19aea4a",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "e935ad744f14e947a11462468567c4a9e375070a5c4b42ab19255e0b82cf0e67",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "b37ebe667d24e51e8e42153bc6b608dfe96ba15d012f19727f949e77790d2a63"
+        },
+        "after": {
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/episode-manifest.json": "4894a97c145b93dbd44b1182c52155906bce25aca008ba8b383006b3f128cca0",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/data/chunk-000/file-000.parquet": "f1cdd82255de5901b8263f0e902fa7229045d276893c9d5ef7d781e90306a45e",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/events/episode_000000.json": "97f115c2ba45f0a8570eccda21e16624b43eb8f54a4ed8447777e19cd19aea4a",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "e935ad744f14e947a11462468567c4a9e375070a5c4b42ab19255e0b82cf0e67",
+          "episodes/libero_goal-task-03-state-01/attempt-b488739c6b404e93bcdda47fa06cb0e7/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "b37ebe667d24e51e8e42153bc6b608dfe96ba15d012f19727f949e77790d2a63"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-03:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9",
+      "manifest_sha256": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.2036915421485901,
+          0.0065766810439527035,
+          1.179683804512024
+        ],
+        "end_xyz": [
+          -0.24247974157333374,
+          0.13882863521575928,
+          0.9850383996963501
+        ],
+        "net_displacement": 0.23849934467988138,
+        "path_length": 1.7499990564965822,
+        "max_distance_from_start": 0.26444202281915846,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.028229547973091743
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -8.288770914077759e-07,
+        "final_mean": -0.0003132857382297516,
+        "range": 0.0021123383194208145
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.6107798701573661,
+        "max_translation_norm": 1.0918410821117661,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 48
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "b56858023ab947561f207c1f3c4f7a1008b8b7aaa58b71c722c71147e9f5e2c8"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "0711af861b4023d80cafa3063b248a8c79edb67b91b15f190577f8e92af94720"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "4178343360c0436e3b66e06e94ae5c56346508c9b91f721be79903b7eb43a062"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/events/episode_000000.json",
+          "sha256": "a417ec3b117eafd379cdf9ed3d7bb1b17563ba88403d184745cf7568b58a95f0"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/episode-manifest.json": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/data/chunk-000/file-000.parquet": "4178343360c0436e3b66e06e94ae5c56346508c9b91f721be79903b7eb43a062",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/events/episode_000000.json": "a417ec3b117eafd379cdf9ed3d7bb1b17563ba88403d184745cf7568b58a95f0",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "b56858023ab947561f207c1f3c4f7a1008b8b7aaa58b71c722c71147e9f5e2c8",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "0711af861b4023d80cafa3063b248a8c79edb67b91b15f190577f8e92af94720"
+        },
+        "after": {
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/episode-manifest.json": "cd54adbdef64dd88de34d752227464a04ac9d8bde1a516a4e0a4544afb046214",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/data/chunk-000/file-000.parquet": "4178343360c0436e3b66e06e94ae5c56346508c9b91f721be79903b7eb43a062",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/events/episode_000000.json": "a417ec3b117eafd379cdf9ed3d7bb1b17563ba88403d184745cf7568b58a95f0",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "b56858023ab947561f207c1f3c4f7a1008b8b7aaa58b71c722c71147e9f5e2c8",
+          "episodes/libero_goal-task-03-state-03/attempt-ad0205e50784474c9477e12c245393d9/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "0711af861b4023d80cafa3063b248a8c79edb67b91b15f190577f8e92af94720"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-03:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6",
+      "manifest_sha256": "d39791034057172e38d93248c90a2973c7e8dee221fc2717c56932fa0ee02c6d",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.1980905383825302,
+          -0.015333649702370167,
+          1.1779704093933105
+        ],
+        "end_xyz": [
+          0.008499573916196823,
+          -0.14975999295711517,
+          1.1343960762023926
+        ],
+        "net_displacement": 0.2502971010089336,
+        "path_length": 0.3637838874175915,
+        "max_distance_from_start": 0.25150147855227745,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.0014487394206457679
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 2.644956111907959e-07,
+        "final_mean": -0.0019036941230297089,
+        "range": 0.007612625136971474
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.7491181406862976,
+        "max_translation_norm": 0.9880005302517955,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": -1.0,
+        "gripper_sign_transitions": 0
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "9af6a8f4525b0c46c910748dacbb42f8bfaad31abe56ed747fe4111978fd3163"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "22f68567d88bc213a1a32f239a665f39254a25fb61531e312cd50518bc3488a8"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "6bcb4f843bc47b040798d4b6da727df15d5ffaa3d0b19c44c1c081993b7e7817"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/events/episode_000000.json",
+          "sha256": "a9d19b811707e417a534dd14717aaaef42de3a9bc486049f77c52f015939f27e"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/episode-manifest.json": "d39791034057172e38d93248c90a2973c7e8dee221fc2717c56932fa0ee02c6d",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/data/chunk-000/file-000.parquet": "6bcb4f843bc47b040798d4b6da727df15d5ffaa3d0b19c44c1c081993b7e7817",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/events/episode_000000.json": "a9d19b811707e417a534dd14717aaaef42de3a9bc486049f77c52f015939f27e",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "9af6a8f4525b0c46c910748dacbb42f8bfaad31abe56ed747fe4111978fd3163",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "22f68567d88bc213a1a32f239a665f39254a25fb61531e312cd50518bc3488a8"
+        },
+        "after": {
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/episode-manifest.json": "d39791034057172e38d93248c90a2973c7e8dee221fc2717c56932fa0ee02c6d",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/data/chunk-000/file-000.parquet": "6bcb4f843bc47b040798d4b6da727df15d5ffaa3d0b19c44c1c081993b7e7817",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/events/episode_000000.json": "a9d19b811707e417a534dd14717aaaef42de3a9bc486049f77c52f015939f27e",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "9af6a8f4525b0c46c910748dacbb42f8bfaad31abe56ed747fe4111978fd3163",
+          "episodes/libero_goal-task-03-state-04/attempt-fbf673fa726741acba2d8cbe403158d6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "22f68567d88bc213a1a32f239a665f39254a25fb61531e312cd50518bc3488a8"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-06:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 6,
+      "state_index": 2,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce",
+      "manifest_sha256": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20865732431411743,
+          -0.015102101489901543,
+          1.1828192472457886
+        ],
+        "end_xyz": [
+          -0.11295708268880844,
+          -0.023241449147462845,
+          1.0457487106323242
+        ],
+        "net_displacement": 0.16737119595359365,
+        "path_length": 1.338126431177894,
+        "max_distance_from_start": 0.34237480267806564,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.028309361692595927
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -2.9224902391433716e-06,
+        "final_mean": -5.5849552154541016e-05,
+        "range": 0.00537334056571126
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.3694131928992898,
+        "max_translation_norm": 1.2672383107779752,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 14
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "3acf8429c72893d26982003c380ba5921f4736867994c2843169366661b9b959"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "03ab8635f26bb21f7fc91f1d3b5fd578fb1c4c258131df686b13aeb90abf293a"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "ce0bed19f75e88f6c34bcaaff1849cb1dfe3bf8eb793580d3b9611b73dd69d02"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/events/episode_000000.json",
+          "sha256": "8ba2c75de3ada02ce0a5d1bfe9a02624b49905743897fcb8f8f1ac59391f9d22"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/episode-manifest.json": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/data/chunk-000/file-000.parquet": "ce0bed19f75e88f6c34bcaaff1849cb1dfe3bf8eb793580d3b9611b73dd69d02",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/events/episode_000000.json": "8ba2c75de3ada02ce0a5d1bfe9a02624b49905743897fcb8f8f1ac59391f9d22",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "3acf8429c72893d26982003c380ba5921f4736867994c2843169366661b9b959",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "03ab8635f26bb21f7fc91f1d3b5fd578fb1c4c258131df686b13aeb90abf293a"
+        },
+        "after": {
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/episode-manifest.json": "b44d53c5b7306db3328806ecaecb548eb970a0a1fdae3c7e8265f2fb3b0be22d",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/data/chunk-000/file-000.parquet": "ce0bed19f75e88f6c34bcaaff1849cb1dfe3bf8eb793580d3b9611b73dd69d02",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/events/episode_000000.json": "8ba2c75de3ada02ce0a5d1bfe9a02624b49905743897fcb8f8f1ac59391f9d22",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "3acf8429c72893d26982003c380ba5921f4736867994c2843169366661b9b959",
+          "episodes/libero_goal-task-06-state-02/attempt-e85eac69fc7f49c7ba3fa74761b7d9ce/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "03ab8635f26bb21f7fc91f1d3b5fd578fb1c4c258131df686b13aeb90abf293a"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-06:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 6,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a",
+      "manifest_sha256": "e260077384f19bfd669568a7f7daa580bba65ca7011b38f4c89a675609210252",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20637522637844086,
+          0.0064680068753659725,
+          1.164911150932312
+        ],
+        "end_xyz": [
+          -0.05935882776975632,
+          0.013711033388972282,
+          1.051668405532837
+        ],
+        "net_displacement": 0.18571537975772162,
+        "path_length": 1.1671907745446686,
+        "max_distance_from_start": 0.3361877647146421,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.005580672937915156
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 8.363276720046997e-07,
+        "final_mean": -1.3919547200202942e-05,
+        "range": 0.002185806632041931
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.3419337792050904,
+        "max_translation_norm": 1.0934032827447948,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 32
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "54ad765e6f0d187096018fe8236503be8bb2c3432d0ad0604ca0f35371ae34ed"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "a9bec807f97f179cf5f5c967bb1f3d4780d1c5803e5d74d69a3267db2c3126ef"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "311ac9754b86aa9757c0c4185a8e3aec6c64fb0bbe0e3052658303af4625d67c"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/events/episode_000000.json",
+          "sha256": "bd86d8c4bfab0ffac0ddd6959616320023d90fa6c08b4fdf6b31273fcca44929"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/episode-manifest.json": "e260077384f19bfd669568a7f7daa580bba65ca7011b38f4c89a675609210252",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/data/chunk-000/file-000.parquet": "311ac9754b86aa9757c0c4185a8e3aec6c64fb0bbe0e3052658303af4625d67c",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/events/episode_000000.json": "bd86d8c4bfab0ffac0ddd6959616320023d90fa6c08b4fdf6b31273fcca44929",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "54ad765e6f0d187096018fe8236503be8bb2c3432d0ad0604ca0f35371ae34ed",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a9bec807f97f179cf5f5c967bb1f3d4780d1c5803e5d74d69a3267db2c3126ef"
+        },
+        "after": {
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/episode-manifest.json": "e260077384f19bfd669568a7f7daa580bba65ca7011b38f4c89a675609210252",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/data/chunk-000/file-000.parquet": "311ac9754b86aa9757c0c4185a8e3aec6c64fb0bbe0e3052658303af4625d67c",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/events/episode_000000.json": "bd86d8c4bfab0ffac0ddd6959616320023d90fa6c08b4fdf6b31273fcca44929",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "54ad765e6f0d187096018fe8236503be8bb2c3432d0ad0604ca0f35371ae34ed",
+          "episodes/libero_goal-task-06-state-04/attempt-ff64e83e07a54fb887c3c0c63ef29c8a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a9bec807f97f179cf5f5c967bb1f3d4780d1c5803e5d74d69a3267db2c3126ef"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-09:state-03:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 9,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5",
+      "manifest_sha256": "1eee4040ca7760b389073ab4e7b1d0d4ef167149fdc4dd0873f8f6a2c038fd6f",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.21395181119441986,
+          -0.001347310608252883,
+          1.1733124256134033
+        ],
+        "end_xyz": [
+          -0.22176365554332733,
+          -0.1175844594836235,
+          1.0209168195724487
+        ],
+        "net_displacement": 0.19182419146550955,
+        "path_length": 0.59332536698257,
+        "max_distance_from_start": 0.2083482917993586,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.006634112589964789
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 1.7229467630386353e-06,
+        "final_mean": -0.0035522356629371643,
+        "range": 0.011231775395572186
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.2118106560382882,
+        "max_translation_norm": 0.7331900255827282,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 73
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "57c36e6139b5ff11353dd842271ad4fe191b27c63dfa9b5dd24c3e585f8b7f64"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "a268c4755c21ee10e1b8b510c496fc1231523b9057a8919ff60a2d2e7ec47d25"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "310b9bf6164e46a5bbcf0156823b4eb4dd6e24cad2aaec623654364bbc73ef33"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/events/episode_000000.json",
+          "sha256": "28408236e876e81555d43f82ccc0ce51e3a51ec44324c011194c39bd74c88f46"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/episode-manifest.json": "1eee4040ca7760b389073ab4e7b1d0d4ef167149fdc4dd0873f8f6a2c038fd6f",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/data/chunk-000/file-000.parquet": "310b9bf6164e46a5bbcf0156823b4eb4dd6e24cad2aaec623654364bbc73ef33",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/events/episode_000000.json": "28408236e876e81555d43f82ccc0ce51e3a51ec44324c011194c39bd74c88f46",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "57c36e6139b5ff11353dd842271ad4fe191b27c63dfa9b5dd24c3e585f8b7f64",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a268c4755c21ee10e1b8b510c496fc1231523b9057a8919ff60a2d2e7ec47d25"
+        },
+        "after": {
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/episode-manifest.json": "1eee4040ca7760b389073ab4e7b1d0d4ef167149fdc4dd0873f8f6a2c038fd6f",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/data/chunk-000/file-000.parquet": "310b9bf6164e46a5bbcf0156823b4eb4dd6e24cad2aaec623654364bbc73ef33",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/events/episode_000000.json": "28408236e876e81555d43f82ccc0ce51e3a51ec44324c011194c39bd74c88f46",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "57c36e6139b5ff11353dd842271ad4fe191b27c63dfa9b5dd24c3e585f8b7f64",
+          "episodes/libero_goal-task-09-state-03/attempt-3a405c127fcb4fab9853c6b591c35de5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a268c4755c21ee10e1b8b510c496fc1231523b9057a8919ff60a2d2e7ec47d25"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-09:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "task_id": 9,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15",
+      "manifest_sha256": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20824956893920898,
+          -0.005598758347332478,
+          1.1754019260406494
+        ],
+        "end_xyz": [
+          -0.1898978352546692,
+          -0.17180471122264862,
+          1.171043038368225
+        ],
+        "net_displacement": 0.16727284538191156,
+        "path_length": 0.777724514613126,
+        "max_distance_from_start": 0.23007320822497654,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.053825404497585196
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -1.1529773473739624e-06,
+        "final_mean": -0.0012704282999038696,
+        "range": 0.006323582027107477
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.2538412838531579,
+        "max_translation_norm": 1.0285270723272868,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 17
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "e64ae9e85b5dc055ff814d415b44dfd7cb9ab3834334b01d24ab532e71fcb4b9"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "dcdbbdff955d6519328b206509b48ced55c12c680315802e3dd31a5f0695272e"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "a87bf136f466ed992bb20491a8e9234684c2d5eef4ac45f8b8e8784551696fea"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/events/episode_000000.json",
+          "sha256": "07c931256a220c2aa6c7f8367374c993025d7090b79a2e18c67e1524ff210372"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/episode-manifest.json": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/data/chunk-000/file-000.parquet": "a87bf136f466ed992bb20491a8e9234684c2d5eef4ac45f8b8e8784551696fea",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/events/episode_000000.json": "07c931256a220c2aa6c7f8367374c993025d7090b79a2e18c67e1524ff210372",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "e64ae9e85b5dc055ff814d415b44dfd7cb9ab3834334b01d24ab532e71fcb4b9",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "dcdbbdff955d6519328b206509b48ced55c12c680315802e3dd31a5f0695272e"
+        },
+        "after": {
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/episode-manifest.json": "a63064c454f5d14658b77b6049a5137ac37d9483105e9786b4d8b47fe3931e7e",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/data/chunk-000/file-000.parquet": "a87bf136f466ed992bb20491a8e9234684c2d5eef4ac45f8b8e8784551696fea",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/events/episode_000000.json": "07c931256a220c2aa6c7f8367374c993025d7090b79a2e18c67e1524ff210372",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "e64ae9e85b5dc055ff814d415b44dfd7cb9ab3834334b01d24ab532e71fcb4b9",
+          "episodes/libero_goal-task-09-state-04/attempt-5c80ccd77f764932854a793fb912ec15/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "dcdbbdff955d6519328b206509b48ced55c12c680315802e3dd31a5f0695272e"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 0,
+      "state_index": 0,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6",
+      "manifest_sha256": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.15255247056484222,
+          -0.006276726257055998,
+          0.24844755232334137
+        ],
+        "end_xyz": [
+          -0.061373695731163025,
+          0.1722055822610855,
+          0.31658750772476196
+        ],
+        "net_displacement": 0.2116897658278345,
+        "path_length": 1.304859902507073,
+        "max_distance_from_start": 0.30085646479904177,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.4916334176780479
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 6.09084963798523e-07,
+        "final_mean": -0.0007339548319578171,
+        "range": 0.005043406970798969
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.3874191202980665,
+        "max_translation_norm": 0.9955162807609651,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 9
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "6770a94ae8e8149996d776298252001d532e1ce3ba2a42ca2b979ac8ecd20b93"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "a3153bcff552c218c4f37e53daf945163bdf67468367f5c49ea5a71b7c8a1166"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "9792eda63fd5c385f158d35578246b3fc79c57cea72a7e33728d7c37fc9b331d"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/events/episode_000000.json",
+          "sha256": "4b4c3c8789b981d58c630b334f5812048589e8d8526c66197f65a3bf173ecc1e"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/episode-manifest.json": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/data/chunk-000/file-000.parquet": "9792eda63fd5c385f158d35578246b3fc79c57cea72a7e33728d7c37fc9b331d",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/events/episode_000000.json": "4b4c3c8789b981d58c630b334f5812048589e8d8526c66197f65a3bf173ecc1e",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "6770a94ae8e8149996d776298252001d532e1ce3ba2a42ca2b979ac8ecd20b93",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a3153bcff552c218c4f37e53daf945163bdf67468367f5c49ea5a71b7c8a1166"
+        },
+        "after": {
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/episode-manifest.json": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/data/chunk-000/file-000.parquet": "9792eda63fd5c385f158d35578246b3fc79c57cea72a7e33728d7c37fc9b331d",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/events/episode_000000.json": "4b4c3c8789b981d58c630b334f5812048589e8d8526c66197f65a3bf173ecc1e",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "6770a94ae8e8149996d776298252001d532e1ce3ba2a42ca2b979ac8ecd20b93",
+          "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a3153bcff552c218c4f37e53daf945163bdf67468367f5c49ea5a71b7c8a1166"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-03:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 3,
+      "state_index": 0,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843",
+      "manifest_sha256": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.15930414199829102,
+          0.0018611211562529206,
+          0.2511119842529297
+        ],
+        "end_xyz": [
+          0.01859595626592636,
+          -0.08161944150924683,
+          0.1155327558517456
+        ],
+        "net_displacement": 0.23874500304556548,
+        "path_length": 0.6895011656960651,
+        "max_distance_from_start": 0.2669890118891091,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.03232012397166221
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 2.644956111907959e-07,
+        "final_mean": -0.00012512935791164637,
+        "range": 0.004054973949678242
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.232652789701966,
+        "max_translation_norm": 0.9191910694623382,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 26
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "c64868db92bd05c1ace204bfa8568572f62eb70c6d0f70196e71101df0069847"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "74b3147bf2508eb644f78258a5d2d86b70320d1a4f304cd658caec2628a36a28"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "7d3ae228c6fce7ee81ac58fb5da150fc94fdbb3c46525c2cc4c6708f88f7571a"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/events/episode_000000.json",
+          "sha256": "85d2b7c13a621e55f7a916b4ccb388d5826fbe4766b9a9935a96af794283abc7"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/episode-manifest.json": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/data/chunk-000/file-000.parquet": "7d3ae228c6fce7ee81ac58fb5da150fc94fdbb3c46525c2cc4c6708f88f7571a",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/events/episode_000000.json": "85d2b7c13a621e55f7a916b4ccb388d5826fbe4766b9a9935a96af794283abc7",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "c64868db92bd05c1ace204bfa8568572f62eb70c6d0f70196e71101df0069847",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "74b3147bf2508eb644f78258a5d2d86b70320d1a4f304cd658caec2628a36a28"
+        },
+        "after": {
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/episode-manifest.json": "75fd4b8ccc5ee5b465c799e66c4f14e389e33a73fd45cf9098f8e32a8634af8e",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/data/chunk-000/file-000.parquet": "7d3ae228c6fce7ee81ac58fb5da150fc94fdbb3c46525c2cc4c6708f88f7571a",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/events/episode_000000.json": "85d2b7c13a621e55f7a916b4ccb388d5826fbe4766b9a9935a96af794283abc7",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "c64868db92bd05c1ace204bfa8568572f62eb70c6d0f70196e71101df0069847",
+          "episodes/libero_object-task-03-state-00/attempt-325400bb3ba843f4aaa6dafa847bd843/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "74b3147bf2508eb644f78258a5d2d86b70320d1a4f304cd658caec2628a36a28"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-03:state-02:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 3,
+      "state_index": 2,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d",
+      "manifest_sha256": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.1498287320137024,
+          0.00353205855935812,
+          0.26640909910202026
+        ],
+        "end_xyz": [
+          -0.04289571940898895,
+          -0.11954634636640549,
+          0.05287802591919899
+        ],
+        "net_displacement": 0.2686605333099698,
+        "path_length": 0.7479226182429183,
+        "max_distance_from_start": 0.28260049359412537,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.010373449864508496
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 9.51811671257019e-07,
+        "final_mean": -0.0001115673512686044,
+        "range": 0.0001276261464226991
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.21026810666522758,
+        "max_translation_norm": 0.9488755790233818,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 11
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "db0ae3ed33c853f0041f23ff8a2255836b1bddd7189fe8e1476604c0e28b588c"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "7182fd8d7f1f5207095c0d9412e0e946a5a385c265b664a84592a3d7f4e09520"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "87d19d27c14be4a045079c0bad938f946fc70e9eeff7fac2c7ae6f3779316f7b"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/events/episode_000000.json",
+          "sha256": "2a03564d9302c86ed3db511fd541e427943a9e79f43b1b59c0bc585d861109d9"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/episode-manifest.json": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/data/chunk-000/file-000.parquet": "87d19d27c14be4a045079c0bad938f946fc70e9eeff7fac2c7ae6f3779316f7b",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/events/episode_000000.json": "2a03564d9302c86ed3db511fd541e427943a9e79f43b1b59c0bc585d861109d9",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "db0ae3ed33c853f0041f23ff8a2255836b1bddd7189fe8e1476604c0e28b588c",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7182fd8d7f1f5207095c0d9412e0e946a5a385c265b664a84592a3d7f4e09520"
+        },
+        "after": {
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/episode-manifest.json": "5e271184f8d0a18620e31368f450f47038567b343964d858800f3ca5dc0f85fa",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/data/chunk-000/file-000.parquet": "87d19d27c14be4a045079c0bad938f946fc70e9eeff7fac2c7ae6f3779316f7b",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/events/episode_000000.json": "2a03564d9302c86ed3db511fd541e427943a9e79f43b1b59c0bc585d861109d9",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "db0ae3ed33c853f0041f23ff8a2255836b1bddd7189fe8e1476604c0e28b588c",
+          "episodes/libero_object-task-03-state-02/attempt-3fdc6b181ffb40629fbcec8037583d7d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7182fd8d7f1f5207095c0d9412e0e946a5a385c265b664a84592a3d7f4e09520"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-03:state-03:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 3,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971",
+      "manifest_sha256": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.14401888847351074,
+          -0.0049404785968363285,
+          0.2745540738105774
+        ],
+        "end_xyz": [
+          0.07997387647628784,
+          -0.10826916247606277,
+          0.145448699593544
+        ],
+        "net_displacement": 0.27842013812544,
+        "path_length": 0.8579435993769099,
+        "max_distance_from_start": 0.3133702938762002,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.03947658393097083
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -1.642853021621704e-06,
+        "final_mean": -0.00014881417155265808,
+        "range": 0.00022030575200915337
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.2779918070963471,
+        "max_translation_norm": 0.9720924374768608,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 38
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "efc5b35102310788e05235093f3411ec4bfbc8859dc4994911cc4605862de08c"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "7e9f6aaca94bc99753ea57d211b793d474ed3deab75ca247089973ffe01e1eb9"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "1b6c7ad4d2da4950bf77869040135624083d64971d9f6b35869702691b034852"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/events/episode_000000.json",
+          "sha256": "7b0637a3f93c1769d7166e1c72a165cdb417ea3ccdb4564ddcc0e414b1e07926"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/episode-manifest.json": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/data/chunk-000/file-000.parquet": "1b6c7ad4d2da4950bf77869040135624083d64971d9f6b35869702691b034852",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/events/episode_000000.json": "7b0637a3f93c1769d7166e1c72a165cdb417ea3ccdb4564ddcc0e414b1e07926",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "efc5b35102310788e05235093f3411ec4bfbc8859dc4994911cc4605862de08c",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7e9f6aaca94bc99753ea57d211b793d474ed3deab75ca247089973ffe01e1eb9"
+        },
+        "after": {
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/episode-manifest.json": "dae4f79cc14db21bbf2f93afb8cefbfc19e4659281c542b867bd8f0dc0d5276e",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/data/chunk-000/file-000.parquet": "1b6c7ad4d2da4950bf77869040135624083d64971d9f6b35869702691b034852",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/events/episode_000000.json": "7b0637a3f93c1769d7166e1c72a165cdb417ea3ccdb4564ddcc0e414b1e07926",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "efc5b35102310788e05235093f3411ec4bfbc8859dc4994911cc4605862de08c",
+          "episodes/libero_object-task-03-state-03/attempt-3864d7898a9c4d9c8abf1c2f8bde5971/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7e9f6aaca94bc99753ea57d211b793d474ed3deab75ca247089973ffe01e1eb9"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-06:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 6,
+      "state_index": 1,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac",
+      "manifest_sha256": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.14024806022644043,
+          0.005115776788443327,
+          0.2764706611633301
+        ],
+        "end_xyz": [
+          0.08847641944885254,
+          -0.22542010247707367,
+          0.03762486204504967
+        ],
+        "net_displacement": 0.40312404416991615,
+        "path_length": 1.5965152799151716,
+        "max_distance_from_start": 0.410191980718339,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.19891469343163928
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 2.382323145866394e-06,
+        "final_mean": -7.34443892724812e-06,
+        "range": 0.013244618196040392
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.5433401893204027,
+        "max_translation_norm": 1.1289019754447709,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 57
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "8fbc2acab4fe8f66831bd603b25ead208da218ee98639d68ee149bbc8915424c"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "1817b9bed1ea9578acf1527c656e25fcab9ee747e94283c433e613cff90cf406"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "e02d5ad076669c279d3a83989e3550f1755c37edde24c87693e43a3cfaa7d94c"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/events/episode_000000.json",
+          "sha256": "1b158243693aae2b18ff201244cf346c65e3177a5467683900556d5c633aa7d9"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/episode-manifest.json": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/data/chunk-000/file-000.parquet": "e02d5ad076669c279d3a83989e3550f1755c37edde24c87693e43a3cfaa7d94c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/events/episode_000000.json": "1b158243693aae2b18ff201244cf346c65e3177a5467683900556d5c633aa7d9",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "8fbc2acab4fe8f66831bd603b25ead208da218ee98639d68ee149bbc8915424c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "1817b9bed1ea9578acf1527c656e25fcab9ee747e94283c433e613cff90cf406"
+        },
+        "after": {
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/episode-manifest.json": "925f7e2876d390bce66c28a10a38bb650b267d99ffd3a2b9784723f39e9be58c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/data/chunk-000/file-000.parquet": "e02d5ad076669c279d3a83989e3550f1755c37edde24c87693e43a3cfaa7d94c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/events/episode_000000.json": "1b158243693aae2b18ff201244cf346c65e3177a5467683900556d5c633aa7d9",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "8fbc2acab4fe8f66831bd603b25ead208da218ee98639d68ee149bbc8915424c",
+          "episodes/libero_object-task-06-state-01/attempt-8d4ee6b2fefd4cfda42ec200108852ac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "1817b9bed1ea9578acf1527c656e25fcab9ee747e94283c433e613cff90cf406"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-06:state-04:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 6,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e",
+      "manifest_sha256": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.1484202742576599,
+          0.014610440470278263,
+          0.25163766741752625
+        ],
+        "end_xyz": [
+          0.0020987987518310547,
+          -0.3034718632698059,
+          0.010743587277829647
+        ],
+        "net_displacement": 0.42645316406211153,
+        "path_length": 1.5128488932457795,
+        "max_distance_from_start": 0.44059316766137147,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.06107099225225875
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -4.731118679046631e-07,
+        "final_mean": -0.00020210782531648874,
+        "range": 0.0022937655448913574
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.5673264378826932,
+        "max_translation_norm": 1.0968841312054762,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 19
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "a6e3b93e5d74e8518f4897fbc966e5f22734c49d30ad49214491189de7881596"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "5b088b13c7c4a43ad67033457d131d38fcf033969442ba43a39693483f4cec3e"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "2e8fdf5416af94adce7d226987fc681d84bd6728853ca878d4147ca0a5efd4e3"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/events/episode_000000.json",
+          "sha256": "fecc17d5a690b7a6656d69d314d597724a208b04f1d3c6f30bb9959ae2861f61"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/episode-manifest.json": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/data/chunk-000/file-000.parquet": "2e8fdf5416af94adce7d226987fc681d84bd6728853ca878d4147ca0a5efd4e3",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/events/episode_000000.json": "fecc17d5a690b7a6656d69d314d597724a208b04f1d3c6f30bb9959ae2861f61",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "a6e3b93e5d74e8518f4897fbc966e5f22734c49d30ad49214491189de7881596",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "5b088b13c7c4a43ad67033457d131d38fcf033969442ba43a39693483f4cec3e"
+        },
+        "after": {
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/episode-manifest.json": "d7d1a640aefe2c1a96db52d3d8f24f4986c9afa0de0eea5dfc66bc88937fe425",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/data/chunk-000/file-000.parquet": "2e8fdf5416af94adce7d226987fc681d84bd6728853ca878d4147ca0a5efd4e3",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/events/episode_000000.json": "fecc17d5a690b7a6656d69d314d597724a208b04f1d3c6f30bb9959ae2861f61",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "a6e3b93e5d74e8518f4897fbc966e5f22734c49d30ad49214491189de7881596",
+          "episodes/libero_object-task-06-state-04/attempt-df480d67ff3f451abee47935c30c4c0e/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "5b088b13c7c4a43ad67033457d131d38fcf033969442ba43a39693483f4cec3e"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-09:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 9,
+      "state_index": 0,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8",
+      "manifest_sha256": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.15287166833877563,
+          -0.015505131334066391,
+          0.2606939673423767
+        ],
+        "end_xyz": [
+          0.1966690868139267,
+          0.21211296319961548,
+          0.18166647851467133
+        ],
+        "net_displacement": 0.42453984555313373,
+        "path_length": 1.0076842099385424,
+        "max_distance_from_start": 0.42453984555313373,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.0661140544091051
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -1.8905848264694214e-06,
+        "final_mean": -0.0034583574160933495,
+        "range": 0.0045599587028846145
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.43470526643724694,
+        "max_translation_norm": 0.9384754826453978,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 33
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "279456e71b3278d5ddf07484fb1fe598ca3ca6d231f30fde4188ff4a1eceaf6c"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "f52d6d6893470e95c17ff65a3de8d2345a7d1d1d38d13e8596b60b1cd9cc8824"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "ce22e9ab63e162288fc692ac1919ed8e623c0bb44a1e6cbce99cfc6c700b8a1e"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/events/episode_000000.json",
+          "sha256": "6d1e8b6e83b9f784ebd6960686a0c43897e2fae98ab4e8cab7a01792afc8f070"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/episode-manifest.json": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/data/chunk-000/file-000.parquet": "ce22e9ab63e162288fc692ac1919ed8e623c0bb44a1e6cbce99cfc6c700b8a1e",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/events/episode_000000.json": "6d1e8b6e83b9f784ebd6960686a0c43897e2fae98ab4e8cab7a01792afc8f070",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "279456e71b3278d5ddf07484fb1fe598ca3ca6d231f30fde4188ff4a1eceaf6c",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "f52d6d6893470e95c17ff65a3de8d2345a7d1d1d38d13e8596b60b1cd9cc8824"
+        },
+        "after": {
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/episode-manifest.json": "20d9627faeef5dc9c853cde13edc1f979ac5d4210c803a2308ad7de3ddf5c1dc",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/data/chunk-000/file-000.parquet": "ce22e9ab63e162288fc692ac1919ed8e623c0bb44a1e6cbce99cfc6c700b8a1e",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/events/episode_000000.json": "6d1e8b6e83b9f784ebd6960686a0c43897e2fae98ab4e8cab7a01792afc8f070",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "279456e71b3278d5ddf07484fb1fe598ca3ca6d231f30fde4188ff4a1eceaf6c",
+          "episodes/libero_object-task-09-state-00/attempt-ad25f9c927884a888d24f8b11f1f8ec8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "f52d6d6893470e95c17ff65a3de8d2345a7d1d1d38d13e8596b60b1cd9cc8824"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_object:task-09:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "task_id": 9,
+      "state_index": 1,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d",
+      "manifest_sha256": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "duration": {
+        "value": 27.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.14768490195274353,
+          -0.018752971664071083,
+          0.256613165140152
+        ],
+        "end_xyz": [
+          0.05193132907152176,
+          -0.08353430777788162,
+          0.1287977397441864
+        ],
+        "net_displacement": 0.24572351162673667,
+        "path_length": 0.6750554135750158,
+        "max_distance_from_start": 0.2815329704021444,
+        "final_window_start_frame": 224,
+        "final_window_displacement": 0.025052105728783292
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -2.1811574697494507e-06,
+        "final_mean": -0.00014466885477304459,
+        "range": 0.006543896510265768
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.41851887797959497,
+        "max_translation_norm": 0.9792729430783719,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 59
+      },
+      "controller_events": {
+        "acceptance_event_count": 280,
+        "accepted_count": 280,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "82644c470f4a5e7801d18149a79e3d198f77ee7892afc439e99cd8e735ed62b4"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "02ca00c18a9c82286b96fdd943f610b68d83f08620b6fe583cf2faaa5f8fa3ca"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "7275faf05204826f329742c7930af578253f7c52467cfb08805b872eff1969b7"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/events/episode_000000.json",
+          "sha256": "31eaead652e84d30c4dd0044618ee800d8f0eb488dc8b4ff5f9626a4b5e7b843"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/episode-manifest.json": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/data/chunk-000/file-000.parquet": "7275faf05204826f329742c7930af578253f7c52467cfb08805b872eff1969b7",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/events/episode_000000.json": "31eaead652e84d30c4dd0044618ee800d8f0eb488dc8b4ff5f9626a4b5e7b843",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "82644c470f4a5e7801d18149a79e3d198f77ee7892afc439e99cd8e735ed62b4",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "02ca00c18a9c82286b96fdd943f610b68d83f08620b6fe583cf2faaa5f8fa3ca"
+        },
+        "after": {
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/episode-manifest.json": "531b6cba1484152e7d6fefbc201edf6c57cbd7324f0a8b4415a58b8c5499cba4",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/data/chunk-000/file-000.parquet": "7275faf05204826f329742c7930af578253f7c52467cfb08805b872eff1969b7",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/events/episode_000000.json": "31eaead652e84d30c4dd0044618ee800d8f0eb488dc8b4ff5f9626a4b5e7b843",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "82644c470f4a5e7801d18149a79e3d198f77ee7892afc439e99cd8e735ed62b4",
+          "episodes/libero_object-task-09-state-01/attempt-c340bf9cbb65422a9610d8c2bb519d5d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "02ca00c18a9c82286b96fdd943f610b68d83f08620b6fe583cf2faaa5f8fa3ca"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "state_index": 2,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f",
+      "manifest_sha256": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.2090512067079544,
+          0.010808703489601612,
+          1.1655954122543335
+        ],
+        "end_xyz": [
+          0.06416545808315277,
+          0.1748378425836563,
+          0.954992413520813
+        ],
+        "net_displacement": 0.3819771295078597,
+        "path_length": 1.0760667519522453,
+        "max_distance_from_start": 0.4206227417893895,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.07025177195210133
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 1.2796372175216675e-06,
+        "final_mean": 0.0028388677164912224,
+        "range": 0.00629486539401114
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.433661528103486,
+        "max_translation_norm": 1.176849442372622,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 15
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "b548c928e5688776af5f28a15840cb06b832a4149b9ba84eeca73d0cb528f569"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "b2e5caef6b540dff092a69c5a52cf23eced84a493f827c5fff882805220d3136"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "edf295b0ffd2a45b3b12601b715897fe7e4d288d7229757732087ce615fd3e9c"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/events/episode_000000.json",
+          "sha256": "aca9e2a13d4c187673dfe1675cab72919bc12e60460b9b640ef2d26f4e206034"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/episode-manifest.json": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/data/chunk-000/file-000.parquet": "edf295b0ffd2a45b3b12601b715897fe7e4d288d7229757732087ce615fd3e9c",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/events/episode_000000.json": "aca9e2a13d4c187673dfe1675cab72919bc12e60460b9b640ef2d26f4e206034",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "b548c928e5688776af5f28a15840cb06b832a4149b9ba84eeca73d0cb528f569",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "b2e5caef6b540dff092a69c5a52cf23eced84a493f827c5fff882805220d3136"
+        },
+        "after": {
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/episode-manifest.json": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/data/chunk-000/file-000.parquet": "edf295b0ffd2a45b3b12601b715897fe7e4d288d7229757732087ce615fd3e9c",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/events/episode_000000.json": "aca9e2a13d4c187673dfe1675cab72919bc12e60460b9b640ef2d26f4e206034",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "b548c928e5688776af5f28a15840cb06b832a4149b9ba84eeca73d0cb528f569",
+          "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "b2e5caef6b540dff092a69c5a52cf23eced84a493f827c5fff882805220d3136"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-05:state-01:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "state_index": 1,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac",
+      "manifest_sha256": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.2105342000722885,
+          0.0058375815860927105,
+          1.175527811050415
+        ],
+        "end_xyz": [
+          -0.08575548976659775,
+          0.14600884914398193,
+          0.9594170451164246
+        ],
+        "net_displacement": 0.2862194506788679,
+        "path_length": 1.0859303283041684,
+        "max_distance_from_start": 0.3966795334451843,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.06656060135282192
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -2.3096799850463867e-07,
+        "final_mean": -9.233877062797546e-05,
+        "range": 0.0021912932279519737
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.49714239073410876,
+        "max_translation_norm": 1.1496933972249423,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 30
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "95bd112da9b9ad32654fcde0456d5732ebdc49d66e6858567b0d57a8e7e4a104"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "7351f235e7ca08badab120e8680fcf07ffcad7c6f27bd83dd9a91df9d82d0754"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "21a63cc3b7cb9470cec5a680fa792aaf68d66330f2a5bb5b5a4980c13e434b60"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/events/episode_000000.json",
+          "sha256": "54e7e2ef30374df6a262153847a9f43864ca73bc88e25ba5c3f204c215ab4ad3"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/episode-manifest.json": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/data/chunk-000/file-000.parquet": "21a63cc3b7cb9470cec5a680fa792aaf68d66330f2a5bb5b5a4980c13e434b60",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/events/episode_000000.json": "54e7e2ef30374df6a262153847a9f43864ca73bc88e25ba5c3f204c215ab4ad3",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "95bd112da9b9ad32654fcde0456d5732ebdc49d66e6858567b0d57a8e7e4a104",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7351f235e7ca08badab120e8680fcf07ffcad7c6f27bd83dd9a91df9d82d0754"
+        },
+        "after": {
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/episode-manifest.json": "d81c45cdf941354dfaa30d8cbcdd7cb7de8734fbf447238867432968393f196a",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/data/chunk-000/file-000.parquet": "21a63cc3b7cb9470cec5a680fa792aaf68d66330f2a5bb5b5a4980c13e434b60",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/events/episode_000000.json": "54e7e2ef30374df6a262153847a9f43864ca73bc88e25ba5c3f204c215ab4ad3",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "95bd112da9b9ad32654fcde0456d5732ebdc49d66e6858567b0d57a8e7e4a104",
+          "episodes/libero_spatial-task-05-state-01/attempt-25e498e78bc74a83969be663dd321fac/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "7351f235e7ca08badab120e8680fcf07ffcad7c6f27bd83dd9a91df9d82d0754"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-05:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1",
+      "manifest_sha256": "e0ce251dcbe3e4021493dcc6c1674f07aaa0d56c7eae45e6e19a21eb1594bc57",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20512188971042633,
+          0.0113351596519351,
+          1.18358314037323
+        ],
+        "end_xyz": [
+          0.010500839911401272,
+          0.14414994418621063,
+          1.022992730140686
+        ],
+        "net_displacement": 0.2998703192700314,
+        "path_length": 0.8163237678347893,
+        "max_distance_from_start": 0.3836291278096649,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.0038996638525013116
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -1.2312084436416626e-06,
+        "final_mean": -1.5830621123313904e-05,
+        "range": 0.00018693320453166962
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.3178525248839423,
+        "max_translation_norm": 1.1351606968601855,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 2
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "67322121151e939cf76b4d7b94102e4c6d9689d8ee96b48b2e48d1f01517a78d"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "236c3784619eceb5120a570867a40255f0ab9e92f2fda653c5907c79eaa07c3d"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/events/episode_000000.json",
+          "sha256": "160cebfc53ea1f1d1527177f6178557c760dc3577178d260867441d8e4838927"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/episode-manifest.json": "e0ce251dcbe3e4021493dcc6c1674f07aaa0d56c7eae45e6e19a21eb1594bc57",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/events/episode_000000.json": "160cebfc53ea1f1d1527177f6178557c760dc3577178d260867441d8e4838927",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "67322121151e939cf76b4d7b94102e4c6d9689d8ee96b48b2e48d1f01517a78d",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "236c3784619eceb5120a570867a40255f0ab9e92f2fda653c5907c79eaa07c3d"
+        },
+        "after": {
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/episode-manifest.json": "e0ce251dcbe3e4021493dcc6c1674f07aaa0d56c7eae45e6e19a21eb1594bc57",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/events/episode_000000.json": "160cebfc53ea1f1d1527177f6178557c760dc3577178d260867441d8e4838927",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "67322121151e939cf76b4d7b94102e4c6d9689d8ee96b48b2e48d1f01517a78d",
+          "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "236c3784619eceb5120a570867a40255f0ab9e92f2fda653c5907c79eaa07c3d"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-05:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5",
+      "manifest_sha256": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.21012133359909058,
+          0.008913311176002026,
+          1.1793872117996216
+        ],
+        "end_xyz": [
+          0.056277550756931305,
+          0.12991294264793396,
+          1.0341616868972778
+        ],
+        "net_displacement": 0.3266492453468058,
+        "path_length": 1.2118318220087207,
+        "max_distance_from_start": 0.39390324881371463,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.011102441427397917
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 8.158385753631592e-07,
+        "final_mean": 5.571916699409485e-05,
+        "range": 0.001403924386977451
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.5621020341855038,
+        "max_translation_norm": 1.1813279870917852,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 4
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "260620bac5b35216ea3d9e5a884500acf1431dda7f33bed80b3172411c518a9b"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "1899c28b25c716cfd5cf3f1a2af243bc39e5afa50b301c5e4fefef2891c1ecf7"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "846c56909ccb76727c72b1089a893caf9db1ca879837148b288b7f028e61fc56"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/events/episode_000000.json",
+          "sha256": "8b78aa3f9497acadd35a70aa3ef6c430dcb59ce827d43fa7b9d790c323d968a6"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/episode-manifest.json": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/data/chunk-000/file-000.parquet": "846c56909ccb76727c72b1089a893caf9db1ca879837148b288b7f028e61fc56",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/events/episode_000000.json": "8b78aa3f9497acadd35a70aa3ef6c430dcb59ce827d43fa7b9d790c323d968a6",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "260620bac5b35216ea3d9e5a884500acf1431dda7f33bed80b3172411c518a9b",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "1899c28b25c716cfd5cf3f1a2af243bc39e5afa50b301c5e4fefef2891c1ecf7"
+        },
+        "after": {
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/episode-manifest.json": "704c62809157fa6627e3de9bdf4f65d8e4a6bd5d0da992fe8cb1c5a080ac226c",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/data/chunk-000/file-000.parquet": "846c56909ccb76727c72b1089a893caf9db1ca879837148b288b7f028e61fc56",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/events/episode_000000.json": "8b78aa3f9497acadd35a70aa3ef6c430dcb59ce827d43fa7b9d790c323d968a6",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "260620bac5b35216ea3d9e5a884500acf1431dda7f33bed80b3172411c518a9b",
+          "episodes/libero_spatial-task-05-state-04/attempt-18b852e159754d3480a7f3244fd4dac5/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "1899c28b25c716cfd5cf3f1a2af243bc39e5afa50b301c5e4fefef2891c1ecf7"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-08:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "state_index": 2,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d",
+      "manifest_sha256": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20764173567295074,
+          -0.019374771043658257,
+          1.1841270923614502
+        ],
+        "end_xyz": [
+          0.03339854255318642,
+          0.22323313355445862,
+          0.9324697852134705
+        ],
+        "net_displacement": 0.42460618382425286,
+        "path_length": 1.1465632653661892,
+        "max_distance_from_start": 0.4496029884902289,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.0471440975124005
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": -8.624047040939331e-07,
+        "final_mean": -0.0002088341861963272,
+        "range": 0.005274965427815914
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.47756315995959087,
+        "max_translation_norm": 1.091434559050671,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 24
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "16eef7ea2e492d0f7452222831e395acfca84872f2151407594d817b0b4b7cee"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "81c02baaee667de12d53f85c3805061afa88dc93f372e7124e2089635f235caf"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "e8e79108e140a578f28f82a16861e7da4c8b7ee206cdaf2ae62b9a552355a24a"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/events/episode_000000.json",
+          "sha256": "61009834c4bc0b55ee044c15f5d5d234302c99f502e1186a47150bf491a2f1ab"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/episode-manifest.json": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/data/chunk-000/file-000.parquet": "e8e79108e140a578f28f82a16861e7da4c8b7ee206cdaf2ae62b9a552355a24a",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/events/episode_000000.json": "61009834c4bc0b55ee044c15f5d5d234302c99f502e1186a47150bf491a2f1ab",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "16eef7ea2e492d0f7452222831e395acfca84872f2151407594d817b0b4b7cee",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "81c02baaee667de12d53f85c3805061afa88dc93f372e7124e2089635f235caf"
+        },
+        "after": {
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/episode-manifest.json": "ce079fd9706aa825d88988c90aca81d8d6e591cd9af2b8492734d7b42fda62eb",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/data/chunk-000/file-000.parquet": "e8e79108e140a578f28f82a16861e7da4c8b7ee206cdaf2ae62b9a552355a24a",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/events/episode_000000.json": "61009834c4bc0b55ee044c15f5d5d234302c99f502e1186a47150bf491a2f1ab",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "16eef7ea2e492d0f7452222831e395acfca84872f2151407594d817b0b4b7cee",
+          "episodes/libero_spatial-task-08-state-02/attempt-a4f319c9a637422ca2b6850599d3032d/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "81c02baaee667de12d53f85c3805061afa88dc93f372e7124e2089635f235caf"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-08:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "state_index": 3,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56",
+      "manifest_sha256": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.21660611033439636,
+          -0.0008639442385174334,
+          1.1583187580108643
+        ],
+        "end_xyz": [
+          0.04588465020060539,
+          0.15702667832374573,
+          1.0151042938232422
+        ],
+        "net_displacement": 0.33814380197172084,
+        "path_length": 1.025351920364502,
+        "max_distance_from_start": 0.40490144348117507,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.04978531762233737
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 2.1364539861679077e-06,
+        "final_mean": 1.3066877727396786e-05,
+        "range": 0.014209523797035217
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.4344271689594174,
+        "max_translation_norm": 1.1935381551888433,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 13
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "00cc1e8f18c654fd1cfe78fad350577bb6c1bf18904986e98b231f76788dd7cc"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "a80afb10301bbcbbfe21c38decec19eed9b98a53319dcc1239fe70a02d2caff8"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "fa623c3adeafea4b1a08dc924bf551f8130edc6a82e8f39cf3604fd949f8f077"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/events/episode_000000.json",
+          "sha256": "abae4518f0b2fe9bc7fdb1dddac8108459c716b63b2a9455cadcc84988ac2e0c"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/episode-manifest.json": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/data/chunk-000/file-000.parquet": "fa623c3adeafea4b1a08dc924bf551f8130edc6a82e8f39cf3604fd949f8f077",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/events/episode_000000.json": "abae4518f0b2fe9bc7fdb1dddac8108459c716b63b2a9455cadcc84988ac2e0c",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "00cc1e8f18c654fd1cfe78fad350577bb6c1bf18904986e98b231f76788dd7cc",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a80afb10301bbcbbfe21c38decec19eed9b98a53319dcc1239fe70a02d2caff8"
+        },
+        "after": {
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/episode-manifest.json": "bee92b1b6d90a749de04dc719c0d0bb4fef5ede21be1741137859717eecfe3c5",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/data/chunk-000/file-000.parquet": "fa623c3adeafea4b1a08dc924bf551f8130edc6a82e8f39cf3604fd949f8f077",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/events/episode_000000.json": "abae4518f0b2fe9bc7fdb1dddac8108459c716b63b2a9455cadcc84988ac2e0c",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "00cc1e8f18c654fd1cfe78fad350577bb6c1bf18904986e98b231f76788dd7cc",
+          "episodes/libero_spatial-task-08-state-03/attempt-bcd5129e840f46c0b0bb651577ba5b56/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "a80afb10301bbcbbfe21c38decec19eed9b98a53319dcc1239fe70a02d2caff8"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_spatial:task-08:state-04:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8",
+      "manifest_sha256": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "duration": {
+        "value": 21.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20364037156105042,
+          -0.008006572723388672,
+          1.1755702495574951
+        ],
+        "end_xyz": [
+          0.018263090401887894,
+          0.21949250996112823,
+          0.9181391596794128
+        ],
+        "net_displacement": 0.4089837956316254,
+        "path_length": 1.3695333682781032,
+        "max_distance_from_start": 0.42733958568278047,
+        "final_window_start_frame": 176,
+        "final_window_displacement": 0.07038682368558358
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 1.2628734111785889e-06,
+        "final_mean": -0.0010520881041884422,
+        "range": 0.003270898014307022
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.5781242826511335,
+        "max_translation_norm": 1.162263196237875,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0,
+        "gripper_max": 1.0,
+        "gripper_sign_transitions": 23
+      },
+      "controller_events": {
+        "acceptance_event_count": 220,
+        "accepted_count": 220,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "ec363b0de93f14fb116b1a9bfce504b664b3fc0830d6e47a52a0e12e6e242e9b"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "59fe7137ea60dc7c7a0b325cfbda6df12c319537f15ce0fb205ada86beb9f01f"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "f0229a5c9e3aeddfad81755f951fcb442fc04bf01ba5baf70b6821b70c6357a0"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/events/episode_000000.json",
+          "sha256": "ea179559f45c11d1abc8efb35f80c500f24b901e3ed60c19eedf628d1cf44536"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/episode-manifest.json": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/data/chunk-000/file-000.parquet": "f0229a5c9e3aeddfad81755f951fcb442fc04bf01ba5baf70b6821b70c6357a0",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/events/episode_000000.json": "ea179559f45c11d1abc8efb35f80c500f24b901e3ed60c19eedf628d1cf44536",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "ec363b0de93f14fb116b1a9bfce504b664b3fc0830d6e47a52a0e12e6e242e9b",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "59fe7137ea60dc7c7a0b325cfbda6df12c319537f15ce0fb205ada86beb9f01f"
+        },
+        "after": {
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/episode-manifest.json": "12ef3f28af26769cb52d9a5056405bf0796a3af43060e9c6bac3dcf980a4b146",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/data/chunk-000/file-000.parquet": "f0229a5c9e3aeddfad81755f951fcb442fc04bf01ba5baf70b6821b70c6357a0",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/events/episode_000000.json": "ea179559f45c11d1abc8efb35f80c500f24b901e3ed60c19eedf628d1cf44536",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "ec363b0de93f14fb116b1a9bfce504b664b3fc0830d6e47a52a0e12e6e242e9b",
+          "episodes/libero_spatial-task-08-state-04/attempt-ddf4ac985812471bb8f56f8e3ec5edc8/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "59fe7137ea60dc7c7a0b325cfbda6df12c319537f15ce0fb205ada86beb9f01f"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "state_index": 0,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05",
+      "manifest_sha256": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.20200733840465546,
+          -0.008514116518199444,
+          1.1760005950927734
+        ],
+        "end_xyz": [
+          0.05640725791454315,
+          -0.08072934299707413,
+          1.242735743522644
+        ],
+        "net_displacement": 0.27649000445254146,
+        "path_length": 2.1526443930634422,
+        "max_distance_from_start": 0.3132665761507349,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.4094837444909818
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 1.4025717973709106e-06,
+        "final_mean": -0.0002736437600106001,
+        "range": 0.014324602321721613
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.7396425948854104,
+        "max_translation_norm": 1.1368617735425899,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.0102386474609375,
+        "gripper_max": 1.006543517112732,
+        "gripper_sign_transitions": 7
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "d042a4e4223a2ae9e75da4df7dc9cd06b2f9b33f87b6edcf56d9bfb5d85af8a2"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "00561ca173b20451ebf72fbd583352134f57f463a94a382e113fd32b0d222340"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "f154a329e133ea195790317744e81657b6c13ce349a906fbcba445390cc379c1"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/events/episode_000000.json",
+          "sha256": "91903dc1c512f44e2e746eb3da453059db6720bbb57340528a6eec0c0af71975"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/episode-manifest.json": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/data/chunk-000/file-000.parquet": "f154a329e133ea195790317744e81657b6c13ce349a906fbcba445390cc379c1",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/events/episode_000000.json": "91903dc1c512f44e2e746eb3da453059db6720bbb57340528a6eec0c0af71975",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "d042a4e4223a2ae9e75da4df7dc9cd06b2f9b33f87b6edcf56d9bfb5d85af8a2",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "00561ca173b20451ebf72fbd583352134f57f463a94a382e113fd32b0d222340"
+        },
+        "after": {
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/episode-manifest.json": "76184448458e75df2736067e6dd69520220ebc631ec8d60a52b1622c4199d5dc",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/data/chunk-000/file-000.parquet": "f154a329e133ea195790317744e81657b6c13ce349a906fbcba445390cc379c1",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/events/episode_000000.json": "91903dc1c512f44e2e746eb3da453059db6720bbb57340528a6eec0c0af71975",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "d042a4e4223a2ae9e75da4df7dc9cd06b2f9b33f87b6edcf56d9bfb5d85af8a2",
+          "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "00561ca173b20451ebf72fbd583352134f57f463a94a382e113fd32b0d222340"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    },
+    {
+      "run_key": "v1:libero_goal:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "state_index": 4,
+      "outcome": "timeout",
+      "episode_ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682",
+      "manifest_sha256": "5d5cd73fcfd29c9455bea18c9580e97ef8146ab0f6392b4ddcd0cc5e718ca459",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "duration": {
+        "value": 29.899999618530273,
+        "unit": "second"
+      },
+      "eef_trajectory": {
+        "unit": "meter",
+        "start_xyz": [
+          -0.1980905383825302,
+          -0.015333649702370167,
+          1.1779704093933105
+        ],
+        "end_xyz": [
+          0.03219834715127945,
+          -0.10979872941970825,
+          1.1384068727493286
+        ],
+        "net_displacement": 0.2520355044794023,
+        "path_length": 0.34460723538374816,
+        "max_distance_from_start": 0.252845571078256,
+        "final_window_start_frame": 240,
+        "final_window_displacement": 0.0017232361706072043
+      },
+      "gripper_state": {
+        "unit": "simulator-qpos",
+        "initial_mean": 2.644956111907959e-07,
+        "final_mean": -0.002194361761212349,
+        "range": 0.0037935692816972733
+      },
+      "executed_action": {
+        "translation_unit": "environment-normalized-command",
+        "mean_translation_norm": 0.9008973948713219,
+        "max_translation_norm": 1.0083759284949083,
+        "gripper_unit": "environment-normalized-command",
+        "gripper_min": -1.004319429397583,
+        "gripper_max": -0.9937211275100708,
+        "gripper_sign_transitions": 0
+      },
+      "controller_events": {
+        "acceptance_event_count": 300,
+        "accepted_count": 300,
+        "rejected_count": 0,
+        "all_accepted": true,
+        "rejected_event_ids": []
+      },
+      "camera_evidence": [
+        {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "0c2ef075e9ea30b6155a0b5da9fea54ae9dec4a8497f8cfe64e1c7255ab93424"
+        },
+        {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "fda5b43de3793cfd1e228f6e7d143838463c2b64ab218ef90580b1664523014d"
+        }
+      ],
+      "object_relation": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-object-pose-or-contact-feature"
+      },
+      "goal_distance": {
+        "available": false,
+        "value": null,
+        "reason": "canonical-episode-has-no-task-specific-goal-distance-proxy"
+      },
+      "sources": {
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f"
+        },
+        "event": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/events/episode_000000.json",
+          "sha256": "c1b056b35d42c12a9a599bfe408e86ea41b57a2a5f47135b345374f8d71d7496"
+        }
+      },
+      "raw_integrity": {
+        "before": {
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/episode-manifest.json": "5d5cd73fcfd29c9455bea18c9580e97ef8146ab0f6392b4ddcd0cc5e718ca459",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/events/episode_000000.json": "c1b056b35d42c12a9a599bfe408e86ea41b57a2a5f47135b345374f8d71d7496",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "0c2ef075e9ea30b6155a0b5da9fea54ae9dec4a8497f8cfe64e1c7255ab93424",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "fda5b43de3793cfd1e228f6e7d143838463c2b64ab218ef90580b1664523014d"
+        },
+        "after": {
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/episode-manifest.json": "5d5cd73fcfd29c9455bea18c9580e97ef8146ab0f6392b4ddcd0cc5e718ca459",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/events/episode_000000.json": "c1b056b35d42c12a9a599bfe408e86ea41b57a2a5f47135b345374f8d71d7496",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image/chunk-000/file-000.mp4": "0c2ef075e9ea30b6155a0b5da9fea54ae9dec4a8497f8cfe64e1c7255ab93424",
+          "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image2/chunk-000/file-000.mp4": "fda5b43de3793cfd1e228f6e7d143838463c2b64ab218ef90580b1664523014d"
+        },
+        "unchanged": true
+      },
+      "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+    }
+  ],
+  "sources": {
+    "openvla_manifest": {
+      "ref": "experiments/151-openvla-multitask-baseline/verify/canonical/manifest.json",
+      "sha256": "28d5d15ce003f5e945ad7c5b43dffaa2eb971d822426b0fd376fbc109404753b"
+    },
+    "pi05_manifest": {
+      "ref": "experiments/152-paired-vla-comparison/verify/canonical/pi05-manifest.json",
+      "sha256": "d384edb2a59e8011c0494823605132ef436b12a1dcb70be779feacdee2715ca9"
+    }
+  },
+  "claim_boundary": "Derived observable features only; no failure label, root cause, or hidden reasoning is inferred."
+}

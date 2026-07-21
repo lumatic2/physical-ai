@@ -1,0 +1,11 @@
+{
+  "schema_version": "physical-ai-gen4-invalid-feature-mutations-v1",
+  "cases": [
+    {"id": "missing-camera", "mutation": "drop-main-camera", "expected_error": "camera evidence"},
+    {"id": "missing-event", "mutation": "drop-event-source", "expected_error": "event source"},
+    {"id": "unit-mismatch", "mutation": "eef-unit-radian", "expected_error": "unit mismatch"},
+    {"id": "not-finite", "mutation": "nan-displacement", "expected_error": "finite"},
+    {"id": "raw-hash-drift", "mutation": "change-after-hash", "expected_error": "raw integrity"},
+    {"id": "denominator-omission", "mutation": "drop-feature-row", "expected_error": "denominator"}
+  ]
+}
