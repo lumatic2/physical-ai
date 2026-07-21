@@ -1,0 +1,36 @@
+{
+  "schema_version": "physical-ai-gen2-runner-config-v1",
+  "policy_id": "openvla-libero",
+  "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "sources": {
+    "manifest": {
+      "path": "experiments/150-multitask-evaluation-contract/benchmark-manifest.json",
+      "sha256": "cdeaa8c752307f4074cde9322e6bfafce69e1fd6f9015ba8d9f9a5f903567700"
+    },
+    "initial_states": {
+      "path": "experiments/150-multitask-evaluation-contract/initial-states.json",
+      "sha256": "2740c37972839c03c658985bbc68a5242000d1bf39c1dc459c5940ea1a7fbb7c"
+    },
+    "policy_registry": {
+      "path": "experiments/150-multitask-evaluation-contract/policy-registry.json",
+      "sha256": "79203084064f0ad6442f458eed69fb28a9b60df9a7aac680c5000124aeb7736f"
+    },
+    "denominator": {
+      "path": "experiments/150-multitask-evaluation-contract/run-denominator.json",
+      "sha256": "f82684878c286fb0f2492df15ac4d72f129d6319d138ca7f18bf153b4a1f0bd0"
+    },
+    "orchestrator": {
+      "path": "experiments/01-vla-local-eval/run.py",
+      "sha256": "f9849164c179b49d2a42756ebd2cf0910bc3cc04a4806745f84f7e50abd8c924"
+    }
+  },
+  "suite_order": ["libero_spatial", "libero_object", "libero_goal"],
+  "max_policy_steps": {
+    "libero_spatial": 220,
+    "libero_object": 280,
+    "libero_goal": 300
+  },
+  "seed": 0,
+  "expected_cell_count": 60,
+  "claim_boundary": "This config selects execution identities only; dry-run is not a policy rollout or performance result."
+}
