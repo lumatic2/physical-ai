@@ -54,3 +54,22 @@ MUJOCO_GL=egl /home/yusun/.venvs/vla-eval/bin/python \
 검증 경계: infrastructure error attempt는 보존하되 정책 success/timeout 분모에 섞지 않는다. 이 Step은 π₀.₅ 60개 rollout의 실제 실행 증거이며 paired 통계와 정책 우열 해석은 Step 4 이후에만 연다.
 
 실측 결과: 60/60 terminal, 58 success·2 timeout, 7,608 frames, 1,545 policy requests, suite별 20개다. 첫 cell의 환경 설정 실패 2건은 별도 infrastructure attempt로 ledger에 남고 정책 분모에는 포함되지 않는다.
+
+## Step 4: paired statistics
+
+`paired_statistics.py`는 GEN1 denominator를 제3의 정본으로 두고 두 policy manifest가 각자의 exact 60 run key를 보존하는지 먼저 확인한다. 이후 `(suite, task_id, state_index)` 60개 key로 join해 각 row에 OpenVLA와 π₀.₅ canonical episode ref·manifest hash를 함께 둔다.
+
+```bash
+python experiments/152-paired-vla-comparison/paired_statistics.py
+python experiments/152-paired-vla-comparison/test_paired_statistics.py
+```
+
+실측 결과:
+
+- OpenVLA `35/60`, π₀.₅ `58/60`
+- paired success difference `+23/60 = +0.383333…`
+- paired bootstrap 95% interval `[+0.25, +0.516666…]` (seed `20260721`, 10,000 resamples)
+- contingency: both success 34, π₀.₅-only 24, OpenVLA-only 1, both non-success 1
+- suite: Spatial `13→20`, Object `12→20`, Goal `10→18` (각 분모 20)
+
+검증 경계: 이 수치는 사전 고정된 LIBERO 12 task×5 state에서 관측한 paired difference다. 일반적인 policy winner, 모델 구조 효과, 학습 효과, 실물 로봇 성능으로 확장하지 않는다.

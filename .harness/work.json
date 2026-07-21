@@ -302,9 +302,9 @@
       "milestone_id": "GEN3",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen3-paired-vla-comparison.md",
-      "changeset_path": "changesets/20260721-gen3-paired-statistics",
-      "next_step": "step-4",
-      "current_step": "step-4",
+      "changeset_path": "changesets/20260721-gen3-fairness-and-claim-gate",
+      "next_step": "step-5",
+      "current_step": "step-5",
       "steps": [
         {
           "id": "step-1",
@@ -324,7 +324,7 @@
         {
           "id": "step-4",
           "label": "step-4 — paired-statistics",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-5",

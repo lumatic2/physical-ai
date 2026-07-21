@@ -29,3 +29,4 @@
 | 25 | [20260721-gen3-pi05-compatibility-probe](20260721-gen3-pi05-compatibility-probe/README.md) | 2026-07-21 | 고정 π0.5 checkpoint의 actual GEN2 관측→10×7 action 호환성 | 7/7 | completed |
 | 26 | [20260721-gen3-shared-policy-adapter-gate](20260721-gen3-shared-policy-adapter-gate/README.md) | 2026-07-21 | 두 VLA의 입력·전처리·chunk·gripper 차이를 노출한 60-pair adapter 계약 | 6/6 | completed |
 | 27 | [20260721-gen3-pi05-sixty-cell-execution](20260721-gen3-pi05-sixty-cell-execution/README.md) | 2026-07-21 | π₀.₅ 60개 cell 실행·sealed episode·전수 hash 검증 | 6/6 | completed |
+| 28 | [20260721-gen3-paired-statistics](20260721-gen3-paired-statistics/README.md) | 2026-07-21 | 두 60-cell 정본의 raw count·paired difference·bootstrap interval | 6/6 | completed |

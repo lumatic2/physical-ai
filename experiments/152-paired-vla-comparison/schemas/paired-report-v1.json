@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotics.askewly.com/schemas/physical-ai-gen3-paired-statistics-v1.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "pass",
+    "denominator",
+    "overall",
+    "paired_difference",
+    "contingency",
+    "suites",
+    "tasks",
+    "pairs",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "physical-ai-gen3-paired-statistics-v1"},
+    "pass": {"const": true},
+    "denominator": {
+      "type": "object",
+      "required": ["paired_keys", "suites", "task_groups", "source_sha256"],
+      "properties": {
+        "paired_keys": {"const": 60},
+        "suites": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true},
+        "task_groups": {"const": 12},
+        "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "overall": {"$ref": "#/$defs/counts"},
+    "paired_difference": {
+      "type": "object",
+      "required": ["direction", "success_numerator", "denominator", "rate", "bootstrap_95"],
+      "properties": {
+        "direction": {"type": "string"},
+        "success_numerator": {"type": "integer"},
+        "denominator": {"const": 60},
+        "rate": {"type": "number"},
+        "bootstrap_95": {
+          "type": "object",
+          "required": ["method", "confidence", "seed", "resamples", "lower", "upper"],
+          "properties": {
+            "method": {"type": "string"},
+            "confidence": {"const": 0.95},
+            "seed": {"type": "integer"},
+            "resamples": {"type": "integer", "minimum": 1000},
+            "lower": {"type": "number"},
+            "upper": {"type": "number"}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "contingency": {
+      "type": "object",
+      "required": ["both_success", "pi05_only_success", "openvla_only_success", "both_non_success"],
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "suites": {"type": "array", "minItems": 3, "maxItems": 3},
+    "tasks": {"type": "array", "minItems": 12, "maxItems": 12},
+    "pairs": {
+      "type": "array",
+      "minItems": 60,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": ["paired_key", "suite", "task_id", "state_index", "openvla", "pi05"],
+        "properties": {
+          "paired_key": {"type": "string"},
+          "suite": {"enum": ["libero_spatial", "libero_object", "libero_goal"]},
+          "task_id": {"type": "integer", "minimum": 0},
+          "state_index": {"type": "integer", "minimum": 0, "maximum": 4},
+          "openvla": {"$ref": "#/$defs/evidence"},
+          "pi05": {"$ref": "#/$defs/evidence"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "sources": {"type": "object"}
+  },
+  "$defs": {
+    "counts": {
+      "type": "object",
+      "required": ["denominator", "openvla_successes", "pi05_successes", "difference_successes", "openvla_success_rate", "pi05_success_rate", "difference_rate"],
+      "properties": {
+        "denominator": {"type": "integer", "minimum": 1},
+        "openvla_successes": {"type": "integer", "minimum": 0},
+        "pi05_successes": {"type": "integer", "minimum": 0},
+        "difference_successes": {"type": "integer"},
+        "openvla_success_rate": {"type": "number"},
+        "pi05_success_rate": {"type": "number"},
+        "difference_rate": {"type": "number"}
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["policy_id", "outcome", "run_key", "artifact_ref", "manifest_sha256"],
+      "properties": {
+        "policy_id": {"enum": ["openvla-libero", "pi05-libero"]},
+        "outcome": {"enum": ["success", "timeout"]},
+        "run_key": {"type": "string", "minLength": 1},
+        "artifact_ref": {"type": "string", "minLength": 1},
+        "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
