@@ -34,3 +34,4 @@
 | 30 | [20260721-gen4-failure-pattern-contract](20260721-gen4-failure-pattern-contract/README.md) | 2026-07-21 | 관측 가능한 실패 양상·predicate·canonical pointer 계약 | 6/6 | completed |
 | 31 | [20260721-gen4-trajectory-event-features](20260721-gen4-trajectory-event-features/README.md) | 2026-07-21 | 27개 timeout의 trajectory·event·availability feature 추출 | 6/6 | completed |
 | 32 | [20260721-gen4-deterministic-classifier](20260721-gen4-deterministic-classifier/README.md) | 2026-07-21 | order-independent evidence rule과 27-row pattern index | 6/6 | completed |
+| 33 | [20260721-gen4-reviewer-calibration](20260721-gen4-reviewer-calibration/README.md) | 2026-07-21 | 7개 관측 계층의 camera/event evidence 검토 | 5/5 | completed |

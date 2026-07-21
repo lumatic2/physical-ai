@@ -148,7 +148,7 @@
 | 139 | [contact-readout-interpretation](139-contact-readout-interpretation/verify/contact-readout-interpretation.json) | readout이 지지하는 claim과 지지하지 않는 claim을 공개 문구와 QA evidence로 분리 | ✅ interpretation boundary smoke PASS |
 | 147 | [camera-action-episode-contract](147-camera-action-episode-contract/README.md) | LeRobot episode와 공식 viewer가 LAB1의 dual-camera/action 관찰 계약을 얼마나 재사용 가능한지 검증 | ✅ official reuse probe PASS; LAB1 producer addendum 승인 대기 |
 | 152 | [paired-vla-comparison](152-paired-vla-comparison/README.md) | 동일 60 task-state에서 OpenVLA와 π₀.₅-LIBERO의 실행·adapter·paired 결과를 비교 | ✅ 60 pair·exclusion 0; 35/60→58/60, 차이 +23/60, bootstrap 95% [+0.25,+0.5167], fairness pass/pass |
-| 153 | [observable-failure-patterns](153-observable-failure-patterns/README.md) | 27개 non-success episode를 원인 추정 없이 evidence-backed 양상 또는 unknown으로 분류 | 🟨 deterministic index PASS: no_progress 6, unknown 21; reviewer calibration 진행 중 |
+| 153 | [observable-failure-patterns](153-observable-failure-patterns/README.md) | 27개 non-success episode를 원인 추정 없이 evidence-backed 양상 또는 unknown으로 분류 | 🟨 reviewer calibration PASS: 7 strata, agreement 7/7; coverage gate 진행 예정 |
 
 ## 실행 원칙
 - mock 먼저, real 다음 (비용·시간 절약 + 가설 격리)

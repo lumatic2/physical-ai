@@ -1,0 +1,358 @@
+{
+  "schema_version": "physical-ai-gen4-reviewer-packet-v1",
+  "sampling_rule": "one lexicographically-first run_key per observed policy/suite/label stratum",
+  "source_denominator": 27,
+  "sample_count": 7,
+  "observed_strata": [
+    "openvla-libero/libero_goal/no_progress",
+    "openvla-libero/libero_goal/unknown",
+    "openvla-libero/libero_object/unknown",
+    "openvla-libero/libero_spatial/no_progress",
+    "openvla-libero/libero_spatial/unknown",
+    "pi05-libero/libero_goal/no_progress",
+    "pi05-libero/libero_goal/unknown"
+  ],
+  "source_hashes": {
+    "feature_index": "a812b3868b521af6e6d122e5a69d990b9f34b034905307a7f743b6b3c72dcee3",
+    "pattern_index": "889615b2bbd632ce941a20798d26bbcbefb94bb5157bd46b484be1c2f017d6c7"
+  },
+  "samples": [
+    {
+      "sample_id": "review-01",
+      "run_key": "v1:libero_goal:task-00:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "pattern_id": "no_progress",
+      "outcome": "timeout",
+      "stratum_population": 4,
+      "episode_ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "terminal eef displacement 0.001061598 m < 0.010000000 m",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.0010615980739229257,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "d7336ad9fff5b31f50c7bf82ef997d06fd7988dc20401951eb25db85c31fa909"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "ff127e69ec6ceb70b2042d2940f4277d8ccbadb6982f8da5725cd6e28762fa1a"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/events/episode_000000.json",
+          "sha256": "144e8c37f8569d8200eeed75756eac0b8c38e12b46f8b586fa5406cc5241b893"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-00-state-04/attempt-dadaa5c3f3e940a8bbd0c4acc5ab847f/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "ac3d9f613463e5e1b54b24929d1ac1c4b098fd451a9d95d1759bdc46871466c8"
+        },
+        "controller_event_count": 300
+      }
+    },
+    {
+      "sample_id": "review-02",
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_goal",
+      "pattern_id": "unknown",
+      "outcome": "timeout",
+      "stratum_population": 6,
+      "episode_ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "active rules unmatched: terminal eef displacement 0.053364757 m >= 0.010000000 m; rejected controller events=0",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.05336475676224863,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "388be6659667a879c462390c5a8c052c5c80ada01b4238db44f517a203074952"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "04cd021f5f7d2f4165a66f551f89da4bfe199589798dc4afb2c29c40949d66ff"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/events/episode_000000.json",
+          "sha256": "95557195d0dbf5aa51ac3fa72e3cb6c7f2853458d30523b3ee9038759854bad0"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "12bd063e3dc76aaad27f91ae12a35e623a5415f28a750279255dce2b4ae26ddc"
+        },
+        "controller_event_count": 300
+      }
+    },
+    {
+      "sample_id": "review-03",
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_object",
+      "pattern_id": "unknown",
+      "outcome": "timeout",
+      "stratum_population": 8,
+      "episode_ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6",
+      "frame_range": {
+        "start": 0,
+        "end": 279,
+        "count": 280
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "active rules unmatched: terminal eef displacement 0.491633418 m >= 0.010000000 m; rejected controller events=0",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.4916334176780479,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "6770a94ae8e8149996d776298252001d532e1ce3ba2a42ca2b979ac8ecd20b93"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "a3153bcff552c218c4f37e53daf945163bdf67468367f5c49ea5a71b7c8a1166"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/events/episode_000000.json",
+          "sha256": "4b4c3c8789b981d58c630b334f5812048589e8d8526c66197f65a3bf173ecc1e"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "9792eda63fd5c385f158d35578246b3fc79c57cea72a7e33728d7c37fc9b331d"
+        },
+        "controller_event_count": 280
+      }
+    },
+    {
+      "sample_id": "review-04",
+      "run_key": "v1:libero_spatial:task-05:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "pattern_id": "no_progress",
+      "outcome": "timeout",
+      "stratum_population": 1,
+      "episode_ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "terminal eef displacement 0.003899664 m < 0.010000000 m",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.0038996638525013116,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "67322121151e939cf76b4d7b94102e4c6d9689d8ee96b48b2e48d1f01517a78d"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "236c3784619eceb5120a570867a40255f0ab9e92f2fda653c5907c79eaa07c3d"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/events/episode_000000.json",
+          "sha256": "160cebfc53ea1f1d1527177f6178557c760dc3577178d260867441d8e4838927"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-05-state-03/attempt-9536f05839e6452682793ea423e755e1/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "6da7fe71ed42bae81cf7e9263f15b9afd84f9d3b67d957864c206ebf2cba94f7"
+        },
+        "controller_event_count": 220
+      }
+    },
+    {
+      "sample_id": "review-05",
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "policy_id": "openvla-libero",
+      "suite": "libero_spatial",
+      "pattern_id": "unknown",
+      "outcome": "timeout",
+      "stratum_population": 6,
+      "episode_ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f",
+      "frame_range": {
+        "start": 0,
+        "end": 219,
+        "count": 220
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "active rules unmatched: terminal eef displacement 0.070251772 m >= 0.010000000 m; rejected controller events=0",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.07025177195210133,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "b548c928e5688776af5f28a15840cb06b832a4149b9ba84eeca73d0cb528f569"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "b2e5caef6b540dff092a69c5a52cf23eced84a493f827c5fff882805220d3136"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/events/episode_000000.json",
+          "sha256": "aca9e2a13d4c187673dfe1675cab72919bc12e60460b9b640ef2d26f4e206034"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "edf295b0ffd2a45b3b12601b715897fe7e4d288d7229757732087ce615fd3e9c"
+        },
+        "controller_event_count": 220
+      }
+    },
+    {
+      "sample_id": "review-06",
+      "run_key": "v1:libero_goal:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "suite": "libero_goal",
+      "pattern_id": "no_progress",
+      "outcome": "timeout",
+      "stratum_population": 1,
+      "episode_ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "terminal eef displacement 0.001723236 m < 0.010000000 m",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.0017232361706072043,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "0c2ef075e9ea30b6155a0b5da9fea54ae9dec4a8497f8cfe64e1c7255ab93424"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "fda5b43de3793cfd1e228f6e7d143838463c2b64ab218ef90580b1664523014d"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/events/episode_000000.json",
+          "sha256": "c1b056b35d42c12a9a599bfe408e86ea41b57a2a5f47135b345374f8d71d7496"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-04/attempt-a7a59e70af204b5dbb5b9a3da7775682/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "14ec361abc320052ff543cd17e2bb23f3b9a4fd107779dae033bddb62d17eb1f"
+        },
+        "controller_event_count": 300
+      }
+    },
+    {
+      "sample_id": "review-07",
+      "run_key": "v1:libero_goal:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "policy_id": "pi05-libero",
+      "suite": "libero_goal",
+      "pattern_id": "unknown",
+      "outcome": "timeout",
+      "stratum_population": 1,
+      "episode_ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05",
+      "frame_range": {
+        "start": 0,
+        "end": 299,
+        "count": 300
+      },
+      "predicate_check": {
+        "matches_record": true,
+        "detail": "active rules unmatched: terminal eef displacement 0.409483744 m >= 0.010000000 m; rejected controller events=0",
+        "active_rule_inputs": {
+          "final_window_eef_displacement_m": 0.4094837444909818,
+          "controller_rejected_count": 0
+        }
+      },
+      "source_checklist": {
+        "main_camera": {
+          "role": "main",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image/chunk-000/file-000.mp4",
+          "sha256": "d042a4e4223a2ae9e75da4df7dc9cd06b2f9b33f87b6edcf56d9bfb5d85af8a2"
+        },
+        "wrist_camera": {
+          "role": "wrist",
+          "kind": "camera",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/videos/observation.images.image2/chunk-000/file-000.mp4",
+          "sha256": "00561ca173b20451ebf72fbd583352134f57f463a94a382e113fd32b0d222340"
+        },
+        "event_stream": {
+          "kind": "event-stream",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/events/episode_000000.json",
+          "sha256": "91903dc1c512f44e2e746eb3da453059db6720bbb57340528a6eec0c0af71975"
+        },
+        "trajectory": {
+          "kind": "trajectory",
+          "ref": "episodes/libero_goal-task-03-state-00/attempt-98e8f3cb0bbc4423b4a600f8e9346f05/dataset/data/chunk-000/file-000.parquet",
+          "sha256": "f154a329e133ea195790317744e81657b6c13ce349a906fbcba445390cc379c1"
+        },
+        "controller_event_count": 300
+      }
+    }
+  ],
+  "claim_boundary": "Calibration checks observable predicates and source alignment; it is not an independent-human, root-cause, hidden-reasoning, or real-robot review."
+}

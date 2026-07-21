@@ -1,0 +1,117 @@
+{
+  "schema_version": "physical-ai-gen4-reviewer-report-v1",
+  "pass": true,
+  "review_kind": "manual-evidence-review-not-independent-human",
+  "sample_count": 7,
+  "agreement": {
+    "agreed": 7,
+    "disagreed": 0,
+    "rate": 1.0
+  },
+  "label_counts": {
+    "no_progress": 3,
+    "unknown": 4
+  },
+  "reviewed": [
+    {
+      "sample_id": "review-01",
+      "run_key": "v1:libero_goal:task-00:state-04:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "machine_pattern_id": "no_progress",
+      "reviewed_pattern_id": "no_progress",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "두 camera의 시작·중간·종료 프레임이 정상이며 중간과 종료 자세가 거의 같다. event hash와 300개 accepted controller event가 일치하고 terminal displacement predicate를 지지한다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-02",
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "machine_pattern_id": "unknown",
+      "reviewed_pattern_id": "unknown",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "두 camera에 로봇 자세와 손목 시야 변화가 보이고 빈 프레임이 없다. event hash와 300개 accepted controller event가 일치하며 활성 규칙은 어느 것도 충족하지 않는다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-03",
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "machine_pattern_id": "unknown",
+      "reviewed_pattern_id": "unknown",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "식료품 장면의 main·wrist camera가 모두 정상이고 시간에 따라 로봇·물체 구도가 변한다. event hash와 280개 accepted controller event가 일치하며 가용 evidence만으로 더 구체적인 양상을 붙일 수 없다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-04",
+      "run_key": "v1:libero_spatial:task-05:state-03:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "machine_pattern_id": "no_progress",
+      "reviewed_pattern_id": "no_progress",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "두 camera가 정상이며 중간과 종료의 로봇·그릇 구도가 거의 같다. event hash와 220개 accepted controller event가 일치하고 terminal displacement predicate를 지지한다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-05",
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "machine_pattern_id": "unknown",
+      "reviewed_pattern_id": "unknown",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "main·wrist camera에 큰 그릇 접근과 로봇 자세 변화가 선명하게 보인다. event hash와 220개 accepted controller event가 일치하며 no_progress 또는 controller_rejected 규칙은 충족하지 않는다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-06",
+      "run_key": "v1:libero_goal:task-03:state-04:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "machine_pattern_id": "no_progress",
+      "reviewed_pattern_id": "no_progress",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "π0.5 표본의 두 camera가 정상이며 중간과 종료 자세가 거의 같다. event hash와 300개 accepted controller event가 일치하고 terminal displacement predicate를 지지한다.",
+      "disagreement": null
+    },
+    {
+      "sample_id": "review-07",
+      "run_key": "v1:libero_goal:task-03:state-00:pi05-libero:11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b:13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "machine_pattern_id": "unknown",
+      "reviewed_pattern_id": "unknown",
+      "agrees": true,
+      "source_checks": {
+        "main_camera_observed": true,
+        "wrist_camera_observed": true,
+        "event_source_observed": true
+      },
+      "reviewer_note": "π0.5 표본의 main·wrist camera에 로봇과 그릇의 시간 변화가 보인다. event hash와 300개 accepted controller event가 일치하며 활성 규칙은 어느 것도 충족하지 않는다.",
+      "disagreement": null
+    }
+  ],
+  "packet_sha256": "5c1966f385955b3fba6cf9173868464e2d9db029e66b7ea4b57b7333dfb5b5b0",
+  "claim_boundary": "Calibration checks observable predicates and source alignment; it is not an independent-human, root-cause, hidden-reasoning, or real-robot review."
+}

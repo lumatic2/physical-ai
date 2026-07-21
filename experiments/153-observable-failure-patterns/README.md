@@ -16,6 +16,8 @@ Step 2는 actual 27개 timeout episode에서 8D state·7D action·dual camera·c
 
 Step 3은 order-independent 규칙으로 27개를 `no_progress 6`, `unknown 21`로 분류했다. no_progress는 terminal window displacement `<0.01m`의 관측 predicate이며 원인 진단이 아니다. feature/rule 순서를 바꿔도 byte-identical record hash가 나오고 conflict fixture는 multiple로 보존된다.
 
+Step 4는 실제로 관측된 policy/suite/label 7개 계층마다 1개를 결정적으로 골랐다. main/wrist camera의 시작·중간·종료 프레임과 원 event stream을 직접 확인했고 7/7 label predicate가 일치했다. `unknown` 4개를 표본에서 제외하지 않았다. 이 검토는 Codex evidence review이며 독립적인 제2 인간 검토로 주장하지 않는다.
+
 ```bash
 python experiments/153-observable-failure-patterns/verify_contract.py
 python experiments/153-observable-failure-patterns/test_verify_contract.py
@@ -23,6 +25,8 @@ python experiments/153-observable-failure-patterns/test_verify_contract.py
 /home/yusun/.venvs/vla-eval/bin/python experiments/153-observable-failure-patterns/test_extract_features.py
 python experiments/153-observable-failure-patterns/classify_patterns.py
 python experiments/153-observable-failure-patterns/test_classify_patterns.py
+python experiments/153-observable-failure-patterns/reviewer_calibration.py
+python experiments/153-observable-failure-patterns/test_reviewer_calibration.py
 ```
 
 ## 통찰
