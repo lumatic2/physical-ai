@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "active_work_id": "multitask-generalization-lab-gen5",
+  "active_work_id": "live-instruction-execution-lab-live1",
   "works": {
     "see-understand-act-robot-lab-lab1": {
       "work_id": "see-understand-act-robot-lab-lab1",
@@ -479,6 +479,73 @@
       "updated_at": "2026-07-21",
       "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation.",
       "completion_summary": "60쌍·120 episode의 정책 비교와 실패 증거가 공개 실험실로 배포되어 원 episode까지 검토할 수 있게 됐다."
+    },
+    "live-instruction-execution-lab-live1": {
+      "work_id": "live-instruction-execution-lab-live1",
+      "horizon_id": "live-instruction-execution-lab",
+      "milestone_id": "LIVE1",
+      "status": "active",
+      "plan_path": "plans/2026-07-21-live1-unified-policy-server.md",
+      "changeset_path": "changesets/20260721-live1-cross-lane-contract-gate",
+      "next_step": "step-1",
+      "current_step": "step-1",
+      "steps": [
+        {
+          "id": "step-1",
+          "label": "step-1 — inference-server-envelope",
+          "status": "pending"
+        },
+        {
+          "id": "step-2",
+          "label": "step-2 — openvla-server-adapter",
+          "status": "pending"
+        },
+        {
+          "id": "step-3",
+          "label": "step-3 — pi05-server-adapter",
+          "status": "pending"
+        },
+        {
+          "id": "step-4",
+          "label": "step-4 — qwen3-vl-bounded-adapter",
+          "status": "pending"
+        },
+        {
+          "id": "step-5",
+          "label": "step-5 — gpu-lease-heartbeat-and-stop-gate",
+          "status": "pending"
+        },
+        {
+          "id": "step-6",
+          "label": "step-6 — cross-lane-contract-gate",
+          "status": "pending"
+        }
+      ],
+      "execution_mode": "continuous",
+      "approval": {
+        "approved_by": "user",
+        "approved_at": "2026-07-21",
+        "plan_sha256": "2805a623a236cd1e5ebe99ecae4b7d85888a7d3e4a5a6a40c530fba66696ad00"
+      },
+      "allowed_stop_reasons": [
+        "completed",
+        "blocked",
+        "decision_required",
+        "risk_gate",
+        "secret_required",
+        "external_authority_required",
+        "user_stopped"
+      ],
+      "stop_reason": "external_authority_required",
+      "stop_detail": {
+        "requirement": "LIVE1 시작을 위해 관리자 권한으로 WSL 서비스를 재시작하거나 Windows를 재부팅해 멈춘 Ubuntu VM을 복구해야 한다."
+      },
+      "session_ids": [
+        "codex:physical-ai-live1-20260721"
+      ],
+      "owner_session_uuid": null,
+      "updated_at": "2026-07-21",
+      "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation."
     }
   }
 }
