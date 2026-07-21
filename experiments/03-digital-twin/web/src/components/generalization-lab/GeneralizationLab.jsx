@@ -20,6 +20,7 @@ import {
   taskOptions,
   validateGeneralizationRegistry,
 } from "./generalizationContract.js";
+import { FailureExplorer } from "./FailureExplorer.jsx";
 
 const REGISTRY_URL = "/assets/generalization-lab/registry.json";
 
@@ -178,6 +179,7 @@ export function GeneralizationLab() {
   const [suite, setSuite] = React.useState(ALL_FILTER);
   const [task, setTask] = React.useState(ALL_FILTER);
   const [selectedCellId, setSelectedCellId] = React.useState(null);
+  const [failureSummary, setFailureSummary] = React.useState(null);
   const [theme, setTheme] = React.useState("dark");
 
   React.useEffect(() => {
@@ -223,8 +225,9 @@ export function GeneralizationLab() {
       registry_sha256: registry.source_hashes,
       execution_contract: registry.execution_contract,
       claim_boundary: registry.claim_boundary,
+      failure_explorer: failureSummary,
     });
-  }, [registry, selectedCell, summary]);
+  }, [failureSummary, registry, selectedCell, summary]);
 
   if (error) {
     return (
@@ -309,6 +312,8 @@ export function GeneralizationLab() {
           <ComparisonTable cells={summary.cells} onSelect={setSelectedCellId} selectedCellId={selectedCellId} />
           <SelectionEvidence cell={selectedCell} />
         </section>
+
+        <FailureExplorer onSummaryChange={setFailureSummary} registry={registry} />
 
         <footer className="gl-footer">
           <FlaskConical aria-hidden="true" size={16} />

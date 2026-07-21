@@ -1,0 +1,33 @@
+{
+  "route": "http://127.0.0.1:8132/generalization-lab.html",
+  "verified_at": "2026-07-21",
+  "denominator": 27,
+  "patterns": {
+    "no_progress": 6,
+    "unknown": 21
+  },
+  "policies": {
+    "openvla-libero": 25,
+    "pi05-libero": 2
+  },
+  "suites": {
+    "libero_goal": 12,
+    "libero_object": 8,
+    "libero_spatial": 7
+  },
+  "browser": {
+    "pi05_all": 2,
+    "pi05_unknown": 1,
+    "pi05_spatial_empty_state": "PASS",
+    "predicate_visible": true,
+    "manifest_visible": true,
+    "disabled_patterns_visible": true
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "filter_count": 4,
+    "representative_rows": 12,
+    "horizontal_overflow": false
+  },
+  "console_errors": []
+}

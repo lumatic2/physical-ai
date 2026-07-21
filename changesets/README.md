@@ -38,3 +38,4 @@
 | 34 | [20260721-gen4-failure-coverage-gate](20260721-gen4-failure-coverage-gate/README.md) | 2026-07-21 | 27개 non-success coverage와 negative claim gate | 5/5 | completed |
 | 35 | [20260721-gen5-deterministic-public-index](20260721-gen5-deterministic-public-index/README.md) | 2026-07-21 | 60 paired cell 공개 allowlist registry | 5/5 | completed |
 | 36 | [20260721-gen5-comparison-overview](20260721-gen5-comparison-overview/README.md) | 2026-07-21 | raw numerator/denominator 중심 responsive comparison UI | 5/5 | completed |
+| 37 | [20260721-gen5-failure-pattern-explorer](20260721-gen5-failure-pattern-explorer/README.md) | 2026-07-21 | unknown을 숨기지 않는 관측 실패 필터와 evidence row | 5/5 | completed |

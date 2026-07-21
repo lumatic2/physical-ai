@@ -424,9 +424,9 @@
       "milestone_id": "GEN5",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen5-public-generalization-lab.md",
-      "changeset_path": "changesets/20260721-gen5-failure-pattern-explorer",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-gen5-episode-drilldown-linkage",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -441,7 +441,7 @@
         {
           "id": "step-3",
           "label": "step-3 — failure-pattern-explorer",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",
