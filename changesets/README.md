@@ -40,3 +40,4 @@
 | 36 | [20260721-gen5-comparison-overview](20260721-gen5-comparison-overview/README.md) | 2026-07-21 | raw numerator/denominator 중심 responsive comparison UI | 5/5 | completed |
 | 37 | [20260721-gen5-failure-pattern-explorer](20260721-gen5-failure-pattern-explorer/README.md) | 2026-07-21 | unknown을 숨기지 않는 관측 실패 필터와 evidence row | 5/5 | completed |
 | 38 | [20260721-gen5-episode-drilldown-linkage](20260721-gen5-episode-drilldown-linkage/README.md) | 2026-07-21 | aggregate cell에서 LAB3 dual-camera 증거까지 hash-bound 연결 | 5/5 | completed |
+| 39 | [20260721-gen5-public-reviewer-release](20260721-gen5-public-reviewer-release/README.md) | 2026-07-21 | public generalization lab의 local/live reviewer release gate | 0/5 | in progress |
