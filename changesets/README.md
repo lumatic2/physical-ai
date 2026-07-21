@@ -37,3 +37,4 @@
 | 33 | [20260721-gen4-reviewer-calibration](20260721-gen4-reviewer-calibration/README.md) | 2026-07-21 | 7개 관측 계층의 camera/event evidence 검토 | 5/5 | completed |
 | 34 | [20260721-gen4-failure-coverage-gate](20260721-gen4-failure-coverage-gate/README.md) | 2026-07-21 | 27개 non-success coverage와 negative claim gate | 5/5 | completed |
 | 35 | [20260721-gen5-deterministic-public-index](20260721-gen5-deterministic-public-index/README.md) | 2026-07-21 | 60 paired cell 공개 allowlist registry | 5/5 | completed |
+| 36 | [20260721-gen5-comparison-overview](20260721-gen5-comparison-overview/README.md) | 2026-07-21 | raw numerator/denominator 중심 responsive comparison UI | 5/5 | completed |

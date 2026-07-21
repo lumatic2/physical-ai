@@ -32,6 +32,12 @@ class PublicIndexTest(unittest.TestCase):
         with self.assertRaisesRegex(PublicIndexError, "denominator"):
             build_registry(inputs)
 
+    def test_hidden_exclusion_is_rejected(self) -> None:
+        inputs = copy.deepcopy(self.inputs)
+        inputs["fairness"]["denominator"]["excluded_pairs"] = 1
+        with self.assertRaisesRegex(PublicIndexError, "exclusion drift"):
+            build_registry(inputs)
+
     def test_stale_episode_hash_is_rejected(self) -> None:
         inputs = copy.deepcopy(self.inputs)
         inputs["arm"]["episodes"]["pass"]["cameras"]["main"]["sha256"] = "0" * 64

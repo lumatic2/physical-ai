@@ -18,6 +18,7 @@ VERIFY_OUTPUT = HERE / "verify" / "public-index-report.json"
 
 BENCHMARK = REPO_ROOT / "experiments" / "150-multitask-evaluation-contract" / "benchmark-manifest.json"
 PAIRED = REPO_ROOT / "experiments" / "152-paired-vla-comparison" / "verify" / "paired-report.json"
+FAIRNESS = REPO_ROOT / "experiments" / "152-paired-vla-comparison" / "verify" / "fairness-report.json"
 PATTERNS = (
     REPO_ROOT
     / "experiments"
@@ -107,6 +108,15 @@ def validate_inputs(inputs: dict[str, dict[str, Any]]) -> None:
     coverage = inputs["coverage"]
     if coverage.get("denominator") != {"non_success": 27, "indexed": 27, "omitted": 0}:
         raise PublicIndexError("failure coverage drift")
+    if inputs["fairness"].get("denominator") != {
+        "planned_pairs": 60,
+        "included_pairs": 60,
+        "excluded_pairs": 0,
+        "unmatched_pairs": 0,
+        "suites": ["libero_spatial", "libero_object", "libero_goal"],
+        "task_groups": 12,
+    }:
+        raise PublicIndexError("fairness denominator or exclusion drift")
     arm = inputs["arm"]
     for episode_key, episode in arm.get("episodes", {}).items():
         for camera in episode.get("cameras", {}).values():
@@ -204,6 +214,14 @@ def build_registry(inputs: dict[str, dict[str, Any]]) -> dict[str, Any]:
             "contingency": paired["contingency"],
             "suites": paired["suites"],
         },
+        "execution_contract": {
+            "planned_pairs": inputs["fairness"]["denominator"]["planned_pairs"],
+            "included_pairs": inputs["fairness"]["denominator"]["included_pairs"],
+            "excluded_pairs": inputs["fairness"]["denominator"]["excluded_pairs"],
+            "unmatched_pairs": inputs["fairness"]["denominator"]["unmatched_pairs"],
+            "spec_verdict": inputs["fairness"]["spec_verdict"],
+            "quality_verdict": inputs["fairness"]["quality_verdict"],
+        },
         "failure_summary": {
             "denominator": 27,
             "counts": inputs["patterns"]["counts"],
@@ -274,6 +292,7 @@ def default_inputs() -> dict[str, dict[str, Any]]:
     return {
         "benchmark": load_json(BENCHMARK),
         "paired": load_json(PAIRED),
+        "fairness": load_json(FAIRNESS),
         "patterns": load_json(PATTERNS),
         "coverage": load_json(COVERAGE),
         "arm": load_json(ARM_REGISTRY),

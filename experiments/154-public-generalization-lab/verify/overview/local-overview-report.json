@@ -1,0 +1,30 @@
+{
+  "route": "http://127.0.0.1:8132/generalization-lab.html",
+  "registry_sha256": "1bfe68019c6e2baebdd15c446323b4f171fad8839f329b40fec9bd928db12f68",
+  "verified_at": "2026-07-21",
+  "desktop": {
+    "dark": "PASS",
+    "light": "PASS",
+    "all_pairs": 60,
+    "openvla_successes": 35,
+    "pi05_successes": 58,
+    "paired_difference": 23
+  },
+  "interaction": {
+    "goal_pairs": 20,
+    "goal_task_03_pairs": 5,
+    "selected_cell": "libero_goal:task-03:state-00",
+    "selected_openvla_outcome": "success",
+    "selected_pi05_outcome": "timeout"
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "visible_rows": 5,
+    "horizontal_overflow": false
+  },
+  "keyboard": {
+    "first_focus": "PHYSICAL AI LAB",
+    "outline_width": "1px"
+  },
+  "console_errors": []
+}

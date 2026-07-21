@@ -21,6 +21,7 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, 'index.html'),
         'arm-lab': resolve(import.meta.dirname, 'arm-lab.html'),
+        'generalization-lab': resolve(import.meta.dirname, 'generalization-lab.html'),
       },
       external: [/^https:\/\/cdn\.jsdelivr\.net\//],
     },
