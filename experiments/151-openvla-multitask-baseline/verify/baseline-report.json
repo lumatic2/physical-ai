@@ -1,0 +1,425 @@
+{
+  "schema_version": "physical-ai-gen2-baseline-report-v1",
+  "pass": true,
+  "source": {
+    "execution_manifest_sha256": "28d5d15ce003f5e945ad7c5b43dffaa2eb971d822426b0fd376fbc109404753b",
+    "policy_id": "openvla-libero",
+    "infrastructure_attempts_excluded": 1
+  },
+  "overall": {
+    "denominator": 60,
+    "success": 35,
+    "timeout": 25,
+    "success_rate": 0.583333,
+    "frames": {
+      "min": 78.0,
+      "median": 189.0,
+      "mean": 191.7,
+      "p95": 300.0,
+      "max": 300.0
+    },
+    "wall_seconds": {
+      "min": 36.585,
+      "median": 64.978,
+      "mean": 67.479,
+      "p95": 99.695,
+      "max": 100.65
+    }
+  },
+  "suites": {
+    "libero_spatial": {
+      "denominator": 20,
+      "success": 13,
+      "timeout": 7,
+      "success_rate": 0.65,
+      "frames": {
+        "min": 78.0,
+        "median": 100.5,
+        "mean": 134.7,
+        "p95": 220.0,
+        "max": 220.0
+      },
+      "wall_seconds": {
+        "min": 36.585,
+        "median": 44.188,
+        "mean": 54.018,
+        "p95": 80.23,
+        "max": 80.486
+      }
+    },
+    "libero_object": {
+      "denominator": 20,
+      "success": 12,
+      "timeout": 8,
+      "success_rate": 0.6,
+      "frames": {
+        "min": 131.0,
+        "median": 209.5,
+        "mean": 214.2,
+        "p95": 280.0,
+        "max": 280.0
+      },
+      "wall_seconds": {
+        "min": 47.196,
+        "median": 69.507,
+        "mean": 70.3,
+        "p95": 88.325,
+        "max": 95.833
+      }
+    },
+    "libero_goal": {
+      "denominator": 20,
+      "success": 10,
+      "timeout": 10,
+      "success_rate": 0.5,
+      "frames": {
+        "min": 100.0,
+        "median": 270.5,
+        "mean": 226.2,
+        "p95": 300.0,
+        "max": 300.0
+      },
+      "wall_seconds": {
+        "min": 43.269,
+        "median": 88.839,
+        "mean": 78.118,
+        "p95": 100.474,
+        "max": 100.65
+      }
+    }
+  },
+  "tasks": [
+    {
+      "suite": "libero_goal",
+      "task_id": 0,
+      "denominator": 5,
+      "success": 2,
+      "timeout": 3,
+      "success_rate": 0.4,
+      "frames": {
+        "min": 124.0,
+        "median": 300.0,
+        "mean": 231.0,
+        "p95": 300.0,
+        "max": 300.0
+      },
+      "wall_seconds": {
+        "min": 50.739,
+        "median": 97.289,
+        "mean": 79.103,
+        "p95": 98.282,
+        "max": 98.282
+      }
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 3,
+      "denominator": 5,
+      "success": 2,
+      "timeout": 3,
+      "success_rate": 0.4,
+      "frames": {
+        "min": 163.0,
+        "median": 300.0,
+        "mean": 252.6,
+        "p95": 300.0,
+        "max": 300.0
+      },
+      "wall_seconds": {
+        "min": 61.513,
+        "median": 99.695,
+        "mean": 86.687,
+        "p95": 100.474,
+        "max": 100.474
+      }
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 6,
+      "denominator": 5,
+      "success": 3,
+      "timeout": 2,
+      "success_rate": 0.6,
+      "frames": {
+        "min": 100.0,
+        "median": 117.0,
+        "mean": 186.2,
+        "p95": 300.0,
+        "max": 300.0
+      },
+      "wall_seconds": {
+        "min": 43.269,
+        "median": 47.59,
+        "mean": 67.561,
+        "p95": 100.65,
+        "max": 100.65
+      }
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": 9,
+      "denominator": 5,
+      "success": 3,
+      "timeout": 2,
+      "success_rate": 0.6,
+      "frames": {
+        "min": 138.0,
+        "median": 241.0,
+        "mean": 235.0,
+        "p95": 300.0,
+        "max": 300.0
+      },
+      "wall_seconds": {
+        "min": 51.929,
+        "median": 81.424,
+        "mean": 79.123,
+        "p95": 97.563,
+        "max": 97.563
+      }
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 0,
+      "denominator": 5,
+      "success": 4,
+      "timeout": 1,
+      "success_rate": 0.8,
+      "frames": {
+        "min": 157.0,
+        "median": 182.0,
+        "mean": 210.0,
+        "p95": 280.0,
+        "max": 280.0
+      },
+      "wall_seconds": {
+        "min": 55.393,
+        "median": 61.293,
+        "mean": 70.394,
+        "p95": 95.833,
+        "max": 95.833
+      }
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 3,
+      "denominator": 5,
+      "success": 2,
+      "timeout": 3,
+      "success_rate": 0.4,
+      "frames": {
+        "min": 134.0,
+        "median": 280.0,
+        "mean": 242.2,
+        "p95": 280.0,
+        "max": 280.0
+      },
+      "wall_seconds": {
+        "min": 48.871,
+        "median": 86.278,
+        "mean": 77.374,
+        "p95": 87.368,
+        "max": 87.368
+      }
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 6,
+      "denominator": 5,
+      "success": 3,
+      "timeout": 2,
+      "success_rate": 0.6,
+      "frames": {
+        "min": 153.0,
+        "median": 162.0,
+        "mean": 207.4,
+        "p95": 280.0,
+        "max": 280.0
+      },
+      "wall_seconds": {
+        "min": 53.908,
+        "median": 56.932,
+        "mean": 67.986,
+        "p95": 88.043,
+        "max": 88.043
+      }
+    },
+    {
+      "suite": "libero_object",
+      "task_id": 9,
+      "denominator": 5,
+      "success": 3,
+      "timeout": 2,
+      "success_rate": 0.6,
+      "frames": {
+        "min": 131.0,
+        "median": 160.0,
+        "mean": 197.2,
+        "p95": 280.0,
+        "max": 280.0
+      },
+      "wall_seconds": {
+        "min": 47.196,
+        "median": 55.138,
+        "mean": 65.447,
+        "p95": 88.325,
+        "max": 88.325
+      }
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "denominator": 5,
+      "success": 5,
+      "timeout": 0,
+      "success_rate": 1.0,
+      "frames": {
+        "min": 78.0,
+        "median": 82.0,
+        "mean": 83.4,
+        "p95": 93.0,
+        "max": 93.0
+      },
+      "wall_seconds": {
+        "min": 36.981,
+        "median": 40.712,
+        "mean": 39.659,
+        "p95": 41.782,
+        "max": 41.782
+      }
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "denominator": 5,
+      "success": 4,
+      "timeout": 1,
+      "success_rate": 0.8,
+      "frames": {
+        "min": 78.0,
+        "median": 80.0,
+        "mean": 113.0,
+        "p95": 220.0,
+        "max": 220.0
+      },
+      "wall_seconds": {
+        "min": 36.585,
+        "median": 36.892,
+        "mean": 47.261,
+        "p95": 79.405,
+        "max": 79.405
+      }
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "denominator": 5,
+      "success": 2,
+      "timeout": 3,
+      "success_rate": 0.4,
+      "frames": {
+        "min": 78.0,
+        "median": 220.0,
+        "mean": 163.6,
+        "p95": 220.0,
+        "max": 220.0
+      },
+      "wall_seconds": {
+        "min": 37.199,
+        "median": 77.779,
+        "mean": 62.277,
+        "p95": 80.486,
+        "max": 80.486
+      }
+    },
+    {
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "denominator": 5,
+      "success": 2,
+      "timeout": 3,
+      "success_rate": 0.4,
+      "frames": {
+        "min": 117.0,
+        "median": 220.0,
+        "mean": 178.8,
+        "p95": 220.0,
+        "max": 220.0
+      },
+      "wall_seconds": {
+        "min": 49.24,
+        "median": 76.935,
+        "mean": 66.876,
+        "p95": 80.23,
+        "max": 80.23
+      }
+    }
+  ],
+  "representative_outcomes": [
+    {
+      "run_key": "v1:libero_spatial:task-00:state-00:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "state_index": 0,
+      "outcome": "success",
+      "frames": 85,
+      "artifact_ref": "episodes/libero_spatial-task-00-state-00/attempt-6c1ea86fa57247c4abcda83350eff013",
+      "manifest_sha256": "68457a2844877f4fb83df47f484e0c3095c192f96e20c47d5cf34b11f02441a0"
+    },
+    {
+      "run_key": "v1:libero_spatial:task-03:state-02:openvla-libero:962318cec55ac10993ff0f5f43eda9a270b4c873:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "state_index": 2,
+      "outcome": "timeout",
+      "frames": 220,
+      "artifact_ref": "episodes/libero_spatial-task-03-state-02/attempt-098ffacf60094a9fb9765da7896f9f5f",
+      "manifest_sha256": "96fb3bf25791b581c8362c637209319ae5e588ea409eb94ab3f528dfa7068ccc"
+    },
+    {
+      "run_key": "v1:libero_object:task-00:state-01:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_object",
+      "task_id": 0,
+      "state_index": 1,
+      "outcome": "success",
+      "frames": 169,
+      "artifact_ref": "episodes/libero_object-task-00-state-01/attempt-3846b0d18be146cd96b9a8f2c7cbe2ba",
+      "manifest_sha256": "42e837a493777e775bfa6771cb6b44466299ad31c1dc34545407ebea57334fd8"
+    },
+    {
+      "run_key": "v1:libero_object:task-00:state-00:openvla-libero:287d6cfdf12d07b1449505f66d9bf3550257e9b3:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_object",
+      "task_id": 0,
+      "state_index": 0,
+      "outcome": "timeout",
+      "frames": 280,
+      "artifact_ref": "episodes/libero_object-task-00-state-00/attempt-f03e77c385ca4d28bba10a8e08ed01f6",
+      "manifest_sha256": "7a1e102148bb47176ef3db6926e189e485af7eec6ce3d34dc230e63dd0040ab4"
+    },
+    {
+      "run_key": "v1:libero_goal:task-00:state-00:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "state_index": 0,
+      "outcome": "success",
+      "frames": 124,
+      "artifact_ref": "episodes/libero_goal-task-00-state-00/attempt-b747390bf2a147b89d5dd30e3552679d",
+      "manifest_sha256": "1ec4c2d4254a0339f684842618f06fcb4da490f5162fbad1f1167645459716ab"
+    },
+    {
+      "run_key": "v1:libero_goal:task-00:state-02:openvla-libero:fa5ae1e7509348889295bba8e08621d8b55e9baf:eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "state_index": 2,
+      "outcome": "timeout",
+      "frames": 300,
+      "artifact_ref": "episodes/libero_goal-task-00-state-02/attempt-4d396c15acd7481d84f50b51e2613d5a",
+      "manifest_sha256": "ac15ca15cfd11149d72decc7ce0ce8793f47301f53688041fa116e4c45635bd5"
+    }
+  ],
+  "traceability": {
+    "cells_with_artifact_ref": 60,
+    "cells_with_manifest_hash": 60,
+    "first_valid_attempt_rule": true
+  },
+  "claim_boundary": "OpenVLA-only LIBERO simulation baseline; no pi0.5 ranking, causal root-cause claim, or real telemetry."
+}

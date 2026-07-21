@@ -242,8 +242,8 @@
       "status": "active",
       "plan_path": "plans/2026-07-21-gen2-openvla-multitask-baseline.md",
       "changeset_path": "changesets/20260721-gen2-baseline-aggregate-gate",
-      "next_step": "step-5",
-      "current_step": "step-5",
+      "next_step": null,
+      "current_step": null,
       "steps": [
         {
           "id": "step-1",
@@ -268,7 +268,7 @@
         {
           "id": "step-5",
           "label": "step-5 — baseline-aggregate-gate",
-          "status": "pending"
+          "status": "completed"
         }
       ],
       "execution_mode": "continuous",

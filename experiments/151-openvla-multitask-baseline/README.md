@@ -67,6 +67,15 @@ python verify_execution.py \
 
 실제 raw LeRobot episode 60개는 local-only artifact root에 보존하고, repo에는 path-scrubbed 60-cell manifest와 append-only ledger snapshot을 추적한다. 현재 실측은 35 success, 25 timeout이며 infrastructure attempt 1건은 분모 밖에 별도 기록됐다.
 
+## Baseline aggregate
+
+```powershell
+python aggregate_baseline.py --output verify/baseline-report.json
+python test_aggregate_baseline.py
+```
+
+aggregate는 canonical 60-cell index만 입력으로 사용한다. 전체 성공률은 `35/60 = 58.33%`이며 Spatial `65%`, Object `60%`, Goal `50%`다. timeout 누락, 같은 run key의 retry success 덮어쓰기와 infrastructure error의 policy failure relabel은 거부한다.
+
 ## Sources
 
 - [LIBERO repository at the frozen revision](https://github.com/Lifelong-Robot-Learning/LIBERO/tree/8f1084e3132a39270c3a13ebe37270a43ece2a01) (접근일: 2026-07-21)

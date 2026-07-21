@@ -25,3 +25,4 @@
 | 21 | [20260721-gen2-resumable-run-ledger](20260721-gen2-resumable-run-ledger/README.md) | 2026-07-21 | append-only attempt, explicit retry와 sealed artifact 승격 gate | 5/5 | completed |
 | 22 | [20260721-gen2-canonical-episode-export](20260721-gen2-canonical-episode-export/README.md) | 2026-07-21 | LAB1/LAB2 evidence를 GEN2 run key의 sealed episode로 승격 | 5/5 | completed |
 | 23 | [20260721-gen2-sixty-cell-execution](20260721-gen2-sixty-cell-execution/README.md) | 2026-07-21 | RTX 5090에서 OpenVLA 60 cell 실행·seal·전수 hash 검증 | 6/6 | completed |
+| 24 | [20260721-gen2-baseline-aggregate-gate](20260721-gen2-baseline-aggregate-gate/README.md) | 2026-07-21 | 60-cell outcome·frames·latency 재계산과 raw trace gate | 6/6 | completed |
