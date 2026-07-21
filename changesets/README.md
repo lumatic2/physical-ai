@@ -18,3 +18,4 @@
 | 14 | [20260721-lab3-public-reviewer-gate](20260721-lab3-public-reviewer-gate/README.md) | 2026-07-21 | human visual gate, production route와 live evidence | 4/4 | completed |
 | 15 | [20260721-gen1-suite-task-slice](20260721-gen1-suite-task-slice/README.md) | 2026-07-21 | LIBERO 3 suite × 4 task의 revision·language·BDDL hash 고정 | 5/5 | completed |
 | 16 | [20260721-gen1-initial-state-contract](20260721-gen1-initial-state-contract/README.md) | 2026-07-21 | task별 5개 initial-state tensor와 반복 reset fingerprint 고정 | 5/5 | completed |
+| 17 | [20260721-gen1-policy-compatibility-registry](20260721-gen1-policy-compatibility-registry/README.md) | 2026-07-21 | OpenVLA/π0.5의 exact artifact와 camera/state/action 차이 고정 | 5/5 | completed |

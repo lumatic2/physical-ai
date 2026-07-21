@@ -1,0 +1,28 @@
+{
+  "schema_version": "gcs-checkpoint-metadata-snapshot-v1",
+  "captured_at": "2026-07-21",
+  "bucket": "openpi-assets",
+  "prefix": "checkpoints/pi05_libero/",
+  "source_url": "https://storage.googleapis.com/storage/v1/b/openpi-assets/o?prefix=checkpoints/pi05_libero/",
+  "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+  "object_count": 16,
+  "total_bytes": 12439085481,
+  "objects": [
+    {"name":"checkpoints/pi05_libero/assets/physical-intelligence/libero/norm_stats.json","generation":"1757354341826612","size":"1914","crc32c":"l595yA==","md5Hash":"A9ECp3wKo0Ovv3VpyXu8ug=="},
+    {"name":"checkpoints/pi05_libero/params/_METADATA","generation":"1757354341847223","size":"23493","crc32c":"Pv6Rvg==","md5Hash":"h87nNUGOGM+SlQTXZuiH5w=="},
+    {"name":"checkpoints/pi05_libero/params/_sharding","generation":"1757354341829429","size":"17952","crc32c":"LEfJOw==","md5Hash":"uQbKjd0yzEAsRluwGbXx7g=="},
+    {"name":"checkpoints/pi05_libero/params/array_metadatas/process_0","generation":"1757354341837422","size":"9062","crc32c":"PlgOXQ==","md5Hash":"6L3QQHzl7m1hSqp/D9Ilrw=="},
+    {"name":"checkpoints/pi05_libero/params/d/98a77a52a8eb845ae4830eb7fe983979","generation":"1757354341898666","size":"42307","crc32c":"SGdLxw==","md5Hash":"yR0NA7yotjSH8i6fOWmjEQ=="},
+    {"name":"checkpoints/pi05_libero/params/manifest.ocdbt","generation":"1757354341840925","size":"120","crc32c":"SGdLxw==","md5Hash":"ScBVzgi9/ARq6oxG/2fzaw=="},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/0eaaecefaa9720d30a32cc56e65fd345","generation":"1757354342041664","size":"2449323387","crc32c":"RnXVZg==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/155391c1cbf93a1be16266de052e5b48","generation":"1757354341926731","size":"2307885530","crc32c":"Zdn1CA==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/2b6985f48e9da86f68627a7608c5bc25","generation":"1757354341840735","size":"1077","crc32c":"SGdLxw==","md5Hash":"9FWQ08KGmJK/8T7dQ0vkQg=="},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/475fab3ee8821662585a8cde3eb32e22","generation":"1757354341938583","size":"2150232827","crc32c":"yuEuTQ==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/6c54da5a6f62c20a09c0f3f8c3329e00","generation":"1757354341906218","size":"1608436908","crc32c":"gpmyhg==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/896bf93c5cf2e8ddd274a6ea0a2feec0","generation":"1757354341915025","size":"2240080987","crc32c":"4+0XtA==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/bc613ff288a162563e622d01bb60622a","generation":"1757354341886074","size":"217","crc32c":"SGdLxw==","md5Hash":"wenKw3gyf+/fW/vslaBp7Q=="},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/bda87d9791f23df771cd2d15293780cc","generation":"1757354341848154","size":"2926522","crc32c":"Ibt0iQ==","md5Hash":"vYZMwVn2STx4dPZljLmW3Q=="},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/d/efbb46173882cb35ed41ffe0c2db8a5e","generation":"1757354341921326","size":"1680102856","crc32c":"nhZ3lQ==","md5Hash":null},
+    {"name":"checkpoints/pi05_libero/params/ocdbt.process_0/manifest.ocdbt","generation":"1757354341843968","size":"322","crc32c":"SGdLxw==","md5Hash":"+aR0apS1rB7YibqQ1VVA7w=="}
+  ]
+}

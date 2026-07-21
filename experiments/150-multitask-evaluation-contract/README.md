@@ -33,6 +33,14 @@ python verify_initial_states.py --libero-root "$HOME/LIBERO" --probe-resets \
   --output verify/canonical/initial-state-report.json
 ```
 
+## 정책 호환성 registry
+
+`policy-registry.json`은 OpenVLA와 π0.5의 입력이 같다고 가장하지 않는다. OpenVLA는 main camera+instruction만 사용하고, π0.5는 main+wrist camera, 8D state와 prompt를 사용한다. 두 정책 모두 LIBERO에 실행되는 7D action으로 수렴하지만 OpenVLA는 단일 action, π0.5는 action chunk를 생성한다.
+
+- OpenVLA checkpoint: [Spatial](https://huggingface.co/openvla/openvla-7b-finetuned-libero-spatial/tree/962318cec55ac10993ff0f5f43eda9a270b4c873), [Object](https://huggingface.co/openvla/openvla-7b-finetuned-libero-object/tree/287d6cfdf12d07b1449505f66d9bf3550257e9b3), [Goal](https://huggingface.co/openvla/openvla-7b-finetuned-libero-goal/tree/fa5ae1e7509348889295bba8e08621d8b55e9baf) (접근일: 2026-07-21).
+- π0.5 source/adapter: [openpi commit](https://github.com/Physical-Intelligence/openpi/tree/15a9616a00943ada6c20a0f158e3adb39df2ccac), [LIBERO policy](https://github.com/Physical-Intelligence/openpi/blob/15a9616a00943ada6c20a0f158e3adb39df2ccac/src/openpi/policies/libero_policy.py), [official evaluator](https://github.com/Physical-Intelligence/openpi/blob/15a9616a00943ada6c20a0f158e3adb39df2ccac/examples/libero/main.py) (접근일: 2026-07-21).
+- π0.5 checkpoint metadata: [public GCS listing](https://storage.googleapis.com/storage/v1/b/openpi-assets/o?prefix=checkpoints/pi05_libero/) (접근일: 2026-07-21).
+
 ## 범위 경계
 
-이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state를 고정한다. policy compatibility는 GEN1 step-3에서 추가한다.
+이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state와 두 policy의 호환성 선언을 고정한다. 실제 rollout 성공률은 아직 주장하지 않는다.

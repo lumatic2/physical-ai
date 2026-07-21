@@ -180,9 +180,9 @@
       "milestone_id": "GEN1",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen1-multitask-evaluation-contract.md",
-      "changeset_path": "changesets/20260721-gen1-policy-compatibility-registry",
-      "next_step": "step-3",
-      "current_step": "step-3",
+      "changeset_path": "changesets/20260721-gen1-multitask-result-contract",
+      "next_step": "step-4",
+      "current_step": "step-4",
       "steps": [
         {
           "id": "step-1",
@@ -197,7 +197,7 @@
         {
           "id": "step-3",
           "label": "step-3 — policy-compatibility-registry",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-4",

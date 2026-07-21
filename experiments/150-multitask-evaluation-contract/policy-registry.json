@@ -1,0 +1,125 @@
+{
+  "schema_version": "physical-ai-policy-compatibility-v1",
+  "frozen_at": "2026-07-21",
+  "environment": {
+    "name": "LIBERO",
+    "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+  },
+  "common_result_contract": {
+    "action_semantics": ["delta_x", "delta_y", "delta_z", "delta_roll", "delta_pitch", "delta_yaw", "gripper"],
+    "executed_action_dim": 7,
+    "camera_roles": ["main", "wrist"],
+    "terminal_fields": ["success", "timeout", "error", "excluded"],
+    "episode_evidence_required": true
+  },
+  "policies": [
+    {
+      "policy_id": "openvla-libero",
+      "family": "OpenVLA",
+      "implementation": {
+        "repository_url": "https://github.com/openvla/openvla",
+        "local_client": "experiments/01-vla-local-eval/client.py",
+        "local_client_sha256": "758922440ff20df41332afc1a5992c47e8a1fb7a2c3e0e16b9e9599735ec2635",
+        "local_server": "experiments/01-vla-local-eval/server.py",
+        "local_server_sha256": "21128f1ea3c79f0dcc2d9466e7fea300f9808093490a4de78cc29464c96c1bf3"
+      },
+      "suite_checkpoints": {
+        "libero_spatial": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-spatial",
+          "revision": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+          "status": "declared_compatible"
+        },
+        "libero_object": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-object",
+          "revision": "287d6cfdf12d07b1449505f66d9bf3550257e9b3",
+          "status": "declared_compatible"
+        },
+        "libero_goal": {
+          "repo_id": "openvla/openvla-7b-finetuned-libero-goal",
+          "revision": "fa5ae1e7509348889295bba8e08621d8b55e9baf",
+          "status": "declared_compatible"
+        }
+      },
+      "inputs": {
+        "instruction": {"model_input": true},
+        "main_camera": {
+          "source_key": "agentview_image",
+          "model_input": true,
+          "preprocess_owner": "AutoProcessor"
+        },
+        "wrist_camera": {
+          "source_key": "robot0_eye_in_hand_image",
+          "model_input": false,
+          "use": "observer_recording_only"
+        },
+        "robot_state": {"model_input": false, "recorded_dim": 8}
+      },
+      "outputs": {
+        "kind": "single_action",
+        "raw_action_dim": 7,
+        "executed_action_dim": 7,
+        "delta_dimensions": 6,
+        "gripper_transform": "normalize_0_1_to_sign_then_invert_for_LIBERO"
+      },
+      "observed_cells": ["libero_spatial/task-05/state-00", "libero_spatial/task-05/state-01"],
+      "probe_gate": "All other selected cells require GEN2 execution evidence before result claims."
+    },
+    {
+      "policy_id": "pi05-libero",
+      "family": "pi0.5",
+      "implementation": {
+        "repository_url": "https://github.com/Physical-Intelligence/openpi",
+        "revision": "15a9616a00943ada6c20a0f158e3adb39df2ccac",
+        "source_hashes": {
+          "src/openpi/policies/libero_policy.py": "f07eec520b07835c122cf2d08bc8d5f9f1430cff8ef82203293871b330405c3e",
+          "src/openpi/training/config.py": "eca2804c7be88c3097f6d5ac63109c30ad5a968b11d0468a96b7f5fadfc39a2a",
+          "examples/libero/main.py": "171a68c2b7b3092a79822322de247516c107d83084e163a652e4723e59f4e8f8",
+          "scripts/serve_policy.py": "6eebd13b3eed06676b5c3c002da28e6c6c6982aaef6bf890d882887922d6373a"
+        }
+      },
+      "checkpoint": {
+        "config": "pi05_libero",
+        "uri": "gs://openpi-assets/checkpoints/pi05_libero",
+        "metadata_file": "pi05-checkpoint-metadata.json",
+        "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b",
+        "object_count": 16,
+        "total_bytes": 12439085481
+      },
+      "suite_coverage": {
+        "libero_spatial": {"status": "declared_compatible"},
+        "libero_object": {"status": "declared_compatible"},
+        "libero_goal": {"status": "declared_compatible"}
+      },
+      "inputs": {
+        "instruction": {"source_key": "prompt", "model_input": true},
+        "main_camera": {
+          "source_key": "agentview_image",
+          "model_input": true,
+          "transform": "rotate_180_then_resize_with_pad_224"
+        },
+        "wrist_camera": {
+          "source_key": "robot0_eye_in_hand_image",
+          "model_input": true,
+          "transform": "rotate_180_then_resize_with_pad_224"
+        },
+        "robot_state": {
+          "model_input": true,
+          "dim": 8,
+          "fields": ["eef_position_3", "eef_quaternion_axis_angle_3", "gripper_qpos_2"]
+        }
+      },
+      "outputs": {
+        "kind": "action_chunk",
+        "model_action_dim": 32,
+        "action_horizon": 10,
+        "exposed_action_dim": 7,
+        "replan_steps": 5,
+        "delta_dimensions": 6,
+        "gripper_transform": "LIBERO_dataset_absolute_gripper_no_extra_delta_transform"
+      },
+      "observed_cells": [],
+      "probe_gate": "GEN3 step-1 must load this exact snapshot and record a finite 7D action before rollout."
+    }
+  ],
+  "claim_boundary": "The registry verifies declared input/output compatibility and exact artifact references. It does not claim unobserved task success or equal model inputs."
+}

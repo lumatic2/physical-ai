@@ -1,0 +1,164 @@
+{
+  "schema_version": "physical-ai-policy-registry-verification-v1",
+  "pass": true,
+  "registry": "policy-registry.json",
+  "registry_sha256": "79203084064f0ad6442f458eed69fb28a9b60df9a7aac680c5000124aeb7736f",
+  "policy_count": 2,
+  "task_policy_pair_count": 24,
+  "declared_compatible_count": 24,
+  "excluded_count": 0,
+  "openpi_source_verified": true,
+  "live_checkpoint_metadata": {
+    "object_count": 16,
+    "total_bytes": 12439085481,
+    "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b"
+  },
+  "matrix": [
+    {
+      "task_key": "libero_spatial/task-00",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_spatial/task-00",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "observed_local"
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "observed_local"
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "policy_id": "openvla-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "policy_id": "pi05-libero",
+      "status": "declared_compatible",
+      "evidence_level": "official_declared_unprobed"
+    }
+  ],
+  "errors": [],
+  "claim_boundary": "Static compatibility and artifact identity only; unprobed cells have no success claim."
+}

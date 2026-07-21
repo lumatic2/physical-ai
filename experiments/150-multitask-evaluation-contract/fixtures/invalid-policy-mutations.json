@@ -1,0 +1,23 @@
+[
+  {
+    "id": "openvla-action-dimension",
+    "policy_id": "openvla-libero",
+    "path": ["outputs", "executed_action_dim"],
+    "value": 8,
+    "expected_error": "OpenVLA action dimension mismatch"
+  },
+  {
+    "id": "openvla-wrist-relabel",
+    "policy_id": "openvla-libero",
+    "path": ["inputs", "wrist_camera", "model_input"],
+    "value": true,
+    "expected_error": "OpenVLA wrist camera must remain observer-only"
+  },
+  {
+    "id": "checkpoint-suite-mismatch",
+    "policy_id": "openvla-libero",
+    "path": ["suite_checkpoints", "libero_object", "revision"],
+    "value": "962318cec55ac10993ff0f5f43eda9a270b4c873",
+    "expected_error": "OpenVLA checkpoint suite mismatch"
+  }
+]
