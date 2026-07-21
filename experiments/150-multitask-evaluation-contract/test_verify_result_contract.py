@@ -17,7 +17,7 @@ from verify_result_contract import (
     validate_denominator,
     validate_result_index,
 )
-from verify_task_slice import load_json, sha256_file
+from verify_task_slice import load_json, sha256_repo_text_file
 
 
 BASE = Path(__file__).resolve().parent
@@ -33,9 +33,9 @@ class ResultContractTest(unittest.TestCase):
         cls.schema = load_json(BASE / "schemas" / "multitask-run-v1.json")
         cls.specs = load_json(BASE / "fixtures" / "result-case-specs.json")
         cls.sources = {
-            "benchmark_manifest": sha256_file(BASE / "benchmark-manifest.json"),
-            "initial_states": sha256_file(BASE / "initial-states.json"),
-            "policy_registry": sha256_file(BASE / "policy-registry.json"),
+            "benchmark_manifest": sha256_repo_text_file(BASE / "benchmark-manifest.json"),
+            "initial_states": sha256_repo_text_file(BASE / "initial-states.json"),
+            "policy_registry": sha256_repo_text_file(BASE / "policy-registry.json"),
         }
         results = [
             make_result(cls.denominator["runs"][case["denominator_index"]], case)

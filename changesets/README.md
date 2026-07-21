@@ -20,3 +20,4 @@
 | 16 | [20260721-gen1-initial-state-contract](20260721-gen1-initial-state-contract/README.md) | 2026-07-21 | task별 5개 initial-state tensor와 반복 reset fingerprint 고정 | 5/5 | completed |
 | 17 | [20260721-gen1-policy-compatibility-registry](20260721-gen1-policy-compatibility-registry/README.md) | 2026-07-21 | OpenVLA/π0.5의 exact artifact와 camera/state/action 차이 고정 | 5/5 | completed |
 | 18 | [20260721-gen1-multitask-result-contract](20260721-gen1-multitask-result-contract/README.md) | 2026-07-21 | 120개 immutable run key와 terminal result evidence schema 고정 | 5/5 | completed |
+| 19 | [20260721-gen1-clean-contract-gate](20260721-gen1-clean-contract-gate/README.md) | 2026-07-21 | 12×5×2 평가 계약의 통합·변이·clean checkout gate | 5/5 | completed |

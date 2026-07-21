@@ -14,7 +14,7 @@ from typing import Any
 from jsonschema import Draft202012Validator
 
 from verify_policy_registry import policy_by_id
-from verify_task_slice import EXPECTED_REVISION, load_json, sha256_file
+from verify_task_slice import EXPECTED_REVISION, load_json, sha256_repo_text_file
 
 
 DENOMINATOR_VERSION = "physical-ai-run-denominator-v1"
@@ -225,9 +225,9 @@ def main() -> int:
     registry = load_json(args.registry)
     schema = load_json(args.schema)
     sources = {
-        "benchmark_manifest": sha256_file(args.manifest),
-        "initial_states": sha256_file(args.initial_states),
-        "policy_registry": sha256_file(args.registry),
+        "benchmark_manifest": sha256_repo_text_file(args.manifest),
+        "initial_states": sha256_repo_text_file(args.initial_states),
+        "policy_registry": sha256_repo_text_file(args.registry),
     }
     if args.write_denominator:
         denominator = build_denominator(manifest, states, registry, sources)
@@ -257,7 +257,7 @@ def main() -> int:
         "schema_version": "physical-ai-result-contract-verification-v1",
         "pass": not errors,
         "denominator": args.denominator.name,
-        "denominator_sha256": sha256_file(args.denominator),
+        "denominator_sha256": sha256_repo_text_file(args.denominator),
         "planned_run_count": len(denominator["runs"]),
         "unique_run_key_count": len({run["run_key"] for run in denominator["runs"]}),
         "terminal_statuses_tested": [case["status"] for case in case_specs["valid_cases"]],

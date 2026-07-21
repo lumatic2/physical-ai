@@ -1,0 +1,71 @@
+{
+  "schema_version": "physical-ai-gen1-contract-gate-v1",
+  "pass": true,
+  "task_count": 12,
+  "state_count_per_task": 5,
+  "policy_count": 2,
+  "planned_cell_count": 120,
+  "subgates": {
+    "official_libero": {
+      "git_head": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+      "task_map_sha256": "dc644c34987f6e0e4dc5320e5168cd2ee170cb8520f6a9344d2cd6d50f2c55fc",
+      "verified_bddl": 12
+    },
+    "task_slice": {
+      "pass": true,
+      "task_count": 12
+    },
+    "initial_states": {
+      "pass": true,
+      "selected_state_count": 60
+    },
+    "live_pi05_checkpoint": {
+      "object_count": 16,
+      "total_bytes": 12439085481,
+      "snapshot_sha256": "11e0f560ebc9ca0f65d26241dd08e2ac07c22ee91455f1789afc2fc5c0378d7b"
+    },
+    "policy_registry": {
+      "pass": true,
+      "pair_count": 24
+    },
+    "denominator": {
+      "pass": true,
+      "planned": 120,
+      "unique": 120
+    },
+    "canonical_evidence": {
+      "pass": true,
+      "reports": {
+        "task-slice-report.json": {
+          "pass": true,
+          "manifest_sha256": "cdeaa8c752307f4074cde9322e6bfafce69e1fd6f9015ba8d9f9a5f903567700"
+        },
+        "initial-state-report.json": {
+          "pass": true,
+          "contract_sha256": "2740c37972839c03c658985bbc68a5242000d1bf39c1dc459c5940ea1a7fbb7c"
+        },
+        "policy-registry-report.json": {
+          "pass": true,
+          "registry_sha256": "79203084064f0ad6442f458eed69fb28a9b60df9a7aac680c5000124aeb7736f"
+        },
+        "result-contract-report.json": {
+          "pass": true,
+          "denominator_sha256": "f82684878c286fb0f2492df15ac4d72f129d6319d138ca7f18bf153b4a1f0bd0"
+        }
+      }
+    },
+    "path_secret_scrub": {
+      "pass": true
+    },
+    "negative_fixtures": {
+      "pass": true,
+      "rejected": [
+        "deleted-cell",
+        "duplicated-cell",
+        "environment-revision-drift"
+      ]
+    }
+  },
+  "errors": [],
+  "claim_boundary": "GEN1 freezes evaluation identities and evidence requirements; it contains no policy performance result."
+}

@@ -1,0 +1,5 @@
+[
+  {"id": "deleted-cell", "operation": "delete-first", "expected_error": "exactly 120 planned runs"},
+  {"id": "duplicated-cell", "operation": "duplicate-first", "expected_error": "exactly 120 planned runs"},
+  {"id": "environment-revision-drift", "operation": "replace-environment-revision", "value": "0000000000000000000000000000000000000000", "expected_error": "does not match regenerated canonical contract"}
+]

@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-from verify_task_slice import EXPECTED_REVISION, SHA256_RE, load_json, sha256_file
+from verify_task_slice import EXPECTED_REVISION, SHA256_RE, load_json, sha256_file, sha256_repo_text_file
 
 
 SCHEMA_VERSION = "physical-ai-policy-compatibility-v1"
@@ -92,7 +92,7 @@ def validate_registry(
     for file_field, hash_field in (("local_client", "local_client_sha256"), ("local_server", "local_server_sha256")):
         path = repo_root / str(implementation.get(file_field, ""))
         expected_hash = implementation.get(hash_field)
-        if not path.is_file() or not SHA256_RE.fullmatch(str(expected_hash or "")) or sha256_file(path) != expected_hash:
+        if not path.is_file() or not SHA256_RE.fullmatch(str(expected_hash or "")) or sha256_repo_text_file(path) != expected_hash:
             errors.append(f"OpenVLA {file_field} source hash mismatch")
     checkpoints = openvla.get("suite_checkpoints", {})
     for suite, (repo_id, revision) in OPENVLA_CHECKPOINTS.items():
@@ -256,7 +256,7 @@ def main() -> int:
         "schema_version": "physical-ai-policy-registry-verification-v1",
         "pass": not errors,
         "registry": args.registry.name,
-        "registry_sha256": sha256_file(args.registry),
+        "registry_sha256": sha256_repo_text_file(args.registry),
         "policy_count": len(registry.get("policies", [])),
         "task_policy_pair_count": len(matrix),
         "declared_compatible_count": sum(pair["status"] == "declared_compatible" for pair in matrix),

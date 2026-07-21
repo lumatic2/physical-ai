@@ -29,6 +29,11 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_repo_text_file(path: Path) -> str:
+    """Hash tracked text as Git-normalized LF bytes on every platform."""
+    return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+
+
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -197,7 +202,7 @@ def build_report(
         "schema_version": "physical-ai-task-slice-verification-v1",
         "pass": not errors,
         "manifest": manifest_path.name,
-        "manifest_sha256": sha256_file(manifest_path),
+        "manifest_sha256": sha256_repo_text_file(manifest_path),
         "revision": manifest.get("environment", {}).get("revision"),
         "task_count": len(manifest.get("tasks", [])),
         "suite_counts": dict(sorted(counts.items())),

@@ -181,8 +181,8 @@
       "status": "active",
       "plan_path": "plans/2026-07-21-gen1-multitask-evaluation-contract.md",
       "changeset_path": "changesets/20260721-gen1-clean-contract-gate",
-      "next_step": "step-5",
-      "current_step": "step-5",
+      "next_step": null,
+      "current_step": null,
       "steps": [
         {
           "id": "step-1",
@@ -207,7 +207,7 @@
         {
           "id": "step-5",
           "label": "step-5 — clean-contract-gate",
-          "status": "pending"
+          "status": "completed"
         }
       ],
       "execution_mode": "continuous",

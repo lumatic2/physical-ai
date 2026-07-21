@@ -13,7 +13,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from verify_task_slice import EXPECTED_REVISION, SHA256_RE, load_json, sha256_file
+from verify_task_slice import EXPECTED_REVISION, SHA256_RE, load_json, sha256_file, sha256_repo_text_file
 
 
 SCHEMA_VERSION = "physical-ai-initial-state-contract-v1"
@@ -293,7 +293,7 @@ def main() -> int:
         "schema_version": REPORT_VERSION,
         "pass": not errors,
         "contract": args.contract.name,
-        "contract_sha256": sha256_file(args.contract),
+        "contract_sha256": sha256_repo_text_file(args.contract),
         "revision": contract.get("environment", {}).get("revision"),
         "task_count": len(contract.get("tasks", [])),
         "selected_state_count": sum(len(task.get("selected_states", [])) for task in contract.get("tasks", [])),

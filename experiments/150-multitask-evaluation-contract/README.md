@@ -57,3 +57,18 @@ python test_verify_result_contract.py
 ## 범위 경계
 
 이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state, 두 policy의 호환성 선언과 120개 실행·결과 identity를 고정한다. 실제 rollout 성공률은 아직 주장하지 않는다.
+
+## GEN1 통합 gate
+
+`verify_contract.py`는 task slice, initial state, policy registry, 120-cell denominator와 네 canonical report를 하나의 gate로 묶는다. cell 삭제·중복·environment revision drift를 주입한 fixture는 모두 거부해야 한다.
+
+```powershell
+python test_verify_contract.py
+python verify_contract.py `
+  --libero-root C:/path/to/LIBERO-at-8f1084e `
+  --openpi-root C:/path/to/openpi-at-15a9616 `
+  --verify-live-gcs `
+  --output verify/canonical/gen1-contract-report.json
+```
+
+공식 원본은 [LIBERO commit](https://github.com/Lifelong-Robot-Learning/LIBERO/tree/8f1084e3132a39270c3a13ebe37270a43ece2a01), [openpi commit](https://github.com/Physical-Intelligence/openpi/tree/15a9616a00943ada6c20a0f158e3adb39df2ccac), [π0.5 LIBERO checkpoint listing](https://storage.googleapis.com/storage/v1/b/openpi-assets/o?prefix=checkpoints/pi05_libero/)을 대조한다(접근일: 2026-07-21).
