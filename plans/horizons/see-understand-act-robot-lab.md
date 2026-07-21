@@ -1,6 +1,6 @@
 # HORIZON — 보고 판단하고 움직이는 로봇팔 실험실
 
-> 생성: 2026-07-20 · ROADMAP marker: `harness:goal id="see-understand-act-robot-lab"` · 상태: active
+> 생성: 2026-07-20 · 완료: 2026-07-21 · ROADMAP marker: `harness:goal id="see-understand-act-robot-lab"` · 상태: completed
 > 위계: Objective(`OBJECTIVE.md`) → **Horizon**(이 문서) → Milestone(`plans/2026-07-21-lab*-*.md`) → Step.
 > 진행 상태의 정본은 `ROADMAP.md` marker다.
 
@@ -40,7 +40,11 @@
 
 ## Objective 임팩트
 
-- close 시 기록: 관찰 가능한 피지컬 AI 실험실이 Objective의 성공 모습과 움직이는 축을 얼마나 충족했는지 선언/실측으로 대조한다.
+- **이해에서 실증으로:** 실제 OpenVLA와 Qwen3-VL/LIBERO 실행을 camera·state·action·outcome과 source-tagged event로 고정해 단일 과제의 판단·행동을 재현 가능한 증거로 만들었다.
+- **데모에서 실험 플랫폼으로:** `https://robotics.askewly.com/arm-lab`에서 dual-camera, playback, causal timeline, raw evidence를 직접 검토하는 공개 제품 표면을 만들었다(접근·live QA 2026-07-21).
+- **시뮬레이션에서 실물로:** recorded simulation과 real telemetry의 경계는 강화했지만 실물 축 자체는 움직이지 않았다. 다음 실물 Horizon까지 이 한계를 유지한다.
+- **분량 대조:** 구 선언은 최소 3 무감독 세션이었고 실측은 LAB1~LAB3 합계 12 changeset·6 session token이다. 선언 단위와 현행 changeset 단위가 달라 직접 판정은 불가하며, 다음 Horizon부터 bottom-up 합산한 ≥25 changeset을 사용한다.
+- **닫는 기준 판정:** LAB1 canonical episode, LAB2 provenance event, LAB3 public reviewer gate와 claim-boundary negative smoke가 모두 PASS해 Horizon을 완료한다.
 
 ## 링크
 
