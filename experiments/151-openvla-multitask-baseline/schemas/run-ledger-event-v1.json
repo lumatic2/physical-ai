@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://askewly.com/schemas/physical-ai/run-ledger-event-v1.json",
+  "title": "GEN2 append-only run ledger event",
+  "type": "object",
+  "required": ["schema_version", "event", "recorded_at"],
+  "properties": {
+    "schema_version": {"const": "physical-ai-run-ledger-event-v1"},
+    "event": {"enum": ["ledger_initialized", "attempt_started", "attempt_interrupted", "attempt_terminal"]},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "run_key": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "pattern": "^[0-9a-f]{32}$"},
+    "attempt_index": {"type": "integer", "minimum": 0},
+    "retry_of": {"type": ["string", "null"], "pattern": "^[0-9a-f]{32}$"},
+    "reason": {"type": "string", "minLength": 1},
+    "result_class": {"enum": ["policy", "infrastructure"]},
+    "result_status": {"enum": ["success", "timeout", "error"]},
+    "artifact": {
+      "type": "object",
+      "required": ["status", "ref", "sha256"],
+      "properties": {
+        "status": {"enum": ["partial", "sealed"]},
+        "ref": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "error_ref": {"type": "string", "minLength": 1},
+    "contract": {
+      "type": "object",
+      "required": ["policy_id", "cell_count", "ordered_run_keys_sha256"],
+      "properties": {
+        "policy_id": {"const": "openvla-libero"},
+        "cell_count": {"type": "integer", "minimum": 1},
+        "ordered_run_keys_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"event": {"const": "ledger_initialized"}}},
+      "then": {"required": ["contract"]}
+    },
+    {
+      "if": {"properties": {"event": {"const": "attempt_started"}}},
+      "then": {"required": ["run_key", "attempt_id", "attempt_index", "retry_of"]}
+    },
+    {
+      "if": {"properties": {"event": {"const": "attempt_interrupted"}}},
+      "then": {"required": ["run_key", "attempt_id", "reason"]}
+    },
+    {
+      "if": {"properties": {"event": {"const": "attempt_terminal"}}},
+      "then": {"required": ["run_key", "attempt_id", "result_class", "result_status"]}
+    }
+  ]
+}

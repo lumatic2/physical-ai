@@ -241,9 +241,9 @@
       "milestone_id": "GEN2",
       "status": "active",
       "plan_path": "plans/2026-07-21-gen2-openvla-multitask-baseline.md",
-      "changeset_path": "changesets/20260721-gen2-resumable-run-ledger",
-      "next_step": "step-2",
-      "current_step": "step-2",
+      "changeset_path": "changesets/20260721-gen2-canonical-episode-export",
+      "next_step": "step-3",
+      "current_step": "step-3",
       "steps": [
         {
           "id": "step-1",
@@ -253,7 +253,7 @@
         {
           "id": "step-2",
           "label": "step-2 — resumable-run-ledger",
-          "status": "pending"
+          "status": "completed"
         },
         {
           "id": "step-3",

@@ -19,10 +19,20 @@ Ubuntu WSL의 검증된 LIBERO/OpenVLA 환경에서 exact run key 또는 task/st
 ```bash
 export PYTHONPATH="$HOME/LIBERO"
 export MUJOCO_GL=egl
-python run_baseline.py --suite libero_spatial --task-id 0 --state-index 0 --execute
+python run_baseline.py --suite libero_spatial --task-id 0 --state-index 0 \
+  --ledger /tmp/openvla-baseline.jsonl --execute
 ```
 
-실제 실행은 기존 `experiments/01-vla-local-eval/run.py`의 server/client 프로세스 분리를 재사용한다. 결과 ledger와 canonical episode 저장은 GEN2 step-2와 step-3에서 연결한다.
+실제 실행은 append-only ledger 없이는 시작되지 않으며 기존 `experiments/01-vla-local-eval/run.py`의 server/client 프로세스 분리를 재사용한다. inference가 끝나도 step-3의 sealed canonical episode가 연결되기 전까지 attempt는 완료로 승격되지 않는다.
+
+## 중단·재개 ledger
+
+`run_ledger.py`는 각 event를 한 JSON line으로 append하고 `fsync`한다. valid policy result가 있는 cell은 `--resume`에서 건너뛰고, 중단된 active attempt는 `attempt_interrupted`를 먼저 기록한 뒤 `retry_of`로 연결한다. infrastructure error는 별도 집계해 retry할 수 있지만 success/timeout 뒤의 숨은 retry, 중복 terminal, partial artifact 승격은 거부한다.
+
+```bash
+python run_baseline.py --ledger /tmp/openvla-baseline.jsonl --resume
+python verify_run_ledger.py
+```
 
 ## Sources
 

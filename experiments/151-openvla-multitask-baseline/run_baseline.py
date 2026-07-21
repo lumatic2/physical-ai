@@ -259,6 +259,8 @@ def main() -> int:
     parser.add_argument("--python", default=sys.executable)
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--ledger", type=Path, help="append-only run ledger path")
+    parser.add_argument("--resume", action="store_true", help="ledger에서 valid 완료 cell을 건너뛴다")
     parser.add_argument("--json", action="store_true", help="dry-run report를 JSON으로 출력")
     parser.add_argument("--output", type=Path, help="dry-run JSON report 저장 경로")
     args = parser.parse_args()
@@ -271,16 +273,40 @@ def main() -> int:
             task_id=args.task_id,
             state_index=args.state_index,
         )
+        ledger = None
+        if args.resume and not args.ledger:
+            raise RunnerContractError("--resume requires --ledger")
+        if args.ledger:
+            from run_ledger import RunLedger
+
+            ledger = RunLedger(args.ledger, [cell["run_key"] for cell in contract["cells"]])
+            ledger.initialize()
+            if args.resume:
+                pending = set(ledger.pending_run_keys())
+                selected = [cell for cell in selected if cell["run_key"] in pending]
         report = dry_run_report(contract, selected, args.python, args.port)
     except (OSError, KeyError, TypeError, RunnerContractError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
     if args.execute:
         if len(selected) != 1:
             parser.error("--execute requires exactly one frozen cell selector")
+        if ledger is None:
+            parser.error("--execute requires --ledger so attempts cannot be hidden")
         if os.environ.get("MUJOCO_GL") != "egl":
             parser.error("--execute requires MUJOCO_GL=egl")
+        attempt = ledger.begin_attempt(selected[0]["run_key"], recover_active=args.resume)
         command = execution_command(selected[0], contract, args.python, args.port)
-        return subprocess.run(command, cwd=args.repo_root, env=os.environ).returncode
+        return_code = subprocess.run(command, cwd=args.repo_root, env=os.environ).returncode
+        if return_code:
+            ledger.record_infrastructure_error(
+                selected[0]["run_key"], attempt["attempt_id"], f"runtime/exit-code-{return_code}"
+            )
+        else:
+            print(
+                f"ATTEMPT_AWAITS_SEALED_ARTIFACT attempt_id={attempt['attempt_id']}",
+                file=sys.stderr,
+            )
+        return return_code
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

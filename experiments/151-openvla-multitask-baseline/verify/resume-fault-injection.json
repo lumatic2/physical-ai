@@ -1,0 +1,15 @@
+{
+  "schema_version": "physical-ai-gen2-ledger-fault-injection-v1",
+  "pass": true,
+  "fixture_cell_count": 3,
+  "completed_skipped_before_resume": 1,
+  "partial_retried": true,
+  "completed_after_resume": 2,
+  "remaining_after_resume": 1,
+  "rejected": [
+    "hidden-retry-after-valid-result",
+    "duplicate-completion",
+    "partial-artifact-promotion"
+  ],
+  "claim_boundary": "This is a bounded ledger fault injection; it is not a policy rollout."
+}
