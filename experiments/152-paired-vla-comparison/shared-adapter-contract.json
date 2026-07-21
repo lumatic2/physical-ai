@@ -1,0 +1,56 @@
+{
+  "schema_version": "physical-ai-gen3-shared-policy-adapter-v1",
+  "frozen_at": "2026-07-21",
+  "common_observation": {
+    "captured_fields": ["main_camera", "wrist_camera", "robot_state_8d", "instruction"],
+    "camera_roles": {
+      "main_camera": "agentview_image",
+      "wrist_camera": "robot0_eye_in_hand_image"
+    },
+    "robot_state_fields": ["eef_position_3", "eef_quaternion_axis_angle_3", "gripper_qpos_2"]
+  },
+  "common_result": {
+    "environment_action_semantics": [
+      "delta_x", "delta_y", "delta_z", "delta_roll", "delta_pitch", "delta_yaw", "gripper"
+    ],
+    "executed_action_dim": 7,
+    "timing_fields": ["request_count", "request_total_ms", "request_minimum_ms", "request_maximum_ms"],
+    "terminal_statuses": ["success", "timeout", "error", "excluded"]
+  },
+  "policies": {
+    "openvla-libero": {
+      "model_inputs": ["instruction", "main_camera"],
+      "observer_only": ["wrist_camera", "robot_state_8d"],
+      "input_transforms": ["main_camera:AutoProcessor"],
+      "raw_output": {"kind": "single_action", "shape": [7]},
+      "controller_transforms": [
+        "gripper:normalize_0_1_to_sign",
+        "gripper:invert_for_LIBERO"
+      ],
+      "executed_chunk_shape": [1, 7],
+      "replan_steps": 1
+    },
+    "pi05-libero": {
+      "model_inputs": ["instruction", "main_camera", "wrist_camera", "robot_state_8d"],
+      "observer_only": [],
+      "input_transforms": [
+        "main_camera:rotate_180",
+        "main_camera:resize_with_pad_224",
+        "wrist_camera:rotate_180",
+        "wrist_camera:resize_with_pad_224",
+        "robot_state_8d:pad_to_model_dim_32"
+      ],
+      "raw_output": {"kind": "action_chunk", "shape": [10, 32]},
+      "controller_transforms": ["action:take_first_7_dimensions"],
+      "executed_chunk_shape": [10, 7],
+      "replan_steps": 5
+    }
+  },
+  "fairness_boundary": {
+    "held_constant": ["task", "initial_state", "environment_revision", "seed", "max_steps", "terminal_schema"],
+    "policy_specific_and_exposed": [
+      "checkpoint", "model_inputs", "preprocessing", "action_chunking", "gripper_transform", "request_count"
+    ]
+  },
+  "claim_boundary": "Shared adapter means a common denominator and result envelope, not identical model inputs or transforms."
+}

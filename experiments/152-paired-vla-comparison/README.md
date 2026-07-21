@@ -15,3 +15,11 @@ OPENPI_DATA_HOME=/home/yusun/.cache/openpi-gen3 uv run python \
 ```
 
 검증 경계: 이 probe는 정확한 checkpoint가 한 실제 관측에서 finite 10×7 action chunk를 낸다는 호환성 증거다. rollout 성공률이나 정책 우열 증거가 아니다.
+
+## Step 2: shared adapter parity
+
+`shared-adapter-contract.json`은 두 정책의 공통 캡처·결과 외피와 정책별 model input, 전처리, action chunk, gripper 변환을 함께 고정한다. 공정성은 동일 task/state/environment/result denominator이며 입력을 동일하다고 가장하지 않는다.
+
+```bash
+python experiments/152-paired-vla-comparison/verify_adapter_parity.py
+```

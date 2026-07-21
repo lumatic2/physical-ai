@@ -1,0 +1,101 @@
+{
+  "schema_version": "physical-ai-gen3-adapter-parity-report-v1",
+  "pass": true,
+  "contract_sha256": "9ef2c89502d9ec7baba2c4394b0351214ca09784c72c3a347f7e065c3e589aa5",
+  "environment_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "denominator": {
+    "paired_keys": 60,
+    "runs": 120,
+    "suite_pairs": {
+      "libero_spatial": 20,
+      "libero_object": 20,
+      "libero_goal": 20
+    }
+  },
+  "adapters": [
+    {
+      "policy_id": "openvla-libero",
+      "adapter_revision": "eb1ae763aea5977f0b6b52be912411277c59ac90c9c8158b5485e70e1376c32e",
+      "model_inputs": [
+        "instruction",
+        "main_camera"
+      ],
+      "observer_only": [
+        "robot_state_8d",
+        "wrist_camera"
+      ],
+      "input_transforms": [
+        "main_camera:AutoProcessor"
+      ],
+      "controller_transforms": [
+        "gripper:normalize_0_1_to_sign",
+        "gripper:invert_for_LIBERO"
+      ],
+      "raw_output_shape": [
+        7
+      ],
+      "executed_chunk_shape": [
+        1,
+        7
+      ],
+      "replan_steps": 1
+    },
+    {
+      "policy_id": "pi05-libero",
+      "adapter_revision": "13bafd5d20562ec027e9d3c575b05ee5990ed7ec6def2a56964347ec18b9b037",
+      "model_inputs": [
+        "instruction",
+        "main_camera",
+        "robot_state_8d",
+        "wrist_camera"
+      ],
+      "observer_only": [],
+      "input_transforms": [
+        "main_camera:rotate_180",
+        "main_camera:resize_with_pad_224",
+        "wrist_camera:rotate_180",
+        "wrist_camera:resize_with_pad_224",
+        "robot_state_8d:pad_to_model_dim_32"
+      ],
+      "controller_transforms": [
+        "action:take_first_7_dimensions"
+      ],
+      "raw_output_shape": [
+        10,
+        32
+      ],
+      "executed_chunk_shape": [
+        10,
+        7
+      ],
+      "replan_steps": 5
+    }
+  ],
+  "actual_evidence": {
+    "openvla": {
+      "terminal_rollouts": 60,
+      "report": "../151-openvla-multitask-baseline/verify/baseline-report.json"
+    },
+    "pi05": {
+      "compatibility_probes": 1,
+      "report": "verify/pi05-probe-report.json"
+    }
+  },
+  "held_constant": [
+    "task",
+    "initial_state",
+    "environment_revision",
+    "seed",
+    "max_steps",
+    "terminal_schema"
+  ],
+  "policy_specific_and_exposed": [
+    "checkpoint",
+    "model_inputs",
+    "preprocessing",
+    "action_chunking",
+    "gripper_transform",
+    "request_count"
+  ],
+  "claim_boundary": "Shared adapter means a common denominator and result envelope, not identical model inputs or transforms."
+}
