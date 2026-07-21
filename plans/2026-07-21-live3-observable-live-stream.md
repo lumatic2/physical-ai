@@ -1,6 +1,6 @@
 # PLAN — LIVE3 실시간 관찰 stream
 
-Status: pending current approval — 2026-07-21 계획 보강
+Status: approved — 2026-07-21 사용자 승인; Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 카메라·센서·행동 전 과정을 사람이 관찰한다.

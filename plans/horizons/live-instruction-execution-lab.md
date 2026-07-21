@@ -1,6 +1,6 @@
 # HORIZON — 지시를 바꿔 실행하는 로컬 피지컬 AI 실험실
 
-> 생성: 2026-07-21 · 연쇄: 2/3 · 상태: planning-review
+> 생성: 2026-07-21 · 연쇄: 2/3 · 상태: active-approved
 
 ## 목표
 
@@ -24,11 +24,11 @@
 
 | Milestone | 제목 | plan doc | 승인 | 리서치 입력 |
 |---|---|---|---|---|
-| **LIVE1** | 통합 inference server 계약 | `plans/2026-07-21-live1-unified-policy-server.md` | pending current approval | `research/2026-07-21-live-instruction-execution-lab-policy-server.md` + LAB2 Qwen3-VL evidence |
-| **LIVE2** | 안전한 실험 session 제어 | `plans/2026-07-21-live2-safe-experiment-session.md` | pending current approval | LIVE1 + ADR 0016 |
-| **LIVE3** | 실시간 관찰 stream | `plans/2026-07-21-live3-observable-live-stream.md` | pending current approval | LIVE1/LIVE2 |
-| **LIVE4** | 실행 기록과 replay 승격 | `plans/2026-07-21-live4-session-recording-promotion.md` | pending current approval | LIVE1~LIVE3 |
-| **LIVE5** | 로컬 실행형 실험실과 공개 증명 | `plans/2026-07-21-live5-interactive-local-lab.md` | pending current approval | LIVE1~LIVE4 |
+| **LIVE1** | 통합 inference server 계약 | `plans/2026-07-21-live1-unified-policy-server.md` | approved | `research/2026-07-21-live-instruction-execution-lab-policy-server.md` + LAB2 Qwen3-VL evidence |
+| **LIVE2** | 안전한 실험 session 제어 | `plans/2026-07-21-live2-safe-experiment-session.md` | approved | LIVE1 + ADR 0016 |
+| **LIVE3** | 실시간 관찰 stream | `plans/2026-07-21-live3-observable-live-stream.md` | approved | LIVE1/LIVE2 |
+| **LIVE4** | 실행 기록과 replay 승격 | `plans/2026-07-21-live4-session-recording-promotion.md` | approved | LIVE1~LIVE3 |
+| **LIVE5** | 로컬 실행형 실험실과 공개 증명 | `plans/2026-07-21-live5-interactive-local-lab.md` | approved | LIVE1~LIVE4 |
 
 ## 닫는 기준
 

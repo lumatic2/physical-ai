@@ -44,7 +44,7 @@
 | GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | 완료 |
 | GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | 완료 |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | 완료 |
-| LIVE1 | Unified Inference Server | 세 실행 레인을 공통 localhost 계약과 단일 GPU lease로 제공한다 | `experiments/155-unified-policy-server` | 계획 승인 대기 |
+| LIVE1 | Unified Inference Server | 세 실행 레인을 공통 localhost 계약과 단일 GPU lease로 제공한다 | `experiments/155-unified-policy-server` | 진행 중 |
 | LIVE2 | Safe Experiment Session | 지원 지시와 실행 레인을 안전한 session으로 실행한다 | `experiments/156-safe-experiment-session` | 대기 |
 | LIVE3 | Observable Live Stream | dual-camera와 VLM/VLA/controller event를 실시간 정렬한다 | `experiments/157-observable-live-stream` | 대기 |
 | LIVE4 | Session Recording Promotion | live session을 canonical replay로 승격한다 | `experiments/158-session-recording-promotion` | 대기 |

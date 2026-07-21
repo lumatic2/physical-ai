@@ -1,6 +1,6 @@
 # PLAN — LIVE2 안전한 실험 session 제어
 
-Status: pending current approval — 2026-07-21 계획 보강
+Status: approved — 2026-07-21 사용자 승인; Horizon 전체 연쇄 실행
 
 ## Objective → Horizon → Milestone
 - Objective: 언어 지시를 이해하고 행동을 생성·실행하는 과정을 관찰한다.
