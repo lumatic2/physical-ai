@@ -1,0 +1,796 @@
+{
+  "schema_version": "physical-ai-initial-state-verification-v1",
+  "pass": true,
+  "contract": "initial-states.json",
+  "contract_sha256": "2740c37972839c03c658985bbc68a5242000d1bf39c1dc459c5940ea1a7fbb7c",
+  "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "task_count": 12,
+  "selected_state_count": 60,
+  "reset_probe_count": 60,
+  "reset_repeat_count": 2,
+  "all_repeats_match": true,
+  "cells": [
+    {
+      "task_key": "libero_spatial/task-00",
+      "state_index": 0,
+      "tensor_sha256": "16a1c5b6238e4b073a9e9f32132bf08b1a525e146a38606487f14afb1b4ea962",
+      "reset_fingerprint_sha256": "4de008d8c2be49a2c4d8b1fa6b4bacfe9518792ee7f3434a2301f20167350256",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "5e5e60e69bb3ef031c554a23ce535ad9fe8c4b123440a35f22ac24bbd41441fd",
+        "wrist_camera_sha256": "fa191f65fa41960c8e817dc1e44db2df862d49b05f68b9e6fc512c9546279412",
+        "robot_state_sha256": "954fe0e405ca46a4890a8c5c25c117691cc13b8b8b7be4c1d2ff46ce09251a67",
+        "object_state_sha256": "dde098a116ca786c81060e4daa600349d187f8433a447d757d8571e3e9b8be56"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-00",
+      "state_index": 1,
+      "tensor_sha256": "e4e967882d59a8315d40d01426f6d1aa773c1423da2d64b64a13710bf24ad1b2",
+      "reset_fingerprint_sha256": "873b4df033e3100d1341620a7f80e0080182902a0a0ba76b9b3865d09806ec33",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "dc7c3ed9cf04cc1b4e9ee652e3896f4c18d11d65dfdf53f04fee10a742e0d857",
+        "wrist_camera_sha256": "019de9523475f7b025b2e6d34434075666e200e448e646505c4aeffc82e24d1d",
+        "robot_state_sha256": "2d4118b2968c8861cc080914a4743bcdfcfbcd6d33a46bd9f4adf151b11fc4ee",
+        "object_state_sha256": "db302899d4a4a13205f44e177dcac0174e965f57cd30b16d997f3874de48ee95"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-00",
+      "state_index": 2,
+      "tensor_sha256": "07c6160f56af8b2160204dcede445765b406d2627bba9cf9314991cc15efd219",
+      "reset_fingerprint_sha256": "96b3c28db43f15546216b99319d5b0995030494a2fb34d928b85b2bec262c9cf",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "c59f6fc52bc5c54d809f35434c98639eeb74fba3a286c0681fb50a76966dec09",
+        "wrist_camera_sha256": "960f0482494d54eba16465f236d378e79bdfa67dc7fc51ebe05673a4ebdba5f9",
+        "robot_state_sha256": "18860d3714504c6096b6f63f57777e0a9dd86d36e79011256a4314249511c98d",
+        "object_state_sha256": "ce71c33cdc18177c70ad405464a440bc7610465b58c3f414c0a44a82678d9b8c"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-00",
+      "state_index": 3,
+      "tensor_sha256": "6af420f4ff6ea353c0577eae8f075fe15744212d0b7693d9ce8ea6e09e35998a",
+      "reset_fingerprint_sha256": "432633f2e1157097f30aa4790a69dc7a46e5beac82c54aa33cbde9cdda2a543e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "671d993c9bf3da5b4214f8fd69baebc32f64fff4c55dd54ebdadaf448be1dc0c",
+        "wrist_camera_sha256": "67fa86bfb8529bb73c79a512b83846d7c8784c71fd856ac6106157306fcd76cd",
+        "robot_state_sha256": "9a85a4195ca891acd6f4bd387d082361f4acceffee53e6fc6a50f0bdf32cca2c",
+        "object_state_sha256": "ef6d5430570dec3b00c22eb58f273b6c2c8539e44f51af8719f91372dad45723"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-00",
+      "state_index": 4,
+      "tensor_sha256": "e59d2141d5df5f6b8fee04858a6af1a8e6b8731bc579fa9541780cfee9ecebac",
+      "reset_fingerprint_sha256": "b133fd7d5a2ab59ea404a33560dfdcc6501c8bc7bdc0ad8f72925a20f6bdabbf",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "f9880574361493df7be02a7b60d5b84cd10b53ef806aa8410a3a9643f0879f44",
+        "wrist_camera_sha256": "9a2a45d0a1c8546bcc86391443808593ce506aec5e46ce8c5e69ee6e863be4f5",
+        "robot_state_sha256": "ca5ae11d44f1a4b32dcda1abae1854ecc6f082dd070706549231419ce91c7c6f",
+        "object_state_sha256": "688dd5d2402e2753ae66298a71e7f7c52af75022353bffe823d1469615bdbfd8"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "state_index": 0,
+      "tensor_sha256": "ef6d2b4ffcde358938daf933352320e3ae1d96a5cb8ab6608e40decf982d325b",
+      "reset_fingerprint_sha256": "59e6464220feb3c8558820c11094095512baaa0b33be325f6eb97596aa1ccd03",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "5a22a61c30df2cb214c2e1858603042ff7e133b5e3eff772726864e29806331d",
+        "wrist_camera_sha256": "08484a4170d1028dbab007f3a709dd6f6868f36890f077f3af80c7a63fe03731",
+        "robot_state_sha256": "810711cd8ca04198d617b55a60d2df5b52a82b9f0f1639d7af113f7a5a50643a",
+        "object_state_sha256": "56dacefb9899a0c7d1deefd7b2acd7d017e3ca1c274cd7e4c609145173cb86f9"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "state_index": 1,
+      "tensor_sha256": "7ec362d60c5b388941796a5d0215017e0f7831553659661f1ce8747db5601a02",
+      "reset_fingerprint_sha256": "66be6eac31a0ad51afe52a495285ce58efdf18721770a96cfb2499fbb57ac955",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "d49d7a932842bd0f9ab58fd8bbf79dc7d5c6fc82aea883b411f30e86c11098d1",
+        "wrist_camera_sha256": "ab977efedcc538f02ee069d22aabeab24c6037545cdd4b7b00acd93ba127ae0f",
+        "robot_state_sha256": "a3e598bcb4128ae4822e535f6e2a6f0fdf77d5b1a3d06d658e210dd55f1ef9e5",
+        "object_state_sha256": "f5ba67c5c48e33ac66369f4231bf71ded94b7978ad87752783acbd6a8fdf9a2a"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "state_index": 2,
+      "tensor_sha256": "154f5adeb2eae089080a00b554d7de9e8b3ed28a2f093c12612ab468f3f7d10e",
+      "reset_fingerprint_sha256": "28ed1313a8cecb713aca453b8964a6612a13cfc718a85920eca0ce423539dd89",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "6c1874ec4627d57ec40e26c7372963a34719e876c111cccec0a5428d58d6cdcf",
+        "wrist_camera_sha256": "d7395adcbd082a805555d41cf74ae356b36150f9bddbe5572d5fef8e3123c76e",
+        "robot_state_sha256": "264436c12c3dfb4cacd1bc2f41a2e42f5be47acee4c55ef416e18abad7c6c007",
+        "object_state_sha256": "59be0a92669b67013d27ba91c45b64fbc8acf5ea5af49a9c3673aa020b36300d"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "state_index": 3,
+      "tensor_sha256": "a11ab1d6de8152b8c3664dafba42ae16f628d10fa3af43945081b6046329ecdc",
+      "reset_fingerprint_sha256": "4afe5bcce4277c3dc6d81653f63a8dc8efe819e343ba4c50fef07abea83c346a",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "6ac41a98a6ddf1d23873f3bd92f3260c9421d062607bce02bb4dc1522685bf29",
+        "wrist_camera_sha256": "460d75acec008a90cac7139f0621130ce3664a497620d9f97feec76926ea8e76",
+        "robot_state_sha256": "41e1325ae977471d3e0df1d088f7634c403b37de91cad1e99e079312bc787234",
+        "object_state_sha256": "850049c44474fb5f537811b926165ac9eb60ad559a83205185fb2aaeabab33a8"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "state_index": 4,
+      "tensor_sha256": "2781e826fc88a1d93c077514dbbdbc4c4872eca1a251291ba0d348bfa1118cdc",
+      "reset_fingerprint_sha256": "4beeb89325c4928d5022470716958665818742adeb5156be4bc73104c3ef3971",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "301c0da6119db069e8ae2790b5a9ab5b430eb449d43d46aeec79f01ed2e5072c",
+        "wrist_camera_sha256": "b2992836efadf22092f60cd3ddf01c898412cf1b0da579b616f3342dbbeb1c50",
+        "robot_state_sha256": "fa7dac170186451bf8bc20a36af3d56017706acf7ec2b0987194294bc1422394",
+        "object_state_sha256": "aa61256d6335600e06f3541fa3e5a0650574dff4e5c008c339596695d3f88d2f"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "state_index": 0,
+      "tensor_sha256": "1a3fe5f4115a3da1b755f294db6ca346326615d2f711b86d3329a18b51b3bb73",
+      "reset_fingerprint_sha256": "c130e501b4b0f3caa8bf5b6b6b4b7c5a62694ed263ca5b922f305e2a25eb2063",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "445d404ad2caab95f9d389eef809daec027b6f57ed952cd3ce0bfbb7840aee2a",
+        "wrist_camera_sha256": "6988173ee50ef9ef9446f0139b6275f5636dcae7d37fabcbad3dde8c21e89ad8",
+        "robot_state_sha256": "f599e2b83afbe76151a125f999ce3e297baf4bb0c9ce1c74aab38abe10ca4e43",
+        "object_state_sha256": "29fb147cf4429d51ffde4fa13ffa342db82595927663fe0a51516b0433bc08fc"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "state_index": 1,
+      "tensor_sha256": "09ba526ef92e100809b9b5498cdab6c9733526330dfaab66e06e9478639c8965",
+      "reset_fingerprint_sha256": "8af0daa48c53b083fb971021f871749977475c2c73052e2ec7a27a14a608f190",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "ea1df173b869b9e1d5ee2651f8b2883af9170b34ce28cc0849fa7b42abb7f0df",
+        "wrist_camera_sha256": "46c05d9163b783a715dd270b322c0daccb2d4be51a27a288f6776668089c0468",
+        "robot_state_sha256": "30ef5cd4b3bddfa3420b57bd2da0b866cc169d41986f5c0bef9365f3564d39fa",
+        "object_state_sha256": "269ad21791b7efce05dac4a6df2651acb5c98a68921828a01714bd8ce8fdf554"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "state_index": 2,
+      "tensor_sha256": "282e6e935cdea9978247337f7c77a14cf213f255258081e799be76dc180d5f8a",
+      "reset_fingerprint_sha256": "d6a540b64d16dd78b1e08cd0c65156a4f77da1c347dad35b77ff07c9ba729635",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "f42225061383a782f865aa092f4a715bba4cf5dcafb9081a008d1e64251710c3",
+        "wrist_camera_sha256": "318b45e67021ce1b928b81bed31e92bd4ba4eb987867f0a39ff2ea2132cf3970",
+        "robot_state_sha256": "e8348c82b780bc0e41991de46148c699225fd3a21338297112865fa794d68bfe",
+        "object_state_sha256": "163fa19eed47acf0f3b61bb9d4b1ec36b565930eae69a8eef2a2e643bc2b8c5b"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "state_index": 3,
+      "tensor_sha256": "89352ec3d71018adadc13d0bed4b586b8c73ab306e6bd0bc7c3a46c6a3495ce4",
+      "reset_fingerprint_sha256": "eaf0d5c2f8b5320bc0c083f8adde3e7497f5121bf002ef71ce2c6c3b90401957",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "f803274cb1abe590c1e03be0870d20f195c05bfe95cc54d151f79080f3beb088",
+        "wrist_camera_sha256": "67ef3d8ee933f9727c38681e2578459038f92395083ecb27380179045189b667",
+        "robot_state_sha256": "16cc90707b0b9d5ee18f5a35f3eb628c208ed83f14233975b2247664d13876aa",
+        "object_state_sha256": "b65f9d8d82538c473860ebb5a632a82b00f9a5b3f5eed4942890540b7379f391"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "state_index": 4,
+      "tensor_sha256": "1de2ea272df53ba04ef226edb8f6a2bd6a8992b1a31b91c9ffdcebf8d9379cb1",
+      "reset_fingerprint_sha256": "4e8060926eac490452be28048d2eaf3984a94facb48baec868361e8b72678903",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "719dbb74403ad5125afe7c8408dc0bb68d8b1f02c33b7d06af04859c3b3b0048",
+        "wrist_camera_sha256": "95f3adfc469c5382ca0d155eb69a42d3999db6ea3397a411f6ac730344d7748d",
+        "robot_state_sha256": "c77019465337c9b795e0ff24953ec436e13d2ea0d39dcf3197eeb7127f980fc0",
+        "object_state_sha256": "d91e877201182b7a838c8a860de5a19080a781137bdb9079ae3464a939cbacab"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "state_index": 0,
+      "tensor_sha256": "a04f9b31273cde4530b3cbc7f4a9fb62c3fc0c532adbdfeefc6b3ed8c406a89e",
+      "reset_fingerprint_sha256": "e5bc13878b89d1ddf3931251a047f96feabebc61eec3d1e4d72c9c79726395bb",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "914574969c11c0dca49436de08929ae01ec69e34f72d73f258f8467194d8740d",
+        "wrist_camera_sha256": "a97610308d5e330077e5f5962afc82746bdaead11be5cf8086e7c234a7e08d7c",
+        "robot_state_sha256": "5ac0bba1a89d2658d6e61aa44a5ee5d4dc67a03f0053e2b7455873beaea67dc1",
+        "object_state_sha256": "f926fba202cf487db71ac8c5ac3535e7b61cf15ee6222f27ae61f7e0a6e517b1"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "state_index": 1,
+      "tensor_sha256": "5ede656c181b410b42e53a8e88f7d0155194c452960acb3178de069b901353ad",
+      "reset_fingerprint_sha256": "ebb4231c37e8af15212da26946407b39c19bb3139d95d74f77124dbc380a6235",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "01442641b14fb757d00737e870cf1c982224c0bf8e981972693c439f98497f2e",
+        "wrist_camera_sha256": "ecd0b78d0c03438c6a8d725dce31f6b9c5d55747e8257a2b44e8196cdbf9916c",
+        "robot_state_sha256": "2d42d076359b41b85800633cb26bf6bdff9f766599efa0c5f85b99daf59495c1",
+        "object_state_sha256": "6fe7a9a389dfa885b2063727998f272e617b64521180bceb75f34925e7d84dcc"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "state_index": 2,
+      "tensor_sha256": "03eb99ac0760d1da20f1d701a01cc773547246c49c749f2fa05771f3a41474bb",
+      "reset_fingerprint_sha256": "37c7de4ea6a590a34b67ad18e803b7a312edf850dded5b634c9000e857ed25a0",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "5809084bd9be8161c989ab1ff5dcb1233977159eeaca04f0fbf9c4643cf0c3b0",
+        "wrist_camera_sha256": "342e1c00508e7d9c401726e6437f7f86d3a8a8ec595c7d03315c6fe198251c21",
+        "robot_state_sha256": "ca55e557028749925c81cd31321ac1d8710838e7a89628538ec8cec48ccacc3a",
+        "object_state_sha256": "11e53080cd6d6752dfe9c467401e70a6fe0633c222bc57a4ec24fa9da4f609b6"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "state_index": 3,
+      "tensor_sha256": "49565b8114f1a93f63e52178e47f2dce6f5a635616b76eb19f4bfc02ddde0407",
+      "reset_fingerprint_sha256": "45658713b488d60c380b3b111020e36f07fba591922f79951dbf5836b7012a58",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "799f6b5cdde7b8f3fde8428d96ad389dfb4ba06b084c4d6495167c51748b177a",
+        "wrist_camera_sha256": "ce4de8158abe1a1f1871a8aee419e194fc56aed3d53585547ce97a6590416a63",
+        "robot_state_sha256": "5d5c951f9117df758126591129b5d66a94d8455247afa33c0cb302c979caa794",
+        "object_state_sha256": "dc51cbcc729deecb3880a2f58205e5433e2f81b2671a5f249592228c41518872"
+      }
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "state_index": 4,
+      "tensor_sha256": "adf10f82bf7453151568f339c0fc79a6de58c1f2c582aed25c2f1b6a443b9f98",
+      "reset_fingerprint_sha256": "3651caa52e6a5e892798f63c6bc1c58bd4d39bcd9768bc23e3c6148f632606ba",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "a93a97e97d4ea950bb95ea4c28e036385ec75ad7dddb7085a1e2c9ccf23fd726",
+        "wrist_camera_sha256": "b0afb40e8607c3f832eb6671ede4461692ebbb14e158168d11e23f796a1fc3bc",
+        "robot_state_sha256": "f98087c3d041f0e6025e154e74f7e9c4fc57e94d0ca8d24a07e0b09bd03b763c",
+        "object_state_sha256": "2976d30e0bff4bbfbe125d9a5beeb7638e522b12a9fee0699ba713fa0388503e"
+      }
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "state_index": 0,
+      "tensor_sha256": "adcfa63e853b3faf1df46ba960bc2609d71f9dff99c776599937eaafe660bd52",
+      "reset_fingerprint_sha256": "04b91073ac5760a905ca918b1b5864dc71c0186c2f4f98bf5216a244b5fc5916",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "361b8a971a715bc35c5a1d929ad506046703e467c060b7c4be26b3a588dcfb9a",
+        "wrist_camera_sha256": "c53ce5f527bd835d4c2cd18f1c8512dd1364f16a69f57376abae61d7e5b26c77",
+        "robot_state_sha256": "9fcd845048b83a935c89e2586e6ef1a91cec86c48ea7853af858ed693f6b54ed",
+        "object_state_sha256": "8d6a9a59daa4c89fbbe6fe5e7d05034f01487750c1e3831016223d1763bd7459"
+      }
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "state_index": 1,
+      "tensor_sha256": "dde2b916b7a769afe2b52d76429aca7887112c09cfa9aa2c0785ef680782042f",
+      "reset_fingerprint_sha256": "9d1bb5cf69e731055566a5f8e8455aad6416a25870684a05b5da5c59df3fff58",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "a2a0501f050e62586f8cbe22b8cbfdba49de51c81aa3cdabf0d6eee2aca6e89f",
+        "wrist_camera_sha256": "6488d38d42fd17fb588c7aa5de901b2644f7966688530bcbdc2eadbd9423c856",
+        "robot_state_sha256": "2406735c772ebb8d705059d62ff2e90bda5ec6e46a1e7a9e05a2232c7307c687",
+        "object_state_sha256": "e0eea4e34019c90d6d39d8f14ee1b02a654549228c0b721fe8ef543df01ca7ce"
+      }
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "state_index": 2,
+      "tensor_sha256": "119d01814d7ab4f9b9c3f3b3d4207dce98da50ffe63c7abfbeb24b89b416dc74",
+      "reset_fingerprint_sha256": "570b7175f3172cc12e3e49e6104366bf7bae242397e7022c2c16647f7e0100fc",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "0b5a5bc8dfce124f9d44ab95cece5b97c7cdad98a7d9232afdbd1ef85ed565f0",
+        "wrist_camera_sha256": "f74b8db55c6ac845997506ee6dd90e1cebe3ade51a1473c97dfe3c00cc22b672",
+        "robot_state_sha256": "7a77a8fa98606efae3d43046cf4f0232574bd6a9d9a3c8f93451b442f8971313",
+        "object_state_sha256": "2b27ab704e44dcbf333cf039cac7d2c87881309a1d5a387b70578c2d92d012a7"
+      }
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "state_index": 3,
+      "tensor_sha256": "6f500b1ed4fa3fa1c947e59fdd87d06ae1f16e596895d0f8aea1b988d72513ae",
+      "reset_fingerprint_sha256": "57c507ca5051c5aad4edc9e6e1ae86751605e003c08a26793ed67c6fdf90f045",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "d5ad59f0fc7b56926da5c8667231df16f7879cea76c361ff99094c8bfb3b5dfc",
+        "wrist_camera_sha256": "0dacdc7b214dd2893cfb96d96a2b6113147313ba86f7ae6a4d897f7fc4e7878a",
+        "robot_state_sha256": "4603bf6a93f8194cb67f458047c8837efb92df614d27814aaee59d6c2359b198",
+        "object_state_sha256": "e25229d1f2c97e653faec64b4241cabd0b6b2841c528ddaa0521f1cc449bc835"
+      }
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "state_index": 4,
+      "tensor_sha256": "de1c86dcc4bec658c7be4ab4979268439963ed2c492637b06a72309250fb7c02",
+      "reset_fingerprint_sha256": "e7c07c391ad175d640f29cf75404dce6b1a648991079764fd51b4c453b49b0bc",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "c1eff44917eebd344476a152db85606831fd12699beb9b8eb95bb7df2f37df28",
+        "wrist_camera_sha256": "bdb566e84c13ba867a95d714e59ea212a4c06f9fc51ac7659bd1a8e7d781cf9e",
+        "robot_state_sha256": "a2e542aa0e0ccd34342f9dc4d9e43d53c9f283c5ab8b1ab170fed80c3823b8b5",
+        "object_state_sha256": "1f2a4f02855910dc8c1a16a66b65785867082938bd822d2b9cd23571c0d7e9a7"
+      }
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "state_index": 0,
+      "tensor_sha256": "ea07d8ec1d061eab27467571b978d191396c1060884024019cb3658c81e46df7",
+      "reset_fingerprint_sha256": "0dde679dadac81987c7596e6d31889a426c2796cb0e2a0ca27ceda509d0b972a",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "6fa296fbad41459c330cdafc99700f2d7238fddfdc69755eeef6b5c261241ba4",
+        "wrist_camera_sha256": "3b63f13def5f1d3f5dee4008d06488d76b705c827fdd13e01bad0cd0b5c00eed",
+        "robot_state_sha256": "82d4ce5a8fea2f16a949f465bc1ce1fe54c048aa9ccaed5fea24873269f2fa7c",
+        "object_state_sha256": "156c9e9a81b4b79a9506c357e2d44d88a6eb5a45e1ce84a2c556e01f06041c75"
+      }
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "state_index": 1,
+      "tensor_sha256": "434e1817dbdd2c224cb2e928073692de88d12c0bc7fd8c4f08a0e470523d5383",
+      "reset_fingerprint_sha256": "91f07f8521a691ac9357d981612659820fbff51831e4c4dfafa35e55d39240b8",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "df43c40ef997eb91f022b296c3f652a882042f66c9980ae3e6a45ef6ee31aa38",
+        "wrist_camera_sha256": "753c2def68d35d33765c0e91cca0a3f7269f3f440d5bb29c3d7c7fe79e572c0b",
+        "robot_state_sha256": "12a470829e3b13631c51cd5db8804ce7759e1efdbb7bf0889c6becc20d801296",
+        "object_state_sha256": "e0ca8c0a88f378685fbc04ea482c98c063277271d1752db5f93176c7707873c9"
+      }
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "state_index": 2,
+      "tensor_sha256": "22cfd20b49f52462d638e4ea200194faf51a4ec9b07d3417f2c6f8cca2396c4b",
+      "reset_fingerprint_sha256": "6abc81adb0c95386b8027e6731f2be4f2e3353b2416c825d9775bd00a06c3f14",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "eafdf18e0f996e8944a3f2fee3f166a038407f32b9a85965b833ac360a3c4f45",
+        "wrist_camera_sha256": "2043e978e38d24e5fab29f2e29aa0d00d18c85533add42717169ed12fe4b58db",
+        "robot_state_sha256": "43ba9b4f9ac857844c48b387c007810cb05d91e637a8932bedff4fc0005ab127",
+        "object_state_sha256": "09155b96f17dc90768f117b531dd72fd096c55adbc4139aeaaf1430f4624ecfe"
+      }
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "state_index": 3,
+      "tensor_sha256": "41c8b7b5ce0d66f62c0911f95fade52975c2b7ca821b9f0d0827be311948e38e",
+      "reset_fingerprint_sha256": "d590173930dc2251e26c81d8eb111e6a0f05453a9a0eb957360ecb3c530bf5ea",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "3e8e290eba16bee0cea7fff4f28893b603d44b19edc2b9af2b637ab4238a2b60",
+        "wrist_camera_sha256": "b9009a89df87f1668cdf568f1fb72a651792e3c08828b845618382fde5566db0",
+        "robot_state_sha256": "45d7cd14aa20d4bc89efd6747a2c52167c1e8e85943faa38fee0944b4f5f91da",
+        "object_state_sha256": "b3cf3b9af366ced46c8002e7367d78b76758c7454a8a64e229f28e6951aae7d6"
+      }
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "state_index": 4,
+      "tensor_sha256": "98886378bca83ded6d5c2b91615f1dcd9daaf8f396094560368b20aab55c0df5",
+      "reset_fingerprint_sha256": "f786a6bbba93df239e28b9afc3c31ae3bb621174479dc30840c87f8fbc343cc6",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "ef28e0baba3baec06d64bc018a3e940a4114309cd5d6a7473d6461ac572de387",
+        "wrist_camera_sha256": "7e200a4a21e2d2ebcd8e65b2f761514ce6c89aaa0056e45aa69b17637def54cf",
+        "robot_state_sha256": "bd275ba9ce88cd1feed05100342c4a72446abab778a1ac0ef995e38bcecfa87b",
+        "object_state_sha256": "164c5beda1ae1fd43c340676949021eaf0fcb07b32a91be1cb397cf26f657853"
+      }
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "state_index": 0,
+      "tensor_sha256": "fc3d39a97478f3a1dcda7d8786146455acf78ae77f8c43e0af92f71c43f0f94c",
+      "reset_fingerprint_sha256": "2f9d86290805799b1b48bfceae3e7fb2e698b51e74ec69084dc54df9076f8ad0",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "7746153f342e4212e74f01f55d0124ec9f59494c4ea6c993b1acad79421d5082",
+        "wrist_camera_sha256": "71b498a2ce22059a2d8e7bbfcffd3deec339ab47f16786cbbf097f2c4299d862",
+        "robot_state_sha256": "8ad67c93267c69d27dade4b796d33957245a1b969c7ebf44fcd12d92a70cfbcf",
+        "object_state_sha256": "0dd7b7c6751a1b43b751f3c2a894098efa9a0271417e6f811777d62ade6d2ba9"
+      }
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "state_index": 1,
+      "tensor_sha256": "04c407e9a4f00207bbe4c908af030d57ccd0590986510ca949401d46517b93af",
+      "reset_fingerprint_sha256": "5bad85dcebe47d1d9c776366216ee99931996b1a3ab7597709927ce16fbe296c",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "d228af364243fffdaa604b7fbd2581e30965daae6aab7c7f64170f69b082ff2b",
+        "wrist_camera_sha256": "c18400d39daa0d49b0cc55b628fa1ad92c0aed8d12b92e6e4c4493022f2d1909",
+        "robot_state_sha256": "dd1e667887047c84ce18446c3b90d375b51db84cc2ac525d552e930974b3355e",
+        "object_state_sha256": "723ec692050822d339022030e01f030d7b32907ae0ec4fdb2ea1d22098c329f4"
+      }
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "state_index": 2,
+      "tensor_sha256": "461aed244ee11f77de999b94f38fc8737613207f296905e6d369c53113abeacd",
+      "reset_fingerprint_sha256": "f8951d33304c8feac0d68a44e413c85e86fa872fd379a86201bfcfbab7a99976",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "05ecf18f9faa5a3cdcd523e30ae44f4131921ead8b8a5b9c62b0bf72a0fd7100",
+        "wrist_camera_sha256": "34cce85ecd4b955df4ac6a2cf65feb74cd1bdc6e21f15d63f973ca8aa2785215",
+        "robot_state_sha256": "35f0c2a71e785f3fc8aaedd595563d3935e626ce58efc711aadb0dce9c642486",
+        "object_state_sha256": "9a79ff0f6fd69fb99333c725397c5904be8afa26601f6feec44793b7b0ea4b1e"
+      }
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "state_index": 3,
+      "tensor_sha256": "97c14858f25c1740ed83f0216f54931a0b2d07d6e9695310489ee718bf347c52",
+      "reset_fingerprint_sha256": "c2c1e744845b8acf7fdef785ff5aabcd2ea3c6b3b7697291b5d45250cb6962fa",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "3441f5129ec855f7f7a75b4d12818676f873ba31d1d3e3705ac942dc92884fd1",
+        "wrist_camera_sha256": "36fc914774ac62ca5a431c8f516a34cc9bd759de1bbd202b981aced590eb9dad",
+        "robot_state_sha256": "a0f9e47e197dacd19e732ad6c074a3bae3b8299dbc7de0b20e3b8d410ad84c3f",
+        "object_state_sha256": "6d663bae40ced4a290c6515b6aba85a6b668862adde9d769482325f4cd2b558e"
+      }
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "state_index": 4,
+      "tensor_sha256": "4169240d706d225c59faf686722aa69d7aae8b37dd1d58a3c4f6870ba3e6ec39",
+      "reset_fingerprint_sha256": "1939d7bc3277de5ee675b6b68f65e6c7597189105c996d52c6c623b3e0715bd4",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "5c88cc834e26406aff0d22171b00b526bd4deffb743e967a2506965b5abce386",
+        "wrist_camera_sha256": "580ba0e92511beb7b1a5a57c2b03a384acdfec16d665a11233da330e82063673",
+        "robot_state_sha256": "7b621b9864742bd5de76d4e221b4a70befdfe9ab267160f0aa29b67e5ef7ff36",
+        "object_state_sha256": "ac67f30befec10d4cd0a41edd87bf40cd225eaf9552c28e49e7a0a1c3af662be"
+      }
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "state_index": 0,
+      "tensor_sha256": "618f78a9b146b8af5286b01a1856dd647ef64cd0fecf0f81d5090bbc5124331e",
+      "reset_fingerprint_sha256": "b170d9fe7b4740edff3d24c0004469717e33e1746ca4de150636db323912536e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "8dea8532fa71f1fcb8c65bb3709b51063eedd4296d24ec4c59fafd8d78a46e9e",
+        "wrist_camera_sha256": "458c7fa65041faba7a3a3f3a5d717b0d9176d99deb55189dd36214123091f027",
+        "robot_state_sha256": "17cab715ef84e4232d2988140caff371f51a270df7c69d06c9252fe213efa59d",
+        "object_state_sha256": "af27153eec41882cfdb89dbdc2d302d7d17621ef668c1465ad016b3a59c9a2d8"
+      }
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "state_index": 1,
+      "tensor_sha256": "bc0fec0d0e7de4ca22c1b3cf88173f0523ac4913e860df8bd1118b11e8caefca",
+      "reset_fingerprint_sha256": "a0e7f29f23cb4ad70d16feb73e465185aadd1def14ca1f16e36bba5811ab8155",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "683c70017501057cf7a19496fc4d54b7e0bf8252bee4701d8c96b13382d5712b",
+        "wrist_camera_sha256": "55d6499c53ed3bb277b4702e9baf4ab1421df8fb170cc68c48ed1853a22431a1",
+        "robot_state_sha256": "0e658399aa102d87194bc18cdc279794cb8ed73ecbbee8111ec4b60760e25489",
+        "object_state_sha256": "497c3ff3c04ee4e6974622accb58199702e1943300374a3bef29a39b11880887"
+      }
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "state_index": 2,
+      "tensor_sha256": "ec1d75e11cf4a99900dbc31a90a4dc5ea6368cbbb6cdfc7a3828daddf5da1a21",
+      "reset_fingerprint_sha256": "9e3d73bdac00b6682914e731312b580a0cd57ead2cb698d50a8470df30a837ee",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "8da24e7597511ed406957bb0bb9e2710e0250fef26b1ed17d66ff33584483589",
+        "wrist_camera_sha256": "3da0d514d5d9c6164e05a295887fadff25ce9955ebf73779f770f5e5c55c3ff2",
+        "robot_state_sha256": "8dd7b4aafd1a6c9a77503414d7a22126b07c941b6b5fd6c624780f8c44dde986",
+        "object_state_sha256": "7cbf5848dee2248e4551004df82fc43d6cd4c82afdbe4161b46c527b3c0a59fc"
+      }
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "state_index": 3,
+      "tensor_sha256": "c3dd29281f93d1c3696f7eb2732a648cb6cdc1f4ae199b109baa8dd8ac84c56f",
+      "reset_fingerprint_sha256": "077cdb8d0bb80bc0a73d323d41bdf67f7ee21e96b64301064ef54caee77814f5",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "11b77157288370dea094d2420848afcf53ef69df35e806d880c699c424ecb840",
+        "wrist_camera_sha256": "c1fde36ead1d98074b91b841b9cacafb3eea1f49edd16ada8c15f5f6e7346afd",
+        "robot_state_sha256": "62e86857760c2e3fa41970df08964e097ceda1405a072a103f027d3cf569ce7e",
+        "object_state_sha256": "8a4ed26e97008881c28553fc37bc88ad2890715066894c274bf257e2fab7bd83"
+      }
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "state_index": 4,
+      "tensor_sha256": "eaaafd09e1f1b0ae11aacec1ebde26241a534c01246fc0cbf19ea2d954df39de",
+      "reset_fingerprint_sha256": "9937042e1733a5b68d18f4b2d5a397aab76ae93d8550968d920b66b6cc3eb715",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "3c143e5fc217ef11f892edad9661c48bd5f37683d65c9b194a2e7769c017a90a",
+        "wrist_camera_sha256": "300cdd4a9ce9ec2dca030616cb5002492ac66e71d1a7f4711dba1c9c7216e109",
+        "robot_state_sha256": "23f344f6f25e2b8d8a6a9b61bbd719cc68f9473c057b323d4213ed9413c9769a",
+        "object_state_sha256": "e197d312960da0767ca1dd4172b598e4e86a4cabaaf18ae16a949da8746588e5"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "state_index": 0,
+      "tensor_sha256": "588de948a4f38b67db9954e5e79569cbb9c90cc121497559391c4ceadbfcd5cb",
+      "reset_fingerprint_sha256": "e07057a88fe7f5ca1449a2b5ad3b32213a1ae4929c4a9a220bd8161a1ec8989f",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "e38602204b0dec6219d8404eeaa7ce60ba18a16580071d70fd02657644222f84",
+        "wrist_camera_sha256": "7c6b6a666fd4fde154a35d03bccb92ed1d63e61b2e9bd9b7e53171beaa673295",
+        "robot_state_sha256": "74eaed9ad213d3ee2ea3c8eaf13bbe5449ebec2910573d078799e7cb0f96b42e",
+        "object_state_sha256": "38fbf8b442622cbfc3004dda8240c6dabee4bf81bbe2eed30f0c8ae19bc9962d"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "state_index": 1,
+      "tensor_sha256": "8c4f3ed2a3f580a5df0ed2befc5fa21e02ec6985905af4809412edd0679c7409",
+      "reset_fingerprint_sha256": "5703f3545db1e245371846e10ccab4900fa3bdb37ac9b5d8553294af4d42167d",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "1a5265f2ab914c44bf94758d63636c146a9cb853ad96b956726cde1a009c9b69",
+        "wrist_camera_sha256": "acca1add9bff2aab1b36c652eae5a9ad61ea9f90b7fa412416826764cf0d957b",
+        "robot_state_sha256": "22886c11d4837fcc04240fae5c76834e4778f2124e3d7aad24e3e1c71d230e80",
+        "object_state_sha256": "caa37d878b42d02c4eadb1e6ca0213f60d7aa89e160972a73498008a763d71db"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "state_index": 2,
+      "tensor_sha256": "c9ec6c33ca1d79892d4372d995a4084dc350035e1a05a15fb8f0910d13d25596",
+      "reset_fingerprint_sha256": "fafd996ad4698033ad72d50c015d9bef82f95aaf8f658940b37979fae2a6859e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "27124fc23c5efe759573cb296926788c60900e34440fa1f9fc1476b57eb4d106",
+        "wrist_camera_sha256": "48848cf82aa360f8348be2e66eb7c2bdf2b083d70b121dcd72f37afa1c277401",
+        "robot_state_sha256": "4bbcf61fdfcea0cb365de6fa8d394f363f97ab4e205e204d0a1e607ec6487007",
+        "object_state_sha256": "b481e0fe07615c1333b2105e65b71a216888a931c7e529bd71e5ff4011bdc145"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "state_index": 3,
+      "tensor_sha256": "598261180bc8d72005835eefea411f923216b13b990e070105c805e4054cd7f6",
+      "reset_fingerprint_sha256": "371ecae714ad7b8dcf8d2f110b614549b8cacfc5f719c2981196db579fcc6d9a",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "41e620811648315622f52a32ec95c79188b74d4d36526b1993d9c78ea6769086",
+        "wrist_camera_sha256": "f9d9f1f11ebab55232f1921f22cfc7987fc8497397769308c67ddf7307335992",
+        "robot_state_sha256": "f00edd1f005e44a9574bf04274388d06e85991ff981ef4b29254b686a336cfe6",
+        "object_state_sha256": "c8187653bcc690ff802e55fee9b8fc4dfb67e1b060e7576228138467e493db53"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "state_index": 4,
+      "tensor_sha256": "d72a3b779f542cba4ce357868b7a6cc62dd3791843f1653c7270a50627d089b5",
+      "reset_fingerprint_sha256": "6c2f51b0a596c861f4b0a6e2496691f551d784fb933d5d382bc4c6b7ad6bde41",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "96f648b1fa733cbf6eebb8af44823da5b31feb7d81ee1277d6c9a4d8b810cc92",
+        "wrist_camera_sha256": "7ec39ccacd4ccbfa15558d0245eb9305b4285a3e307b847663a36223396b7baa",
+        "robot_state_sha256": "517bd1d84b656edb0502c096825b00c71ae8abd9c5601d98c5ffefd8911f21fc",
+        "object_state_sha256": "9dca97c58b81042e6ee5520fc5d29fb07c0158e9b8fc1e4eac68745b966427df"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "state_index": 0,
+      "tensor_sha256": "de01ae212f3e59a335a4907563e54f20455b2c94b5970eac90cba6c18e9f868f",
+      "reset_fingerprint_sha256": "de2773469c3d26584dbb391995fc00057bd5993292d8a4fbe583b8a2fdb47e49",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "0072b94c05e91c9e9315a43028839f3f7130b62eefaf7c0d1ac327d5b7bd6cb3",
+        "wrist_camera_sha256": "16338286e0e36422abc5b99b6dbfc65babc640dbb98c63c97a9655902178b634",
+        "robot_state_sha256": "2dc4a007499f31e25ad96a09318177ba745035c7a99c302e0b18e56777a55221",
+        "object_state_sha256": "7081b354731ebdfe02eb5f5b902d16290f2128c59bbf78f305c88c39cd778dde"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "state_index": 1,
+      "tensor_sha256": "63c6a5e13d0b006f6e3bf2bbdba2d0dd49a177de0a51b113d8e436ea7f5153d7",
+      "reset_fingerprint_sha256": "792dc6ad12e32ea8b046fed5c1450ed97497005f31b6e04dd96044d1701d9640",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "8471747f1e3cf1b091597e26b98aab6e13d70f71cfe96d4721c6aa8c7ebbcb9a",
+        "wrist_camera_sha256": "7c1290a349f75b5dca589f71817d28d3ebc113a641091d0ec5444a09216d7df2",
+        "robot_state_sha256": "96ba01087fb7ab1acc21c69d7aae318dbad0bd1e2a64a164cbdf78c028514290",
+        "object_state_sha256": "fc0f1bd9b36521a2a9021fae1bca6db5c0a475c83a194d9fb29f2d56a64d3f83"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "state_index": 2,
+      "tensor_sha256": "e2f43306a409114a04c0399d27afad63dd2b0106690fa31e2a1d8e90f9cab3ff",
+      "reset_fingerprint_sha256": "50a24f1bf086b685096e0a3242f4ccc49c4e43aa98b23b00e5d282c79e644d1b",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "be318e6cce0f370bf4baa62824566604e09db052c2c77355198700ee420328b1",
+        "wrist_camera_sha256": "80bf6a22171ac05e891d4c9b96a7ce51d1d28f1f32b838139f3622cef1bcac3e",
+        "robot_state_sha256": "eef9e79dc9793c6e96d9976b8876b4b736b58ce6333bebc09e33cac1363a0555",
+        "object_state_sha256": "77b5d19bc4a779b2a78fae17945754829fb2f4be99d1d6761e4f8fc644848f02"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "state_index": 3,
+      "tensor_sha256": "bad5e39fa96eae1917e50d07d14f10afdfa10e5cf30591cc3b7a58f6a1685200",
+      "reset_fingerprint_sha256": "9455af1795af6b612e16571531958f471d7795b0faee2337db53d7c8df206aca",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "246ad5e5716841771faeec2bd1772b8322a2aa2f0d02dcab2fe3bb3cd0905613",
+        "wrist_camera_sha256": "f2c061b77417b7dbf022f954841ae95b6d299ef6d802c42ebf257e6776cbcf31",
+        "robot_state_sha256": "25afd2bad3750b06a5cda53ee45d99049eb3de38ee97a97e5218e98f0d80f7d5",
+        "object_state_sha256": "665158dc199e3eaf48a385bbab86e3658281a2f824e6cd21d623cdbe70c76e1d"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "state_index": 4,
+      "tensor_sha256": "f52e9b42fea41afd6b8e04c0ac87d508111483ce9efc3cb05ba9c9416292ad30",
+      "reset_fingerprint_sha256": "6a8c0cdcf839245ff7385b67f55d6621a479688bec311a966ba6b29063fef71a",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "b52599c36b27f863db6799e685170611a328cffbecca2ba4f26fce42ad60ea4d",
+        "wrist_camera_sha256": "90046273343583de482f9a1a804fc179cd947f9bbf9952a4ea8d0dc94457be64",
+        "robot_state_sha256": "5e3c994248ce820b4ec5759c8f3eeea287de95cbb54810a1241e2442afdb74ed",
+        "object_state_sha256": "0e1542b4fff6436d39d2e3d986c4dd40ce8c6f127494854ab4dd0fed3f4fe8cc"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "state_index": 0,
+      "tensor_sha256": "73aa11fed9b5e127718fc016fcc8b7b00476dc17d1059a3e456b4fd6586aed7b",
+      "reset_fingerprint_sha256": "7bf6748dc12b53d166e6c78ae5b0e68f4024411b989458bcb216f7bd13538344",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "c35ad5d6ab22f41c16dc588251218ad01e1c9391cc4030c091add7a0e706a53d",
+        "wrist_camera_sha256": "705aa8c86b6b4d9a20e8e51b641f5bc15e78b5a4e6c5d4ba2211cdfbdc39c202",
+        "robot_state_sha256": "51958ea7c84ac629d578c5aab54dbd91edd9f6f1abda0995318f8d3bf8a318fb",
+        "object_state_sha256": "cf3506fbd05ebc698916f1389c494344794e5598d3d9adf620203ef1c3bd5b8c"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "state_index": 1,
+      "tensor_sha256": "b8715482a2859c7396c330bfe784e38c7db1c2ac3c29473f0651d9339084b18c",
+      "reset_fingerprint_sha256": "776890568401e2f7422e56df76a2ddc432453c25256dc04d4514628e2ccc0baa",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "734b0069f447c700004faa854ecf4101c9ca26de583b4c12659ef1c5373505c5",
+        "wrist_camera_sha256": "047607dd82059d10dd6684fc42d038d65b2bebd91ee733f180905c618b5d585e",
+        "robot_state_sha256": "a8987f8c0e460f09167af482998f16c9bb0a882c174c6e8f53a7dbeced8fbc7f",
+        "object_state_sha256": "04fab9ac7bdd42e898e2bc94e190fe7aac94309edb93e88470b5604bd7136b22"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "state_index": 2,
+      "tensor_sha256": "d6096261d42ad86264e5fafcd9c0335e324986e626bc5b8a5558095197e74e4b",
+      "reset_fingerprint_sha256": "c77567be1273d48d87572e529f845ede5582ea7187b5898f6758b290197f8a91",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "53276b35cfaffd7a0331b3b31af268072249309df2ef625928a1e1357a0edc6f",
+        "wrist_camera_sha256": "c5ce7ddb8e92ebb19dd77a09c08e904a598df800bbb093513fd98ed5132c5288",
+        "robot_state_sha256": "fe8e34cf0ff8163eed141c9509847bc1e0fa517600d4859ea25642b7d8424da6",
+        "object_state_sha256": "f19a8aea93833eb60218129a26bb0fcc92d892f15e6b01830e3dcbd2bca58fc7"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "state_index": 3,
+      "tensor_sha256": "b56d8ac8b8992b9eca0d6b30a96a191b9fe193a557ad4ce592ff5e89aea71cf6",
+      "reset_fingerprint_sha256": "aeeb07e86f3a8b060ee862311ce58979972fc084876c1c1905857861e23c2fc3",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "21ba7b69a76e2e0727d29ba6310491788c2b4b8da87d3237e783398832faec5f",
+        "wrist_camera_sha256": "fd32407d027dd548da1b2b307d358f19b50986d7d6e59a9f6433737066ec7787",
+        "robot_state_sha256": "13366f8372217ba39eda7392a22e3d6dc4ba19b0e4c2eb168fe0374238b7aac8",
+        "object_state_sha256": "d0656d35a99b6459303764b384d890612b9307621f179f3e2bb1327a9c21991f"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "state_index": 4,
+      "tensor_sha256": "1173c41d57c26f7409f6e840f51f0107f8c0bfa23404c1bb3eb33fa0e7975456",
+      "reset_fingerprint_sha256": "7e6c6488b8cead7ddca114b95f2794e736573d003a1b870f7cb1fa646812640e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "d5fca7aeeb9a1130a9a44cf8f5ec73c19d43afc3f0286c08eabf8f846d5df1f4",
+        "wrist_camera_sha256": "d0085cd7bb964fede6d0648acaad7b870b09e7a4758c993a750f1a94cc47b582",
+        "robot_state_sha256": "58a6d208d3c56d0d97ba764e3b949d3bf7da0cae152ff07d66d99a80ff1951a2",
+        "object_state_sha256": "3d41fe8fb70e44d28cf1eb13040cfddd186ee4277625ada2774fb8f53b0a8b31"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "state_index": 0,
+      "tensor_sha256": "d87fc02eac01ad2b41e513229face52b4565f7cbc74f0e5bc37185a736a8938a",
+      "reset_fingerprint_sha256": "3094aa70e4e6dd9256fe82d59017e45479984deddd660d01d7c38bca5affed9b",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "ad0f50cffe85b045ce956a4a311828749410147f2948186e695a058f6137adc6",
+        "wrist_camera_sha256": "3f01713156ed82212431bfbc7e0caf32d9e8da21f5ba502cb264db7966b63e08",
+        "robot_state_sha256": "5b8dfc5cf539dbbbec1ff267400a2da145f02169373fc8bfbf189f99f06623c1",
+        "object_state_sha256": "ff3f340da521cca7518da291b45a0a4bd1f7ed977fa4865617774bc958ab0ccc"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "state_index": 1,
+      "tensor_sha256": "0b44b14d52c02def97d66cd3263f637f8b7e230c6ac6d0ff14d129bac41bfa4e",
+      "reset_fingerprint_sha256": "5e39536d721bb8947726c300a89e9034e43fae2d94817ea07fa943ec0560f40e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "c06487564e108fac7c51f952d77ddc808ab0280cbabfb47abf3681dc6eb39de0",
+        "wrist_camera_sha256": "2548fabb410f2643859f7e90b6061879e4f42f011d9e97c6a4dcf6731d14a834",
+        "robot_state_sha256": "ea67bff8c84efc9c4e60640f07246aa1cd4b0184abef9ed22fb1cdd72b86d66f",
+        "object_state_sha256": "3d1b4748d5cd8c7bc05bbdf13f0cd50364a3465747959a085e37d7332ec679d2"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "state_index": 2,
+      "tensor_sha256": "b868cea3c36fc312cef28a4c71c256de8d2409b5fd9ec65bedce4298e84976ba",
+      "reset_fingerprint_sha256": "b2a7e672c3b117adac1962ff7c1cb95e14ea3ba4f238291616042085187d8d3a",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "1b0151ecd55764c4941b33cda123911d1c2e7c06799ce4d5c6c3169c9d3ab1ae",
+        "wrist_camera_sha256": "2eeac990b40efcfccbfa34c5436a62ac53b885b13eb001c50e79befc6af90109",
+        "robot_state_sha256": "bd9a273058b77bb4726304580fb39b5761840754e29aa6a30de0cf5c0723c155",
+        "object_state_sha256": "9979796eff9e2eb4fdd26ac201afa38f071ae6aafebc30bca0dc330f66bcff8b"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "state_index": 3,
+      "tensor_sha256": "efd41c83191d874138955cd4081f98808e340caee9b6947dcb4a44ace606eb93",
+      "reset_fingerprint_sha256": "fb5dbfb97137dc30defce14a84b51a69df34072351cbefab546f3cf3bca0ad6e",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "ac728202ee679af88ab93b94989585826fac650c39298361d92aea3a1df4ae47",
+        "wrist_camera_sha256": "1c3d4930d7095fe78b5fff32242216687c0fe50b01de64c54b5f9fa53d6aabb1",
+        "robot_state_sha256": "dcd2477ae7d723f6f82b50cb484f29343d0f3489a67185fc53dcc5265aeb4047",
+        "object_state_sha256": "a271dceba20a712d0a1e24ab7f27c84190e2d4ff26e244bb85245e60a96d53c4"
+      }
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "state_index": 4,
+      "tensor_sha256": "0f13616621dcd41cddd6e889d8e87cb2889937ea24ca35775884077249e12ac9",
+      "reset_fingerprint_sha256": "198809cee745eae90fc70d4a2e625bf506145e85fe8ff4b06f652dcdf90ecaf5",
+      "repeats_match": true,
+      "components": {
+        "main_camera_sha256": "4d1800e419893012953b27999ae7f0a8b5440c504495b2bbb2ec67cb5d037f55",
+        "wrist_camera_sha256": "79c9acb6e7e951855105321b737f69da942e5b1002fd45015d6bf11d74c50dc3",
+        "robot_state_sha256": "8ba2267c43b6eb0b036d8202f4b6872eb5e26c7c8e0c8495a919c4065566dbb1",
+        "object_state_sha256": "cb10d643a2364aa26ea514aa88aba7814669507c76b5826578b39507ce96ad0f"
+      }
+    }
+  ],
+  "errors": [],
+  "claim_boundary": "Repeated simulator reset fingerprints only; no policy action or success outcome was measured."
+}

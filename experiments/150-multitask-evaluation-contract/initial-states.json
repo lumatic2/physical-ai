@@ -1,0 +1,431 @@
+{
+  "schema_version": "physical-ai-initial-state-contract-v1",
+  "generated_at": "2026-07-21",
+  "environment": {
+    "name": "LIBERO",
+    "revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01"
+  },
+  "selection": {
+    "indices": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "seed": 0,
+    "render_size": 128,
+    "reset_repeats": 2
+  },
+  "tasks": [
+    {
+      "task_key": "libero_spatial/task-00",
+      "suite": "libero_spatial",
+      "task_id": 0,
+      "init_states_file": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate.pruned_init",
+      "source_file_sha256": "cbbc73792ce546c9bec181fd328a411d3183074840b282671dee481511381d0a",
+      "available_state_count": 50,
+      "state_shape": [
+        92
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "16a1c5b6238e4b073a9e9f32132bf08b1a525e146a38606487f14afb1b4ea962"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "e4e967882d59a8315d40d01426f6d1aa773c1423da2d64b64a13710bf24ad1b2"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "07c6160f56af8b2160204dcede445765b406d2627bba9cf9314991cc15efd219"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "6af420f4ff6ea353c0577eae8f075fe15744212d0b7693d9ce8ea6e09e35998a"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "e59d2141d5df5f6b8fee04858a6af1a8e6b8731bc579fa9541780cfee9ecebac"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_spatial/task-03",
+      "suite": "libero_spatial",
+      "task_id": 3,
+      "init_states_file": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate.pruned_init",
+      "source_file_sha256": "0627f5f5ce3ef23be546571012be8ef603d93bcb4032bc80feb34937ba580140",
+      "available_state_count": 50,
+      "state_shape": [
+        92
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "ef6d2b4ffcde358938daf933352320e3ae1d96a5cb8ab6608e40decf982d325b"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "7ec362d60c5b388941796a5d0215017e0f7831553659661f1ce8747db5601a02"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "154f5adeb2eae089080a00b554d7de9e8b3ed28a2f093c12612ab468f3f7d10e"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "a11ab1d6de8152b8c3664dafba42ae16f628d10fa3af43945081b6046329ecdc"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "2781e826fc88a1d93c077514dbbdbc4c4872eca1a251291ba0d348bfa1118cdc"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_spatial/task-05",
+      "suite": "libero_spatial",
+      "task_id": 5,
+      "init_states_file": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate.pruned_init",
+      "source_file_sha256": "2d2c50b7dcbf861fffa94d576f217ed34153e57487010d7a109a220d4d97189b",
+      "available_state_count": 50,
+      "state_shape": [
+        92
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "1a3fe5f4115a3da1b755f294db6ca346326615d2f711b86d3329a18b51b3bb73"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "09ba526ef92e100809b9b5498cdab6c9733526330dfaab66e06e9478639c8965"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "282e6e935cdea9978247337f7c77a14cf213f255258081e799be76dc180d5f8a"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "89352ec3d71018adadc13d0bed4b586b8c73ab306e6bd0bc7c3a46c6a3495ce4"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "1de2ea272df53ba04ef226edb8f6a2bd6a8992b1a31b91c9ffdcebf8d9379cb1"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_spatial/task-08",
+      "suite": "libero_spatial",
+      "task_id": 8,
+      "init_states_file": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate.pruned_init",
+      "source_file_sha256": "f43df2d80042130ac8770590d83f1a1e6fd4df7479aebc392aa2ed6e3bd0b83e",
+      "available_state_count": 50,
+      "state_shape": [
+        92
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "a04f9b31273cde4530b3cbc7f4a9fb62c3fc0c532adbdfeefc6b3ed8c406a89e"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "5ede656c181b410b42e53a8e88f7d0155194c452960acb3178de069b901353ad"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "03eb99ac0760d1da20f1d701a01cc773547246c49c749f2fa05771f3a41474bb"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "49565b8114f1a93f63e52178e47f2dce6f5a635616b76eb19f4bfc02ddde0407"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "adf10f82bf7453151568f339c0fc79a6de58c1f2c582aed25c2f1b6a443b9f98"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_object/task-00",
+      "suite": "libero_object",
+      "task_id": 0,
+      "init_states_file": "pick_up_the_alphabet_soup_and_place_it_in_the_basket.pruned_init",
+      "source_file_sha256": "b9023e5546b239cacb2aaa3c76df3b73c3de6f97500fea5e27a0db9827002a19",
+      "available_state_count": 50,
+      "state_shape": [
+        110
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "adcfa63e853b3faf1df46ba960bc2609d71f9dff99c776599937eaafe660bd52"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "dde2b916b7a769afe2b52d76429aca7887112c09cfa9aa2c0785ef680782042f"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "119d01814d7ab4f9b9c3f3b3d4207dce98da50ffe63c7abfbeb24b89b416dc74"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "6f500b1ed4fa3fa1c947e59fdd87d06ae1f16e596895d0f8aea1b988d72513ae"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "de1c86dcc4bec658c7be4ab4979268439963ed2c492637b06a72309250fb7c02"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_object/task-03",
+      "suite": "libero_object",
+      "task_id": 3,
+      "init_states_file": "pick_up_the_bbq_sauce_and_place_it_in_the_basket.pruned_init",
+      "source_file_sha256": "c524077b0c23006f28fc06760a5b5ab37eee67287b5329e84a34b0a8bd599b4a",
+      "available_state_count": 50,
+      "state_shape": [
+        110
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "ea07d8ec1d061eab27467571b978d191396c1060884024019cb3658c81e46df7"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "434e1817dbdd2c224cb2e928073692de88d12c0bc7fd8c4f08a0e470523d5383"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "22cfd20b49f52462d638e4ea200194faf51a4ec9b07d3417f2c6f8cca2396c4b"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "41c8b7b5ce0d66f62c0911f95fade52975c2b7ca821b9f0d0827be311948e38e"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "98886378bca83ded6d5c2b91615f1dcd9daaf8f396094560368b20aab55c0df5"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_object/task-06",
+      "suite": "libero_object",
+      "task_id": 6,
+      "init_states_file": "pick_up_the_butter_and_place_it_in_the_basket.pruned_init",
+      "source_file_sha256": "f0925a8653c5902c5a4d78a2053365382ad7d05be7f059abe19c2004ffc5dc59",
+      "available_state_count": 50,
+      "state_shape": [
+        110
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "fc3d39a97478f3a1dcda7d8786146455acf78ae77f8c43e0af92f71c43f0f94c"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "04c407e9a4f00207bbe4c908af030d57ccd0590986510ca949401d46517b93af"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "461aed244ee11f77de999b94f38fc8737613207f296905e6d369c53113abeacd"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "97c14858f25c1740ed83f0216f54931a0b2d07d6e9695310489ee718bf347c52"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "4169240d706d225c59faf686722aa69d7aae8b37dd1d58a3c4f6870ba3e6ec39"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_object/task-09",
+      "suite": "libero_object",
+      "task_id": 9,
+      "init_states_file": "pick_up_the_orange_juice_and_place_it_in_the_basket.pruned_init",
+      "source_file_sha256": "35b19ffab1fe08c6457ebd732c37d04b9bc0d22b7ce7de015986092ddddea151",
+      "available_state_count": 50,
+      "state_shape": [
+        110
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "618f78a9b146b8af5286b01a1856dd647ef64cd0fecf0f81d5090bbc5124331e"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "bc0fec0d0e7de4ca22c1b3cf88173f0523ac4913e860df8bd1118b11e8caefca"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "ec1d75e11cf4a99900dbc31a90a4dc5ea6368cbbb6cdfc7a3828daddf5da1a21"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "c3dd29281f93d1c3696f7eb2732a648cb6cdc1f4ae199b109baa8dd8ac84c56f"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "eaaafd09e1f1b0ae11aacec1ebde26241a534c01246fc0cbf19ea2d954df39de"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_goal/task-00",
+      "suite": "libero_goal",
+      "task_id": 0,
+      "init_states_file": "open_the_middle_drawer_of_the_cabinet.pruned_init",
+      "source_file_sha256": "977efe1216bee72bb4e9fa9ec4be1bcfe37fb00ece815eac117feba019b34b9f",
+      "available_state_count": 50,
+      "state_shape": [
+        79
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "588de948a4f38b67db9954e5e79569cbb9c90cc121497559391c4ceadbfcd5cb"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "8c4f3ed2a3f580a5df0ed2befc5fa21e02ec6985905af4809412edd0679c7409"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "c9ec6c33ca1d79892d4372d995a4084dc350035e1a05a15fb8f0910d13d25596"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "598261180bc8d72005835eefea411f923216b13b990e070105c805e4054cd7f6"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "d72a3b779f542cba4ce357868b7a6cc62dd3791843f1653c7270a50627d089b5"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_goal/task-03",
+      "suite": "libero_goal",
+      "task_id": 3,
+      "init_states_file": "open_the_top_drawer_and_put_the_bowl_inside.pruned_init",
+      "source_file_sha256": "1cd5354ade9ab9f323a518515f961df96123b7daeca017df1f62d3e9ff18794f",
+      "available_state_count": 50,
+      "state_shape": [
+        79
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "de01ae212f3e59a335a4907563e54f20455b2c94b5970eac90cba6c18e9f868f"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "63c6a5e13d0b006f6e3bf2bbdba2d0dd49a177de0a51b113d8e436ea7f5153d7"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "e2f43306a409114a04c0399d27afad63dd2b0106690fa31e2a1d8e90f9cab3ff"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "bad5e39fa96eae1917e50d07d14f10afdfa10e5cf30591cc3b7a58f6a1685200"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "f52e9b42fea41afd6b8e04c0ac87d508111483ce9efc3cb05ba9c9416292ad30"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_goal/task-06",
+      "suite": "libero_goal",
+      "task_id": 6,
+      "init_states_file": "put_the_cream_cheese_in_the_bowl.pruned_init",
+      "source_file_sha256": "524de11d240f33b93d5218b1779a1ded1037950fcf865f07d0c0029cc48cf3f5",
+      "available_state_count": 50,
+      "state_shape": [
+        79
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "73aa11fed9b5e127718fc016fcc8b7b00476dc17d1059a3e456b4fd6586aed7b"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "b8715482a2859c7396c330bfe784e38c7db1c2ac3c29473f0651d9339084b18c"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "d6096261d42ad86264e5fafcd9c0335e324986e626bc5b8a5558095197e74e4b"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "b56d8ac8b8992b9eca0d6b30a96a191b9fe193a557ad4ce592ff5e89aea71cf6"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "1173c41d57c26f7409f6e840f51f0107f8c0bfa23404c1bb3eb33fa0e7975456"
+        }
+      ]
+    },
+    {
+      "task_key": "libero_goal/task-09",
+      "suite": "libero_goal",
+      "task_id": 9,
+      "init_states_file": "put_the_wine_bottle_on_the_rack.pruned_init",
+      "source_file_sha256": "fa09aa4ade871c1c6be3dd8c93eb3437ea15190fd7dc73b8c986c8d2d3cfb062",
+      "available_state_count": 50,
+      "state_shape": [
+        79
+      ],
+      "dtype": "float64",
+      "selected_states": [
+        {
+          "index": 0,
+          "tensor_sha256": "d87fc02eac01ad2b41e513229face52b4565f7cbc74f0e5bc37185a736a8938a"
+        },
+        {
+          "index": 1,
+          "tensor_sha256": "0b44b14d52c02def97d66cd3263f637f8b7e230c6ac6d0ff14d129bac41bfa4e"
+        },
+        {
+          "index": 2,
+          "tensor_sha256": "b868cea3c36fc312cef28a4c71c256de8d2409b5fd9ec65bedce4298e84976ba"
+        },
+        {
+          "index": 3,
+          "tensor_sha256": "efd41c83191d874138955cd4081f98808e340caee9b6947dcb4a44ace606eb93"
+        },
+        {
+          "index": 4,
+          "tensor_sha256": "0f13616621dcd41cddd6e889d8e87cb2889937ea24ca35775884077249e12ac9"
+        }
+      ]
+    }
+  ],
+  "claim_boundary": "Initial-state tensors and repeated simulator reset fingerprints are fixed; no policy action was executed."
+}

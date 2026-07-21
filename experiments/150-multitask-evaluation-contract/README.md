@@ -22,6 +22,17 @@ python experiments/150-multitask-evaluation-contract/verify_task_slice.py `
 
 실패 fixture는 unknown task, duplicate task, suite relabel을 각각 거부한다. canonical report의 `official_source.verified_bddl=12`여야 이 Step을 닫는다.
 
+## 초기 상태 계약
+
+`initial-states.json`은 각 task의 `.pruned_init`에서 index 0~4를 고정한다. 다음 명령은 LIBERO/MuJoCo runtime에서 main camera, wrist camera, robot state, object state fingerprint를 같은 초기 상태마다 두 번 대조한다.
+
+```bash
+export PYTHONPATH="$HOME/LIBERO"
+export MUJOCO_GL=egl
+python verify_initial_states.py --libero-root "$HOME/LIBERO" --probe-resets \
+  --output verify/canonical/initial-state-report.json
+```
+
 ## 범위 경계
 
-이 산출물은 12개 task identity와 BDDL byte를 고정한다. task별 5개 initial state는 GEN1 step-2, policy compatibility는 step-3에서 추가한다.
+이 산출물은 12개 task identity, BDDL byte, task별 5개 initial state를 고정한다. policy compatibility는 GEN1 step-3에서 추가한다.

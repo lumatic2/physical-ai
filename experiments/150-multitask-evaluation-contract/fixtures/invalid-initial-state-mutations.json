@@ -1,0 +1,23 @@
+[
+  {
+    "id": "state-order-drift",
+    "operation": "reverse-states",
+    "task_index": 0,
+    "expected_error": "selected state order drift"
+  },
+  {
+    "id": "seed-drift",
+    "operation": "set-selection",
+    "field": "seed",
+    "value": 1,
+    "expected_error": "reset seed drift"
+  },
+  {
+    "id": "state-hash-drift",
+    "operation": "set-state-hash",
+    "task_index": 0,
+    "state_index": 0,
+    "value": "not-a-sha256",
+    "expected_error": "state tensor hash invalid"
+  }
+]

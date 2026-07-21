@@ -17,3 +17,4 @@
 | 13 | [20260721-lab3-causal-timeline-evidence-drawer](20260721-lab3-causal-timeline-evidence-drawer/README.md) | 2026-07-21 | source·parent·assistance 인과 timeline과 raw evidence drawer | 4/4 | completed |
 | 14 | [20260721-lab3-public-reviewer-gate](20260721-lab3-public-reviewer-gate/README.md) | 2026-07-21 | human visual gate, production route와 live evidence | 4/4 | completed |
 | 15 | [20260721-gen1-suite-task-slice](20260721-gen1-suite-task-slice/README.md) | 2026-07-21 | LIBERO 3 suite × 4 task의 revision·language·BDDL hash 고정 | 5/5 | completed |
+| 16 | [20260721-gen1-initial-state-contract](20260721-gen1-initial-state-contract/README.md) | 2026-07-21 | task별 5개 initial-state tensor와 반복 reset fingerprint 고정 | 5/5 | completed |
