@@ -94,6 +94,9 @@
 
 ## Next Candidates
 
+- **연쇄 2/3:** 지시를 바꿔 실행하는 로컬 피지컬 AI 실험실 — `plans/horizons/live-instruction-execution-lab.md` (25 changeset; GEN Horizon 완료 후 승격)
+- **연쇄 3/3:** 시뮬레이션과 실물을 잇는 SO-101 검증 — `plans/horizons/sim-real-so101-evidence-loop.md` (25 changeset; hardware external gate)
+
 ## Guardrails
 
 - Assisted fixture evidence를 unassisted controller proof 또는 real robot telemetry로 쓰지 않는다.
