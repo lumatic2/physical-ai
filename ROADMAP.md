@@ -40,8 +40,8 @@
 | LAB2 | Observable Decision/Action Trace | VLM/VLA/controller event의 출처와 인과 경계를 검증한다 | `experiments/148-observable-decision-action-trace` | 완료 |
 | LAB3 | Public Robot Arm Laboratory | dual-camera와 decision/action/result timeline을 공개한다 | `experiments/03-digital-twin/web/verify/arm-lab` | 완료 |
 | GEN1 | Fixed Multitask Evaluation Contract | 12 task×5 state×2 policy의 평가 분모를 사전 고정한다 | `experiments/150-multitask-evaluation-contract` | 완료 |
-| GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | active |
-| GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | pending |
+| GEN2 | OpenVLA Multitask Baseline | OpenVLA 60 episode의 재개 가능한 기준선을 만든다 | `experiments/151-openvla-multitask-baseline` | 완료 |
+| GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | active |
 | GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | pending |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | pending |
 
@@ -62,15 +62,17 @@
 
 - Completed at: 2026-07-21
 - Summary: 12 task×5 state×2 policy 평가 계약과 clean gate PASS
-<!-- harness:milestone id="GEN2" status="active" priority="P1" -->
+<!-- harness:milestone id="GEN2" status="completed" priority="P1" evidence="archive/reports/2026-07-21-gen2-openvla-multitask-baseline.md" -->
 ### GEN2 — OpenVLA 다과제 기준선
 - DoD: GEN1의 OpenVLA 60 cell이 resumable runner로 실행되고 aggregate에서 모든 canonical episode까지 추적된다.
-- Evidence: `plans/2026-07-21-gen2-openvla-multitask-baseline.md`; `experiments/151-openvla-multitask-baseline/verify/`; changesets `20260721-gen2-manifest-driven-runner`, `20260721-gen2-resumable-run-ledger`, `20260721-gen2-canonical-episode-export`, `20260721-gen2-sixty-cell-execution`, `20260721-gen2-baseline-aggregate-gate`
+- Evidence: archive/reports/2026-07-21-gen2-openvla-multitask-baseline.md
 - Gap: 고정된 평가 계약만 있고 실제 다과제 OpenVLA 분모와 재개 가능한 실행 증거가 없다.
 - Scale: changesets>=5; surfaces: runner, run ledger, episode exporter, 60 rollouts, aggregate; capability: OpenVLA 다과제 기준선을 재실행한다.
-- Status: [ ]
+- Status: [x]
 
-<!-- harness:milestone id="GEN3" status="pending" priority="P2" -->
+- Completed at: 2026-07-21
+- Summary: OpenVLA 60개 actual rollout과 aggregate gate PASS
+<!-- harness:milestone id="GEN3" status="active" priority="P2" -->
 ### GEN3 — 두 VLA의 공정 비교
 - DoD: π₀.₅-LIBERO 60 cell과 OpenVLA 기준선이 adapter·checkpoint 차이를 공개한 동일 paired denominator로 비교된다.
 - Evidence: `plans/2026-07-21-gen3-paired-vla-comparison.md`; `experiments/152-paired-vla-comparison/verify/`; changesets `20260721-gen3-pi05-compatibility-probe`, `20260721-gen3-shared-policy-adapter-gate`, `20260721-gen3-pi05-sixty-cell-execution`, `20260721-gen3-paired-statistics`, `20260721-gen3-fairness-and-claim-gate`

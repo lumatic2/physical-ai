@@ -239,7 +239,7 @@
       "work_id": "multitask-generalization-lab-gen2",
       "horizon_id": "multitask-generalization-lab",
       "milestone_id": "GEN2",
-      "status": "active",
+      "status": "completed",
       "plan_path": "plans/2026-07-21-gen2-openvla-multitask-baseline.md",
       "changeset_path": "changesets/20260721-gen2-baseline-aggregate-gate",
       "next_step": null,
@@ -293,7 +293,8 @@
       ],
       "owner_session_uuid": null,
       "updated_at": "2026-07-21",
-      "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation."
+      "notes": "Registered atomically by canonical harness approve_harness_plan.py after plan validation.",
+      "completion_summary": "OpenVLA 60개 rollout이 35 success·25 timeout의 추적 가능한 baseline으로 완료됐다."
     }
   }
 }
