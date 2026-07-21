@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotics.askewly.com/schemas/physical-ai-failure-pattern-record-v1.json",
+  "title": "Observable failure pattern record",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_key",
+    "policy_id",
+    "outcome",
+    "pattern_id",
+    "rule_version",
+    "frame_range",
+    "predicates",
+    "evidence",
+    "claim_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "physical-ai-failure-pattern-record-v1"},
+    "run_key": {"type": "string", "minLength": 1},
+    "policy_id": {"enum": ["openvla-libero", "pi05-libero", "infrastructure"]},
+    "outcome": {"enum": ["timeout", "error"]},
+    "pattern_id": {
+      "enum": [
+        "no_progress",
+        "wrong_object_interaction",
+        "grasp_lost",
+        "timeout_near_goal",
+        "controller_rejected",
+        "infrastructure_error",
+        "unknown",
+        "multiple"
+      ]
+    },
+    "rule_version": {"type": "string", "pattern": "^gen4-rules-v[0-9]+$"},
+    "frame_range": {"$ref": "#/$defs/frame_range"},
+    "predicates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/predicate"}
+    },
+    "evidence": {"$ref": "#/$defs/evidence"},
+    "components": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "no_progress",
+          "wrong_object_interaction",
+          "grasp_lost",
+          "timeout_near_goal",
+          "controller_rejected"
+        ]
+      }
+    },
+    "unknown_reason": {
+      "enum": ["insufficient-observable-evidence", "no-declared-predicate-matched"]
+    },
+    "claim_boundary": {
+      "const": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"pattern_id": {"const": "unknown"}}, "required": ["pattern_id"]},
+      "then": {"required": ["unknown_reason"]}
+    },
+    {
+      "if": {"properties": {"pattern_id": {"const": "multiple"}}, "required": ["pattern_id"]},
+      "then": {"required": ["components"]}
+    },
+    {
+      "if": {"properties": {"pattern_id": {"const": "infrastructure_error"}}, "required": ["pattern_id"]},
+      "then": {
+        "properties": {
+          "policy_id": {"const": "infrastructure"},
+          "outcome": {"const": "error"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "frame_range": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "source_ref": {
+      "type": "object",
+      "required": ["kind", "ref", "sha256"],
+      "properties": {
+        "kind": {"enum": ["episode-manifest", "event-stream", "trajectory", "camera", "attempt-ledger"]},
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "frame_range": {"$ref": "#/$defs/frame_range"},
+        "event_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "additionalProperties": false
+    },
+    "predicate": {
+      "type": "object",
+      "required": ["metric", "operator", "observed", "unit", "source"],
+      "properties": {
+        "metric": {
+          "enum": [
+            "end_effector_displacement",
+            "object_displacement",
+            "target_interaction",
+            "non_target_interaction",
+            "grasp_relation",
+            "goal_distance_proxy",
+            "controller_acceptance",
+            "attempt_result_class",
+            "declared_pattern_match_count",
+            "observable_evidence_available"
+          ]
+        },
+        "operator": {"enum": ["lt", "lte", "eq", "gte", "gt", "transition", "is_false", "is_true"]},
+        "observed": {"type": ["number", "string", "boolean"]},
+        "threshold": {"type": ["number", "string", "boolean"]},
+        "unit": {"type": "string", "minLength": 1},
+        "source": {"$ref": "#/$defs/source_ref"}
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["episode_ref", "manifest_sha256", "sources"],
+      "properties": {
+        "episode_ref": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$"
+        },
+        "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/source_ref"}
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "x-pattern-definitions": [
+    {
+      "id": "no_progress",
+      "scope": "policy-episode",
+      "description": "End-effector or object progress proxy changes less than a declared threshold across a frame window.",
+      "required_predicates": ["end_effector_displacement", "object_displacement"],
+      "evidence_sources": ["trajectory", "episode-manifest"]
+    },
+    {
+      "id": "wrong_object_interaction",
+      "scope": "policy-episode",
+      "description": "A non-target interaction predicate is true while the target interaction predicate remains false.",
+      "required_predicates": ["non_target_interaction", "target_interaction"],
+      "evidence_sources": ["event-stream", "camera"]
+    },
+    {
+      "id": "grasp_lost",
+      "scope": "policy-episode",
+      "description": "The gripper-object relation changes from held to not-held before the terminal frame.",
+      "required_predicates": ["grasp_relation"],
+      "evidence_sources": ["trajectory", "camera"]
+    },
+    {
+      "id": "timeout_near_goal",
+      "scope": "policy-episode",
+      "description": "The episode terminates by timeout while a declared goal-distance proxy is below threshold.",
+      "required_predicates": ["goal_distance_proxy"],
+      "evidence_sources": ["trajectory", "event-stream"]
+    },
+    {
+      "id": "controller_rejected",
+      "scope": "policy-episode",
+      "description": "A controller event explicitly records an action as rejected or invalid.",
+      "required_predicates": ["controller_acceptance"],
+      "evidence_sources": ["event-stream"]
+    },
+    {
+      "id": "infrastructure_error",
+      "scope": "attempt",
+      "description": "The attempt ledger records infrastructure error and no policy artifact is promoted.",
+      "required_predicates": ["attempt_result_class"],
+      "evidence_sources": ["attempt-ledger"]
+    },
+    {
+      "id": "unknown",
+      "scope": "policy-episode",
+      "description": "Available canonical sources do not satisfy any declared pattern predicate.",
+      "required_predicates": ["observable_evidence_available", "declared_pattern_match_count"],
+      "evidence_sources": ["episode-manifest"]
+    },
+    {
+      "id": "multiple",
+      "scope": "policy-episode",
+      "description": "Two or more declared observable pattern predicates are simultaneously satisfied.",
+      "required_predicates": ["declared_pattern_match_count"],
+      "evidence_sources": ["episode-manifest"]
+    }
+  ]
+}

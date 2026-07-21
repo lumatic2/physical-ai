@@ -1,0 +1,10 @@
+{
+  "schema_version": "physical-ai-gen4-invalid-pattern-contract-v1",
+  "cases": [
+    {"id": "bad-reasoning-label", "path": "pattern_id", "value": "bad_reasoning", "expected": "schema"},
+    {"id": "did-not-understand-label", "path": "pattern_id", "value": "did_not_understand", "expected": "schema"},
+    {"id": "missing-predicate", "path": "predicates", "value": [], "expected": "schema"},
+    {"id": "missing-evidence-source", "path": "evidence.sources", "value": [], "expected": "schema"},
+    {"id": "absolute-local-path", "path": "evidence.episode_ref", "value": "/home/user/private/episode", "expected": "schema"}
+  ]
+}

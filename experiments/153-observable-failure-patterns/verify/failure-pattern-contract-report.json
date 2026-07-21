@@ -1,0 +1,37 @@
+{
+  "schema_version": "physical-ai-gen4-failure-pattern-contract-report-v1",
+  "pass": true,
+  "labels": [
+    "controller_rejected",
+    "grasp_lost",
+    "infrastructure_error",
+    "multiple",
+    "no_progress",
+    "timeout_near_goal",
+    "unknown",
+    "wrong_object_interaction"
+  ],
+  "policy_episode_labels": [
+    "controller_rejected",
+    "grasp_lost",
+    "multiple",
+    "no_progress",
+    "timeout_near_goal",
+    "unknown",
+    "wrong_object_interaction"
+  ],
+  "attempt_labels": [
+    "infrastructure_error"
+  ],
+  "definitions_with_predicates": 8,
+  "definitions_with_evidence_sources": 8,
+  "valid_label_fixtures": 8,
+  "negative_fixtures_rejected": [
+    "bad-reasoning-label",
+    "did-not-understand-label",
+    "missing-predicate",
+    "missing-evidence-source",
+    "absolute-local-path"
+  ],
+  "claim_boundary": "Observed failure pattern only; not a root-cause, hidden-reasoning, or real-robot diagnosis."
+}
