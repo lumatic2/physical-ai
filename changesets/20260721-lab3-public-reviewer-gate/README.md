@@ -33,10 +33,14 @@ planning_gate:
 
 - [x] Local manifest, claim, build, browser desktop light/dark/drawer/mobile PASS.
 - [x] Post-polish fatal fetch recovery, PASS/FAIL semantic badge, drawer scroll QA PASS.
-- [ ] Human visual verification PASS.
-- [ ] Production deploy READY and `/arm-lab` route PASS.
-- [ ] Live Playwright, asset/console/network gate PASS.
+- [x] Human visual verification PASS — user explicitly authorized production deploy.
+- [x] Production deploy READY and `/arm-lab` route PASS.
+- [x] Live Playwright, asset/console/network gate PASS.
 
 ## Result
 
-- Status: waiting_for_human_visual_verification
+- Status: PASS
+- Production: `https://robotics.askewly.com/arm-lab`
+- Deployment: `dpl_E8XM8Vzv8uosc18jNBWQwQXdGNsb` (`READY`, verified 2026-07-21)
+- Live evidence: `experiments/03-digital-twin/web/verify/arm-lab/live-player-report.json`, `live-*.png`.
+- Asset gate: registry와 공개 JSON/MP4 12개, 총 13파일의 HTTP 200·byte count·SHA-256 PASS.

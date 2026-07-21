@@ -64,7 +64,9 @@ def run_desktop(browser, base_url, prefix):
     vlm_summary = page.evaluate("window.qaArmLabSummary()")
     assert vlm_summary["selectedEvent"]["parents"] == ["vlm-scene-observation"], vlm_summary
     assert vlm_summary["selectedEvent"]["assistance"]["used"] is False, vlm_summary
-    assert page.locator(".arm-event-source.is-environment.is-pass").count() == 1
+    pass_badge = page.locator(".arm-event-list .arm-event-source.is-environment.is-pass")
+    pass_badge.wait_for(state="visible")
+    assert pass_badge.count() == 1
 
     page.get_by_role("button", name="증거 원문 열기").click()
     drawer = page.get_by_role("dialog", name="이 판단은 어디서 왔나")
@@ -79,7 +81,9 @@ def run_desktop(browser, base_url, prefix):
 
     page.get_by_role("button", name="실패 기록 FAIL").click()
     page.wait_for_function("() => window.qaArmLabSummary?.().episode === 'fail' && window.qaArmLabSummary().frames === 220")
-    assert page.locator(".arm-event-source.is-environment.is-fail").count() == 1
+    fail_badge = page.locator(".arm-event-list .arm-event-source.is-environment.is-fail")
+    fail_badge.wait_for(state="visible")
+    assert fail_badge.count() == 1
     fail_summary = page.evaluate("window.qaArmLabSummary()")
     assert fail_summary["outcome"]["success"] is False, fail_summary
     assert fail_summary["outcome"]["termination"] == "timeout", fail_summary
