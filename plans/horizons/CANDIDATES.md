@@ -15,7 +15,7 @@
 3. **지시를 바꿔 실행하는 로컬 피지컬 AI 실험실** (`live-instruction-execution-lab`)
    - 선택: 2026-07-21 사용자 승인
    - 이유: recorded replay를 넘어 지원 과제의 언어 지시와 정책을 선택해 실제 local GPU inference·행동·관찰 stream을 실행한다.
-   - 상태: queued-approved — 3-Horizon 연쇄 2/3
+   - 상태: active-planning — 3-Horizon 연쇄 2/3; current approval pending after VLM lane strengthening
 4. **시뮬레이션과 실물을 잇는 SO-101 검증** (`sim-real-so101-evidence-loop`)
    - 선택: 2026-07-21 사용자 승인
    - 이유: 동일한 camera/state/action/outcome 계약을 SO-101 leader/follower·dual-camera·실물 정책 평가에 연결한다.
@@ -24,10 +24,10 @@
 ## 승인 연쇄
 
 1. `multitask-generalization-lab` — 25 changeset
-2. `live-instruction-execution-lab` — 25 changeset
+2. `live-instruction-execution-lab` — 26 changeset
 3. `sim-real-so101-evidence-loop` — 25 changeset
 
-- 총 선언: ≥75 changeset 상당.
+- 총 선언: ≥76 changeset 상당.
 - 전환: 앞 Horizon의 닫는 기준과 최종 보고서 PASS 후 다음 Horizon을 ROADMAP current로 승격한다.
 - 정지: REAL1의 실제 구매·배송·공간·카메라 구성은 별도 사용자 승인 없이는 진행하지 않는다.
 

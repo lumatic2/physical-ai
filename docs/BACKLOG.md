@@ -52,3 +52,29 @@
   - Completed: 2026-06-26
   - Result: G1 pelvis/torso/head/feet collision readiness를 real-robot body zone, required telemetry, actuator stop gate, e-stop requirement, stop criteria로 매핑했다. local/live QA에서 sim envelope coverage와 hardware-unarmed gate가 PASS다.
   - Evidence: experiments/146-real-robot-collision-contract/verify/real-robot-collision-contract.json
+
+### 2026-07
+- GEN1 - 고정된 다과제 평가 계약
+  - Completed: 2026-07-21
+  - Result: 12 task×5 state×2 policy 평가 계약과 clean gate PASS.
+  - Evidence: archive/reports/2026-07-21-gen1-multitask-evaluation-contract.md
+
+- GEN2 - OpenVLA 다과제 기준선
+  - Completed: 2026-07-21
+  - Result: OpenVLA 60개 actual rollout과 aggregate gate PASS.
+  - Evidence: archive/reports/2026-07-21-gen2-openvla-multitask-baseline.md
+
+- GEN3 - 두 VLA의 공정 비교
+  - Completed: 2026-07-21
+  - Result: 두 VLA 60쌍의 실제 실행·paired 통계·공정성 경계를 완료했다.
+  - Evidence: archive/reports/2026-07-21-gen3-paired-vla-comparison.md
+
+- GEN4 - 증거 기반 실패 양상
+  - Completed: 2026-07-21
+  - Result: 27/27 non-success를 관측 가능한 양상 또는 unknown으로 완전 집계했다.
+  - Evidence: archive/reports/2026-07-21-gen4-observable-failure-patterns.md
+
+- GEN5 - 공개 일반화 비교 실험실
+  - Completed: 2026-07-21
+  - Result: 60 paired cell·120 episode·27 failure를 production reviewer path로 공개했다.
+  - Evidence: archive/reports/2026-07-21-gen5-public-generalization-lab.md

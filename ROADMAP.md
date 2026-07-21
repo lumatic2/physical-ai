@@ -44,68 +44,61 @@
 | GEN3 | Paired VLA Comparison | OpenVLA와 π₀.₅-LIBERO를 같은 paired contract로 비교한다 | `experiments/152-paired-vla-comparison` | 완료 |
 | GEN4 | Observable Failure Patterns | 실패를 원인 추정 없이 관측 가능한 양상으로 분류한다 | `experiments/153-observable-failure-patterns` | 완료 |
 | GEN5 | Public Generalization Lab | aggregate에서 canonical episode까지 추적하는 공개 화면을 배포한다 | `experiments/154-public-generalization-lab` | 완료 |
+| LIVE1 | Unified Inference Server | 세 실행 레인을 공통 localhost 계약과 단일 GPU lease로 제공한다 | `experiments/155-unified-policy-server` | 계획 승인 대기 |
+| LIVE2 | Safe Experiment Session | 지원 지시와 실행 레인을 안전한 session으로 실행한다 | `experiments/156-safe-experiment-session` | 대기 |
+| LIVE3 | Observable Live Stream | dual-camera와 VLM/VLA/controller event를 실시간 정렬한다 | `experiments/157-observable-live-stream` | 대기 |
+| LIVE4 | Session Recording Promotion | live session을 canonical replay로 승격한다 | `experiments/158-session-recording-promotion` | 대기 |
+| LIVE5 | Interactive Local Lab | 로컬 실행 UI와 공개 recorded proof를 완성한다 | `experiments/159-interactive-local-lab` | 대기 |
 
 ## Current Horizon
 
-<!-- harness:goal id="multitask-generalization-lab" -->
-목표: 사전 고정한 여러 과제·초기 상태에서 두 VLA를 같은 증거 계약으로 실행·비교하고 성공·실패 양상을 공개한다. (상세 → `plans/horizons/multitask-generalization-lab.md`)
+<!-- harness:goal id="live-instruction-execution-lab" -->
+목표: 지원 지시와 실행 레인을 선택해 local GPU inference를 실제 실행하고, VLM·VLA·controller의 서로 다른 역할을 실시간 관찰과 canonical recording으로 연결한다. (상세 → `plans/horizons/live-instruction-execution-lab.md`)
 
 ## Active Milestones
 
-<!-- harness:milestone id="GEN1" status="completed" priority="P0" evidence="archive/reports/2026-07-21-gen1-multitask-evaluation-contract.md" -->
-### GEN1 — 고정된 다과제 평가 계약
-- DoD: 12 task×5 initial state×2 policy의 120 cell이 task/state/policy revision과 immutable run key로 사전 고정되고 clean contract gate를 통과한다.
-- Evidence: archive/reports/2026-07-21-gen1-multitask-evaluation-contract.md
-- Gap: LAB3 한 과제의 evidence만으로는 평가 분모와 cherry-pick 부재를 입증하지 못한다.
-- Scale: changesets>=5; surfaces: task manifest, initial states, policy registry, result schema, clean gate; capability: 실행 전 다과제 paired 평가 계약을 재현한다.
-- Status: [x]
+<!-- harness:milestone id="LIVE1" status="active" priority="P0" -->
+### LIVE1 — 통합 로컬 inference server
+- DoD: OpenVLA·π₀.₅·Qwen3-VL 세 실행 레인이 exact revision, 공통 localhost envelope, exclusive GPU lease와 fail-closed lifecycle로 실제 inference를 제공한다.
+- Evidence: `archive/reports/2026-07-21-live1-unified-inference-server.md`
+- Gap: GEN 실행기는 batch 전용이라 사용자가 선택한 지시·실행 레인을 안전한 live session으로 제공하지 못한다.
+- Scale: changesets>=6; surfaces: envelope, three adapters, GPU lease/supervisor, cross-lane gate; capability: 세 로컬 inference 레인을 안전한 공통 계약으로 제공한다.
+- Status: [ ]
 
-- Completed at: 2026-07-21
-- Summary: 12 task×5 state×2 policy 평가 계약과 clean gate PASS
-<!-- harness:milestone id="GEN2" status="completed" priority="P1" evidence="archive/reports/2026-07-21-gen2-openvla-multitask-baseline.md" -->
-### GEN2 — OpenVLA 다과제 기준선
-- DoD: GEN1의 OpenVLA 60 cell이 resumable runner로 실행되고 aggregate에서 모든 canonical episode까지 추적된다.
-- Evidence: archive/reports/2026-07-21-gen2-openvla-multitask-baseline.md
-- Gap: 고정된 평가 계약만 있고 실제 다과제 OpenVLA 분모와 재개 가능한 실행 증거가 없다.
-- Scale: changesets>=5; surfaces: runner, run ledger, episode exporter, 60 rollouts, aggregate; capability: OpenVLA 다과제 기준선을 재실행한다.
-- Status: [x]
+<!-- harness:milestone id="LIVE2" status="pending" priority="P1" -->
+### LIVE2 — 안전한 실험 session 제어
+- DoD: 두 task×두 instruction form×세 실행 레인의 12 session이 pause/stop/timeout/action limit와 cleanup gate를 통과한다.
+- Evidence: `archive/reports/2026-07-21-live2-safe-experiment-session.md`
+- Gap: inference endpoint만으로는 지원 지시 해석, 환경 lifecycle, operator control과 action safety를 보장하지 못한다.
+- Scale: changesets>=5; surfaces: instruction catalog, state machine, action safety, fault smoke, 12-session gate; capability: 지시를 바꾼 local session을 fail-closed로 실행한다.
+- Status: [ ]
 
-- Completed at: 2026-07-21
-- Summary: OpenVLA 60개 actual rollout과 aggregate gate PASS
-<!-- harness:milestone id="GEN3" status="completed" priority="P2" evidence="archive/reports/2026-07-21-gen3-paired-vla-comparison.md" -->
-### GEN3 — 두 VLA의 공정 비교
-- DoD: π₀.₅-LIBERO 60 cell과 OpenVLA 기준선이 adapter·checkpoint 차이를 공개한 동일 paired denominator로 비교된다.
-- Evidence: archive/reports/2026-07-21-gen3-paired-vla-comparison.md
-- Gap: 한 정책 기준선만으로는 비교 플랫폼과 policy-family 차이를 입증하지 못한다.
-- Scale: changesets>=5; surfaces: pi05 probe, adapter parity, 60 rollouts, paired stats, fairness gate; capability: 두 VLA를 공정한 paired contract로 비교한다.
-- Status: [x]
+<!-- harness:milestone id="LIVE3" status="pending" priority="P2" -->
+### LIVE3 — 실시간 관찰 stream
+- DoD: 실제 session의 dual-camera·state·VLM/VLA/controller event가 source와 timestamp를 보존한 read-only browser stream으로 관찰된다.
+- Evidence: `archive/reports/2026-07-21-live3-observable-live-stream.md`
+- Gap: 실행 로그만으로는 사용자가 로봇이 보고 판단하고 움직이는 순간을 한 화면에서 이해하지 못한다.
+- Scale: changesets>=5; surfaces: stream schema, dual camera, event alignment, browser subscriber, live gate; capability: live physical-AI loop를 source별로 관찰한다.
+- Status: [ ]
 
-- Completed at: 2026-07-21
-- Summary: 두 VLA 60쌍의 실제 실행·paired 통계·공정성 경계를 완료했다.
-<!-- harness:milestone id="GEN4" status="completed" priority="P3" evidence="experiments/153-observable-failure-patterns/verify/failure-coverage-report.json" -->
-### GEN4 — 증거 기반 실패 양상
-- DoD: 모든 non-success episode가 frame/event predicate를 가진 관측 가능한 양상 또는 `unknown`으로 완전 집계되고 원인 과장 fixture가 거부된다.
-- Evidence: experiments/153-observable-failure-patterns/verify/failure-coverage-report.json
-- Gap: 성공률만으로는 정책이 어떻게 실패했는지 원 episode에서 검토할 수 없다.
-- Scale: changesets>=5; surfaces: taxonomy, feature extraction, classifier, reviewer sample, coverage gate; capability: 실패 한계를 근거와 함께 설명한다.
-- Status: [x]
+<!-- harness:milestone id="LIVE4" status="pending" priority="P3" -->
+### LIVE4 — 실행 기록과 replay 승격
+- DoD: valid live session이 LAB canonical episode로 원자적 승격되고 partial/failure와 live-replay hash·summary 관계가 검증된다.
+- Evidence: `archive/reports/2026-07-21-live4-session-recording-promotion.md`
+- Gap: 실시간 화면만으로는 제3자가 재현·감사할 수 있는 포트폴리오 증거가 남지 않는다.
+- Scale: changesets>=5; surfaces: recorder, recovery, promotion, equivalence, representative bundle; capability: live 실행을 재현 가능한 증거로 고정한다.
+- Status: [ ]
 
-- Completed at: 2026-07-21
-- Summary: 27/27 non-success: no_progress 6, unknown 21; reviewer evidence agreement 7/7, negative claim gate PASS.
-<!-- harness:milestone id="GEN5" status="completed" priority="P4" evidence="archive/reports/2026-07-21-gen5-public-generalization-lab.md" -->
-### GEN5 — 공개 일반화 비교 실험실
-- DoD: 공개 사이트에서 120 episode의 paired 결과와 실패 양상을 보고 aggregate cell에서 LAB3 canonical episode까지 추적한다.
-- Evidence: `archive/reports/2026-07-21-gen5-public-generalization-lab.md`
-- Gap: local aggregate만으로는 제3자가 분모·차이·실패 evidence를 5분 안에 검토하지 못한다.
-- Scale: changesets>=5; surfaces: public index, comparison UI, failure explorer, drill-down, live release; capability: 다과제 정책 비교를 공개 제품으로 증명한다.
-- Status: [x]
-
-- Completed at: 2026-07-21
-- Summary: 60 paired cell·120 episode·27 failure를 공개하고 aggregate에서 LAB3 canonical episode까지 추적하는 production reviewer gate PASS.
+<!-- harness:milestone id="LIVE5" status="pending" priority="P4" -->
+### LIVE5 — 로컬 실행형 실험실과 공개 증명
+- DoD: one-command local UI에서 지시·실행 레인을 선택해 실행·중단·관찰·기록하고, public route는 검증된 recording만 claim boundary와 함께 공개한다.
+- Evidence: `archive/reports/2026-07-21-live5-interactive-local-lab.md`
+- Gap: 앞 단계의 서비스와 증거를 사용자가 이해할 수 있는 하나의 실험실 제품과 외부 증명으로 묶어야 한다.
+- Scale: changesets>=5; surfaces: launcher, controls, live panels, recorded gallery, release gate; capability: 지시를 바꿔 실제 실행하는 피지컬 AI 실험실을 시연한다.
+- Status: [ ]
 
 ## Next Candidates
 
-- **연쇄 2/3:** 지시를 바꿔 실행하는 로컬 피지컬 AI 실험실 — `plans/horizons/live-instruction-execution-lab.md` (25 changeset; GEN Horizon 완료 후 승격)
 - **연쇄 3/3:** 시뮬레이션과 실물을 잇는 SO-101 검증 — `plans/horizons/sim-real-so101-evidence-loop.md` (25 changeset; hardware external gate)
 
 ## Guardrails

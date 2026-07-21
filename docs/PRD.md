@@ -28,6 +28,9 @@
 13. Observable decision trace: `sensor`, `vlm`, `vla`, `controller`, `environment` event를 출처와 함께 구분하고 숨은 사고 과정을 사후 생성하지 않는다.
 14. Arm laboratory view: main scene, wrist camera, instruction, structured decision record, action/result timeline을 한 화면에서 재생한다.
 15. Evidence mode labels: `recorded evidence`, `live/local inference`, `simulation`, `real telemetry`를 눈에 보이는 badge와 QA summary로 구분한다.
+16. Local instruction execution: 지원 task의 canonical instruction 또는 승인된 paraphrase, initial state와 실행 레인을 선택해 localhost GPU inference session을 start/pause/resume/stop한다.
+17. VLM/VLA role view: OpenVLA·π₀.₅의 direct action과 Qwen3-VL의 구조화된 scene/allowlisted skill을 별도 source로 표시하고 scripted controller assistance를 숨기지 않는다.
+18. Live-to-replay evidence: dual-camera/state/proposed action/executed action/event가 실시간으로 보이고, 종료 후 같은 session이 canonical episode와 공개 recorded replay로 연결된다.
 
 ## 범위
 
@@ -36,6 +39,7 @@
 - 포함: LIBERO/robosuite 기반 로봇 팔 episode producer, LeRobot v3 main/wrist camera episode, provenance sidecar, local VLM/VLA policy evidence, deterministic public replay.
 - 제외: real robot DDS capture, Isaac/Gazebo backend migration, full neural RL training, secret/API 기반 외부 서비스.
 - 제외: 첫 Horizon의 신규 foundation model 학습, 상시 GPU inference backend, 공개 UI에서 생성한 가짜 chain-of-thought, 실물 동기화 없는 real digital twin 주장.
+- 제외: catalog 밖 자유 지시의 임의 task 변환, public remote control, 세 모델의 동시 GPU 적재, live session의 public internet relay.
 
 ## 성공 기준
 
@@ -53,3 +57,4 @@
 - LAB1: canonical PASS/FAIL LeRobot v3 episode가 main/wrist camera, state, instruction, executed action, timing을 보존하고 provenance sidecar가 revision·latency·outcome·claim boundary를 중복 없이 연결한다.
 - LAB2: structured VLM/skill event와 direct VLA action event가 source-tagged timeline에서 구분되고, 모든 event가 parent·causal role·component revision·assistance를 보존하며 숨은 reasoning을 증거처럼 표시하지 않는다.
 - LAB3: 공개 브라우저가 dual-camera episode와 decision/action/result timeline을 재생하고 local/live QA가 raw evidence linkage를 검증한다.
+- LIVE Horizon: 두 task×두 instruction form×세 실행 레인의 12 local session이 fail-closed safety gate를 통과하고, VLM/VLA/controller source가 구분된 live UI와 canonical recorded proof로 연결된다.

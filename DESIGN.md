@@ -22,6 +22,15 @@ The new arm laboratory view should make the physical-AI loop legible without req
 - Main camera is labelled `model input`; wrist camera is labelled `observer only` because that is the recorded producer contract.
 - Every public artifact carries a byte size and SHA-256 digest. Local paths, token-like values, unknown event sources and ambiguous live/real claims fail before build.
 
+## Local Live Laboratory View
+
+- Entry: public recorded evidence and localhost live execution use separate routes or explicit entry modes; a public build never probes localhost.
+- Controls: supported task/instruction, canonical/paraphrase form, execution lane, initial state, start/pause/resume/stop and current safety state.
+- Execution lanes: `OpenVLA — direct VLA action`, `π₀.₅ — direct VLA action chunk`, `Qwen3-VL — scene/skill + scripted controller` are named in plain language and never collapsed into one generic AI badge.
+- Observation panel: the exact model-input camera, structured VLM scene/skill when that lane is active, and an explicit `not available for this lane` state otherwise.
+- Action panel: proposed versus executed action, component source, latency, heartbeat, GPU lease and stop reason remain visible without exposing hidden reasoning.
+- Recording transition: session completion shows promotion/quarantine status and opens the exact canonical replay only after hash linkage passes.
+
 ### Askewly Design Adaptation
 
 - Surface: an application workbench whose first task is inspecting recorded physical-AI evidence, not a decorative dashboard.

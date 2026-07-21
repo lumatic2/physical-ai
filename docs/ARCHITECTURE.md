@@ -42,6 +42,15 @@
 
 The first Horizon does not require an always-on inference backend. Local WSL2/GPU runs produce canonical evidence; the browser is the inspectable consumer.
 
+## 지시를 바꿔 실행하는 로컬 실험실 layers
+
+1. **Execution-lane registry:** OpenVLA, π₀.₅-LIBERO, Qwen3-VL→bounded skill의 exact revision, input, output, assistance와 지원 task를 고정한다.
+2. **Local inference boundary:** WSL2의 격리 env가 공통 WebSocket envelope를 제공하되 한 번에 하나만 exclusive GPU lease를 가진다. public bind는 금지한다.
+3. **Session controller:** Windows/local process가 instruction resolution, environment lifecycle, pause/stop/timeout/action limit와 GPU lease 전환을 소유한다.
+4. **Observable stream:** dual-camera, state, structured VLM event, VLA proposal, controller execution, environment result를 session id·timestep·source로 정렬한다.
+5. **Canonical promotion:** bounded spool을 검증한 뒤 LAB episode/event contract로 원자적으로 승격하고 live summary와 replay hash를 연결한다.
+6. **Two-surface UI:** local entry는 read-only stream과 operator controls를 제공하고, public Vercel entry는 promoted recording만 제공한다.
+
 ## Contracts
 
 - Replay trajectory: `fps`, `nq`, `scene`, `qpos[frame][nq]`.
@@ -55,6 +64,9 @@ The first Horizon does not require an always-on inference backend. Local WSL2/GP
 - Decision event stream: LAB1 episode를 `episode_ref`로 가리키는 `physical-ai-causal-events-v1` 문서다. 각 event는 `{id, timestep, timestamp_sec, source, kind, causal_role, parents, model_or_component, payload_ref, payload, assistance}`를 가지며 `source`는 `sensor|vlm|vla|controller|environment` 중 하나다.
 - Causality rule: `parents`에 앞서 기록된 event id가 없으면 observation 외의 decision/proposal/execution/result를 인과 event로 인정하지 않는다. 시간상 인접함은 인과 근거가 아니다.
 - Assistance rule: simulator ground truth나 scripted skill을 사용하면 `assistance.used=true`와 실제 source를 기록한다. hidden chain-of-thought와 internal reasoning은 지원하지 않는 필드다.
+- Local inference envelope: `physical-ai-inference-server-v1` request/result/health/error에 execution lane, exact revision, source, latency, proposal/action shape와 lease id를 기록한다.
+- Experiment session: `physical-ai-experiment-session-v1`은 supported instruction resolution과 created→ready→running↔paused→completed/aborted/error 전이를 기록하며 controller safety가 model output보다 우선한다.
+- Live stream: `physical-ai-live-stream-v1`은 session id, timestep, timestamp, source와 camera/state/proposal/execution/result ordering을 보존한다.
 
 ## 금지사항
 
@@ -68,3 +80,5 @@ The first Horizon does not require an always-on inference backend. Local WSL2/GP
 - Do not label an auxiliary VLM description as the VLA's internal thought. Show source and causal role explicitly.
 - Do not label recorded episode replay as live inference, or a simulation-only arm as a real-robot digital twin.
 - Do not add a persistent GPU backend before recorded evidence, trace validation and the public replay contract pass.
+- Do not load OpenVLA, π₀.₅ and Qwen3-VL concurrently on the single GPU; lane switching must release the prior process, port and VRAM before readiness.
+- Do not treat Qwen3-VL structured observations as OpenVLA/π₀.₅ reasoning or as low-level actions; the bounded-skill controller remains a separate assisted source.

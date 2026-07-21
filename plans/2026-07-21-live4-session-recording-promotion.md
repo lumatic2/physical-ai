@@ -1,6 +1,6 @@
 # PLAN — LIVE4 실행 기록과 replay 승격
 
-Status: approved — 2026-07-21 사용자 승인; 3-Horizon 전체 연쇄 실행
+Status: pending current approval — 2026-07-21 계획 보강
 
 ## Objective → Horizon → Milestone
 - Objective: 직접 실행 결과를 재현 가능한 산출물로 확인한다.
@@ -52,7 +52,7 @@ planning_gate:
   - Failure probe: partial→success promotion, silent frame fill, duplicate recovery가 FAIL한다.
   - Commit: changeset 2 — partial recording recovery.
 - [ ] **step-3 — canonical-episode-promotion**
-  - Artifact: valid session을 LAB episode/provenance/event stream으로 변환하는 atomic promoter.
+  - Artifact: valid session을 LAB episode/provenance와 source-tagged VLM/VLA/controller event stream으로 변환하는 atomic promoter.
   - Files: promoter/schema adapter/tests, changeset.
   - Dependencies: step-2
   - Verify: camera/state/action/instruction/outcome and source links pass LAB validators.
