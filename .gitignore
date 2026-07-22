@@ -3,7 +3,7 @@ references/*/**
 !references/*/ANALYSIS.md
 
 # 표준 (repo-layout 규약)
-archive/
+archive/*
 tmp/
 data/
 outputs/
@@ -20,3 +20,7 @@ CLAUDE.local.md
 
 # Harness runtime notification state
 .harness/telegram-alert.json
+
+# 완료 노트는 폐기물이 아니라 milestone 완료의 정본 증거다 (하네스 배치 규약).
+# archive/ 를 폐기물 창고로 쓰더라도 이 경로는 추적한다.
+!archive/reports/
